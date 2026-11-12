@@ -104,6 +104,11 @@
   title: Wikipedia, Proto-Indo-European and daughter-language articles
   url: https://en.wikipedia.org/wiki/Proto-Indo-European_language
   kind: encyclopedia
+- id: wikipedia-strong-verb
+  title: Wikipedia, Germanic strong verb (the Proto-Germanic root list after Seebold 1970,
+    Mailhammer 2007 and Kroonen 2013)
+  url: https://en.wikipedia.org/wiki/Germanic_strong_verb
+  kind: encyclopedia
 - id: campbell-1959
   title: Campbell, Old English Grammar (1959)
   kind: grammar

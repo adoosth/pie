@@ -692,6 +692,21 @@ that keeps the `*` opens nothing).
   added and no cuneiform was reconstructed from a reading. Overlap is checked on
   the headword and the normalised reading; script letters, number signs, starred
   reconstructions, phrases and inflection-only pages are not entries.
+- **The Proto-Germanic strong-verb inventory is Wikipedia's list, and it claims
+  no meaning it was not given** (2026-11-12): `tools/ingest_strong_verbs.py`
+  reads the Proto-Germanic root lists of Wikipedia's *Germanic strong verb*
+  (after Seebold 1970, Mailhammer 2007, Kroonen 2013), keeps the class of each
+  root in `strong_class`, and writes only the roots the glossary lacks. The
+  article prints no senses, so an entry taken from it carries `source:
+  wikipedia-strong-verb`, the class in `ref`, and **no gloss** — it is recorded,
+  not explained, and the page says so by printing nothing under the word. A
+  root whose Wiktionary page exists (`Reconstruction:Proto-Germanic/<verb>`,
+  redirects followed: *dīganą* → *diganą*) also takes that page's glosses, IPA,
+  etymology sentence and PIE root in `anc` — but only when the page is not
+  marked unknown/unclear and names a single ancestor, because one parent per
+  word is the model's rule and three rival roots are a question, not a parent.
+  The words are the article's, the meanings are the dictionary's, and neither
+  is inferred.
 - **Coverage reports the record too** (2026-11-09): `data/coverage.json` carries
   `borrowed`, `outside`, `non_ie`, `unlinked`, `no_etym`, `explained` per
   language; a borrowed word is not a failed reconstruction.
