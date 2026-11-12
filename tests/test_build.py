@@ -102,5 +102,35 @@ class Ladder(unittest.TestCase):
         self.assertTrue(any(e["form"] for e in pie["endings"]))
 
 
+class ConstructionPiece(unittest.TestCase):
+    """A piece the stage's glossary holds says what it means (admin, 2026-11-12).
+
+    *andaswarō's etymology is ``From *anda- + *swarō.`` — an arithmetic with no
+    gloss in brackets — so the construction row used to come back with both
+    pieces ``known: true`` and an empty gloss: the page opened the piece's own
+    entry and still printed no meaning under it, which reads exactly like a
+    word the page did not recognise.  The piece is answered by the same reader
+    as the rung and its ✓ now, so a word known in one place is known in all.
+    """
+
+    def test_every_piece_carries_the_meaning_its_entry_gives(self):
+        row = service.word("gem-pro", "andaswarō")["construction"]
+        self.assertEqual(row["base"]["form"], "anda-")
+        self.assertTrue(row["base"]["known"])
+        self.assertEqual(row["base"]["gloss"], "facing")
+        self.assertEqual(row["base"]["link"], "#/word/gem-pro/anda-")
+        self.assertTrue(row["members"][0]["gloss"].startswith("a solemn statement"))
+
+    def test_a_gloss_the_etymology_quotes_still_wins(self):
+        self.assertEqual(service._base_row("gem-pro", "swarō", "“swearing”")["gloss"],
+                         "swearing")
+
+    def test_a_piece_the_stage_does_not_hold_stays_unknown(self):
+        row = service._base_row("gem-pro", "no-such-word-at-all")
+        self.assertFalse(row["known"])
+        self.assertEqual(row["gloss"], "")
+        self.assertEqual(row["link"], "")
+
+
 if __name__ == "__main__":
     unittest.main()

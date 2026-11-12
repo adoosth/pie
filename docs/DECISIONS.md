@@ -1,3 +1,51 @@
+## 2026-11-12 — every reconstructed word wears its star, and a prose origin is read
+
+**What.** On `gem-pro/andaswarō` the piece *anda- printed bare beside a link
+that read `/gem-pro/*anda-`, the word built at the end of the line printed
+`andaswarō` under a title that read `*andaswarō`, and the branch card below it
+printed a Proto-West Germanic form with no asterisk at all — while the timeline
+above *anda- ended in a `???`, although the word's own page records where it
+came from.
+
+1. **One star test.** The asterisk was being added by whichever renderer drew
+   the form, each with its own `/-pro$/` test, so a page could agree with itself
+   in one place and not in another. `reconStage`/`starred` in `app.js` now
+   answers for every word the page prints — rungs, records, construction
+   pieces, chain nodes, drafts and their results, the merge word, branch cards,
+   next-stage buttons, "words built on it" and the notes — from the stage's own
+   `kind` (and a stage written in a reconstructed script); the code's `-pro`
+   suffix is only the fallback for a payload carrying neither, and a form that
+   already starts with `*` is never given a second. `attestation.written` is the
+   same rule on the server, so the title, the payload and the page cannot
+   disagree.
+2. **A piece says what it means.** `_base_row` printed only the gloss the
+   etymology quotes in brackets, and `From *anda- + *swarō.` quotes none — so
+   the construction row came back `known: true` with `gloss: ""`: a link that
+   opened a page, and nothing under the word. The piece now asks `_lemma_entry`,
+   the same reader as the rung and the ✓; a quoted gloss still wins over the
+   entry's first sense.
+3. **A prose origin is read when no template states one.** *anda-'s entry has
+   no `anc` rows: Wiktionary wrote the origin as a sentence, "From pre-Germanic
+   *h₂entó- … from the Proto-Indo-European root noun *h₂énts". `_prose_ancestry`
+   reads only the first sentence, only when it opens with an ancestry cue, and
+   refuses a hedged, comparative or substrate sentence — and any sentence with a
+   `+`, which is a construction, not an ancestor. The ancestor must be a
+   **registered stage** naming a **starred form the stage's glossary heads**,
+   so the ladder can open it; "pre-Germanic" is not a stage, and the same
+   sentence is read on to Proto-Indo-European *h₂énts. It is a fallback inside
+   the one reader (`_ancestry_triples`), so the ladder, the piece's own
+   timeline and the coverage count all see the same rows: 60 entries
+   corpus-wide, and a stage outside the word's own chain still cannot become a
+   rung.
+
+**Not done, deliberately.** A sentence that names only a stage this model does
+not have (pre-Germanic, a substrate) is still silence, not a guessed `???`
+filler; and an attested stage's bare word in prose is not read as an ancestor —
+the asterisk is what makes the sentence unambiguous.
+
+**Numbers.** 968 Python tests green, node suite green; `*andaswarō`'s timeline
+now climbs *anda- → Proto-Indo-European *h₂énts (with its own *h₂ent- + *-s).
+
 ## 2026-11-12 — the dot opens the construction row, and a hyphen is notation
 
 **What.** On Persian تشنه the PIE rung said *no entry for this word*, although

@@ -145,6 +145,22 @@ const wordHref = (lang, w, known, via, sense) => {
   return `#/word/${encodeURIComponent(lang)}/${encodeURIComponent(w)}${tail ? `?${tail}` : ""}`
     .replace(/'/g, "%27");
 };
+/* A word of a reconstructed stage is a reconstruction, and the literature
+   writes it with a leading asterisk — on the word itself, not only on the label.
+   One test answers for every renderer (admin, 2026-11-12): the stage's own
+   `kind` from the registry, a stage whose script is reconstructed, and only as a
+   last resort the code's `-pro` suffix.  When each renderer tested for itself,
+   the same word printed with its star in one place and bare in another — a
+   piece linked to /gem-pro/*anda- beside a rung that read `andaswarō`.
+   `written()` in src/pie/attestation.py is the same rule on the server, so the
+   page title, the record and the pieces cannot disagree. */
+const reconStage = (lang, kind, script) => kind === "proto"
+  || script === "reconstructed" || /-pro$/.test(String(lang || ""));
+const starred = (w, lang, kind, script) => {
+  const s = String(w == null ? "" : w);
+  if (!s || s.startsWith("*")) return s;
+  return reconStage(lang, kind, script) ? "*" + s : s;
+};
 /* A law is a claim, so it opens: every law named on a page — established or
    proposed — is a link to its own page (2026-11-08). The key names
    the transition as well as the rule, because rule ids repeat across stages. */
@@ -167,7 +183,7 @@ function lawCell(r) {
   return href ? `<a class="lawopen" href="${href}" data-tip="Open this law's page">${body}</a>` : body;
 }
 const form = (w, lang, opts = {}) => {
-  const proto = /-pro$/.test(lang || "") && !String(w).startsWith("*");
+  const proto = reconStage(lang, opts.kind, opts.script) && !String(w).startsWith("*");
   /* `matched` marks the form the registered laws hit exactly: it glows, and a
      small ✓ disc on the corner of the word says so in a way colour alone
      cannot (2026-11-07). The disc lives inside the form box, so it pins itself
@@ -188,7 +204,7 @@ const form = (w, lang, opts = {}) => {
   /* `mark` is the piece a formation law added (the animal suffix, the *-nah
      of دیوانه): it is printed in the accent colour, so the morpheme a law gave
      the word is visible inside the word itself (2026-11-08). */
-  const shown = pf(w);
+  const shown = pf(starred(w, lang, opts.kind, opts.script));
   const at = opts.mark ? shown.indexOf(opts.mark) : -1;
   const text = at < 0
     ? esc(shown)
@@ -1077,7 +1093,7 @@ function viewGhost(d) {
       <header class="wordhead">
         <div class="wordmain">
           <h1 class="headword ev-weak" dir="auto" tabindex="0"
-              data-tip="No entry in ${esc(d.lang_name)}'s glossary is spelled this way. The page carries the form down into the branch below it.">${esc(pf(d.word))}</h1>
+              data-tip="No entry in ${esc(d.lang_name)}'s glossary is spelled this way. The page carries the form down into the branch below it.">${esc(pf(starred(d.word, d.lang, d.kind, d.script)))}</h1>
           <div class="wordmeta">
             ${attestNote(d.attestation, d.recorded_elsewhere
               ? "The word you came from records this form at this stage; this stage's glossary simply has no entry of its own for it."
@@ -1224,16 +1240,22 @@ function eraGap(prev, cur) {
   return Math.max(6, Math.min(88, Math.round(Math.abs(eraScale(cur) - eraScale(prev)) * 62)));
 }
 
-function lawChip(r, citedAdd) {
+function lawChip(r, citedAdd, aboveStage) {
   const state = r.disabled ? "off" : "on";
   const adds = citedAdd || addedText(r.before, r.after);
+  /* The strings a law rewrites are forms of the stage it rewrites them at, so
+     a law between two reconstructed rungs prints them with the star too
+     (admin, 2026-11-12).  The stage is the one above the law, never this
+     rung's: a law into English rewrites Middle English, not English. */
+  const before = pf(starred(r.before, aboveStage));
+  const after = pf(starred(r.fired ? r.after : r.would, aboveStage));
   return `<li class="law ${state}">
       <button class="lawswitch" type="button" data-off="${esc(r.key)}" aria-pressed="${r.disabled ? "false" : "true"}"
         aria-label="${esc(r.disabled ? `Switch ${r.name} back on` : `Switch off ${r.name}`)}"
         title="${esc(r.disabled ? "Switch this law back on" : "Switch this law off — the stages below are recomputed without it")}">
         <span class="knob" aria-hidden="true"></span><span class="sronly">${r.disabled ? "switched off" : "applied"}</span>
       </button>
-      <span class="lawform mono">${esc(pf(r.before))}${r.fired || r.would ? ` → ${esc(pf(r.fired ? r.after : r.would))}` : ""}</span>
+      <span class="lawform mono">${esc(before)}${r.fired || r.would ? ` → ${esc(after)}` : ""}</span>
       ${lawLink(r.name, r.key)}
       ${badge(r.tier)}${r.fired && adds && (citedAdd || adds.length > 1) ? `<span class="lawadd" data-tip="The morpheme this law adds to the word">+ ${esc(adds)}</span>` : ""}
     </li>`;
@@ -1263,13 +1285,12 @@ function buildStep(level) {
        of the page writes — the step names the pieces, so they read exactly as
        they do on the word's own page (2026-11-12). */
     const spelled = p.affix || !p.known || !p.word ? form : String(p.word);
-    const shown = p.affix && spelled && !spelled.startsWith("-") ? "-" + spelled : spelled;
-    const star = /-pro$/.test(String(p.lang || b.lang || "")) && shown && !shown.startsWith("*")
-      ? "*" : "";
+    const hyphened = p.affix && spelled && !spelled.startsWith("-") ? "-" + spelled : spelled;
+    const written = starred(hyphened, p.lang || b.lang);
     const href = p.known ? wordHref(p.lang, p.word || p.form, true) : "";
     const body = href
-      ? `<a class="bpiece mono" href="${esc(href)}" data-tip="${esc(`Open ${p.form} in ${p.lang_name || ""}`)}">${esc(pf(star + shown))}</a>`
-      : `<span class="bpiece mono">${esc(pf(star + shown))}</span>`;
+      ? `<a class="bpiece mono" href="${esc(href)}" data-tip="${esc(`Open ${p.form} in ${p.lang_name || ""}`)}">${esc(pf(written))}</a>`
+      : `<span class="bpiece mono">${esc(pf(written))}</span>`;
     /* The piece stands in the grade the formation takes it in: *ters- beside
        *-nó- is *tr̥s- (#ters- → #tr̥s-), and that is morphology, not a sound
        change (admin, 2026-11-12). */
@@ -1286,8 +1307,7 @@ function buildStep(level) {
       <span class="buildtag">built here</span>
       <span class="bkind sub">${esc(kind)} in ${esc(b.stage_name || "")}</span>
       ${pieces} <i class="barrow">→</i> <span class="mono">${esc(pf(
-        (/-pro$/.test(String(b.stage || "")) && level.form && !String(level.form).startsWith("*") ? "*" : "")
-        + String(level.form || "")))}</span>
+        starred(level.form, b.stage)))}</span>
       <span class="bnote sub">${esc(b.note || "")}</span>
     </div></li>`;
 }
@@ -1341,12 +1361,12 @@ function addWordGroup(sel, stage) {
    on hover (a bound suffix's gloss is what the suffix does). */
 function draftPieceHtml(stage, piece) {
   const form = String(piece.form || "");
-  const star = /-pro$/.test(String(stage)) && form && !form.startsWith("*") ? "*" : "";
-  const shown = piece.affix && form && !form.startsWith("-") ? "-" + form : form;
+  const hyphened = piece.affix && form && !form.startsWith("-") ? "-" + form : form;
+  const shown = starred(hyphened, stage);
   const grade = piece.grade_label
     ? ` <span class="cgrade" data-tip="${esc(piece.grade_note || piece.grade_label)}">${esc(piece.grade_label)}</span>` : "";
   return `<span class="dadd"><i class="dplus" aria-hidden="true">+</i><span class="dpiece mono"${
-    piece.gloss ? ` data-tip="${esc(piece.gloss)}"` : ""}>${esc(pf(star + shown))}</span>${grade}</span>`;
+    piece.gloss ? ` data-tip="${esc(piece.gloss)}"` : ""}>${esc(pf(shown))}</span>${grade}</span>`;
 }
 
 function draftBuiltHtml(row, stage, orig, spec) {
@@ -1354,8 +1374,7 @@ function draftBuiltHtml(row, stage, orig, spec) {
   const href = `#/word/${encodeURIComponent(stage)}/${encodeURIComponent(orig)}?build=${encodeURIComponent(spec)}`;
   return `${pieces} <i class="barrow" aria-hidden="true">→</i>
     <a class="dresult formlink" href="${esc(href)}" data-tip="Open this built word in the timeline: the formation stands above it and the laws carry it down.">${esc(pf(
-      (/-pro$/.test(String(stage)) && row.form && !String(row.form).startsWith("*") ? "*" : "")
-      + String(row.form || "")))}</a>`;
+      starred(row.form, stage)))}</a>`;
 }
 
 /* Two spellings are one word when they differ only in the stress the engine
@@ -1386,9 +1405,8 @@ function openDraft(btn) {
     <div class="rail"><i class="diamond" aria-hidden="true"></i></div>
     <div class="rung-body">
       <div class="draftline">
-        <span class="draftterm">${form(
-          (/-pro$/.test(String(stage)) && wordForm && !wordForm.startsWith("*") ? "*" : "") + wordForm,
-          stage, { ev: level.recorded && level.recorded.known === false ? "missing" : (level.evidence || "") })}</span>
+        <span class="draftterm">${form(wordForm, stage,
+          { ev: level.recorded && level.recorded.known === false ? "missing" : (level.evidence || "") })}</span>
         <span class="draftpieces"></span>
         <select class="dsel" aria-label="Add a word, a suffix or an ending to ${esc(wordForm)}">${draftMenu(stage, L.data.build_options)}</select>
         <button class="dclose ghost" type="button" aria-label="Close this construction row">×</button>
@@ -1470,7 +1488,7 @@ function addedText(before, after) {
   return after.slice(head, after.length - tail);
 }
 
-function renderLaws(level, prevName) {
+function renderLaws(level, prevName, aboveStage = "") {
   const t = level.transition;
   if (!t) return "";
   /* A formation law's chip names the suffix the record cites (-nás), not the
@@ -1496,7 +1514,7 @@ function renderLaws(level, prevName) {
     return "";
   }
   return `<div class="laws">
-    <ul class="lawlist">${fired.map((r) => lawChip(r, r.key === formationLaw ? citedAdd : "")).join("")}${off.map((r) => lawChip(r)).join("")}</ul>
+    <ul class="lawlist">${fired.map((r) => lawChip(r, r.key === formationLaw ? citedAdd : "", aboveStage)).join("")}${off.map((r) => lawChip(r, "", aboveStage)).join("")}</ul>
   </div>`;
 }
 
@@ -1617,8 +1635,8 @@ function constructStep(level, i, linkTo, opts, nest = 0) {
         <span class="cwhen-era">${esc(eraOf(n))}</span></span>
       <span class="crail" aria-hidden="true"><i></i></span>
       <span class="cform ${scriptClass(n.form)} ${evOf(n)}" data-tip="${esc(saidOf(n))}">${
-        n.known ? `<a class="cword" href="${esc(link(n.lang, n.form, true))}">${esc(pf(n.form || ""))}</a>`
-          : `<span class="cword">${esc(pf(n.form || ""))}</span>`}${
+        n.known ? `<a class="cword" href="${esc(link(n.lang, n.form, true))}">${esc(pf(starred(n.form, n.lang, n.kind, n.script)))}</a>`
+          : `<span class="cword">${esc(pf(starred(n.form, n.lang, n.kind, n.script)))}</span>`}${
         n.reading ? `<i class="cread">${esc(n.reading)}</i>` : ""}${
         meaningOf(n.pos, n.gloss, false)
           ? `<i class="cgloss">${meaningOf(n.pos, n.gloss, false)}</i>`
@@ -1657,9 +1675,12 @@ function constructStep(level, i, linkTo, opts, nest = 0) {
   const termCell = (b, p, k, first) => {
     const formText = String(p.form || "");
     /* A suffix carries its hyphen after the reconstruction's star: *-tós, not
-       -*-tós (2026-11-12). */
-    const show = b.kind === "suffix" && k > 0 && !formText.replace(/^\*/, "").startsWith("-")
+       -*-tós (2026-11-12).  The star itself comes from the one test above, so a
+       piece that carries none in the record still prints as its stage writes
+       it (admin, 2026-11-12). */
+    const hyphened = b.kind === "suffix" && k > 0 && !formText.replace(/^\*/, "").startsWith("-")
       ? formText.replace(/^\*/, "*-") : formText;
+    const show = starred(hyphened, b.lang);
     const href = p.bound ? "" : link(b.lang, p.form, p.known);
     const said = p.bound
       ? `a suffix the stage's own registry lists, not a word${p.gloss ? ` — ${p.gloss}` : ""}`
@@ -1843,16 +1864,16 @@ function renderJoin(d) {
        (2026-11-10). */
     if (p.bound) {
       return `<div class="jrow bound">
-        <span class="jpiece bound">${esc(pf(p.form))}</span>
+        <span class="jpiece bound">${esc(pf(starred(p.form, p.lang)))}</span>
         <span class="jgloss sub">${esc(p.gloss ? `“${p.gloss}”` : "")}</span>
         <div class="jchain"><span class="sub">a suffix the stage's own registry lists, not a word</span></div>
       </div>`;
     }
     const steps = (p.ancestry || []).map((a) => `<span class="jstep" style="--c:${colorFor(a.branch)}">
-        <a href="${esc(wordHref(a.lang, a.form, true))}">${esc(pf(a.form))}</a>
+        <a href="${esc(wordHref(a.lang, a.form, true))}">${esc(pf(starred(a.form, a.lang, a.kind, a.script)))}</a>
         <span class="sub">${esc(a.lang_name)}</span></span>`).join(`<i class="jlink">›</i>`);
     return `<div class="jrow">
-      <a class="jpiece" href="${esc(wordHref(p.lang, p.word, true))}">${esc(pf(p.form))}</a>
+      <a class="jpiece" href="${esc(wordHref(p.lang, p.word, true))}">${esc(pf(starred(p.form, p.lang)))}</a>
       <span class="jgloss sub">${esc(p.gloss ? `“${p.gloss}”` : (p.pos || ""))}</span>
       <div class="jchain">${steps || `<span class="sub">no ancestor recorded for this piece</span>`}</div>
     </div>`;
@@ -1881,7 +1902,7 @@ function renderJoin(d) {
       ours ? ` <span class="badge ours" data-tip="The dictionary states no construction for this word. This model read its seam: the pieces are words of the language, but the join between them is our reading, not a quotation.">our reading of the seam</span>` : ""}</h2>
     <p class="sub">${esc(String(j.etym || "").replace(/\.$/, ""))}. Each piece keeps its own recorded ancestry.</p>
     ${j.pieces.map(piece).join("")}
-    <div class="jmerge"><i class="jlink">›</i><span class="jword">${esc(pf(d.word))}</span>
+    <div class="jmerge"><i class="jlink">›</i><span class="jword">${esc(pf(starred(d.word, d.lang, d.kind, d.script)))}</span>
       <span class="sub">${esc(d.lang_name)}</span></div>
   </section>`;
 }
@@ -1897,7 +1918,7 @@ function renderBuiltFrom(d) {
     const grade = r.grade && r.grade.label
       ? `<span class="cgrade" data-tip="${esc(r.grade.note || r.grade.label)}">${esc(r.grade.label)}</span>`
       : "";
-    return `<li><a class="builtword" href="${wordHref(d.lang, r.word, true)}">${esc(pf(r.word))}</a>
+    return `<li><a class="builtword" href="${wordHref(d.lang, r.word, true)}">${esc(pf(starred(r.word, d.lang, d.kind, d.script)))}</a>
       ${suffixes}${grade}<span class="sub">${esc([r.pos, r.gloss ? `“${r.gloss}”` : ""].filter(Boolean).join(" · "))}</span>
       ${r.confidence && r.confidence !== "stated" ? `<span class="badge">${esc(r.confidence)}</span>` : ""}</li>`;
   });
@@ -2275,7 +2296,7 @@ function renderHierarchy(h, d, opts) {
              baseRung ? "The dictionary's form for the base this suffix was added to; the form on the left is that base composed with the suffix you chose."
                + recordSourceText(rec) : "")}`;
     const more = rec && (rec.more || []).length
-      ? `<span class="sub">also ${rec.more.map((w) => esc(pf(w))).join(" · ")}</span>` : "";
+      ? `<span class="sub">also ${rec.more.map((w) => esc(pf(starred(w, level.stage, level.kind)))).join(" · ")}</span>` : "";
     /* What the dictionary says the form meant at that stage, so a rung is a
        word with a sense and not only a string of letters. */
     const sense = rec && rec.gloss
@@ -2344,7 +2365,7 @@ function renderHierarchy(h, d, opts) {
       + (level.script && level.script !== "reconstructed" ? ` Script: ${level.script}.` : "");
     /* The laws go above this rung, in the timeline between it and the form
        they were run on (2026-11-08). */
-    const laws = level.edited ? "" : renderLaws(level, prev ? prev.name : "");
+    const laws = level.edited ? "" : renderLaws(level, prev ? prev.name : "", prev ? prev.stage : "");
     return `${level.built ? buildStep(level) : lawStep(laws, gap)}${constructStep(level, i, linkTo, opts)}<li class="rung${here ? " here" : ""}${level.changed ? " changed" : ""}"
         data-stage="${esc(level.stage)}" style="--gap:${laws ? stepGap(gap) : gap}px;--i:${i}" data-rung="${i}">
       <div class="when">
@@ -2389,11 +2410,11 @@ function renderHierarchy(h, d, opts) {
   const notes = [];
   if (h.exact && !r.match && !h.edited) {
     notes.push(`The full path from ${esc(h.start_name)} differs, but the laws do reach the word exactly from
-      <b>${esc(h.exact.name)} ${esc(pf(h.exact.form))}</b> (${h.exact.steps} ${h.exact.steps === 1 ? "law" : "laws"} below it);
+      <b>${esc(h.exact.name)} ${esc(pf(starred(h.exact.form, h.exact.stage)))}</b> (${h.exact.steps} ${h.exact.steps === 1 ? "law" : "laws"} below it);
       the gap is in the steps above.`);
   }
   if (r.match && r.match_via_translit) {
-    notes.push(`The laws produce <span class="mono">${esc(pf(r.form))}</span>, the romanisation the dictionary records
+    notes.push(`The laws produce <span class="mono">${esc(pf(starred(r.form, (d || {}).lang)))}</span>, the romanisation the dictionary records
       for ${esc(r.target)}. Spelling is a separate layer.`);
   }
   /* The etymon is a root and the ladder starts there. When the ladder starts
@@ -2402,8 +2423,8 @@ function renderHierarchy(h, d, opts) {
   if (h.root && !h.edited && (!h.linked_by_set || h.set_start)) {
     const rec = h.etymon_record;
     const gloss = rec && rec.gloss
-      ? ` — <span class="mono">${esc(pf(rec.w))}</span>, ${rec.pos ? `${esc(rec.pos)} ` : ""}“${esc(rec.gloss)}”`
-      : ` (<span class="mono">${esc(pf(h.etymon || ""))}</span>)`;
+      ? ` — <span class="mono">${esc(pf(starred(rec.w, h.start)))}</span>, ${rec.pos ? `${esc(rec.pos)} ` : ""}“${esc(rec.gloss)}”`
+      : ` (<span class="mono">${esc(pf(starred(h.etymon || "", h.start)))}</span>)`;
     notes.push(`The ancestor this ladder starts from is a <b>root</b>, not a full word${gloss},
       so these steps are rougher than a whole etymon's.`);
   }
@@ -2431,8 +2452,8 @@ function renderHierarchy(h, d, opts) {
     const stop = (h.ancestry_top || {}).name || "a lower stage";
     const rec = h.etymon_record;
     const root = rec
-      ? `${rec.pos === "root" ? "root " : ""}<span class="mono">${esc(pf(rec.w))}</span>${rec.gloss ? ` “${esc(rec.gloss)}”` : ""}`
-      : `<span class="mono">${esc(pf(h.etymon || ""))}</span>`;
+      ? `${rec.pos === "root" ? "root " : ""}<span class="mono">${esc(pf(starred(rec.w, h.start)))}</span>${rec.gloss ? ` “${esc(rec.gloss)}”` : ""}`
+      : `<span class="mono">${esc(pf(starred(h.etymon || "", h.start)))}</span>`;
     const off = (h.off_chain || []).filter((x) => x.name && x.name !== x.stage)
       .map((x) => x.name).reverse();
     const via = off.length
@@ -2445,7 +2466,7 @@ function renderHierarchy(h, d, opts) {
     notes.push(`This word's own ancestry stops at <b>${stop}</b>.${via} The cognate set relates it to the
       PIE <b>${root}</b>, but a root carries no word's morphology: it is a relation, not an ancestor row.
       The ladder therefore starts at the recorded <b>${esc(h.start_name)}</b>
-      <span class="mono">${esc(pf(h.start_form || ""))}</span>${
+      <span class="mono">${esc(pf(starred(h.start_form || "", h.start)))}</span>${
         climbs ? ", and the rungs above it are that word's own ladder" : ""}.`);
   }
   /* When the set also records a derived PIE-stage form on the way down (book:
@@ -2461,7 +2482,7 @@ function renderHierarchy(h, d, opts) {
     const top = h.levels.find((l) => l.stage === h.ancestry_top.stage) || {};
     notes.push(`The cognate set also records <span class="mono">${esc(h.set_source)}</span> at the
       PIE stage above <b>${esc(h.ancestry_top.name)}</b>${top.recorded
-        ? ` <span class="mono">${esc(pf(top.recorded.w))}</span>` : ""} — the derived word the root
+        ? ` <span class="mono">${esc(pf(starred(top.recorded.w, top.stage)))}</span>` : ""} — the derived word the root
       belongs to. It stays a record, not a rung: the ladder starts from the word's own ancestor, and
       picking one alternant of that form would be this repo's own reconstruction.`);
   }
@@ -2510,7 +2531,7 @@ function renderHierarchy(h, d, opts) {
     <h3>Stored pathways <span class="sub">· ${paths.length} for this word</span></h3>
     <ul>${paths.map((p) => `<li>
       <button class="ghost" type="button" data-load-pathway="${esc(p.id)}">load</button>
-      <span class="mono pathform">${esc(pf(p.start.form))}</span>
+      <span class="mono pathform">${esc(pf(starred(p.start.form, p.start.stage)))}</span>
       <span class="sub">${esc(p.start.name)} → ${esc(h.word)}</span>
       <span class="sub">· ${(p.laws || []).length} ${(p.laws || []).length === 1 ? "law" : "laws"}
         · ${esc((p.created || "").slice(0, 10))}</span>
@@ -2580,7 +2601,7 @@ function renderNext(h, fromName) {
                   data-tip="${esc(`${r.lang_name}${r.branch ? ` · ${r.branch}` : ""}${r.era_label ? ` · ${r.era_label}` : ""}`)}">
             <span class="nextname">${esc(r.lang_name)}</span>
             <span class="nextera">${esc(r.era_label || "")}</span>
-            <span class="nextform mono" dir="auto">${esc(pf(r.form))}</span>
+            <span class="nextform mono" dir="auto">${esc(pf(starred(r.form, r.l)))}</span>
             ${state(r)}
           </button>`).join("")}</div>
       </div>
@@ -3422,8 +3443,8 @@ function stepsNote(d) {
   const more = rows.length - shown.length;
   const tip = rows.map((r) => `${r.name || r.stage}: recorded ${r.recorded || "—"}, laws ${r.derived || "—"}`).join("\n");
   const items = shown.map((r) => `<span class="stepdiff"><b>${esc(r.name || r.stage)}</b>
-    <span class="mono" dir="auto">${esc(r.recorded || "—")}</span>
-    <i>→</i> <span class="mono" dir="auto">${esc(r.derived || "—")}</span></span>`).join('<span class="stepsep">·</span>');
+    <span class="mono" dir="auto">${esc(r.recorded ? starred(r.recorded, r.stage) : "—")}</span>
+    <i>→</i> <span class="mono" dir="auto">${esc(r.derived ? starred(r.derived, r.stage) : "—")}</span></span>`).join('<span class="stepsep">·</span>');
   return `<p class="sub stepsdiff" data-tip="${esc(tip)}">recorded step differs:
     ${items}${more > 0 ? `<span class="stepsep">·</span><span class="stepdiff">+${more} more</span>` : ""}</p>`;
 }

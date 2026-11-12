@@ -297,6 +297,34 @@ that keeps the `*` opens nothing).
   token** (`Hnˈawa` = the dictionary's `Hnáwa`) and **case** (a stage heads
   `hā́fš`, an etymology row writes `Hā́fš`), because a token and a capital are
   spelling, not sounds — 494 rungs over 325 pages agree with their own pages.
+- **Every word of a reconstructed stage wears its asterisk** (admin,
+  2026-11-12): one test answers for every renderer — `reconStage`/`starred` in
+  `app.js` (the stage's `kind`, a reconstructed script, and only then the
+  `-pro` code) and `attestation.written` on the server. Per-renderer `/-pro$/`
+  tests were why the same word printed `*anda-` in a link and `anda-` on the
+  rung beside it; a rung, a record, a piece, a chain node, a draft, a branch
+  card and a "words built on it" row now all go through the one helper, and a
+  form that already carries its star is never given a second one.
+- **A construction piece says what it means** (admin, 2026-11-12): the
+  etymology quotes some pieces (*mer- (“sea, lake”)), but `From *anda- +
+  *swarō.` quotes none, and `_base_row` used to print only the quotation — so a
+  piece the stage's glossary *does* hold came back `known: true` with an empty
+  gloss, a link that opened its page and nothing under the word. The piece now
+  asks the same reader as the rung and the ✓ (`_lemma_entry`); a gloss the
+  sentence quotes still wins.
+- **A prose origin is read when no ancestry template states one** (admin,
+  2026-11-12, *anda-): Wiktionary wrote *anda-'s origin as a sentence ("From
+  pre-Germanic *h₂entó- … from the Proto-Indo-European root noun *h₂énts") with
+  no `{{inh}}` row, so the ladder ended in a `???` above a piece whose page
+  recorded where it came from. `_prose_ancestry` reads **only the first
+  sentence**, only when it opens with an ancestry cue, never a hedged,
+  comparative or substrate sentence, never one with a `+` (that is a
+  construction), and only a **named registered stage** with a **starred form
+  its glossary actually heads** — "pre-Germanic" is not a stage, so the same
+  sentence is read on to the PIE word. It is a fallback inside the one reader
+  (`_ancestry_triples`), used only when the entry has no structured rows: 60
+  entries corpus-wide, and a stage outside the word's own chain still cannot
+  become a rung.
 - **A composition is built in the grade its suffix takes** (2026-11-12):
   `_formation_grade` reads the `grades:` table and `_grade_stem` writes it, so
   *ters- + *-nó- is *tr̥s-nó-s*, never *ters-nó-s*, and the built step and the

@@ -293,8 +293,8 @@ assert.ok(!gemRung.split('class="branchtree"')[0].includes('class="lawlist"'),
 assert.ok(ladder.includes('data-reset="1"'), "there is a way back to the full rule set");
 assert.ok(ladder.includes('class="was"') && ladderWords.includes("náhwt"),
   "a stage changed by a switch shows the form it had");
-assert.ok(ladderWords.includes("nṓkʷθs → nṓkʷ"),
-  "a switched-off law still says what it would have done");
+assert.ok(ladderWords.includes("*nṓkʷθs → *nṓkʷ"),
+  "a switched-off law still says what it would have done, with the star the stage writes");
 /* 2026-11-08: the record is a second word, marked by a small glyph
    on its top-right corner instead of a RECORDED badge under it — an open book,
    because a record is a form written down somewhere — and the edit control is
@@ -310,11 +310,19 @@ assert.ok(!pgsRung.includes('stroke="currentColor"'),
 assert.ok(!/class="recorddot[^>]*>“/.test(pgsRung),
   "the old quotation mark glyph is gone from the mark");
 assert.ok(!pgsRung.includes("M12 6.6C10.4"), "the book glyph is gone");
-assert.ok(pgsRung.indexOf('class="recword"') < pgsRung.indexOf(">nahts<")
-          && pgsRung.indexOf(">nahts<") < pgsRung.indexOf(TAG),
+assert.ok(pgsRung.indexOf('class="recword"') < pgsRung.indexOf(">*nahts<")
+          && pgsRung.indexOf(">*nahts<") < pgsRung.indexOf(TAG),
   "the mark is on the recorded word itself");
-assert.ok(pgsRung.indexOf("náhwθs") < pgsRung.indexOf(">nahts<"),
+assert.ok(pgsRung.indexOf("náhwθs") < pgsRung.indexOf(">*nahts<"),
   "the reconstructed form is read before its record");
+/* 2026-11-12: every form of a reconstructed stage carries the asterisk the
+   literature writes it with — the rung the laws produced as well as the record
+   beside it.  The star used to come from whichever renderer drew the form, so
+   the same word could be /gem-pro/*anda- in a link and `anda-` on the rung. */
+assert.ok(ladder.includes(">*nókʷts<") && ladder.includes(">*náhwθs<"),
+  "a proto rung and its record print the reconstruction's star");
+assert.ok(!/>nókʷts</.test(ladder) && !/>náhwθs</.test(ladder),
+  "no form of a reconstructed stage is printed bare");
 assert.ok(pgsRung.indexOf("náhwθs") < pgsRung.indexOf('data-edit="gem-pro"')
           && pgsRung.indexOf('data-edit="gem-pro"') < pgsRung.indexOf('class="recword"'),
   "the edit control follows the reconstructed word, not the record");
@@ -562,7 +570,7 @@ assert.ok(/class="form[^"]*matched[^"]*"/.test(agreeBottom), "a matching form gl
 assert.ok(agreeBottom.includes("✓"), "the match carries a ✓, not only a colour");
 /* The ✓ is a disc on the corner of the word box, not a glyph in the line:
    it is the last thing inside the matched form and nothing precedes the word. */
-assert.match(agreeBottom, /class="form[^"]*matched[^"]*"[^>]*>bōk<i class="matchdot"[^>]*>✓<\/i><\/span>/,
+assert.match(agreeBottom, /class="form[^"]*matched[^"]*"[^>]*>\*bōk<i class="matchdot"[^>]*>✓<\/i><\/span>/,
   "the ✓ sits on the corner of the matched word, after it");
 assert.ok(!/class="tick/.test(agreeBottom), "no tick glyph standing in the line");
 assert.ok(!agreeBottom.includes("rectag"), "no second copy of the same form");
@@ -571,7 +579,7 @@ const agreeTop = agreeHtml.slice(agreeHtml.indexOf('data-stage="gem-pro"'),
 assert.equal(plain(agreeTop).split("bōks").length - 1, 1, "a starting rung prints its recorded form once");
 /* The first rung has no law above it, so `matches` stays false; `starts` is
    what makes it glow — it is the record the ladder starts from (2026-11-08). */
-assert.match(agreeTop, /class="form[^"]*matched[^"]*"[^>]*>bōks<i class="matchdot"[^>]*>✓<\/i>/,
+assert.match(agreeTop, /class="form[^"]*matched[^"]*"[^>]*>\*bōks<i class="matchdot"[^>]*>✓<\/i>/,
   "the starting rung glows as the record the ladder starts from");
 assert.ok(agreeTop.includes("The ladder starts from this record"),
   "and its hover text says why it is lit");
@@ -998,6 +1006,45 @@ assert.ok(!builtHtml.includes('class="steprow"'),
   "nothing but the tree stands in the step: the card that repeated its pieces is gone");
 assert.ok(bodyHtml.includes('class="btrees"'),
   "the tree closes the step, so the spine is the step's own bottom");
+
+/* Every word of a reconstructed stage carries its stage's star, wherever the
+   page prints it (admin, 2026-11-12).  The reader's example was *anda-
+   "facing" in the construction of *andaswarō: the piece linked to
+   /gem-pro/*anda- while the timeline drew it bare, because each renderer
+   tested for the asterisk itself.  One test now answers for all of them. */
+const andaBuild = buildOf([
+  { form: "*anda-", gloss: "facing", pos: "prefix", reading: "", known: true,
+    lang: "gem-pro", bound: false, branch: origin({ lang: "gem-pro",
+      lang_name: "Proto-Germanic", short: "PGmc.", form: "*anda-", kind: "proto",
+      gloss: "facing", pos: "prefix", era_label: "c. 500 BCE – 1 CE",
+      terminal: "end", parents: [] }) },
+  /* written without a star on purpose: the record's spelling is not the
+     renderer's job, and a stage that reconstructs its words writes one. */
+  { form: "swarō", gloss: "oath", pos: "noun", reading: "", known: true,
+    lang: "gem-pro", bound: false, branch: origin({ lang: "gem-pro",
+      lang_name: "Proto-Germanic", short: "PGmc.", form: "*swarō", kind: "proto",
+      gloss: "oath", pos: "noun", era_label: "c. 500 BCE – 1 CE",
+      terminal: "end", parents: [] }) },
+], { lang: "gem-pro", lang_name: "Proto-Germanic", of: "andaswarō" });
+const andaLevel = { form: "andaswarō", stage: "gem-pro", name: "Proto-Germanic",
+  kind: "proto", built_as: andaBuild, builds: [andaBuild] };
+const andaHtml = context.constructStep(andaLevel, 0,
+  (stage, w) => `#/word/${stage}/${encodeURIComponent(w)}`);
+const andaText = plain(andaHtml);
+assert.ok(andaText.includes("*anda-") && andaText.includes("*swarō"),
+  "both pieces of a proto construction are written as the stage writes them");
+assert.ok(!/(^|\s)anda-(?=\s|$)/.test(andaText), "no piece of a reconstructed stage is printed bare");
+assert.ok(!/(^|\s)swarō(?=\s|$)/.test(andaText), "a piece the record spells without a star still gets one");
+assert.ok(andaHtml.includes('href="#/word/gem-pro/*anda-"'),
+  "the door keeps the record's own spelling of the piece");
+
+/* "Words built on it" is a list of that stage's words, so a proto stage's list
+   carries the asterisks as well. */
+const builtList = context.renderBuiltFrom({ lang: "gem-pro", kind: "proto",
+  lang_name: "Proto-Germanic", built_from: [
+    { word: "swarō", pos: "noun", gloss: "oath", suffixes: [] },
+  ] });
+assert.ok(plain(builtList).includes("*swarō"), "a word built at a proto stage is starred");
 
 /* A word of a family language whose record states no origin hangs under a ???
    — it may have come from somewhere, and where is not known.  A bound morpheme

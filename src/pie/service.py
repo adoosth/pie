@@ -1150,7 +1150,92 @@ def _ancestry_triples(entry: dict) -> list[tuple[str, str, str]]:
             continue
         seen.add((lang, word))
         out.append((lang, word, rel))
+    if not out:
+        # No template states an origin; the entry's own sentence may (see
+        # `_prose_ancestry`).  Nothing is read when one does, so a word with
+        # both is answered by the template alone.
+        out.extend(_prose_ancestry(entry))
     return out
+
+
+#: A sentence that states where a word comes from, in words rather than in an
+#: ancestry template.  Only the **first** sentence of an entry is read, and only
+#: when it opens with one of these; anything later in the paragraph is
+#: commentary, an author's argument, or a note about another word.
+_PROSE_ANCESTRY_CUE = re.compile(
+    r"^\s*(?:Inherited|Derived|Borrowed|Learned borrowing|Semi-learned borrowing|"
+    r"From|Continues|Descends)\b", re.I)
+#: The stage and the form it names: ``from Proto-Indo-European *h₂énts``,
+#: ``from the Proto-Indo-European root noun *h₂énts``.  A form has to carry the
+#: asterisk a reconstruction is written with — that is what makes the sentence
+#: unambiguous — so an attested stage's bare word is not read this way.
+_PROSE_ANCESTRY_RE = re.compile(
+    r"\b(?:from|Inherited from|Derived from|Borrowed from|Descends from)\s+(?:the\s+)?"
+    # The name is case-sensitive even though the cue is not — "Proto-Indo-European
+    # root" would otherwise swallow the word "root" into the name.
+    r"(?P<name>(?-i:(?:Proto|Old|Middle|New|Ancient|Classical|Late|Vulgar)[ -][A-Z][A-Za-z-]*"
+    r"(?:\s+[A-Z][A-Za-z-]*)?))\b(?:\s+[a-z][a-z-]*){0,4}?\s*\*"
+    r"(?P<form>[^\s,;.:()\[\]“”\"'’]+)", re.I)
+#: A sentence that hedges, compares, or names a substrate is not a statement of
+#: ancestry: "likely from a substrate", "cognate with", "possibly related to".
+#: A sentence with a ``+`` states a construction, which is the construction
+#: reader's business, not a single ancestor's.
+_PROSE_ANCESTRY_STOP = re.compile(
+    r"\+|\b(?:cognate|compare|related|synonym|homonym|doublet|variant|uncertain|"
+    r"unknown|obscure|unclear|possibly|perhaps|probably|likely|maybe|may|might|"
+    r"could|suggest\w*|traced|assum\w*|hypothes\w*|substrate|doubtful)\b", re.I)
+
+
+@lru_cache(maxsize=1)
+def _stage_by_name() -> dict[str, str]:
+    """The registry's stage names and abbreviations, folded to their codes.
+
+    One reader for a name a sentence writes — "Proto-Indo-European", "PIE" —
+    so a prose ancestor can only ever be a stage this model actually has.
+    """
+    out: dict[str, str] = {"pie": "ine-pro"}
+    for code, row in data.languages().items():
+        for key in (row.get("name"), row.get("short")):
+            if isinstance(key, str) and key.strip():
+                out.setdefault(key.strip().lower(), code)
+    return out
+
+
+def _prose_ancestry(entry: dict) -> list[tuple[str, str, str]]:
+    """The ancestor an entry's own sentence names, when no template states one.
+
+    *anda- is the case (admin, 2026-11-12): Wiktionary writes "From
+    pre-Germanic *h₂entó- … from the Proto-Indo-European root noun *h₂énts" as
+    prose, with no ``{{inh}}`` row, so the ladder stopped at a ``???`` over a
+    piece whose page did record where it came from.  The sentence is the
+    record — the construction reader has always read prose the same way — so a
+    named, registered stage and a form its glossary really holds are accepted
+    as one ``derived`` ancestor.
+
+    Nothing else is read: only the first sentence, only when it opens with an
+    ancestry cue, never a hedged or comparative one, never a sentence with a
+    ``+`` (that is a construction), and never a form the ancestor stage does not
+    head.  "pre-Germanic" is not a stage and is skipped, which is how *anda-
+    reaches the Proto-Indo-European word the same sentence names.
+    """
+    text = str(entry.get("etym") or "")
+    if not text or entry.get("built_as") or text.startswith("Etymology tree"):
+        return []
+    first = re.split(r"(?<=[.;])\s+", text.strip())[0]
+    if not _PROSE_ANCESTRY_CUE.match(first) or _PROSE_ANCESTRY_STOP.search(first):
+        return []
+    own = str(entry.get("lang") or "")
+    for match in _PROSE_ANCESTRY_RE.finditer(first):
+        code = _stage_by_name().get(match.group("name").strip().lower())
+        if not code or code == own:
+            continue
+        form = match.group("form").strip()
+        if not form or form in ("*", "*-"):
+            continue
+        if _lemma_entry(code, form) is None:
+            continue
+        return [(code, form, "derived")]
+    return []
 
 
 def _ancestry_forms(entry: dict) -> list[dict]:
@@ -6066,14 +6151,27 @@ def _morpheme_rows(lang: str, tokens: list[tuple[str, str]],
 
 
 def _base_row(lang: str, base: str, gloss: str = "") -> dict:
-    known = bool(word_index().get((lang, base)) or [])
+    """One piece of a construction, with the meaning its own entry gives it.
+
+    The etymology quotes a gloss for some pieces — *mer- (“sea, lake, wetland”)
+    — and says nothing for most (*anda- + *swarō).  The row used to print only
+    the quotation, so a piece the stage's glossary *does* hold came back
+    ``known: true`` with no meaning: the page could open its entry and still
+    read as if the word had not been recognised (admin, 2026-11-12).  The
+    piece is now answered by the same reader as the rung and the ✓
+    (`_lemma_entry`), so a word known in one place is known in all three.
+    """
+    entry = _lemma_entry(lang, base)
+    known = bool(entry)
     # The entry writes its gloss already quoted — *mer- (“sea, lake, wetland”)
     # — and the page quotes what it is given, so the marks are dropped here
     # instead of printing ““sea, lake, wetland”” (2026-11-08). A leading ``~``
     # is the dictionary hedging its own gloss ("~ to be long"), not part of it.
+    said = gloss or _rung_gloss((entry or {}).get("gloss") or [], 70)
     return {"form": base, "known": known,
-            "gloss": gloss.strip().strip("“”\"'").strip().lstrip("~").strip(),
-            "link": f"#/word/{lang}/{quote(base)}" if known else ""}
+            "gloss": said.strip().strip("“”\"'").strip().lstrip("~").strip(),
+            "link": f"#/word/{lang}/{quote((entry or {}).get('word') or base)}"
+                    if known else ""}
 
 
 def _raw_constructions(entry: dict, lang: str = ROOT_LANG) -> list[dict]:
