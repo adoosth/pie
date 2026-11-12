@@ -708,6 +708,39 @@ assert.ok(builtPieWords.includes("zero grade"),
 assert.ok(builtPieHtml.indexOf("ters-") < builtPieHtml.indexOf("tr̥sn"),
   "the pieces stand above the word they build");
 
+/* A formation may be one word, not a join: *h₂entó- is "a combining form or
+   allative formation from … *h₂énts", and the step that made it is its whole
+   history (admin, 2026-11-12).  The piece is a word with a construction of its
+   own (*h₂ent- + *-s), which is drawn above it — so the timeline reads
+   *h₂entó- → construction from *h₂énts → *h₂ent- + *-s, one rung each. */
+const singlePiece = pieLevel({
+  form: "h₂entó-", baseline: "h₂entó-",
+  builds: [{ kind: "combining", lang: "ine-pro", lang_name: "Proto-Indo-European",
+    of: "h₂entó", source: "record",
+    pieces: [{ form: "*h₂énts", gloss: "forehead", pos: "noun", known: true,
+      lang: "ine-pro", bound: false,
+      branch: { lang: "ine-pro", lang_name: "Proto-Indo-European", short: "PIE",
+        form: "*h₂énts", kind: "proto", era_label: "c. 4500–2500 BCE",
+        gloss: "forehead", pos: "noun", known: true, terminal: "pie", parents: [],
+        builds: [{ kind: "suffix", lang: "ine-pro",
+          lang_name: "Proto-Indo-European", of: "h₂énts", source: "record",
+          pieces: [
+            { form: "*h₂ent-", gloss: "face", pos: "root", known: true,
+              lang: "ine-pro", bound: false, branch: null },
+            { form: "*s", gloss: "", pos: "", known: false, lang: "ine-pro",
+              bound: true, branch: null }] }] } }] }],
+});
+const singleHtml = context.renderHierarchy(
+  Object.assign({}, pieRoot, { levels: [singlePiece] }), piePage, {});
+const singleWords = plain(singleHtml);
+assert.ok(singleWords.includes("combining form"),
+  "a one-word formation is named for what it is, not left as a bare word");
+assert.ok(singleHtml.includes("*h₂énts"), "the word it was formed from stands on the step");
+assert.ok(singleHtml.includes("*h₂ent-"),
+  "and that word's own construction is drawn above it");
+assert.ok(singleHtml.indexOf("*h₂ent-") < singleHtml.indexOf("combining form"),
+  "oldest first: the pieces of the piece come before the formation that used it");
+
 /* ---------------------------------------------------------------- */
 /* the written form is a separate claim                              */
 /* ---------------------------------------------------------------- */

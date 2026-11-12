@@ -1,3 +1,43 @@
+## 2026-11-12 — *anda- descends through *h₂entó-, and a one-word formation is a step
+
+**What.** On `gem-pro/*anda` the timeline jumped from *anda- straight to PIE
+*h₂énts, although Wiktionary says "From pre-Germanic *h₂entó-, a combining form
+or allative formation from the Proto-Indo-European root noun *h₂énts". *h₂entó-
+is the ancestor; *h₂énts is the word *h₂entó- was made from. The requested
+order is *anda- → *h₂entó- → construction from *h₂énts → *h₂ent- + *-s.
+
+1. **A `pre-` label is a label, not a stage.** `_prose_ancestry` (v0.17.8)
+   skipped "pre-Germanic" because no stage is registered under that name and
+   took the next registered stage it found in the sentence — one level too
+   high. `_PROSE_PRE_STAGE_RE` reads the form the label marks, and resolves its
+   stage from the nearest registered stage the same sentence names for it; the
+   sentence's word order then decides which form is the ancestor. Read over the
+   whole corpus, the change moves exactly two entries: *anda- (now *h₂entó-)
+   and *aba- (now *h₂epó-, the same word the old row named without its hyphen).
+2. **The ancestor needs an entry.** PIE *h₂entó- has no Wiktionary page of its
+   own — it is recorded in the derived terms of *h₂énts ("*h₂entó ((fossilized)
+   allative singular, with *-ó) or, less likely, a thematic combining form
+   *h₂ent-o-") and in *anda-'s etymology sentence. The supplement row quotes
+   both, carries the gloss *against* from the descendant the same line names,
+   and cites the *h₂énts page it was read on.
+3. **A formation may be one word.** A construction was required to join two or
+   more pieces, so a one-piece row was dropped and *h₂entó-'s formation would
+   have been invisible. `_SINGLE_PIECE_KINDS` (`combining`, `derivation`) is
+   the only licence for a one-piece row: every other kind is a join, and a
+   one-piece row of another kind is an analysis cut short, never a step.
+4. **A built piece keeps its own construction.** `constructStep` drew the
+   *ancestors* of a piece but never the construction of the piece itself, so
+   *h₂entó-'s step would have named *h₂énts and stopped. `ownStep` draws a
+   piece's own formation above it, in the same grammar, at both the first
+   piece (on the diamond's line) and every later column.
+
+**Tests.** `tests/test_build.PreStageAncestry` (the reader, the entry, its
+one-piece construction, the nested step, and the refusal of a one-piece row of
+another kind) and a node case in `tests/test_ui_render.js` that renders both
+levels and checks the order.
+
+**Numbers.** 973 Python tests green, node suite green.
+
 ## 2026-11-12 — every reconstructed word wears its star, and a prose origin is read
 
 **What.** On `gem-pro/andaswarō` the piece *anda- printed bare beside a link

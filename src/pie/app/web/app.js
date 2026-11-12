@@ -1568,7 +1568,8 @@ function constructStep(level, i, linkTo, opts, nest = 0) {
   const uid = `bs-${String(level.stage || "x").replace(/[^a-z0-9-]/gi, "")}-${i}`;
   const link = (lang, form, known) => (linkTo ? linkTo(lang, form, known) : "");
   const kindOf = (b) => ({ suffix: "suffix", prefix: "prefix", compound: "compound",
-    affix: "affix", infix: "infix" }[b.kind] || "formation");
+    affix: "affix", infix: "infix", combining: "combining form",
+    derivation: "derivation" }[b.kind] || "formation");
   /* The construction is one tree, not a set of inset pictures (admin,
      2026-11-12): the diamond sits on the main rail, the first word stands
      immediately to its right (no line, no second mark — the diamond *is* its
@@ -1747,7 +1748,8 @@ function constructStep(level, i, linkTo, opts, nest = 0) {
   /* One piece: its own timeline above, the word itself on the line below. */
   const columnOf = (b, p, k, plus = 0) => {
     const rows = p.bound || !p.branch ? [] : chainOf(p.branch);
-    const above = rows.map((n) => nodeBlock(n, plus)).join("");
+    const above = (p.bound || !p.branch ? "" : ownStep(p.branch, plus + 1))
+      + rows.map((n) => nodeBlock(n, plus)).join("");
     return `<div class="cpiece${rows.length ? " has-chain" : ""}">${
       above ? `<div class="cchain">${above}</div>` : ""}${termCell(b, p, k, false)}</div>`;
   };
@@ -1785,18 +1787,22 @@ function constructStep(level, i, linkTo, opts, nest = 0) {
             : ""}</div>
     </li>`;
   };
-  const rootRows = (n, depth) => {
-    if (!n) return "";
-    const own = (n.builds && n.builds.length && depth < 3)
-      ? constructStep({ stage: n.lang, form: n.form, name: n.lang_name,
-          era_label: n.era_label, builds: n.builds, built_as: n.built_as },
-        `${i}-${depth}`, linkTo, Object.assign({}, opts, { d: null }), depth + 1)
-      : "";
-    return own + rootRow(n);
-  };
+  /* A word that is itself a construction says so above itself, in this same
+     grammar: *h₂entó- is a combining form from *h₂énts, and *h₂énts is
+     *h₂ent- + *-s — a step that stopped at the piece would hide the formation
+     the record states for it (admin, 2026-11-12). */
+  const ownStep = (n, depth) => (n && n.builds && n.builds.length && depth < 3)
+    ? constructStep({ stage: n.lang, form: n.form, name: n.lang_name,
+        era_label: n.era_label, builds: n.builds, built_as: n.built_as },
+      `${i}-${depth}`, linkTo, Object.assign({}, opts, { d: null }), depth + 1)
+    : "";
+  const rootRows = (n, depth) => (n ? ownStep(n, depth) + rootRow(n) : "");
   const lead = builds[0].pieces[0];
-  const roots = (lead.bound || !lead.branch)
-    ? "" : chainOf(lead.branch).map((n) => rootRows(n, nest + 1)).join("");
+  /* The first piece stands on the diamond's own line, so its construction —
+     not a second copy of the word — is what goes above it. */
+  const roots = (lead.bound || !lead.branch) ? ""
+    : ownStep(lead.branch, nest + 1)
+      + chainOf(lead.branch).map((n) => rootRows(n, nest + 1)).join("");
 
   /* `source: ours` means the record says nothing and this model read the seam
      (2026-11-10).  The two are different claims and must not share one label:

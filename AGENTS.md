@@ -320,11 +320,32 @@ that keeps the `*` opens nothing).
   sentence**, only when it opens with an ancestry cue, never a hedged,
   comparative or substrate sentence, never one with a `+` (that is a
   construction), and only a **named registered stage** with a **starred form
-  its glossary actually heads** — "pre-Germanic" is not a stage, so the same
-  sentence is read on to the PIE word. It is a fallback inside the one reader
-  (`_ancestry_triples`), used only when the entry has no structured rows: 60
-  entries corpus-wide, and a stage outside the word's own chain still cannot
-  become a rung.
+  its glossary actually heads**. It is a fallback inside the one reader
+  (`_ancestry_triples`), used only when the entry has no structured rows, and
+  a stage outside the word's own chain still cannot become a rung.
+- **A `pre-` label marks the form it precedes; it does not license a climb**
+  (admin, 2026-11-12, *anda- again): "pre-Germanic" is a name for a stage, not
+  a stage this model registers, so the first version skipped it and read on to
+  the next registered name — and put *anda- one level too high, on *h₂énts,
+  when the sentence's own form *h₂entó- is the ancestor and *h₂énts is what
+  *h₂entó- was made from. `_PROSE_PRE_STAGE_RE` reads the marked form and
+  resolves its stage from the nearest registered stage the same sentence names
+  for it; the sentence's own word order decides which form is the ancestor.
+  Corpus-wide this changed exactly two entries (*anda- → *h₂entó-, *aba- →
+  *h₂epó-), both in the same class — check the whole corpus before believing a
+  reader is fixed.
+- **A word the record says was formed from one word is a construction with one
+  piece** (admin, 2026-11-12, *h₂entó-): "a combining form or allative
+  formation from … *h₂énts" is the whole of that word's history, so
+  `data/lexicon/_supplement/ine-pro.jsonl.gz` carries it as a `built_as` row
+  with `kind: "combining"` and one piece, cited to the page that states it
+  (Wiktionary's *h₂énts derived terms and the *anda- entry — there is no
+  *h₂entó- page). `_SINGLE_PIECE_KINDS` is the only licence for a one-piece
+  row: every other kind is a join, and a one-piece row of another kind stays a
+  truncated analysis. On the page a piece that is itself built draws **its own
+  construction above the step** (`ownStep` in `constructStep`), so the timeline
+  reads *anda- → construction from *h₂énts → *h₂ent- + *-s — stopping at the
+  piece would hide the step that made it.
 - **A composition is built in the grade its suffix takes** (2026-11-12):
   `_formation_grade` reads the `grades:` table and `_grade_stem` writes it, so
   *ters- + *-nó- is *tr̥s-nó-s*, never *ters-nó-s*, and the built step and the

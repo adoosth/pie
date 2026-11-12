@@ -132,5 +132,50 @@ class ConstructionPiece(unittest.TestCase):
         self.assertEqual(row["link"], "")
 
 
+class PreStageAncestry(unittest.TestCase):
+    """A `pre-` label marks the form it precedes — it does not license a climb.
+
+    Wiktionary writes *anda-'s origin in prose: "From pre-Germanic *h₂entó-, a
+    combining form or allative formation from the Proto-Indo-European root noun
+    *h₂énts".  `_prose_ancestry` skipped "pre-Germanic" because it is not a
+    registered stage and took the next registered stage it found — *h₂énts —
+    which is the word *h₂entó- was made from, one level above the ancestor.
+    The marked form belongs to the stage the sentence names for it, and the
+    rest of the sentence is that form's own history (admin, 2026-11-12).
+    """
+
+    def test_a_pre_stage_label_marks_the_form_it_precedes(self):
+        entry = service._lemma_entry("gem-pro", "anda-")
+        self.assertEqual(service._prose_ancestry(entry),
+                         [("ine-pro", "h₂entó-", "derived")])
+
+    def test_the_pre_form_is_a_word_the_stage_heads(self):
+        entry = service._lemma_entry("ine-pro", "h₂entó-")
+        self.assertIsNotNone(entry)
+        self.assertEqual(entry["gloss"], ["against"])
+
+    def test_the_pre_form_keeps_its_own_construction(self):
+        entry = service._lemma_entry("ine-pro", "h₂entó-")
+        builds = service._rung_builds(entry, "ine-pro", "h₂entó-")
+        self.assertEqual(len(builds), 1)
+        self.assertEqual(builds[0]["kind"], "combining")
+        self.assertEqual([p["form"] for p in builds[0]["pieces"]], ["*h₂énts"])
+        # The one piece is a word with a construction of its own, drawn above.
+        nested = builds[0]["pieces"][0]["branch"]["builds"]
+        self.assertEqual([p["form"] for p in nested[0]["pieces"]], ["*h₂ent-", "*s"])
+
+    def test_the_ladder_climbs_through_the_pre_form(self):
+        parent = service._origin_node("gem-pro", "*anda-")["parents"][0]
+        self.assertEqual((parent["lang"], parent["form"]), ("ine-pro", "h₂entó-"))
+        self.assertEqual(parent["builds"][0]["kind"], "combining")
+        self.assertEqual(parent["builds"][0]["pieces"][0]["form"], "*h₂énts")
+
+    def test_a_one_piece_row_of_another_kind_is_not_a_construction(self):
+        entry = {"word": "x-", "lang": "ine-pro", "built_as": [
+            {"lang": "ine-pro", "kind": "suffix", "of": "x-",
+             "pieces": [["*h₂énts", ""]]}]}
+        self.assertEqual(service._rung_builds(entry, "ine-pro", "x-"), [])
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -1176,6 +1176,14 @@ _PROSE_ANCESTRY_RE = re.compile(
     r"(?P<name>(?-i:(?:Proto|Old|Middle|New|Ancient|Classical|Late|Vulgar)[ -][A-Z][A-Za-z-]*"
     r"(?:\s+[A-Z][A-Za-z-]*)?))\b(?:\s+[a-z][a-z-]*){0,4}?\s*\*"
     r"(?P<form>[^\s,;.:()\[\]“”\"'’]+)", re.I)
+#: A form written with a ``pre-`` label, ``pre-Germanic *h₂entó-``.  The label
+#: names the stage a form belongs to in words, not a stage this model has: the
+#: form it marks is read at the nearest registered stage the sentence names for
+#: it.  It is a label on *that* form — never a licence to read on to the next
+#: starred form, which is the form this one is made from (admin, 2026-11-12).
+_PROSE_PRE_STAGE_RE = re.compile(
+    r"\b(?P<label>(?:[Pp]re)[- ][A-Z][A-Za-z-]*)\s+\*"
+    r"(?P<form>[^\s,;.:()\[\]“”\"'’]+)")
 #: A sentence that hedges, compares, or names a substrate is not a statement of
 #: ancestry: "likely from a substrate", "cognate with", "possibly related to".
 #: A sentence with a ``+`` states a construction, which is the construction
@@ -1212,11 +1220,20 @@ def _prose_ancestry(entry: dict) -> list[tuple[str, str, str]]:
     named, registered stage and a form its glossary really holds are accepted
     as one ``derived`` ancestor.
 
+    A ``pre-`` label is read as a label, not a stage.  "pre-Germanic
+    *h₂entó- … from the Proto-Indo-European root noun *h₂énts" names two
+    forms: the one that came first (*h₂entó-, the ancestor) and the one it was
+    made from (*h₂énts, which belongs to *h₂entó-'s own construction).  Skipping
+    the label because it is unregistered and taking the next registered stage
+    climbed one level too far; the marked form stands at the stage the sentence
+    names for it — here Proto-Indo-European (admin, 2026-11-12).
+
     Nothing else is read: only the first sentence, only when it opens with an
     ancestry cue, never a hedged or comparative one, never a sentence with a
     ``+`` (that is a construction), and never a form the ancestor stage does not
-    head.  "pre-Germanic" is not a stage and is skipped, which is how *anda-
-    reaches the Proto-Indo-European word the same sentence names.
+    head.  A ``pre-`` form whose sentence never names a registered stage has no
+    stage this model can place it at, and is left as silence rather than a
+    guess.
     """
     text = str(entry.get("etym") or "")
     if not text or entry.get("built_as") or text.startswith("Etymology tree"):
@@ -1225,11 +1242,27 @@ def _prose_ancestry(entry: dict) -> list[tuple[str, str, str]]:
     if not _PROSE_ANCESTRY_CUE.match(first) or _PROSE_ANCESTRY_STOP.search(first):
         return []
     own = str(entry.get("lang") or "")
+    named: list[tuple[int, str, str]] = []
+    stages: list[tuple[int, str]] = []
     for match in _PROSE_ANCESTRY_RE.finditer(first):
         code = _stage_by_name().get(match.group("name").strip().lower())
-        if not code or code == own:
+        if not code:
             continue
-        form = match.group("form").strip()
+        stages.append((match.start(), code))
+        named.append((match.start(), code, match.group("form").strip()))
+    for match in _PROSE_PRE_STAGE_RE.finditer(first):
+        # The label stands for the stage the sentence goes on to name for the
+        # form it marks.  A later stage of the same sentence is the only place
+        # this model can read it from, so no registered name, no row.
+        code = next((c for pos, c in stages if pos > match.start()), "")
+        if not code:
+            continue
+        named.append((match.start(), code, match.group("form").strip()))
+    # The sentence's own order decides: the first form it names is the nearest
+    # ancestor, and a form the stage does not head cannot become a rung.
+    for _pos, code, form in sorted(named):
+        if code == own:
+            continue
         if not form or form in ("*", "*-"):
             continue
         if _lemma_entry(code, form) is None:
@@ -2191,6 +2224,13 @@ def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
 # word, and the row it came from says nothing usable (2026-11-12).
 _MALFORMED_PIECE = re.compile(r"^\s*[\[({]")
 
+#: The construction kinds that may state a single piece: a word the record says
+#: was made from one other word and nothing else.  *h₂entó- is the case — "a
+#: combining form or allative formation from … *h₂énts" — and the step that
+#: made it *is* its history.  Every other kind is a join, and a one-piece row of
+#: another kind is an analysis cut short, not a construction (admin, 2026-11-12).
+_SINGLE_PIECE_KINDS = frozenset({"combining", "derivation"})
+
 
 def _formed_piece(form) -> str:
     """A piece's own form, or ``""`` when the stored value is not one."""
@@ -2298,7 +2338,14 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
                 "branch": None if bound else _origin_node(lang, form_piece,
                                                           build_depth=build_depth),
         })
-        if len(pieces) < 2:
+        # A join is two pieces or more — except a word the record states as
+        # *formed from* a single word, which is the whole of its history:
+        # *h₂entó- is "a combining form or allative formation from … *h₂énts",
+        # and its timeline is that one step, not a bare rung with the step
+        # hidden (admin, 2026-11-12).  Only a row whose own kind says so is
+        # read this way; a one-piece row of any other kind is a truncated
+        # analysis, not a construction.
+        if len(pieces) < (1 if kind in _SINGLE_PIECE_KINDS else 2):
             continue
         # The root's grade in this formation, when the handbooks fix it: the
         # step then says why *ters- stands above *tr̥s-tó-s as *e over *r̥ —
