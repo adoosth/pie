@@ -581,6 +581,14 @@ def merge_supplements() -> None:
                 # second build (otherwise a corrected note never lands).
                 if row.get("formed"):
                     cur["formed"] = row["formed"]
+                # The same for a construction a person checked and wrote down:
+                # the dump's own `built_as` row is a parse of one article, and a
+                # word whose article states the formation in words ("Adjectival
+                # formation from *aiganą") gets its row from the supplement.
+                # Replaces, never unions: two constructions are two analyses of
+                # one word, and a union would invent a third.
+                if row.get("built_as"):
+                    cur["built_as"] = row["built_as"]
                 # Alternative readings are a list for the same reason as
                 # ancestry: Wiktionary's template may yield one reading while the
                 # language's own entry records another (روباه is rōbāh in the

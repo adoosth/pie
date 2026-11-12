@@ -92,7 +92,43 @@ def groups(entries: Iterable[dict], gloss_limit: int = 6) -> list[dict]:
     for row in out:
         row["rep"] = next((e for e in row["entries"] if not e.get("recon")),
                           row["entries"][0])
+        row["gloss"] = meanings_first(row["gloss"])
     return out
+
+
+#: A gloss that points at another word instead of naming a meaning.  Wiktionary
+#: files these under a part of speech of their own — *aiganaz* is a
+#: `===Participle===` saying "past participle of *aiganą" beside an
+#: `===Adjective===` saying "own" — and a list that prints the pointer first
+#: describes the word's grammar where a reader asked what it means (admin,
+#: 2026-11-12: "multiple entries in Proto-Germanic for aiganaz").
+_POINTER = tuple(prefix + " of " for prefix in (
+    "past participle", "present participle", "participle", "gerund",
+    "verbal noun", "inflection", "alternative form", "alternative spelling",
+    "form", "plural", "singular", "dual", "comparative", "superlative",
+    "first-person", "second-person", "third-person", "imperative",
+    "preterite", "past tense", "present tense", "past", "present",
+    "nominative", "accusative", "genitive", "dative", "vocative",
+    "instrumental", "locative", "ablative", "ergative", "construct",
+))
+
+
+def points_elsewhere(gloss: str) -> bool:
+    """Whether this gloss is a form-of pointer rather than a meaning."""
+    return (gloss or "").strip().lower().startswith(_POINTER)
+
+
+def meanings_first(glosses: Iterable[str]) -> list[str]:
+    """The same glosses, with the pointers last and everything else in order.
+
+    Only the order changes: the meanings are the word's, and the pointer is the
+    grammar that connects it to another word, so `*aiganaz` reads "own · past
+    participle of *aiganą" and a page never answers "what does it mean?" with a
+    description of its ending.
+    """
+    rows = [g for g in glosses if g]
+    return ([g for g in rows if not points_elsewhere(g)]
+            + [g for g in rows if points_elsewhere(g)])
 
 
 def by_word(index: dict[tuple[str, str], list[dict]]) -> dict[tuple[str, str], list[dict]]:

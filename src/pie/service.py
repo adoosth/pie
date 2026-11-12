@@ -191,6 +191,30 @@ def _senses_for(key: tuple[str, str]) -> list[dict]:
     return senses.groups(word_index().get(key) or [])
 
 
+def _group_of(groups: list[dict], entry: dict) -> dict | None:
+    """The group one glossary row belongs to, matched by what the row says.
+
+    ``senses.groups`` is cached per headword, and a glossary read again — a
+    file edited, or the parse cache evicted — hands out the same rows as new
+    objects.  The search and the rung looked their row up with ``is``, so after
+    a re-read the row matched no group: *aiganaz lost "own" and read "past
+    participle of *aiganą", and two homographs collapsed into one row
+    (admin, 2026-11-12).  A row is identified the way the grouper identifies
+    it: part of speech, meanings and etymology.  Two rows that agree on all
+    three are the same word to `senses.groups` too, so this is as
+    discriminating as the grouping itself.
+    """
+    for group in groups or []:
+        for row in group.get("entries") or []:
+            if row is entry:
+                return group
+            if (str(row.get("pos") or "") == str(entry.get("pos") or "")
+                    and list(row.get("gloss") or []) == list(entry.get("gloss") or [])
+                    and str(row.get("etym") or "") == str(entry.get("etym") or "")):
+                return group
+    return None
+
+
 class _SenseIndex(Mapping):
     """``(lang, word) -> senses``, grouped when a view asks for that word.
 
@@ -885,6 +909,12 @@ def search(q: str, lang: str | None = None, limit: int = 40, gloss: bool = True)
     if not q:
         return []
     exact, prefix, contains, semantic = [], [], [], []
+    # One row per *word*, not per part of speech: Wiktionary files the same
+    # lexeme under several headings (the participle and the adjective of
+    # *aiganaz), and a list that printed one row for each made one word look
+    # like two entries (admin, 2026-11-12).  The grouping is the one the
+    # glossary already uses, so the two lists cannot disagree.
+    seen: set[tuple[str, str, int]] = set()
     langs = [lang] if lang else [l for l, _ in data.available_lexicons()]
     for lg in langs:
         for word, glosses, entry in _search_rows(lg):
@@ -900,13 +930,23 @@ def search(q: str, lang: str | None = None, limit: int = 40, gloss: bool = True)
                 continue
             pron = readings_for(entry)
             groups = sense_index().get((lg, entry["word"])) or []
-            here = next((g for g in groups if any(e is entry for e in g["entries"])), None)
+            here = _group_of(groups, entry)
+            key = (lg, entry["word"], here["sense"] if here else 0)
+            if key in seen:
+                # This part of speech is another heading of a word already on
+                # the list; its glosses came with the row.
+                continue
+            seen.add(key)
             search_status = attestation.classify(
                 entry, proto=kind_of(lg) == "proto",
                 in_script=_in_native_script(lg, entry["word"]))
             bucket.append(_with_reading({
-                "word": entry["word"], "lang": lg, "pos": entry.get("pos", ""),
-                "gloss": entry.get("gloss", [])[:2], "cog": entry.get("cog"),
+                "word": entry["word"], "lang": lg,
+                # The word's own parts of speech and meanings, as the glossary
+                # prints them (`aiganaz` is one word, "verb / adj", "own").
+                "pos": " / ".join(here["pos"]) if here else entry.get("pos", ""),
+                "gloss": (here["gloss"] if here else entry.get("gloss", []))[:2],
+                "cog": entry.get("cog"),
                 "attestation": search_status,
                 "written": attestation.written(entry["word"], search_status),
                 # Which word of a shared spelling this hit is, so the row opens
@@ -2674,8 +2714,13 @@ def _own_construction(entry: dict, chain: list[str]) -> dict | None:
     for row in entry.get("built_as") or []:
         if (data.stage_of(row.get("lang") or "") or row.get("lang")) != own_stage:
             continue
+        kind = str(row.get("kind") or "formation")
         pieces = row.get("pieces") or []
-        if len(pieces) < 2:
+        # A join needs two pieces; a word the record states as *formed from*
+        # one word is the whole of its history — *aiganaz is an adjectival
+        # formation on *aiganą — and its timeline is that one step rather
+        # than a climb to the piece's own PIE root (admin, 2026-11-12).
+        if len(pieces) < (1 if kind in _SINGLE_PIECE_KINDS else 2):
             continue
         of = normalise_etymon(str(row.get("of") or ""))
         # The builder names the product when it can identify it; without that
@@ -2692,8 +2737,7 @@ def _own_construction(entry: dict, chain: list[str]) -> dict | None:
                  if (data.stage_of(lg) or lg) != own_stage]
         if cross and not _pieces_explain_ancestry(own_stage, pieces, cross):
             continue
-        return {"stage": own_stage, "kind": str(row.get("kind") or "formation"),
-                "pieces": pieces}
+        return {"stage": own_stage, "kind": kind, "pieces": pieces}
     return None
 
 
@@ -3639,6 +3683,18 @@ def _record_block(stage: str, here: dict | None, match_form: str | None,
                     # headword's first: دوش is read dōš, and dūš matches duš.
                     via = _abjad_reading(candidate, match_form, readings)
             break
+    # One word, several headings: the rung stands for the *word*, so it prints
+    # the parts of speech and meanings the glossary merges for it.  *aiganaz
+    # is a participle and an adjective of one Wiktionary page with one
+    # etymology, and a rung that quoted only the first heading said "past
+    # participle of *aiganą" where the word means "own" (admin, 2026-11-12).
+    pos_text = (stage_entry or {}).get("pos")
+    gloss_list = list((stage_entry or {}).get("gloss") or [])
+    if stage_entry and len(word_index().get((stage, primary)) or ()) > 1:
+        readings_group = _group_of(_senses_for((stage, primary)), stage_entry)
+        if readings_group and len(readings_group["entries"]) > 1:
+            pos_text = " / ".join(readings_group["pos"])
+            gloss_list = list(readings_group["gloss"])
     payload = _with_reading({
         "w": primary,
         "more": [f for f in forms if f != primary][:6],
@@ -3655,9 +3711,8 @@ def _record_block(stage: str, here: dict | None, match_form: str | None,
         # not always the one the rung quotes (*déwk-s-eti is not the root
         # *dewk-, and the root's "to pull, to draw" is not the word's meaning),
         # so a form with no entry of its own claims nothing (2026-11-09).
-        "pos": ((stage_entry or {}).get("pos")
-                if stage_entry or primary == forms[0] else ""),
-        "gloss": (_rung_gloss(stage_entry.get("gloss") or []) if stage_entry
+        "pos": (pos_text if stage_entry else ""),
+        "gloss": (_rung_gloss(gloss_list) if stage_entry
                   else (here.get("gloss", "") if primary == forms[0] else "")),
         # Where the record comes from. A green form must be able to say so;
         # a record quoted from Wiktionary's ancestry has no entry of its
@@ -6966,9 +7021,13 @@ def headwords(lang: str, limit: int = 4000) -> list[dict]:
     for word, rows in sorted(lang_index(lang).items()):
         if not word or word.startswith("-") or " " in word:
             continue
-        row = rows[0] if rows else {}
-        out.append({"word": word,
-                    "gloss": _rung_gloss(row.get("gloss") or [], 70)})
+        # One row per word, described by its meaning: a headword the record
+        # keeps under two readings (a participle and the adjective it became)
+        # would otherwise enter the menu as "past participle of *aiganą" and
+        # never say what the word means (2026-11-12).
+        group = (senses.groups(rows) or [{}])[0]
+        gloss = group.get("gloss") or (rows[0].get("gloss") if rows else []) or []
+        out.append({"word": word, "gloss": _rung_gloss(gloss, 70)})
         if len(out) >= limit:
             break
     return out
@@ -7537,6 +7596,18 @@ def word(lang: str, form: str, disabled: Iterable[str] = (),
         entry = picked["rep"]
     else:
         entry = groups[0]["rep"]
+    # The page describes one *word*, and the record may keep that word under
+    # several headings: *aiganaz is a `===Participle===` ("past participle of
+    # *aiganą") and an `===Adjective===` ("own") on one Wiktionary page with one
+    # etymology.  The glossary already prints them as one row — "verb / adj",
+    # "own; past participle of *aiganą" — so the page prints the same, and the
+    # reader is never shown the grammar where they asked for the meaning
+    # (admin, 2026-11-12: "multiple entries … for aiganaz").
+    group = groups[sense_no - 1] if 0 < sense_no <= len(groups) else None
+    head = entry
+    if group and len(group["entries"]) > 1:
+        head = dict(entry, pos=" / ".join(group["pos"]),
+                    gloss=list(group["gloss"]) or list(entry.get("gloss") or []))
     # A word's own pathway (a law that never applied to it) is part of the
     # answer, so every view of this word — the headline derivation, the ladder
     # and the branch below it — is computed with the same laws switched off.
@@ -7665,13 +7736,13 @@ def word(lang: str, form: str, disabled: Iterable[str] = (),
         "attestation": attestation_of(entry, lang),
         "show_reading": show_reading(lang, entry["word"]),
         "reading": readings["reading"],
-        "pos": entry.get("pos", ""),
+        "pos": head.get("pos", ""),
         # The dictionary's own grammar label, verbatim, when it prints one
         # (Dehkhoda's (اِ مرکب), (ص نسبی), (اِخ)).  The page prints it beside
         # the part of speech and never instead of it (2026-11-10).
         "pos_label": entry.get("pos_label", ""),
         "says": dict(entry.get("structure") or {}),
-        "gloss": entry.get("gloss", []),
+        "gloss": head.get("gloss", []),
         # Which dictionary the gloss above is quoted from: the tab is named
         # after its source, and 153,215 Persian entries take theirs from
         # Dehkhoda, not from Wiktionary (2026-11-12, critic P1-7).

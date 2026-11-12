@@ -3765,3 +3765,105 @@ line 11px below it, so the two read as unconnected marks. The rail now comes
 down to the circle's centre, the circle is drawn on that centre, and the line
 leaves the circle's *right edge* (`left: calc(50% + 5px)`) and runs to the box.
 The picker itself is untouched.
+
+## 2026-11-12 · one word, however many headings the record gives it
+
+The reader typed `aiganaz` and saw it twice: "past participle of *aiganą" and
+"own".  It is one word.  Wiktionary's page has **one etymology** and **one
+pronunciation**, then two headings — `===Participle===` (`past participle of
+*aiganą`) and `===Adjective===` (`own`) — and the dump stores a row per heading,
+which is the only thing a dump can do.  The model has grouped those rows into
+words since 2026-11-09 (`pie.senses`, the glossary's "one row per word"), but three
+views still read the rows directly, and each of them showed the same word twice
+or under the wrong name.
+
+**Search and the suggestion list ask the sense grouper.** `search()` now emits
+one row per (language, word, sense) — the same key the glossary uses — and
+prints the group's parts of speech and meanings (`verb / adj`, "own; past
+participle of *aiganą").  Two etymologies stay two rows with their numbers, so
+*bank* the institution and *bank* the river bank are still two words, and
+Proto-Germanic *wistiz* is still "1/2" and "2/2".  `headwords()`, the menu the
+construction row composes from, names a word by its first meaning instead of by
+the heading that happened to come first.
+
+**The page and its rung print the word, not the first heading.** `word()` keeps
+the entry it measures (the pathway, the band, the sources are the entry's own)
+and prints `head`: the group's parts of speech and its glosses.  `_record_block`
+— which builds the rung that stands above *andaswarō or beside the headword —
+does the same, because a rung stands for a word too.  So gem-pro/*aiganaz now
+reads **"verb / adj · own"** in the title and on its own rung, and its etymology
+line ("Adjectival formation from *aiganą") still says how the word was made.
+
+**A form-of note is not a meaning.** A gloss that begins *past participle of*,
+*inflection of*, *alternative form of* … points at another word; the rest name a
+sense.  `senses.meanings_first` keeps both but prints the meanings first, so a
+page never answers "what does it mean?" with a description of an ending.  Only
+the order changes: nothing is dropped, and a word whose only gloss is a pointer
+(*aiginaz* → "alternative form of *aiganaz") reads exactly as before.
+
+**What was not done.** The glossary keeps both rows: they are the record's own
+headings, and deleting one would be this repo inventing a fact about Wiktionary.
+Nor was the class widened by guesswork — a participle that became a noun
+(Sanskrit *भूत*, Old English *búandi*) is a separate word only when its own
+etymology says so, and the grouper already decides that from the prose and the
+chain, not from the part of speech.
+
+**A row is found by what it says, not by its address in memory.** The search
+table (`_search_rows`, an LRU of prepared rows) and the grouping index
+(`_senses_for`, over `lang_index`) are two caches over the same glossary, and a
+parse-cache eviction — the 61st `data.lexicon()` call, or an edited word file —
+can leave one holding rows the other has re-read.  They are equal rows with new
+objects.  Both the search and the rung looked their row up with `is`, found no
+group, and fell back to the first heading: *aiganaz read "past participle of
+*aiganą" and lost "own", and Proto-Germanic *wistiz's two origins collapsed
+into one row.  The first full-suite run after this release failed on exactly
+these three assertions.  `_group_of` now matches a row the way `senses.groups`
+identifies it — part of speech, meanings, etymology — so the two caches cannot
+disagree about which word a row is.
+
+**Numbers.** 388 pages sampled over ten stages: the page's part of speech and
+first meaning are the grouped row's in every one (the three "misses" are words
+with no gloss at all, where both are empty).  `tests/test_senses.py` gains
+`MeaningBeforeGrammarTest` and `OneWordIsListedOnceTest` (11 new tests, one of
+them reproducing the cache-eviction state that broke the first run), and
+`service.search("aiganaz")` answers one row where it answered two.
+
+## 2026-11-12 · a word the record forms from one word starts at itself
+
+The reader asked that Wiktionary's *aiganą be listed in the Proto-Germanic
+glossary and used as a construction element of *aiganaz (admin, 2026-11-12).
+*aiganą was already a complete entry — verb, "to possess, to own, to have",
+PIE *h₂eh₂óyḱe, descendants — so what was missing was the link: *aiganaz's
+Wiktionary page says "Adjectival formation from *aiganą ('to own, possess')"
+and lists it under Participle as "past participle of *aiganą", a **derivation
+from one word**, and the timeline showed nothing above *aiganaz.
+
+**The step existed but could not be reached.** `_own_construction` — the rule
+that a word built at its own stage starts the ladder at itself instead of
+climbing to a piece's PIE root — required two pieces. It now reads
+`_SINGLE_PIECE_KINDS` (`derivation`, `combining`), the same licence
+`_rung_builds` has used since v0.17.9, so *aiganaz starts at gem-pro and its
+rung carries the step. The guard is unchanged: a cross-stage ancestry row must
+belong to the piece (`_pieces_explain_ancestry`), and a one-piece row of any
+other kind is still a truncated analysis, never a construction. Only two rows
+in the corpus are one piece — PIE *h₂entó- (`combining`) and *aiganaz
+(`derivation`) — so the change moves exactly this entry.
+
+**The supplement records the link.** `tools/build_lexicons.py` already let a
+supplement row carry `built_as` (it *replaces* the dump's row rather than
+unioning into it); the `aiganaz` row now states
+`{"kind": "derivation", "of": "aiganaz", "pieces": [["*aiganą", "to possess, to own"]]}`,
+cites the reconstruction page, and marks `cited_by: ["aiganą"]`. Written into
+`data/lexicon/gem-pro.jsonl.gz` by `--supplements-only`.
+
+**What the timeline says.** gem-pro/*aiganaz, upward: *aiganaz → construction
+(derivation) ◇ *aiganą → PIE *h₂eh₂óyḱe → … — the piece's own climb is drawn
+above it (`branch`), and *aiganą and *h₂eh₂óyḱe are links. It is the same
+shape as *anda → *h₂entó-, with the formation at the word's own stage. At
+1400px and 420px the construction label, the diamond and the word share their
+line; nothing in the header changed.
+
+**Tests.** `tests/test_build.OneWordBuildsAnother`: the entry states *aiganą
+as its base (one derivation piece, known, glossed, with *h₂eh₂óyḱe above it);
+the ladder's last rung is gem-pro *aiganaz and carries the step; a one-piece
+row of another kind still starts nothing.

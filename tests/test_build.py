@@ -177,5 +177,43 @@ class PreStageAncestry(unittest.TestCase):
         self.assertEqual(service._rung_builds(entry, "ine-pro", "x-"), [])
 
 
+class OneWordBuildsAnother(unittest.TestCase):
+    """A word the record states as *formed from* one word is that one step.
+
+    Wiktionary's *aiganaz says "Adjectival formation from *aiganą ('to own,
+    possess')" — one base, no suffix — and lists it under Participle as "past
+    participle of *aiganą".  The supplement stores that as one `derivation`
+    piece, so the timeline above *aiganaz is the word it was made from, and
+    that word's own climb (PIE *h₂eh₂óyḱe) continues above it (admin,
+    2026-11-12: *aiganą is an entry, and it is the construction of *aiganaz).
+    """
+
+    def test_the_entry_states_aiganą_as_its_base(self):
+        entry = service._lemma_entry("gem-pro", "aiganaz")
+        builds = service._rung_builds(entry, "gem-pro", "aiganaz")
+        self.assertEqual(len(builds), 1)
+        self.assertEqual(builds[0]["kind"], "derivation")
+        self.assertEqual([p["form"] for p in builds[0]["pieces"]], ["*aiganą"])
+        piece = builds[0]["pieces"][0]
+        self.assertTrue(piece["known"], "*aiganą is a glossary entry")
+        self.assertEqual(piece["gloss"], "to possess, to own")
+        # The piece's own history is drawn above it, not flattened away.
+        self.assertEqual(piece["branch"]["parents"][0]["form"], "*h₂eh₂óyḱe")
+
+    def test_the_ladder_starts_at_the_word_the_record_builds(self):
+        page = service.word("gem-pro", "aiganaz")
+        levels = page["hierarchy"]["levels"]
+        self.assertEqual((levels[-1]["stage"], levels[-1]["form"]),
+                         ("gem-pro", "aiganaz"))
+        self.assertEqual([p["form"] for p in levels[-1]["builds"][0]["pieces"]],
+                         ["*aiganą"])
+
+    def test_a_one_piece_join_is_not_a_construction_start(self):
+        entry = {"word": "x", "lang": "gem-pro", "built_as": [
+            {"lang": "gem-pro", "kind": "suffix", "of": "x",
+             "pieces": [["*aiganą", ""]]}]}
+        self.assertIsNone(service._own_construction(entry, ["ine-pro", "gem-pro"]))
+
+
 if __name__ == "__main__":
     unittest.main()

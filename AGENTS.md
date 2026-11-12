@@ -434,7 +434,12 @@ that keeps the `*` opens nothing).
   construction in its column** (`climbOf`/`buildRow` in `constructStep`), one
   row of the same staircase rather than a sub-timeline, so the timeline reads
   *anda- → *h₂entó- → construction from *h₂énts → *h₂ent- + *-s — stopping at
-  the piece would hide the step that made it.
+  the piece would hide the step that made it. The same licence is what lets a
+  word **start its ladder at itself**: `_own_construction` read only joins, so
+  *aiganaz ("Adjectival formation from *aiganą") climbed to the PIE root its
+  piece inherits and produced a spelling nobody records; it now accepts a
+  one-piece row of a `_SINGLE_PIECE_KINDS` kind (admin, 2026-11-12), and the
+  guard is unchanged — the cross-stage ancestry row must belong to the piece.
 - **A composition is built in the grade its suffix takes** (2026-11-12):
   `_formation_grade` reads the `grades:` table and `_grade_stem` writes it, so
   *ters- + *-nó- is *tr̥s-nó-s*, never *ters-nó-s*, and the built step and the
@@ -799,6 +804,26 @@ that keeps the `*` opens nothing).
   page carries a strip of those numbers under the headword. Two entries are one
   word only when they state the same ancestry chain **and** the same etymology
   sentence — *bank* the institution and *bank* the river's edge are two.
+- **Every list of words is one row per word** (v0.17.13): the glossary always
+  was, and since the reader met *aiganaz* twice the search results, the search
+  box's suggestions and the construction menu are too — `search()` keys its rows
+  by (language, word, sense) and prints the group's parts of speech and meanings,
+  so a word the record keeps under several headings (`===Participle===` "past
+  participle of *aiganą" + `===Adjective===` "own") is listed once, as
+  `verb / adj · own; past participle of *aiganą`. The word page and every rung
+  that quotes the word's own entry print the same group (`head` in `service.word`,
+  the grouping in `_record_block`), while the entry itself still supplies the
+  pathway, the band and the sources. A row is matched to its group by **what it
+  says** (`_group_of`: part of speech, meanings, etymology), never by `is`: the
+  search table and the grouping index are two caches over one glossary, and a
+  parse-cache eviction leaves one holding rows the other has re-read — the first
+  full-suite run of v0.17.13 failed exactly there (*aiganaz lost "own", and
+  Proto-Germanic *wistiz's two origins became one row).
+- **A form-of note is not a meaning.** `senses.points_elsewhere` recognises a
+  gloss that begins *past participle of*, *inflection of*, *alternative form of*
+  … and `senses.meanings_first` prints those last, so a page or a row never
+  answers "what does it mean?" with a description of an ending. Order only:
+  nothing is dropped, and a word whose only gloss is a pointer is unchanged.
 - A link that names no sense (a reconstruction on another ladder, a search
   result, an old address) opens a **landing page** listing the words with
   meaning, POS, reading and band, and asks which one is meant. Nothing is
@@ -820,6 +845,13 @@ that keeps the `*` opens nothing).
   2026-11-08 `recordSourceText()` puts titles and ref in the tooltip of the
   record itself (the record glyph, the glowing matched form, the headword's
   evidence badge).
+- **A supplement row may state the construction, not only the entry.** A
+  `built_as` row in `data/lexicon/_supplement/<lang>.jsonl.gz` **replaces** the
+  dump's `built_as` for that headword (never unions with it), so a word whose
+  Wiktionary page states a formation the dump drops (*aiganaz: "Adjectival
+  formation from *aiganą") can carry the step without editing the generated
+  glossary. `tools/build_lexicons.py` writes it through; re-running
+  `--supplements-only` is idempotent.
 - **An Old Persian word is written only in the cuneiform a source prints**
   (2026-11-08): curated rows in
   `data/lexicon/_supplement/peo_entries.json` (`ref`, `url`, `sources`) reach the

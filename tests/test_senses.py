@@ -11,7 +11,7 @@ from __future__ import annotations
 
 import unittest
 
-from pie import senses, service
+from pie import data, senses, service
 
 
 def entry(word, pos, gloss, anc=(), etym=""):
@@ -111,6 +111,88 @@ class GlossaryRowsTest(unittest.TestCase):
         rows = [r for r in page["rows"] if r["word"] == "دیوانه"]
         self.assertEqual(len(rows), 1)
         self.assertIn("/", rows[0]["pos"])
+
+
+class MeaningBeforeGrammarTest(unittest.TestCase):
+    """One word, two headings: the meaning is printed, the grammar after it.
+
+    *aiganaz is a `===Participle===` ("past participle of *aiganą") and an
+    `===Adjective===` ("own") on one Wiktionary page, with one etymology — one
+    word, which the reader met as two entries in the search box and as a page
+    that never said "own" (admin, 2026-11-12).
+    """
+
+    def test_a_form_of_note_is_not_a_meaning(self):
+        self.assertTrue(senses.points_elsewhere("past participle of *aiganą"))
+        self.assertTrue(senses.points_elsewhere("Inflection of bēon:"))
+        self.assertTrue(senses.points_elsewhere("alternative form of *aiganaz"))
+        self.assertFalse(senses.points_elsewhere("own"))
+
+    def test_the_meaning_comes_first(self):
+        self.assertEqual(senses.meanings_first(["past participle of *aiganą", "own"]),
+                         ["own", "past participle of *aiganą"])
+        self.assertEqual(senses.meanings_first(["own"]), ["own"])
+
+    def test_a_group_keeps_both_and_orders_them(self):
+        rows = [entry("aiganaz", "verb", "past participle of *aiganą",
+                      [("ine-pro", "*h₂eyḱ-", "root")], "Adjectival formation"),
+                entry("aiganaz", "adj", "own",
+                      [("ine-pro", "*h₂eyḱ-", "root")], "Adjectival formation")]
+        groups = senses.groups(rows)
+        self.assertEqual(len(groups), 1)
+        self.assertEqual(groups[0]["pos"], ["verb", "adj"])
+        self.assertEqual(groups[0]["gloss"], ["own", "past participle of *aiganą"])
+
+
+class OneWordIsListedOnceTest(unittest.TestCase):
+    def test_search_lists_the_word_once(self):
+        rows = [r for r in service.search("aiganaz", "gem-pro", limit=10)
+                if r["word"] == "aiganaz"]
+        self.assertEqual(len(rows), 1, "one word, however many headings the record uses")
+        self.assertEqual(rows[0]["pos"], "verb / adj")
+        self.assertEqual(rows[0]["gloss"][0], "own")
+
+    def test_the_suggestion_list_does_too(self):
+        rows = [r for r in service.suggest("aiganaz", 10, "gem-pro")
+                if r["word"] == "aiganaz"]
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["gloss"], "own")
+
+    def test_the_page_says_what_the_word_means(self):
+        page = service.word("gem-pro", "aiganaz")
+        self.assertEqual(page["pos"], "verb / adj")
+        self.assertEqual(page["gloss"][0], "own")
+        self.assertIn("past participle of *aiganą", page["gloss"])
+
+    def test_the_construction_menu_names_the_meaning(self):
+        rows = {r["word"]: r["gloss"] for r in service.headwords("gem-pro")}
+        self.assertEqual(rows.get("aiganaz"), "own")
+
+    def test_two_etymologies_are_still_two_rows(self):
+        rows = [r for r in service.search("wistiz", "gem-pro", limit=10)
+                if r["word"] == "wistiz"]
+        self.assertEqual(len(rows), 2, "two recorded origins are two words")
+        self.assertEqual(sorted(r["sense"] for r in rows), [1, 2])
+
+    def test_a_word_is_still_one_word_after_the_glossary_is_read_again(self):
+        # The search table and the grouping index are two caches over the same
+        # glossary, and a parse-cache eviction (or an edited word file) can
+        # leave one holding rows the other has re-read: equal rows, new
+        # objects.  A lookup by identity then found no group — *aiganaz lost
+        # "own" and read "past participle of *aiganą", and *wistiz's two
+        # origins collapsed into one row.  The first full-suite run after
+        # v0.17.13 failed exactly this way.
+        service.search("aiganaz", "gem-pro", limit=5)
+        service.senses_of("gem-pro", "wistiz")
+        service._search_rows.cache_clear()
+        data.lexicon.cache_clear()
+        rows = [r for r in service.search("aiganaz", "gem-pro", limit=10)
+                if r["word"] == "aiganaz"]
+        self.assertEqual(rows[0]["pos"], "verb / adj")
+        self.assertEqual(rows[0]["gloss"][0], "own")
+        homographs = [r for r in service.search("wistiz", "gem-pro", limit=10)
+                      if r["word"] == "wistiz"]
+        self.assertEqual(len(homographs), 2)
 
 
 if __name__ == "__main__":
