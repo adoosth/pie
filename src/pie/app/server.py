@@ -177,6 +177,18 @@ class Handler(BaseHTTPRequestHandler):
             return self._json(service.compose(qs.get("form", ""),
                                               qs.get("suffix") or None,
                                               qs.get("lang") or service.ROOT_LANG))
+        if endpoint == "build":
+            # The construction row asks for one step at a time (2026-11-12):
+            # the composed form and its pieces, with no ladder to fetch.
+            row = service.build_at(qs.get("spec") or "", qs.get("base") or "")
+            return self._json(row or {"error": "cannot build that"}, 200 if row else 404)
+        if endpoint == "words":
+            # The stage's own words, for the construction menu.  Cached in the
+            # tab per stage; a bound morpheme is a suffix and is not here.
+            return self._json({"lang": qs.get("lang") or service.ROOT_LANG,
+                               "words": service.headwords(
+                                   qs.get("lang") or service.ROOT_LANG,
+                                   int(qs.get("limit", 4000)))})
         if endpoint == "word":
             off = [d for d in qs.get("off", "").split(",") if d]
             row = service.word(qs.get("lang", ""), qs.get("w", ""), off,

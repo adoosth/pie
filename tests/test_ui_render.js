@@ -493,7 +493,7 @@ assert.ok(plain(bookTop).includes("root · “to divide, distribute, allot”"),
   "the root's part of speech and meaning are realised on the top rung");
 assert.ok(!bookWords.includes("starting point") && !plain(bookTop).includes("✓ the laws reproduce"),
   "the start rung no longer says the obvious 'starting point' (2026-11-08)");
-assert.equal(bookTop.split("bʰeh₂g").length - 1, 1,
+assert.equal(plain(bookTop).split("bʰeh₂g").length - 1, 1,
   "the root is printed once: the record sits on the form line, not under it");
 assert.ok(bookWords.includes("cognate set"), "the page says how the PIE rung was linked");
 assert.ok(bookWords.includes("*bʰóh₂g-s ~ *bʰéh₂g-s"),
@@ -557,7 +557,7 @@ const agree = {
 };
 const agreeHtml = context.renderHierarchy(agree, { lang: "en", lang_name: "English" });
 const agreeBottom = agreeHtml.slice(agreeHtml.indexOf('data-stage="gmw-pro"'));
-assert.equal(agreeBottom.split("bōk").length - 1, 1, "a matching form is printed once");
+assert.equal(plain(agreeBottom).split("bōk").length - 1, 1, "a matching form is printed once");
 assert.ok(/class="form[^"]*matched[^"]*"/.test(agreeBottom), "a matching form glows as matched");
 assert.ok(agreeBottom.includes("✓"), "the match carries a ✓, not only a colour");
 /* The ✓ is a disc on the corner of the word box, not a glyph in the line:
@@ -568,7 +568,7 @@ assert.ok(!/class="tick/.test(agreeBottom), "no tick glyph standing in the line"
 assert.ok(!agreeBottom.includes("rectag"), "no second copy of the same form");
 const agreeTop = agreeHtml.slice(agreeHtml.indexOf('data-stage="gem-pro"'),
                                 agreeHtml.indexOf('data-stage="gmw-pro"'));
-assert.equal(agreeTop.split("bōks").length - 1, 1, "a starting rung prints its recorded form once");
+assert.equal(plain(agreeTop).split("bōks").length - 1, 1, "a starting rung prints its recorded form once");
 /* The first rung has no law above it, so `matches` stays false; `starts` is
    what makes it glow — it is the record the ladder starts from (2026-11-08). */
 assert.match(agreeTop, /class="form[^"]*matched[^"]*"[^>]*>bōks<i class="matchdot"[^>]*>✓<\/i>/,
@@ -653,14 +653,25 @@ assert.ok(!pieHtml.includes("recon-lang") && !pieWords.includes("Reconstruct int
 assert.ok(/class="nextgrid"/.test(pieHtml) && pieHtml.includes('data-next="iir-pro"'),
   "each daughter stage is a step of the timeline, one click away");
 assert.ok(pieWords.includes("Proto-Indo-Iranian"), "the stage below is named where it stands");
-/* The construct: the rung carries the stage's own suffixes, and choosing one
-   asks the same ladder for the word those laws build (admin, 2026-11-12). */
-assert.ok(pieHtml.includes("construct…"), "the rung offers a construct");
-assert.ok(/data-barg="no"/.test(pieHtml), "a recorded suffix is one click from the rung");
-assert.ok(pieWords.includes("-nó-"), "and it is printed, not hidden behind the button");
-assert.ok(!pieHtml.includes('data-barg="os-acute"'),
-  "a grammatical ending is not offered as a derivational suffix");
-assert.ok(pieWords.includes("-ós"), "the endings keep their own row in the panel");
+/* The construct: the dot beside a word is a door, and the row it opens is the
+   form builder — no button and no pills (admin, 2026-11-12). */
+assert.ok(/class="rdot"[^>]*data-cstage="ine-pro"/.test(pieHtml)
+  || /data-cstage="ine-pro"[^>]*class="rdot"/.test(pieHtml),
+  "the rung's dot opens a construction row");
+assert.ok(pieHtml.includes('aria-label="Construct a word from'),
+  "the door says what it does, for a reader who cannot see the dot");
+assert.ok(!pieWords.includes("construct…") && !pieHtml.includes("buildopen"),
+  "the old button is gone");
+assert.ok(!pieHtml.includes("buildchips") && !pieHtml.includes("buildpanel"),
+  "and so are the pills and the typing panel");
+assert.equal(typeof context.openDraft, "function", "clicking the dot opens the row");
+const menu = context.draftMenu("ine-pro", pieRoot.build_options);
+assert.ok(menu.includes('value="suffix:no"'), "the menu offers the recorded suffix");
+assert.ok(menu.includes("verbal adjective or passive participle"),
+  "with what the suffix does beside it");
+assert.ok(menu.includes('value="ending:-ós"'), "and the endings under their own heading");
+assert.ok(!/label="suffix"[\s\S]*value="suffix:os-acute"/.test(menu),
+  "a grammatical ending is not filed as a derivational suffix");
 
 /* A construct above the etymon: *ters- + *-nó- is *tr̥s-nó-s, and the step says
    which grade the formation puts the root in. */

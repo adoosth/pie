@@ -1,3 +1,38 @@
+## 2026-11-12 — the dot opens the construction row, and a hyphen is notation
+
+**What.** On Persian تشنه the PIE rung said *no entry for this word*, although
+the form beside it linked to `ine-pro/tr̥s-nó-s`, a page that opens the entry
+`tr̥snós` and shows its whole timeline. And on a PIE rung the construct line was
+a button beside a row of pills, which did nothing when clicked.
+
+1. **One word, two spellings.** Wiktionary quotes a reconstructed compound with
+   its morpheme boundaries (`*tr̥s-nó-s`); the glossary heads the same word solid
+   (`*tr̥snós`). `_lemma_entry` now retries the joined spelling, stress aside, for
+   every reconstructed form — and only for one: in an attested language a hyphen
+   can be part of the headword (English *well-being* is not *wellbeing*), so the
+   fallback never runs there. A rung can no longer call a word missing while
+   linking to the entry that holds it.
+2. **The button and the pills are gone.** The dot beside a word is a button
+   (`button.rdot`): clicking it opens a row *above* that word — a diamond on the
+   rail, because a formation is not a sound change — holding the word itself
+   (unchanged, at word size, in its evidence colour) and a menu of what the
+   stage records: its cited suffixes, its endings, and its own headwords
+   (`/api/words`, one fetch per stage per tab). Nothing is typed: the pencil is
+   the door for typing, and a construction is a question put to the morphology.
+3. **One step, composed by the stage.** `service.build_at` (behind `/api/build`)
+   answers a single construction — the pieces, the grade the formation puts the
+   stem in (`*ters-` → *zero grade*), and the form they make — so the row shows
+   `*ters- zero grade + *-nó- → *tr̥snós` without a page reload, and its result
+   links to the built word in the timeline (`?build=`). A second choice composes
+   on the first result, so two suffixes stand on one line instead of a tab each.
+
+**Why.** The reader asked for a construction he could *do* rather than a menu he
+had to decode: one click from the word, then the stage's own terms. The pills
+looked clickable and the panel asked him to type a word he had not chosen yet.
+
+**Numbers.** 963 Python tests and the render suite; the dot, the menu and the
+joined-spelling lookup each have a test.
+
 ## 2026-11-12 · an icon is a page that was recorded
 
 The reader clicked the W on Persian **کبود** and on Middle Persian **kpwt'** and

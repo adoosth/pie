@@ -1292,46 +1292,151 @@ function buildStep(level) {
     </div></li>`;
 }
 
-/* The builder on a rung: the reader names the two words of that stage, or
-   picks one of its cited suffixes or endings, and the timeline shows what the
-   stage makes of them (2026-11-10). Nothing is remembered as the word's
-   own history: it is a question asked of the laws, and the address carries it
-   so the answer can be linked and compared. */
-function buildLine(level, h) {
-  const opts = (h.build_options || {})[level.stage] || null;
-  if (!opts || level.built) return "";
-  const stage = level.stage;
-  const data = `data-bstage="${esc(stage)}"`;
-  const tool = `<button class="ghost buildopen" type="button" ${data}
-      data-tip="Build this stage's form: join two words of ${esc(level.name)}, or add a suffix or ending">construct…</button>`;
-  /* The stage's own suffixes stand on the rung, not behind the button: the
-     question "what does this word become with *-nó-" is one click, and the
-     chips are the same formation laws the built step will name
-     (admin, 2026-11-12: a construct section, on the timeline). */
-  const suf = (opts.suffixes || []).filter((x) => x.kind !== "ending").slice(0, 12).map((x) => `<button class="chip" type="button" ${data}
-      data-bkind="suffix" data-barg="${esc(x.id)}"
-      data-tip="${esc(`${x.form} · ${x.gloss}${x.law ? " (registered formation law)" : ""}`)}"><span class="chip-form mono">${esc(x.form)}</span></button>`).join("");
-  const end = (opts.endings || []).slice(0, 8).map((x) => `<button class="chip" type="button" ${data}
-      data-bkind="ending" data-barg="${esc(x.form)}"
-      data-tip="${esc(`${x.form} · ${x.gloss}`)}"><span class="chip-form mono">${esc(x.form)}</span></button>`).join("");
-  const panel = `<div class="buildpanel" hidden ${data}>
-      <label class="sub" for="bf-${esc(stage)}">first word in ${esc(level.name)}</label>
-      <input id="bf-${esc(stage)}" class="buildin mono" data-bfirst dir="auto" list="bl-${esc(stage)}"
-        value="${esc(pf(level.form))}" autocomplete="off" spellcheck="false">
-      <datalist id="bl-${esc(stage)}"></datalist>
-      <label class="sub" for="bs-${esc(stage)}">second word — join them</label>
-      <input id="bs-${esc(stage)}" class="buildin mono" data-bsecond dir="auto" list="bl-${esc(stage)}"
-        placeholder="another word of ${esc(level.name)}" autocomplete="off" spellcheck="false">
-      <button class="ghost" type="button" ${data} data-bkind="join">join +</button>
-      ${end ? `<div class="buildrow"><span class="sub">ending</span>${end}</div>` : ""}
-      <p class="sub buildnote">A formation is not a sound law: the composed form is carried down by the
-        same laws, and the word's own band is unaffected.</p>
+/* The construction row (admin, 2026-11-12): the dot beside a word is a door,
+   not a decoration.  Clicking it opens a row above the word — marked with a
+   diamond, because it is a formation and not a sound change — holding the word
+   itself and a menu: join another word of the same stage, add a cited suffix,
+   or add an ending.  Nothing is typed here: the edit button is for typing, and
+   every addition is composed by the stage's own morphology and says what grade
+   it puts the stem in. */
+const stageWords = new Map();
+function loadStageWords(stage) {
+  if (!stageWords.has(stage)) {
+    stageWords.set(stage, api("/api/words", { lang: stage, limit: 4000 })
+      .then((row) => (row && row.words) || []).catch(() => []));
+  }
+  return stageWords.get(stage);
+}
+
+/* The menu: the stage's suffixes and endings straight from the morphology
+   table, and its words fetched once per stage. */
+function draftMenu(stage, opts) {
+  const o = (opts || {})[stage] || {};
+  const suf = (o.suffixes || []).filter((x) => x.kind !== "ending");
+  const end = o.endings || [];
+  const group = (label, rows) => rows.length
+    ? `<optgroup label="${esc(label)}">${rows.join("")}</optgroup>` : "";
+  return `<option value="">add a word, a suffix or an ending…</option>`
+    + group("suffix", suf.map((x) =>
+        `<option value="suffix:${esc(x.id)}">${esc(x.form)} — ${esc(x.gloss)}</option>`))
+    + group("ending", end.map((x) =>
+        `<option value="ending:${esc(x.form)}">${esc(x.form)} — ${esc(x.gloss)}</option>`));
+}
+
+function addWordGroup(sel, stage) {
+  if (!sel || sel.querySelector('[data-words]')) return;
+  loadStageWords(stage).then((words) => {
+    if (!words.length || sel.querySelector('[data-words]')) return;
+    const g = document.createElement("optgroup");
+    g.label = "word";
+    g.dataset.words = "1";
+    g.innerHTML = words.map((w) =>
+      `<option value="join:${esc(w.word)}">${esc(w.word)}${w.gloss ? ` — ${esc(w.gloss)}` : ""}</option>`).join("");
+    sel.append(g);
+  });
+}
+
+/* One piece of the draft line: a word-sized string with the star its stage
+   writes, its grade when the formation puts the stem in one, and its meaning
+   on hover (a bound suffix's gloss is what the suffix does). */
+function draftPieceHtml(stage, piece) {
+  const form = String(piece.form || "");
+  const star = /-pro$/.test(String(stage)) && form && !form.startsWith("*") ? "*" : "";
+  const shown = piece.affix && form && !form.startsWith("-") ? "-" + form : form;
+  const grade = piece.grade_label
+    ? ` <span class="cgrade" data-tip="${esc(piece.grade_note || piece.grade_label)}">${esc(piece.grade_label)}</span>` : "";
+  return `<span class="dadd"><i class="dplus" aria-hidden="true">+</i><span class="dpiece mono"${
+    piece.gloss ? ` data-tip="${esc(piece.gloss)}"` : ""}>${esc(pf(star + shown))}</span>${grade}</span>`;
+}
+
+function draftBuiltHtml(row, stage, orig, spec) {
+  const pieces = (row.pieces || []).slice(1).map((p) => draftPieceHtml(stage, p)).join("");
+  const href = `#/word/${encodeURIComponent(stage)}/${encodeURIComponent(orig)}?build=${encodeURIComponent(spec)}`;
+  return `${pieces} <i class="barrow" aria-hidden="true">→</i>
+    <a class="dresult formlink" href="${esc(href)}" data-tip="Open this built word in the timeline: the formation stands above it and the laws carry it down.">${esc(pf(
+      (/-pro$/.test(String(stage)) && row.form && !String(row.form).startsWith("*") ? "*" : "")
+      + String(row.form || "")))}</a>${row.note ? `<span class="bnote sub">${esc(row.note)}</span>` : ""}`;
+}
+
+function openDraft(btn) {
+  const L = ladderState;
+  const rung = btn.closest("li.rung");
+  if (!L || !rung) return;
+  const open = rung.previousElementSibling && rung.previousElementSibling.classList.contains("builddraft");
+  if (open) {
+    rung.previousElementSibling.remove();
+    btn.classList.remove("on");
+    return;
+  }
+  const stage = btn.dataset.cstage || "";
+  const wordForm = btn.dataset.cform || "";
+  const name = btn.dataset.cname || stage;
+  const level = (L.data.levels || [])[Number(rung.dataset.rung || 0)] || {};
+  const li = document.createElement("li");
+  li.className = "rung builddraft";
+  li.innerHTML = `<div class="when">
+      <span class="when-name kind-${esc(level.kind === "attested" ? "attested" : "proto")}">${esc(name)}</span>
+      <span class="when-era">${esc(level.era_label || "")}</span>
+      <span class="when-here">construction</span>
+    </div>
+    <div class="rail"><i class="diamond" aria-hidden="true"></i></div>
+    <div class="rung-body">
+      <div class="draftline">
+        <span class="draftterm">${form(
+          (/-pro$/.test(String(stage)) && wordForm && !wordForm.startsWith("*") ? "*" : "") + wordForm,
+          stage, { ev: level.recorded && level.recorded.known === false ? "missing" : (level.evidence || "") })}</span>
+        <span class="draftpieces"></span>
+        <select class="dsel" aria-label="Add a word, a suffix or an ending to ${esc(wordForm)}">${draftMenu(stage, L.data.build_options)}</select>
+        <button class="dclose ghost" type="button" aria-label="Close this construction row">×</button>
+      </div>
+      <p class="draftnote sub">Nothing has changed yet — choose a word to join, a suffix or an ending.</p>
     </div>`;
-  /* The suffix chips sit between the button and the open panel, so the rung
-     reads as one construct line with the formation laws on it. */
-  const row = suf ? `<span class="buildchips" role="group"
-      aria-label="Recorded suffixes ${esc(level.name)} may take"><span class="sub">with</span>${suf}</span>` : "";
-  return `<div class="buildline">${tool}${row}${panel}</div>`;
+  rung.parentNode.insertBefore(li, rung);
+  btn.classList.add("on");
+  const sel = li.querySelector(".dsel");
+  const pieces = li.querySelector(".draftpieces");
+  const note = li.querySelector(".draftnote");
+  addWordGroup(sel, stage);
+  li.querySelector(".dclose").onclick = () => { li.remove(); btn.classList.remove("on"); };
+  let current = wordForm;
+  let chain = 0;
+  sel.onchange = () => {
+    const pick = sel.value || "";
+    const at = pick.indexOf(":");
+    if (at < 0) return;
+    const kind = pick.slice(0, at);
+    const arg = pick.slice(at + 1);
+    const spec = `${stage}:${kind}:${arg}@${current}`;
+    sel.disabled = true;
+    api("/api/build", { spec }).then((row) => {
+      sel.disabled = false;
+      if (!row || row.error || !row.form) {
+        note.hidden = false;
+        note.textContent = `The morphology of ${name} does not build that from ${current}.`;
+        sel.value = "";
+        return;
+      }
+      chain += 1;
+      /* The stem's grade belongs beside the word it changed: *ters- is *tr̥s-
+         in this formation, and the row says so in the same words the timeline
+         does (admin, 2026-11-12). */
+      const lead = (row.pieces || [])[0] || {};
+      if (chain === 1 && lead.grade_label) {
+        li.querySelector(".draftterm").insertAdjacentHTML("beforeend",
+          ` <span class="cgrade" data-tip="${esc(lead.grade_note || lead.grade_label)}">${esc(lead.grade_label)}</span>`);
+      }
+      pieces.insertAdjacentHTML("beforeend", draftBuiltHtml(row, stage, wordForm, spec));
+      current = row.form;
+      note.hidden = false;
+      note.textContent = chain === 1
+        ? `That is the stage's own formation; add another piece, or open the word to follow it down the laws.`
+        : `Another piece on the same line; the row is one formation, not a sound law.`;
+      sel.value = "";
+    }).catch(() => {
+      sel.disabled = false;
+      sel.value = "";
+    });
+  };
 }
 
 const lawStep = (body, gap = 14) => body
@@ -2238,7 +2343,11 @@ function renderHierarchy(h, d, opts) {
           ? `<button class="change" type="button" data-cut="${esc(level.stage)}"
                title="Choose another language here: ${esc(level.name)} and every stage below it leave the timeline">change</button>` : ""}
       </div>
-      <div class="rail" aria-hidden="true"><i></i></div>
+      <div class="rail"><i aria-hidden="true"></i><button class="rdot" type="button"
+        data-cstage="${esc(level.stage)}" data-cform="${esc(level.form)}"
+        data-cname="${esc(level.name)}"
+        aria-label="Construct a word from ${esc(level.form)} in ${esc(level.name)}"
+        data-tip="Construct: open a row above this word and add a word, a suffix or an ending to it."></button></div>
       <div class="rung-body">
         <div class="rung-forms">
           ${formsLine}
@@ -2260,7 +2369,6 @@ function renderHierarchy(h, d, opts) {
                  ${esc(level.name)} glossary — the ladder starts from the word's cognate set</span></div>`
             : ""}
         ${level.edited || !level.formation ? "" : formationLine(level, (h.hypothesis && h.hypothesis.suffix.id) || "")}
-        ${buildLine(level, h)}
       </div>
     </li>`;
   }).join("");
@@ -2668,64 +2776,8 @@ function wireLadder() {
   box.querySelectorAll("[data-rung-suffix]").forEach((b) => {
     b.onclick = () => { L.suffix = b.dataset.rungSuffix || ""; L.edit = null; updateLadder(); };
   });
-  /* The builder: open a rung's panel, fill the first word, join a second one,
-     or attach a suffix or ending. Every choice is a question put to the stage,
-     and the answer is the ladder below it. */
-  box.querySelectorAll(".buildopen").forEach((b) => {
-    b.onclick = () => {
-      const panel = b.parentElement.querySelector(".buildpanel");
-      if (!panel) return;
-      panel.hidden = !panel.hidden;
-      b.classList.toggle("on", !panel.hidden);
-      if (!panel.hidden) {
-        const first = panel.querySelector("[data-bfirst]");
-        if (first) first.focus();
-        const list = panel.querySelector("datalist");
-        /* The suggestions are the stage's own headwords, asked for as the
-           reader types — a compound is built from words that stage records. */
-        const fetchInto = (value) => {
-          if (!list) return;
-          const q = (value || "").trim();
-          if (q.length < 1) { list.innerHTML = ""; return; }
-          api("/api/suggest", { q, lang: panel.dataset.bstage, limit: 20 })
-            .then((rows) => {
-              list.innerHTML = (rows || []).map((r) =>
-                `<option value="${esc(r.word)}">${esc(r.gloss || r.reading || "")}</option>`).join("");
-            }).catch(() => {});
-        };
-        panel.querySelectorAll("input").forEach((inp) => {
-          inp.addEventListener("input", () => fetchInto(inp.value));
-        });
-      }
-    };
-  });
-  box.querySelectorAll(".buildpanel").forEach((panel) => {
-    const stage = panel.dataset.bstage;
-    const first = panel.querySelector("[data-bfirst]");
-    const second = panel.querySelector("[data-bsecond]");
-    const base = () => ((first && first.value.trim()) || "").replace(/^\*/, "");
-    const go = (kind, arg, wantSecond) => {
-      const value = wantSecond ? ((second && second.value.trim()) || "") : "";
-      if (wantSecond && !value) {
-        if (second) { second.setAttribute("aria-invalid", "true"); second.focus(); }
-        return;
-      }
-      L.build = `${stage}:${kind}:${arg || value}@${base()}`;
-      L.edit = null;
-      L.record = null;
-      updateLadder();
-    };
-    panel.querySelectorAll("[data-bkind]").forEach((chip) => {
-      chip.onclick = () => {
-        const kind = chip.dataset.bkind;
-        if (kind === "join") go("join", "", true);
-        else go(kind, chip.dataset.barg, false);
-      };
-    });
-    if (second) second.addEventListener("keydown", (event) => {
-      if (event.key === "Enter") { event.preventDefault(); go("join", "", true); }
-    });
-  });
+  /* The construction row: the dot beside a word opens it (2026-11-12). */
+  box.querySelectorAll(".rdot").forEach((b) => { b.onclick = () => openDraft(b); });
   const unbuild = box.querySelector("[data-unbuild]");
   if (unbuild) unbuild.onclick = () => { L.build = ""; updateLadder(); };
   const reset = box.querySelector("[data-reset]");

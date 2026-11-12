@@ -274,10 +274,24 @@ that keeps the `*` opens nothing).
   `renderReconstruct` are deleted; `?into=fa` in an old link is read by
   `app.server._path` as the same descent. The badge on the etymon's rung reads
   *top of the family*, and a stage the reader descended into reads *descended by
-  the laws* rather than *differs — the worklist*. The rung also **constructs**:
-  `buildLine` prints the stage's cited suffixes as chips beside `construct…`
-  (a `kind: "ending"` row is left to the endings row), and choosing one puts the
-  built word on the timeline with its pieces and their grade.
+  the laws* rather than *differs — the worklist*. The rung also **constructs**,
+  but never through a button and a row of pills (admin, 2026-11-12): **the dot
+  beside a word is the door** (`button.rdot`, wired to `openDraft`), and it
+  opens a row *above* the word — a diamond on the rail, because a formation is
+  not a sound change — holding the word itself and a **menu** of what the stage
+  records (its cited suffixes, its endings, and its own headwords from
+  `/api/words`). Nothing is typed there; the pencil is for typing. Each choice
+  is one step composed by `service.build_at` (`/api/build`): the row shows the
+  pieces, the grade the formation puts the stem in, and the form they make with
+  a link to the built word's timeline, and a second choice composes on the
+  first result (two suffixes on one line).
+- **A hyphen in a reconstruction is notation, not a sound** (admin, 2026-11-12,
+  Persian تشنه): Wiktionary quotes a compound with its morpheme boundaries
+  (`*tr̥s-nó-s`) while the glossary heads the same word solid (`*tr̥snós`), so
+  `_lemma_entry` retries the joined spelling (stress aside) — **only for a
+  reconstructed form** (`*` or a proto stage): in an attested language a hyphen
+  can belong to the headword (English well-being ≠ wellbeing). A rung that
+  says "no entry for this word" beside a link that opens the entry is wrong.
 - **A composition is built in the grade its suffix takes** (2026-11-12):
   `_formation_grade` reads the `grades:` table and `_grade_stem` writes it, so
   *ters- + *-nó- is *tr̥s-nó-s*, never *ters-nó-s*, and the built step and the

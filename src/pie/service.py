@@ -1493,7 +1493,31 @@ def _lemma_index(lang: str) -> dict[str, dict]:
 def _lemma_entry(lang: str, form: str) -> dict | None:
     """The glossary entry a form names, comparing lemmas without notation."""
     key = normalise_etymon(form)
-    return _lemma_index(lang).get(key) if key else None
+    if not key:
+        return None
+    record = _lemma_index(lang).get(key)
+    if record:
+        return record
+    # A record may write a reconstructed form with its morpheme boundaries
+    # (*tr̥s-nó-s), while the glossary heads the word solid (*tr̥snós).  A
+    # hyphen there is the record's notation, not a sound, and a page that says
+    # "no entry for this word" beside a link that opens the entry is simply
+    # wrong (admin, 2026-11-12, Persian تشنه).  Only a reconstructed spelling
+    # is joined this way: in an attested language a hyphen can belong to the
+    # headword itself (English well-being is not wellbeing).
+    bare = form.strip("*").strip()
+    if len(bare) < 3 or "-" not in bare[1:-1]:
+        return None
+    if not ("*" in form or kind_of(lang) == "proto"):
+        return None
+    joined = detokenize(tokenize(form))
+    for candidate in (joined, printable_form(joined)):
+        other = normalise_etymon(candidate)
+        if other and other != key:
+            record = _lemma_index(lang).get(other)
+            if record:
+                return record
+    return None
 
 
 def _headword_at(lang: str, form: str) -> dict | None:
@@ -6749,6 +6773,45 @@ def _compose_build(spec: dict, base: str, stage: str,
                 "note": "An inflection, not a derivation: the same word in "
                         "another paradigm cell."}
     return None
+
+
+def build_at(spec: str, base: str = "") -> dict | None:
+    """One construction step, composed on its own (no ladder below it).
+
+    The construction row a reader opens from a rung asks the stage this
+    question one piece at a time, so it needs the step alone: what the pieces
+    are, what grade the stem stands in, and the form they make.  Nothing here
+    is a law, and nothing is stored.
+    """
+    parsed = _parse_build(spec)
+    if not parsed:
+        return None
+    if base:
+        parsed["base"] = base
+    composed = _compose_build(parsed, parsed.get("base") or "", parsed["stage"])
+    if not composed:
+        return None
+    out = {**parsed, **composed}
+    out["stage_name"] = _lang(parsed["stage"]).get("name", parsed["stage"])
+    return out
+
+
+def headwords(lang: str, limit: int = 4000) -> list[dict]:
+    """The words of one stage, for a menu that joins one word to another.
+
+    A bound morpheme (a headword written with a leading hyphen) is not a word
+    and belongs to the suffix menu, so it is left out here.
+    """
+    out: list[dict] = []
+    for word, rows in sorted(lang_index(lang).items()):
+        if not word or word.startswith("-") or " " in word:
+            continue
+        row = rows[0] if rows else {}
+        out.append({"word": word,
+                    "gloss": _rung_gloss(row.get("gloss") or [], 70)})
+        if len(out) >= limit:
+            break
+    return out
 
 
 def compose(form: str, suffix_id: str | None, lang: str = ROOT_LANG) -> dict:

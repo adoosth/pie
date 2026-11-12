@@ -2766,17 +2766,32 @@ class TestTheSectionsOfThePicker(unittest.TestCase):
             self.assertIsNotNone(row, f"{piece['form']} wears an id the menu knows")
             self.assertEqual(row["section"], "ending")
 
-    def test_the_construct_line_stands_on_the_rung(self):
-        """The picker is gone (2026-11-12): a stage's own suffixes are chips on
-        its rung, and the panel behind them asks the same laws for the answer.
-        The address carries the question, so every build is a link."""
+    def test_the_construction_row_opens_from_the_dot(self):
+        """The dots and the pills are gone (admin, 2026-11-12): the dot beside a
+        word opens a row above it, and the row builds with menus — a word to
+        join, a cited suffix, an ending — never by typing."""
         js = text("app.js")
         css = text("style.css")
-        for needle in ("buildchips", "data-bkind", "data-bstage", "construct…"):
-            self.assertIn(needle, js, f"the rung's construct line is missing {needle}")
-        self.assertIn(".buildchips", css, "the suffix chips sit on one line")
-        self.assertIn(".buildpanel", css, "the two-word builder opens under them")
+        for needle in ("rdot", "openDraft", "draftMenu", "/api/build", "/api/words"):
+            self.assertIn(needle, js, f"the construction row is missing {needle}")
+        for gone in ("buildchips", "buildpanel", "construct…"):
+            self.assertNotIn(gone, js, f"the old construct interface is still there: {gone}")
+        self.assertIn(".builddraft", css, "the open row is drawn above its word")
+        self.assertIn(".dsel", css, "the menu is a selector")
         self.assertIn("build=", js, "a build is carried in the address")
+
+    def test_a_reconstructed_compound_finds_the_solid_headword(self):
+        """Wiktionary writes the pieces with hyphens (*tr̥s-nó-s) and the
+        glossary heads the word solid (*tr̥snós).  A rung that quotes the first
+        while linking to the second must not say "no entry for this word"
+        (admin, 2026-11-12, Persian تشنه)."""
+        self.assertEqual(service._lemma_entry("ine-pro", "tr̥s-nó-s")["word"], "tr̥snós")
+        built = service.build_at("ine-pro:suffix:no", "ters-")
+        self.assertEqual(service.printable_form(built["form"]), "tr̥snós")
+        self.assertEqual([p["form"] for p in built["pieces"]], ["ters", "-nó-"])
+        words = service.headwords("ine-pro")
+        self.assertTrue(words and all(not w["word"].startswith("-") for w in words),
+                        "the word menu holds words, not bound morphemes")
 
     def test_the_pie_page_has_a_rung_of_its_own(self):
         """Proto-Indo-European is the top of the family, not the end of the
