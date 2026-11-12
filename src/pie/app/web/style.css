@@ -547,15 +547,25 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
    it belongs to the first piece's own row (`.crail.mark`), so the diamond is
    on the pieces' line by construction — no measurement from the bottom of the
    step, which a scrollbar under the tree would silently break (admin,
-   2026-11-12).  Nothing above the mark when the step is the first thing in the
-   ladder (admin, 2026-11-12). */
+   2026-11-12).  This rail only ever *brings* the line down into the step: the
+   rows of the tree carry it from their oldest mark to the piece, the piece's
+   own track carries it to the bottom of its row, and the rail picks it up
+   again for the meaning strip, so a step with nothing above it still has a
+   spine from its top diamond to the rung it builds (admin, 2026-11-12: the
+   line above *anda- and above *andaswarō had vanished). */
 .constructstep .rail::before { content: "";
   position: absolute; left: 50%; margin-left: -1px; width: 2px;
   background: var(--line);
   /* `12px` is the step's own top padding: the line has to start at the rung
      above it, not at the step's content box. */
   top: calc(-1 * var(--gap, 0px) - 12px); bottom: 0; }
-.constructstep:first-child .rail::before { display: none; }
+/* A step with nothing above it has no line to bring *down* — but its spine
+   still has to reach the rung it builds: the tree draws it from the top of the
+   staircase into its last row, and this rail, which stands outside the tree's
+   scroll box so a phone's horizontal scrollbar can never sit across it,
+   carries it over the meaning strip (`--bpad`) to the word below (admin,
+   2026-11-12). */
+.constructstep:first-child .rail::before { top: calc(100% - var(--bpad)); bottom: 0; }
 /* The diamond, drawn once: it is positioned on the rail track it marks — the
    first piece's own (`.crail.mark`) or a built ancestor's (`.cbuild`). */
 .cdiamond { display: block; width: 10px; height: 10px; flex: none;
@@ -619,9 +629,13 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
 /* One line of pieces, each column climbing from it: `flex-end` puts every
    column's last row on that line, whatever stands above it. */
 .bline { display: flex; align-items: flex-end; gap: 0; }
-/* The `+` between two pieces: the same line, broken for the sign. */
+/* The `+` between two pieces: the same line, broken for the sign.  The cell is
+   a whole row so it hangs with the columns, but its content is the *term* row
+   — the 46px band a word stands in — so the sign and its two stubs sit on the
+   same horizontal as the words either side of it, never half a meaning-line
+   below them (admin, 2026-11-12: the line around the + was shifted down). */
 .cplus { flex: 0 0 54px; height: var(--crow); align-self: flex-end;
-  padding-bottom: var(--foot); display: flex; align-items: center;
+  padding-bottom: calc(var(--crow) - var(--termh)); display: flex; align-items: center;
   gap: 7px; color: var(--dim); }
 .cplus::before, .cplus::after { content: ""; flex: 1 1 auto; height: 2px;
   background: var(--line); }
@@ -683,7 +697,9 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
   width: 2px; background: var(--line); }
 /* the oldest row's line starts at its own mark, not above it */
 .cchain > :first-child .crail::before { top: calc(var(--termh) / 2); }
-/* the piece's line only comes down to it: nothing continues below its dot */
+/* the piece's line only comes down to it: nothing continues below its dot —
+   except the first piece of a step, whose mark is the step itself, and whose
+   line runs on down to the rung the step builds (see below) */
 .cterm .crail::before { bottom: auto; height: calc(var(--termh) / 2 + 1px); }
 /* the line that reaches a piece from the `+` on its left */
 .cterm > .crail::after { content: ""; position: absolute;
@@ -693,8 +709,17 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
 .crail.blank::before, .cterm > .crail.blank::after { display: none; }
 /* The first piece's track carries the step's mark: the diamond stands on the
    same 2px line the ancestors climb, in the piece's own row, so it is on the
-   pieces' line whatever the tree's height (admin, 2026-11-12). */
-.crail.mark::before, .cterm > .crail.mark::after { display: none; }
+   pieces' line whatever the tree's height (admin, 2026-11-12).  The mark
+   hides only the *sideways* stub into the word — the word stands immediately
+   at the diamond, so a stub there would run under it — and keeps the line
+   coming down from the row above, because the diamond stands *on* the spine
+   rather than cutting it (admin, 2026-11-12: the line above *anda- vanished). */
+.cterm > .crail.mark::after { display: none; }
+/* …and the step's own mark hands the line to the rung it builds: the piece's
+   row is the tree's last row, so its mark draws down to the bottom of that row
+   and the step's rail takes over from there — the one place where a dot is not
+   the end of the line (admin, 2026-11-12: the line above *andaswarō). */
+.cpiece.first > .cterm > .crail::before { bottom: 0; height: auto; }
 .crail.mark > i { width: 10px; height: 10px; margin: -5px 0 0 -5px;
   border-radius: 1px; transform: rotate(45deg); background: var(--accent-fill);
   border: 1px solid var(--accent); box-shadow: 0 0 0 3px var(--bg); }
@@ -1094,6 +1119,13 @@ table tbody tr { transition: background .15s ease; }
      reaches back over it: its first column starts at the box's own left edge,
      which is where the rail is, and no word is clipped by the scroll box */
   .btrees { --crail: 16px; --railpad: 22px; padding-left: 30px; margin-left: -26px; }
+  /* A phone is narrower than every tree, so the sideways scrollbar is always
+     there — and it is drawn on top of the page, across the rail column, at
+     exactly the height where the spine leaves the tree for the rung below.
+     The strip stays scrollable by touch; only its bar goes, the way the nav's
+     does (admin, 2026-11-12: the line has to reach the word). */
+  .btrees { scrollbar-width: none; }
+  .btrees::-webkit-scrollbar { display: none; }
   .cform { font-size: 16px; }
   .cform.term { font-size: 18px; }
   .cplus { flex: 0 0 34px; }

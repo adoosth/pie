@@ -1094,6 +1094,31 @@ assert.ok(/\.bline \{[^}]*align-items: flex-end/.test(sheet),
   "the columns are anchored at the pieces' own line");
 assert.ok(/\.cpiece \{[^}]*justify-content: flex-end/.test(sheet),
   "and a column hangs from its bottom, whatever stands above it");
+/* The spine is one unbroken line from the oldest form of the tree to the word
+   the step builds, and it is made of four pieces that have to meet: the rows
+   of the staircase, the first piece's mark, the band under the last row, and
+   — when there is a stage above — the step's own rail.  v0.17.10 blanked the
+   mark's track and hid the step rail outright on a step with nothing above
+   it, so *andaswarō lost the line from the diamond above *anda- down to its
+   own rung (admin, 2026-11-12: "the line on the left has disappeared"). */
+assert.ok(!/\.crail\.mark::before[^{]*\{[^}]*display: none/.test(sheet),
+  "the mark keeps the line coming down from the row above: the diamond stands on the spine");
+assert.ok(/\.cterm > \.crail\.mark::after \{[^}]*display: none/.test(sheet),
+  "only the sideways stub into the word is dropped — the word stands at the diamond");
+assert.ok(/\.cpiece\.first > \.cterm > \.crail::before \{[^}]*bottom: 0/.test(sheet),
+  "the first piece's mark runs down to the bottom of its own row");
+assert.ok(/\.constructstep:first-child \.rail::before \{[^}]*top: calc\(100% - var\(--bpad\)\)/.test(sheet),
+  "a step with nothing above it still carries the line across the meaning strip to its rung");
+assert.ok(!/\.constructstep:first-child \.rail::before \{[^}]*display: none/.test(sheet),
+  "and it is never hidden: a step's spine is not only the part above it");
+/* The `+` is a row of the staircase like any other cell, but its content is
+   the *term* band, the 46px a word stands in — otherwise centring it in a
+   90px cell put it (and its two stubs) half a meaning-line under the words
+   either side (admin, 2026-11-12: "the line around the + is shifted"). */
+assert.ok(/\.cplus \{[^}]*padding-bottom: calc\(var\(--crow\) - var\(--termh\)\)/.test(sheet),
+  "the + and its stubs are centred on the words' own line, not on the meaning row");
+assert.ok(!/\.cplus \{[^}]*padding-bottom: var\(--foot\)/.test(sheet),
+  "and not on the meaning strip under it");
 /* The tree is the step's last row: the horizontal line sits above the word it
    builds, so where the step ends is where its spine has to be measured from. */
 const bodyHtml = builtHtml.slice(builtHtml.indexOf('class="buildbody">'));

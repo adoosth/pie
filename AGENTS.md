@@ -218,6 +218,16 @@ that keeps the `*` opens nothing).
   calc(-1 * var(--gap) - 12px); bottom: 0`): no `--spine`, no measurement from
   the bottom of the step, because that measurement broke the moment the tree
   gained a horizontal scrollbar (its 15px moved every mark up off its word).
+  The **diamond stands on the spine, it never cuts it**: the mark keeps the
+  segment coming down from the row above (only its sideways stub into the word
+  is dropped, `.cterm > .crail.mark::after`), and the first piece's track runs
+  on to the bottom of its own row (`.cpiece.first > .cterm > .crail::before {
+  bottom: 0 }`), where the step's rail takes over across the meaning strip.
+  A step with nothing above it is **not** blanked: `.constructstep:first-child
+  .rail::before` draws `top: calc(100% - var(--bpad))` — the half below the
+  word is as much of the spine as the half above it (v0.17.11; the reader lost
+  the line above *anda- and above *andaswarō to a `display: none` that only
+  meant "nothing above the mark").
   A later piece wears the accent dot on its own track (`.crail > i`); a bound
   morpheme wears nothing and keeps the empty track (`.crail.blank`), because the
   line reaches it from the `+`.
@@ -230,6 +240,10 @@ that keeps the `*` opens nothing).
   step's stage), and each carries its meaning under it (see the bullet on
   meanings below). Cuneiform is set upright and spaced (`.cunei`), because a
   synthesised oblique smears its wedge signs into each other.
+  The cell is one `--crow` so it hangs with the columns, but its content is the
+  **`--termh` term band**: `padding-bottom: calc(var(--crow) - var(--termh))`
+  keeps the sign and its two 2px stubs on the words' line — centring them in
+  the whole row with `--foot` put them 13px below it (v0.17.11).
 - **Every word of the timeline says what it means** (2026-11-12, admin): the
   sense stands **under the form**, in the wording the headword's own line uses —
   `adj · “bright, clear, shining”` — not on hover alone, and it applies to the
@@ -254,6 +268,11 @@ that keeps the `*` opens nothing).
   ladder markup ends in `px`. Rows of a column are one fixed height and meet edge
   to edge, and each segment overlaps its neighbour by a pixel
   (`top: -1px; bottom: -1px`), so no sub-pixel seam shows at a row boundary.
+  A scrollbar is painted above the page, so it can never be allowed to sit on
+  the rail: the tree's own strip hides its bar on the narrow layout
+  (`scrollbar-width: none`, `::-webkit-scrollbar`, as the nav does) while
+  staying scrollable by touch — at 420px the bar crossed the rail column at
+  exactly the height where the spine leaves the tree (v0.17.11).
 - **A word of the chain that was itself built keeps its construction**
   (2026-11-12, admin): *kit-ró-s is *keyt- + *-rós, and Wiktionary states it in
   its article on Proto-Indo-Iranian *čitrás — there is no article, and no

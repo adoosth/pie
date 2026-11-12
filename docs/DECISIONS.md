@@ -1,3 +1,53 @@
+## 2026-11-12 — a spine is not only the part above the word
+
+**What.** On `gem-pro/andaswarō` the vertical line vanished in the two places
+nobody had measured: between *h₂entó- and the diamond above *anda-, and from
+that diamond all the way down to the *andaswarō* rung. The `+` between *anda-
+and *swarō* also sat about 13px below the line it joins (admin, 2026-11-12:
+"the line on the left has disappeared … the line around the + sign is shifted
+vertically"). Both came out of v0.17.10's move of the diamond into the tree.
+
+1. **The mark kept the line above it.** `.crail.mark::before` was blanked along
+   with the sideways stub, because the mark used to be drawn *outside* the tree
+   and had to hide a line that ran under it. Now the diamond stands **on** the
+   spine: the row above ends where this row begins, and the mark's own segment
+   hands the line to it. Only `.cterm > .crail.mark::after` — the stub into the
+   word, which would run under the word that stands at the diamond — is gone.
+2. **A step hands the spine to its word.** `.constructstep:first-child
+   .rail::before` was `display: none`, from when the rule meant "nothing above
+   the mark": but a step with no stage above it still has a word *below*, and
+   that is the half of the line the reader was missing. The rule now draws the
+   last `--bpad` of the step (the meaning strip under the tree) and nothing
+   more; the tree's own rows draw from its oldest mark down to the piece's row
+   (`.cpiece.first > .cterm > .crail::before { bottom: 0 }`), and the two meet
+   at the rung's edge. A step *with* a stage above keeps its full-rail rule.
+3. **The `+` is a term row, not a meaning row.** `.cplus` is one `--crow` cell
+   so it hangs with the columns, but its content has to be the `--termh` band
+   the words stand in: `padding-bottom: calc(var(--crow) - var(--termh))`
+   centres the sign and its two stubs on the words' line instead of half a
+   meaning-line (17px of `--foot`) below it. A `.cbuild` strip's `+` already
+   did this, which is why the nested `+` looked right while the outer one did
+   not.
+4. **A phone's scrollbar is not part of the spine.** The tree scrolls sideways
+   and its scrollbar is painted above the page, across the rail column, exactly
+   where the line leaves the tree. On the narrow layout the strip stays
+   scrollable by touch but its bar is hidden (`scrollbar-width: none`,
+   `::-webkit-scrollbar`, the same treatment the nav gets), so the spine reaches
+   the rung at 420px too.
+
+**Tests.** `tests/test_ui_render.js` pins the four joins and the `+`'s line as
+sheets, and each assertion was checked against the v0.17.10 sheet — where it
+fails. Measured in the browser: the first piece's rail track and the step's
+rail share one centre, the union of the rail segments covers the top mark to
+the step's bottom with a largest gap of 0px on `gem-pro/andaswarō`,
+`gem-pro/*anda`, `ine-pro/*h₂entó-`, `ine-pro/*h₂énts`, `ine-pro/*tr̥s-nó-s`,
+`en/about` (two analyses), `de/überhitzen`, `de/entscheiden`, `gmw-pro/aikīn`,
+`iir-pro/sambʰandʰás` (the last four have a step *not* first in the ladder), and
+`plus error = 0.0px` on every `+`. Checked at 1500px, 1400px and 420px, light
+and dark.
+
+**Numbers.** 973 Python tests green, node suite green.
+
 ## 2026-11-12 — every column hangs from the pieces' line
 
 **What.** On `gem-pro/andaswarō` the climb above *anda- stopped at *h₂énts: the
