@@ -1772,6 +1772,60 @@ def root_grade(base: str, word: str, suffixes: Iterable[str] = "",
     return None
 
 
+def _grade_stem(stem: str, grade: str) -> str:
+    """The stem in the grade a formation takes it in.
+
+    The observer above reads a grade off two forms; this writes it, so a word
+    the page builds can stand in the grade its suffix asks for.  Zero grade of
+    a root in *-CeR- loses the vowel and the sonorant becomes the syllable
+    (*ters- → *tr̥s-, *gʷʰer- → *gʷʰr̥-), and of a root that opens with one the
+    sonorant is the syllable before the consonant (*nebʰ- → *n̥bʰ-); the
+    o-grade puts *o where the vowel stood (*ters- → *tors-).  A stem already in
+    that grade, or one with no vowel of its own (*h₂wl̥p-), is returned as it
+    stands (2026-11-12).
+    """
+    tokens = _grade_tokens(stem)
+    index = _nucleus(tokens)
+    if index < 0 or tokens[index] in _SYLLABIC:
+        return stem
+    if grade == "o":
+        return detokenize(tokens[:index] + ["o"] + tokens[index + 1:])
+    if grade != "zero":
+        return stem
+    after = tokens[index + 1] if index + 1 < len(tokens) else ""
+    before = tokens[index - 1] if index else ""
+    if after in ("r", "l", "m", "n"):
+        return detokenize(tokens[:index] + [after + _RING] + tokens[index + 2:])
+    if before in ("r", "l", "m", "n"):
+        return detokenize(tokens[:index - 1] + [before + _RING] + tokens[index + 1:])
+    # A root whose vowel is not beside a sonorant simply loses it.
+    return detokenize(tokens[:index] + tokens[index + 1:])
+
+
+def _formation_grade(stem: str, suffix: str, lang: str = "ine-pro") -> tuple[str, dict | None]:
+    """The stem as the suffix's formation takes it, with the reason.
+
+    Only a grade the handbooks state is applied: a suffix the table does not
+    name (*-ó-, *-ti-, *-ró-) leaves the stem exactly as the reader typed it,
+    because a guess dressed as morphology is worse than no note (2026-11-12).
+    """
+    row = _grade_of_suffix(suffix, lang)
+    if not row:
+        return stem, None
+    want = str(row.get("grade") or "")
+    if want not in ("zero", "o"):
+        return stem, None
+    changed = _grade_stem(stem, want)
+    if changed == stem:
+        return stem, None
+    return changed, {
+        "grade": want,
+        "label": {"zero": "zero grade", "o": "o-grade"}[want],
+        "note": str(row.get("note") or "").strip(),
+        "sources": list(row.get("sources") or []),
+    }
+
+
 def _rung_gloss(glosses: Iterable[str], limit: int = 110) -> str:
     """The first dictionary sense, short enough to sit on a rung."""
     text = next((g.strip() for g in glosses if g and g.strip()), "")
@@ -1782,6 +1836,27 @@ def _rung_gloss(glosses: Iterable[str], limit: int = 110) -> str:
     if len(text) > limit:
         text = text[:limit].rstrip(" ,;:-") + "…"
     return text
+
+
+def _morph_gloss(form: str, lang: str = "ine-pro") -> str:
+    """What a bound morpheme does, from the row written for it by hand.
+
+    The piece in a recorded construction is written as the word spells it —
+    *-nó-s, the suffix plus the ending the row brings — while the table stores
+    the morpheme alone (-nó-, ending -s).  Both are the same claim, so the
+    ending is added before the comparison instead of the suffix being guessed.
+    """
+    wanted = str(form or "").lstrip("*")
+    if not wanted:
+        return ""
+    for row in _curated_suffixes(lang):
+        bare = str(row.get("form") or "").lstrip("*")
+        if not bare:
+            continue
+        ending = str(row.get("ending") or "").lstrip("*")
+        if wanted in (bare, bare.rstrip("-") + ending):
+            return str(row.get("gloss") or "").strip()
+    return ""
 
 
 def _formed_from(entry: dict) -> set[tuple[str, str]]:
@@ -2058,6 +2133,14 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
             # parenthesis at all.
             sense = str(gloss or "").strip() or (
                 _rung_gloss(piece.get("gloss") or []) if piece else "")
+            # A bound morpheme is not a word and has no glossary entry: what it
+            # does is written in the morphology table, so the timeline takes it
+            # from there (*-nó-s: "verbal adjective or passive participle") —
+            # otherwise the piece stands under the word with nothing to say
+            # (admin, 2026-11-12: every term, suffixes included, says its
+            # meaning).
+            if not sense and bound:
+                sense = _morph_gloss(form_piece, lang)
             pieces.append({
                 "form": form_piece,
                 "gloss": sense,
@@ -3598,11 +3681,10 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
         # such a word had no ladder at all, which left the Dehkhoda headwords
         # (2026-11-10) with a hole where the timeline is.  A reader who asked to
         # build one starts at the stage they named.
-        if lang == ROOT_LANG:
-            # Proto-Indo-European has nothing above it: its page reconstructs
-            # the etymon into the family instead of drawing a ladder, and a
-            # one-rung ladder there would be a second, empty answer.
-            return None
+        # Proto-Indo-European has nothing above it, but it has a timeline all
+        # the same: one rung for the word itself, and below it the daughter
+        # stages the laws reach, one click each (admin, 2026-11-12).  The
+        # page is a ladder like every other page's, not a second kind of view.
         spec = _parse_build(build) if build else None
         if spec and spec["stage"] in chain:
             candidates = [(spec["stage"], spec["base"] or entry["word"])]
@@ -3665,6 +3747,13 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
         return derive_detailed(from_form_value, stages, data.rulesets(), **kw)
 
     trace, hops = run(start_form, levels_chain, disabled=disabled, enabled=enabled)
+    if lang == ROOT_LANG and not edited and not hypothesis and trace.forms:
+        # The etymon's rung prints the form the dictionary heads, hyphen and
+        # all: *ters- is a root, and *ters is only how the sound laws read it
+        # (admin, 2026-11-12 — the PIE page's own rung read ters).
+        own = str(entry.get("word") or "")
+        if own:
+            trace.forms[0] = own
     # The baseline is "the laws as registered for this word, with nothing the
     # reader switched off" — so a formation law its pathway enables is part of
     # the baseline too, and its syllable is not reported as a change.
@@ -6502,7 +6591,10 @@ def build_options(lang: str) -> dict:
     """What one rung may be built with, small enough to send with the ladder."""
     suffixes = [
         {"id": row["id"], "form": row.get("form", ""),
-         "gloss": row.get("gloss", ""), "law": bool(row.get("rule"))}
+         "gloss": row.get("gloss", ""), "law": bool(row.get("rule")),
+         # A grammatical ending in the same drawer is not a derivational
+         # suffix: the endings have their own row (admin, 2026-11-12).
+         "kind": row.get("kind", "suffix")}
         for row in _affix_rows(lang)
     ]
     endings = [
@@ -6601,17 +6693,32 @@ def _compose_build(spec: dict, base: str, stage: str,
         attach = str(row.get("form") or "").strip("-")
         if not attach:
             return None
-        form = base + attach
+        # The suffix's own formation sets the root's grade and brings its
+        # ending: *-nó- is oxytone, so *ters- is *tr̥s- there and the word is
+        # *tr̥s-nó-s, not *ters-nó (2026-11-12).
+        stem, grade = _formation_grade(base, str(row.get("form") or ""), stage)
+        ending = str(row.get("ending") or "")
+        form = detokenize(tokenize(stem + attach + ending))
+        piece = _piece_row(stage, base)
+        if grade:
+            piece = {**piece, "grade": grade["grade"], "grade_label": grade["label"],
+                     "grade_note": grade["note"]}
+        steps = [{"label": "word", "form": base}]
+        if grade:
+            steps.append({"label": grade["label"], "form": stem,
+                          "note": grade["note"]})
+        steps += [{"label": "suffix", "form": str(row.get("form") or ""),
+                   "note": row.get("gloss", "")}]
+        if ending:
+            steps.append({"label": "ending", "form": ending})
+        steps.append({"label": "composed", "form": form})
         return {"form": form, "kind": "suffix",
-                "pieces": [_piece_row(stage, base),
+                "pieces": [piece,
                            {"form": str(row.get("form") or ""), "word": row["id"],
                             "lang": stage, "lang_name": _lang(stage).get("name", stage),
                             "gloss": row.get("gloss", ""), "pos": "suffix",
                             "known": True, "affix": True}],
-                "steps": [{"label": "word", "form": base},
-                          {"label": "suffix", "form": str(row.get("form") or ""),
-                           "note": row.get("gloss", "")},
-                          {"label": "composed", "form": form}],
+                "steps": steps, "grade": grade,
                 "note": "A suffix is added to the word's stem; no sound change "
                         "and no register of sound laws produces it."}
     if kind == "ending":
@@ -6686,7 +6793,10 @@ def compose(form: str, suffix_id: str | None, lang: str = ROOT_LANG) -> dict:
                 unapplied = ref
     word = detokenize(tokenize(etymon))
     dropped = ""
-    for ending in _NOM_ENDINGS:
+    # Only a *word* wears a nominative ending to drop: a root is a bound
+    # morpheme, and *ters- is not *ter- + *-s.  Dropping the root's own final
+    # consonant turned *ters- + *-eh₂ into *treh₂ (2026-11-12).
+    for ending in (() if _is_root_etymon(lang, form) else _NOM_ENDINGS):
         bare_ending = detokenize(tokenize(ending))
         if word.endswith(bare_ending) and len(word) - len(bare_ending) >= 2:
             dropped = bare_ending
@@ -6702,20 +6812,27 @@ def compose(form: str, suffix_id: str | None, lang: str = ROOT_LANG) -> dict:
                 stem = stem[: -len(bare_vowel)]
                 break
     attach = suffix["form"].strip("-")
-    composed = detokenize(tokenize(stem + attach + suffix["ending"]))
     steps = [{"label": "word", "form": etymon}]
     steps.append({"label": "nominative ending", "form": f"-{dropped}" if dropped else "—",
                   "note": "dropped to reach the stem" if dropped else "the word shows no ending to drop"})
     steps.append({"label": "stem", "form": stem + theme if theme or dropped else stem})
     if theme:
         steps.append({"label": "thematic vowel", "form": f"-{theme}", "note": "dropped before the suffix"})
+    # The formation decides the root's grade before the suffix is added: *-nó-
+    # is oxytone, so *ters- stands in zero grade and the composed word is
+    # *tr̥s-nó-s, never *ters-nó-s (2026-11-12).
+    stem, grade = _formation_grade(stem, suffix["form"], lang)
+    if grade:
+        steps.append({"label": grade["label"], "form": stem, "note": grade["note"]})
+    composed = detokenize(tokenize(stem + attach + suffix["ending"]))
     steps += [
         {"label": "suffix", "form": suffix["form"], "note": suffix["gloss"]},
         {"label": "ending", "form": suffix["ending"] or "—"},
         {"label": "composed", "form": composed},
     ]
     return {"form": composed, "stem": stem, "theme": theme, "dropped": dropped,
-            "suffix": suffix, "law": None, "law_not_applied": unapplied, "steps": steps}
+            "suffix": suffix, "law": None, "law_not_applied": unapplied,
+            "grade": grade, "steps": steps}
 
 
 def _record_for_output(lang: str, form: str) -> dict | None:
@@ -7235,9 +7352,11 @@ def word(lang: str, form: str, disabled: Iterable[str] = (),
     rebuilt = None
     if lang == ROOT_LANG:
         # A word *in* Proto-Indo-European is the etymon: there is no ancestry to
-        # climb, so the page reconstructs it into the family instead
-        # (`reconstruct`). The recorded forms still come from the cognate set.
-        rebuilt = rebuilds_for_etymon(entry["word"])
+        # climb, so its page descends by its ladder's own next steps.  The
+        # 40-row table of predictions the removed *reconstruct into* selector
+        # used to read is no longer sent with the page: `rebuilds_for_etymon`
+        # still answers it for tools and tests (admin, 2026-11-12).
+        rebuilt = None
     elif pie:
         recorded = _recorded_forms((cog or {}).get("forms", []))
         bucket = recorded.setdefault(lang, [])

@@ -3430,3 +3430,48 @@ fix a grade for those types, so a formation in them carries no note. The model
 says nothing rather than guessing, which is the same rule the rest of the repo
 follows for laws.
 
+
+## 2026-11-12 — the PIE page is a ladder, and a root constructs from its rung
+
+**What.** A word in Proto-Indo-European now gets the timeline every other word
+page gets, instead of a *reconstruct into* selector. `service.hierarchy` no
+longer returns `None` for the root language: the etymon is one rung (`next` is
+its daughter stages, `path=` carries the timeline down into them one click at a
+time, `data-cut` prunes it), and `word()` returns that ladder as `hierarchy`.
+The selector, `renderRoot`, `wireRoot`, `renderReconstruct` and the header
+construction block that had not been drawn since v0.16.15 (`constructHtml`,
+`constructionInner`, `suffixMenuHtml` and their wiring) are deleted — about 900
+lines of front end. An old link's `?into=fa` is read as the same descent by
+`app.server._path`. The page payload stops sending the 40-row `rebuilds` table
+(`rebuilds_for_etymon` still answers it), and `d.rebuilds` becomes `null` on a
+root page.
+
+**Still true about the root, and new about it.** The etymon's rung prints the
+form the dictionary heads — `*ters-`, hyphen and all, not the laws' `*ters` —
+and its status reads *top of the family*; a stage the reader descends into
+reads *descended by the laws*. The rung carries `construct…` and the stage's
+cited suffixes as chips, so a root is where a word is built, on the timeline,
+above the rung it stands on (`?build=ine-pro:suffix:no@ters-` → *tr̥snós* with
+its pieces and their grade).
+
+**A composition takes the grade of its suffix.** `_formation_grade` reads the
+`grades:` table of `data/morphology/ine-pro.yaml` and `_grade_stem` writes it, so
+*ters- + *-nó- is *tr̥s-nó-s* and not *ters-nó-s*; the built step and the
+composed preview print *zero grade* with the handbook's reason, and only a grade
+the table states is applied. `compose` also stopped stripping a final nominative
+`-s` from a *root* (it turned *ters- + *-eh₂ into *treh₂) — an ending belongs to
+a word, and a root is not one. `-nó-` was added to the suffix table (id `no`,
+quoted in YAML, or `no` parses as a boolean), with its ending, attach mode,
+outcome and sources, so the suffix that builds *tr̥snós* is also one the picker
+offers.
+
+**Why.** The selector asked the reader to name a destination before the page had
+shown them one stage; a timeline answers the same question with a step they can
+see, keep, compare and link. `*tr̥snós` is in the PIE supplement now
+(`built_as` `*ters- + *-nó-s`, the grade from `_rung_builds`), and building it
+by hand from the root had to give the same word — which it does, through the
+same morphology table.
+
+**Numbers.** `tests/test_ui_render.js` passes (its root-page and `renderReconstruct`
+sections were rewritten to test the ladder); the Python suite runs 963 tests,
+all green.

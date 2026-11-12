@@ -17,9 +17,25 @@ WEB = Path(__file__).resolve().parent / "web"
 DATA = data.DATA
 
 
-def _path(qs: dict) -> list[str]:
-    """``path=pal,fa``: the stages the reader carried the timeline into."""
-    return [stage for stage in qs.get("path", "").split(",") if stage]
+def _path(qs: dict, lang: str = "") -> list[str]:
+    """``path=pal,fa``: the stages the reader carried the timeline into.
+
+    A link written before 2026-11-12 says ``into=fa`` — the language the old
+    *reconstruct into* selector chose.  The selector is gone (a PIE page is a
+    ladder now, and its daughter stages are the steps down), so the old address
+    is read as the same request: the stages between the page's own language and
+    the one it named.
+    """
+    stages = [stage for stage in qs.get("path", "").split(",") if stage]
+    if stages:
+        return stages
+    into = (qs.get("into") or "").strip()
+    if not into:
+        return []
+    chain = data.derivation_chain(into)
+    if lang and lang in chain:
+        return chain[chain.index(lang) + 1:]
+    return list(chain[1:])
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -171,7 +187,7 @@ class Handler(BaseHTTPRequestHandler):
                                via=qs.get("via") or None,
                                pathway=qs.get("pathway") != "0",
                                suffix=qs.get("suffix") or None,
-                               path=_path(qs),
+                               path=_path(qs, qs.get("lang", "")),
                                sense=qs.get("sense") or None,
                                build=qs.get("build") or None)
             return self._json(row or {"error": "not found"}, 200 if row else 404)
@@ -229,7 +245,7 @@ class Handler(BaseHTTPRequestHandler):
                                     from_form=qs.get("form") or None,
                                     pathway=qs.get("pathway") != "0",
                                     suffix=qs.get("suffix") or None,
-                                    path=_path(qs),
+                                    path=_path(qs, qs.get("lang", "")),
                                     sense=qs.get("sense") or None,
                                     build=qs.get("build") or None)
             return self._json(

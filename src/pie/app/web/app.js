@@ -769,15 +769,16 @@ async function viewWord(lang, w, params) {
     app.innerHTML = `<p class="empty">No entry for ${esc(w)} in ${esc(lang)}.</p>`;
     return;
   }
-  if (d.ghost) { ladderState = null; rootState = null; viewGhost(d); return; }
-  if (d.pick) { ladderState = null; rootState = null; viewPick(d); return; }
+  if (d.ghost) { ladderState = null; viewGhost(d); return; }
+  if (d.pick) { ladderState = null; viewPick(d); return; }
   /* The ladder is stateful: laws and the starting form are edited in place,
-     and only the ladder re-renders — never the page. A word in the root
-     language has no ladder; its state is the word and the language the reader
-     chose to reconstruct it into. */
+     and only the ladder re-renders — never the page. Proto-Indo-European has
+     no ancestor, but it has a ladder all the same: one rung for the etymon,
+     and below it the daughter stages each click carries it into (admin,
+     2026-11-12). */
   const morph = d.morphology || { suffixes: [] };
   const fromSuffix = (params && params.get("suffix")) || "";
-  ladderState = d.is_root ? null : {
+  ladderState = {
     lang, word: d.word, sense: d.sense || 0, off: new Set(off), pathway,
     /* How many words this spelling carries: the sense goes into the address
        only when there is a choice to keep (a spelling that is one word needs
@@ -804,21 +805,6 @@ async function viewWord(lang, w, params) {
     morph, fromSuffix,
     data: d.hierarchy, context: d,
   };
-  /* A PIE word carries its grammar beside the word itself (2026-11-08): the suffixes are always visible under the headword, and choosing
-     one shows the composed word at once — before the laws run. */
-  rootState = d.is_root ? {
-    lang, word: d.word, suffix: fromSuffix, morph, page: d,
-    /* Laws the reader has switched off, exactly as on a word's own ladder. */
-    off: new Set(off),
-    /* A rung the reader rewrote (`?from=gem-pro&edit=wulfaz`): the
-       reconstruction timeline is editable at any stage, like a word's ladder
-       (2026-11-08). */
-    edit: ((params && params.get("from")) && (params && params.get("edit")))
-      ? { stage: params.get("from"), form: params.get("edit") } : null,
-    /* The word this one is built from, when the dictionary states it: the
-       construction line links to it and the suffix picker composes from it. */
-    base: (d.construction && d.construction.base.form) || "",
-  } : null;
   const cog = d.cognates;
   /* Keep Wiktionary's own order but mark the reading the sound laws produce:
      that is the one the ladder below compares against. */
@@ -884,14 +870,12 @@ async function viewWord(lang, w, params) {
     </div>
     ${((d.joins || []).length || d.seam_join) && !builtInTimeline(d) ? renderJoin(d) : ""}
 
-    ${d.is_root
-      ? renderRoot(d, (params && params.get("into")) || "", { d, morph, fromSuffix })
-      /* A borrowed word has two rungs and no sound laws — whether the donor is
-         outside the family (Arabic into Persian) or inside it (English into
-         Persian: the entry records a root *inside the donor's* etymology, and
-         running this language's chain from it invented a PIE ladder for
-         دایناسور; 2026-11-10). */
-      : `<section id="ladder" class="ladderbox">${d.loan && d.loan.name && (d.loan.kind || (d.category || {}).category === "non_pie")
+    ${/* One timeline for every word, Proto-Indo-European included. A borrowed
+         word has two rungs and no sound laws — whether the donor is outside the
+         family (Arabic into Persian) or inside it (English into Persian: the
+         entry records a root *inside the donor's* etymology, and running this
+         language's chain from it invented a PIE ladder for دایناسور; 2026-11-10). */
+      `<section id="ladder" class="ladderbox">${d.loan && d.loan.name && (d.loan.kind || (d.category || {}).category === "non_pie")
           ? renderLoanLadder(d)
           : renderHierarchy(d.hierarchy, d, { d, morph, fromSuffix })}</section>
          <p id="ladder-status" class="sronly" role="status" aria-live="polite"></p>
@@ -904,7 +888,7 @@ async function viewWord(lang, w, params) {
       </details>
     ` : d.is_root ? "" : `<p class="sub" style="margin-top:18px">No Proto-Indo-European cognate set is recorded for this word.</p>`}
   `;
-  if (d.is_root) wireRoot(); else wireLadder();
+  wireLadder();
   wireMeanings(d);
   wireCopy();
 }
@@ -1274,12 +1258,25 @@ function buildStep(level) {
   const kind = { compound: "compound", suffix: "derivation", inflection: "inflection" }[b.kind] || "formation";
   const piece = (p, i) => {
     const form = String(p.form || "");
-    const shown = p.affix && form && !form.startsWith("-") ? "-" + form : form;
+    /* A word of the formation keeps its own spelling, hyphen and all (*ters-,
+       not *ters), and a reconstructed stage writes the leading star the rest
+       of the page writes — the step names the pieces, so they read exactly as
+       they do on the word's own page (2026-11-12). */
+    const spelled = p.affix || !p.known || !p.word ? form : String(p.word);
+    const shown = p.affix && spelled && !spelled.startsWith("-") ? "-" + spelled : spelled;
+    const star = /-pro$/.test(String(p.lang || b.lang || "")) && shown && !shown.startsWith("*")
+      ? "*" : "";
     const href = p.known ? wordHref(p.lang, p.word || p.form, true) : "";
     const body = href
-      ? `<a class="bpiece mono" href="${esc(href)}" data-tip="${esc(`Open ${p.form} in ${p.lang_name || ""}`)}">${esc(pf(shown))}</a>`
-      : `<span class="bpiece mono">${esc(pf(shown))}</span>`;
-    return `${i ? `<i class="bplus">+</i>` : ""}${body}${
+      ? `<a class="bpiece mono" href="${esc(href)}" data-tip="${esc(`Open ${p.form} in ${p.lang_name || ""}`)}">${esc(pf(star + shown))}</a>`
+      : `<span class="bpiece mono">${esc(pf(star + shown))}</span>`;
+    /* The piece stands in the grade the formation takes it in: *ters- beside
+       *-nó- is *tr̥s- (#ters- → #tr̥s-), and that is morphology, not a sound
+       change (admin, 2026-11-12). */
+    const grade = p.grade_label
+      ? ` <span class="cgrade" data-tip="${esc(p.grade_note || p.grade_label)}">${esc(p.grade_label)}</span>`
+      : "";
+    return `${i ? `<i class="bplus">+</i>` : ""}${body}${grade}${
       p.gloss ? ` <span class="bgloss sub">“${esc(p.gloss)}”</span>` : ""}`;
   };
   const pieces = (b.pieces || []).map(piece).join(" ");
@@ -1288,7 +1285,9 @@ function buildStep(level) {
     <div class="buildbody">
       <span class="buildtag">built here</span>
       <span class="bkind sub">${esc(kind)} in ${esc(b.stage_name || "")}</span>
-      ${pieces} <i class="barrow">→</i> <span class="mono">${esc(pf(level.form))}</span>
+      ${pieces} <i class="barrow">→</i> <span class="mono">${esc(pf(
+        (/-pro$/.test(String(b.stage || "")) && level.form && !String(level.form).startsWith("*") ? "*" : "")
+        + String(level.form || "")))}</span>
       <span class="bnote sub">${esc(b.note || "")}</span>
     </div></li>`;
 }
@@ -1304,8 +1303,12 @@ function buildLine(level, h) {
   const stage = level.stage;
   const data = `data-bstage="${esc(stage)}"`;
   const tool = `<button class="ghost buildopen" type="button" ${data}
-      data-tip="Build this stage's form: join two words of ${esc(level.name)}, or add a suffix or ending">build…</button>`;
-  const suf = (opts.suffixes || []).slice(0, 10).map((x) => `<button class="chip" type="button" ${data}
+      data-tip="Build this stage's form: join two words of ${esc(level.name)}, or add a suffix or ending">construct…</button>`;
+  /* The stage's own suffixes stand on the rung, not behind the button: the
+     question "what does this word become with *-nó-" is one click, and the
+     chips are the same formation laws the built step will name
+     (admin, 2026-11-12: a construct section, on the timeline). */
+  const suf = (opts.suffixes || []).filter((x) => x.kind !== "ending").slice(0, 12).map((x) => `<button class="chip" type="button" ${data}
       data-bkind="suffix" data-barg="${esc(x.id)}"
       data-tip="${esc(`${x.form} · ${x.gloss}${x.law ? " (registered formation law)" : ""}`)}"><span class="chip-form mono">${esc(x.form)}</span></button>`).join("");
   const end = (opts.endings || []).slice(0, 8).map((x) => `<button class="chip" type="button" ${data}
@@ -1320,11 +1323,15 @@ function buildLine(level, h) {
       <input id="bs-${esc(stage)}" class="buildin mono" data-bsecond dir="auto" list="bl-${esc(stage)}"
         placeholder="another word of ${esc(level.name)}" autocomplete="off" spellcheck="false">
       <button class="ghost" type="button" ${data} data-bkind="join">join +</button>
-      ${suf || end ? `<div class="buildrow"><span class="sub">or a suffix</span>${suf}${end ? `<span class="sub">ending</span>${end}` : ""}</div>` : ""}
+      ${end ? `<div class="buildrow"><span class="sub">ending</span>${end}</div>` : ""}
       <p class="sub buildnote">A formation is not a sound law: the composed form is carried down by the
         same laws, and the word's own band is unaffected.</p>
     </div>`;
-  return `<div class="buildline">${tool}${panel}</div>`;
+  /* The suffix chips sit between the button and the open panel, so the rung
+     reads as one construct line with the formation laws on it. */
+  const row = suf ? `<span class="buildchips" role="group"
+      aria-label="Recorded suffixes ${esc(level.name)} may take"><span class="sub">with</span>${suf}</span>` : "";
+  return `<div class="buildline">${tool}${row}${panel}</div>`;
 }
 
 const lawStep = (body, gap = 14) => body
@@ -1373,249 +1380,6 @@ function renderLaws(level, prevName) {
   return `<div class="laws">
     <ul class="lawlist">${fired.map((r) => lawChip(r, r.key === formationLaw ? citedAdd : "")).join("")}${off.map((r) => lawChip(r)).join("")}</ul>
   </div>`;
-}
-
-/* ------------------------------------------------------------------ */
-/* a word in the root language: reconstruct it into the family         */
-/* ------------------------------------------------------------------ */
-/* Proto-Indo-European has nothing above it, so a PIE word gets no ancestry
-   ladder and no "where it comes from" section. The reader picks a language
-   instead, and the page shows what the registered laws make of the etymon on
-   the way there — one step per transition, with every law that applies
-   (2026-11-07). */
-
-let rootState = null;
-
-/* The construction of a word, under its title (2026-11-08): the
-   base it is built from — big, and a door to its own page — then the suffix it
-   wears in the accent colour, then a (+) that lets the reader attach another
-   cited suffix. The label is its own line above the pieces, so it reads as a
-   heading rather than as a word glued to the base; when the dictionary states
-   the construction (`From *wĺ̥kʷos + *-íh₂s`, or "an i-stem noun built on the
-   root *h₂wl̥p-") the row shows what it says, and on an etymon with nothing
-   stated the row honestly offers to add a suffix instead of calling itself a
-   construction. */
-/* A suffix can be tried on any reconstructed word whose formation the
-   dictionary states, not only on a PIE etymon: the stage's whole morphology is
-   recorded, and a suffix recorded on one root must be selectable on the others
-   (2026-11-08). An attested word gets no picker — its form is known,
-   not built. */
-function pickSuffixes(d, morph) {
-  return ((morph || {}).suffixes || []).length && (d.is_root || !!d.construction);
-}
-
-function constructionInner(d, morph, suffixId, compact) {
-  const c = d.construction;
-  const suffixes = (c && c.suffixes) || [];
-  const chosen = ((morph || {}).suffixes || []).find((s) => s.id === suffixId);
-  const baseForm = c ? c.base.form : d.word;
-  const baseTip = [c && c.base.gloss ? `“${c.base.gloss}”` : "",
-                   c && c.base.link ? "open its page" : ""]
-    .filter(Boolean).join(" · ") || "The word this one is built from";
-  const base = c && c.base.link
-    ? `<a class="cbase link" href="${esc(c.base.link)}"
-         data-tip="${esc(baseTip)}">${esc(pf(baseForm))}</a>`
-    : `<span class="cbase"${baseTip !== "The word this one is built from" ? ` data-tip="${esc(baseTip)}"` : ""}>${esc(pf(baseForm))}</span>`;
-  /* A construction may be a chain of pieces (*dus- + *ménes- + *-s): the
-     middle ones are the compound's members, printed between the base and the
-     suffix in the same justice as the suffix, so the row builds the word from
-     left to right (2026-11-08). */
-  const members = (c && c.members) || [];
-  const mem = members.map((x) => `<span class="cplus" aria-hidden="true">+</span>${
-    x.link ? `<a class="cmem link" href="${esc(x.link)}" data-tip="${esc(`${x.form}${x.gloss ? ` · ${x.gloss}` : ""} — open its page`)}">${esc(pf(x.form))}</a>`
-    : `<span class="cmem"${x.gloss ? ` data-tip="${esc(`${x.form} · ${x.gloss}`)}"` : ""}>${esc(pf(x.form))}</span>`}`).join("");
-  /* The suffix the word wears: its own recorded one, or the one the reader is
-     trying on the etymon right now. */
-  const shown = suffixes.length
-    ? suffixes.map((x) => esc(x.form)).join(" ")
-    : (chosen ? esc(chosen.form) : "");
-  /* The hover has to say what the morpheme means, and where it is recorded:
-     the words that wear it are the places the suffix can be applied, and a
-     reader choosing one needs both (2026-11-08). */
-  const tip = (suffixes.length ? suffixes : (chosen ? [chosen] : []))
-    .map((x) => `${x.form}${x.gloss ? ` · ${x.gloss}` : ""}${
-      x.detail ? ` (${x.detail})` : ""}${
-      x.recorded ? ` · ${x.recorded} ${x.recorded === 1 ? "word" : "words"}` : ""}`)
-    .join(" · ");
-  const pick = pickSuffixes(d, morph);
-  const plainEntry = (!pick && suffixes.length === 1 && suffixes[0].entry) ? suffixes[0].entry : "";
-  const plus = compact ? "" : `<span class="cplus" aria-hidden="true">+</span>`;
-  const suf = shown
-    ? `${plus}${pick
-        ? `<button type="button" class="csuf" id="csuf" aria-haspopup="true" aria-expanded="false"
-             data-mode="replace" data-tip="${esc(`${tip || shown} — click to choose another recorded suffix`)}">${shown}</button>`
-        : plainEntry
-        ? `<a class="csuf plain link" href="${esc(plainEntry)}" data-tip="${esc(`${tip || shown} — open the entry`)}">${shown}</a>`
-        : `<span class="csuf plain" data-tip="${esc(tip || shown)}">${shown}</span>`}`
-    : "";
-  /* A stem-formative brings its own inflectional ending (‑i‑ + *-s →
-     h₂wl̥pís). It sits after the suffix as its own piece, with the stage's own
-     name for it, so no letter of the word is left unexplained (2026-11-09). */
-  const endRow = suffixes.length ? suffixes[0] : (chosen || null);
-  const end = endRow && endRow.ending
-    ? `<span class="cplus" aria-hidden="true">+</span><span class="cend mono" data-tip="${esc(`-${endRow.ending}${endRow.ending_name ? ` · ${endRow.ending_name}` : ""} — the inflectional ending the stem-formative brings, from data/morphology`)}">-${esc(endRow.ending)}</span>`
-    : "";
-  const add = pick
-    ? `<button type="button" class="cadd" id="cadd" aria-haspopup="true" aria-expanded="false"
-         data-mode="add" aria-label="Add a cited suffix" title="Attach a cited derivational suffix">+</button>`
-    : "";
-  /* The panel is called the same thing whether or not the entry states a
-     construction, so a word whose entry only names an ending still reads as
-     the place constructions live (2026-11-08: rename "add a
-     suffix"). */
-  const label = compact
-    ? (shown ? "suffix it wears" : "add a suffix")
-    : c ? constructionLabel(c, true) : "construction(s)";
-  /* The composed form reads as the last line of the construction, not as a
-     loose line under the header: it is hidden until a suffix is chosen
-     (2026-11-08: the block should read as one section). */
-  /* A construction the entry states already has a composed form; it is shown
-     at once, because the reader asked what the pieces make. A bare etymon has
-     nothing until a suffix is chosen. */
-  const stated = c && c.composed ? c.composed : "";
-  /* The tree above already ends in the word, so the compact row does not
-     print the composed form again unless the reader is trying a suffix. */
-  const composed = (d.is_root || stated) && (!compact || chosen)
-    ? `<p class="composed-line quiet" id="composed-line">
-         <span class="sub composed-label">composed form</span> <span id="composed" class="mono" dir="auto">${stated ? esc(pf(stated)) : ""}</span>${stated ? `<span class="sub"> · the recorded word</span>` : ""}</p>`
-    : "";
-  return `<span class="construct-label">${label}</span>
-      <span class="construct-row">${compact ? "" : base + mem}${suf}${end}${add}</span>
-      ${composed}${alternateRows(d)}<div class="sufmenu" id="sufmenu" role="menu" hidden></div>`;
-}
-
-/* How sure the entry is of an analysis, in words: the header construction is
-   `stated` unless the entry hedges it, a rival one is `argued` by whoever
-   argues it, and `proposed` is this repo's own (2026-11-08: a word
-   may have several constructions, shown with a confidence level). */
-function constructionLabel(c, primary) {
-  const conf = c.confidence || "stated";
-  const src = c.source && c.source !== "the entry" ? c.source : "";
-  const head = primary ? "construction" : "also";
-  if (conf === "stated") return primary ? head : "also stated";
-  if (conf === "argued") return `${head} argued${src ? ` by ${src}` : ""}`;
-  return `${head} ${conf}${src ? ` by ${src}` : ""}`;
-}
-
-/* The rival constructions the entry states, under the one it wears. They are
-   read-only on purpose: the word wears one formation, so the others are shown
-   as what the record says they are — a quote with its author, on hover — and
-   their base is still a door to its own page. */
-function alternateRows(d) {
-  const rows = ((d.constructions || []).slice(1)).map((c) => {
-    const altTip = c.base.gloss ? `“${c.base.gloss}”` : "";
-    const base = c.base.link
-      ? `<a class="cbase link" href="${esc(c.base.link)}"
-           data-tip="${esc(altTip ? `${altTip} · open its page` : "The word this analysis is built from — open its page")}">${esc(pf(c.base.form))}</a>`
-      : `<span class="cbase"${altTip ? ` data-tip="${esc(altTip)}"` : ""}>${esc(pf(c.base.form))}</span>`;
-    const mem = (c.members || []).map((x) =>
-      `<span class="cplus" aria-hidden="true">+</span><span class="cmem"
-         data-tip="${esc(`${x.form}${x.gloss ? ` · ${x.gloss}` : ""}`)}">${esc(x.form)}</span>`).join("");
-    const parts = mem + (c.suffixes || []).map((x) =>
-      `<span class="cplus" aria-hidden="true">+</span><span class="csuf plain"
-         data-tip="${esc(`${x.form}${x.gloss ? ` · ${x.gloss}` : ""}`)}">${esc(x.form)}</span>`).join("");
-    const note = c.etym ? ` data-tip="${esc(c.etym)}"` : "";
-    return `<span class="construct-alt"${note}>
-        <span class="construct-label">${esc(constructionLabel(c, false))}</span>
-        <span class="construct-row">${base}${parts}</span>
-      </span>`;
-  });
-  return rows.join("");
-}
-
-/* The construction of a word, directly under its title (2026-11-08): the base it is built from — big, and a door to its own page — then
-   the suffix it wears in the accent colour, then a (+) that lets the reader
-   attach another cited suffix. When the dictionary states the construction
-   (`From *wĺ̥kʷos + *-íh₂s`) the row shows what it says; on an etymon with
-   nothing to derive from, it is just the word and the (+). */
-function constructHtml(d, morph, suffixId, compact) {
-  const cls = d.construction ? "construct reveal" : "construct reveal none";
-  return `<div class="${cls}${compact ? " compact" : ""}" id="construct" role="group"
-      aria-label="Word construction">${constructionInner(d, morph, suffixId, compact)}</div>`;
-}
-
-/* One recorded morpheme as a line of a menu: its form, what it means, how many
-   words the corpus builds with it, and a door to the dictionary's entry.
-   `worn` is the row the word itself wears, printed in the colour of a record
-   rather than in the accent of a choice (2026-11-08). */
-function suffixOptionHtml(s, worn) {
-  const count = s.recorded ? `${s.recorded} ${s.recorded === 1 ? "word" : "words"}` : "unrecorded";
-  const tip = [`${s.form} — ${s.gloss || "no meaning recorded yet"}`,
-    s.detail || "",
-    s.note || "",
-    (s.senses || []).length > 1 ? `also: ${s.senses.slice(1).join(" · ")}` : "",
-    (s.bases || []).length ? `attaches to: ${s.bases.slice(0, 4).join(", ")}` : "",
-    (s.examples || []).length ? `the corpus builds: ${s.examples.join(", ")}` : "",
-    s.kind === "ending" ? "grammatical ending" : "",
-    s.kind === "clitic" ? "enclitic, not a derivational suffix" : "",
-  ].filter(Boolean).join(" · ");
-  const body = `<span class="mono suf-form">${esc(s.form)}</span>
-        <span class="suf-gloss${s.gloss ? "" : " none"}">${esc(s.gloss || "no meaning recorded yet")}</span>
-        <span class="suf-count${s.recorded ? "" : " none"}">${esc(count)}</span>
-        ${String(s.rule || "").trim() ? `<span class="chip-law">law</span>` : ""}`;
-  /* A piece the word's own entry names, but no row of the stage records under
-     its id, is still shown — it is recorded on this word — and it is not a
-     button, because there is nothing in the record to compose with. */
-  return `<div class="sufrow${worn ? " worn" : ""}">${s.id
-    ? `<button type="button" class="sufopt" role="menuitem" data-csuf="${esc(s.id)}" data-tip="${esc(tip)}">${body}</button>`
-    : `<span class="sufopt static" data-tip="${esc(tip)}">${body}</span>`}${
-    s.entry ? `<a class="suf-page" href="${esc(s.entry)}"
-      data-tip="Open the dictionary's entry for ${esc(s.form)}"
-      aria-label="Open the dictionary entry for ${esc(s.form)}">↗</a>` : ""}</div>`;
-}
-
-/* The morphology of the stage as a menu of sections (2026-11-08): the
-   morphemes the word itself wears are printed first, in the record's colour,
-   and every other recorded form hangs in a submenu under the section its own
-   record puts it in — the way a desktop context menu opens a list to the
-   right of a heading. A flat list of 135 forms could not be read. */
-function suffixMenuHtml(morph, mode, label, worn) {
-  const all = ((morph || {}).suffixes || []).slice().sort((a, b) =>
-    ((b.recorded || 0) - (a.recorded || 0))
-    || ((b.curated ? 1 : 0) - (a.curated ? 1 : 0))
-    || (a.form < b.form ? -1 : a.form > b.form ? 1 : 0));
-  const byId = new Map(all.map((s) => [s.id, s]));
-  /* The suffixes this word's own constructions wear, in the order the word
-     page prints them, deduplicated by the morpheme. A worn piece that the
-     stage's morphology row knows is replaced by that row, so it carries its
-     meaning, count and entry here too. */
-  const wornRows = [];
-  const wornSeen = new Set();
-  (worn || []).forEach((piece) => {
-    const key = piece.id || piece.form;
-    if (!key || wornSeen.has(key)) return;
-    wornSeen.add(key);
-    wornRows.push((piece.id && byId.get(piece.id)) || piece);
-  });
-  const wornBlock = wornRows.length
-    ? `<div class="sufworn" role="group" aria-label="Recorded on this word">
-         <p class="sub sufworn-head">recorded on this word</p>
-         ${wornRows.map((s) => suffixOptionHtml(s, true)).join("")}</div>`
-    : "";
-  const sections = ((morph || {}).sections || []).map((sec) => Object.assign({}, sec, {
-    rows: all.filter((s) => s.section === sec.id),
-  })).filter((sec) => sec.rows.length);
-  /* A payload that predates the sections still has rows: they keep a heading
-     of their own instead of vanishing from the menu. */
-  const placed = new Set(sections.reduce((out, sec) => out.concat(sec.rows), []));
-  const rest = all.filter((s) => !placed.has(s));
-  if (rest.length) sections.push({ id: "rest", name: "all recorded forms", rows: rest });
-  const sectionHtml = sections.map((sec) => `
-    <div class="sufsecwrap">
-      <button type="button" class="sufsec" data-sec="${esc(sec.id)}" aria-haspopup="menu"
-        aria-expanded="false">
-        <span class="sufsec-name">${esc(sec.name)}</span>
-        <span class="sufsec-count">${sec.rows.length}</span>
-        <span class="sufsec-arrow" aria-hidden="true">▸</span>
-      </button>
-      <div class="sufsub" role="menu" aria-labelledby="${esc(sec.id)}" hidden>
-        <p class="sub sufsub-head">${esc(sec.name)} · ${sec.rows.length}</p>
-        ${sec.rows.map((s) => suffixOptionHtml(s, false)).join("")}
-      </div>
-    </div>`).join("");
-  return `<p class="sub sufmenu-head">${esc(label)} · ${all.length} recorded forms in ${
-    sections.length} ${sections.length === 1 ? "section" : "sections"}</p>${wornBlock}${
-    sectionHtml ? `<div class="sufsecs" role="group" aria-label="Recorded morphology by section">${sectionHtml}</div>` : ""}`;
 }
 
 /* The suffix a word wears, printed on the rung where the formation law adds it,
@@ -2042,59 +1806,6 @@ function builtInTimeline(d) {
   return joins.every((j) => drawn.includes(key(j.pieces || [])));
 }
 
-function renderRoot(d, into, opts) {
-  const rows = ((d.rebuilds || {}).rows) || [];
-  /* The family below an etymon is drawn exactly as it is on every other word
-     page: one direct child per row, expandable, each form a door that opens
-     its own page with that transition's laws (2026-11-08). */
-  const branch = d.descendants
-    ? renderBranch(d.descendants, { via: `${d.lang}/${d.word}`, claim: true })
-    : "";
-  /* A construction in Proto-Indo-European is a construction like any other:
-     its pieces stand above the word they build, and the word is the last rung
-     under them.  Only a form that is built gets the section — a plain etymon
-     has nothing above it but itself, and a one-row timeline would say nothing
-     (admin, 2026-11-12). */
-  const built = ((((d.hierarchy || {}).levels) || []).some((l) => (l.builds || []).length));
-  const timeline = built
-    ? `<section id="roottl" class="ladderbox">${renderHierarchy(d.hierarchy, d, opts)}</section>`
-    : "";
-  if (!rows.length) {
-    return `${timeline}${branch}<h2>Into the family</h2>
-      <p class="sub">No language in the registry has a rule chain from Proto-Indo-European yet,
-        so this etymon cannot be reconstructed anywhere.</p>`;
-  }
-  /* One <optgroup> per branch, branches alphabetically, so the list reads like
-     the family tree rather than like the row order (which puts the previewed
-     languages first). */
-  const groups = new Map();
-  rows.forEach((r) => {
-    const key = r.branch || "Other";
-    if (!groups.has(key)) groups.set(key, []);
-    groups.get(key).push(r);
-  });
-  /* Nothing is reconstructed until the reader asks for a language: the page
-     opens on the word and the selector, not on an English derivation nobody
-     asked for (2026-11-08). */
-  const pick = rows.some((r) => r.l === into) ? into : "";
-  const ordered = [...groups].sort((a, b) => (a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0));
-  const options = `<option value=""${pick ? "" : " selected"}>choose a language…</option>`
-    + ordered.map(([group, list]) => `<optgroup label="${esc(group)}">${
-    list.map((r) => `<option value="${esc(r.l)}"${r.l === pick ? " selected" : ""}>${
-      esc(r.lang_name)}${(r.skipped || []).length ? " · chain incomplete" : ""}</option>`).join("")
-  }</optgroup>`).join("");
-  return `${timeline}<section id="rootpanel" class="reconbox">
-    <div class="recon-controls reveal" style="--i:3">
-      <label class="recon-label" for="recon-lang">Reconstruct into</label>
-      <div class="recon-select">
-        <select id="recon-lang" aria-label="Language to reconstruct this word into">${options}</select>
-      </div>
-      <p class="sub recon-lede">Reconstruct the word into any descendant language, following conventional rules.</p>
-    </div>
-    <div id="recon-out" class="recon-out" aria-live="polite"></div>
-  </section>${branch}`;
-}
-
 /* Where a record was read. The server resolves each source: a hand-built
    supplement may cite a source with a link of its own (a dictionary, an
    article), and a Wiktionary row carries the entry's own page. The badge is a
@@ -2187,629 +1898,6 @@ const editButton = (stage, name) => `<button class="editbtn icon" type="button" 
      title="Type a different form for ${esc(name)} and re-derive every stage below it"
      aria-label="Edit the form for ${esc(name)}">${editIcon}</button>`;
 
-function renderReconstruct(p) {
-  const rec = p.recorded;
-  const same = !!(rec && p.same);
-  /* A record is a word only when the stage's glossary holds it: a form the
-     etymology names but no entry spells is no word there, so it takes the
-     dark red of a non-existent form and never the ✓ of a match (admin,
-     2026-11-12). */
-  const held = !!(rec && rec.known !== false);
-  const matched = held && p.status === "match";
-  const via = `${p.source.lang || "ine-pro"}/${p.source.form}`;
-  const recTip = rec
-    ? `Recorded form for ${p.lang_name}${rec.evidence === "literary"
-        ? " in the literature — no text attests it."
-        : " in a text or a dictionary — attested."}`
-      + (matched ? " The registered laws produce exactly this form." : "")
-      + recordSourceText(rec)
-    : "";
-  const produced = form(p.form, p.lang, {
-    ev: p.evidence,
-    href: wordHref(p.lang, p.form, !!p.form_known, via),
-    hrefTip: p.form_known
-      ? `Open ${p.form} in ${p.lang_name}`
-      : `Open this form — no entry in ${p.lang_name} is spelled this way`,
-    tip: p.steps
-      ? `Rebuilt by this repo — the registered laws produce this form, and ${p.lang_name}`
-        + (rec ? " records a different form for this word." : " records nothing for this word yet.")
-      : `Nothing was derived: the laws for a step on the way to ${p.lang_name} are not registered,`
-        + " so this is the Proto-Indo-European form unchanged.",
-    focus: true,
-  });
-  /* The record is a door: the green word opens its own page, and the corner
-     mark opens where it was read (2026-11-08). */
-  const recordOpts = rec ? {
-    ev: held ? rec.evidence : "missing", ipa: rec.ipa, reading: rec.reading,
-    show: rec.show_reading,
-    auto: !!rec.reading_auto, note: rec.reading_note,
-    href: wordHref(p.lang, rec.headword || rec.w, held, via),
-    hrefTip: held ? `Open the recorded ${rec.w} in ${p.lang_name}`
-      : `Open this form — nothing in ${p.lang_name}'s glossary records it`,
-    tip: recTip, matched, cornerTick: matched, focus: same,
-  } : {};
-  const record = rec ? recordWord(rec, p.lang, p.lang_name, recordOpts, "recorded", recTip) : "";
-  /* Every rung is editable, the target stage included (2026-11-08: the reconstructed words in this timeline could not be edited). The pencil
-     follows the form the laws produced, directly after it — never after the
-     record (2026-11-08). */
-  const formsLine = same
-    ? `${form(rec.w, p.lang, { ...recordOpts, stack: true })}${editButton(p.lang, p.lang_name)}`
-    : `${produced}${editButton(p.lang, p.lang_name)}${rec ? record : ""}`;
-  const verdict = matched
-    ? `<span class="badge ${rec.evidence === "literary" ? "literary" : "attested"}">the laws produce the record</span>`
-    : rec && !held
-    ? `<span class="sub norec" data-tip="${esc(`Nothing in ${p.lang_name}'s glossary is spelled ${rec.w}: the etymology names this form, and the laws run from it, but no entry holds it.`)}">no entry for this word</span>`
-    : p.status === "cited"
-      /* The laws reached an inflected form of the record and the dictionary
-         cites the stem (Avestan aspa- for the nominative aspō, Sanskrit devá-
-         for deváḥ). That is the citation, counted in its own column — the
-         page says which claim it is instead of calling the word a failure
-         (2026-11-09). */
-      ? `<span class="badge orthographic" data-tip="A form is recorded for this word and the laws produce an inflected form of it; the dictionary cites the stem.">cited as its stem</span>`
-    : p.status === "differs"
-      ? `<span class="badge warn" data-tip="A form is recorded for this word in this language, but the laws do not reach it yet.">differs from the record</span>`
-      : `<span class="badge quiet" data-tip="No dictionary entry for this word in ${esc(p.lang_name)} exists to compare with, so there is nothing to match.">no word recorded in ${esc(p.lang_name)}</span>`;
-  /* The reconstruction is a ladder, exactly like a word's ancestry — oldest
-     stage at the top, the target at the bottom, the years on the left and the
-     laws that moved the form between two rungs (2026-11-08: the
-     reconstruction should display in the timeline format of a regular word
-     view). */
-  const rungs = [(p.levels || [])[0] ? {
-    stage: p.levels[0].src, name: p.levels[0].src_name, form: p.source.form,
-    kind: p.source.kind || "proto", era_label: "", rules: [], lead: true,
-    edited: !!(p.edited && p.edited.stage === p.levels[0].src),
-  } : null].filter(Boolean);
-  (p.levels || []).forEach((l) => rungs.push({
-    stage: l.dst, name: l.dst_name, form: l.form, kind: l.kind || "",
-    era_label: l.era_label || "", level: l, edited: !!l.edited,
-  }));
-  /* A rung is a form the laws produced, so its colour says how it is known —
-     never simply that its language is attested. When the stage's own glossary
-     has the form, the record stands under it with its script and citation (a
-     badge that opens where it was read); when it does not, the produced form
-     is still a door to its own page
-     (2026-11-08). */
-  const rungForms = (r, last) => {
-    if (last) return formsLine;
-    if (!r.level) return form(r.form, r.stage, { ev: r.edited ? "edited" : "literary" })
-      + editButton(r.stage, r.name);
-    const lv = r.level;
-    const rec = lv.recorded;
-    const produced = form(lv.form, r.stage, {
-      ev: lv.evidence,
-      href: wordHref(r.stage, lv.form, lv.form_known, via),
-      hrefTip: lv.form_known
-        ? `Open ${lv.form} in ${r.name}`
-        : `Open this form — no entry in ${r.name} is spelled this way`,
-    });
-    if (!rec) return `${produced}${editButton(r.stage, r.name)}`;
-    const held = rec.known !== false;
-    const recOpts = {
-      ev: held ? rec.evidence : "missing", ipa: rec.ipa, reading: rec.reading,
-      show: rec.show_reading,
-      auto: !!rec.reading_auto, note: rec.reading_note,
-      href: wordHref(r.stage, rec.headword || rec.w, held, via),
-      hrefTip: held ? `Open the recorded ${rec.w} in ${r.name}`
-        : `Open this form — nothing in ${r.name}'s glossary records it`,
-      matched: lv.status === "match" && held,
-      cornerTick: lv.status === "match" && held,
-      /* A record nobody has verified wears a yellow ⚠, never the ✓ of a match
-         (admin, 2026-11-12). */
-      cornerWarn: held && (lv.status === "unverified" || rec.unverified === true),
-    };
-    return lv.same
-      ? `${form(rec.w, r.stage, { ...recOpts, stack: true })}${editButton(r.stage, r.name)}`
-      : `${produced}${editButton(r.stage, r.name)}${recordWord(rec, r.stage, r.name, recOpts, "recorded",
-          "This stage's own record of the same etymon."
-          + recordSourceText(rec))}`;
-  };
-  const rungNote = (r, last) => {
-    if (last || !r.level) return "";
-    const rec = r.level.recorded;
-    /* A rung whose form the laws produced and no glossary records says so in
-       its hover text, not in a sentence under every such step (2026-11-08). */
-    if (!rec) return "";
-    /* The record beside the prediction is already a different colour, so the
-       page no longer says in words that it differs (2026-11-08).
-       Only a fact not visible on the line itself is still worded. */
-    const bits = [];
-    if (r.level.status === "differs" && rec.notation) {
-      bits.push(`<span class="sub" data-tip="The source transcribes the same sign with another letter; the laws write the consonant differently. Spelling, not phonology — not counted as a match.">spelled ${esc(rec.notation)}</span>`);
-    }
-    /* What a stage says under its form is its meaning, or that the glossary
-       has no entry for it — never an explanation of the machinery.  "No
-       spelling in the native script" fired on entries that exist but were
-       read in transliteration, and a reader asking what a word means learns
-       nothing from it (admin, 2026-11-12). */
-    if (rec.known === false) {
-      bits.push(`<span class="sub norec" data-tip="${esc(`Nothing in ${r.name}'s glossary is spelled ${rec.w}: no headword, no reading of the signs, no entry.`)}">no entry for this word</span>`);
-    }
-    /* The laws' form is one reading of the signs the record writes, and the
-       record itself reads them another way. Saying which two readings is the
-       whole difference, so the rung prints it instead of leaving a red form
-       beside a green word with no explanation (2026-11-11). */
-    if (r.level.status === "differs" && rec.reading && rec.fit) {
-      bits.push(`<span class="sub readfit" data-tip="${esc(`The laws produce a form the writing ${rec.fit.translit || ""} can stand for, but the dictionary reads this spelling ${rec.reading}; the difference is the record's, not a gap in the laws.`)}">the writing allows it — the record reads ${esc(rec.reading)}</span>`);
-    }
-    return bits.length ? `<div class="rung-rec">${bits.join(" ")}</div>` : "";
-  };
-  const mould = (r, i) => {
-    /* Every law on a step is a switch, exactly as on a word's own ladder: the
-       reader asks "what if this law were not here?" and the chain is re-derived
-       without it (2026-11-08: the laws on the etymon page could not
-       be switched off at all). */
-    const shown = ((r.level && r.level.rules) || []).filter((x) => x.fired || x.disabled);
-    /* The edit replaced whatever the laws had done at this stage, so there is
-       no law to report on that rung. A switched-off law stays listed, and the
-       chips above already count it (2026-11-08: no line saying how
-       many laws applied, and no stage → stage label). */
-    const laws = (r.lead || r.edited) ? ""
-      : r.level.missing
-        ? `<div class="laws"><p class="notice laws-missing">No rule file exists for
-             ${esc(r.level.src_name)} → ${esc(r.level.dst_name)} yet, so the form is carried over unchanged.</p></div>`
-        : shown.length
-          ? `<div class="laws"><ul class="lawlist">${shown.map((x) => lawChip(x)).join("")}</ul></div>`
-          : "";
-    const last = i === rungs.length - 1;
-    /* The step takes the first half of the 14 px between the rungs and this one
-       the second half, so the laws stand in the gap (2026-11-08). */
-    const stepStyle = laws ? ` style="--gap:${stepGap(14)}px"` : "";
-    return `${lawStep(laws)}<li class="rung recon-rung${last ? " here" : ""}${r.edited ? " edited" : ""}"
-        data-stage="${esc(r.stage)}" data-form="${esc(pf(r.form))}"${stepStyle}>
-      <div class="when">
-        <span class="when-name${r.kind ? ` kind-${esc(r.kind)}` : ""}">${esc(r.name)}</span>
-        ${r.era_label ? `<span class="when-era">${esc(r.era_label)}</span>` : ""}
-        ${last ? `<span class="when-here">here</span>` : ""}
-      </div>
-      <div class="rail" aria-hidden="true"><i></i></div>
-      <div class="rung-body">
-        <div class="rung-forms">${rungForms(r, last)}${r.edited ? `<span class="badge edited"
-            data-tip="The form you typed for this stage. It is a hypothesis, not a record; every stage below is what the registered laws make of it.">edited</span>` : ""}</div>
-        ${rungNote(r, last)}
-        ${last && rec && rec.gloss ? `<p class="rung-rec"><span class="sense">${rec.pos ? `${esc(rec.pos)} · ` : ""}“${esc(rec.gloss)}”</span></p>` : ""}
-      </div>
-    </li>`;
-  };
-  const morph = p.morph;
-  const morphBox = morph ? `<div class="morphbox reveal">
-      <div class="morph-line">${(morph.steps || []).map((s) => `<span class="morph-step">
-        <span class="morph-label">${esc(s.label)}</span>
-        <span class="mono morph-form" dir="auto">${esc(pf(s.form))}</span></span>`).join('<span class="morph-arrow" aria-hidden="true">→</span>')}</div>
-      <p class="sub morph-note">${morph.law
-        ? `Composed by the registered formation law ${lawLink(morph.law.name, morph.law.key)}
-           (${esc(morph.suffix.gloss)}); the sound laws then run from this form.`
-        : `Composed by this repo from <b>${esc(morph.suffix.form)}</b>
-           (${esc(morph.suffix.gloss)}); the sound laws then run from this form.${morph.law_not_applied
-             ? ` The registered formation law <span class="mono">${esc(String(morph.law_not_applied).split(":").pop())}</span>
-                does not apply to this stem, so this form is composed by hand.` : ""}`}
-        ${(morph.suffix.sources || []).length ? `Sources: ${morph.suffix.sources.map((x) => `<span class="mono">${esc(x)}</span>`).join(", ")}.` : ""}</p>
-    </div>` : "";
-  const gaps = (p.skipped || []).length
-    ? `<p class="sub recon-gap">The chain is incomplete — no rule file for
-        ${p.skipped.map(esc).join(", ")}, so the form does not change there.</p>` : "";
-  const nextBox = renderNext({ next: p.next || [] }, p.lang_name);
-  /* The state of the chain is a chip on the head, never a paragraph above the
-     timeline: what was switched off or typed is visible on the rungs themselves
-     (2026-11-08). One button puts the laws back. */
-  const offBadges = (p.disabled || []).length
-    ? `<span class="badge warn">${p.disabled.length} ${p.disabled.length === 1 ? "law is" : "laws are"} switched off</span>
-       <button class="ghost" type="button" data-recon-reset="1">switch them back on</button>` : "";
-  const editedBadge = p.edited
-    ? `<span class="badge edited">edited</span>
-       <button class="ghost" type="button" data-recon-unedit="1">reset to the laws' form</button>` : "";
-  const notice = p.dropped_edit
-    ? `<p class="notice reveal">The edit at <b>${esc(p.dropped_edit.name || p.dropped_edit.stage)}</b>
-        is not on this word's chain into ${esc(p.lang_name)}, so it was dropped for this view.</p>` : "";
-  /* No summary line and no tier list: the timeline shows which laws applied
-     and the chips carry their own tiers (2026-11-08). */
-  return `<div class="recon reveal">
-    ${morphBox}${notice}
-    <div class="recon-head">
-      <span class="mono recon-from" dir="auto">${esc(p.source.form)}</span>
-      <span class="recon-arrow" aria-hidden="true">→</span>
-      <span class="recon-lang">${esc(p.lang_name)}</span>
-      <span class="recon-badges">${verdict}${offBadges}${editedBadge}</span>
-    </div>
-    ${gaps}
-    <ol class="ladder recon-ladder">${rungs.map(mould).join("")}${nextBox}</ol>
-  </div>`;
-}
-
-async function wireRoot() {
-  const sel = $("#recon-lang");
-  const out = $("#recon-out");
-  if (!sel || !out || !rootState) return;
-  const morph = rootState.morph || { suffixes: [] };
-  const suffix = () => rootState.suffix || "";
-  const chosen = () => (morph.suffixes || []).find((s) => s.id === suffix());
-  const baseIsWord = () => !rootState.base || rootState.base === rootState.word;
-  /* The composed word is shown the moment a suffix is chosen, before any law
-     runs: the reader asked to see the new word beside the old one. */
-  const paintHead = () => {
-    const suf = chosen();
-    /* The construction row is state: choosing a suffix prints it beside the
-       base, taking it off leaves the word and the (+) alone. Repainted from
-       the page payload so the row cannot drift from the choice. */
-    const row = $("#construct");
-    if (row) {
-      row.innerHTML = constructionInner(rootState.page, morph, suffix(), true);
-      wireConstruct();
-    }
-    const line = $("#composed-line");
-    const box = $("#composed");
-    if (!box) return;
-    if (!suf) {
-      if (line) line.classList.add("quiet");
-      const stated = (rootState.page && rootState.page.construction
-        && rootState.page.construction.composed) || "";
-      box.innerHTML = stated
-        ? `<span class="mono" dir="auto">${esc(pf(stated))}</span><span class="sub"> · the recorded word</span>`
-        : `<span class="sub">nothing added — the word unchanged</span>`;
-      return;
-    }
-    if (line) line.classList.remove("quiet");
-    box.innerHTML = `<span class="sub">composing…</span>`;
-    const mine = suffix();
-    api("/api/compose", { form: rootState.word, suffix: mine, lang: rootState.lang }).then((c) => {
-      if (suffix() !== mine) return;
-      box.innerHTML = `<span class="mono" dir="auto">${esc(pf(c.form || ""))}</span>`
-        + (c.law
-          ? `<span class="sub"> · by the registered formation law ${lawLink(c.law.name, c.law.key)}</span>`
-          : c.law_not_applied
-          ? `<span class="sub"> · composed by hand: the formation law <span class="mono">${esc(c.law_not_applied.split(":").pop())}</span> does not apply to this stem</span>`
-          : `<span class="sub"> · composed here; the laws then run from it</span>`);
-    }).catch(() => { box.innerHTML = ""; });
-  };
-  const setSuffix = (id) => {
-    rootState.suffix = id || "";
-    closeMenu();
-    paintHead();
-    load();
-  };
-  /* The menu of cited suffixes. `replace` asks for another suffix in place of
-     the one the dictionary gives the word; `add` attaches one more to the word
-     as it stands. Replacing on a word that is *built from* another word goes
-     back to the base, so the new choice is composed from the same base the
-     dictionary names, not stacked on the derived word (2026-11-08). */
-  let menuMode = "";
-  const closeMenu = () => {
-    const m = $("#sufmenu");
-    /* A reader who pressed Escape inside a submenu gets the keyboard back on
-       the button that opened it, not on nothing (2026-11-08). */
-    const inside = !!(m && typeof m.contains === "function"
-      && m.contains(document.activeElement));
-    if (m) { m.hidden = true; m.innerHTML = ""; }
-    const b = $("#cadd"); if (b) b.setAttribute("aria-expanded", "false");
-    const c = $("#csuf"); if (c) c.setAttribute("aria-expanded", "false");
-    menuMode = "";
-    if (inside) { const back = $("#cadd") || $("#csuf"); if (back) back.focus(); }
-  };
-  /* The morphemes the word's own record makes it wear: the header construction
-     and every rival one it states, deduplicated by the morpheme, so the picker
-     can print them first (2026-11-08). */
-  const wornSuffixes = () => {
-    const page = (rootState && rootState.page) || {};
-    const list = page.constructions || (page.construction ? [page.construction] : []);
-    const out = [];
-    const seen = new Set();
-    list.forEach((c) => (c.suffixes || []).forEach((piece) => {
-      const key = piece.id || piece.form;
-      if (!key || seen.has(key)) return;
-      seen.add(key);
-      out.push(piece);
-    }));
-    return out;
-  };
-  /* Sections and their submenus, the way a desktop menu works: hover or click
-     a heading and its forms open beside it; one list is open at a time; the
-     arrow keys walk the list and Escape closes it. On a narrow screen the
-     submenu is not a flyout but a list opening under its heading
-     (2026-11-08). */
-  const wireSections = (m) => {
-    const wraps = [...m.querySelectorAll(".sufsecwrap")];
-    const shut = (except) => wraps.forEach((wrap) => {
-      if (wrap === except) return;
-      const sub = wrap.querySelector(".sufsub");
-      const btn = wrap.querySelector(".sufsec");
-      if (sub) sub.hidden = true;
-      if (btn) btn.setAttribute("aria-expanded", "false");
-    });
-    /* A flyout that would hang off the right edge opens to the left instead,
-       and one that would run past the floor is lifted just enough to fit. The
-       placement is measured, not guessed: the width of a form is its word's
-       width (2026-11-08). */
-    const place = (wrap) => {
-      const sub = wrap.querySelector(".sufsub");
-      if (!sub) return;
-      sub.classList.remove("flip");
-      sub.style.transform = "";
-      const narrow = isNarrow();
-      if (narrow) return;
-      if (sub.getBoundingClientRect().right > window.innerWidth - 8) sub.classList.add("flip");
-      const box = sub.getBoundingClientRect();
-      const over = box.bottom - (window.innerHeight - 8);
-      if (over > 0) {
-        const lift = Math.min(over, Math.max(box.top - 8, 0));
-        if (lift > 0) sub.style.transform = `translateY(${-lift}px)`;
-      }
-    };
-    const openSec = (wrap, focus) => {
-      shut(wrap);
-      const sub = wrap.querySelector(".sufsub");
-      const btn = wrap.querySelector(".sufsec");
-      if (!sub || !btn) return;
-      sub.hidden = false;
-      btn.setAttribute("aria-expanded", "true");
-      place(wrap);
-      if (focus) {
-        const first = sub.querySelector("[data-csuf]");
-        if (first) first.focus(); else sub.focus();
-      }
-    };
-    wraps.forEach((wrap) => {
-      const btn = wrap.querySelector(".sufsec");
-      const sub = wrap.querySelector(".sufsub");
-      let timer = 0;
-      /* A pointer already opened the list on the way to the click, so the
-         click that follows confirms it instead of shutting it again; a second
-         click — or a tap, where no hover preceded it — closes it
-         (2026-11-08). */
-      let byHover = false;
-      const close = () => { sub.hidden = true; btn.setAttribute("aria-expanded", "false"); };
-      const later = () => { clearTimeout(timer); timer = setTimeout(close, 180); };
-      wrap.addEventListener("mouseenter", () => {
-        clearTimeout(timer); byHover = true; openSec(wrap, false);
-      });
-      wrap.addEventListener("mouseleave", later);
-      btn.addEventListener("click", () => {
-        if (sub.hidden) { byHover = false; openSec(wrap, false); return; }
-        if (byHover) { byHover = false; return; }
-        close();
-      });
-      btn.addEventListener("keydown", (e) => {
-        if (["Enter", " ", "ArrowRight", "ArrowDown"].includes(e.key)) {
-          e.preventDefault();
-          openSec(wrap, true);
-        } else if (e.key === "Escape") {
-          e.preventDefault();
-          closeMenu();
-        }
-      });
-      sub.addEventListener("keydown", (e) => {
-        const items = [...sub.querySelectorAll("[data-csuf]")];
-        const at = items.indexOf(document.activeElement);
-        if (e.key === "Escape" || e.key === "ArrowLeft") {
-          e.preventDefault();
-          close();
-          btn.focus();
-        } else if (e.key === "ArrowDown") {
-          e.preventDefault();
-          (items[at + 1] || items[0] || btn).focus();
-        } else if (e.key === "ArrowUp") {
-          e.preventDefault();
-          (items[at - 1] || items[items.length - 1] || btn).focus();
-        }
-      });
-    });
-  };
-  const isNarrow = () => typeof window.matchMedia === "function"
-    && window.matchMedia("(max-width: 780px)").matches;
-  const openMenu = (mode) => {
-    const m = $("#sufmenu");
-    if (!m) return;
-    if (!m.hidden && menuMode === mode) { closeMenu(); return; }
-    menuMode = mode;
-    const label = mode === "add"
-      ? `attach another cited suffix to ${rootState.word}`
-      : `choose a recorded suffix for ${rootState.base || rootState.word}`;
-    m.innerHTML = suffixMenuHtml(morph, mode, label, wornSuffixes());
-    m.classList.remove("up");
-    m.style.maxHeight = "";
-    m.hidden = false;
-    wireSections(m);
-    /* Near the foot of the window the menu opens upward, so a reader on a
-       phone never has to scroll the page to see it. The button's rect decides,
-       not the menu's: the panel slides in with the page's reveal animation, so
-       its own position is still moving when it is measured, while its height
-       is already the height it will keep (2026-11-08). */
-    const trigger = (mode === "add" ? $("#cadd") : $("#csuf")) || $("#cadd");
-    if (trigger && typeof m.getBoundingClientRect === "function"
-        && typeof trigger.getBoundingClientRect === "function") {
-      const box = trigger.getBoundingClientRect();
-      const height = m.getBoundingClientRect().height;
-      if (box.bottom + 6 + height > window.innerHeight - 8 && box.top - 6 - height > 8) {
-        m.classList.add("up");
-      }
-      /* In the narrow layout the submenus are part of the menu, so the menu
-         scrolls and must stop at the foot of the window, wherever it opened
-         (2026-11-08). */
-      if (isNarrow()) {
-        const top = Math.max(m.getBoundingClientRect().top, 8);
-        m.style.maxHeight = `${Math.max(window.innerHeight - top - 10, 220)}px`;
-      }
-    }
-    m.querySelectorAll("[data-csuf]").forEach((b) => {
-      b.onclick = () => {
-        const id = b.dataset.csuf || "";
-        if (mode === "replace" && !baseIsWord()) {
-          const qs = new URLSearchParams();
-          qs.set("into", sel.value);
-          if (id) qs.set("suffix", id);
-          /* A different suffix for the base is a different page, so this is a
-             real navigation — not a hash assignment, which would re-route the
-             whole view and throw away the reader's place. */
-          history.pushState({ construction: true }, "",
-            `#/word/${encodeURIComponent(rootState.lang)}/${encodeURIComponent(rootState.base)}?${qs}`);
-          routeOnce();
-          return;
-        }
-        setSuffix(id);
-      };
-    });
-    const btn = mode === "add" ? $("#cadd") : $("#csuf");
-    if (btn) btn.setAttribute("aria-expanded", "true");
-  };
-  /* Two requests can be in flight at once (a click during the first load), and
-     the older one must not repaint or rewrite the address of the newer choice. */
-  /* A stage of the timeline (or a "carry it on" button, which adds the next
-     one) is just a different target language. The select is kept in step so a
-     reader who prefers it still sees the same choice. */
-  const setInto = (stage) => {
-    if (!stage) return;
-    const options = sel.options ? [...sel.options] : [];
-    if (options.length && !options.some((o) => o.value === stage)) {
-      const opt = document.createElement("option");
-      opt.value = stage;
-      opt.textContent = stage;
-      sel.appendChild(opt);
-    }
-    sel.value = stage;
-    load();
-  };
-  let seq = 0;
-  let lastPayload = null;
-  /* A rung is edited where it stands: the typed form replaces that stage's,
-     the rungs above it stay the laws' own work, every law below runs on the
-     typed form, and the URL keeps the hypothesis (2026-11-08: "reconstructions should still be editable at any point"). */
-  const startEdit = (stage) => {
-    const li = [...out.querySelectorAll(".recon-rung")].find((row) => row.dataset.stage === stage);
-    if (!li) return;
-    const holder = li.querySelector(".rung-forms");
-    if (!holder) return;
-    const nameEl = li.querySelector(".when-name");
-    const name = (nameEl && nameEl.textContent) || stage;
-    holder.innerHTML = `<form class="editform" data-stage="${esc(stage)}">
-        <label class="sronly" for="ef-recon-${esc(stage)}">Form for ${esc(name)}</label>
-        <input id="ef-recon-${esc(stage)}" class="editform-input mono" type="text" dir="auto"
-          value="${esc(li.dataset.form || "")}" autocomplete="off" spellcheck="false">
-        <button class="ghost" type="submit">derive ↓</button>
-        <button class="ghost" type="button" data-cancel="1">cancel</button>
-      </form>`;
-    const input = holder.querySelector("input");
-    input.focus();
-    input.select();
-    holder.querySelector("form").onsubmit = (event) => {
-      event.preventDefault();
-      const value = input.value.trim();
-      if (!value) { input.setAttribute("aria-invalid", "true"); return; }
-      rootState.edit = { stage, form: value, name };
-      /* A suffix hypothesis composes the word at PIE; a rung the reader typed
-         replaces that start, so the two cannot both describe the timeline. */
-      rootState.suffix = "";
-      paintHead();
-      load();
-    };
-    input.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") { event.preventDefault(); paint(lastPayload); }
-    });
-    holder.querySelector("[data-cancel]").onclick = () => paint(lastPayload);
-  };
-  /* The handlers the payload carries: each repaint binds the new nodes. */
-  const wireOut = () => {
-    if (!out.querySelectorAll) return;
-    out.querySelectorAll("[data-into]").forEach((b) => {
-      b.onclick = () => setInto(b.dataset.into);
-    });
-    out.querySelectorAll("[data-next]").forEach((b) => {
-      b.onclick = () => setInto(b.dataset.next);
-    });
-    out.querySelectorAll("[data-edit]").forEach((b) => {
-      b.onclick = () => startEdit(b.dataset.edit);
-    });
-    /* A law is a switch here too: the click flips it at once, the chain is
-       re-derived without it, and the choice is kept in the address. */
-    out.querySelectorAll(".lawswitch").forEach((b) => {
-      b.onclick = () => {
-        const key = b.dataset.off;
-        if (!key) return;
-        if (rootState.off.has(key)) rootState.off.delete(key); else rootState.off.add(key);
-        b.setAttribute("aria-pressed", rootState.off.has(key) ? "false" : "true");
-        const law = b.closest(".law");
-        if (law) law.classList.toggle("off", rootState.off.has(key));
-        load();
-      };
-    });
-    const reset = out.querySelector("[data-recon-reset]");
-    if (reset) reset.onclick = () => { rootState.off = new Set(); load(); };
-    const unedit = out.querySelector("[data-recon-unedit]");
-    if (unedit) unedit.onclick = () => { rootState.edit = null; load(); };
-  };
-  const paint = (payload) => {
-    if (!payload) return;
-    lastPayload = payload;
-    out.innerHTML = renderReconstruct(payload);
-    wireOut();
-  };
-  const load = async () => {
-    const mine = ++seq;
-    const want = suffix();
-    const wantLang = sel.value;
-    const off = () => [...rootState.off].sort().join(",");
-    const ask = (edit) => api("/api/reconstruct", {
-      form: rootState.word, lang: wantLang, suffix: want || null, off: off(),
-      from: edit ? edit.stage : null, edit: edit ? edit.form : null,
-    });
-    out.innerHTML = `<p class="sub recon-wait">Running the registered laws…</p>`;
-    let payload;
-    try {
-      payload = await ask(rootState.edit);
-    } catch (e) { payload = { error: String(e) }; }
-    if (mine !== seq) return;
-    /* An edit belongs to one chain: changing the target language can leave the
-       edited stage off the path. The typed form is then dropped for this view,
-       and the page says so rather than losing the reader's work silently. */
-    if (payload && payload.error && rootState.edit) {
-      const dropped = rootState.edit;
-      let retry = null;
-      try { retry = await ask(null); } catch (e) { retry = { error: String(e) }; }
-      if (mine !== seq) return;
-      if (retry && !retry.error) {
-        rootState.edit = null;
-        retry.dropped_edit = dropped;
-        payload = retry;
-      }
-    }
-    if (payload && payload.error) {
-      out.innerHTML = `<p class="empty">${esc(payload.error || "nothing to show")}</p>`;
-      return;
-    }
-    paint(payload);
-    /* The choice is a link: reloading or sharing the URL keeps the language,
-       the suffix, the laws switched off and the edited rung. */
-    const qs = new URLSearchParams();
-    qs.set("into", wantLang);
-    if (want) qs.set("suffix", want);
-    if (off()) qs.set("off", off());
-    if (rootState.edit) {
-      qs.set("from", rootState.edit.stage);
-      qs.set("edit", rootState.edit.form);
-    }
-    history.replaceState(null, "",
-      `#/word/${encodeURIComponent(rootState.lang)}/${encodeURIComponent(rootState.word)}?${qs}`);
-  };
-  sel.onchange = () => {
-    if (!sel.value) { out.innerHTML = ""; return; }
-    load();
-  };
-  const wireConstruct = () => {
-    const add = $("#cadd");
-    if (add) add.onclick = () => openMenu("add");
-    const sufBtn = $("#csuf");
-    if (sufBtn) sufBtn.onclick = () => {
-      /* A suffix the word *wears* is a label, not a switch: opening the menu
-         offers another one in its place — composed from the base the
-         dictionary names. The (+) is the other question: attach one more to
-         the word as it stands. */
-      openMenu("replace");
-    };
-  };
-  wireConstruct();
-  paintHead();
-  /* A shared link (`?into=de`) opens on its language; a fresh page shows only
-     the word and the selector. */
-  if (sel.value) load();
-}
-
 function renderHierarchy(h, d, opts) {
   if (!h) {
     return `<h2>Where it comes from</h2>
@@ -2854,6 +1942,11 @@ function renderHierarchy(h, d, opts) {
           ? `<span class="badge" data-tip="The record states how this word was made: the construction stands above it, and its pieces carry their own timelines.">built from recorded pieces</span>`
         : r.status === "start"
           ? `<span class="badge" data-tip="The record names no ancestor for this word: the ladder starts here. A seam below, when there is one, says what the word is made of, and a formation is not a derivation.">no origin recorded</span>`
+        /* A stage the reader carried the etymon into is a reading of the
+           laws, not a verdict on the etymon: the word's own standing is above
+           it, on its own rung (admin, 2026-11-12). */
+        : (d && d.is_root && (h.path || []).length)
+          ? `<span class="badge" data-tip="This stage is where the registered laws carry the etymon; it is a reconstruction, and the etymon's own record stands above it.">descended by the laws</span>`
           : `<span class="badge warn" data-tip="The laws do not reach the attested form yet. The missing step is the worklist in docs/COVERAGE.md.">differs — the worklist</span>`;
   /* A word's own pathway: a registered law that never applied to it. The bar
      names the law, quotes the reason stored with it, and offers the plain

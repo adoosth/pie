@@ -90,10 +90,24 @@
   "tier": "quoted",
   "translit": ""
  },
+ "AZ": {
+  "lang": "pal",
+  "reading": "buz",
+  "source": "MacKenzie 1971 s.v. buz",
+  "tier": "recorded",
+  "translit": ""
+ },
  "BNPSE": {
   "lang": "pal",
   "reading": "xwad",
   "source": "MacKenzie 1971 s.v. xwad",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "BRE": {
+  "lang": "pal",
+  "reading": "pus",
+  "source": "MacKenzie 1971 s.v. pus",
   "tier": "recorded",
   "translit": ""
  },
@@ -174,6 +188,13 @@
   "tier": "recorded",
   "translit": ""
  },
+ "MALE": {
+  "lang": "pal",
+  "reading": "purr",
+  "source": "MacKenzie 1971 s.v. purr",
+  "tier": "recorded",
+  "translit": ""
+ },
  "MRYA": {
   "lang": "pal",
   "reading": "saxwan",
@@ -234,6 +255,13 @@
   "lang": "pal",
   "reading": "an",
   "source": "MacKenzie 1971 s.v. an",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ZNE": {
+  "lang": "pal",
+  "reading": "en",
+  "source": "MacKenzie 1971 s.v. en",
   "tier": "recorded",
   "translit": ""
  },
@@ -2463,6 +2491,13 @@
   "tier": "quoted",
   "translit": ""
  },
+ "ykyl": {
+  "lang": "pal",
+  "reading": "agar",
+  "source": "MacKenzie 1971 s.v. agar",
+  "tier": "recorded",
+  "translit": ""
+ },
  "ylcyc": {
   "lang": "pal",
   "reading": "arziz",
@@ -2746,8 +2781,8 @@
  "ŠM": {
   "lang": "pal",
   "reading": "nām",
-  "source": "Wiktionary, fa entry \"نام\", etymology",
-  "tier": "quoted",
+  "source": "MacKenzie 1971 s.v. nām",
+  "tier": "recorded",
   "translit": ""
  },
  "ŠNT": {

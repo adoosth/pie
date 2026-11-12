@@ -1088,16 +1088,26 @@ class TestRootWord(unittest.TestCase):
     def setUpClass(cls):
         cls.page = service.word("ine-pro", "nókʷts")
 
-    def test_a_pie_word_offers_no_ladder(self):
+    def test_a_pie_word_is_one_rung_of_its_own_timeline(self):
+        """Nothing above it, and everything below it one click away
+        (admin, 2026-11-12: the *reconstruct into* selector is gone)."""
         self.assertTrue(self.page["is_root"])
-        self.assertIsNone(self.page["hierarchy"], "the root has no ancestry to climb")
+        ladder = self.page["hierarchy"]
+        self.assertEqual(len(ladder["levels"]), 1, "one row: the etymon itself")
+        self.assertEqual(ladder["levels"][0]["stage"], "ine-pro")
+        self.assertEqual(ladder["levels"][0]["form"], "nókʷts")
+        self.assertEqual(ladder["path"], [])
+        self.assertIn("gem-pro", [r["l"] for r in ladder["next"]])
         self.assertFalse(service.word("en", "night")["is_root"])
 
-    def test_the_root_word_offers_every_language_to_reconstruct_into(self):
-        rows = self.page["rebuilds"]["rows"]
+    def test_the_root_word_offers_every_language_below_it(self):
+        """The page no longer sends the selector's table; the model still
+        knows every language the laws reach, and tools ask it directly."""
+        rows = service.rebuilds_for_etymon("nókʷts")["rows"]
         self.assertGreater(len(rows), 20)
         self.assertIn("en", {r["l"] for r in rows})
         self.assertTrue(all(r["form"] for r in rows))
+        self.assertIsNone(self.page["rebuilds"], "nothing dead rides on the page payload")
 
     def test_the_roots_cognate_set_is_found_by_its_etymon(self):
         """It may not say "no cognate set" while quoting that set's forms."""
@@ -1663,7 +1673,10 @@ class TestWordsThatOpen(unittest.TestCase):
     def test_a_pie_word_carries_its_branch_too(self):
         page = service.word("ine-pro", "wĺ̥kʷos")
         self.assertTrue(page["is_root"])
-        self.assertIsNone(page["hierarchy"], "Proto-Indo-European has no ladder to climb")
+        self.assertEqual([lv["stage"] for lv in page["hierarchy"]["levels"]], ["ine-pro"],
+                         "the etymon is one rung of its own timeline")
+        self.assertTrue(page["hierarchy"]["next"],
+                        "and the stages below it are the steps down")
         branch = page["descendants"]
         self.assertIsNotNone(branch, "an etymon page opens into its daughters like any other")
         self.assertEqual(branch["source"]["form"], "wĺ̥kʷos",
@@ -2753,15 +2766,28 @@ class TestTheSectionsOfThePicker(unittest.TestCase):
             self.assertIsNotNone(row, f"{piece['form']} wears an id the menu knows")
             self.assertEqual(row["section"], "ending")
 
-    def test_the_menu_hooks_are_in_the_front_end(self):
+    def test_the_construct_line_stands_on_the_rung(self):
+        """The picker is gone (2026-11-12): a stage's own suffixes are chips on
+        its rung, and the panel behind them asks the same laws for the answer.
+        The address carries the question, so every build is a link."""
         js = text("app.js")
         css = text("style.css")
-        for needle in ("sufworn", "sufsecwrap", "sufsub", "data-sec"):
-            self.assertIn(needle, js, f"the picker is missing {needle}")
-        self.assertIn(".sufsub.flip", css, "a submenu can open to the left")
-        self.assertIn(".sufrow.worn", css, "a worn morpheme looks different")
-        self.assertIn("@media (max-width: 780px)", css,
-                      "a narrow window opens the submenu under its heading, not beside it")
+        for needle in ("buildchips", "data-bkind", "data-bstage", "construct…"):
+            self.assertIn(needle, js, f"the rung's construct line is missing {needle}")
+        self.assertIn(".buildchips", css, "the suffix chips sit on one line")
+        self.assertIn(".buildpanel", css, "the two-word builder opens under them")
+        self.assertIn("build=", js, "a build is carried in the address")
+
+    def test_the_pie_page_has_a_rung_of_its_own(self):
+        """Proto-Indo-European is the top of the family, not the end of the
+        page: it gets one rung, and the daughters are the next stage."""
+        h = service.hierarchy("ine-pro", "ters-")
+        self.assertIsNotNone(h, "a PIE word has a ladder")
+        self.assertEqual(len(h["levels"]), 1)
+        self.assertEqual(h["levels"][0]["stage"], "ine-pro")
+        self.assertEqual(h["levels"][0]["form"], "ters-")
+        self.assertIn("ine-pro", h["build_options"])
+        self.assertTrue(h["next"], "the family's daughters are the next stage")
 
 
 class TestTheOldPersianScript(unittest.TestCase):

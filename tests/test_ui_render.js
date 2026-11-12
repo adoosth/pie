@@ -599,499 +599,95 @@ assert.ok(borrowedWords.includes("languages outside the English chain"),
 console.log("etymon rung ok");
 
 /* ---------------------------------------------------------------- */
-/* a word in the root language: reconstruct it into the family      */
+/* a word in Proto-Indo-European: one rung, and the stages below it */
 /* ---------------------------------------------------------------- */
-/* Proto-Indo-European has nothing above it, so the page must not draw an
-   ancestry ladder. It offers a language instead, and shows what the
-   registered laws make of the etymon on the way there (2026-11-07). */
-const rootPage = {
-  is_root: true, lang: "ine-pro", lang_name: "Proto-Indo-European", word: "nókʷts",
-  rebuilds: { rows: [
-    row({ l: "en", lang_name: "English", branch: "Germanic", form: "nˈæhwθ", status: "differs",
-          evidence: "weak", recorded: { w: "night", r: "", evidence: "attested", ipa: "naɪ̯t" } }),
-    row({ l: "de", lang_name: "German", branch: "Germanic", form: "nˈahwt", status: "new" }),
-    row({ l: "sq", lang_name: "Albanian", branch: "Albanian", form: "nókʷts",
-          skipped: ["ine-pro→sq"] }),
-  ] },
-  /* A PIE word has no ladder, but it still has a family below it: the page
-     must draw the same expandable branch every other word page draws. */
-  descendants: {
-    source: { lang: "ine-pro", lang_name: "Proto-Indo-European", form: "nókʷts" },
-    counts: { direct: 1, languages: 2, match: 0, differs: 0, new: 2, gaps: 0, steps: 2,
-              strong: 0, weak: 2 },
-    tree: [branchNode({ l: "gem-pro", lang_name: "Proto-Germanic", form: "nˈahwθs",
-      children: [branchNode({ l: "en", lang_name: "English", form: "nˈæhwθ", depth: 1 })] })],
-  },
+/* Proto-Indo-European has nothing above it, so its page is a ladder with one
+   rung — the etymon itself — and the daughter stages stand under it as the
+   next step: one click each, the same ladder every other word page draws
+   (admin, 2026-11-12: no *reconstruct into* selector). The rung carries what
+   the stage may be built with, so a root is a place to construct from. */
+const pieLevel = (over) => Object.assign({
+  stage: "ine-pro", name: "Proto-Indo-European", short: "PIE", kind: "proto",
+  branch: "Indo-European", script: "reconstructed", era: [-4500, -2500],
+  era_label: "c. 4500–2500 BCE", era_mid: -3500, form: "ters-", baseline: "ters-",
+  changed: false, status: "start", edited: false, evidence: "literary",
+  show_reading: false, form_known: true, matched_form: null, rules: [],
+  formation: null, built_as: null, builds: [], built: null, transition: null,
+  recorded: { w: "ters-", evidence: "literary", kind: "proto", script: "reconstructed",
+              pos: "root", gloss: "dry", known: true, starts: true, sources: [], pages: [] },
+}, over);
+const pieRoot = {
+  lang: "ine-pro", word: "ters-", start: "ine-pro", start_name: "Proto-Indo-European",
+  start_variety: "", start_recorded: null, starts: [], etymon: null, etymon_record: null,
+  linked_by_set: false, set_start: false, set_is_root: false, ancestry_top: null,
+  off_chain: [], set_source: null, root: false, levels: [pieLevel()],
+  path: [], can_extend: true, exact: null, category: null, steps_differ: [],
+  mismatched_steps: [], backlog: [], earlier: [], edited: false, disabled: [],
+  enabled: [], switched_off: [], pathway: null, pathway_available: false,
+  target_name: "Proto-Indo-European", start_form: "ters-", hypothesis: null,
+  build: null, build_at: null, build_above: null, formed: null,
+  missing: [], total_steps: 0, pathways: [], stored_pathway: null,
+  result: { status: "start", form: "ters-", match: false },
+  next: [{ l: "iir-pro", lang_name: "Proto-Indo-Iranian", branch: "Indo-Iranian",
+           era_label: "c. 2500–2000 BCE", form: "tarš", steps: 2,
+           skipped: [], status: "new", recorded: null }],
+  build_options: { "ine-pro": {
+    stage: "ine-pro", stage_name: "Proto-Indo-European",
+    suffixes: [{ id: "no", form: "-nó-", gloss: "verbal adjective or passive participle",
+                 law: false, kind: "suffix" },
+               { id: "os-acute", form: "-ós", gloss: "oxytone nominative",
+                 law: false, kind: "ending" }],
+    endings: [{ id: "-ós", form: "-ós", gloss: "thematic nominative singular", law: false }],
+  } },
 };
-const rootHtml = context.renderRoot(rootPage, "de");
-const rootWords = plain(rootHtml);
-assert.ok(rootHtml.includes('id="recon-lang"'), "the root page offers a language selector");
-assert.ok(rootHtml.includes('<option value="de" selected>'), "the requested language is preselected");
-assert.ok(rootHtml.includes('<optgroup label="Germanic">') && rootHtml.includes('<optgroup label="Albanian">'),
-  "the languages are grouped by branch, alphabetically");
-assert.ok(rootHtml.indexOf('label="Albanian"') < rootHtml.indexOf('label="Germanic"'),
-  "branches are ordered, not left in row order");
-assert.ok(rootHtml.includes("Albanian · chain incomplete"),
-  "a language whose chain has a gap says so in the list");
-assert.ok(rootWords.includes("Reconstruct the word into any descendant language"),
-  "the page says what the selector does, in one line");
-/* 2026-11-08: a fresh page reconstructs into nothing — the word
-   and the INTO selector, no English derivation nobody asked for. */
-const freshRoot = context.renderRoot(rootPage, "");
-assert.ok(freshRoot.includes('<option value="" selected>'),
-  "nothing is reconstructed until a language is chosen");
-assert.ok(!freshRoot.includes('<option value="en" selected>'),
-  "English is no longer the default");
-assert.ok(!rootHtml.includes('id="recon-out"') === false, "the output slot exists");
-assert.ok(rootHtml.includes('aria-live="polite"'), "the output is announced to a screen reader");
-assert.ok(!rootHtml.includes("Where it comes from"), "no ancestry section on a root word");
-assert.ok(rootWords.includes("Establish Pathways"), "a PIE word opens into its pathways");
-assert.ok(rootHtml.includes('<details class="branchnode" data-l="gem-pro"'),
-  "the etymon's daughter is expandable, like on every other word page");
-assert.ok(rootHtml.indexOf("Establish Pathways") > rootHtml.indexOf('id="rootpanel"'),
-  "the one-path panel comes first and the family tree follows it");
+const piePage = { lang: "ine-pro", word: "ters-", is_root: true,
+                  lang_name: "Proto-Indo-European" };
+const pieHtml = context.renderHierarchy(pieRoot, piePage, {});
+const pieWords = plain(pieHtml);
+assert.ok(pieHtml.includes('data-stage="ine-pro"'), "the etymon is a rung of the timeline");
+assert.ok(pieWords.includes("this word"), "and the rung says which word the page is");
+assert.ok(pieWords.includes("top of the family"),
+  "the family begins here, and the page says so instead of calling it a gap");
+assert.ok(!pieHtml.includes("recon-lang") && !pieWords.includes("Reconstruct into"),
+  "no *reconstruct into* selector: the timeline is the way down");
+assert.ok(/class="nextgrid"/.test(pieHtml) && pieHtml.includes('data-next="iir-pro"'),
+  "each daughter stage is a step of the timeline, one click away");
+assert.ok(pieWords.includes("Proto-Indo-Iranian"), "the stage below is named where it stands");
+/* The construct: the rung carries the stage's own suffixes, and choosing one
+   asks the same ladder for the word those laws build (admin, 2026-11-12). */
+assert.ok(pieHtml.includes("construct…"), "the rung offers a construct");
+assert.ok(/data-barg="no"/.test(pieHtml), "a recorded suffix is one click from the rung");
+assert.ok(pieWords.includes("-nó-"), "and it is printed, not hidden behind the button");
+assert.ok(!pieHtml.includes('data-barg="os-acute"'),
+  "a grammatical ending is not offered as a derivational suffix");
+assert.ok(pieWords.includes("-ós"), "the endings keep their own row in the panel");
 
-/* Grammar sits directly under the title as the word's construction
-   (2026-11-08): the base, then the suffix it wears, then a (+).
-   The old "as it stands" chip row is gone. */
-rootPage.morphology = { suffixes: [
-  { id: "eh2", form: "-eh₂", gloss: "feminine or collective", note: "…", sources: ["fortson-2004"] },
-  { id: "kos", form: "-ko-", gloss: "relational adjective", note: "…", sources: ["fortson-2004"] },
-] };
-const plainRoot = Object.assign({}, rootPage, { construction: null });
-const bareHtml = context.constructHtml(plainRoot, rootPage.morphology, "");
-assert.ok(bareHtml.includes('class="cadd"'), "a word with no suffix still offers the (+)");
-assert.ok(!bareHtml.includes("as it stands"), "the old '(as it stands)' wording is gone");
-assert.ok(!bareHtml.includes('class="suffixline"'), "and so is the chip row beside the title");
-const sufHtml = context.constructHtml(plainRoot, rootPage.morphology, "eh2");
-assert.ok(sufHtml.includes('class="csuf"') && sufHtml.includes("-eh₂"),
-  "the chosen suffix is printed in the construction line");
-assert.ok(sufHtml.includes('data-mode="replace"'), "clicking it opens the suffix picker");
-assert.ok(sufHtml.includes('id="sufmenu"'), "the picker has a place to open");
-const menu = context.suffixMenuHtml(rootPage.morphology, "replace", "choose");
-assert.ok(menu.includes('data-csuf="eh2"') && menu.includes("feminine or collective"),
-  "every cited suffix is offered with its meaning");
-
-/* The picker is the stage's whole recorded morphology, and a row says what the
-   morpheme means, how many words wear it, and — when the dictionary keeps an
-   entry for it — opens that entry (2026-11-08: *-ós* must explain
-   itself, and a suffix recorded on one root must be selectable on the others). */
-const richMorph = { suffixes: [
-  { id: "ós", form: "-ós", gloss: "thematic nominative singular of an oxytone stem",
-    detail: "*-ó- + *-s", recorded: 31, examples: ["nisdós", "dl̥h₁gʰós"],
-    entry: "#/word/ine-pro/-%C3%B3s", kind: "ending" },
-  { id: "iskos", form: "-iskos", gloss: "diminutive or belonging adjective",
-    recorded: 0, entry: "#/word/ine-pro/-iskos", kind: "suffix" },
-  { id: "n", form: "-n̥", gloss: "", recorded: 2, kind: "suffix" },
-] };
-const richMenu = context.suffixMenuHtml(richMorph, "replace", "choose");
-assert.ok(richMenu.includes("-ós") && richMenu.includes("31 words"),
-  "a recorded suffix says how many words wear it");
-assert.ok(richMenu.includes("thematic nominative singular of an oxytone stem"),
-  "and what it means");
-assert.ok(richMenu.includes('class="suf-page"') && richMenu.includes("#/word/ine-pro/-%C3%B3s"),
-  "and opens the dictionary entry for it");
-assert.ok(richMenu.includes("no meaning recorded yet"),
-  "a piece no source glosses says so instead of showing an empty cell");
-assert.ok(richMenu.indexOf("-ós") < richMenu.indexOf("-iskos"),
-  "the suffixes the corpus records most stand first");
-
-/* An i-stem is *-i- plus the athematic nominative *-s: every letter of
-   *h₂wl̥pís has to be accounted for, and the stated construction shows the
-   composed word at once (2026-11-09). */
-const pieStemC = {
-  base: { form: "h₂wl̥p-", known: true, link: "#/word/ine-pro/h%E2%82%82wl%CC%A5p-" },
-  members: [],
-  suffixes: [{ form: "-i-", gloss: "i-stem — the stem-formative the record names",
-               ending: "s", ending_name: "athematic nominative singular", kind: "stem" }],
-  composed: "h₂wl̥pís",
-};
-const pieStemPage = Object.assign({}, rootPage, { word: "h₂wl̥pís", construction: pieStemC });
-const pieStemHtml = context.constructHtml(pieStemPage, { suffixes: [] }, "");
-assert.ok(pieStemHtml.includes("-i-"), "the stem-formative is printed");
-assert.ok(pieStemHtml.includes(">-s<") || pieStemHtml.includes(">-s</"),
-  "the nominative -s sits beside it, not out of nowhere");
-assert.ok(pieStemHtml.includes("athematic nominative singular"),
-  "the ending says what it is");
-assert.ok(pieStemHtml.includes("composed") && pieStemHtml.includes("h₂wl̥pís"),
-  "the composed word is shown before any law runs");
-
-/* A suffix with an entry is a door even where the picker is closed: an
-   attested word's construction cannot be recomposed, but it can be explained. */
-const plainC = { base: { form: "delh₁gʰ-", known: true, link: "" },
-                 suffixes: [{ form: "-ós", gloss: "thematic nominative singular",
-                              entry: "#/word/ine-pro/-%C3%B3s", recorded: 31 }],
-                 confidence: "stated", source: "the entry", etym: "From the stem *delh₁gʰ-" };
-const plainPage = Object.assign({}, rootPage, { is_root: false, construction: plainC });
-const plainHtml = context.constructHtml(plainPage, { suffixes: [] }, "");
-assert.ok(plainHtml.includes('class="csuf plain link"'),
-  "the suffix links to its entry when it cannot be chosen");
-assert.ok(plainHtml.includes("31 words"), "the hover says where it is recorded");
-
-/* A suffix recorded on a PIE root must be selectable on the others: the
-   picker follows the construction, not the word's own suffix list. */
-const otherC = Object.assign({}, plainC, { suffixes: [] });
-const otherPage = Object.assign({}, rootPage, { is_root: false, construction: otherC });
-assert.ok(context.constructHtml(otherPage, richMorph, "").includes('class="cadd"'),
-  "a non-root word with a construction still offers the (+)");
-
-/* One word may state several constructions (2026-11-08): the one
-   it wears stays first and keeps the picker; the rivals follow, read-only,
-   labelled with their confidence and hoverable to the sentence they came from. */
-const primaryC = { base: { form: "kers-", known: true, link: "#/word/ine-pro/kers-" },
-                   suffixes: [{ form: "-nós", id: null, gloss: "" }],
-                   confidence: "stated", source: "the entry",
-                   etym: "From *kers- + *-nós or *ker-s- + *-nós." };
-const rivalC = { base: { form: "ker-s-", known: false, link: "" },
-                 suffixes: [{ form: "-nós", id: null, gloss: "" }],
-                 confidence: "argued", source: "the entry",
-                 etym: "From *kers- + *-nós or *ker-s- + *-nós." };
-const multi = Object.assign({}, rootPage, {
-  word: "kr̥snós", construction: primaryC, constructions: [primaryC, rivalC],
+/* A construct above the etymon: *ters- + *-nó- is *tr̥s-nó-s, and the step says
+   which grade the formation puts the root in. */
+const builtLevel = pieLevel({
+  form: "tr̥snˈos", baseline: "tr̥snˈos",
+  built: { stage: "ine-pro", kind: "suffix", form: "tr̥snˈos",
+           pieces: [{ form: "ters-", word: "ters-", lang: "ine-pro",
+                      lang_name: "Proto-Indo-European", gloss: "dry", pos: "root",
+                      known: true, grade: "zero", grade_label: "zero grade",
+                      grade_note: "*-nó- is oxytone, so the root stands in zero grade." },
+                    { form: "-nó-", word: "no", lang: "ine-pro",
+                      lang_name: "Proto-Indo-European",
+                      gloss: "verbal adjective or passive participle",
+                      pos: "suffix", known: true, affix: true }],
+           steps: [], note: "A suffix is added to the word's stem." },
 });
-const multiHtml = context.constructHtml(multi, rootPage.morphology, "");
-/* A chain keeps its middle pieces: *dus- + *ménes- + *-s must read as three
-   parts, or the row does not build the word (2026-11-08). */
-const chainC = { base: { form: "dus-", known: false, link: "", gloss: "bad" },
-                 members: [{ form: "ménes-", known: false, link: "", gloss: "mind, thought" }],
-                 suffixes: [{ form: "-s", id: null, gloss: "" }],
-                 confidence: "stated", source: "the entry",
-                 etym: "From *dus- (“bad”) + *ménes- (“mind, thought”) + *-s." };
-const chainHtml = context.constructHtml(Object.assign({}, rootPage, { word: "dusmenēs", construction: chainC }),
-                                       rootPage.morphology, "");
-assert.ok(chainHtml.includes('class="cmem"'), "the compound's middle piece is printed");
-const chainText = plain(chainHtml);
-assert.ok(chainText.indexOf("dus-") < chainText.indexOf("ménes-")
-  && chainText.indexOf("ménes-") < chainText.indexOf("-s"),
-  "the row reads base + member + suffix, in that order: " + chainText);
-assert.ok(multiHtml.includes('class="construct-alt"'), "a rival construction sits under the main one");
-assert.ok(plain(multiHtml).includes("also argued"), "and says how sure the entry is of it");
-assert.ok(multiHtml.includes('data-tip="From *kers- + *-nós or *ker-s-'),
-  "the sentence it was read from is on hover");
-assert.ok(multiHtml.indexOf("kers-") < multiHtml.indexOf("ker-s-"),
-  "the entry's own construction comes first");
-assert.equal((multiHtml.match(/id="csuf"/g) || []).length, 1,
-  "only the construction the word wears is a picker");
-assert.equal((multiHtml.match(/id="cadd"/g) || []).length, 1, "and only one (+)");
-/* The composed form is the construction's last line, inside the panel — not a
-   loose line under the header (2026-11-08: the block must read as
-   one section). */
-assert.ok(multiHtml.includes('id="composed-line"'), "the composed form belongs to the construction panel");
-assert.ok(multiHtml.indexOf('class="construct-row"') < multiHtml.indexOf('id="composed-line"'),
-  "it follows the pieces it composes");
-assert.ok(multiHtml.indexOf('id="composed-line"') < multiHtml.indexOf('class="construct-alt"'),
-  "and sits above the rival analyses");
-/* A word the entry only *suggests* a root for wears that root as a possible
-   construction (2026-11-08): h₂ŕ̥tḱos, "possibly nominalized from
-   root *h₂retḱ-". The label says who is sure — argued — and the pieces print
-   the root with the stem-formative the word itself carries. */
-const hedgedC = { base: { form: "h₂retḱ-", known: false, link: "", gloss: "to damage, harm" },
-                  suffixes: [{ form: "-o-", id: null,
-                               gloss: "o-stem — the stem-formative this form carries" }],
-                  confidence: "argued", source: "the entry",
-                  etym: "possibly nominalized from root *h₂retḱ- (“to damage, harm”)" };
-const hedgedPage = Object.assign({}, rootPage, {
-  is_root: false, word: "h₂ŕ̥tḱos", construction: hedgedC, constructions: [hedgedC],
-});
-const hedgedHtml = context.constructHtml(hedgedPage, { suffixes: [] }, "");
-assert.ok(plain(hedgedHtml).includes("construction argued"),
-  "a hedged derivation is labelled as argued");
-assert.ok(hedgedHtml.includes("h₂retḱ-") && hedgedHtml.includes("-o-"),
-  "the root and the stem-formative it carries are both printed");
-assert.ok(hedgedHtml.includes("data-tip=\"“to damage, harm”"),
-  "the entry's own gloss of the root is on hover");
-const bareBaseC = { base: { form: "mer-", known: true, link: "#/word/ine-pro/mer-" },
-                    suffixes: [], confidence: "argued", source: "the entry",
-                    etym: "perhaps from a root *mer- (“sea, lake, wetland”)." };
-const bareBaseHtml = context.constructHtml(
-  Object.assign({}, hedgedPage, { word: "móri", construction: bareBaseC, constructions: [bareBaseC] }),
-  { suffixes: [] }, "");
-assert.ok(!bareBaseHtml.includes('class="cplus"'),
-  "a derivation that names no suffix prints no suffix");
-assert.ok(bareBaseHtml.includes('class="cbase link"'), "its root is still a door to its page");
-const wordOnly = Object.assign({}, rootPage, { is_root: false, construction: null });
-assert.ok(!context.constructHtml(wordOnly, rootPage.morphology, "").includes("composed-line"),
-  "a descendant's page composes nothing here");
-
-/* A word the dictionary builds from another one shows the base as a door and
-   the suffix it wears, whether or not a picker exists for the stage. */
-const derived = Object.assign({}, rootPage, {
-  word: "wl̥kʷíh₂s", is_root: true,
-  construction: { base: { form: "wĺ̥kʷos", known: true, link: "#/word/ine-pro/wĺ̥kʷos" },
-                  suffixes: [{ form: "-íh₂s", id: null, gloss: "" }],
-                  etym: "From *wĺ̥kʷos + *-íh₂s." },
-});
-/* The label is a heading on its own line above the pieces, so it cannot read
-   as a word glued to the base (2026-11-08). */
-assert.ok(bareHtml.includes('<span class="construct-label">construction(s)</span>'),
-  "with nothing stated the panel still reads as the place constructions live");
-assert.ok(bareHtml.indexOf('class="construct-label"') < bareHtml.indexOf('class="construct-row"'),
-  "the label sits on its own line, before the pieces");
-const stemPage = Object.assign({}, rootPage, {
-  word: "h₂wl̥pís",
-  construction: { kind: "stem", base: { form: "h₂wl̥p-", known: true, link: "#/word/ine-pro/h₂wl̥p-" },
-                  suffixes: [{ form: "-i-", id: null,
-                               gloss: "i-stem — the stem-formative the record names" }],
-                  etym: "An i-stem noun built on the root *h₂wl̥p-." },
-});
-const stemHtml = context.constructHtml(stemPage, rootPage.morphology, "");
-assert.ok(stemHtml.includes('<span class="construct-label">construction</span>'),
-  "a stated stem class is a construction");
-assert.ok(stemHtml.includes('data-tip="-i- · i-stem'),
-  "the stem-formative carries its gloss on hover");
-assert.ok(stemHtml.indexOf("h₂wl̥p-") < stemHtml.indexOf("-i-"), "root first, then the stem-formative");
-
-const dHtml = context.constructHtml(derived, rootPage.morphology, "");
-assert.ok(dHtml.includes('href="#/word/ine-pro/wĺ̥kʷos"'), "the base links to its own page");
-assert.ok(dHtml.includes("-íh₂s"), "the suffix the word wears is printed");
-assert.ok(dHtml.indexOf("wĺ̥kʷos") < dHtml.indexOf("-íh₂s"), "base first, then the suffix");
-
-const recon = context.renderReconstruct({
-  source: { form: "nókʷts", name: "Proto-Indo-European" },
-  lang: "en", lang_name: "English", branch: "Germanic", kind: "attested",
-  form: "nˈæhwθ", steps: 2, tiers: ["established"], skipped: [],
-  status: "differs", evidence: "weak", same: false,
-  recorded: { w: "night", r: "", evidence: "attested", ipa: "naɪ̯t", show_reading: false,
-              pos: "noun", gloss: "the dark part of the day",
-              pages: [{ id: "wiktionary", title: "Wiktionary", kind: "wiktionary",
-                        url: "https://en.wiktionary.org/wiki/night" }] },
-  levels: [
-    { src: "ine-pro", dst: "gem-pro", src_name: "Proto-Indo-European", dst_name: "Proto-Germanic",
-      form: "nˈahwθs", missing: false, registered: 41, fired: 1,
-      rules: [{ key: "ine-pro~gem-pro:grimm_t", id: "grimm_t", name: "Grimm: *t → *þ",
-                tier: "established", before: "nókʷts", after: "nˈōkʷθs",
-                fired: true, disabled: false }] },
-    { src: "gem-pro", dst: "en", src_name: "Proto-Germanic", dst_name: "English",
-      form: "nˈæhwθ", missing: false, registered: 10, fired: 0, rules: [] },
-  ],
-});
-const reconWords = plain(recon);
-assert.ok(recon.indexOf("nǽhwθ") < recon.indexOf(">night<") && recon.indexOf(">night<") < recon.indexOf(TAG),
-  "the reconstruction and the record are two words, and the record mark is on the record");
-assert.ok(!reconWords.includes("applicable law"), "no count of applicable laws on a step");
-assert.ok(!reconWords.includes("Proto-Indo-European → Proto-Germanic"),
-  "no stage → stage label on a step");
-assert.ok(reconWords.includes("Grimm: *t → *þ"), "a fired law is named");
-assert.ok(reconWords.includes("differs from the record"), "the verdict is worded, not only coloured");
-assert.ok(reconWords.includes("noun · “the dark part of the day”"), "the record carries its sense");
-/* 2026-11-08: the counts and tiers belonged to the summary no
-   more than the timeline needs them — it shows which laws applied itself. */
-assert.ok(!reconWords.includes("laws fired between"), "no summary count of laws above the timeline");
-assert.ok(!reconWords.includes("Tiers used"), "the tier list is gone from the summary");
-/* The reconstruction is a ladder now, not a list of steps (2026-11-08): the
-   starting stage is a rung with its date, the target is the last rung. */
-assert.ok(/<ol class="ladder recon-ladder">/.test(recon), "the reconstruction is drawn as a ladder");
-assert.ok(recon.includes('<span class="when-name kind-proto">Proto-Indo-European</span>'),
-  "the first rung is the starting stage");
-assert.ok(reconWords.includes("English") && reconWords.includes("here"),
-  "the last rung is the target language");
-assert.equal((recon.match(/class="rung /g) || []).length, 3,
-  "one rung per stage plus the starting stage");
-
-/* 2026-11-08: "why can't I edit the reconstructed words in the
-   timeline shown here?" Every rung of a reconstruction is editable where it
-   stands — the starting stage and the target included — and a rung the reader
-   rewrote is marked as a hypothesis, with one button to put the laws' form
-   back. */
-assert.ok(recon.includes('data-edit="gem-pro"'), "a reconstruction rung carries the pencil");
-assert.ok(recon.includes('data-edit="en"'), "the target stage is editable too");
-const reconEdited = context.renderReconstruct({
-  source: { form: "nókʷts", name: "Proto-Indo-European", kind: "proto", stage: "ine-pro" },
-  lang: "en", lang_name: "English", branch: "Germanic", kind: "attested",
-  form: "nˈæhwθ", steps: 2, tiers: ["established"], skipped: [],
-  status: "differs", evidence: "weak", same: false,
-  edited: { stage: "gem-pro", form: "nahts", name: "Proto-Germanic" },
-  recorded: { w: "night", r: "", evidence: "attested", ipa: "naɪ̯t", show_reading: false },
-  levels: [
-    { src: "ine-pro", dst: "gem-pro", src_name: "Proto-Indo-European", dst_name: "Proto-Germanic",
-      form: "nahts", missing: false, registered: 41, fired: 0, edited: true, rules: [] },
-    { src: "gem-pro", dst: "en", src_name: "Proto-Germanic", dst_name: "English",
-      form: "nˈæht", missing: false, registered: 10, fired: 0, rules: [] },
-  ],
-});
-assert.ok(/class="rung recon-rung edited"/.test(reconEdited),
-  "the rewritten rung is marked as edited");
-assert.ok(reconEdited.includes('data-edit="gem-pro"') && reconEdited.includes('data-stage="gem-pro"'),
-  "it is still editable, and the pencil knows which rung it is on");
-assert.ok(reconEdited.includes("data-recon-unedit"),
-  "one button puts the laws' form back");
-assert.ok(/class="recon-badges"[\s\S]*>edited</.test(reconEdited),
-  "the edited state is a chip on the heading's line, and says the rung is a hypothesis");
-const editedRung = reconEdited.slice(reconEdited.indexOf('data-stage="gem-pro"') - 200,
-                                     reconEdited.indexOf('data-stage="en"'));
-assert.ok(!editedRung.includes("laws-head"),
-  "an edited rung has no fired law to report");
-
-/* Every law on a step is a switch (2026-11-08: the laws on the
-   etymon page could not be disabled): the click re-derives the chain without
-   it, and a switched-off law still says what it would have done. */
-assert.ok(/class="lawswitch"[^>]*data-off="ine-pro~gem-pro:grimm_t"/.test(recon),
-  "a law on a reconstruction step is a switch");
-assert.ok(/data-off="ine-pro~gem-pro:grimm_t" aria-pressed="true"/.test(recon),
-  "a fired law starts pressed");
-const reconOff = context.renderReconstruct({
-  source: { form: "nókʷts", name: "Proto-Indo-European" },
-  lang: "en", lang_name: "English", kind: "attested", form: "nˈæhwt", steps: 1,
-  tiers: ["established"], skipped: [], status: "differs", evidence: "weak", same: false,
-  disabled: ["ine-pro~gem-pro:grimm_t"],
-  recorded: { w: "night", r: "", evidence: "attested", ipa: "naɪ̯t", show_reading: false },
-  levels: [{ src: "ine-pro", dst: "gem-pro", src_name: "Proto-Indo-European",
-             dst_name: "Proto-Germanic", form: "nˈahwts", missing: false,
-             registered: 41, fired: 0, switched_off: 1,
-             rules: [{ key: "ine-pro~gem-pro:grimm_t", id: "grimm_t", name: "Grimm: *t → *þ",
-                       tier: "established", before: "nókʷts", after: "nókʷts",
-                       would: "nˈōkʷθs", fired: false, disabled: true }] }],
-});
-assert.ok(/data-off="ine-pro~gem-pro:grimm_t" aria-pressed="false"/.test(reconOff),
-  "a switched-off law is pressed-off");
-assert.ok(!plain(reconOff).includes("1 switched off"),
-  "the rung no longer repeats a switch count; the chip on the head says it once");
-assert.ok(plain(reconOff).includes("1 law is switched off"), "the page states it above the ladder");
-assert.ok(reconOff.includes("data-recon-reset"), "and one button puts them all back");
-assert.ok(reconOff.includes("nṓkʷθs"),
-  "the switched-off law still says what it would have done, printed the dictionary way");
-
-/* A match is printed once, glowing, with the corner ✓ — same rule as a rung. */
-const reconMatch = context.renderReconstruct({
-  source: { form: "nókʷts", name: "Proto-Indo-European" },
-  lang: "la", lang_name: "Latin", kind: "attested", form: "nox", steps: 3,
-  tiers: ["established"], skipped: [], status: "match", evidence: "attested", same: true,
-  recorded: { w: "nox", r: "", evidence: "attested", ipa: "", reading: "", show_reading: false },
-  levels: [{ src: "ine-pro", dst: "la", src_name: "Proto-Indo-European", dst_name: "Latin",
-             form: "nox", missing: false, registered: 12, fired: 3,
-             rules: [{ key: "ine-pro~la:x", id: "x", name: "A law", tier: "established",
-                       before: "nókʷts", after: "nox", fired: true, disabled: false }] }],
-});
-const reconFormsStart = reconMatch.lastIndexOf('class="rung-forms"');
-const reconForms = reconMatch.slice(reconFormsStart,
-  reconMatch.indexOf("</div>", reconFormsStart));
-assert.equal((reconForms.match(/>nox</g) || []).length, 1,
-  "a matching reconstruction is printed once (its link and tooltip are not a second copy)");
-assert.ok(/class="form[^"]*matched[^"]*"[^>]*>nox<i class="matchdot"/.test(reconMatch),
-  "the match carries the corner ✓ disc");
-assert.ok(!reconForms.includes("rectag"), "no second copy, so no 'recorded' tag");
-
-/* 2026-11-08: a green recorded word is a door to its own page, the
-   pencil follows the reconstruction and not the record, and the page glyph is
-   pinned to the word's own corner — not to a wider reading under it (بازو is
-   25 px, its IPA 72 px). */
-const reconBazu = context.renderReconstruct({
-  source: { form: "bʰeh₂ǵʰús", name: "Proto-Indo-European", stage: "ine-pro" },
-  lang: "fa", lang_name: "Persian", kind: "attested", form: "baHdoš", steps: 2,
-  tiers: ["established"], skipped: [], status: "differs", evidence: "weak", same: false,
-  recorded: { w: "بازو", r: "bâzu", evidence: "attested", ipa: "baː.ˈzuː",
-              reading: "bâzu", show_reading: true, known: true, sources: [] },
-  levels: [{ src: "ine-pro", dst: "fa", src_name: "Proto-Indo-European",
-             dst_name: "Persian", form: "baHdoš", missing: false,
-             registered: 2, fired: 2, rules: [] }],
-});
-const rbz = reconBazu.lastIndexOf('class="rung-forms"');
-const rbzSeg = reconBazu.slice(rbz, reconBazu.indexOf("</div>", rbz));
-assert.ok(rbzSeg.indexOf("baHdoš") < rbzSeg.indexOf('data-edit="fa"')
-          && rbzSeg.indexOf('data-edit="fa"') < rbzSeg.indexOf("بازو"),
-  "the pencil follows the reconstructed form, not the recorded word");
-assert.match(rbzSeg, /<a class="formlink" href="#\/word\/fa\/[^"]*"[^>]*><span class="form rtl/,
-  "the recorded word opens its own page");
-assert.ok(rbzSeg.includes("بازو") && !rbzSeg.includes('class="recorddot"'),
-  "a record with no page keeps the word and takes no mark");
-
-/* A missing rule file is a gap, not a silent no-op. */
-const reconGap = context.renderReconstruct({
-  source: { form: "nókʷts", name: "Proto-Indo-European" },
-  lang: "sq", lang_name: "Albanian", kind: "attested", form: "nókʷts", steps: 0,
-  tiers: [], skipped: ["ine-pro→sq"], status: "new", evidence: "weak", same: false,
-  recorded: null,
-  levels: [{ src: "ine-pro", dst: "sq", src_name: "Proto-Indo-European", dst_name: "Albanian",
-             form: "nókʷts", missing: true, registered: 0, fired: 0, rules: [] }],
-});
-const gapWords = plain(reconGap);
-assert.ok(gapWords.includes("The chain is incomplete"), "the gap is named");
-assert.ok(gapWords.includes("No rule file exists for Proto-Indo-European → Albanian"),
-  "the missing rule file is named at its step");
-assert.ok(!gapWords.includes("applicable laws"),
-  "a step with no rule file carries no law count at all");
-
-/* 2026-11-08: a rung is coloured by what is known about the *form*,
-   not by whether its language is attested. The OP rung *warpíš* has no record,
-   so it is red and still a door; its page says "not recorded here". */
-const reconUnrecorded = context.renderReconstruct({
-  source: { form: "h₂wl̥pís", name: "Proto-Indo-European" },
-  lang: "fa", lang_name: "Persian", kind: "attested", form: "gorbeš",
-  form_known: false, steps: 2, tiers: ["proposed"], skipped: [], status: "new",
-  evidence: "weak", same: false, recorded: null,
-  levels: [{ src: "ira-pro", dst: "peo", src_name: "Proto-Iranian", dst_name: "Old Persian",
-             kind: "attested", era_label: "c. 525–300 BCE", form: "warpˈiš",
-             form_known: false, status: "derived", evidence: "weak", recorded: null,
-             same: false, missing: false, registered: 10, fired: 2, rules: [] },
-           { src: "peo", dst: "fa", src_name: "Old Persian", dst_name: "Persian",
-             kind: "attested", era_label: "since c. 800", form: "gorbeš",
-             form_known: false, status: "derived", evidence: "weak", recorded: null,
-             same: false, missing: false, registered: 10, fired: 1, rules: [] }],
-});
-const unrecordedPEO = reconUnrecorded;
-assert.ok(unrecordedPEO.includes("ev-weak"), "an unrecovered law rung is not green");
-assert.ok(!unrecordedPEO.includes("ev-attested"), "its language being attested is not evidence");
-assert.ok(unrecordedPEO.includes("ghost=1") && unrecordedPEO.includes("warp%CB%88i%C5%A1"),
-  "the rung is still a door to its own page");
-assert.ok(reconUnrecorded.includes('href="#/word/fa/gorbe%C5%A1?ghost=1'),
-  "the target form is a door too, even when nothing records it");
-
-/* A green rung carries its citation, and an OP record shows the cuneiform
-   spelling — never a Latin transliteration dressed as attested. */
-const reconRecord = context.renderReconstruct({
-  source: { form: "deywós", name: "Proto-Indo-European" },
-  lang: "fa", lang_name: "Persian", kind: "attested", form: "dīw", form_known: false,
-  steps: 1, tiers: ["proposed"], skipped: [], status: "new", evidence: "weak",
-  same: false, recorded: null,
-  levels: [{ src: "ira-pro", dst: "peo", src_name: "Proto-Iranian", dst_name: "Old Persian",
-             kind: "attested", era_label: "c. 525–300 BCE", form: "daiwˈah",
-             form_known: false, status: "differs", evidence: "weak", same: false,
-             missing: false, registered: 10, fired: 1, rules: [],
-             recorded: { w: "𐎭𐎡𐎺", evidence: "attested", in_script: true,
-                         script: "Old Persian cuneiform", reading: "daivaʰ", show_reading: true,
-                         notation: "v/w", known: true, ipa: "",
-                         pages: [{ id: "wiktionary", title: "Wiktionary", kind: "wiktionary",
-                                   url: "https://en.wiktionary.org/wiki/%F0%90%8E%AD%F0%90%8E%A1%F0%90%8E%BA" }] } },
-           { src: "peo", dst: "fa", src_name: "Old Persian", dst_name: "Persian",
-             kind: "attested", era_label: "since c. 800", form: "dīw",
-             form_known: false, status: "derived", evidence: "weak", recorded: null,
-             same: false, missing: false, registered: 10, fired: 1, rules: [] }],
-});
-const recPEO = reconRecord.slice(reconRecord.indexOf("Old Persian"));
-assert.ok(recPEO.includes("𐎭𐎡𐎺") && recPEO.includes("ev-attested"),
-  "the record is shown in its own script");
-assert.ok(recPEO.includes("Source: Wiktionary"), "a green rung names its source in the tooltip");
-assert.ok(!plain(recPEO).includes("Source:"),
-  "the citation is not printed on a line under the word any more");
-assert.ok(recPEO.includes("spelled v/w"), "a transcription difference is explained");
-
-/* A Reconstruction: namespace entry is gold and says so; it is not a
-   transliteration of a written word, so the script note must stay away
-   (2026-11-08). */
-const reconLiterary = context.renderReconstruct({
-  source: { form: "mádu", name: "Proto-Indo-European" },
-  lang: "fa", lang_name: "Persian", kind: "attested", form: "mey", form_known: false,
-  steps: 1, tiers: ["established"], skipped: [], status: "new", evidence: "weak",
-  same: false, recorded: null,
-  levels: [{ src: "ira-pro", dst: "peo", src_name: "Proto-Iranian", dst_name: "Old Persian",
-             kind: "attested", era_label: "c. 525–300 BCE", form: "madˈu", form_known: false,
-             status: "differs", evidence: "weak", same: false, missing: false,
-             registered: 10, fired: 1, rules: [],
-             recorded: { w: "madu", evidence: "literary", recon: true, in_script: false,
-                         script: "Old Persian cuneiform", reading: "", show_reading: false,
-                         known: true, ipa: "",
-                         sources: [{ title: "Wiktionary", url: "https://en.wiktionary.org" }] } },
-           { src: "peo", dst: "fa", src_name: "Old Persian", dst_name: "Persian",
-             kind: "attested", era_label: "since c. 800", form: "mey",
-             form_known: false, status: "derived", evidence: "weak", recorded: null,
-             same: false, missing: false, registered: 10, fired: 1, rules: [] }],
-});
-assert.ok(reconLiterary.includes("ev-attested") === false,
-  "a reconstruction in an attested language is never green");
-assert.ok(reconLiterary.includes("ev-literary"), "it is gold instead");
-assert.ok(!reconLiterary.includes("no spelling in"),
-  "a reconstruction is not described as a transliteration");
-console.log("root word ok");
+const builtPieHtml = context.renderHierarchy(
+  Object.assign({}, pieRoot, { levels: [pieLevel(), builtLevel] }), piePage, {});
+const builtPieWords = plain(builtPieHtml);
+assert.ok(builtPieHtml.includes('class="buildstep"') || builtPieHtml.includes("BUILT HERE")
+  || builtPieWords.includes("built here"), "the built rung is a step of the timeline");
+assert.ok(builtPieHtml.includes("*-nó-") || builtPieHtml.includes("-nó-"),
+  "the suffix that built it is printed on the step");
+assert.ok(builtPieWords.includes("zero grade"),
+  "the grade the formation puts the root in is stated, not left as a changed vowel");
+assert.ok(builtPieHtml.indexOf("ters-") < builtPieHtml.indexOf("tr̥sn"),
+  "the pieces stand above the word they build");
 
 /* ---------------------------------------------------------------- */
 /* the written form is a separate claim                              */
@@ -1255,48 +851,6 @@ assert.ok(!covCell.includes("&lt;span"), "and no tag is printed as text");
 assert.ok(covCell.includes('href="#/rule/gmw-pro~ang%3Afinal_z_loss"'), "the cell opens the law");
 console.log("script reading and timeline ok");
 
-/* The construction picker is a menu of sections (2026-11-08): the morphemes
-   the word itself wears come first, in the colour of a record, and every other
-   recorded form hangs in a submenu under the heading its own record gives it.
-   The sections come from the read model (`service.morphology`), never from the
-   front end's taste. */
-const morphMenu = {
-  language: "ine-pro", note: "",
-  sections: [
-    { id: "derivation-noun", name: "noun-forming", count: 1 },
-    { id: "ending", name: "inflectional endings", count: 2 },
-  ],
-  suffixes: [
-    { id: "ter", form: "-tēr-", gloss: "agent and kinship noun", kind: "suffix",
-      section: "derivation-noun", section_name: "noun-forming", recorded: 21,
-      entry: "#/word/ine-pro/-t%C4%93r-", curated: true },
-    { id: "os", form: "-os", gloss: "o- and s-stem nom./acc. sg.", kind: "ending",
-      section: "ending", section_name: "inflectional endings", recorded: 4, entry: "" },
-    { id: "os-acute", form: "-ós", gloss: "oxytone nominative", kind: "ending",
-      section: "ending", section_name: "inflectional endings", recorded: 31, entry: "" },
-  ],
-};
-const menuHtml = context.suffixMenuHtml(morphMenu, "add", "attach another cited suffix",
-                                        [{ id: "os-acute", form: "-ós" }]);
-assert.ok(menuHtml.includes('class="sufworn"'), "the worn morphemes have a block of their own");
-assert.ok(/class="sufrow worn"/.test(menuHtml), "and its rows are marked as worn");
-assert.ok(menuHtml.indexOf("sufworn") < menuHtml.indexOf("sufsecs"),
-  "the worn morphemes stand at the top, before the sections");
-assert.ok(menuHtml.includes('data-sec="derivation-noun"') && menuHtml.includes('data-sec="ending"'),
-  "every section with rows gets a heading");
-assert.equal((menuHtml.match(/class="sufsub"/g) || []).length, 2,
-  "each section has its own submenu");
-assert.ok(/aria-haspopup="menu"/.test(menuHtml), "a heading announces that it opens a menu");
-assert.ok(menuHtml.indexOf("agent and kinship noun") > menuHtml.indexOf('data-sec="derivation-noun"'),
-  "a section's forms live inside its submenu, after its heading");
-assert.ok(menuHtml.indexOf("oxytone nominative") < menuHtml.indexOf('data-sec="ending"'),
-  "the worn copy is printed first, the full list later");
-assert.ok((menuHtml.match(/-ós/g) || []).length >= 2,
-  "a worn morpheme also keeps its place in its own section");
-const looseMenu = context.suffixMenuHtml({ suffixes: morphMenu.suffixes }, "add", "choose");
-assert.ok(looseMenu.includes("all recorded forms"),
-  "a payload without sections still lists its forms under one heading");
-console.log("construction menu ok");
 
 /* A construction is one tree in the timeline, not a line under the word and
    not a set of inset pictures (admin, 2026-11-12): a diamond sits on the main

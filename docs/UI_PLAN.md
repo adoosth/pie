@@ -76,15 +76,16 @@ A word page shows, in this fixed order:
    computed (`pie rebuild`, `/api/rebuild`, the root page's selector);
 4. **Cognates**, grouped by branch.
 
-A word that *is* Proto-Indo-European has nothing above it, so it gets no ladder
-and no "where it comes from" section. In their place the etymon **opens into its
-family**: the same expandable branch every other word page draws, one row per
-direct child, each carrying the form that one transition produces and opening
-into its own children (2026-11-08). Above it a `reconstruct into` selector lists
-the modelled languages (grouped by branch, chains with a gap marked) and shows
-the registered laws' output for the chosen one: the derived form in its evidence
-colour, the chain stage by stage with the laws that applied, and the form the
-cognate set records quoted beside it (`/api/reconstruct`, `service.reconstruct`).
+A word that *is* Proto-Indo-European has nothing above it, so its ladder starts
+with the etymon itself — one rung, carrying the construction the record states
+above it when there is one, and the stage's cited suffixes as construct chips
+beside `construct…` (2026-11-12). Below that rung the same `next` step every
+word page ends with lists the daughter stages, one click each: the timeline
+grows a rung per click (`?path=iir-pro,ira-pro`), with the laws that fired in
+the gap and the form each stage records beside the one the laws produce, and it
+can be cut back at any rung with `change`. The chief's second view, the flat
+tree of every modelled language below the etymon, stays below the timeline as
+the branch.
 
 Colour is explained on hover, per form, not by a legend: a green form is
 attested, gold is reconstructed in the literature, orange is rebuilt here from

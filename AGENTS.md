@@ -265,10 +265,31 @@ that keeps the `*` opens nothing).
 - **A word the record builds from pieces is never "no origin recorded"**
   (2026-11-12): the ladder badge reads *built from recorded pieces* when any rung
   carries `builds`.
-- **A page in Proto-Indo-European has a timeline too** (2026-11-12): a PIE word
-  is built like any other, so `renderRoot` puts `renderHierarchy` above the
-  "reconstruct into" panel whenever a rung carries `builds`; the badge there says
-  *top of the family*, not *no origin recorded*.
+- **A page in Proto-Indo-European is a ladder with one rung, not a selector**
+  (2026-11-12, admin): `hierarchy` no longer refuses a word in the root
+  language — the etymon is the timeline's first rung (its construction, when the
+  record states one, stands above it) and the daughter stages are `next`, one
+  click each (`?path=iir-pro,ira-pro`), exactly as on every other word page.
+  The *reconstruct into* selector, `renderRoot`, `wireRoot` and
+  `renderReconstruct` are deleted; `?into=fa` in an old link is read by
+  `app.server._path` as the same descent. The badge on the etymon's rung reads
+  *top of the family*, and a stage the reader descended into reads *descended by
+  the laws* rather than *differs — the worklist*. The rung also **constructs**:
+  `buildLine` prints the stage's cited suffixes as chips beside `construct…`
+  (a `kind: "ending"` row is left to the endings row), and choosing one puts the
+  built word on the timeline with its pieces and their grade.
+- **A composition is built in the grade its suffix takes** (2026-11-12):
+  `_formation_grade` reads the `grades:` table and `_grade_stem` writes it, so
+  *ters- + *-nó- is *tr̥s-nó-s*, never *ters-nó-s*, and the built step and the
+  composed preview say *zero grade* with the handbook's reason.  Only a grade
+  the table states is applied; *-ó-, *-ti- and *-ró- leave the stem alone.  A
+  root keeps its own spelling on the rung (`*ters-`, hyphen and all) and never
+  loses a "nominative ending" it never had: `compose` drops one only from a
+  word, not from `_is_root_etymon`.  A **bound** piece of a recorded
+  construction has no glossary entry, so its meaning comes from the row written
+  for it by hand (`_morph_gloss`: *-nó-s → "verbal adjective or passive
+  participle"), and the built step spells its pieces as the stage writes them
+  (`*ters-`, `*-nó-`), never as a bare stem.
 - **Three kinds of step, and only one is a sound law** (2026-11-12, admin):
   inheritance/derivation (the laws), borrowing (the record's donor; its rule set
   is the donor's, e.g. English s+consonant → Persian *es-* in *starbucks* →

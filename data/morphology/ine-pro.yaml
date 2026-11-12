@@ -71,6 +71,21 @@ suffixes:
     sources: [fortson-2004, beekes-2011]
     example: "*h₂erǵ- ‘white’ → *h₂erǵkós (type: Greek ἀργός)"
 
+  - id: "no"
+    form: "-nó-"
+    surface: "-nó"
+    ending: "-s"
+    attach: drop
+    gloss: "verbal adjective or passive participle"
+    note: >
+      The *-nó- verbal adjective, oxytone like *-tó- and so built on a
+      zero-grade root: *ters- + *-nó- gives *tr̥s-nó-s ‘dry’ (Indo-Iranian
+      *tr̥šnas), *gʷʰer- gives *gʷʰr̥-nó-s. It is continued by Latin -nus,
+      Greek -νός and Sanskrit -ná-.
+    outcomes: "Latin -nus, Greek -νός, Sanskrit -ná-, Indo-Iranian *-na-"
+    sources: [fortson-2004, sihler-1995, beekes-2011, wiktionary]
+    example: "*ters- ‘dry’ → *tr̥s-nó-s ‘dry’"
+
   - id: ter
     form: "-tēr-"
     ending: ""
