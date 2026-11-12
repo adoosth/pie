@@ -1,0 +1,264 @@
+stage:
+  name: Proto-Indo-Aryan → Sanskrit
+  date_start: -1500
+  date_end: -600
+  description: >
+    Sanskrit is phonologically close to Proto-Indo-Aryan.  The diphthongs *ai
+    and *au are monophthongised as e and o, word-final *s becomes the visarga ḥ,
+    the dental n and t become the retroflexes ṇ and ṭ next to the retroflex
+    sibilant (and n after r), the recorded *w is written v, and the nominative
+    of the -ar stems loses its final *-r.  The aspirates and the vocalic *r̥ are
+    inherited unchanged from Proto-Indo-Aryan (2026-11-09).
+  references: [mayrhofer-1986, fortson-2004, whitney-1889]
+
+rules:
+  # A word that enters the chain at Proto-Indo-Aryan (the corpus records such
+  # ancestors, and they keep the affricates under the spellings Wiktionary's
+  # Proto-Indo-Aryan reconstructions use) has already passed the stage that
+  # fronts them.  These rules state the *same* PII→PIA outcomes for the
+  # symbols that appear in those records, so a word is not left carrying a
+  # character no later rule owns.  They are not a second sound change: the
+  # PIA record and the Sanskrit outcome are the same development, read from the
+  # stage at which this corpus writes it (2026-11-09).
+  - id: c_caron_to_c_recorded
+    order: 7
+    name: "recorded PIA *č is written Skt c"
+    match: "č"
+    replace: c
+    references: [mayrhofer-1986]
+    examples:
+      - {in: "*čˈittas", out: "*cˈittas", gloss: "thought (Skt cittá-)"}
+
+  - id: j_caron_aspirate_to_h_recorded
+    order: 8
+    name: "recorded PIA *ǰʰ is written Skt h"
+    match: "ǰ ʰ"
+    replace: h
+    references: [mayrhofer-1986]
+    examples:
+      - {in: "*ǰʰˈanas", out: "*hˈanas", gloss: "slaying (Skt hána-)"}
+
+  - id: j_caron_to_j_recorded
+    order: 9
+    name: "recorded PIA *ǰ is written Skt j"
+    match: "ǰ"
+    replace: j
+    references: [mayrhofer-1986]
+    examples:
+      - {in: "*ǰˈanas", out: "*jˈanas", gloss: "people (Skt jána-)"}
+
+  - id: c_acute_to_sh_recorded
+    order: 12
+    name: "recorded PIA *ć is written Skt ś"
+    match: "ć"
+    replace: ś
+    references: [mayrhofer-1986]
+    examples:
+      - {in: "*ćatˈas", out: "*śatˈas", gloss: "hundred (Skt śatá-)"}
+
+  - id: j_acute_aspirate_to_h_recorded
+    order: 13
+    name: "recorded PIA *ȷ́ʰ is written Skt h"
+    match: "ȷ́ ʰ"
+    replace: h
+    references: [mayrhofer-1986]
+    examples:
+      - {in: "*ȷ́ʰimˈas", out: "*himˈas", gloss: "winter (Skt himá-)"}
+
+  - id: j_acute_to_j_recorded
+    order: 14
+    name: "recorded PIA *ȷ́ is written Skt j"
+    match: "ȷ́"
+    replace: j
+    references: [mayrhofer-1986]
+    examples:
+      - {in: "*ȷ́ā́nu", out: "jā́nu", gloss: "knee (Skt jā́nu)"}
+
+  # The recorded Proto-Indo-Aryan *w is the Sanskrit v (PIE *w > Skt v, Whitney
+  # 1889, §50: "v is the labial semivowel"; Mayrhofer 1986, Lautlehre §6).  The
+  # stage out of Proto-Indo-Iranian states the same change for *w that it writes
+  # there; a word that enters the chain at Proto-Indo-Aryan still carries *w, so
+  # this rule reads the same development from that record rather than leaving a
+  # character no later law owns (2026-11-09).
+  - id: w_to_v_recorded
+    order: 15
+    name: "recorded PIA *w is written Skt v"
+    match: w
+    replace: v
+    description: >
+      PIA *wádati > Skt vádati, *ášwas > áśva- 'horse', *dváw > dváu 'two'.  The
+      change is Indo-Iranian (Avestan and Old Persian also have v) and is stated
+      at iir-pro -> inc-pro for the *w that is written there; this rule is the
+      same outcome for a form that starts at Proto-Indo-Aryan.
+    references: [mayrhofer-1986, whitney-1889]
+    examples:
+      - {in: "*wádati", out: "*vádati", gloss: "speaks (Skt vádati)"}
+      - {in: "*dváw", out: "*dváv", gloss: "two (Skt dváu)"}
+
+  # The laryngeal, which Proto-Iranian keeps as *H (data/rules/ira-pro__peo.yaml
+  # has the mirror stage), is lost in Indo-Aryan: a short vowel before it
+  # lengthens (*bʰaHgas > bhāgá-, *suHnús > sūnú-) and after a long vowel or a
+  # consonant it simply goes.  A word-initial *H is named by its own rule so
+  # that the lengthening transform never has to decide about it (2026-11-09).
+  - id: laryngeal_loss_initial
+    order: 5
+    name: "PII *H- is lost at the start of a word"
+    match: "H"
+    replace: ""
+    env: {left: "#"}
+    description: >
+      Proto-Indo-Iranian inherited a consonantal laryngeal *H from
+      Proto-Indo-European (PII *Háćwah 'horse', *Hrawpā́ćas 'fox'); Indo-Aryan
+      loses it, leaving the vowel or consonant it preceded at the start of the
+      word (Skt áśva- 'horse', lopāśá- 'fox').  The rule is the mirror of
+      Old Persian laryngeal_loss_initial and keeps the lengthening transform
+      from having to treat a laryngeal with nothing before it.
+    references: [mayrhofer-1986, fortson-2004]
+    examples:
+      - {in: "*Háćwah", out: "*áćwah", gloss: "horse (Skt áśva-)"}
+      - {in: "*Hrawpā́ćas", out: "*rawpā́ćas", gloss: "fox (Skt lopāśá-)"}
+
+  - id: laryngeal_lengthening
+    order: 6
+    name: "The Indo-Aryan laryngeal is lost: *aH > ā"
+    transform: laryngeal_lengthening
+    description: >
+      Proto-Indo-Iranian keeps the laryngeal as *H (PII *bʰáHgas 'portion',
+      PII *suHnús 'son').  Indo-Aryan loses it, lengthening a short vowel
+      before it: *bʰáHgas > bhāgá-, *suHnús > sūnú-.  After a long vowel or a
+      consonant it simply goes, which is what leaves Skt pitā́ beside Av. ptā.
+      The same transform carries Old Iranian, so the two branches make the same
+      claim about the laryngeal and differ only in what they do with *bʰ, *dʰ,
+      *gʰ and *s, which is where they really diverge.
+    references: [mayrhofer-1986, fortson-2004]
+    examples:
+      - {in: "*bʰˈaHgas", out: "bʰˈāgas", gloss: "portion (Skt bhāgá-)"}
+      - {in: "*suHnˈus", out: "sūnˈus", gloss: "son (Skt sūnú-)"}
+  # The diphthongs.  A Proto-Indo-Aryan *ai or *au is one nucleus, and Sanskrit
+  # monophthongises it to e and o (Whitney 1889, §22: e and o "are the products
+  # of the older ai and au"; Mayrhofer 1986, Lautlehre §§8-9).  The corpus
+  # writes the second element twice: as the vowel of the reconstruction (*daiwás)
+  # and as the glide of the Wiktionary-style record (*daywás, *kapáwtas), which
+  # by this stage has usually also been written v (*dayvás).  One law, two
+  # notations — not two sound changes.  The context says the diphthong is closed
+  # by a consonant or the end of the word: a *y or *w that opens the next
+  # syllable is a glide, not the second half of a diphthong (Skt kanyā́ keeps its
+  # y, and the norist forms in -av- keep their v, 2026-11-09).
+  - id: ai_to_e
+    order: 10
+    name: "PIA *ai > Skt e"
+    match: "a (i|y)"
+    replace: e
+    env: {right: "(C|#)"}
+    description: >
+      *daiwás / *daywás 'god' > Skt devá-; *sáynā 'army' > sénā-; *wáydas >
+      véda-.  The monophthong is written with the accent in place, so the stressed
+      syllable loses one segment and not its stress.
+    references: [mayrhofer-1986, whitney-1889]
+    examples:
+      - {in: "*daiwás", out: "*dewás", gloss: "god (Skt devá-)"}
+      - {in: "*daywás", out: "*dewás", gloss: "the same word as the corpus records it"}
+      - {in: "*sáynā", out: "*sénā", gloss: "army (Skt sénā-)"}
+
+  - id: au_to_o
+    order: 11
+    name: "PIA *au > Skt o"
+    match: "a (u|w|v)"
+    replace: o
+    env: {right: "(C|#)"}
+    description: >
+      *háumas / *hávmas 'Soma' > sóma-; *kapáwtas 'pigeon' > kapóta-; *yawni-
+      'womb' > yóni-.  PIE *-ew- has already merged with *-aw- at
+      Proto-Indo-Iranian (data/rules/ine-pro__iir-pro.yaml merges *e, *o and *a),
+      which is why one law covers *au from every source.
+    references: [mayrhofer-1986, whitney-1889]
+    examples:
+      - {in: "*háumas", out: "*hómas", gloss: "Soma (Skt sóma-)"}
+      - {in: "*kapáwtas", out: "*kapótas", gloss: "pigeon (Skt kapóta-)"}
+      - {in: "*yawni", out: "*yoni", gloss: "womb (Skt yóni-)"}
+
+  # The pattern language's word edge cannot stand inside a group, so the same
+  # law is stated a second time for the position at the end of the word, where
+  # the middle-voice ending -e continues PII *-ai (Skt váste, jāyate, manyate).
+  # The mirror rule for a word-final *-au was measured (2026-11-09): it gains
+  # प्रो pró and loses the root अव् av-, whose glide is no diphthong — +1 / -1,
+  # so it is not registered.
+  - id: ai_to_e_final
+    order: 10
+    name: "PIA *-ai > Skt -e at the end of a word"
+    match: "a (i|y)"
+    replace: e
+    env: {right: "#"}
+    description: >
+      The middle-voice primary ending PII *-ai is Skt -e (váste 'he clothes
+      himself', jāyate 'he is born', manyate 'he thinks'); the same monophthong,
+      at the word's edge.
+    references: [mayrhofer-1986, whitney-1889]
+    examples:
+      - {in: "*wástay", out: "*wáste", gloss: "clothes himself (Skt váste)"}
+      - {in: "*ǰāyátay", out: "*ǰāyáte", gloss: "is born (Skt jāyate)"}
+
+  - id: final_s_to_visarga
+    order: 20
+    name: "Final *-s > Skt -ḥ"
+    match: s
+    replace: ḥ
+    env: {right: "#"}
+    description: The nominative singular ending -as is written -aḥ (Skt deváḥ).
+    references: [mayrhofer-1986]
+    examples:
+      - {in: "*dewás", out: "*dewáḥ", gloss: "god (nom. sg.)"}
+
+  - id: final_ar_to_a
+    order: 30
+    name: "Final *-ār > Skt -ā (nominative of the -ar stems)"
+    match: "ā r"
+    replace: ā
+    env: {right: "#"}
+    tier: proposed
+    notes: >
+      Skt pitā, mātā, bhrātā, dātā have no *-r in the nominative; the *-r belongs
+      to the oblique stem.  The change is morphological in origin, hence proposed.
+    references: [mayrhofer-1986]
+    examples:
+      - {in: "*bhrā́tār", out: "*bhrā́tā", gloss: "brother (nom. sg., Skt bhrā́tā)"}
+
+  # Retroflexion of the dentals.  Sanskrit has a retroflex ṇ and ṭ where a dental
+  # stands next to the retroflex sibilant ṣ, and ṇ after r and the vocalic r̥:
+  # Whitney 1889, §196 ("n is changed to ṇ when immediately preceded by ṛ, ṝ, r,
+  # or ṣ") and §197 ("t and th are changed to ṭ and ṭh when immediately preceded
+  # by ṣ").  The conditioning is the preceding segment alone, so the rules are
+  # stated on a left environment of segments and never on a word's shape.
+  - id: n_to_retroflex_after_ruki
+    order: 40
+    name: "n > ṇ after r, ṛ or ṣ"
+    match: "n"
+    replace: ṇ
+    env: {left: "(r|r̥|ṣ)", right: "ˈ? V"}
+    description: >
+      PIA *tr̥nám > Skt tṛṇá- 'grass', *kr̥ṣnás > kṛṣṇá- 'black', *gərnā́ti >
+      gṛṇā́ti 'sings'.  The same retroflexion reaches the n of a suffix after a
+      root in -r or -ṣ, which is why várṇas 'colour' has ṇ.  The n must be
+      followed by a vowel: कृन्तति kr̥ntati 'cuts' keeps its dental before the
+      t, so the environment names both sides and never the word's shape.
+    references: [whitney-1889, mayrhofer-1986]
+    examples:
+      - {in: "*tr̥nám", out: "*tr̥ṇám", gloss: "grass (Skt tṛṇá-)"}
+      - {in: "*kr̥ṣnás", out: "*kr̥ṣṇás", gloss: "black (Skt kṛṣṇá-)"}
+      - {in: "*wárnas", out: "*wárṇas", gloss: "colour (Skt várṇa-)"}
+
+  - id: t_to_retroflex_after_sh
+    order: 41
+    name: "t > ṭ after ṣ"
+    match: "t"
+    replace: ṭ
+    env: {left: "ṣ"}
+    description: >
+      PIA *piṣtás > Skt piṣṭá- 'ground', *uṣṭrás > uṣṭrá- 'camel', *iṣṭás >
+      iṣṭá- 'desired'.  A dental stop does not become retroflex after r, which is
+      why the rule names ṣ alone and the r of *sárta- leaves its t dental.
+    references: [whitney-1889, mayrhofer-1986]
+    examples:
+      - {in: "*piṣtás", out: "*piṣṭás", gloss: "ground (Skt piṣṭá-)"}
+      - {in: "*uṣtrás", out: "*uṣṭrás", gloss: "camel (Skt uṣṭrá-)"}
+      - {in: "*sartás", out: "*sartás", gloss: "the rule must not touch this t"}

@@ -1,0 +1,317 @@
+stage:
+  name: Proto-Iranian → Old Persian
+  date_start: -1000
+  date_end: -300
+  description: >
+    Old Persian is phonologically conservative with respect to Proto-Iranian:
+    *cw becomes sp (aspa- 'horse'), the affricates become the dental fricatives
+    θ and d, *θr becomes ç, syllabic *r̥ becomes ar, and the anaptyctic *i of OP
+    pitā appears in the initial cluster of 'father'.  A second anaptyxis breaks
+    a consonant + *y cluster with an *i (martiya-, aniya-, Ariya-), and the
+    laryngeal *H is lost with compensatory lengthening, the resulting long
+    vowels coalescing with a following like vowel (*-aHā > -ā, fšupā, gaupā).
+    Diphthongs, *h and the nominative ending *-ah are unchanged.
+  references: [kent-1953, skjaervo-2009, hoffmann-forssman-2004, schmitt-2014]
+
+rules:
+  - id: laryngeal_loss_initial
+    order: 2
+    tier: established
+    name: "PIr *H- is lost at the start of a word"
+    match: H
+    replace: ""
+    env: {left: "#"}
+    description: >
+      Proto-Iranian inherited a consonantal laryngeal *H from Proto-Indo-Iranian
+      (PIIr *Hácwah, *Hrawpāćás); by Old Persian it is gone, leaving the vowel or
+      consonant it preceded at the start of the word (OP aspa- 'horse', OP
+      raupāθah 'fox', the form behind Middle Persian rōbāh).
+    references: [kent-1953, hoffmann-forssman-2004]
+    examples:
+      - {in: "*Hácwah", out: "*ácwah", gloss: "horse (OP aspa-)"}
+      - {in: "*Hrawpāθah", out: "*rawpāθah", gloss: "fox (OP raupāθah)"}
+
+  - id: laryngeal_lengthening
+    order: 3
+    tier: established
+    name: "The Old Iranian laryngeal is lost: *aH > ā"
+    transform: laryngeal_lengthening
+    description: >
+      Proto-Iranian keeps the Indo-Iranian laryngeal as *H (PIr *bráHtā
+      'brother', *baHjúš 'arm'). Old Persian loses it, lengthening a short vowel
+      before it: PIr *bráHtā > OP brātā-, PIr *baHjúš > *bājúš, the form behind
+      OP bāzu- (Persian بازو). After a long vowel or a consonant the laryngeal
+      simply goes, which is what leaves OP pitā beside Av. ptā. A word-initial
+      *H is named by its own rule (laryngeal_loss_initial).
+    references: [hoffmann-forssman-2004, kent-1953, skjaervo-2009]
+    examples:
+      - {in: "*brˈaHtār", out: "brˈātār", gloss: "brother (OP brātā-)"}
+
+  - id: cw_to_sp
+    order: 5
+    name: "PIr *cw > OP sp"
+    match: "c w"
+    replace: "s p"
+    description: >
+      The labialised dental affricate becomes sp: PIr *Hácwah 'horse' > OP
+      aspa-, PIr *cwiθráh 'heaven' > OP spiθra-, PIr *cwanta- 'holy' > OP
+      spanta-.  Southwest Iranian may show *s before a vowel in a few lexemes
+      (MP sag 'dog'), which is not modelled.
+    references: [kent-1953, hoffmann-forssman-2004]
+    examples:
+      - {in: "*Hácwah", out: "*Háspah", gloss: "horse"}
+
+  - id: cw_to_s_median
+    order: 6
+    tier: proposed
+    off_by_default: true
+    name: "PIr *cw > OP s in Median words (asa- 'horse')"
+    match: "c w"
+    replace: "s"
+    description: >
+      The Old Persian word for 'horse' is 𐎠𐎿 asa- (acc. asam, asabāra-
+      'horseman'), not the sp- form that the Southwest Iranian law cw_to_sp
+      gives.  Kent (1953) §90 and Hoffmann–Forssman (2004) read that s as the
+      Median outcome: Median keeps sp (Vištāspa, Aspacanā), Old Persian has s
+      in its own word and sp only in names taken from Median.  The two cannot
+      both be the stage default — aspa- is also recorded — so this reading is
+      registered switched off and only a word whose entry says it is the
+      Southwest Iranian asa- turns it on.
+    references: [kent-1953, hoffmann-forssman-2004]
+    examples:
+      - {in: "*Hácwah", out: "*Hásah", gloss: "horse (OP asa-, the Median s)"}
+
+  - id: c_to_s_median
+    order: 11
+    tier: proposed
+    off_by_default: true
+    name: "PIr *c > OP s in Median words (Pārsa, asman-, kāsaka-)"
+    match: c
+    replace: s
+    description: >
+      The regular Southwest Iranian outcome of PIr *c is θ (c_to_theta:
+      𐎰𐎼𐎭 θarda- 'year').  A group of Old Persian words shows s instead —
+      𐎱𐎠𐎼𐎿 pārsa- 'Persian', 𐎠𐎿𐎶𐎴 asman- 'sky', 𐎣𐎠𐎿𐎣 kāsaka-
+      'glass' — which Kent (1953) §§86–87 and Hoffmann–Forssman (2004) assign
+      to Median or to an outside source, not to the inherited lexicon.  It
+      cannot be the default: applied everywhere it gains 𐎠𐎿 and loses
+      𐎰𐎼𐎭, 𐎠𐎼𐎰 and 𐎧𐏁𐏂.  Registered switched off; only a word whose
+      record says its s is Median turns it on.
+    references: [kent-1953, hoffmann-forssman-2004]
+    examples:
+      - {in: "*pārcah", out: "*pārsah", gloss: "Pārsa- 'Persian' (Median s)"}
+
+  - id: c_to_theta
+    order: 10
+    name: "PIr *c [ts] > OP θ"
+    match: c
+    replace: θ
+    description: >
+      The Southwest Iranian outcome of PIr *c is the dental fricative θ (OP
+      θarda- 'year' beside Av. sarəd-); the *s of OP aspa is the Northwest
+      (Median) outcome of the same segment.
+    references: [kent-1953, skjaervo-2009]
+    examples:
+      - {in: "*catám", out: "*θatám", gloss: "hundred"}
+
+  - id: ayw_to_aiv
+    order: 12
+    name: "PIr *-ayw- > OP -aiv-"
+    match: a y w
+    replace: a i w
+    tier: proposed
+    description: >
+      The Proto-Iranian group *-ayw- appears in Old Persian as -aiv-: OP 𐎭𐎡𐎺
+      daivaʰ 'false god' answers PIr *daywáh. The rule names the whole group,
+      not *ay alone, because a*y written across a morpheme boundary (xšayah)
+      is not this diphthong and must be left alone — measured on the 214 Old
+      Persian entries with an ancestor: the wider rule broke two words and
+      helped none, this one leaves them alone and carries daivaʰ.
+    references: [kent-1953, skjaervo-2009]
+    examples:
+      - {in: "*daywáh", out: "*daiwˈah", gloss: "false god (OP daivaʰ)"}
+  - id: ay_to_ai
+    order: 13
+    tier: established
+    name: "PIr *-ay- > OP -ai- before a consonant"
+    match: "a y"
+    replace: "a i"
+    env: {right: C}
+    description: >
+      Old Persian has the diphthongs ai and au, and its syllabary has no way to
+      write a glide *y before a consonant: there the Proto-Iranian offglide is
+      the second element of a diphthong and the monument writes it with the
+      i-sign.  PIr *Háyti 'goes' is OP a-i-t-i-y aiti (𐎠𐎡𐎫𐎡𐎹), PIr
+      *daywáh 'false god' is OP da-i-v-a daiva (by ayw_to_aiv, which runs
+      first and names the whole group).  The environment is the law: a *y
+      before a vowel is an ordinary glide and stays one — PIr *dāráyati is OP
+      d-a-r-y-t-i-y dārayati, and the *y of xšayah crosses a morpheme boundary
+      — so only *ay in front of a consonant is this diphthong.  Measured over
+      the 225 Old Persian entries with a recorded ancestor: the wider rule
+      (any *ay) breaks dārayati and helps nothing more than this one does;
+      this one leaves every word that fitted before and adds aiti (2026-11-08).
+    references: [kent-1953, skjaervo-2009, hoffmann-forssman-2004]
+    examples:
+      - {in: "*Háyti", out: "*Háiti", gloss: "goes (OP a-i-t-i-y aiti)"}
+      - {in: "*dāráyati", out: "*dāráyati", gloss: "holds (OP d-a-r-y-t-i-y dārayati) — *y before a vowel is not this diphthong"}
+
+  - id: aw_to_au
+    order: 15
+    tier: established
+    name: "PIr *-aw- > OP -au- after a vowel"
+    match: "a w"
+    replace: "a u"
+    env: {right: C}
+    description: >
+      A *w in a closed syllable is written as the second member of the
+      diphthong in Old Persian: PIr *Hrawpāćah appears as ra-u-p-ā-θa- 'fox'
+      (de Vaan 2000, §2), and the Elamite transcription ra-u-ba-sa points the
+      same way.  Before a vowel the *w stays a glide and becomes OP v (PIr
+      *náwah > OP nava- 'new', Persian نو naw), which is why the environment is
+      stated.
+    references: [kent-1953, de-vaan-2000]
+    examples:
+      - {in: "*rawpācah", out: "raupācah", gloss: "fox (OP raupāθah)"}
+
+  - id: j_to_d
+    order: 20
+    name: "PIr *j [dz] > OP d"
+    match: j
+    replace: d
+    description: >
+      PIr *j becomes the stop d in Old Persian (OP dasta- 'hand' beside Av.
+      zasta-); the Northwest Iranian languages keep z.
+    references: [kent-1953, hoffmann-forssman-2004]
+    examples:
+      - {in: "*jastah", out: "*dastah", gloss: "hand"}
+
+  - id: j_to_z_median
+    order: 21
+    tier: proposed
+    off_by_default: true
+    name: "Northwest Iranian *j [dz] > OP z: the arm word bāzu-"
+    match: j
+    replace: z
+    description: >
+      The regular Old Persian outcome of PIr *j [dz] is d (j_to_d: dasta-
+      'hand', dānu- 'knee'). Words that Old Persian took from Median, or shares
+      with the Northwest Iranian dialects, show z instead — OP 𐎲𐎠𐏀𐎢 bāzu-
+      'arm', whose z is the same reflex Avestan and most newer Iranian
+      languages have. Wiktionary derives Persian بازو from OP 𐎲𐎠𐏀𐎢, itself
+      from Old Median *bāzuš; Wikipedia's Proto-Iranian survey says the same
+      thing (*c, *dz > s, z in Avestan and most Iranian languages, θ and d in
+      Old Persian). The two readings contradict each other, so this one is
+      registered switched off and only a word whose record says it took the
+      Median form turns it on; j_to_d stays the default.
+    references: [kent-1953, hoffmann-forssman-2004, wiktionary]
+    examples:
+      - {in: "*baHjˈúh", out: "*baHzˈúh", gloss: "arm (OP bāzu-, if the laryngeal is already lost)"}
+
+  - id: epenthetic_i_before_y
+    order: 25
+    tier: proposed
+    name: "PIr *-Cy- > OP -Ciy- (the anaptyctic i before y)"
+    match: "y"
+    replace: "i y"
+    env: {left: C, right: "ˈ? V"}
+    description: >
+      Old Persian breaks a consonant + *y cluster with an anaptyctic *i, which
+      the syllabary then writes with the i-sign: PIr *mártyah 'man' is OP
+      𐎶𐎼𐎫𐎡𐎹 ma-r-ta-i-ya martiya-, PIr *Hanyáh 'other' is OP 𐎠𐎴𐎡𐎹
+      a-na-i-ya aniya-, and PIr *Áryah 'Aryan' is OP 𐎠𐎼𐎡𐎹 a-ra-i-ya
+      Ariya-.  The environment is a consonant before *y and a vowel after it:
+      a *y after a vowel is an ordinary glide (PIr *dāráyati is OP d-a-r-y-t-i-y
+      dārayati, which the rule must leave alone), and a word-initial *y has no
+      preceding consonant.  The rule is `proposed`, not `established`, because
+      the sources state the anaptyxis for the words but do not formulate it as
+      an exceptionless law; on the corpus it gains three script matches
+      (martiya, aniya, Ariya) and loses none (2026-11-09).  Kent (1953),
+      Lautlehre; Schmitt (2014), Lautlehre.
+    references: [kent-1953, schmitt-2014, skjaervo-2009]
+    examples:
+      - {in: "*mártyah", out: "*mˈartiyah", gloss: "man (OP ma-r-ta-i-ya martiya-)"}
+      - {in: "*Hanyáh", out: "*Haniyˈah", gloss: "other (OP a-na-i-ya aniya-)"}
+      - {in: "*Áryah", out: "*Áriyah", gloss: "Aryan (OP a-ra-i-ya Ariya-)"}
+      - {in: "*dāráyati", out: "*dāráyati", gloss: "holds (OP d-a-r-y-t-i-y dārayati) — *y after a vowel is not this cluster"}
+
+  - id: theta_r_to_cedilla
+    order: 30
+    name: "PIr *θr > OP ç"
+    match: "θ r"
+    replace: ç
+    description: >
+      The cluster *θr is written with the single sign ç (OP xšaça- 'rule' beside
+      Av. xšaθra-, OP puça- 'son' beside Av. puθra-).
+    references: [kent-1953]
+    examples:
+      - {in: "*xšaθram", out: "*xšaçam", gloss: "rule, kingdom"}
+
+  - id: r_syllabic_to_ar
+    order: 35
+    name: "PIr *r̥ > OP ar"
+    match: r̥
+    replace: ar
+    description: >
+      The syllabic liquid is resolved with a preceding *a (OP karta- 'made',
+      Av. kərəta-).
+    references: [kent-1953, hoffmann-forssman-2004]
+    examples:
+      - {in: "*kr̥táh", out: "*kartáh", gloss: "made, done"}
+
+  - id: anaptyxis_initial_pt
+    order: 40
+    name: "Anaptyctic *i in OP pitā"
+    match: "p t"
+    replace: "p i t"
+    env: {left: "#"}
+    tier: proposed
+    optional: true
+    notes: >
+      Old Persian pitā 'father' has an *i that Avestan ptā lacks.  In the
+      standard reconstruction the segment is a laryngeal (PII *pHtā́) which
+      Iranian drops and Old Persian and Indo-Aryan vocalise as *i; the rule is
+      therefore stated narrowly for the word-initial *pt- cluster and marked
+      proposed.
+    references: [kent-1953]
+    examples:
+      - {in: "*ptā́", out: "*pitā́", gloss: "father"}
+
+  - id: anaptyxis_pat
+    order: 41
+    name: "OP *i for the laryngeal vowel of *patā́-"
+    match: a
+    replace: i
+    env: {left: p, right: "t ˈ? ā"}
+    tier: proposed
+    optional: true
+    notes: >
+      Companion of anaptyxis_initial_pt.  data/rules/ine-pro__iir-pro.yaml
+      resolves the syllabic laryngeal of *ph₂tḗr as *a (PII *patā́-), where the
+      comparative evidence (Skt pitā́, OP pitā, Av. ptā) points to a laryngeal
+      that OP vocalises as *i.  The rule fires only in the *patā- shape, so it
+      is inert once the upstream stage is corrected.
+    references: [kent-1953, mayrhofer-1986]
+    examples:
+      - {in: "*patā́", out: "*pitā́", gloss: "father"}
+
+  - id: long_vowel_contraction
+    order: 42
+    tier: proposed
+    name: "Like long vowels coalesce: PIr *-aHā > OP -ā"
+    match: "ā ā"
+    replace: "ā"
+    description: >
+      laryngeal_lengthening turns a short *a before *H into *ā.  When the vowel
+      after the laryngeal is already *ā, the two long vowels are one long vowel
+      in Old Persian, not a sequence: PIr *-paHā 'protector' is OP -pā (fšupā,
+      gaupā), and the rule is stated as the general coalescence of two adjacent
+      *ā.  It is `proposed` because the corpus supplies the evidence from one
+      compound family (*-pā); the change itself is the ordinary loss of the
+      laryngeal with contraction, not a new correspondence.  On the corpus it
+      makes fšupā and gaupā exact and touches no other word (2026-11-09).
+      Kent (1953), Lautlehre; Hoffmann & Forssman (2004), Lautlehre.
+    references: [kent-1953, hoffmann-forssman-2004, schmitt-2014]
+    examples:
+      - {in: "*fšupāā", out: "*fšupā", gloss: "cattle-protector (OP fšupā), after laryngeal_lengthening"}
+      - {in: "*gaupāā", out: "*gaupā", gloss: "cow-protector (OP gaupā), after laryngeal_lengthening"}
+      - {in: "*dāráyati", out: "*dāráyati", gloss: "holds — no adjacent long vowels, the rule must not fire"}

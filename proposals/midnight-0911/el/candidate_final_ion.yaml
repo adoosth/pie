@@ -1,0 +1,16 @@
+rules:
+  - id: final_ion_to_i
+    order: 94
+    name: "Final *-ιον > *-ι (synizesis of the neuter ending)"
+    match: "i o n"
+    replace: "i"
+    env: {right: "#"}
+    tier: proposed
+    description: >
+      The neuter diminutive in -ιον loses its final syllable in the modern
+      language: μοναστήριον is μοναστήρι, σχολεῖον is σχολείο (Horrocks 2010,
+      176-8; Holton, Mackridge & Philippaki-Warburton 1997, 2.1).  The
+      vowel *i and the following *o merge (synizesis) and the *-n is lost.
+    references: [horrocks-2010]
+    examples:
+      - {in: "monastˈērion", out: "monastˈēri", gloss: "monastery (μοναστήριον > μοναστήρι)"}

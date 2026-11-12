@@ -1,0 +1,706 @@
+stage:
+  name: Modern Greek orthography (monotonic)
+  date_start: 1982
+  date_end: null
+  description: >
+    How the phonemic output of the Ancient Greek → Modern Greek laws is written
+    in the monotonic orthography (the single-accent system made obligatory for
+    public documents in 1982; Horrocks 2010, 175-6).  Greek is an alphabet, so
+    this is a letter table; three things in it are conventions rather than
+    sounds: the letters of the merged vowels are inherited (η is written η
+    although it is pronounced /i/), the digraphs αυ and ευ write /av af ev ef/,
+    and the monotonic system writes no breathing and one accent on the stressed
+    vowel (the accent itself is placed by the laws, which replace the
+    circumflex with the tonos).  A stressed vowel
+    therefore has two rules, one for the stressed syllable and one for every
+    other, and the accent is written on the vowel, the way the modern system
+    does.  A capitalised headword, and a letter this table does not own, is left
+    a miss: the layer writes letters, it does not guess them.
+  references: [horrocks-2010, smyth-1920]
+
+guard:
+  # The reading guard compares the derived form's consonant skeleton and vowel
+  # count with the entry's own IPA.  The modern language palatalises the velars
+  # before a front vowel, and the IPA writes the palatal allophones ([c ɟ ç ʝ
+  # ʎ ɲ]) where the laws write the plain consonant; the two are one phoneme, so
+  # the guard folds them.  The table is applied to both sides and never to a
+  # rule's output (data/spelling/grc.yaml does the same).
+  equivalences:
+    c: k
+    ɟ: g
+    ç: x
+    ʝ: ɣ
+    ʎ: l
+    ɲ: n
+    ɾ: r
+    # The laws write the velar fricative with the Greek letter χ (the IPA sign
+    # for that sound), and the dictionaries write /x/; one segment, two signs.
+    χ: x
+    # The dictionary's IPA is narrow where the laws are phonemic: a stop is
+    # voiced after a nasal (τριάκοντα /triˈakonda/, λάμπω /ˈlam.bo/, the
+    # ντ/μπ/γκ of the modern reading), and a nasal is written with the sign of
+    # the following consonant (νύμφη /ˈniɱfi/).  The letters are the same either
+    # way; only the transcription differs, so the guard folds the two.
+    mp: mb
+    nt: nd
+    nk: ng
+    ɱ: m
+    ŋ: n
+
+rules:
+  - id: au_to_alpha_upsilon
+    order: 10
+    name: "The sequence /av/ is written αυ"
+    match: "a v"
+    replace: "αυ"
+    tier: orthographic
+    description: >
+      The digraph αυ writes the sequence the laws write /av/, before a vowel or a voiced consonant (αὐλή → αυλή).
+    notes: >
+      The laws split the ancient diphthong by the voicing of what follows; the writing does not, so both outcomes are written αυ (Holton, Mackridge & Philippaki-Warburton 1997, 1.2).
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "avlˈē", out: "αυλή"}
+
+  - id: af_to_alpha_upsilon
+    order: 11
+    name: "The sequence /af/ is written αυ"
+    match: "a f"
+    replace: "αυ"
+    tier: orthographic
+    description: >
+      The same digraph writes the devoiced outcome /af/ before a voiceless consonant (αὐτός → /afˈtos/ → αυτός).
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "aftˈos", out: "αυτός"}
+
+  - id: ev_to_epsilon_upsilon
+    order: 12
+    name: "The sequence /ev/ is written ευ"
+    match: "e v"
+    replace: "ευ"
+    tier: orthographic
+    description: >
+      The digraph ευ writes /ev/ before a vowel or a voiced consonant (εὐθύς → ευθύς).
+    notes: >
+      Same convention as αυ: the voicing split is a fact about the sound, not about the letters.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "evθˈēs", out: "ευθής"}
+
+  - id: ef_to_epsilon_upsilon
+    order: 13
+    name: "The sequence /ef/ is written ευ"
+    match: "e f"
+    replace: "ευ"
+    tier: orthographic
+    description: >
+      The same digraph writes /ef/ before a voiceless consonant (εὐχή → /efˈçi/ → ευχή).
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "efχˈē", out: "ευχή"}
+
+  - id: nasal_before_velar
+    order: 20
+    name: "A nasal before a velar is written γ"
+    match: "n"
+    replace: "γ"
+    env: {right: "(k|g|x|χ|ɣ)"}
+    tier: orthographic
+    description: >
+      A nasal assimilated to a following velar is written γ, not ν (ἄγκυρα → άγκυρα, ἄγγελος → άγγελος).
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "ˈaŋkyra", out: "άγκυρα"}
+
+  - id: ks_to_xi
+    order: 25
+    name: "/ks/ is written ξ"
+    match: "k s"
+    replace: "ξ"
+    tier: orthographic
+    description: >
+      The cluster /ks/ is the single sign ξ (ξένος), as in the ancient letter table.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "ksˈenos", out: "ξένος"}
+
+  - id: ps_to_psi
+    order: 26
+    name: "/ps/ is written ψ"
+    match: "p s"
+    replace: "ψ"
+    tier: orthographic
+    description: >
+      The cluster /ps/ is the single sign ψ (ψυχή).
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "psūχˈē", out: "ψυχή"}
+
+  - id: zd_to_zeta
+    order: 27
+    name: "/zd/ and /dz/ are written ζ"
+    match: "z d"
+    replace: "ζ"
+    tier: orthographic
+    description: >
+      ζ writes the cluster /zd/ or /dz/, one sign for two segments.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "zdōˈē", out: "ζωή"}
+
+  - id: final_sigma
+    order: 30
+    name: "A word-final /s/ is written ς"
+    match: "s"
+    replace: "ς"
+    env: {right: "#"}
+    tier: orthographic
+    description: >
+      A word ends in ς, never in σ (λόγος, not λόγοσ).
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "lˈoɣos", out: "λόγος"}
+
+  - id: pi_letter
+    order: 32
+    name: "/p/ is written π"
+    match: "p"
+    replace: "π"
+    tier: orthographic
+    description: >
+      The consonant /p/ is written the letter π.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "patˈeras", out: "πατέρας"}
+
+  - id: beta_letter
+    order: 33
+    name: "/b/ is written β"
+    match: "b"
+    replace: "β"
+    tier: orthographic
+    description: >
+      The consonant /b/ is written the letter β.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "bˈasē", out: "βάση"}
+
+  - id: tau_letter
+    order: 34
+    name: "/t/ is written τ"
+    match: "t"
+    replace: "τ"
+    tier: orthographic
+    description: >
+      The consonant /t/ is written the letter τ.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "tˈopos", out: "τόπος"}
+
+  - id: delta_letter
+    order: 35
+    name: "/d/ is written δ"
+    match: "d"
+    replace: "δ"
+    tier: orthographic
+    description: >
+      The consonant /d/ is written the letter δ.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "ðˈōro", out: "δώρο"}
+
+  - id: kappa_letter
+    order: 36
+    name: "/k/ is written κ"
+    match: "k"
+    replace: "κ"
+    tier: orthographic
+    description: >
+      The consonant /k/ is written the letter κ.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "kakˈos", out: "κακός"}
+
+  - id: gamma_letter
+    order: 37
+    name: "/g/ is written γ"
+    match: "g"
+    replace: "γ"
+    tier: orthographic
+    description: >
+      The consonant /g/ is written the letter γ.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "ɣˈala", out: "γάλα"}
+
+  - id: phi_letter
+    order: 38
+    name: "/f/ is written φ"
+    match: "f"
+    replace: "φ"
+    tier: orthographic
+    description: >
+      The consonant /f/ is written the letter φ.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "fˈilos", out: "φίλος"}
+
+  - id: beta_v_letter
+    order: 39
+    name: "/v/ is written β"
+    match: "v"
+    replace: "β"
+    tier: orthographic
+    description: >
+      The consonant /v/ is written the letter β.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "vˈasē", out: "βάση"}
+
+  - id: theta_letter
+    order: 40
+    name: "/θ/ is written θ"
+    match: "θ"
+    replace: "θ"
+    tier: orthographic
+    description: >
+      The consonant /θ/ is written the letter θ.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "θalˈassa", out: "θαλάσσα"}
+
+  - id: delta_dh_letter
+    order: 41
+    name: "/ð/ is written δ"
+    match: "ð"
+    replace: "δ"
+    tier: orthographic
+    description: >
+      The consonant /ð/ is written the letter δ.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "ðrˈomos", out: "δρόμος"}
+
+  - id: gamma_gh_letter
+    order: 42
+    name: "/ɣ/ is written γ"
+    match: "ɣ"
+    replace: "γ"
+    tier: orthographic
+    description: >
+      The consonant /ɣ/ is written the letter γ.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "ɣrˈamma", out: "γράμμα"}
+
+  - id: chi_letter
+    order: 43
+    name: "/x/ is written χ"
+    match: "χ"
+    replace: "χ"
+    tier: orthographic
+    description: >
+      The consonant /x/ is written the letter χ.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "χarˈa", out: "χαρά"}
+
+  - id: mu_letter
+    order: 44
+    name: "/m/ is written μ"
+    match: "m"
+    replace: "μ"
+    tier: orthographic
+    description: >
+      The consonant /m/ is written the letter μ.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "mētˈera", out: "μητέρα"}
+
+  - id: nu_letter
+    order: 45
+    name: "/n/ is written ν"
+    match: "n"
+    replace: "ν"
+    tier: orthographic
+    description: >
+      The consonant /n/ is written the letter ν.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "nerˈo", out: "νερό"}
+
+  - id: rho_letter
+    order: 46
+    name: "/r/ is written ρ"
+    match: "r"
+    replace: "ρ"
+    tier: orthographic
+    description: >
+      The consonant /r/ is written the letter ρ.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "rˈēma", out: "ρήμα"}
+
+  - id: lambda_letter
+    order: 47
+    name: "/l/ is written λ"
+    match: "l"
+    replace: "λ"
+    tier: orthographic
+    description: >
+      The consonant /l/ is written the letter λ.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "lˈoɣos", out: "λόγος"}
+
+  - id: sigma_letter
+    order: 48
+    name: "/s/ is written σ"
+    match: "s"
+    replace: "σ"
+    tier: orthographic
+    description: >
+      The consonant /s/ is written the letter σ.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "θalˈassa", out: "θαλάσσα"}
+
+  - id: zeta_letter
+    order: 49
+    name: "/z/ is written ζ"
+    match: "z"
+    replace: "ζ"
+    tier: orthographic
+    description: >
+      The consonant /z/ is written the letter ζ.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "zōˈē", out: "ζωή"}
+
+  - id: gamma_nasal_letter
+    order: 50
+    name: "/ŋ/ is written γ"
+    match: "ŋ"
+    replace: "γ"
+    tier: orthographic
+    description: >
+      The consonant /ŋ/ is written the letter γ.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "ˈaŋkyra", out: "άγκυρα"}
+
+  - id: phi_alt_letter
+    order: 51
+    name: "/ɸ/ is written φ"
+    match: "ɸ"
+    replace: "φ"
+    tier: orthographic
+    description: >
+      The consonant /ɸ/ is written the letter φ.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "ɸˈilos", out: "φίλος"}
+
+
+
+
+
+  - id: alpha_tonos
+    order: 60
+    name: "A stressed /a/ is written ά"
+    match: "a"
+    replace: "ά"
+    env: {left: "ˈ"}
+    tier: orthographic
+    description: >
+      A stressed /a/ is written α with the tonos on it; the stress token the laws place before the vowel is not a letter.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "ɣalˈa", out: "γαλά"}
+
+  - id: epsilon_tonos
+    order: 61
+    name: "A stressed /e/ is written έ"
+    match: "e"
+    replace: "έ"
+    env: {left: "ˈ"}
+    tier: orthographic
+    description: >
+      A stressed /e/ is written ε with the tonos on it; the stress token the laws place before the vowel is not a letter.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "kanˈenas", out: "κανένας"}
+
+  - id: iota_tonos
+    order: 62
+    name: "A stressed /i/ is written ί"
+    match: "i"
+    replace: "ί"
+    env: {left: "ˈ"}
+    tier: orthographic
+    description: >
+      A stressed /i/ is written ι with the tonos on it; the stress token the laws place before the vowel is not a letter.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "spˈiti", out: "σπίτι"}
+
+  - id: omicron_tonos
+    order: 63
+    name: "A stressed /o/ is written ό"
+    match: "o"
+    replace: "ό"
+    env: {left: "ˈ"}
+    tier: orthographic
+    description: >
+      A stressed /o/ is written ο with the tonos on it; the stress token the laws place before the vowel is not a letter.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "ðrˈomos", out: "δρόμος"}
+
+  - id: upsilon_tonos
+    order: 64
+    name: "A stressed /u/ is written ύ"
+    match: "u"
+    replace: "ύ"
+    env: {left: "ˈ"}
+    tier: orthographic
+    description: >
+      A stressed /u/ is written υ with the tonos on it; the stress token the laws place before the vowel is not a letter.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "doˈulos", out: "δούλος"}
+
+  - id: upsilon_y_tonos
+    order: 65
+    name: "A stressed /y/ is written ύ"
+    match: "y"
+    replace: "ύ"
+    env: {left: "ˈ"}
+    tier: orthographic
+    description: >
+      A stressed /y/ is written υ with the tonos on it; the stress token the laws place before the vowel is not a letter.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "lˈykos", out: "λύκος"}
+
+  - id: alpha_long_tonos
+    order: 66
+    name: "A stressed /ā/ is written ά"
+    match: "ā"
+    replace: "ά"
+    env: {left: "ˈ"}
+    tier: orthographic
+    description: >
+      A stressed /ā/ is written α with the tonos on it; the stress token the laws place before the vowel is not a letter.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "θalˈassa", out: "θαλάσσα"}
+
+  - id: eta_tonos
+    order: 67
+    name: "A stressed /ē/ is written ή"
+    match: "ē"
+    replace: "ή"
+    env: {left: "ˈ"}
+    tier: orthographic
+    description: >
+      A stressed /ē/ is written η with the tonos on it; the stress token the laws place before the vowel is not a letter.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "mētˈera", out: "μητέρα"}
+
+  - id: iota_long_tonos
+    order: 68
+    name: "A stressed /ī/ is written ί"
+    match: "ī"
+    replace: "ί"
+    env: {left: "ˈ"}
+    tier: orthographic
+    description: >
+      A stressed /ī/ is written ι with the tonos on it; the stress token the laws place before the vowel is not a letter.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "lˈīra", out: "λίρα"}
+
+  - id: omega_tonos
+    order: 69
+    name: "A stressed /ō/ is written ώ"
+    match: "ō"
+    replace: "ώ"
+    env: {left: "ˈ"}
+    tier: orthographic
+    description: >
+      A stressed /ō/ is written ω with the tonos on it; the stress token the laws place before the vowel is not a letter.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "ðˈōro", out: "δώρο"}
+
+  - id: upsilon_long_tonos
+    order: 70
+    name: "A stressed /ū/ is written ύ"
+    match: "ū"
+    replace: "ύ"
+    env: {left: "ˈ"}
+    tier: orthographic
+    description: >
+      A stressed /ū/ is written υ with the tonos on it; the stress token the laws place before the vowel is not a letter.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "mūθˈos", out: "μυθός"}
+
+  - id: alpha_letter
+    order: 70
+    name: "/a/ is written α"
+    match: "a"
+    replace: "α"
+    tier: orthographic
+    description: >
+      The vowel /a/ is written α.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "patˈeras", out: "πατέρας"}
+
+  - id: epsilon_letter
+    order: 71
+    name: "/e/ is written ε"
+    match: "e"
+    replace: "ε"
+    tier: orthographic
+    description: >
+      The vowel /e/ is written ε.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "ˈenas", out: "ένας"}
+
+  - id: iota_letter
+    order: 72
+    name: "/i/ is written ι"
+    match: "i"
+    replace: "ι"
+    tier: orthographic
+    description: >
+      The vowel /i/ is written ι.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "ˈanθrōpoi", out: "άνθρωποι"}
+
+  - id: omicron_letter
+    order: 73
+    name: "/o/ is written ο"
+    match: "o"
+    replace: "ο"
+    tier: orthographic
+    description: >
+      The vowel /o/ is written ο.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "ˈanθrōpos", out: "άνθρωπος"}
+
+  - id: upsilon_letter
+    order: 74
+    name: "/u/ is written υ"
+    match: "u"
+    replace: "υ"
+    tier: orthographic
+    description: >
+      The vowel /u/ is written υ.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "ɣynaˈika", out: "γυναίκα"}
+
+  - id: upsilon_y_letter
+    order: 75
+    name: "/y/ is written υ"
+    match: "y"
+    replace: "υ"
+    tier: orthographic
+    description: >
+      The vowel /y/ is written υ.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "ɣynaˈika", out: "γυναίκα"}
+
+  - id: alpha_long_letter
+    order: 76
+    name: "/ā/ is written α"
+    match: "ā"
+    replace: "α"
+    tier: orthographic
+    description: >
+      The vowel /ā/ is written α.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "patˈeras", out: "πατέρας"}
+
+  - id: eta_letter
+    order: 77
+    name: "/ē/ is written η"
+    match: "ē"
+    replace: "η"
+    tier: orthographic
+    description: >
+      The vowel /ē/ is written η.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "psˈyχē", out: "ψύχη"}
+
+  - id: iota_long_letter
+    order: 78
+    name: "/ī/ is written ι"
+    match: "ī"
+    replace: "ι"
+    tier: orthographic
+    description: >
+      The vowel /ī/ is written ι.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "lˈīra", out: "λίρα"}
+
+  - id: omega_letter
+    order: 79
+    name: "/ō/ is written ω"
+    match: "ō"
+    replace: "ω"
+    tier: orthographic
+    description: >
+      The vowel /ō/ is written ω.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "ˈanθrōpos", out: "άνθρωπος"}
+
+  - id: upsilon_long_letter
+    order: 80
+    name: "/ū/ is written υ"
+    match: "ū"
+    replace: "υ"
+    tier: orthographic
+    description: >
+      The vowel /ū/ is written υ.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "mˈyθos", out: "μύθος"}
+
+  - id: secondary_stress_not_written
+    order: 89
+    name: "A secondary stress is not written"
+    match: "ˌ"
+    replace: ""
+    tier: orthographic
+    description: >
+      The engine can mark a secondary stress with its own token; Greek writes one accent only, so the token is dropped.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "ˌaloˈos", out: "αλοός"}
+
+  - id: stress_not_written
+    order: 90
+    name: "The primary stress is the tonos, not a letter"
+    match: "ˈ"
+    replace: ""
+    tier: orthographic
+    description: >
+      The engine marks stress with its own token before the syllable; the orthography writes it as the tonos on the vowel (the rules above), so the token itself is dropped.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "kalˈos", out: "καλός"}

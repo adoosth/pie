@@ -1,0 +1,21 @@
+# Candidate: the aspirated labiovelar *gʷʰ > *ǰʰ before *e
+# (ǰʰánti < *gʷʰénti, dʰáǰʰati < *dʰégʷʰeti).
+rules:
+  - id: labiovelar_gh_palatal_e
+    order: 44
+    name: "*gʷʰ > *ǰʰ before *e"
+    match: gʷʰ
+    replace: ǰʰ
+    env:
+      right: (ˈ|ˌ)? e
+    tier: proposed
+    references: [mayrhofer-1986]
+    description: >
+      The aspirated labiovelar palatalises before the front vowel *e (*gʷʰénti
+      > *ǰʰánti, *dʰégʷʰeti > *dʰáǰʰati), exactly as the plain labiovelar does;
+      the plain voiced member is a separate question because the corpus keeps
+      *g in *gʷémtis > *gátiš and palatalises it in *gʷétu > *ǰátu.
+    examples:
+      - {in: "*gʷʰénti", out: "*ǰʰénti", gloss: "slays"}
+      - {in: "*dʰégʷʰeti", out: "*dʰéǰʰeti", gloss: "burns"}
+      - {in: "*gʷʰórdʰos", out: "*gʷʰórdʰos", gloss: "enclosure — no front vowel"}

@@ -1,0 +1,105 @@
+stage:
+  name: Latin orthography
+  description: >
+    How Latin is written in the dictionaries the corpus is built from.  The
+    standard Latin orthography does not mark vowel quantity: the long vowels
+    that the phonemic layer writes with a macron are written with the plain
+    letter.  The velar stop /k/ is written c, the glide /w/ is written v, and
+    the labiovelar /kʷ/ is written qu.  Stress is not written.
+  references: [meiser-1998, weiss-2009, sihler-1995]
+
+rules:
+  - id: drop_stress
+    order: 5
+    name: Stress is not written
+    match: "ˈ"
+    replace: ""
+    tier: orthographic
+    description: "Latin orthography marks neither stress nor pitch; the phonemic layer's stress token is not a letter."
+    references: [meiser-1998]
+    examples:
+      - {in: "ˈlupa", out: "lupa"}
+
+  - id: labiovelar_qu
+    order: 10
+    name: "/kʷ/ is written ⟨qu⟩"
+    match: "kʷ"
+    replace: "qu"
+    tier: orthographic
+    description: "Latin writes the labiovelar with qu (quod, aqua, equus); the letter q is otherwise unused."
+    references: [meiser-1998, sihler-1995]
+    examples:
+      - {in: "kʷo", out: "quo"}
+
+  - id: k_to_c
+    order: 20
+    name: "/k/ is written ⟨c⟩"
+    match: k
+    replace: c
+    tier: orthographic
+    description: "Latin writes the velar stop /k/ with c in every position (cūr, dīcō, corpus); k survives only in a few archaic or foreign words."
+    references: [meiser-1998, weiss-2009]
+    examples:
+      - {in: "kˈorpos", out: "corpos"}
+
+  - id: w_to_v
+    order: 30
+    name: "/w/ is written ⟨v⟩"
+    match: w
+    replace: v
+    tier: orthographic
+    description: "The glide /w/ is written v (via, servus, vōx); the letter u writes the vowel."
+    references: [meiser-1998, weiss-2009]
+    examples:
+      - {in: "wel", out: "vel"}
+
+  - id: long_a
+    order: 100
+    name: "Long /ā/ is written ⟨a⟩"
+    match: "ā"
+    replace: "a"
+    tier: orthographic
+    description: "The standard orthography does not mark vowel quantity; the macron belongs to the phonemic layer and to pedagogical texts only."
+    references: [meiser-1998, weiss-2009]
+    examples:
+      - {in: "lāna", out: "lana"}
+
+  - id: long_e
+    order: 101
+    name: "Long /ē/ is written ⟨e⟩"
+    match: "ē"
+    replace: "e"
+    tier: orthographic
+    references: [meiser-1998, weiss-2009]
+    examples:
+      - {in: "dē", out: "de"}
+
+  - id: long_i
+    order: 102
+    name: "Long /ī/ is written ⟨i⟩"
+    match: "ī"
+    replace: "i"
+    tier: orthographic
+    references: [meiser-1998, weiss-2009]
+    examples:
+      - {in: "wīta", out: "vita"}
+
+  - id: long_o
+    order: 103
+    name: "Long /ō/ is written ⟨o⟩"
+    match: "ō"
+    replace: "o"
+    tier: orthographic
+    references: [meiser-1998, weiss-2009]
+    examples:
+      - {in: "dō", out: "do"}
+
+  - id: long_u
+    order: 104
+    name: "Long /ū/ is written ⟨u⟩"
+    match: "ū"
+    replace: "u"
+    tier: orthographic
+    references: [meiser-1998, weiss-2009]
+    examples:
+      - {in: "dūkō", out: "duco"}

@@ -1,0 +1,10 @@
+rules:
+  - id: probe_ns_final_to_h
+    order: 111
+    name: "PII *-ns# > PIr *-h"
+    match: "n s"
+    replace: "h"
+    env: {right: "#"}
+    references: [hoffmann-forssman-2004, kent-1953]
+    examples:
+      - {in: "*Hr̥táHwāns", out: "*Hr̥táHwāh", gloss: "?"}

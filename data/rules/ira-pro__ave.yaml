@@ -1,0 +1,183 @@
+stage:
+  name: Proto-Iranian → Avestan
+  date_start: -1500
+  date_end: -400
+  description: >
+    Avestan is the most conservative Iranian language: PIr *c and *j become the
+    sibilants s and z, *cw becomes sp (aspa- 'horse'), *w is written v (u̯),
+    syllabic *r̥ is resolved as ərə, the diphthongs *ai and *au are written aē
+    and ao, the nominative ending *-ah becomes -ō and final *-am becomes -əm.
+  references: [hoffmann-forssman-2004, skjaervo-2009]
+
+rules:
+  - id: laryngeal_loss_initial
+    order: 2
+    tier: established
+    name: "PIr *H- is lost at the start of a word"
+    match: H
+    replace: ""
+    env: {left: "#"}
+    description: >
+      Avestan loses the Proto-Iranian laryngeal as Old Persian does, and a
+      word-initial one leaves nothing behind because there is no vowel before it
+      to lengthen: PIr *Hanyah > Av. aniia- 'other', *Háyšmah > aēšma- 'fury',
+      *Hŕ̥šah > arša- 'bear'.  The rule is the one the Old Persian stage already
+      carries; the Avestan stage's own note named it but did not have it, so a
+      word like *Hácwah reached the last mile as Haspō instead of aspō
+      (2026-11-09).
+    references: [hoffmann-forssman-2004, skjaervo-2009]
+    examples:
+      - {in: "*Hanyah", out: "*anyah", gloss: "other (Av. aniia-)"}
+      - {in: "*Hŕ̥šah", out: "*ŕ̥šah", gloss: "bear (Av. arša-)"}
+
+  - id: laryngeal_lengthening
+    order: 3
+    tier: established
+    name: "The Old Iranian laryngeal is lost: *aH > ā"
+    transform: laryngeal_lengthening
+    description: >
+      Avestan loses the Proto-Iranian laryngeal the same way Old Persian does,
+      lengthening a short vowel before it: PIr *bráHtā > Av. brātar- 'brother',
+      PIr *baHjúš > Av. bāzu- 'arm'. After a long vowel or a consonant the
+      laryngeal simply goes (Av. ptā beside Skt pitā́).
+    references: [hoffmann-forssman-2004, skjaervo-2009]
+    examples:
+      - {in: "*brˈaHtā", out: "brˈātā", gloss: "brother (Av. brātar-)"}
+
+  - id: cw_to_sp
+    order: 5
+    name: "PIr *cw > Av. sp"
+    match: "c w"
+    replace: "s p"
+    description: >
+      Av. aspa- 'horse' and spənta- 'holy' beside Skt áśva- and śvantá-; the *s
+      is kept before *p.
+    references: [hoffmann-forssman-2004, skjaervo-2009]
+    examples:
+      - {in: "*Hácwah", out: "*Háspah", gloss: "horse"}
+
+  - id: c_to_s
+    order: 10
+    name: "PIr *c > Av. s"
+    match: c
+    replace: s
+    description: >
+      Av. satəm 'hundred' beside OP θatam; OP aspa 'horse' is a Median loanword
+      with the same s. The change is younger than *s > *h, which had already
+      run in Proto-Iranian: a *c that became *s here was never touched by it
+      (Wikipedia, Proto-Iranian: '*c, *dz > *s, *z').
+    references: [hoffmann-forssman-2004, skjaervo-2009]
+    examples:
+      - {in: "*catám", out: "*satám", gloss: "hundred"}
+
+  - id: j_to_z
+    order: 20
+    name: "PIr *j > Av. z"
+    match: j
+    replace: z
+    description: Av. zasta- 'hand' beside OP dasta-, Av. zānu- 'knee' beside OP dānu-.
+    references: [hoffmann-forssman-2004]
+    examples:
+      - {in: "*jastah", out: "*zastah", gloss: "hand"}
+
+  - id: w_to_v
+    order: 30
+    name: "PIr *w > Av. v"
+    match: w
+    replace: v
+    notes: "Avestan v writes the same labial glide (vāta- 'wind', vaŋhu- 'good')."
+    references: [hoffmann-forssman-2004, skjaervo-2009]
+    examples:
+      - {in: "*wātah", out: "*vātah", gloss: "wind"}
+
+  - id: r_syllabic_to_ere
+    order: 40
+    name: "PIr *r̥ > Av. ərə"
+    match: r̥
+    replace: ərə
+    description: Av. mərəta- 'dead', kərənaoiti 'makes' (PIE *kʷr̥-).
+    references: [hoffmann-forssman-2004]
+    examples:
+      - {in: "*mr̥táh", out: "*mərətáh", gloss: "dead"}
+
+  - id: ai_to_ae
+    order: 50
+    name: "PIr *ai > Av. aē"
+    match: "a i"
+    replace: aē
+    references: [hoffmann-forssman-2004, skjaervo-2009]
+    examples:
+      - {in: "*daiwah", out: "*daēwah", gloss: "demon (Av. daēuua-)"}
+
+  - id: au_to_ao
+    order: 51
+    name: "PIr *au > Av. ao"
+    match: "a u"
+    replace: ao
+    references: [hoffmann-forssman-2004, skjaervo-2009]
+    examples:
+      - {in: "*gaušah", out: "*gaošah", gloss: "ear (Av. gaoša-)"}
+
+  - id: final_ah_to_o
+    order: 60
+    name: "Final *-ah > Av. -ō"
+    match: "a h"
+    replace: ō
+    env: {right: "#"}
+    description: The nominative singular of the a-stems ends in -ō (Av. haomō, ahurō).
+    references: [hoffmann-forssman-2004, skjaervo-2009]
+    examples:
+      - {in: "*haumah", out: "*haumō", gloss: "Soma (nom. sg.)"}
+
+  - id: final_am_to_em
+    order: 61
+    name: "Final *-am > Av. -əm"
+    match: "a m"
+    replace: əm
+    env: {right: "#"}
+    description: Av. satəm 'hundred', ašəm 'truth' (OP aθam, aštam).
+    references: [hoffmann-forssman-2004]
+    examples:
+      - {in: "*catam", out: "*catəm", gloss: "hundred"}
+
+  - id: final_ar_to_a
+    order: 65
+    name: "Final *-ār > Av. -ā (nominative of the -ar stems)"
+    match: "ā r"
+    replace: ā
+    env: {right: "#"}
+    tier: proposed
+    notes: >
+      Av. ptā, brāta, māta, dātā show the nominative without the *-r of the
+      oblique stem.  The change is morphological in origin, hence proposed.
+    references: [hoffmann-forssman-2004]
+    examples:
+      - {in: "*brātār", out: "*brātā", gloss: "brother (nom. sg., Av. brāta)"}
+
+  - id: laryngeal_vowel_loss
+    order: 70
+    name: "No reflex of the laryngeal vowel of *patā-"
+    match: a
+    replace: ""
+    env: {left: p, right: "t ˈ? ā"}
+    tier: proposed
+    optional: true
+    notes: >
+      Avestan ptā 'father' has neither the *i of Old Persian pitā nor the *a with
+      which data/rules/ine-pro__iir-pro.yaml resolves the laryngeal of *ph₂tḗr.
+      The rule is deliberately narrow (the *patā- shape only) and models the
+      Avestan side of that isogloss; it is inert with the standard PII *pH̥tā́.
+    references: [hoffmann-forssman-2004, mayrhofer-1986]
+    examples:
+      - {in: "*patā́", out: "*ptā́", gloss: "father"}
+
+  - id: stress_not_written
+    order: 90
+    name: "Stress is not written"
+    match: ˈ
+    replace: ""
+    notes: >
+      Notation only: the reconstructed stages carry an accent token, the Avestan
+      forms of this model are written without it.
+    examples:
+      - {in: "*ptˈā", out: "*ptā", gloss: "father"}

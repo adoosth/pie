@@ -1,0 +1,129 @@
+stage:
+  name: Old English orthography
+  description: >
+    How Old English is written.  The letters c and þ are the two conventions that
+    matter for this corpus: /k/ is written c (storc for 'stork'), and the dental
+    fricative is written þ.  Vowel length is marked in grammars but not in the
+    dictionary's lemmas, so the macron is mapped away here as well.
+  references: [campbell-1959, wright-1908]
+
+rules:
+  - id: k_to_c
+    order: 10
+    name: "/k/ is written ⟨c⟩"
+    match: k
+    replace: c
+    tier: orthographic
+    description: "Old English writes the velar stop with c in every position; k appears only in a handful of late or foreign spellings."
+    references: [campbell-1959]
+    examples:
+      - {in: "stork", out: "storc"}
+  - id: theta_to_thorn
+    order: 11
+    name: "/θ/ is written ⟨þ⟩"
+    match: θ
+    replace: þ
+    tier: orthographic
+    references: [campbell-1959, wright-1908]
+    examples:
+      - {in: "θing", out: "þing"}
+  - id: len_101
+    order: 100
+    name: "Long ⟨ā⟩ is written ⟨a⟩"
+    match: "ā"
+    replace: "a"
+    tier: orthographic
+    description: "The phonemic layer marks vowel length with a macron; this stage's dictionary writes the plain letter and leaves length to context, so the comparison has to be made in the dictionary's notation."
+    references: [campbell-1959]
+    examples:
+      - {in: "ām", out: "am"}
+  - id: len_113
+    order: 101
+    name: "Long ⟨ē⟩ is written ⟨e⟩"
+    match: "ē"
+    replace: "e"
+    tier: orthographic
+    description: "The phonemic layer marks vowel length with a macron; this stage's dictionary writes the plain letter and leaves length to context, so the comparison has to be made in the dictionary's notation."
+    references: [campbell-1959]
+    examples:
+      - {in: "ēm", out: "em"}
+  - id: len_12b
+    order: 102
+    name: "Long ⟨ī⟩ is written ⟨i⟩"
+    match: "ī"
+    replace: "i"
+    tier: orthographic
+    description: "The phonemic layer marks vowel length with a macron; this stage's dictionary writes the plain letter and leaves length to context, so the comparison has to be made in the dictionary's notation."
+    references: [campbell-1959]
+    examples:
+      - {in: "īm", out: "im"}
+  - id: len_14d
+    order: 103
+    name: "Long ⟨ō⟩ is written ⟨o⟩"
+    match: "ō"
+    replace: "o"
+    tier: orthographic
+    description: "The phonemic layer marks vowel length with a macron; this stage's dictionary writes the plain letter and leaves length to context, so the comparison has to be made in the dictionary's notation."
+    references: [campbell-1959]
+    examples:
+      - {in: "ōm", out: "om"}
+  - id: len_16b
+    order: 104
+    name: "Long ⟨ū⟩ is written ⟨u⟩"
+    match: "ū"
+    replace: "u"
+    tier: orthographic
+    description: "The phonemic layer marks vowel length with a macron; this stage's dictionary writes the plain letter and leaves length to context, so the comparison has to be made in the dictionary's notation."
+    references: [campbell-1959]
+    examples:
+      - {in: "ūm", out: "um"}
+  - id: len_1e3
+    order: 105
+    name: "Long ⟨ǣ⟩ is written ⟨æ⟩"
+    match: "ǣ"
+    replace: "æ"
+    tier: orthographic
+    description: "The phonemic layer marks vowel length with a macron; this stage's dictionary writes the plain letter and leaves length to context, so the comparison has to be made in the dictionary's notation."
+    references: [campbell-1959]
+    examples:
+      - {in: "ǣm", out: "æm"}
+  - id: len_1ed
+    order: 106
+    name: "Long ⟨ǭ⟩ is written ⟨a⟩"
+    match: "ǭ"
+    replace: "a"
+    tier: orthographic
+    description: "The phonemic layer marks vowel length with a macron; this stage's dictionary writes the plain letter and leaves length to context, so the comparison has to be made in the dictionary's notation."
+    references: [campbell-1959]
+    examples:
+      - {in: "ǭm", out: "am"}
+  - id: len_105
+    order: 107
+    name: "Long ⟨ą⟩ is written ⟨a⟩"
+    match: "ą"
+    replace: "a"
+    tier: orthographic
+    description: "The phonemic layer marks vowel length with a macron; this stage's dictionary writes the plain letter and leaves length to context, so the comparison has to be made in the dictionary's notation."
+    references: [campbell-1959]
+    examples:
+      - {in: "ąm", out: "am"}
+  - id: len_2d0
+    order: 108
+    name: "Phonemic length is not written"
+    match: "ː"
+    replace: ""
+    tier: orthographic
+    description: "The phonemic layer marks vowel length with a macron; this stage's dictionary writes the plain letter and leaves length to context, so the comparison has to be made in the dictionary's notation."
+    references: [campbell-1959]
+    examples:
+      - {in: "ːm", out: "m"}
+  - id: len_2d1
+    order: 109
+    name: "Phonemic length is not written"
+    match: "ˑ"
+    replace: ""
+    tier: orthographic
+    description: "The phonemic layer marks vowel length with a macron; this stage's dictionary writes the plain letter and leaves length to context, so the comparison has to be made in the dictionary's notation."
+    references: [campbell-1959]
+    examples:
+      - {in: "ˑm", out: "m"}

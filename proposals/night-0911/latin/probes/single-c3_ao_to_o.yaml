@@ -1,0 +1,24 @@
+stage:
+  name: Proto-Italic → Latin (candidate 3)
+  references:
+  - sihler-1995
+  - weiss-2009
+  - meiser-1998
+rules:
+- id: c3_ao_to_o
+  order: 230
+  name: Final *-āō > -ō
+  match: ā ō
+  replace: ō
+  env:
+    right: '#'
+  tier: established
+  description: The sequence *-āō of the first-conjugation first person contracts to
+    -ō (*portāō > *portō).
+  references:
+  - sihler-1995
+  - weiss-2009
+  examples:
+  - in: '*portāō'
+    out: '*portō'
+    gloss: I carry

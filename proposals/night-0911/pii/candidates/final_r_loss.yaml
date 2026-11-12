@@ -1,0 +1,29 @@
+# Measured 2026-11-09 and REJECTED (see ../report.md).
+# iir-pro: +7 words, 0 lost — but it removes the *r of Persian pedār, mādar and
+# dādār, which the off-by-default peo->pal pathway law `r_stem_oblique` owns, and
+# it fails 11 test_web tests. The loss is real (PII *pHtā́, Skt. pitā́) but the
+# corpus needs the *r until a word's own pathway drops it, so nothing ships.
+rules:
+- id: final_r_loss
+  order: 65
+  name: 'Final *-r is lost after long *ā'
+  match: r
+  replace: ''
+  env:
+    left: ā
+    right: '#'
+  tier: established
+  description: '*ph₂tā́r > *ph₂tā́, *swásār > *swásā (Skt. pitā́, svásā); a short *a keeps its *r.'
+  references:
+  - mayrhofer-1986
+  - hoffmann-forssman-2004
+  examples:
+  - in: '*h₂stā́r'
+    out: '*h₂stā́'
+    gloss: star
+  - in: '*swásār'
+    out: '*swásā'
+    gloss: sister
+  - in: '*súHar'
+    out: '*súHar'
+    gloss: the sun — short *a, the *r stays

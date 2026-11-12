@@ -1,0 +1,14 @@
+rules:
+  - id: pt_to_ft
+    order: 77
+    name: "*pt > *ft (including medially)"
+    match: "p t"
+    replace: "f t"
+    tier: proposed
+    description: >
+      The cluster πτ is pronounced φτ in the modern language; the word-initial
+      case is already stated (πτύω > φτύνω); this candidate extends it to the
+      medial position of ἑπτά > εφτά (Horrocks 2010, 171).
+    references: [horrocks-2010]
+    examples:
+      - {in: "hepˈta", out: "hefˈta", gloss: "seven (ἑπτά > εφτά)"}

@@ -1,0 +1,24 @@
+stage:
+  name: Proto-Italic → Latin (candidate 4)
+  references:
+  - sihler-1995
+  - weiss-2009
+  - meiser-1998
+rules:
+- id: c4_rs_to_r_final
+  order: 146
+  name: Final *-rs > -r
+  match: s
+  replace: ''
+  env:
+    left: r
+    right: '#'
+  tier: established
+  description: Final *-s is lost after *r (*fars > *far).
+  references:
+  - sihler-1995
+  - weiss-2009
+  examples:
+  - in: '*fars'
+    out: '*far'
+    gloss: spelt

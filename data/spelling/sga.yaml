@@ -1,0 +1,146 @@
+stage:
+  name: Old Irish orthography
+  description: >
+    How the dictionaries write Old Irish.  The Latin alphabet is used without
+    the letter k: the velar stop is written c, and a following e or i is read
+    as the palatalisation of the c, not as a second consonant.  The spirants
+    the laws write with their phonetic letters are written with digraphs:
+    θ is th, x is ch.  Length is marked with the acute on the vowel (á é í ó
+    ú), never with a macron, and the macron of the phonemic layer is therefore
+    a notation, not a letter.  The voiced spirants [β ð ɣ] that the lenition
+    produced are written with the plain voiced letters b d g, because the
+    alphabet has no separate letters for them; the dotted letters ḃ ċ ḋ ḟ ġ
+    ṁ ṗ ṡ ṫ mark lenition only where the dictionary needs to distinguish it
+    (mostly in Middle Irish and in grammatical handbooks), and the normalized
+    headword this corpus uses does not write them.
+  references: [matasovic-2009, mccone-1996]
+
+rules:
+  - id: drop_stress
+    order: 5
+    name: Stress is not written
+    match: "ˈ"
+    replace: ""
+    tier: orthographic
+    description: >
+      Neither the normalized headword nor the dictionary marks stress; the
+      phonemic layer's stress token is not a letter.
+    references: [mccone-1996]
+    examples:
+      - {in: "ˈbran", out: "bran"}
+
+  - id: k_to_c
+    order: 20
+    name: "/k/ is written ⟨c⟩"
+    match: k
+    replace: c
+    tier: orthographic
+    description: >
+      Old Irish writes the velar stop c in every position (cenn 'head',
+      cathair 'city', boc 'he-goat'); k appears only in loanwords.  Before e
+      and i the c is palatalised, which the following vowel already shows.
+    references: [mccone-1996]
+    examples:
+      - {in: "kenn", out: "cenn"}
+      - {in: "bˈokkos", out: "boccos"}
+
+  - id: theta_to_th
+    order: 30
+    name: "/θ/ is written ⟨th⟩"
+    match: "θ"
+    replace: "th"
+    tier: orthographic
+    description: >
+      The spirant θ is written with the digraph th (math 'good', crith 'body',
+      athair 'father').  The h is the letter of lenition, not a vowel.
+    references: [mccone-1996]
+    examples:
+      - {in: "kloθ", out: "cloth"}
+
+  - id: x_to_ch
+    order: 31
+    name: "/x/ is written ⟨ch⟩"
+    match: x
+    replace: ch
+    tier: orthographic
+    description: >
+      The velar spirant x is written ch (loch 'lake', tech 'house', sech
+      'each'); c alone is the stop.
+    references: [mccone-1996]
+    examples:
+      - {in: "lox", out: "loch"}
+
+  - id: phi_to_f
+    order: 40
+    name: "/ɸ/ is written ⟨f⟩"
+    match: "ɸ"
+    replace: f
+    tier: orthographic
+    description: >
+      A bilabial spirant that survives in a borrowing is written f, the only
+      fricative letter of the alphabet.  In inherited words the sound was
+      lost, so this rule fires rarely.
+    references: [mccone-1996]
+    examples:
+      - {in: "ɸoɾ", out: "foɾ"}
+
+  - id: long_a
+    order: 100
+    name: "Long /ā/ is written ⟨á⟩"
+    match: "ā"
+    replace: "á"
+    tier: orthographic
+    description: >
+      Length is marked with the acute, not the macron: the dictionary writes
+      á (día 'god', áith 'age', sál 'heel').
+    references: [mccone-1996]
+    examples:
+      - {in: "dˈiā", out: "diá"}
+
+  - id: long_e
+    order: 101
+    name: "Long /ē/ is written ⟨é⟩"
+    match: "ē"
+    replace: "é"
+    tier: orthographic
+    description: >
+      Long ē is written é (sét 'treasure', té 'hot').
+    references: [mccone-1996]
+    examples:
+      - {in: "sēt", out: "sét"}
+
+  - id: long_i
+    order: 102
+    name: "Long /ī/ is written ⟨í⟩"
+    match: "ī"
+    replace: "í"
+    tier: orthographic
+    description: >
+      Long ī is written í (mín 'mild', grís 'heat').
+    references: [mccone-1996]
+    examples:
+      - {in: "mīN", out: "míN"}
+
+  - id: long_o
+    order: 103
+    name: "Long /ō/ is written ⟨ó⟩"
+    match: "ō"
+    replace: "ó"
+    tier: orthographic
+    description: >
+      Long ō is written ó (cóir 'just', ól 'drink').
+    references: [mccone-1996]
+    examples:
+      - {in: "kōr", out: "cór"}
+
+  - id: long_u
+    order: 104
+    name: "Long /ū/ is written ⟨ú⟩"
+    match: "ū"
+    replace: "ú"
+    tier: orthographic
+    description: >
+      Long ū is written ú (brú 'belly', úar 'cold').
+    references: [mccone-1996]
+    examples:
+      - {in: "brū", out: "brú"}

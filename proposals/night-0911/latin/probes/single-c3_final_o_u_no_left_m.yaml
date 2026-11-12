@@ -1,0 +1,23 @@
+stage:
+  name: Proto-Italic → Latin (candidate 3)
+  references:
+  - sihler-1995
+  - weiss-2009
+  - meiser-1998
+rules:
+- id: c3_final_o_u_no_left_m
+  order: 354
+  name: Final *-om > -um also after a vowel
+  match: o
+  replace: u
+  env:
+    right: 'm #'
+  tier: established
+  description: The raising of final *-o before *-m applies after any segment (*labjom
+    > *labium).
+  references:
+  - sihler-1995
+  examples:
+  - in: '*labjom'
+    out: '*labjum'
+    gloss: lip

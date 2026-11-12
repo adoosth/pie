@@ -1,0 +1,15 @@
+# REJECTED candidate: the general prothesis before an initial *e-.
+# Council: gained 5 (ѥзеро, ѥсень, ѥси, ѥсмъ, ѥсмь), lost 3 (единъ, етеръ, еще).
+# The narrower law (before s or z) is the one shipped, tier `proposed`.
+rules:
+  - id: prothesis_e_general
+    order: 61
+    name: "Initial *e- > je- (general: rejected)"
+    match: e
+    replace: je
+    env: {left: "#"}
+    tier: proposed
+    description: "Every initial *e- takes a prothetic j.  Rejected: единъ, етеръ and еще keep their e-."
+    references: [vaillant-1950, meillet-1934]
+    examples:
+      - {in: "estь", out: "jestь", gloss: "is (ѥстъ)"}

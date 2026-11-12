@@ -1,0 +1,75 @@
+stage:
+  name: Avestan orthography (Avestan alphabet)
+  date_start: -400
+  date_end: 600
+  description: >
+    How an Avestan phonological form is written in the Avestan alphabet, applied
+    to the phonemic output of the last sound-law stage (ira-pro -> ave).  The
+    script is an *alphabet*: every vowel has a letter of its own and length is
+    written, so unlike a syllabary this is a transcription rather than a
+    reading of signs.  The letters are those of the Sasanian manuscripts that
+    carry the text, so the dates below bracket the writing and not the words
+    (the language itself is Older Avestan).  The letter inventory and the value of each letter are
+    Hoffmann & Forssman, Avestische Laut- und Flexionslehre (2nd ed. 2004),
+    pp. 44-46, with Skjærvo 2009 for the alphabet as the manuscripts use it;
+    every letter keeps its own value, so the four nasal vowels are å (𐬂),
+    ā̊ (𐬃), ą (𐬄) and ą̇ (𐬅) and not one letter twice.  Three conventions are
+    stated beside the letter table: a stressed vowel is written plain (the
+    alphabet marks no accent), and the two glides, which have no letter of
+    their own between vowels, are written 𐬌𐬌 *ii* and 𐬎𐬎 *uu*.  Nothing here
+    is a sound change, and a word matched through this layer is counted as
+    spelled, never as reconstructed.  Eight letters of the alphabet (𐬒 x́,
+    𐬕 ġ, 𐬣 ŋ́, 𐬤 ŋᵛ, 𐬩 m̨, 𐬪 ẏ, 𐬮 l, 𐬅 ą̇) are carried by the writer but used
+    by no headword of the glossary, and the last phonological stage does not
+    produce them: they neither win nor lose a word today, and tests/test_ave.py
+    pins that the unexercised set is exactly those eight.
+  references: [hoffmann-forssman-2004, skjaervo-2009]
+
+guard:
+  # The corpus records Avestan words in the alphabet, and 313 of the 352 entries
+  # carry no IPA at all, so the guard that compares a phonemic form against the
+  # dictionary's pronunciation confirmed none of them.  An alphabet whose value
+  # for every letter is known is its own reading, so the guard reads the record
+  # (writing.avestan_reading, Hoffmann & Forssman 2004, pp. 44-46) and compares
+  # the derived form against the word as its own letters spell it.  The reading
+  # is not the inverse of the writing layer: a glide between vowels stays the
+  # two signs the manuscript writes (𐬀𐬎𐬎𐬀 reads auua, never ava), so a form the
+  # laws wrote with v or y is still rejected unless the record writes it.
+  reading: avestan
+  # Two transcriptions of one letter, folded on both sides of the comparison:
+  # the layer writes the affricate 𐬗 as c, and a dictionary may write it č.
+  equivalences:
+    č: c
+    ǰ: j
+  references: [hoffmann-forssman-2004]
+rules:
+  - id: avestan_alphabet
+    order: 10
+    name: "The form is written in the Avestan alphabet"
+    transform: avestan
+    tier: orthographic
+    description: >
+      Write the phonemic form letter for letter: each vowel keeps its length,
+      each consonant is its own letter (c is 𐬗 /tʃ/, j is 𐬘 /dʒ/, θ is 𐬚,
+      δ is 𐬜, β is 𐬡, γ is 𐬖, š is 𐬱, ž is 𐬲, ṣ̌ is 𐬴).  A glaze between
+      vowels has no letter of its own and is written with the matching vowel
+      doubled: *y* as 𐬌𐬌 *ii* (friia 𐬟𐬭𐬌𐬌𐬀, mainiiu 𐬨𐬀𐬌𐬥𐬌𐬌𐬎) and *w*
+      as 𐬎𐬎 *uu* (aēuua 𐬀𐬉𐬎𐬎𐬀, daēuua 𐬛𐬀𐬉𐬎𐬎𐬀).  A stress mark, or a
+      vowel the reconstruction accented (Áryas), is not written.  A character
+      the table does not own (a laryngeal that survived, a nasal vowel the
+      phonological layer does not produce) is kept as written, so it cannot
+      masquerade as a match.
+    references: [hoffmann-forssman-2004, skjaervo-2009]
+    examples:
+      - {in: "ahma", out: "𐬀𐬵𐬨𐬀", gloss: "us (ahma)"}
+      - {in: "zānu", out: "𐬰𐬁𐬥𐬎", gloss: "knee (zānu-), length written"}
+      - {in: "brātā", out: "𐬠𐬭𐬁𐬙𐬁", gloss: "brother (brātā)"}
+      - {in: "vəhrka", out: "𐬬𐬆𐬵𐬭𐬐𐬀", gloss: "wolf (vəhrka-), ə has its own letter"}
+      - {in: "friia", out: "𐬟𐬭𐬌𐬌𐬀", gloss: "dear (friia-), y between vowels is ii"}
+      - {in: "aēuua", out: "𐬀𐬉𐬎𐬎𐬀", gloss: "one (aēuua-), w between vowels is uu"}
+      - {in: "måŋha", out: "𐬨𐬂𐬢𐬵𐬀", gloss: "moon (måŋha-), å /ɒ/ is its own letter"}
+      - {in: "mąθra", out: "𐬨𐬄𐬚𐬭𐬀", gloss: "formula (mąθra-), ą /ã/ is its own letter"}
+      - {in: "aṣ̌a", out: "𐬀𐬴𐬀", gloss: "truth (aṣ̌a-), ṣ̌ /ʂ/ is its own letter"}
+      - {in: "pāδa", out: "𐬞𐬁𐬜𐬀", gloss: "foot (pāδa-), δ /ð/ is its own letter"}
+      - {in: "aˈēšəma", out: "𐬀𐬉𐬱𐬆𐬨𐬀", gloss: "fury (aēšəma-), the stress is not written"}
+      - {in: "Áryō", out: "𐬀𐬭𐬫𐬋", gloss: "Aryan (Áryō), an accented capital is the plain vowel"}

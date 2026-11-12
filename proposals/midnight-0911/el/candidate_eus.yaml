@@ -1,0 +1,14 @@
+rules:
+  - id: final_eus_to_eas
+    order: 96
+    name: "Final *-εύς > *-έας"
+    match: "e u s"
+    replace: "e a s"
+    env: {right: "#"}
+    tier: proposed
+    description: >
+      The -εύς nouns are re-formed in -έας in the modern language: ἱερεύς is
+      ιερέας, γονεύς is γονέας (Horrocks 2010, 176-8; Browning 1983, 70).
+    references: [horrocks-2010]
+    examples:
+      - {in: "ierˈeus", out: "ierˈeas", gloss: "priest (ἱερεύς > ιερέας)"}

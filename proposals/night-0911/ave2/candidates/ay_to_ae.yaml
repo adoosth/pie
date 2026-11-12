@@ -1,0 +1,25 @@
+# Candidate for ira-pro -> ave, night 0911 (Avestan worker).  HELD, not shipped.
+# Claim: the Proto-Iranian sequence *ay (the glide after a) is written Av. aē.
+# Measured 2026-11-09 with `tools/whatif.py --to ave --layers exact,orthographic`:
+#   41 forms changed, 0 words gained, 0 lost.  The law fires and is right
+#   (aēuua, vaēda, maēšī), but every lemma it touches is cited by its stem
+#   (aspa- not aspō) or has no IPA string, so the counter cannot see it yet.
+# See ../report.md, walls 1 and 2.  Promote it in the session that lands
+# data/citation/ave.yaml or the IPA supplement, then re-measure.
+stage:
+  name: Proto-Iranian → Avestan (candidate, *ay to aē)
+rules:
+  - id: ay_to_ae
+    order: 49
+    tier: proposed
+    name: "PIr *ay > Av. aē"
+    match: "a y"
+    replace: aē
+    description: >
+      Avestan writes the diphthong aē for PIr *ay as well as for *ai:
+      Av. vaēdā 'I know' (PIE *woyd-h₂e), maēšī-, aēuua- 'one' (PIE *h₂óywos).
+    references: [hoffmann-forssman-2004, skjaervo-2009]
+    examples:
+      - {in: "*wayd", out: "*waēd", gloss: "knows (Av. vaēd)"}
+      - {in: "*mayšī", out: "*maēšī", gloss: "ewe (Av. maēšī-)"}
+      - {in: "*Haywah", out: "*Haēwah", gloss: "one (Av. aēuua-)"}

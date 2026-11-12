@@ -1,0 +1,10 @@
+rules:
+  - id: probe_s_to_h_v
+    order: 110
+    name: "PII *s > PIr *h only before a vowel"
+    match: s
+    replace: h
+    env: {right: "ˈ? V"}
+    references: [hoffmann-forssman-2004]
+    examples:
+      - {in: "*ásuras", out: "*áhuras", gloss: "lord"}

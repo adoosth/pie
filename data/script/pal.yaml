@@ -1,0 +1,157 @@
+# Middle Persian: the two scripts that write it, and what each sign says.
+#
+# This is not a sound law and not an orthographic rule: it is the writing
+# system itself, the relationship between a headword a manuscript writes and
+# the sounds a reader gives it.  Middle Persian is written in two scripts with
+# different properties, and the table keeps them apart by ``kind``:
+#
+# * Book / Inscriptional Pahlavi (``kind: pahlavi``) is an Aramaic-derived
+#   abjad.  It writes consonants only: the short vowels a i u are not written
+#   at all, and three of its letters stand for more than one Aramaic letter
+#   (𐭥 WAW-AYIN-RESH, 𐭬 MEM-QOPH, and the polyphony of 𐭡/𐭯/𐭪/𐭲 for
+#   b/p, p/b/f, k/g, t/d).  A Pahlavi spelling therefore *underdetermines* the
+#   vowels: ``sng`` writes sang, sing and sung alike, and a reading is
+#   possible when every sign's sound is one of the sounds the reading has.
+#   The values are MacKenzie's (A Concise Pahlavi Dictionary, 1971): the
+#   letter inventory is the Aramaic one, and the sounds are the ones his own
+#   transcriptions give the letters.
+#
+# * Manichaean (``kind: manichaean``) is alphabetic and writes the long
+#   vowels with ʾ, y and w (ā, ē/ī, ō/ū), so it underdetermines less: a
+#   reading must be able to give every sign one of its sounds (Durkin-
+#   Meisterernst, Grammatik des Westmitteliranischen, 2014).
+#
+# * The transliteration (``kind: translit``) is the notation MacKenzie prints
+#   the spellings in: one Latin letter per sign, in capitals for the Aramaic
+#   ideograms (ŠM, LWTE), lowercase for the Iranian spellings (ʾp̄ʾt', gwlg).
+#   It is a rendering of the same signs and not a pronunciation, so it is read
+#   by the same alignment; the last block of this file restates each sign's
+#   values in the letter that renders it (Table II, and the note that the
+#   system stops at the basic Iranian value: "such as r for written l, or x
+#   for written h" is deliberately not written).
+#
+# Signs the corpus does not use are not listed: every row here is exercised by
+# at least one recorded Middle Persian form (a glossary headword or a form a
+# descendant's ancestry records), and tests/test_pal_script.py fails on a sign
+# that no recorded word writes.
+stage:
+  id: pal
+  name: Middle Persian (Book Pahlavi and Manichaean)
+  description: >
+    Aramaic-derived abjads.  Book Pahlavi writes the consonants and leaves the
+    short vowels unwritten, and several letters are polyphonic (𐭥 is w, r or
+    ʿ; 𐭬 is m or q; 𐭪 is k or g), so a spelling is read only up to its
+    consonants.  A word may also be written as an Aramaic ideogram (a
+    heterogram: ZNE "this", LHMA "bread") and read as the Middle Persian word
+    it stands for; that reading is a lexical fact of the dictionary, not a
+    value of the signs, so heterograms live in the reading table
+    (data/readings_pal.json) and never in this one.  The Manichaean script is
+    alphabetic and marks the long vowels.
+  references: [mackenzie-1971, durkin-meisterernst-2014]
+
+conventions:
+  - id: short_vowels_unwritten
+    name: "a short vowel (a i u) is not written"
+    kind: unwritten
+    note: >
+      Book Pahlavi writes no short vowel: sng is sang/sing/sung, and a reading
+      may supply any short vowel between the signs.  The convention is what the
+      matcher uses; it never invents a vowel of its own.
+  - id: final_silent_letter
+    name: "a final letter marked with an apostrophe is written but not read"
+    kind: silent
+    mark: "\u0027"
+    note: >
+      MacKenzie's transliteration closes many spellings with an apostrophe
+      (swk', gwlbk'); the letter is graphic, not pronounced, and a reading that
+      stops before it is still a reading of the spelling.
+
+signs:
+  - {char: "𐫀", letter: "ALEPH", sounds: ["ʾ", "ā", "a"], kind: manichaean}
+  - {char: "𐫁", letter: "BETH", sounds: ["b"], kind: manichaean}
+  - {char: "𐫃", letter: "GIMEL", sounds: ["g"], kind: manichaean}
+  - {char: "𐫅", letter: "DALETH", sounds: ["d"], kind: manichaean}
+  - {char: "𐫆", letter: "HE", sounds: ["h"], kind: manichaean}
+  - {char: "𐫇", letter: "WAW", sounds: ["w", "ō", "ū"], kind: manichaean}
+  - {char: "𐫉", letter: "ZAYIN", sounds: ["z"], kind: manichaean}
+  - {char: "𐫍", letter: "HETH", sounds: ["h", "x"], kind: manichaean}
+  - {char: "𐫏", letter: "YODH", sounds: ["y", "ē", "ī"], kind: manichaean}
+  - {char: "𐫐", letter: "KAPH", sounds: ["k", "g"], kind: manichaean}
+  - {char: "𐫓", letter: "LAMEDH", sounds: ["l", "r"], kind: manichaean}
+  - {char: "𐫖", letter: "MEM", sounds: ["m"], kind: manichaean}
+  - {char: "𐫗", letter: "NUN", sounds: ["n"], kind: manichaean}
+  - {char: "𐫘", letter: "SAMEKH", sounds: ["s"], kind: manichaean}
+  - {char: "𐫛", letter: "PE", sounds: ["p"], kind: manichaean}
+  - {char: "𐫝", letter: "SADHE", sounds: ["c", "z", "j"], kind: manichaean}
+  - {char: "𐫞", letter: "QOPH", sounds: ["q"], kind: manichaean}
+  - {char: "𐫟", letter: "XOPH", sounds: ["x"], kind: manichaean}
+  - {char: "𐫡", letter: "RESH", sounds: ["r"], kind: manichaean}
+  - {char: "𐫢", letter: "SHIN", sounds: ["s"], kind: manichaean}
+  - {char: "𐫤", letter: "TAW", sounds: ["t", "d"], kind: manichaean}
+  - {char: "𐭠", letter: "ALEPH", sounds: ["ʾ", "ā", "a"], kind: pahlavi}
+  - {char: "𐭡", letter: "BETH", sounds: ["b"], kind: pahlavi}
+  - {char: "𐭢", letter: "GIMEL", sounds: ["g"], kind: pahlavi}
+  - {char: "𐭣", letter: "DALETH", sounds: ["d"], kind: pahlavi}
+  - {char: "𐭤", letter: "HE", sounds: ["h"], kind: pahlavi}
+  - {char: "𐭥", letter: "WAW-AYIN-RESH", sounds: ["w", "ō", "ū", "r", "ʿ"], kind: pahlavi}
+  - {char: "𐭦", letter: "ZAYIN", sounds: ["z"], kind: pahlavi}
+  - {char: "𐭧", letter: "HETH", sounds: ["h", "x"], kind: pahlavi}
+  - {char: "𐭨", letter: "TETH", sounds: ["t"], kind: pahlavi}
+  - {char: "𐭩", letter: "YODH", sounds: ["y", "ē", "ī"], kind: pahlavi}
+  - {char: "𐭪", letter: "KAPH", sounds: ["k", "g"], kind: pahlavi}
+  - {char: "𐭫", letter: "LAMEDH", sounds: ["l", "r"], kind: pahlavi}
+  - {char: "𐭬", letter: "MEM-QOPH", sounds: ["m", "q"], kind: pahlavi}
+  - {char: "𐭭", letter: "NUN", sounds: ["n"], kind: pahlavi}
+  - {char: "𐭮", letter: "SAMEKH", sounds: ["s"], kind: pahlavi}
+  - {char: "𐭯", letter: "PE", sounds: ["p", "b", "f"], kind: pahlavi}
+  - {char: "𐭰", letter: "SADHE", sounds: ["c", "z", "j"], kind: pahlavi}
+  - {char: "𐭱", letter: "SHIN", sounds: ["s"], kind: pahlavi}
+  - {char: "𐭲", letter: "TAW", sounds: ["t", "d"], kind: pahlavi}
+  - {char: "𐮃", letter: "DALETH", sounds: ["d"], kind: pahlavi}
+  - {char: "𐮄", letter: "HE", sounds: ["h"], kind: pahlavi}
+  - {char: "𐮅", letter: "WAW-AYIN-RESH", sounds: ["w", "ō", "ū", "r", "ʿ"], kind: pahlavi}
+  - {char: "𐮈", letter: "YODH", sounds: ["y", "ē", "ī"], kind: pahlavi}
+  - {char: "𐮉", letter: "KAPH", sounds: ["k", "g"], kind: pahlavi}
+  - {char: "𐮊", letter: "LAMEDH", sounds: ["l", "r"], kind: pahlavi}
+  - {char: "𐮋", letter: "MEM-QOPH", sounds: ["m", "q"], kind: pahlavi}
+  - {char: "𐮌", letter: "NUN", sounds: ["n"], kind: pahlavi}
+  - {char: "𐮍", letter: "SAMEKH", sounds: ["s"], kind: pahlavi}
+  - {char: "𐮎", letter: "PE", sounds: ["p"], kind: pahlavi}
+  - {char: "𐮐", letter: "SHIN", sounds: ["s"], kind: pahlavi}
+
+  # ---- the dictionary's own notation: Book Pahlavi in Latin letters -------
+  # MacKenzie prints every Pahlavi spelling in a Latin transliteration beside
+  # the transcription, one letter per sign (Table II, "Transliteration",
+  # pp. x-xii).  That notation is a *rendering of the same signs*, not a
+  # pronunciation, so it is read by the same alignment: every letter must be
+  # one the sign can stand for, and no short vowel is written.  The values are
+  # the sign's, restated in the letter that renders it, because MacKenzie's
+  # system "gives each letter ... its basic Iranian value(s)" and deliberately
+  # stops there: "it is neither necessary nor desirable to go beyond this by
+  # attempting to give closer 'phonetic' values to the letters, such as r for
+  # written l, or x for written h" (Introduction, "Transliteration").  Hence
+  # the letter l is read l or r and the letter h is read h or x, exactly as
+  # the signs they render are.  Ideograms are transliterated in capitals
+  # (ŠM, LWTE) and are read as whole words from data/readings_pal.json, never
+  # letter by letter, so no capital is listed here.
+  - {char: "ʾ", letter: "ALEPH", sounds: ["ʾ", "ā", "a"], kind: translit, note: "Table II, aleph; writes ā and the seat of an initial vowel"}
+  - {char: "b", letter: "BETH", sounds: ["b"], kind: translit, note: "Table II, beth"}
+  - {char: "g", letter: "GIMEL", sounds: ["g"], kind: translit, note: "Table II, gimel"}
+  - {char: "d", letter: "DALETH", sounds: ["d"], kind: translit, note: "Table II, daleth"}
+  - {char: "h", letter: "HE-HETH", sounds: ["h", "x"], kind: translit, note: "he and heth are both transliterated h; read x when the sign is heth"}
+  - {char: "w", letter: "WAW", sounds: ["w", "ō", "ū", "u", "r", "ʿ"], kind: translit, note: "waw-ayin-resh, the polyphony of 𐭥"}
+  - {char: "z", letter: "ZAYIN", sounds: ["z"], kind: translit, note: "Table II, zayin"}
+  - {char: "ḥ", letter: "HETH", sounds: ["h", "x"], kind: translit, note: "heth written with its Aramaic value"}
+  - {char: "y", letter: "YODH", sounds: ["y", "ē", "ī", "i"], kind: translit, note: "yodh writes y, ē and ī"}
+  - {char: "k", letter: "KAPH", sounds: ["k", "g"], kind: translit, note: "kaph writes k and g"}
+  - {char: "l", letter: "LAMEDH", sounds: ["l", "r"], kind: translit, note: "lamedh writes l and r; MacKenzie insists on l in the transliteration"}
+  - {char: "m", letter: "MEM", sounds: ["m", "q"], kind: translit, note: "mem-qoph"}
+  - {char: "n", letter: "NUN", sounds: ["n"], kind: translit, note: "Table II, nun"}
+  - {char: "s", letter: "SAMEKH", sounds: ["s"], kind: translit, note: "Table II, samekh"}
+  - {char: "p", letter: "PE", sounds: ["p", "b", "f"], kind: translit, note: "pe writes p, b (printed p̄) and f"}
+  - {char: "c", letter: "SADHE", sounds: ["c", "z", "j"], kind: translit, note: "sadhe writes c, č, z and j"}
+  - {char: "š", letter: "SHIN", sounds: ["s"], kind: translit, note: "Table II, shin"}
+  - {char: "ʿ", letter: "AYIN", sounds: ["ʿ", "w", "r"], kind: translit, note: "ayin, a value of 𐭥"}
+  - {char: "č", letter: "SADHE-CARON", sounds: ["c", "z", "j"], kind: translit, note: "sadhe read č; the same sign as c"}
+  - {char: "ẕ", letter: "ZAYIN-DOT", sounds: ["z"], kind: translit, note: "the dotted zayin of the later books, read z"}
+  - {char: "t", letter: "TAW", sounds: ["t", "d"], kind: translit, note: "taw writes t and d"}

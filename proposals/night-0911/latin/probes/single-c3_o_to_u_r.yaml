@@ -1,0 +1,24 @@
+stage:
+  name: Proto-Italic → Latin (candidate 3)
+  references:
+  - sihler-1995
+  - weiss-2009
+  - meiser-1998
+rules:
+- id: c3_o_to_u_r
+  order: 240
+  name: '*o > *u before *r + consonant'
+  match: o
+  replace: u
+  env:
+    right: r C
+  tier: established
+  description: Short *o is raised to *u before *r followed by a consonant (*orsos
+    > *ursus).
+  references:
+  - sihler-1995
+  - weiss-2009
+  examples:
+  - in: '*orsos'
+    out: '*ursos'
+    gloss: bear

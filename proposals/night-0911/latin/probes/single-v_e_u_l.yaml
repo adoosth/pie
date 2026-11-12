@@ -1,0 +1,20 @@
+stage:
+  name: x
+  references:
+  - sihler-1995
+rules:
+- id: v_e_u_l
+  order: 243
+  name: '*e > *u before l + back vowel'
+  match: e
+  replace: u
+  env:
+    right: l (a|o|u)
+  tier: established
+  description: Short *e becomes *u before *l and a back vowel (*famelos > *famulos).
+  references:
+  - sihler-1995
+  examples:
+  - in: '*famelos'
+    out: '*famulos'
+    gloss: servant

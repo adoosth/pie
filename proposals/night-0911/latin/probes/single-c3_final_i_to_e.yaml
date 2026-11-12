@@ -1,0 +1,24 @@
+stage:
+  name: Proto-Italic → Latin (candidate 3)
+  references:
+  - sihler-1995
+  - weiss-2009
+  - meiser-1998
+rules:
+- id: c3_final_i_to_e
+  order: 232
+  name: Final *-i > -e
+  match: i
+  replace: e
+  env:
+    left: C
+    right: '#'
+  tier: proposed
+  description: Final short *-i becomes -e in a few inherited words (*mari > mare,
+    *anti > ante); the rule is stated and measured, not assumed to be general.
+  references:
+  - sihler-1995
+  examples:
+  - in: '*mari'
+    out: '*mare'
+    gloss: sea

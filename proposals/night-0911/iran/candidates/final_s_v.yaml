@@ -1,0 +1,10 @@
+rules:
+  - id: probe_final_s_any_vowel
+    order: 112
+    name: "Final *-Vs > PIr *-Vh, any vowel"
+    match: s
+    replace: h
+    env: {left: V, right: '#'}
+    references: [hoffmann-forssman-2004]
+    examples:
+      - {in: "*daiwás", out: "*daiwáh", gloss: "god"}

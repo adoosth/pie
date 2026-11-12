@@ -1,0 +1,541 @@
+- id: ine-pro
+  name: Proto-Indo-European
+  short: PIE
+  kind: proto
+  ancestor: null
+  era:
+  - -4500
+  - -2500
+  script: reconstructed
+  branch: Indo-European
+  notes: 'Reconstructed ancestor of the family. Written with *h₁ *h₂ *h₃ laryngeals, palatovelars *ḱ *ǵ
+    *ǵʰ and labiovelars *kʷ *gʷ *gʷʰ following the standard "laryngealist" notation.
+
+    '
+  wikt: Proto-Indo-European
+- id: ine-ana-pro
+  name: Proto-Anatolian
+  short: PAnat.
+  kind: proto
+  ancestor: ine-pro
+  era:
+  - -3000
+  - -2000
+  script: reconstructed
+  branch: Anatolian
+  provisional: true
+- id: hit
+  name: Hittite
+  short: Hitt.
+  kind: attested
+  ancestor: ine-ana-pro
+  era:
+  - -1650
+  - -1180
+  script: Cuneiform
+  branch: Anatolian
+  wikt: Hittite
+  provisional: true
+  notes: Earliest attested Indo-European language; preserves laryngeals as ḫ.
+- id: gem-pro
+  name: Proto-Germanic
+  short: PGmc.
+  kind: proto
+  ancestor: ine-pro
+  era:
+  - -500
+  - 1
+  script: reconstructed
+  branch: Germanic
+  wikt: Proto-Germanic
+  notes: 'Grimm''s law, Verner''s law, fixed initial stress, merger of *o and *a, *ē₁/*ē₂ outcomes, syllabic
+    resonants resolved with *u.
+
+    '
+- id: gmw-pro
+  name: Proto-West Germanic
+  short: PWGmc.
+  kind: proto
+  ancestor: gem-pro
+  era:
+  - 1
+  - 400
+  script: reconstructed
+  branch: Germanic
+  wikt: Proto-West Germanic
+- id: ang
+  name: Old English
+  short: OE
+  kind: attested
+  ancestor: gmw-pro
+  era:
+  - 450
+  - 1100
+  script: Latin (insular)
+  branch: Germanic
+  wikt: Old English
+  notes: Anglo-Frisian brightening, breaking, i-umlaut, loss of final nasals.
+- id: enm
+  name: Middle English
+  short: ME
+  kind: attested
+  ancestor: ang
+  era:
+  - 1100
+  - 1500
+  script: Latin
+  branch: Germanic
+  wikt: Middle English
+- id: en
+  name: English
+  short: ModE
+  kind: attested
+  ancestor: enm
+  era:
+  - 1500
+  - null
+  script: Latin
+  branch: Germanic
+  wikt: English
+  chain:
+  - ine-pro
+  - gem-pro
+  - gmw-pro
+  - ang
+  - enm
+  - en
+  notes: Spelling is conservative; the Great Vowel Shift is a change of pronunciation.
+- id: goh
+  name: Old High German
+  short: OHG
+  kind: attested
+  ancestor: gmw-pro
+  era:
+  - 750
+  - 1050
+  script: Latin
+  branch: Germanic
+  wikt: Old High German
+  notes: Second (High German) consonant shift; Upper German dialects.
+- id: gmh
+  name: Middle High German
+  short: MHG
+  kind: attested
+  ancestor: goh
+  era:
+  - 1050
+  - 1350
+  script: Latin
+  branch: Germanic
+  wikt: Middle High German
+- id: de
+  name: German
+  short: NHG
+  kind: attested
+  ancestor: gmh
+  era:
+  - 1350
+  - null
+  script: Latin
+  branch: Germanic
+  wikt: German
+  chain:
+  - ine-pro
+  - gem-pro
+  - gmw-pro
+  - goh
+  - gmh
+  - de
+  notes: Standard German; vowel lengthening in open syllables, final devoicing, New High German diphthongisation.
+- id: got
+  name: Gothic
+  short: Goth.
+  kind: attested
+  ancestor: gem-pro
+  era:
+  - 300
+  - 600
+  script: Gothic alphabet
+  branch: Germanic (East)
+  wikt: Gothic
+  provisional: true
+- id: non
+  name: Old Norse
+  short: true
+  kind: attested
+  ancestor: gem-pro
+  era:
+  - 800
+  - 1400
+  script: Latin
+  branch: Germanic (North)
+  wikt: Old Norse
+  provisional: true
+- id: itc-pro
+  name: Proto-Italic
+  short: PItal.
+  kind: proto
+  ancestor: ine-pro
+  era:
+  - -1200
+  - -700
+  script: reconstructed
+  branch: Italic
+  wikt: Proto-Italic
+  notes: Aspirated stops become fricatives, *kʷ stays, *o > *a in final syllables.
+- id: la
+  name: Latin
+  short: Lat.
+  kind: attested
+  ancestor: itc-pro
+  era:
+  - -700
+  - 600
+  script: Latin
+  branch: Italic
+  wikt: Latin
+  notes: Medial vowel weakening, rhotacism *s > r, final -m loss.
+- id: it
+  name: Italian
+  short: It.
+  kind: attested
+  ancestor: la
+  era:
+  - 1200
+  - null
+  script: Latin
+  branch: Italic
+  wikt: Italian
+  chain:
+  - ine-pro
+  - itc-pro
+  - la
+  - it
+- id: osc
+  name: Oscan
+  short: Osc.
+  kind: attested
+  ancestor: itc-pro
+  era:
+  - -500
+  - 100
+  script: Oscan alphabet
+  branch: Italic (Sabellic)
+  wikt: Oscan
+  provisional: true
+- id: grk-pro
+  name: Proto-Hellenic
+  short: PGr.
+  kind: proto
+  ancestor: ine-pro
+  era:
+  - -2500
+  - -1600
+  script: reconstructed
+  branch: Greek
+  wikt: Proto-Hellenic
+  notes: Laryngeals colour and vocalise, *s > h word-initially, labiovelars split, aspirated stops devoice.
+- id: grc
+  name: Ancient Greek
+  short: Gk.
+  kind: attested
+  ancestor: grk-pro
+  era:
+  - -800
+  - 300
+  script: Greek alphabet
+  branch: Greek
+  wikt: Ancient Greek
+  notes: Attic-Ionic standard; initial *y > h/z, *w lost early.
+- id: el
+  name: Greek
+  short: ModGk.
+  kind: attested
+  ancestor: grc
+  era:
+  - 1100
+  - null
+  script: Greek alphabet
+  branch: Greek
+  wikt: Greek
+  chain:
+  - ine-pro
+  - grk-pro
+  - grc
+  - el
+  notes: Modern Greek still spells with ancient orthography; sound changes are itacism and spirantisation.
+- id: iir-pro
+  name: Proto-Indo-Iranian
+  short: PIIr.
+  kind: proto
+  ancestor: ine-pro
+  era:
+  - -2500
+  - -2000
+  script: reconstructed
+  branch: Indo-Iranian
+  wikt: Proto-Indo-Iranian
+  notes: Satem shift, merger of *e *o *a, laryngeals vocalise or are lost, *s > *š after ruki sounds.
+- id: inc-pro
+  name: Proto-Indo-Aryan
+  short: PIA
+  kind: proto
+  ancestor: iir-pro
+  era:
+  - -2000
+  - -1500
+  script: reconstructed
+  branch: Indo-Iranian (Indic)
+  wikt: Proto-Indo-Aryan
+- id: sa
+  name: Sanskrit
+  short: Skt.
+  kind: attested
+  ancestor: inc-pro
+  era:
+  - -1500
+  - 600
+  script: Devanagari
+  branch: Indo-Iranian (Indic)
+  wikt: Sanskrit
+  notes: Vedic and Classical; retroflex ṇ ṣ ṭ ḍ from ruki, *s > ṣ after i/u/k/r.
+- id: ira-pro
+  name: Proto-Iranian
+  short: PIr.
+  kind: proto
+  ancestor: iir-pro
+  era:
+  - -2000
+  - -1000
+  script: reconstructed
+  branch: Indo-Iranian (Iranian)
+  wikt: Proto-Iranian
+  notes: '*s > *h, devoicing of aspirates, *ć > *ts, *ȷ́ > *dz, *k > *x before consonants.'
+- id: ave
+  name: Avestan
+  short: Av.
+  kind: attested
+  ancestor: ira-pro
+  era:
+  - -1500
+  - -400
+  script: Avestan alphabet
+  branch: Indo-Iranian (Iranian)
+  wikt: Avestan
+  chain:
+  - ine-pro
+  - iir-pro
+  - ira-pro
+  - ave
+  notes: Old Avestan (Gathas) and Young Avestan; the most conservative Iranian language.
+- id: peo
+  name: Old Persian
+  short: OP
+  kind: attested
+  ancestor: ira-pro
+  era:
+  - -525
+  - -300
+  script: Old Persian cuneiform
+  branch: Indo-Iranian (Iranian)
+  wikt: Old Persian
+  notes: Achaemenid inscriptions; *ś > θ, *ź > d, *s > h, final *-ah > -ah/-ā.
+- id: pal
+  name: Middle Persian
+  short: MP
+  kind: attested
+  ancestor: peo
+  era:
+  - 224
+  - 650
+  script: Pahlavi (Book Pahlavi), Manichaean
+  branch: Indo-Iranian (Iranian)
+  wikt: Middle Persian
+  notes: Sassanian period; massive phonological reduction, loss of final syllables, intervocalic lenition.
+- id: fa
+  name: Persian
+  short: NP
+  kind: attested
+  ancestor: pal
+  era:
+  - 800
+  - null
+  script: Perso-Arabic
+  branch: Indo-Iranian (Iranian)
+  wikt: Persian
+  chain:
+  - ine-pro
+  - iir-pro
+  - ira-pro
+  - peo
+  - pal
+  - fa
+  notes: New Persian; Arabic script hides some vowels; distinguishes و /v/ and ی /j/.
+- id: xpr
+  name: Parthian
+  short: Parth.
+  kind: attested
+  ancestor: ira-pro
+  era:
+  - -250
+  - 300
+  script: Parthian (Inscriptional), Manichaean
+  branch: Indo-Iranian (Iranian, Northwest)
+  wikt: Parthian
+  provisional: true
+  notes: Northwest Iranian; contrasts with Southwest (Persian) e.g. Parth. zan- vs Pers. dān-.
+  chain:
+  - ine-pro
+  - iir-pro
+  - ira-pro
+  - xpr
+- id: xme-old
+  name: Old Median
+  short: OMed.
+  kind: attested
+  ancestor: ira-pro
+  era:
+  - -700
+  - -300
+  script: reconstructed
+  branch: Indo-Iranian (Iranian, Northwest)
+  wikt: Old Median
+  provisional: true
+  notes: Known from Old Persian loanwords and glosses; no text survives in Median. Northwest Iranian, a sister of Old Persian rather than its ancestor, so a Median form borrowed into Old Persian is a sister-branch loan.
+  chain:
+  - ine-pro
+  - iir-pro
+  - ira-pro
+  - xme-old
+- id: cel-pro
+  name: Proto-Celtic
+  short: PCelt.
+  kind: proto
+  ancestor: ine-pro
+  era:
+  - -1200
+  - -600
+  script: reconstructed
+  branch: Celtic
+  wikt: Proto-Celtic
+  provisional: true
+- id: sga
+  name: Old Irish
+  short: OIr.
+  kind: attested
+  ancestor: cel-pro
+  era:
+  - 600
+  - 900
+  script: Latin
+  branch: Celtic
+  wikt: Old Irish
+  provisional: true
+- id: ine-bsl-pro
+  name: Proto-Balto-Slavic
+  short: PBSl.
+  kind: proto
+  ancestor: ine-pro
+  era:
+  - -1500
+  - -500
+  script: reconstructed
+  branch: Balto-Slavic
+  wikt: Proto-Balto-Slavic
+  provisional: true
+- id: sla-pro
+  name: Proto-Slavic
+  short: PSl.
+  kind: proto
+  ancestor: ine-bsl-pro
+  era:
+  - 500
+  - 700
+  script: reconstructed
+  branch: Balto-Slavic
+  wikt: Proto-Slavic
+  provisional: true
+- id: chu
+  name: Old Church Slavonic
+  short: OCS
+  kind: attested
+  ancestor: sla-pro
+  era:
+  - 860
+  - 1100
+  script: Glagolitic, Cyrillic
+  branch: Balto-Slavic
+  wikt: Old Church Slavonic
+  provisional: true
+- id: lt
+  name: Lithuanian
+  short: Lith.
+  kind: attested
+  ancestor: ine-bsl-pro
+  era:
+  - 1500
+  - null
+  script: Latin
+  branch: Balto-Slavic (Baltic)
+  wikt: Lithuanian
+  provisional: true
+- id: ine-toc-pro
+  name: Proto-Tocharian
+  short: PToch.
+  kind: proto
+  ancestor: ine-pro
+  era:
+  - -1000
+  - 0
+  script: reconstructed
+  branch: Tocharian
+  wikt: Proto-Tocharian
+  provisional: true
+- id: txb
+  name: Tocharian B
+  short: Toch.B
+  kind: attested
+  ancestor: ine-toc-pro
+  era:
+  - 500
+  - 900
+  script: Brahmi
+  branch: Tocharian
+  wikt: Tocharian B
+  provisional: true
+- id: hy
+  name: Armenian
+  short: Arm.
+  kind: attested
+  ancestor: ine-pro
+  era:
+  - 450
+  - null
+  script: Armenian
+  branch: Armenian
+  wikt: Armenian
+  provisional: true
+- id: xcl
+  name: Old Armenian
+  short: OArm.
+  kind: attested
+  ancestor: ine-pro
+  era:
+  - 450
+  - 1100
+  script: Armenian
+  branch: Armenian
+  wikt: Old Armenian
+  provisional: true
+- id: sq
+  name: Albanian
+  short: Alb.
+  kind: attested
+  ancestor: ine-pro
+  era:
+  - 1400
+  - null
+  script: Latin
+  branch: Albanian
+  wikt: Albanian
+  provisional: true

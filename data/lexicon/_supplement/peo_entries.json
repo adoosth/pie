@@ -1,0 +1,2170 @@
+{
+ "note": "Old Persian entries read from the live Wiktionary API (Old Persian lemmas/forms categories) on 2026-11-08; Kent (1953) cross-checks marked in ref and sources.",
+ "rows": [
+  {
+   "word": "𐎠𐎡𐎫",
+   "lang": "peo",
+   "pos": "pron",
+   "gloss": [
+    "this"
+   ],
+   "translit": "a-i-t",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎠𐎡𐎫 (aita), pronoun: “this”. Kent (1953) s.v. aita.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A0%F0%90%8E%A1%F0%90%8E%AB",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "aita"
+   ]
+  },
+  {
+   "word": "𐎠𐎣𐎢𐎳𐎨𐎡𐎹𐎠",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "Akaufaciya (\"Mountaineers\")"
+   ],
+   "translit": "a-k-u-f-c-i-y-a",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎠𐎣𐎢𐎳𐎨𐎡𐎹𐎠 (Ākaufaciyā), proper noun: “Akaufaciya (\"Mountaineers\")”. Kent (1953) s.v. Akaufaciya.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A0%F0%90%8E%A3%F0%90%8E%A2%F0%90%8E%B3%F0%90%8E%A8%F0%90%8E%A1%F0%90%8E%B9%F0%90%8E%A0",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Ākaufaciyā"
+   ]
+  },
+  {
+   "word": "𐎠𐎰𐎥𐎡𐎴",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "made of stone or rock"
+   ],
+   "translit": "a-θ-g-i-n",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎠𐎰𐎥𐎡𐎴 (aθaⁿgaina), noun: “made of stone or rock”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A0%F0%90%8E%B0%F0%90%8E%A5%F0%90%8E%A1%F0%90%8E%B4",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "aθaⁿgaina"
+   ]
+  },
+  {
+   "word": "𐎠𐎱𐎭𐎠𐎴",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "hypostyle hall",
+    "citadel",
+    "apadana"
+   ],
+   "translit": "a-p-d-a-n",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎠𐎱𐎭𐎠𐎴 (apadāna), noun: “hypostyle hall; citadel; apadana”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A0%F0%90%8E%B1%F0%90%8E%AD%F0%90%8E%A0%F0%90%8E%B4",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "apadāna"
+   ]
+  },
+  {
+   "word": "𐎠𐎱𐎼𐎶",
+   "lang": "peo",
+   "pos": "adv",
+   "gloss": [
+    "after",
+    "hereafter"
+   ],
+   "translit": "a-p-r-m",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎠𐎱𐎼𐎶 (aparam), adverb: “after; hereafter”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A0%F0%90%8E%B1%F0%90%8E%BC%F0%90%8E%B6",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "aparam"
+   ]
+  },
+  {
+   "word": "𐎠𐎴𐏃𐎡𐎫",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "Anahita"
+   ],
+   "translit": "a-n-h-i-t",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎠𐎴𐏃𐎡𐎫 (Anāhitā), proper noun: “Anahita”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A0%F0%90%8E%B4%F0%90%8F%83%F0%90%8E%A1%F0%90%8E%AB",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Anāhitā"
+   ]
+  },
+  {
+   "word": "𐎠𐎵𐎢𐏁𐎡𐎹",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "loyal follower, faithful person"
+   ],
+   "translit": "a-nu-u-š-i-y",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎠𐎵𐎢𐏁𐎡𐎹 (anušiya), noun: “loyal follower, faithful person”. Kent (1953) s.v. anusiya.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A0%F0%90%8E%B5%F0%90%8E%A2%F0%90%8F%81%F0%90%8E%A1%F0%90%8E%B9",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "anušiya"
+   ]
+  },
+  {
+   "word": "𐎠𐎶𐎠𐎫𐎠",
+   "lang": "peo",
+   "pos": "adj",
+   "gloss": [
+    "distinguished, noble?"
+   ],
+   "translit": "a-m-a-t-a",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎠𐎶𐎠𐎫𐎠 (āmātā), adjective: “distinguished, noble?”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A0%F0%90%8E%B6%F0%90%8E%A0%F0%90%8E%AB%F0%90%8E%A0",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "āmātā"
+   ]
+  },
+  {
+   "word": "𐎠𐎹𐎭𐎴",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "a sanctuary, place of worship, temple"
+   ],
+   "translit": "a-y-d-n",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎠𐎹𐎭𐎴 (āyadana), noun: “a sanctuary, place of worship, temple”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A0%F0%90%8E%B9%F0%90%8E%AD%F0%90%8E%B4",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "āyadana"
+   ]
+  },
+  {
+   "word": "𐎠𐎺𐎠",
+   "lang": "peo",
+   "pos": "adv",
+   "gloss": [
+    "thus",
+    "as"
+   ],
+   "translit": "a-v-a",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎠𐎺𐎠 (avā), adverb: “thus; as”. Kent (1953) s.v. ava.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A0%F0%90%8E%BA%F0%90%8E%A0",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "avā"
+   ]
+  },
+  {
+   "word": "𐎠𐎺𐎭𐎠",
+   "lang": "peo",
+   "pos": "adv",
+   "gloss": [
+    "then, there"
+   ],
+   "translit": "a-v-d-a",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎠𐎺𐎭𐎠 (avadā), adverb: “then, there”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A0%F0%90%8E%BA%F0%90%8E%AD%F0%90%8E%A0",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "avadā"
+   ]
+  },
+  {
+   "word": "𐎠𐎼𐎡𐎣",
+   "lang": "peo",
+   "pos": "adj",
+   "gloss": [
+    "hostile, evil"
+   ],
+   "translit": "a-r-i-k",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎠𐎼𐎡𐎣 (arika), adjective: “hostile, evil”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A0%F0%90%8E%BC%F0%90%8E%A1%F0%90%8E%A3",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "arika"
+   ]
+  },
+  {
+   "word": "𐎠𐎼𐎡𐎹𐎠𐎼𐎶𐎴",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "a male given name, equivalent to English Ariaramnes"
+   ],
+   "translit": "a-r-i-y-a-r-m-n",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎠𐎼𐎡𐎹𐎠𐎼𐎶𐎴 (Aryāramnaʰ), proper noun: “a male given name, equivalent to English Ariaramnes”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A0%F0%90%8E%BC%F0%90%8E%A1%F0%90%8E%B9%F0%90%8E%A0%F0%90%8E%BC%F0%90%8E%B6%F0%90%8E%B4",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Aryāramnaʰ"
+   ]
+  },
+  {
+   "word": "𐎠𐎼𐎧",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "a male given name"
+   ],
+   "translit": "a-r-x",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎠𐎼𐎧 (Araxaʰ), proper noun: “a male given name”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A0%F0%90%8E%BC%F0%90%8E%A7",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Araxaʰ"
+   ]
+  },
+  {
+   "word": "𐎠𐎼𐎲𐎠𐎹",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "Arabia"
+   ],
+   "translit": "a-r-b-a-y",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎠𐎼𐎲𐎠𐎹 (Arabāya), proper noun: “Arabia”. Kent (1953) s.v. Arabaya.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A0%F0%90%8E%BC%F0%90%8E%B2%F0%90%8E%A0%F0%90%8E%B9",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Arabāya"
+   ]
+  },
+  {
+   "word": "𐎠𐎼𐎷𐎡𐎴𐎹",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "an Armenian",
+    "Armenia"
+   ],
+   "translit": "a-r-mi-i-n-y",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎠𐎼𐎷𐎡𐎴𐎹 (Arminiya), noun: “an Armenian; Armenia”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A0%F0%90%8E%BC%F0%90%8E%B7%F0%90%8E%A1%F0%90%8E%B4%F0%90%8E%B9",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Arminiya"
+   ]
+  },
+  {
+   "word": "𐎠𐎼𐏁𐎠𐎶",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "a male given name, equivalent to English Arsames"
+   ],
+   "translit": "a-r-š-a-m",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎠𐎼𐏁𐎠𐎶 (R̥šāmaʰ), proper noun: “a male given name, equivalent to English Arsames”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A0%F0%90%8E%BC%F0%90%8F%81%F0%90%8E%A0%F0%90%8E%B6",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "R̥šāmaʰ"
+   ]
+  },
+  {
+   "word": "𐎠𐎼𐏁𐎫𐎠",
+   "lang": "peo",
+   "pos": "adj",
+   "gloss": [
+    "righteousness, truth"
+   ],
+   "translit": "a-r-š-t-a",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎠𐎼𐏁𐎫𐎠 (arštā), adjective: “righteousness, truth”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A0%F0%90%8E%BC%F0%90%8F%81%F0%90%8E%AB%F0%90%8E%A0",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "arštā"
+   ]
+  },
+  {
+   "word": "𐎠𐎼𐏁𐎫𐎡𐎲𐎼",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "spear-bearer"
+   ],
+   "translit": "a-r-š-t-i-b-r",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎠𐎼𐏁𐎫𐎡𐎲𐎼 (r̥štibaraʰ), noun: “spear-bearer”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A0%F0%90%8E%BC%F0%90%8F%81%F0%90%8E%AB%F0%90%8E%A1%F0%90%8E%B2%F0%90%8E%BC",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "r̥štibaraʰ"
+   ]
+  },
+  {
+   "word": "𐎠𐎿𐎴",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "stone"
+   ],
+   "translit": "a-s-n",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎠𐎿𐎴 (asan), noun: “stone”. Kent (1953) s.v. asan.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A0%F0%90%8E%BF%F0%90%8E%B4",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "asan"
+   ]
+  },
+  {
+   "word": "𐎠𐎿𐎶𐎠",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "sky"
+   ],
+   "translit": "a-s-m-a",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎠𐎿𐎶𐎠 (asmā), noun: “sky”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A0%F0%90%8E%BF%F0%90%8E%B6%F0%90%8E%A0",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "asmā"
+   ]
+  },
+  {
+   "word": "𐎠𐏂𐎡𐎴",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "a male given name"
+   ],
+   "translit": "a-ç-i-n",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎠𐏂𐎡𐎴 (Āçinaʰ), proper noun: “a male given name”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A0%F0%90%8F%82%F0%90%8E%A1%F0%90%8E%B4",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Āçinaʰ"
+   ]
+  },
+  {
+   "word": "𐎠𐏃𐎷𐎹",
+   "lang": "peo",
+   "pos": "verb",
+   "gloss": [
+    "I am"
+   ],
+   "translit": "a-h-mi-y",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎠𐏃𐎷𐎹 (ahmiy), verb: “I am”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A0%F0%90%8F%83%F0%90%8E%B7%F0%90%8E%B9",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "ahmiy"
+   ]
+  },
+  {
+   "word": "𐎡𐎭𐎠",
+   "lang": "peo",
+   "pos": "adv",
+   "gloss": [
+    "here"
+   ],
+   "translit": "i-d-a",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎡𐎭𐎠 (idā), adverb: “here”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A1%F0%90%8E%AD%F0%90%8E%A0",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "idā"
+   ]
+  },
+  {
+   "word": "𐎢𐎱𐎭𐎼𐎶",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "a male given name"
+   ],
+   "translit": "u-p-d-r-m",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎢𐎱𐎭𐎼𐎶 (Upadarmaʰ), proper noun: “a male given name”. Kent (1953) s.v. Upadarma.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A2%F0%90%8E%B1%F0%90%8E%AD%F0%90%8E%BC%F0%90%8E%B6",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Upadarmaʰ"
+   ]
+  },
+  {
+   "word": "𐎢𐎱𐎿𐎫𐎠",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "aid, help"
+   ],
+   "translit": "u-p-s-t-a",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎢𐎱𐎿𐎫𐎠 (upastā), noun: “aid, help”. Kent (1953) s.v. upasta.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A2%F0%90%8E%B1%F0%90%8E%BF%F0%90%8E%AB%F0%90%8E%A0",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "upastā"
+   ]
+  },
+  {
+   "word": "𐎢𐎺𐎠𐎼𐏀𐎷𐎡𐎹",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "Chorasmia"
+   ],
+   "translit": "u-v-a-r-z-mi-i-y",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎢𐎺𐎠𐎼𐏀𐎷𐎡𐎹 (ʰUvārazmiya-), proper noun: “Chorasmia”. Kent (1953) s.v. Uvarazmiya.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A2%F0%90%8E%BA%F0%90%8E%A0%F0%90%8E%BC%F0%90%8F%80%F0%90%8E%B7%F0%90%8E%A1%F0%90%8E%B9",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "ʰUvārazmiya-"
+   ]
+  },
+  {
+   "word": "𐎢𐎺𐎠𐎼𐏀𐎷𐎡𐏁",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "Chorasmia"
+   ],
+   "translit": "u-v-a-r-z-mi-i-š",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎢𐎺𐎠𐎼𐏀𐎷𐎡𐏁 (ʰUvārazmiš), proper noun: “Chorasmia”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A2%F0%90%8E%BA%F0%90%8E%A0%F0%90%8E%BC%F0%90%8F%80%F0%90%8E%B7%F0%90%8E%A1%F0%90%8F%81",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "ʰUvārazmiš"
+   ]
+  },
+  {
+   "word": "𐎢𐎺𐎩",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "Elam"
+   ],
+   "translit": "u-v-j",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎢𐎺𐎩 (ʰŪvjaʰ), proper noun: “Elam”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A2%F0%90%8E%BA%F0%90%8E%A9",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "ʰŪvjaʰ"
+   ]
+  },
+  {
+   "word": "𐎣𐎠𐎿𐎣𐎡𐎴",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "made of glass"
+   ],
+   "translit": "k-a-s-k-i-n",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎣𐎠𐎿𐎣𐎡𐎴 (kāsakainaʰ), noun: “made of glass”. Kent (1953) s.v. kasakaina.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A3%F0%90%8E%A0%F0%90%8E%BF%F0%90%8E%A3%F0%90%8E%A1%F0%90%8E%B4",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "kāsakainaʰ"
+   ]
+  },
+  {
+   "word": "𐎣𐎫𐎱𐎬𐎢𐎣",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "Cappadocia"
+   ],
+   "translit": "k-t-p-tu-u-k",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎣𐎫𐎱𐎬𐎢𐎣 (Katpatuka), proper noun: “Cappadocia”. Kent (1953) s.v. Katpatuka.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A3%F0%90%8E%AB%F0%90%8E%B1%F0%90%8E%AC%F0%90%8E%A2%F0%90%8E%A3",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Katpatuka"
+   ]
+  },
+  {
+   "word": "𐎣𐎲𐎢𐎪𐎡𐎹",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "a male given name, equivalent to English Cambyses"
+   ],
+   "translit": "k-b-u-ji-i-y",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎣𐎲𐎢𐎪𐎡𐎹 (Kaᵐbūjiyaʰ), proper noun: “a male given name, equivalent to English Cambyses”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A3%F0%90%8E%B2%F0%90%8E%A2%F0%90%8E%AA%F0%90%8E%A1%F0%90%8E%B9",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Kaᵐbūjiyaʰ"
+   ]
+  },
+  {
+   "word": "𐎣𐎼𐎣𐎠",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "Caria"
+   ],
+   "translit": "k-r-k-a",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎣𐎼𐎣𐎠 (Kr̥kaʰ), proper noun: “Caria”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A3%F0%90%8E%BC%F0%90%8E%A3%F0%90%8E%A0",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Kr̥kaʰ"
+   ]
+  },
+  {
+   "word": "𐎣𐎼𐏁",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "unit of weight (83.30 grams)"
+   ],
+   "translit": "k-r-š",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎣𐎼𐏁 (karša), noun: “unit of weight (83.30 grams)”. Kent (1953) s.v. karsa.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A3%F0%90%8E%BC%F0%90%8F%81",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "karša"
+   ]
+  },
+  {
+   "word": "𐎣𐎼𐏁𐎹𐎠",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "unit of weight (83.30 grams)"
+   ],
+   "translit": "k-r-š-y-a",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎣𐎼𐏁𐎹𐎠 (karšayā), noun: “unit of weight (83.30 grams)”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A3%F0%90%8E%BC%F0%90%8F%81%F0%90%8E%B9%F0%90%8E%A0",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "karšayā"
+   ]
+  },
+  {
+   "word": "𐎤𐎢𐏁𐎡𐎹",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "Kushite",
+    "Nubian",
+    "Ethiopian"
+   ],
+   "translit": "ku-u-š-i-y",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎤𐎢𐏁𐎡𐎹 (Kušiya), proper noun: “Kushite; Nubian; Ethiopian”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A4%F0%90%8E%A2%F0%90%8F%81%F0%90%8E%A1%F0%90%8E%B9",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Kušiya"
+   ]
+  },
+  {
+   "word": "𐎥𐎢𐎲𐎽𐎢𐎺",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "a male given name"
+   ],
+   "translit": "g-u-b-ru-u-v",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎥𐎢𐎲𐎽𐎢𐎺 (Gaubaruvaʰ), proper noun: “a male given name”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A5%F0%90%8E%A2%F0%90%8E%B2%F0%90%8E%BD%F0%90%8E%A2%F0%90%8E%BA",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Gaubaruvaʰ"
+   ]
+  },
+  {
+   "word": "𐎥𐎢𐎶𐎠𐎫",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "a male given name"
+   ],
+   "translit": "g-u-m-a-t",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎥𐎢𐎶𐎠𐎫 (Gaumātaʰ), proper noun: “a male given name”. Kent (1953) s.v. Gaumata.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A5%F0%90%8E%A2%F0%90%8E%B6%F0%90%8E%A0%F0%90%8E%AB",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Gaumātaʰ"
+   ]
+  },
+  {
+   "word": "𐎥𐎭𐎠𐎼𐎹",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "a Gandharan"
+   ],
+   "translit": "g-d-a-r-y",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎥𐎭𐎠𐎼𐎹 (Gaⁿdāraya), noun: “a Gandharan”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A5%F0%90%8E%AD%F0%90%8E%A0%F0%90%8E%BC%F0%90%8E%B9",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Gaⁿdāraya"
+   ]
+  },
+  {
+   "word": "𐎧𐏁𐎹𐎠𐎼𐏁𐎠",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "Xerxes"
+   ],
+   "translit": "x-š-y-a-r-š-a",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎧𐏁𐎹𐎠𐎼𐏁𐎠 (Xšayāršā), proper noun: “Xerxes”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A7%F0%90%8F%81%F0%90%8E%B9%F0%90%8E%A0%F0%90%8E%BC%F0%90%8F%81%F0%90%8E%A0",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Xšayāršā"
+   ]
+  },
+  {
+   "word": "𐎧𐏁𐏂𐎱𐎠𐎺𐎠",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "satrap (governor of a province under Achaemenid Persian rule)"
+   ],
+   "translit": "x-š-ç-p-a-v-a",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎧𐏁𐏂𐎱𐎠𐎺𐎠 (xšaçapāvā), noun: “satrap (governor of a province under Achaemenid Persian rule)”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A7%F0%90%8F%81%F0%90%8F%82%F0%90%8E%B1%F0%90%8E%A0%F0%90%8E%BA%F0%90%8E%A0",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "xšaçapāvā"
+   ]
+  },
+  {
+   "word": "𐎨𐎡𐎹𐎣𐎼𐎶",
+   "lang": "peo",
+   "pos": "adv",
+   "gloss": [
+    "how much, how many"
+   ],
+   "translit": "c-i-y-k-r-m",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎨𐎡𐎹𐎣𐎼𐎶 (ciyakaram), adverb: “how much, how many”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A8%F0%90%8E%A1%F0%90%8E%B9%F0%90%8E%A3%F0%90%8E%BC%F0%90%8E%B6",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "ciyakaram"
+   ]
+  },
+  {
+   "word": "𐎨𐎡𐏁𐎱𐎡𐏁",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "a male given name, equivalent to English Teispes"
+   ],
+   "translit": "c-i-š-p-i-š",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎨𐎡𐏁𐎱𐎡𐏁 (Cišpiš), proper noun: “a male given name, equivalent to English Teispes”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A8%F0%90%8E%A1%F0%90%8F%81%F0%90%8E%B1%F0%90%8E%A1%F0%90%8F%81",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Cišpiš"
+   ]
+  },
+  {
+   "word": "𐎨𐎡𐏂𐎫𐎧𐎶",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "a male given name"
+   ],
+   "translit": "c-i-ç-t-x-m",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎨𐎡𐏂𐎫𐎧𐎶 (Ciçaⁿtaxmaʰ), proper noun: “a male given name”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%A8%F0%90%8E%A1%F0%90%8F%82%F0%90%8E%AB%F0%90%8E%A7%F0%90%8E%B6",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Ciçaⁿtaxmaʰ"
+   ]
+  },
+  {
+   "word": "𐎫𐎡𐎥𐎼𐎧𐎢𐎭",
+   "lang": "peo",
+   "pos": "adj",
+   "gloss": [
+    "Wearer of the pointed cap (person)"
+   ],
+   "translit": "t-i-g-r-x-u-d",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎫𐎡𐎥𐎼𐎧𐎢𐎭 (tigraxaudah), adjective: “Wearer of the pointed cap (person)”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%AB%F0%90%8E%A1%F0%90%8E%A5%F0%90%8E%BC%F0%90%8E%A7%F0%90%8E%A2%F0%90%8E%AD",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "tigraxaudah"
+   ]
+  },
+  {
+   "word": "𐎫𐎣𐎲𐎼",
+   "lang": "peo",
+   "pos": "adj",
+   "gloss": [
+    "Wearer of the kausia (person)"
+   ],
+   "translit": "t-k-b-r",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎫𐎣𐎲𐎼 (takabara-), adjective: “Wearer of the kausia (person)”. Kent (1953) s.v. takabara.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%AB%F0%90%8E%A3%F0%90%8E%B2%F0%90%8E%BC",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "takabara-"
+   ]
+  },
+  {
+   "word": "𐎭𐎠𐎭𐎼𐏁𐎡𐏁",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "a male given name"
+   ],
+   "translit": "d-a-d-r-š-i-š",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎭𐎠𐎭𐎼𐏁𐎡𐏁 (Dādr̥šiš), proper noun: “a male given name”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%AD%F0%90%8E%A0%F0%90%8E%AD%F0%90%8E%BC%F0%90%8F%81%F0%90%8E%A1%F0%90%8F%81",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Dādr̥šiš"
+   ]
+  },
+  {
+   "word": "𐎭𐎠𐎼𐎹𐎢𐏁",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "a male given name"
+   ],
+   "translit": "d-a-r-y-u-š",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎭𐎠𐎼𐎹𐎢𐏁 (Dārayauš), proper noun: “a male given name”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%AD%F0%90%8E%A0%F0%90%8E%BC%F0%90%8E%B9%F0%90%8E%A2%F0%90%8F%81",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Dārayauš"
+   ]
+  },
+  {
+   "word": "𐎭𐎠𐎼𐎹𐎺𐎢𐏁",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "a male given name, equivalent to English Darius"
+   ],
+   "translit": "d-a-r-y-v-u-š",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎭𐎠𐎼𐎹𐎺𐎢𐏁 (Dārayavaʰuš), proper noun: “a male given name, equivalent to English Darius”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%AD%F0%90%8E%A0%F0%90%8E%BC%F0%90%8E%B9%F0%90%8E%BA%F0%90%8E%A2%F0%90%8F%81",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Dārayavaʰuš"
+   ]
+  },
+  {
+   "word": "𐎭𐎭𐎠𐎬𐎢𐎺",
+   "lang": "peo",
+   "pos": "verb",
+   "gloss": [
+    "to give",
+    "to take"
+   ],
+   "translit": "d-d-a-tu-u-v",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎭𐎭𐎠𐎬𐎢𐎺 (dadātūv), verb: “to give; to take”. Etymology: From Proto-Iranian *dádaHti, from Proto-Indo-Iranian *dádaHti.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%AD%F0%90%8E%AD%F0%90%8E%A0%F0%90%8E%AC%F0%90%8E%A2%F0%90%8E%BA",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "dadātūv"
+   ],
+   "anc": [
+    [
+     "ira-pro",
+     "*dádaHti",
+     "inherit"
+    ],
+    [
+     "iir-pro",
+     "*dádaHti",
+     "inherit"
+    ]
+   ],
+   "etym": "From Proto-Iranian *dádaHti, from Proto-Indo-Iranian *dádaHti."
+  },
+  {
+   "word": "𐎭𐎼𐎢𐎩𐎴",
+   "lang": "peo",
+   "pos": "adj",
+   "gloss": [
+    "deceitful, full of lies",
+    "follower of the Lie"
+   ],
+   "translit": "d-r-u-j-n",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎭𐎼𐎢𐎩𐎴 (draujanaʰ), adjective: “deceitful, full of lies; follower of the Lie”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%AD%F0%90%8E%BC%F0%90%8E%A2%F0%90%8E%A9%F0%90%8E%B4",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "draujanaʰ"
+   ]
+  },
+  {
+   "word": "𐎭𐎼𐎥𐎶",
+   "lang": "peo",
+   "pos": "adv",
+   "gloss": [
+    "long"
+   ],
+   "translit": "d-r-g-m",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎭𐎼𐎥𐎶 (dargam), adverb: “long”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%AD%F0%90%8E%BC%F0%90%8E%A5%F0%90%8E%B6",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "dargam"
+   ]
+  },
+  {
+   "word": "𐎭𐎼𐎴𐎡𐎹𐎣𐎼",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "goldsmith"
+   ],
+   "translit": "d-r-n-i-y-k-r",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎭𐎼𐎴𐎡𐎹𐎣𐎼 (daraniya-karaʰ), noun: “goldsmith”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%AD%F0%90%8E%BC%F0%90%8E%B4%F0%90%8E%A1%F0%90%8E%B9%F0%90%8E%A3%F0%90%8E%BC",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "daraniya-karaʰ"
+   ]
+  },
+  {
+   "word": "𐎭𐎼𐏁𐎶",
+   "lang": "peo",
+   "pos": "adv",
+   "gloss": [
+    "greatly",
+    "mightily",
+    "steadfastly"
+   ],
+   "translit": "d-r-š-m",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎭𐎼𐏁𐎶 (daršam), adverb: “greatly; mightily; steadfastly”. Kent (1953) s.v. darsam.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%AD%F0%90%8E%BC%F0%90%8F%81%F0%90%8E%B6",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "daršam"
+   ]
+  },
+  {
+   "word": "𐎯𐎽𐎧𐎫",
+   "lang": "peo",
+   "pos": "adj",
+   "gloss": [
+    "false, lie"
+   ],
+   "translit": "du-ru-x-t",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎯𐎽𐎧𐎫 (duruxta), adjective: “false, lie”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%AF%F0%90%8E%BD%F0%90%8E%A7%F0%90%8E%AB",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "duruxta"
+   ]
+  },
+  {
+   "word": "𐎰𐎠𐎡𐎥𐎼𐎨𐎡𐏁",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "Third month of the Old Persian year, falling from May to June"
+   ],
+   "translit": "θ-a-i-g-r-c-i-š",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎰𐎠𐎡𐎥𐎼𐎨𐎡𐏁 (θāigraciš), proper noun: “Third month of the Old Persian year, falling from May to June”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%B0%F0%90%8E%A0%F0%90%8E%A1%F0%90%8E%A5%F0%90%8E%BC%F0%90%8E%A8%F0%90%8E%A1%F0%90%8F%81",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "θāigraciš"
+   ]
+  },
+  {
+   "word": "𐎰𐎢𐎧𐎼",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "a male given name"
+   ],
+   "translit": "θ-u-x-r",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎰𐎢𐎧𐎼 (Θuxraʰ), proper noun: “a male given name”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%B0%F0%90%8E%A2%F0%90%8E%A7%F0%90%8E%BC",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Θuxraʰ"
+   ]
+  },
+  {
+   "word": "𐎰𐎫𐎦𐎢𐏁",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "Sattagydia"
+   ],
+   "translit": "θ-t-gu-u-š",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎰𐎫𐎦𐎢𐏁 (Θataguš), proper noun: “Sattagydia”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%B0%F0%90%8E%AB%F0%90%8E%A6%F0%90%8E%A2%F0%90%8F%81",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Θataguš"
+   ]
+  },
+  {
+   "word": "𐎱𐎽𐎢𐎺𐎶",
+   "lang": "peo",
+   "pos": "adv",
+   "gloss": [
+    "previously, before",
+    "once"
+   ],
+   "translit": "p-ru-u-v-m",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎱𐎽𐎢𐎺𐎶 (paruvam), adverb: “previously, before; once”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%B1%F0%90%8E%BD%F0%90%8E%A2%F0%90%8E%BA%F0%90%8E%B6",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "paruvam"
+   ]
+  },
+  {
+   "word": "𐎱𐎿𐎠𐎺",
+   "lang": "peo",
+   "pos": "adv",
+   "gloss": [
+    "after, afterwards, then"
+   ],
+   "translit": "p-s-a-v",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎱𐎿𐎠𐎺 (pasāva), adverb: “after, afterwards, then”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%B1%F0%90%8E%BF%F0%90%8E%A0%F0%90%8E%BA",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "pasāva"
+   ]
+  },
+  {
+   "word": "𐎲𐎠𐎧𐎫𐎼𐎡𐎹",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "a Bactrian"
+   ],
+   "translit": "b-a-x-t-r-i-y",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎲𐎠𐎧𐎫𐎼𐎡𐎹 (Bāxtriya), noun: “a Bactrian”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%B2%F0%90%8E%A0%F0%90%8E%A7%F0%90%8E%AB%F0%90%8E%BC%F0%90%8E%A1%F0%90%8E%B9",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Bāxtriya"
+   ]
+  },
+  {
+   "word": "𐎲𐎠𐎧𐎫𐎼𐎡𐏁",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "Bactria"
+   ],
+   "translit": "b-a-x-t-r-i-š",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎲𐎠𐎧𐎫𐎼𐎡𐏁 (Bāxtriš), proper noun: “Bactria”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%B2%F0%90%8E%A0%F0%90%8E%A7%F0%90%8E%AB%F0%90%8E%BC%F0%90%8E%A1%F0%90%8F%81",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Bāxtriš"
+   ]
+  },
+  {
+   "word": "𐎲𐎠𐎧𐏂𐎡𐎹",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "a Bactrian"
+   ],
+   "translit": "b-a-x-ç-i-y",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎲𐎠𐎧𐏂𐎡𐎹 (Bāxçiya), noun: “a Bactrian”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%B2%F0%90%8E%A0%F0%90%8E%A7%F0%90%8F%82%F0%90%8E%A1%F0%90%8E%B9",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Bāxçiya"
+   ]
+  },
+  {
+   "word": "𐎲𐎠𐎧𐏂𐎡𐏁",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "Bactria"
+   ],
+   "translit": "b-a-x-ç-i-š",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎲𐎠𐎧𐏂𐎡𐏁 (Bāxçiš), proper noun: “Bactria”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%B2%F0%90%8E%A0%F0%90%8E%A7%F0%90%8F%82%F0%90%8E%A1%F0%90%8F%81",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Bāxçiš"
+   ]
+  },
+  {
+   "word": "𐎲𐎥𐎠𐎲𐎡𐎥𐎴",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "a male given name"
+   ],
+   "translit": "b-g-a-b-i-g-n",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎲𐎥𐎠𐎲𐎡𐎥𐎴 (Bagābignaʰ), proper noun: “a male given name”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%B2%F0%90%8E%A5%F0%90%8E%A0%F0%90%8E%B2%F0%90%8E%A1%F0%90%8E%A5%F0%90%8E%B4",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Bagābignaʰ"
+   ]
+  },
+  {
+   "word": "𐎲𐎼𐎫𐎡𐎹",
+   "lang": "peo",
+   "pos": "verb",
+   "gloss": [
+    "to bear"
+   ],
+   "translit": "b-r-t-i-y",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎲𐎼𐎫𐎡𐎹 (brtiy), verb: “to bear”. Etymology: From Proto-Iranian *bʰéreti, from Proto-Indo-Iranian *bʰárati.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%B2%F0%90%8E%BC%F0%90%8E%AB%F0%90%8E%A1%F0%90%8E%B9",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "brtiy"
+   ],
+   "anc": [
+    [
+     "ira-pro",
+     "*bʰéreti",
+     "inherit"
+    ],
+    [
+     "iir-pro",
+     "*bʰárati",
+     "inherit"
+    ]
+   ],
+   "etym": "From Proto-Iranian *bʰéreti, from Proto-Indo-Iranian *bʰárati."
+  },
+  {
+   "word": "𐎲𐎼𐏀𐎶𐎴𐎡𐎹",
+   "lang": "peo",
+   "pos": "adj",
+   "gloss": [
+    "reverent"
+   ],
+   "translit": "b-r-z-m-n-i-y",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎲𐎼𐏀𐎶𐎴𐎡𐎹 (brazmaniya), adjective: “reverent”. Kent (1953) s.v. brazmaniya.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%B2%F0%90%8E%BC%F0%90%8F%80%F0%90%8E%B6%F0%90%8E%B4%F0%90%8E%A1%F0%90%8E%B9",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "brazmaniya"
+   ]
+  },
+  {
+   "word": "𐎳𐎼",
+   "lang": "peo",
+   "pos": "prefix",
+   "gloss": [
+    "forth, toward"
+   ],
+   "translit": "f-r",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎳𐎼 (fra), prefix: “forth, toward”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%B3%F0%90%8E%BC",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "fra"
+   ]
+  },
+  {
+   "word": "𐎳𐎼𐎶𐎠𐎫𐎠",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "commander"
+   ],
+   "translit": "f-r-m-a-t-a",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎳𐎼𐎶𐎠𐎫𐎠 (framātā), noun: “commander”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%B3%F0%90%8E%BC%F0%90%8E%B6%F0%90%8E%A0%F0%90%8E%AB%F0%90%8E%A0",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "framātā"
+   ]
+  },
+  {
+   "word": "𐎵𐎢𐎼𐎶",
+   "lang": "peo",
+   "pos": "adv",
+   "gloss": [
+    "now"
+   ],
+   "translit": "nu-u-r-m",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎵𐎢𐎼𐎶 (nūram), adverb: “now”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%B5%F0%90%8E%A2%F0%90%8E%BC%F0%90%8E%B6",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "nūram"
+   ]
+  },
+  {
+   "word": "𐎶𐎠𐎭",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "Media"
+   ],
+   "translit": "m-a-d",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎶𐎠𐎭 (Mādaʰ), proper noun: “Media”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%B6%F0%90%8E%A0%F0%90%8E%AD",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Mādaʰ"
+   ]
+  },
+  {
+   "word": "𐎶𐎠𐎼𐎥𐎺",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "a Margian, an inhabitant of Margiana"
+   ],
+   "translit": "m-a-r-g-v",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎶𐎠𐎼𐎥𐎺 (Mārgavaʰ), noun: “a Margian, an inhabitant of Margiana”. Kent (1953) s.v. Margava.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%B6%F0%90%8E%A0%F0%90%8E%BC%F0%90%8E%A5%F0%90%8E%BA",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Mārgavaʰ"
+   ]
+  },
+  {
+   "word": "𐎶𐎨𐎡𐎹",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "a Macian"
+   ],
+   "translit": "m-c-i-y",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎶𐎨𐎡𐎹 (Maciyaʰ), noun: “a Macian”. Kent (1953) s.v. Maciya.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%B6%F0%90%8E%A8%F0%90%8E%A1%F0%90%8E%B9",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Maciyaʰ"
+   ]
+  },
+  {
+   "word": "𐎶𐎰𐎡𐏁𐎫",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "a male given name"
+   ],
+   "translit": "m-θ-i-š-t",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎶𐎰𐎡𐏁𐎫 (Maθištaʰ), proper noun: “a male given name”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%B6%F0%90%8E%B0%F0%90%8E%A1%F0%90%8F%81%F0%90%8E%AB",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Maθištaʰ"
+   ]
+  },
+  {
+   "word": "𐎶𐎼𐎯𐎢𐎴𐎡𐎹",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "a male given name"
+   ],
+   "translit": "m-r-du-u-n-i-y",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎶𐎼𐎯𐎢𐎴𐎡𐎹 (Mr̥duniyaʰ), proper noun: “a male given name”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%B6%F0%90%8E%BC%F0%90%8E%AF%F0%90%8E%A2%F0%90%8E%B4%F0%90%8E%A1%F0%90%8E%B9",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Mr̥duniyaʰ"
+   ]
+  },
+  {
+   "word": "𐎹𐎠𐎫𐎠",
+   "lang": "peo",
+   "pos": "adv",
+   "gloss": [
+    "until, while, as long as",
+    "as much"
+   ],
+   "translit": "y-a-t-a",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎹𐎠𐎫𐎠 (yātā), adverb: “until, while, as long as; as much”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%B9%F0%90%8E%A0%F0%90%8E%AB%F0%90%8E%A0",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "yātā"
+   ]
+  },
+  {
+   "word": "𐎹𐎢𐎴",
+   "lang": "peo",
+   "pos": "adj",
+   "gloss": [
+    "Ionian",
+    "Greek",
+    "Ionia"
+   ],
+   "translit": "y-u-n",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎹𐎢𐎴 (Yauna), adjective: “Ionian; Greek; Ionia”. Kent (1953) s.v. Yauna.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%B9%F0%90%8E%A2%F0%90%8E%B4",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Yauna",
+    "Yaunaʰ"
+   ]
+  },
+  {
+   "word": "𐎹𐎢𐎴𐎡𐎹",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "an Ionian"
+   ],
+   "translit": "y-u-n-i-y",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎹𐎢𐎴𐎡𐎹 (Yauniya), noun: “an Ionian”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%B9%F0%90%8E%A2%F0%90%8E%B4%F0%90%8E%A1%F0%90%8E%B9",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Yauniya"
+   ]
+  },
+  {
+   "word": "𐎺𐎼𐎣𐎠𐎴𐎡𐎹",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "a Hyrcanian"
+   ],
+   "translit": "v-r-k-a-n-i-y",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎺𐎼𐎣𐎠𐎴𐎡𐎹 (Vạrkāniya), noun: “a Hyrcanian”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%BA%F0%90%8E%BC%F0%90%8E%A3%F0%90%8E%A0%F0%90%8E%B4%F0%90%8E%A1%F0%90%8E%B9",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Vạrkāniya"
+   ]
+  },
+  {
+   "word": "𐎺𐎿𐎡𐎹",
+   "lang": "peo",
+   "pos": "adv",
+   "gloss": [
+    "greatly",
+    "utterly"
+   ],
+   "translit": "v-s-i-y",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎺𐎿𐎡𐎹 (vasiy), adverb: “greatly; utterly”. Kent (1953) s.v. vasiy.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%BA%F0%90%8E%BF%F0%90%8E%A1%F0%90%8E%B9",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "vasiy"
+   ]
+  },
+  {
+   "word": "𐎺𐏁𐎴𐎠",
+   "lang": "peo",
+   "pos": "adv",
+   "gloss": [
+    "by the grace of, by the greatness of, by the will of"
+   ],
+   "translit": "v-š-n-a",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎺𐏁𐎴𐎠 (vašnā), adverb: “by the grace of, by the greatness of, by the will of”. Kent (1953) s.v. vasna.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%BA%F0%90%8F%81%F0%90%8E%B4%F0%90%8E%A0",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "vašnā"
+   ]
+  },
+  {
+   "word": "𐎺𐏃𐎹𐏀𐎭𐎠𐎫",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "a male given name"
+   ],
+   "translit": "v-h-y-z-d-a-t",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎺𐏃𐎹𐏀𐎭𐎠𐎫 (Vahyazdātaʰ), proper noun: “a male given name”. Kent (1953) s.v. Vahyazdata.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%BA%F0%90%8F%83%F0%90%8E%B9%F0%90%8F%80%F0%90%8E%AD%F0%90%8E%A0%F0%90%8E%AB",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Vahyazdātaʰ"
+   ]
+  },
+  {
+   "word": "𐎻𐎡𐎭𐎼𐎴",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "a male given name, equivalent to English Hydarnes"
+   ],
+   "translit": "vi-i-d-r-n",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎻𐎡𐎭𐎼𐎴 (Vidr̥naʰ), proper noun: “a male given name, equivalent to English Hydarnes”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%BB%F0%90%8E%A1%F0%90%8E%AD%F0%90%8E%BC%F0%90%8E%B4",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Vidr̥naʰ"
+   ]
+  },
+  {
+   "word": "𐎻𐎡𐎺𐎠𐎴",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "a male given name"
+   ],
+   "translit": "vi-i-v-a-n",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎻𐎡𐎺𐎠𐎴 (Vivānaʰ), proper noun: “a male given name”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%BB%F0%90%8E%A1%F0%90%8E%BA%F0%90%8E%A0%F0%90%8E%B4",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Vivānaʰ"
+   ]
+  },
+  {
+   "word": "𐎼𐎠𐎮𐎡𐎹",
+   "lang": "peo",
+   "pos": "prep",
+   "gloss": [
+    "on account of"
+   ],
+   "translit": "r-a-di-i-y",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎼𐎠𐎮𐎡𐎹 (rādiy), preposition: “on account of”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%BC%F0%90%8E%A0%F0%90%8E%AE%F0%90%8E%A1%F0%90%8E%B9",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "rādiy"
+   ]
+  },
+  {
+   "word": "𐎼𐎥𐎶",
+   "lang": "peo",
+   "pos": "adv",
+   "gloss": [
+    "quickly"
+   ],
+   "translit": "r-g-m",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎼𐎥𐎶 (ragam), adverb: “quickly”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%BC%F0%90%8E%A5%F0%90%8E%B6",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "ragam"
+   ]
+  },
+  {
+   "word": "𐎼𐎧𐎠",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "Rakhā, a town in ancient Persis"
+   ],
+   "translit": "r-x-a",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎼𐎧𐎠 (Raxā), proper noun: “Rakhā, a town in ancient Persis”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%BC%F0%90%8E%A7%F0%90%8E%A0",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Raxā"
+   ]
+  },
+  {
+   "word": "𐎿𐎡𐎹𐎶",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "silver"
+   ],
+   "translit": "s-i-y-m",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎿𐎡𐎹𐎶 (sēma), noun: “silver”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%BF%F0%90%8E%A1%F0%90%8E%B9%F0%90%8E%B6",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "sēma"
+   ]
+  },
+  {
+   "word": "𐎿𐎢𐎦𐎢𐎭𐎡𐎹",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "a Sogdian"
+   ],
+   "translit": "s-u-gu-u-d-i-y",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎿𐎢𐎦𐎢𐎭𐎡𐎹 (Sugᵘdiya), noun: “a Sogdian”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%BF%F0%90%8E%A2%F0%90%8E%A6%F0%90%8E%A2%F0%90%8E%AD%F0%90%8E%A1%F0%90%8E%B9",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Sugᵘdiya"
+   ]
+  },
+  {
+   "word": "𐎿𐎣𐎡𐎲𐎡𐏁",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "Scythians"
+   ],
+   "translit": "s-k-i-b-i-š",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎿𐎣𐎡𐎲𐎡𐏁 (Sakaibiš), noun: “Scythians”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%BF%F0%90%8E%A3%F0%90%8E%A1%F0%90%8E%B2%F0%90%8E%A1%F0%90%8F%81",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Sakaibiš"
+   ]
+  },
+  {
+   "word": "𐎿𐎤𐎢𐎭𐎼",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "Thrace"
+   ],
+   "translit": "s-ku-u-d-r",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎿𐎤𐎢𐎭𐎼 (Skudra), proper noun: “Thrace”. Kent (1953) s.v. Skudra.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%BF%F0%90%8E%A4%F0%90%8E%A2%F0%90%8E%AD%F0%90%8E%BC",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Skudra"
+   ]
+  },
+  {
+   "word": "𐎿𐎤𐎢𐎭𐎼𐎡𐎹",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "a Thracian"
+   ],
+   "translit": "s-ku-u-d-r-i-y",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎿𐎤𐎢𐎭𐎼𐎡𐎹 (Skudriya), noun: “a Thracian”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%BF%F0%90%8E%A4%F0%90%8E%A2%F0%90%8E%AD%F0%90%8E%BC%F0%90%8E%A1%F0%90%8E%B9",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Skudriya"
+   ]
+  },
+  {
+   "word": "𐎿𐎱𐎼𐎭",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "Sardis",
+    "Lydia"
+   ],
+   "translit": "s-p-r-d",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐎿𐎱𐎼𐎭 (Spardaʰ), proper noun: “Sardis; Lydia”. Kent (1953) s.v. Sparda.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8E%BF%F0%90%8E%B1%F0%90%8E%BC%F0%90%8E%AD",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Spardaʰ"
+   ]
+  },
+  {
+   "word": "𐏀𐎢𐎼",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "wrong, harm, evil"
+   ],
+   "translit": "z-u-r",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐏀𐎢𐎼 (zūra), noun: “wrong, harm, evil”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8F%80%F0%90%8E%A2%F0%90%8E%BC",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "zūra"
+   ]
+  },
+  {
+   "word": "𐏀𐎢𐎼𐎣𐎼",
+   "lang": "peo",
+   "pos": "adj",
+   "gloss": [
+    "doing wrong",
+    "a wrongdoer, an evildoer"
+   ],
+   "translit": "z-u-r-k-r",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐏀𐎢𐎼𐎣𐎼 (zūrakara), adjective: “doing wrong; a wrongdoer, an evildoer”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8F%80%F0%90%8E%A2%F0%90%8E%BC%F0%90%8E%A3%F0%90%8E%BC",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "zūrakara"
+   ]
+  },
+  {
+   "word": "𐏀𐎼𐎣",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "Drangiana"
+   ],
+   "translit": "z-r-k",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐏀𐎼𐎣 (Zraⁿkaʰ), proper noun: “Drangiana”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8F%80%F0%90%8E%BC%F0%90%8E%A3",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Zraⁿkaʰ"
+   ]
+  },
+  {
+   "word": "𐏀𐎼𐎣𐎠",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "a Drangian/Sarangian"
+   ],
+   "translit": "z-r-k-a",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐏀𐎼𐎣𐎠 (Zraⁿkā), noun: “a Drangian/Sarangian”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8F%80%F0%90%8E%BC%F0%90%8E%A3%F0%90%8E%A0",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Zraⁿkā"
+   ]
+  },
+  {
+   "word": "𐏃𐎡𐎯𐎢𐎹",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "an Indian"
+   ],
+   "translit": "h-i-du-u-y",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐏃𐎡𐎯𐎢𐎹 (Hiⁿduya), noun: “an Indian”. Kent (1953) s.v. Hiduya.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8F%83%F0%90%8E%A1%F0%90%8E%AF%F0%90%8E%A2%F0%90%8E%B9",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Hiⁿduya"
+   ]
+  },
+  {
+   "word": "𐏃𐎢𐎶𐎺𐎼𐎥",
+   "lang": "peo",
+   "pos": "adj",
+   "gloss": [
+    "hauma-drinking, hauma-preparing"
+   ],
+   "translit": "h-u-m-v-r-g",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐏃𐎢𐎶𐎺𐎼𐎥 (haumavargaʰ), adjective: “hauma-drinking, hauma-preparing”. Kent (1953) s.v. haumavarga.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8F%83%F0%90%8E%A2%F0%90%8E%B6%F0%90%8E%BA%F0%90%8E%BC%F0%90%8E%A5",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "haumavargaʰ"
+   ]
+  },
+  {
+   "word": "𐏃𐎢𐎺",
+   "lang": "peo",
+   "pos": "pron",
+   "gloss": [
+    "he"
+   ],
+   "translit": "h-u-v",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐏃𐎢𐎺 (hauv), pronoun: “he”. Kent (1953) s.v. hauv.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8F%83%F0%90%8E%A2%F0%90%8E%BA",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "hauv"
+   ]
+  },
+  {
+   "word": "𐏃𐎧𐎠𐎶𐎴𐎡𐏁",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "a male given name, equivalent to English Achaemenes"
+   ],
+   "translit": "h-x-a-m-n-i-š",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐏃𐎧𐎠𐎶𐎴𐎡𐏁 (Haxāmaniš), proper noun: “a male given name, equivalent to English Achaemenes”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8F%83%F0%90%8E%A7%F0%90%8E%A0%F0%90%8E%B6%F0%90%8E%B4%F0%90%8E%A1%F0%90%8F%81",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Haxāmaniš"
+   ]
+  },
+  {
+   "word": "𐏃𐎧𐎠𐎶𐎴𐎡𐏁𐎡𐎹",
+   "lang": "peo",
+   "pos": "adj",
+   "gloss": [
+    "Achaemenid"
+   ],
+   "translit": "h-x-a-m-n-i-š-i-y",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐏃𐎧𐎠𐎶𐎴𐎡𐏁𐎡𐎹 (Haxāmanišyaʰ), adjective: “Achaemenid”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8F%83%F0%90%8E%A7%F0%90%8E%A0%F0%90%8E%B6%F0%90%8E%B4%F0%90%8E%A1%F0%90%8F%81%F0%90%8E%A1%F0%90%8E%B9",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Haxāmanišyaʰ"
+   ]
+  },
+  {
+   "word": "𐏃𐎯𐎢𐎥𐎠",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "record, statute"
+   ],
+   "translit": "h-du-u-g-a",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐏃𐎯𐎢𐎥𐎠 (hadugā), noun: “record, statute”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8F%83%F0%90%8E%AF%F0%90%8E%A2%F0%90%8E%A5%F0%90%8E%A0",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "hadugā"
+   ]
+  },
+  {
+   "word": "𐏃𐎶𐎼𐎴𐎣𐎼",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "fighter, warrior"
+   ],
+   "translit": "h-m-r-n-k-r",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐏃𐎶𐎼𐎴𐎣𐎼 (hamaranakaraʰ), noun: “fighter, warrior”. Kent (1953) s.v. hamaranakara.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8F%83%F0%90%8E%B6%F0%90%8E%BC%F0%90%8E%B4%F0%90%8E%A3%F0%90%8E%BC",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "hamaranakaraʰ"
+   ]
+  },
+  {
+   "word": "𐏃𐎷𐎡𐏂𐎡𐎹",
+   "lang": "peo",
+   "pos": "adj",
+   "gloss": [
+    "rebellious, insurgent"
+   ],
+   "translit": "h-mi-i-ç-i-y",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐏃𐎷𐎡𐏂𐎡𐎹 (hamiçiya), adjective: “rebellious, insurgent”. Kent (1953) s.v. hamiciya.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8F%83%F0%90%8E%B7%F0%90%8E%A1%F0%90%8F%82%F0%90%8E%A1%F0%90%8E%B9",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "hamiçiya"
+   ]
+  },
+  {
+   "word": "𐏃𐎹𐎠",
+   "lang": "peo",
+   "pos": "pron",
+   "gloss": [
+    "what",
+    "who",
+    "which"
+   ],
+   "translit": "h-y-a",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐏃𐎹𐎠, pronoun: “what; who; which”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8F%83%F0%90%8E%B9%F0%90%8E%A0",
+   "generator": "op-ingest"
+  },
+  {
+   "word": "𐏃𐎼𐎡𐎺",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "Ariana"
+   ],
+   "translit": "h-r-i-v",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐏃𐎼𐎡𐎺 (Haraivaʰ), proper noun: “Ariana”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8F%83%F0%90%8E%BC%F0%90%8E%A1%F0%90%8E%BA",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Haraivaʰ"
+   ]
+  },
+  {
+   "word": "𐏃𐎼𐎢𐎺𐎫𐎡𐎹",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "an Arachosian"
+   ],
+   "translit": "h-r-u-v-t-i-y",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐏃𐎼𐎢𐎺𐎫𐎡𐎹 (Harauvatiya), noun: “an Arachosian”. Kent (1953) s.v. Harauvatiya.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8F%83%F0%90%8E%BC%F0%90%8E%A2%F0%90%8E%BA%F0%90%8E%AB%F0%90%8E%A1%F0%90%8E%B9",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Harauvatiya"
+   ]
+  },
+  {
+   "word": "𐏃𐎼𐎹",
+   "lang": "peo",
+   "pos": "noun",
+   "gloss": [
+    "an Arianian"
+   ],
+   "translit": "h-r-y",
+   "sources": [
+    "wiktionary"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐏃𐎼𐎹 (Haraya), noun: “an Arianian”.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8F%83%F0%90%8E%BC%F0%90%8E%B9",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Haraya"
+   ]
+  },
+  {
+   "word": "𐏃𐎾𐎮𐎡𐎫",
+   "lang": "peo",
+   "pos": "name",
+   "gloss": [
+    "a male given name: Father of Araxaʰ"
+   ],
+   "translit": "h-l-di-i-t",
+   "sources": [
+    "wiktionary",
+    "kent-1953"
+   ],
+   "source": "wiktionary",
+   "ref": "en.wiktionary.org, Old Persian 𐏃𐎾𐎮𐎡𐎫 (Halditaʰ), proper noun: “a male given name: Father of Araxaʰ”. Kent (1953) s.v. Haldita.",
+   "url": "https://en.wiktionary.org/wiki/%F0%90%8F%83%F0%90%8E%BE%F0%90%8E%AE%F0%90%8E%A1%F0%90%8E%AB",
+   "generator": "op-ingest",
+   "translit_alt": [
+    "Halditaʰ"
+   ]
+  }
+ ]
+}

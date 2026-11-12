@@ -1,0 +1,298 @@
+stage:
+  name: Old English → Middle English
+  date_start: 1100
+  date_end: 1500
+  description: >
+    The Middle English restructuring of the vowel system: reduction of final
+    vowels to -e, the change of OE *ā to open *ɔ̄, monophthongisation of the
+    diphthongs, unrounding of *y and *ȳ, lengthening in open syllables, and the
+    loss of initial *h in the clusters hl, hn, hr.
+  references: [luick-1914, campbell-1959, dobson-1968]
+
+rules:
+  # ---- long vowels --------------------------------------------------------
+  - id: long_a_to_open_o
+    order: 100
+    name: "OE *ā > ME open *ɔ̄"
+    match: ā
+    replace: ɔ̄
+    tier: established
+    description: "Old English long *ā becomes the open long *ɔ̄ of Middle English (*stān > *stɔ̄n)."
+    notes: "This vowel is conventionally written ō in Middle English; the distinct symbol keeps it apart from the close *ō that continues OE *ō."
+    references: [luick-1914, campbell-1959]
+    examples:
+      - {in: "*stān", out: "*stɔ̄n", gloss: "stone"}
+
+  - id: ae_to_e
+    order: 110
+    name: "OE *ǣ > ME *ē"
+    match: ǣ
+    replace: ē
+    tier: established
+    description: "Old English *ǣ merges with *ē in Middle English (*dǣl > *dēl)."
+    notes: "In northern dialects *ǣ could become *ā instead; the change is not fully uniform."
+    references: [luick-1914]
+    examples:
+      - {in: "*dǣl", out: "*dēl", gloss: "part"}
+
+  - id: y_to_i
+    order: 120
+    name: "OE *y > ME *i"
+    match: y
+    replace: i
+    tier: established
+    description: "Short *y unrounds to *i in the East Midlands standard (*cynn > *cinn)."
+    notes: "South-western dialects keep *y or show *u, so the change is only partly regular."
+    references: [luick-1914, campbell-1959]
+    examples:
+      - {in: "*cynn", out: "*cinn", gloss: "kin"}
+
+  - id: y_long_to_i
+    order: 121
+    name: "OE *ȳ > ME *ī"
+    match: ȳ
+    replace: ī
+    tier: established
+    description: "Long *ȳ unrounds to *ī (*mȳs > *mīs)."
+    references: [luick-1914]
+    examples:
+      - {in: "*mȳs", out: "*mīs", gloss: "mice"}
+
+  # ---- diphthongs ---------------------------------------------------------
+  - id: ea_to_a
+    order: 130
+    name: "OE *ea > ME *a"
+    match: "e a"
+    replace: a
+    tier: established
+    description: "Short *ea monophthongises to *a (*eald > *ald)."
+    references: [luick-1914]
+    examples:
+      - {in: "*eald", out: "*ald", gloss: "old"}
+
+  - id: eo_to_e
+    order: 131
+    name: "OE *eo > ME *e"
+    match: "e o"
+    replace: e
+    tier: established
+    description: "Short *eo monophthongises to *e (*heorte > *herte)."
+    references: [luick-1914]
+    examples:
+      - {in: "*heorte", out: "*herte", gloss: "heart"}
+
+  - id: ea_long_to_e
+    order: 132
+    name: "OE *ēa > ME *ē"
+    match: "ē a"
+    replace: ē
+    tier: established
+    description: "Long *ēa monophthongises to *ē (*dēad > *dēd)."
+    references: [luick-1914]
+    examples:
+      - {in: "*dēad", out: "*dēd", gloss: "dead"}
+
+  - id: eo_long_to_e
+    order: 133
+    name: "OE *ēo > ME *ē"
+    match: "ē o"
+    replace: ē
+    tier: established
+    description: "Long *ēo monophthongises to *ē (*dēop > *dēp)."
+    references: [luick-1914]
+    examples:
+      - {in: "*dēop", out: "*dēp", gloss: "deep"}
+
+  - id: ie_to_e
+    order: 134
+    name: "OE *ie > ME *e"
+    match: "i e"
+    replace: e
+    tier: established
+    description: "*ie monophthongises to *e (*ieldra > *eldra)."
+    references: [luick-1914]
+    examples:
+      - {in: "*ieldra", out: "*eldra", gloss: "older"}
+
+  - id: ae_to_a
+    order: 115
+    name: "OE short *æ > ME *a"
+    match: æ
+    replace: a
+    tier: proposed
+    description: "Old English short *æ that continues West Germanic *a becomes *a in Middle English (*cræft > *craft)."
+    notes: "The non-umlaut reflex is the majority (42 gains against 3 losses); umlauted *æ that became *e (mæsse > messe) stays a miss until a conditioning is found."
+    references: [luick-1914, campbell-1959]
+    examples:
+      - {in: "*cræft", out: "*craft", gloss: "craft"}
+      - {in: "*æppel", out: "*appel", gloss: "apple"}
+      - {in: "*fæder", out: "*fader", gloss: "father"}
+
+  - id: c_caron_to_ch
+    order: 140
+    name: "OE palatal *ċ > ME *tʃ"
+    match: ċ
+    replace: tʃ
+    tier: proposed
+    description: "The palatal stop becomes the affricate written ch in Middle English (*ċild > *tʃild)."
+    notes: "The written form needs the orthographic rule t ʃ > ch in data/spelling/enm.yaml."
+    references: [campbell-1959]
+    examples:
+      - {in: "*ċild", out: "*tʃild", gloss: "child"}
+      - {in: "*stenċ", out: "*stentʃ", gloss: "stench"}
+
+  - id: f_to_v
+    order: 150
+    name: "OE *f voices between voiced sounds"
+    match: f
+    replace: v
+    env: {left: "V", right: "V"}
+    tier: proposed
+    description: "The voiceless labial fricative voices between vowels (*ofer > *over)."
+    notes: "Morpheme boundaries and compounds keep *f (bi-fallen, felde-fare); two such counter-examples against 30 gains keep the rule proposed."
+    references: [luick-1914]
+    examples:
+      - {in: "*ofer", out: "*over", gloss: "over"}
+      - {in: "*lufu", out: "*luvu", gloss: "love"}
+
+  - id: ian_to_en
+    order: 190
+    name: "OE *-ian > ME *-en"
+    match: i
+    replace: ""
+    env: {right: "a n #"}
+    tier: proposed
+    description: "The class-2 infinitive ending loses its *i before final *-an, giving Middle English -en (*hangian > *hangen)."
+    notes: "The final *-a then weakens to *-e by the final-syllable rule. 74 gains, one loss (a two-word ancestor, don on)."
+    references: [campbell-1959, luick-1914]
+    examples:
+      - {in: "*hangian", out: "*hangan", gloss: "to hang"}
+      - {in: "*leornian", out: "*leornan", gloss: "to learn"}
+      - {in: "*spelian", out: "*spelan", gloss: "to play"}
+
+  # ---- final vowels -------------------------------------------------------
+  - id: final_a_to_e
+    order: 200
+    name: "Final *-a > *-e"
+    match: a
+    replace: e
+    env: {right: "C? #"}
+    tier: established
+    description: "Old English final *-a and final-syllable *a weaken to *-e (*nama > *name, *faran > *faren)."
+    references: [luick-1914, campbell-1959]
+    examples:
+      - {in: "*nama", out: "*name", gloss: "name"}
+
+  - id: final_o_to_e
+    order: 201
+    name: "Final *-o > *-e"
+    match: o
+    replace: e
+    env: {right: "C? #"}
+    tier: established
+    description: "Old English final-syllable *o weakens to *-e (*māno > *māne)."
+    references: [luick-1914]
+    examples:
+      - {in: "*māno", out: "*māne", gloss: "moon"}
+
+  - id: final_u_to_e
+    order: 202
+    name: "Final *-u > *-e"
+    match: u
+    replace: e
+    env: {right: "C? #"}
+    tier: established
+    description: "Old English final *-u weakens to *-e (*sunu > *sune)."
+    references: [luick-1914]
+    examples:
+      - {in: "*sunu", out: "*sune", gloss: "son"}
+
+  # ---- open-syllable lengthening -----------------------------------------
+  - id: open_lengthening_a
+    order: 300
+    name: "Short *a lengthens in an open stressed syllable"
+    match: a
+    replace: ā
+    env: {left: "C ˈ?", right: "C ˈ? V"}
+    tier: established
+    description: "Short *a lengthens in the first, stressed syllable when a single consonant and a vowel follow (*name > *nāme)."
+    notes: "Only the initial syllable and a single intervocalic consonant are modelled; lengthening is lexically irregular."
+    references: [luick-1914, dobson-1968]
+    examples:
+      - {in: "*name", out: "*nāme", gloss: "name"}
+
+  - id: open_lengthening_e
+    order: 301
+    name: "Short *e lengthens in an open stressed syllable"
+    match: e
+    replace: ē
+    env: {left: "C ˈ?", right: "C ˈ? V"}
+    tier: established
+    description: "Short *e lengthens in the first, stressed syllable when a single consonant and a vowel follow (*beran > *bēran)."
+    notes: "Only the initial syllable and a single intervocalic consonant are modelled; lengthening is lexically irregular."
+    references: [luick-1914]
+    examples:
+      - {in: "*beran", out: "*bēran", gloss: "to bear"}
+
+  # ---- initial clusters ---------------------------------------------------
+  - id: hl_loss
+    order: 400
+    name: "Initial *hl- > l-"
+    match: "h l"
+    replace: l
+    tier: established
+    description: "The cluster *hl- loses its *h in Middle English (*hlāf > *lāf)."
+    references: [luick-1914]
+    examples:
+      - {in: "*hlāf", out: "*lāf", gloss: "loaf"}
+
+  - id: hn_loss
+    order: 401
+    name: "Initial *hn- > n-"
+    match: "h n"
+    replace: n
+    tier: established
+    description: "The cluster *hn- loses its *h in Middle English (*hnutu > *nutu)."
+    references: [luick-1914]
+    examples:
+      - {in: "*hnutu", out: "*nutu", gloss: "nut"}
+
+  - id: hr_loss
+    order: 402
+    name: "Initial *hr- > r-"
+    match: "h r"
+    replace: r
+    tier: established
+    description: "The cluster *hr- loses its *h in Middle English (*hræfn > *ræfn)."
+    references: [luick-1914]
+    examples:
+      - {in: "*hræfn", out: "*ræfn", gloss: "raven"}
+
+  - id: u_to_o_open
+    order: 305
+    name: "OE short *u > ME *o in an open syllable"
+    match: u
+    replace: o
+    env: {left: "C ˈ?", right: "C ˈ? V"}
+    tier: proposed
+    description: "Short *u lowers to *o in an open stressed syllable (*cuma > *come, *hulu > *hole)."
+    notes: "Lexically irregular (hure, crumen keep *u). Runs after the final-syllable weakening, so the following vowel is already *e in *cume."
+    references: [luick-1914]
+    examples:
+      - {in: "*cuma", out: "*coma", gloss: "come"}
+      - {in: "*hulu", out: "*holu", gloss: "hollow"}
+
+  - id: a_to_o_ng
+    order: 310
+    name: "OE *a > ME *o before *ng"
+    match: a
+    replace: o
+    env: {right: "n g"}
+    tier: proposed
+    description: "Short *a rounds to *o before ng (*sang > *song, *lang > *long)."
+    notes: "Partly dialectal: *ange keeps a, and *a before *nd and *mb behaves differently (and, brand, lamb keep a), so only the ng environment is registered."
+    references: [luick-1914, campbell-1959]
+    examples:
+      - {in: "*sang", out: "*song", gloss: "song"}
+      - {in: "*lang", out: "*long", gloss: "long"}
+      - {in: "*wrang", out: "*wrong", gloss: "wrong"}

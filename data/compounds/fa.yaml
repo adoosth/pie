@@ -1,0 +1,195 @@
+# compounds/fa.yaml — قواعد فارسی برای `pie.compounds`.
+#
+# This file is morphology only: which exact cuts of an unetymologised word into
+# two or three stored words are acceptable.  It makes no claim about the
+# etymology of the whole word or of any part.
+#
+# هر مقدار در `short_ok` و `stop` عیناً همان چیزی است که در واژه‌نامه ذخیره
+# شده است؛ آ (U+0622) و ا (U+0627) دو حرف مختلف‌اند و هیچ نویسه‌ای در این
+# پرونده بهنجار نمی‌شود.
+
+language: fa
+label: Persian
+
+# A part must have at least this many characters, and the whole word must be at
+# least `min_word`.  A part shorter than `long_part` needs an exact entry in
+# `short_ok`; this is what keeps پیشاب from being read as پیش + اب "father".
+min_part: 2
+min_word: 4
+long_part: 3
+
+short_ok:
+  # اسم‌های مستقل دوحرفی که به‌عنوان جزء ترکیب قابل دفاع‌اند.  فهرست کوتاه است
+  # تا هر جزء دوحرفی دلیل روشنی داشته باشد.
+  - آب        # water
+  - گل        # flower, rose
+  - سر        # head
+  - پا        # foot, leg
+  - دل        # heart
+  - تن        # body
+  - مو        # hair
+  - شب        # night
+  - بز        # goat
+  - پل        # bridge
+  - جا        # place
+  - لب        # lip
+  - بو        # smell
+  - جو        # barley
+  - کف        # foam; palm
+  - دم        # tail; breath
+  - رخ        # face, cheek
+
+function_words:
+  # حروف اضافه
+  - از
+  - به
+  - با
+  - بر
+  - در
+  - تا
+  - بی
+  - برای
+  - چون
+  - جز
+  - نزد
+  - میان
+  - بین
+  - زیر
+
+  # حروف ربط
+  - و
+  - یا
+  - که
+  - اگر
+  - ولی
+  - اما
+  - مگر
+  - بلکه
+  - پس
+
+  # ضمایر و واژه‌های اشاره
+  - من
+  - تو
+  - او
+  - ما
+  - شما
+  - ایشان
+  - آنها
+  - آن
+  - این
+  - خود
+  - کی
+  - چه
+  - چی
+  - کسی
+  - چیزی
+
+  # حروف تعریف و کمیت‌نما
+  - هر
+  - همه
+  - هیچ
+  - چند
+  - یک
+  - برخی
+  - بعضی
+  - همین
+  - همان
+
+  # نشانه‌ها و قیدهای نقش‌ساز
+  - را
+  - هم
+  - نه
+  - آیا
+  - نیز
+  - فقط
+  - خیلی
+  - بسیار
+  - هنوز
+  - حالا
+  - سپس
+  - دیگر
+  - البته
+  - شاید
+  - هرگز
+  - چگونه
+  - چطور
+
+  # صوت‌ها
+  - بله
+  - آری
+  - وای
+  - اوه
+  - ای
+
+function_pos:
+  # The POS codes a part may carry and still be a function word, even when the
+  # spelling is not in the list above.  A word with one of these inside it is
+  # never a compound element.
+  - prep
+  - postp
+  - conj
+  - pron
+  - det
+  - part
+  - interj
+  - num
+  - adv
+
+stop:
+  # واژه‌های کوتاه و پرکاربرد که درز کاذب می‌سازند؛ هر کدام با دلیل.
+  - اب       # «اب» به معنای «پدر» است، نه «آب»؛ همین است که پیشاب را به پیش + اب نمی‌شکند.
+  - تر       # صفت «تر» (wet) و پسوند تفضیلی؛ در «دختر» درز کاذب می‌سازد.
+  - رو       # صورت گفتاری «رو» (face) و بن فعل «رفتن»؛ درز کاذب.
+  - می       # پیشوند استمراری و اسم «می» (wine)؛ در «میدان» درز کاذب می‌سازد.
+  - کن       # فعل امر «کردن»؛ صورت کوتاه پرکاربرد، نه جزء ترکیب.
+  - ده       # فعل امر «دادن» و اسم «ده» (village).
+  - شو       # فعل امر «شدن»؛ صورت کوتاه پرکاربرد.
+  - است      # فعل ربطی؛ در دل واژه‌ها درز کاذب می‌سازد.
+  - بود      # گذشتهٔ «بودن»؛ فعل ربطی پرکاربرد.
+  - شد       # گذشتهٔ «شدن»؛ فعل پرکاربرد.
+  - کرد      # گذشتهٔ «کردن»؛ فعل پرکاربرد.
+  - داد      # گذشتهٔ «دادن»؛ اسم «داد» (justice) هم همین صورت است و از آن جدا نمی‌شود، پس کنار گذاشته می‌شود.
+  - دان      # بن فعل «دانستن» و اسم «دان» (grain)؛ در «دانشگاه» درز کاذب دان + شگاه می‌سازد.
+
+heads:
+  # عناصر دومی که فارسی با آن‌ها واژه می‌سازد: فهرست بسته است تا هر درز ادعایی
+  # یک ادعای صرفی باشد، نه یک حدس.  این فهرست با `suffixes` در
+  # data/morphology/fa.yaml هم‌پوشانی ندارد؛ آنجا پسوندهای صرفی‌اند، اینجا
+  # واژه‌های مستقل.
+  - خانه     # house: آب‌خانه، کتاب‌خانه
+  - گاه      # place, time: آتش‌گاه، ورزش‌گاه
+  - یاب      # finder: دشواریاب، راه‌یاب
+  - ساز     # maker: کاردساز، نقشه‌ساز
+  - سازی    # making: کاردسازی، فیلم‌سازی
+  - دار      # holder: گلدان‌دار، چوب‌دار
+  - دارنده   # keeping
+  - بند      # band, tie: گردن‌بند
+  - زار      # place of, abundance: گلزار، لاله‌زار
+  - آباد     # settled: چهرآباد، نورآباد
+  - پلو      # pilaf: گوشت‌پلو، سبزی‌پلو
+  - دانه     # grain: جو‌دانه
+  - کش      # drawer: دست‌کش
+  - کار     # worker, work: ترس‌کار، هنرکار
+  - نامه     # letter, book: نقش‌نامه، شکونامه
+  - نامه‌ها  # (plural headword written with the ZWNJ)
+  - فروش    # seller: کتاب‌فروش
+  - باز     # player: فوتبال‌باز
+  - گرد     # doer, round: رزم‌گرد
+  - ورز     # practising
+  - بان      # keeper: دربان، نگهبان
+  - دان     # holder, vessel: نمک‌دان
+  - زده     # struck, -ed: شگفت‌زده
+  - آمیز    # mixing
+  - انگیز   # rousing: هیجان‌انگیز
+  - افزا    # increasing: امیدافزا
+  - آور     # bringing: خبرآور
+  - گشا     # opening
+  - شکن     # breaking: دل‌شکن
+  - پرداز   # arranger
+  - رسان    # bringing to
+  - سنج     # measuring
+  - ریز     # pouring
+  - گری     # doing (nominal): تدبیرگری
+  - ستان    # land of: گلستان
+  - کده     # place of
+  - بر      # (only with a recorded first element)

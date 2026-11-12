@@ -1,0 +1,80 @@
+stage:
+  name: Greek orthography (Attic alphabet)
+  date_start: -500
+  date_end: null
+  description: >
+    How an Attic-Ionic phonological form is written in the Greek alphabet,
+    applied to the last sound-law output (grk-pro → grc).  Greek is an
+    alphabet with one letter per phoneme, so the step from the phonemic string
+    to the written word is the letter table of Smyth, A Greek Grammar (1920),
+    §1 (the letters and their sounds, with the values of Allen, Vox Graeca,
+    3rd ed. 1987), and the four conventions that are not one-to-one:
+    the breathing (§§9-10: a vowel-initial word takes the smooth or the rough
+    breathing, a written /h/ is the rough breathing of the vowel it precedes,
+    an initial ρ always takes the rough one, and over a diphthong the breathing
+    stands on the second vowel), the acute on the stressed vowel (§149), the
+    final sigma (§3), and ξ ψ ζ plus γ for a nasal before a velar (§1).
+    The acute is the only accent the engine's phonology states: a headword
+    written with a circumflex or a grave is left a miss, never guessed, because
+    which of the three accents falls is a fact about Attic quantity and
+    ablaut that the rules do not model.  Nothing here is a sound change, and a
+    word matched through this layer is counted as spelled, never as
+    reconstructed.
+  references: [smyth-1920, allen-1987]
+
+guard:
+  # The reading guard compares a phonemic form with the dictionary's own IPA.
+  # The two sides write four things in different shapes, and each entry below
+  # declares the two shapes to be one segment so that the guard compares
+  # segments and not alphabets (applied to both sides, never to a rule's
+  # output).  Without them the guard refuses a spelling whose letters are
+  # right: measured 2026-11-09, 32 of the 263 words this file spells.
+  equivalences:
+    # The long close mid vowels are written with the digraphs ει and ου, one
+    # nucleus each (Smyth §6; Allen §§1-2, the "spurious diphthongs").
+    ei: e
+    ou: o
+    # A nasal before a velar is [ŋ] in pronunciation and one phoneme /n/ in
+    # the laws' notation (Smyth §1: γγ γκ γχ are [ŋg ŋk ŋkʰ]).
+    ŋ: n
+    # Initial ῥ is a voiceless r, written rh by the dictionaries and hr by the
+    # laws (Smyth §10; Allen §2).  ζ is one letter for the cluster /zd/ in
+    # Attic (Smyth §1; Allen §§3-4), which the dictionaries write both ways.
+    hr: r
+    zd: z
+    dz: z
+
+rules:
+  - id: greek_alphabet
+    order: 10
+    name: "The form is written in the Greek alphabet"
+    transform: greek
+    tier: orthographic
+    description: >
+      Write the phonemic form with the letters of the Greek alphabet.  Every
+      vowel has a letter (α ε η ι ο υ ω), every consonant one (π β φ τ δ θ κ γ
+      χ μ ν ρ λ σ ζ ϝ), /ks/ and /ps/ are the single signs ξ and ψ, /zd/ is ζ,
+      a nasal before a velar is written γ, a word ends in ς, a vowel-initial
+      word carries the smooth breathing (the rough one where the form has /h/
+      or begins with ρ), and the stressed vowel carries the acute.  A form
+      carrying notation the table does not own (a surviving laryngeal, an
+      unresolved glide, an alternative separated by ~) is written with that
+      character kept, so it cannot masquerade as a match.
+    references: [smyth-1920, allen-1987]
+    examples:
+      - {in: "patˈēr", out: "πατήρ", gloss: "father (πατήρ, /pa.tɛ̌ːr/)"}
+      - {in: "mˈētēr", out: "μήτηρ", gloss: "mother (μήτηρ, /mɛ̌ː.tɛːr/)"}
+      - {in: "polˈus", out: "πολύς", gloss: "much (πολύς), final ς"}
+      - {in: "dˈuo", out: "δύο", gloss: "two (δύο)"}
+      - {in: "ˈallos", out: "ἄλλος", gloss: "other (ἄλλος), smooth breathing and acute"}
+      - {in: "hˈippos", out: "ἵππος", gloss: "horse (ἵππος), /h/ is the rough breathing"}
+      - {in: "hˈagios", out: "ἅγιος", gloss: "holy (ἅγιος), rough breathing and acute on one vowel"}
+      - {in: "heptˈa", out: "ἑπτά", gloss: "seven (ἑπτά)"}
+      - {in: "hrˈeō", out: "ῥέω", gloss: "I flow (ῥέω), ῥ is /hr/ word-initially"}
+      - {in: "basilˈeus", out: "βασιλεύς", gloss: "king (βασιλεύς), acute on the second vowel of a diphthong"}
+      - {in: "ksˈenos", out: "ξένος", gloss: "stranger (ξένος), /ks/ is ξ"}
+      - {in: "tunkʰˈanō", out: "τυγχάνω", gloss: "I happen (τυγχάνω), n before χ is γ"}
+      - {in: "tʰˈeros", out: "θέρος", gloss: "summer (θέρος), /tʰ/ is θ"}
+      - {in: "kʰˈōra", out: "χώρα", gloss: "land (χώρα), /kʰ/ is χ and /ō/ is ω"}
+      - {in: "lˈekʰos", out: "λέχος", gloss: "bed (λέχος)"}
+      - {in: "ˈonkos", out: "ὄγκος", gloss: "mass (ὄγκος), n before κ is γ"}

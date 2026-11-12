@@ -1,0 +1,16 @@
+stage: {source: pal, target: fa}
+rules:
+  - id: b_to_v_between_vowels
+    order: 35
+    name: "MP *b > NP v between vowels"
+    match: b
+    replace: v
+    env: {left: "(a|e|o|ā|ī|ū)", right: "(a|e|o|ā|ī|ū)"}
+    tier: proposed
+    description: >
+      Intervocalic *b spirantises to v: MP tābag > NP tāve 'pan'.  The
+      environment is between vowels; a *b next to a consonant or at an edge
+      is not touched.
+    references: [sadeghi-1978, windfuhr-2009]
+    examples:
+      - {in: "tābag", out: "tāvag", gloss: "(NP tāve)"}

@@ -1,0 +1,330 @@
+stage:
+  name: Proto-Indo-European → Proto-Balto-Slavic
+  date_start: -1500
+  date_end: -500
+  description: 'Balto-Slavic is satem: the palatovelars become sibilants, the labiovelars are delabialised,
+    the voiced aspirates lose their aspiration and short *o merges with *a.  The ruki rule retracts *s
+    after *r, *u, *k and *i, syllabic resonants resolve with a high vowel, and Winter''s law lengthens
+    a vowel before a PIE voiced stop.  The acute register mark *ˀ of the recorded reconstructions is a
+    notation, not a sound law, and is not modelled here.'
+  references:
+  - fortson-2004
+  - szemerenyi-1996
+  - beekes-2011
+rules:
+- id: syllabic_laryngeals
+  order: 5
+  name: Syllabic laryngeals become *a
+  transform: syllabic_laryngeals
+  tier: established
+  description: A laryngeal that is a syllable nucleus surfaces as *a.
+  references:
+  - fortson-2004
+  - szemerenyi-1996
+  examples:
+  - in: '*ph₂tḗr'
+    out: '*patḗr'
+    gloss: father
+- id: h2_colours_e
+  order: 10
+  name: '*h₂ colours *e to *a'
+  match: e
+  replace: a
+  env:
+    right: h₂
+  tier: established
+  description: 'Regressive colouring: *e before *h₂ becomes *a.'
+  references:
+  - fortson-2004
+  examples:
+  - in: '*bʰréh₂tēr'
+    out: '*bʰráh₂tēr'
+    gloss: brother
+- id: h3_colours_e
+  order: 11
+  name: '*h₃ colours *e to *o'
+  match: e
+  replace: o
+  env:
+    right: h₃
+  tier: established
+  description: 'Regressive colouring: *e before *h₃ becomes *o.'
+  references:
+  - fortson-2004
+  examples:
+  - in: '*deh₃-'
+    out: '*doh₃-'
+    gloss: to give
+- id: lengthen_a_h2
+  order: 13
+  name: 'Lengthening: *a before *h₂ > *ā'
+  match: a
+  replace: ā
+  env:
+    right: h₂
+  tier: established
+  description: The vowel coloured by *h₂ lengthens when the laryngeal is lost (*sed-éh₂-ye-ti > *sēdātei).
+  references:
+  - fortson-2004
+  examples:
+  - in: '*sed-ah₂'
+    out: '*sed-āh₂'
+    gloss: seat
+- id: laryngeal_loss
+  order: 20
+  name: Laryngeals are lost
+  match: h₁|h₂|h₃
+  replace: ''
+  tier: established
+  description: Remaining laryngeals disappear after colouring and vocalisation.
+  references:
+  - fortson-2004
+  examples:
+  - in: '*sēdā-tei'
+    out: '*sēdātei'
+    gloss: to sit
+- id: laryngeal_H_loss
+  order: 21
+  name: The cover symbol *H is lost
+  match: H
+  replace: ''
+  tier: established
+  description: The abstract laryngeal *H is lost like *h₁ *h₂ *h₃.
+  references:
+  - fortson-2004
+  examples:
+  - in: '*komH-us'
+    out: '*kom-us'
+    gloss: clump
+- id: satem_k
+  order: 30
+  name: 'Satem: *ḱ > *ś'
+  match: ḱ
+  replace: ś
+  tier: established
+  description: 'Balto-Slavic is satem: palatovelars become sibilants (*ḱwit- > *świt-).'
+  references:
+  - fortson-2004
+  - szemerenyi-1996
+  examples:
+  - in: '*ḱwit-éh₁-ye-ti'
+    out: '*świt-éh₁-ye-ti'
+    gloss: to shine
+- id: satem_g
+  order: 31
+  name: 'Satem: *ǵ > *ź'
+  match: ǵ
+  replace: ź
+  tier: established
+  description: Palatovelar *ǵ becomes the voiced sibilant *ź.
+  references:
+  - fortson-2004
+  examples:
+  - in: '*dʰoyǵ-yeh₂'
+    out: '*dʰoyź-yeh₂'
+    gloss: to shape
+- id: satem_gh
+  order: 32
+  name: 'Satem: *ǵʰ > *ź'
+  match: ǵʰ
+  replace: ź
+  tier: established
+  description: Palatovelar *ǵʰ loses its aspiration and merges with *ź.
+  references:
+  - fortson-2004
+  examples:
+  - in: '*ǵʰéymō'
+    out: '*źéymō'
+    gloss: winter
+- id: bh_to_b
+  order: 40
+  name: '*bʰ > *b'
+  match: bʰ
+  replace: b
+  tier: established
+  description: 'Balto-Slavic has no voiced aspirates: *bʰ becomes *b (*bʰol-s-o-s > *bol-s-o-s).'
+  references:
+  - fortson-2004
+  examples:
+  - in: '*bʰol-s-o-s'
+    out: '*bol-s-o-s'
+    gloss: white
+- id: dh_to_d
+  order: 41
+  name: '*dʰ > *d'
+  match: dʰ
+  replace: d
+  tier: established
+  description: '*dʰ becomes *d.'
+  references:
+  - fortson-2004
+  examples:
+  - in: '*bʰédʰh₂-e-ti'
+    out: '*bʰédh₂-e-ti'
+    gloss: to dig
+- id: gh_to_g
+  order: 42
+  name: '*gʰ > *g'
+  match: gʰ
+  replace: g
+  tier: established
+  description: '*gʰ becomes *g (*strongʰ-o-s > *stronga-).'
+  references:
+  - fortson-2004
+  examples:
+  - in: '*strongʰ-ó-s'
+    out: '*strong-ó-s'
+    gloss: strong
+- id: ruki_s
+  order: 60
+  name: 'RUKI: *s > *š after *r, *u, *k, *i'
+  match: s
+  replace: š
+  env:
+    left: (r|r̥|u|ū|k|i|ī)
+    right: .
+  tier: established
+  description: The ruki rule retracts *s to *š after a high vowel, *r or *k (*wóys-eh₂ > *wáišā).
+  references:
+  - fortson-2004
+  examples:
+  - in: '*wóis-eh₂'
+    out: '*wóiš-eh₂'
+    gloss: goose
+- id: kw_to_k
+  order: 80
+  name: 'Labiovelars lose their labialisation: *kʷ > *k'
+  match: kʷ
+  replace: k
+  tier: established
+  description: Balto-Slavic delabialises the labiovelars (*tékʷ-o-s > *tekas).
+  references:
+  - fortson-2004
+  examples:
+  - in: '*tékʷ-o-s'
+    out: '*ték-o-s'
+    gloss: flow
+- id: gw_to_g
+  order: 81
+  name: 'Labiovelars lose their labialisation: *gʷ > *g'
+  match: gʷ
+  replace: g
+  tier: established
+  description: The voiced labiovelar merges with *g.
+  references:
+  - fortson-2004
+  examples:
+  - in: '*gʷīwos'
+    out: '*gīwos'
+    gloss: alive
+- id: gwh_to_g
+  order: 82
+  name: 'Labiovelars lose their labialisation: *gʷʰ > *g'
+  match: gʷʰ
+  replace: g
+  tier: established
+  description: The voiced aspirated labiovelar merges with *g.
+  references:
+  - fortson-2004
+  examples:
+  - in: '*gʷʰén-ti'
+    out: '*gén-ti'
+    gloss: to strike
+- id: syllabic_m
+  order: 110
+  name: Syllabic *m̥ > *im
+  match: m̥
+  replace: im
+  tier: established
+  description: Syllabic *m̥ becomes *im (*km̥H-yé-ti > *kimstei).
+  references:
+  - fortson-2004
+  examples:
+  - in: '*km̥H-yé-ti'
+    out: '*kimH-yé-ti'
+    gloss: to lie
+- id: syllabic_n
+  order: 111
+  name: Syllabic *n̥ > *in
+  match: n̥
+  replace: in
+  tier: established
+  description: Syllabic *n̥ becomes *in (*tn̥gʰ-eh₁-ye-ti > *tingētei).
+  references:
+  - fortson-2004
+  examples:
+  - in: '*tn̥gʰ-eh₁-ye-ti'
+    out: '*tingʰ-eh₁-ye-ti'
+    gloss: to be silent
+- id: syllabic_r
+  order: 112
+  name: Syllabic *r̥ > *ir
+  match: r̥
+  replace: ir
+  tier: established
+  description: Syllabic *r̥ becomes *ir (*wr̥t-tós > *wirstā).
+  references:
+  - fortson-2004
+  examples:
+  - in: '*wr̥t-tó-s'
+    out: '*wirt-tó-s'
+    gloss: turned
+- id: syllabic_l
+  order: 113
+  name: Syllabic *l̥ > *il
+  match: l̥
+  replace: il
+  tier: established
+  description: Syllabic *l̥ becomes *il.
+  references:
+  - fortson-2004
+  examples:
+  - in: '*h₂wl̥p-iḱ-yó-s'
+    out: '*h₂wilp-iḱ-yó-s'
+    gloss: fox-like
+- id: o_to_a
+  order: 200
+  name: '*o > *a'
+  match: o
+  replace: a
+  tier: established
+  description: PIE short *o merges with *a (*h₃rewH-mos > *raumas).
+  references:
+  - fortson-2004
+  examples:
+  - in: '*komH-us'
+    out: '*kamH-us'
+    gloss: clump
+- id: winter_law
+  order: 210
+  name: 'Winter''s law: a vowel lengthens before a PIE voiced stop'
+  match: a
+  replace: ā
+  env:
+    right: (b|d|g|ź|ż)
+  tier: established
+  description: A short vowel lengthens before a voiced stop that continues a PIE voiced or aspirated stop
+    (*sed-éh₂ > *sēdā).
+  references:
+  - fortson-2004
+  - szemerenyi-1996
+  examples:
+  - in: '*sada'
+    out: '*sāda'
+    gloss: seat
+- id: y_to_i
+  order: 230
+  name: Non-syllabic *i̯ in a diphthong > *i
+  match: y
+  replace: i
+  env:
+    left: V
+    right: (!V)
+  tier: established
+  description: The second element of a diphthong is written *i (*deyn-o-s > *deinas).
+  references:
+  - fortson-2004
+  examples:
+  - in: '*deyn-o-s'
+    out: '*dein-o-s'
+    gloss: slope

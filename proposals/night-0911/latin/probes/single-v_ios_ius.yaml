@@ -1,0 +1,20 @@
+stage:
+  name: x
+  references:
+  - sihler-1995
+rules:
+- id: v_ios_ius
+  order: 355
+  name: -ios > -ius
+  match: i o
+  replace: i u
+  env:
+    right: 's #'
+  tier: established
+  description: The ending -ios becomes -ius (*lanios > *lanius).
+  references:
+  - sihler-1995
+  examples:
+  - in: '*lanios'
+    out: '*lanius'
+    gloss: butcher

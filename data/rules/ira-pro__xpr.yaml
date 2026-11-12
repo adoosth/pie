@@ -1,0 +1,75 @@
+stage:
+  name: Proto-Iranian → Parthian (northwest Iranian)
+  date_start: -250
+  date_end: 300
+  description: >
+    Parthian is the Northwest Iranian witness of the Middle Iranian period, and
+    its chain in data/languages.yaml now runs Proto-Indo-European →
+    Proto-Indo-Iranian → Proto-Iranian → Parthian, so this file holds only the
+    changes that happen *after* Proto-Iranian.  The shared Iranian changes
+    (deaspiration, *s > *h, *p *t > *f *θ before a sonorant, *k > *x before a
+    consonant, *ć > *c, *ȷ́ > *j) are stated once, in
+    data/rules/iir-pro__ira-pro.yaml, and are not repeated here; what is left is
+    the Northwest Iranian isogloss: *θr > hr (Parthian puhr 'son', hrē 'three',
+    where Old Persian has ç), *j > z (Parthian zānūg 'knee', OP dānu-), the
+    monophthongisation of *ai *au, and the anaptyctic vowel of pidar.
+  references: [lumsden-2006, durkin-meisterernst-2014, windfuhr-2009, hoffmann-forssman-2004]
+
+rules:
+  - id: theta_r_to_hr
+    order: 125
+    name: "Northwest *θr > hr"
+    match: "θ r"
+    replace: "h r"
+    description: >
+      Northwest Iranian shows hr where Southwest Iranian (Old Persian) has ç:
+      Parthian hrē 'three' beside OP çi-, Parthian puhr 'son' beside OP puça-.
+    references: [lumsden-2006, durkin-meisterernst-2014]
+    examples:
+      - {in: "*puθráh", out: "*puhráh", gloss: "son (Parthian puhr)"}
+
+  - id: j_to_z
+    order: 132
+    name: "Northwest *j > z"
+    match: j
+    replace: z
+    description: Parthian zānūg 'knee' shows z where Old Persian has d (OP dānu-).
+    references: [lumsden-2006, durkin-meisterernst-2014]
+    examples:
+      - {in: "*jā́nu", out: "*zā́nu", gloss: "knee (Parthian zānūg)"}
+
+  - id: ai_to_e
+    order: 160
+    name: "*ai > ē"
+    match: "a i"
+    replace: ē
+    description: Parthian nēm 'half' beside Proto-Iranian *náimah.
+    references: [lumsden-2006, durkin-meisterernst-2014]
+    examples:
+      - {in: "*náimah", out: "*nḗmah", gloss: "half (Parthian nēm)"}
+
+  - id: au_to_o
+    order: 161
+    name: "*au > ō"
+    match: "a u"
+    replace: ō
+    references: [lumsden-2006]
+    examples:
+      - {in: "*gáušah", out: "*gṓšah", gloss: "ear (Parthian gōš)"}
+
+  - id: anaptyxis_pat
+    order: 165
+    name: "Anaptyctic *i in Parthian pidar"
+    match: a
+    replace: i
+    env: {left: p, right: "t ˈ? ā"}
+    tier: proposed
+    optional: true
+    notes: >
+      Parthian pidar 'father', like OP pitā, has an *i that Avestan ptā lacks;
+      the standard Proto-Iranian form is *pH̥tā́, but data/rules/ine-pro__iir-pro.yaml
+      resolves that laryngeal as *a, so the rule is stated on the *patā- shape
+      and is inert if the upstream stage is corrected.
+    references: [lumsden-2006, mayrhofer-1986]
+    examples:
+      - {in: "*patā́", out: "*pitā́", gloss: "father"}

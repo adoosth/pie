@@ -1,0 +1,30 @@
+# Constructions this stage's entries argue in prose rather than as an
+# arithmetic. The reader in src/pie/service.py can only read "*base + *suffix*"
+# and a stated stem class; when an entry names a rival base in a sentence of
+# its own, the reading is recorded here by hand, with its quote and author.
+#
+# Every row is shown under the word's construction, below the one the entry's
+# own header states, marked with its confidence: `stated` (the entry presents
+# it plainly), `argued` (a named author argues it or the entry hedges),
+# `proposed` (this repo's own hypothesis — never used for a record).
+#
+# Keep only what the entry's own words support, and quote them in `note`.
+
+dʰéǵʰōm:
+  - base: dʰeǵ-
+    confidence: argued
+    source: "Kloekhorst"
+    note: >-
+      Kloekhorst argues that the Sanskrit and Anatolian evidence point towards
+      a reconstruction of the root *dʰeǵ- as opposed to *dʰeǵʰ- (the entry's
+      own header construction), on the basis of the Sanskrit oblique stem jm-
+      and the Anatolian forms.
+
+nókʷts:
+  - base: negʷ-
+    confidence: argued
+    source: "Pooth"
+    note: >-
+      Pooth argues that the word derives from *negʷ- (“bare, naked”), and that
+      the ablaut variants *nékʷt-, *nókʷt- should be analysed as two separate
+      root nouns, *négʷts and *nógʷts — “dusk” and “night”.

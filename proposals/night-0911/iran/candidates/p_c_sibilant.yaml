@@ -1,0 +1,9 @@
+rules:
+  - id: probe_pc_to_fs
+    order: 109
+    name: "PII *pć > PIr *fš"
+    match: "p ć"
+    replace: "f š"
+    references: [hoffmann-forssman-2004]
+    examples:
+      - {in: "*pćā́", out: "*fšā́", gloss: "cattle?"}

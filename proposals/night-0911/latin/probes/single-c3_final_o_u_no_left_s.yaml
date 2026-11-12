@@ -1,0 +1,23 @@
+stage:
+  name: Proto-Italic → Latin (candidate 3)
+  references:
+  - sihler-1995
+  - weiss-2009
+  - meiser-1998
+rules:
+- id: c3_final_o_u_no_left_s
+  order: 353
+  name: Final *-os > -us also after a vowel
+  match: o
+  replace: u
+  env:
+    right: 's #'
+  tier: established
+  description: The raising of final *-o before *-s applies after any segment (*aljos
+    > *alius).
+  references:
+  - sihler-1995
+  examples:
+  - in: '*aljos'
+    out: '*aljus'
+    gloss: other

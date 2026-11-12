@@ -1,0 +1,437 @@
+stage:
+  name: Proto-Germanic → Gothic
+  date_start: 200
+  date_end: 400
+  description: >
+    The last transition in the model: Proto-Germanic to the Gothic of Wulfila's
+    Bible.  The vowel system is rebuilt — the inherited short i, u and e break
+    before r, h and ƕ, *ai and *au become the long open vowels /ɛː/ and /ɔː/
+    (the sounds Wulfila writes with the digraphs ai and au), and *ē and *ū
+    diphthongise before a vowel — and the endings are remade: *-az and *-iz
+    lose their vowel and their *z becomes -s, *-uz keeps its vowel, the final
+    short vowels *-ą, *-ō, *-ô and *-ēr give the Gothic ones, the voiced
+    fricatives are devoiced before a final -s (hlaibaz > hlaifs, gōdaz >
+    gōþs), and the geminates *jj and *ww become ddj and ggw.  The stage stops
+    at a phonemic form; how it is written in Wulfila's alphabet is the
+    orthographic layer (data/spelling/got.yaml), and nothing here is a claim
+    about spelling.
+  references: [braune-ebbinghaus, wright-1910, krause-1968]
+
+rules:
+  # ---- consonants ---------------------------------------------------------
+  - id: hw_to_labial
+    order: 5
+    name: "*-hw- is one segment, /ʍ/"
+    match: "h w"
+    replace: "ƕ"
+    tier: established
+    description: >
+      The labiovelar fricative inherited from Germanic *hw is a single phoneme
+      in Gothic, written with a letter of its own (ƕ, 𐍈): *hwar 'where' >
+      ƕar, *sehwaną 'to see' > saiƕan, *ahwō 'river' > aƕa.  The two segments
+      of the international transcription are one sign in Wulfila's alphabet, so
+      the transition states it once, here, and not in the writing layer.
+    references: [braune-ebbinghaus, wright-1910, krause-1968]
+    examples:
+      - {in: "*sehwaną", out: "*seƕaną", gloss: "to see (saiƕan)"}
+
+  - id: kw_to_labial
+    order: 6
+    name: "*-kw- is one segment, /kʷ/"
+    match: "k w"
+    replace: "kʷ"
+    tier: established
+    description: >
+      The labiovelar stop inherited from Germanic *kw is one phoneme in Gothic,
+      written q (𐌵): *kwemaną 'to come' > /kʷiman/, *kwenǭ 'woman' > /kʷinō/.
+      As with *hw, the transition states the single segment and the writing
+      layer writes the letter.
+    references: [braune-ebbinghaus, wright-1910, krause-1968]
+    examples:
+      - {in: "*kwemaną", out: "*kʷemaną", gloss: "to come (qiman)"}
+
+  - id: gw_to_labial
+    order: 7
+    name: "*-gw- is one segment, /gʷ/"
+    match: "g w"
+    replace: "gʷ"
+    tier: established
+    description: >
+      The labiovelar that Gothic keeps in *singwan 'to sing' and *triggwō
+      'fidelity' is one segment, /gʷ/; the alphabet spends two letters on it
+      (ggw) but the phoneme is single, and the writing layer writes the two
+      letters.
+    references: [braune-ebbinghaus, wright-1910]
+    examples:
+      - {in: "*singwaną", out: "*singʷaną", gloss: "to sing (siggwan)"}
+
+  - id: jj_to_ddj
+    order: 10
+    name: "*-jj- > -ddj-"
+    match: "j j"
+    replace: "d d j"
+    tier: established
+    description: >
+      The Germanic geminate *jj becomes the cluster ddj: *dajjaną 'to suck' >
+      daddjan, *wajjuz 'wall' > waddjus.
+    references: [braune-ebbinghaus, wright-1910]
+    examples:
+      - {in: "*dajjaną", out: "*daddjaną", gloss: "to suck (daddjan)"}
+
+  - id: ww_to_ggw
+    order: 11
+    name: "*-ww- > -ggw-"
+    match: "w w"
+    replace: "g g w"
+    tier: established
+    description: >
+      The Germanic geminate *ww becomes ggw: *trewwō 'fidelity' > triggwa,
+      *skuwwô 'mirror' > skuggwa, *blewwaną > bliggwan.
+    references: [braune-ebbinghaus, wright-1910]
+    examples:
+      - {in: "*trewwō", out: "*treggwō", gloss: "fidelity (triggwa)"}
+
+  # ---- breaking -----------------------------------------------------------
+  - id: breaking_i
+    order: 20
+    name: "Breaking: *i > /ɛː/ before *r, *h, *ƕ"
+    match: i
+    replace: "ɛː"
+    env: {right: "(r|h|ƕ)"}
+    tier: established
+    description: >
+      A short *i breaks to the long open front vowel /ɛː/ before r, h or ƕ,
+      whether the consonant closes the word or is followed by another: *hirdijaz
+      'herdsman' > hairdeis, *slihtaz 'smooth' > slaihts, *wihtiz 'thing' >
+      waihts, *saiƕan < *sehwaną.
+    references: [braune-ebbinghaus, wright-1910, krause-1968]
+    examples:
+      - {in: "*hirdijaz", out: "*hɛːrdijaz", gloss: "herdsman (hairdeis)"}
+
+  - id: breaking_u
+    order: 21
+    name: "Breaking: *u > /ɔː/ before *r, *h, *ƕ"
+    match: u
+    replace: "ɔː"
+    env: {right: "(r|h|ƕ)"}
+    tier: established
+    description: >
+      A short *u breaks to the long open back vowel /ɔː/ before r, h or ƕ:
+      *hurną 'horn' > haurn, *duhtēr 'daughter' > dauhtar, *þurbaną 'to need'
+      > þaurban, *uhsô 'ox' > auhsa.
+    references: [braune-ebbinghaus, wright-1910, krause-1968]
+    examples:
+      - {in: "*hurną", out: "*hɔːrną", gloss: "horn (haurn)"}
+
+  - id: breaking_e
+    order: 22
+    name: "Breaking: *e > /ɛː/ before *r, *h, *ƕ"
+    match: e
+    replace: "ɛː"
+    env: {right: "(r|h|ƕ)"}
+    tier: established
+    description: >
+      The *e that Germanic kept breaks to /ɛː/ before r, h or ƕ: *weraz 'man' >
+      wair, *hertô 'heart' > hairtō, *tehun 'ten' > taihun, *ehwaz 'horse' >
+      aiƕs.
+    references: [braune-ebbinghaus, wright-1910, krause-1968]
+    examples:
+      - {in: "*weraz", out: "*wɛːraz", gloss: "man (wair)"}
+
+  - id: e_to_i
+    order: 30
+    name: "The remaining *e > i"
+    match: e
+    replace: i
+    tier: established
+    description: >
+      Germanic *e that did not break is raised to i: *meluks 'milk' > miluks,
+      *sebun 'seven' > sibun, *swestēr 'sister' > swistar.
+    references: [braune-ebbinghaus, wright-1910, krause-1968]
+    examples:
+      - {in: "*meluks", out: "*miluks", gloss: "milk (miluks)"}
+
+  # ---- diphthongs and long vowels ----------------------------------------
+  - id: ai_to_long_open_e
+    order: 40
+    name: "*ai > /ɛː/"
+    match: "a i"
+    replace: "ɛː"
+    tier: established
+    description: >
+      The inherited diphthong *ai becomes the long open front vowel /ɛː/, which
+      Wulfila writes with the digraph ai: *stainaz 'stone' > stains, *hlaibaz
+      'loaf' > hlaifs, *paidō 'cloak' > paida.
+    references: [braune-ebbinghaus, wright-1910, krause-1968]
+    examples:
+      - {in: "*stainaz", out: "*stɛːnaz", gloss: "stone (stains)"}
+
+  - id: au_to_long_open_o
+    order: 41
+    name: "*au > /ɔː/"
+    match: "a u"
+    replace: "ɔː"
+    tier: established
+    description: >
+      The inherited diphthong *au becomes the long open back vowel /ɔː/, which
+      Wulfila writes with the digraph au: *augô 'eye' > augō, *dauþuz 'death' >
+      dauþus, *laubą 'leaf' > laufs.
+    references: [braune-ebbinghaus, wright-1910, krause-1968]
+    examples:
+      - {in: "*dauþuz", out: "*dɔːθuz", gloss: "death (dauþus)"}
+
+  - id: e_long_before_vowel
+    order: 50
+    name: "*ē > /ɛː/ before a vowel"
+    match: ē
+    replace: "ɛː"
+    env: {right: "V"}
+    tier: established
+    description: >
+      Before a vowel the long *ē diphthongises to /ɛː/ (written ai): *wēaną
+      'to blow' > waian, *sēaną 'to sow' > saian.
+    references: [braune-ebbinghaus, wright-1910]
+    examples:
+      - {in: "*wēaną", out: "*wɛːaną", gloss: "to blow (waian)"}
+
+  - id: u_long_before_vowel
+    order: 51
+    name: "*ū > /ɔː/ before a vowel"
+    match: ū
+    replace: "ɔː"
+    env: {right: "V"}
+    tier: established
+    description: >
+      Before a vowel the long *ū becomes /ɔː/ (written au): *būaną 'to dwell' >
+      bauan.
+    references: [braune-ebbinghaus, wright-1910]
+    examples:
+      - {in: "*būaną", out: "*bɔːaną", gloss: "to dwell (bauan)"}
+
+  # ---- endings ------------------------------------------------------------
+  - id: final_er_to_ar
+    order: 60
+    name: "*-ēr > -ar"
+    match: "ē r"
+    replace: "a r"
+    env: {right: "#"}
+    tier: established
+    description: >
+      The kinship r-stems end in -ar in Gothic: *brōþēr 'brother' > brōþar,
+      *fadēr 'father' > fadar, *duhtēr > dauhtar, *swestēr > swistar.
+    references: [braune-ebbinghaus, wright-1910]
+    examples:
+      - {in: "*brōþēr", out: "*brōþar", gloss: "brother (brōþar)"}
+
+  - id: final_ijaz_to_is
+    order: 61
+    name: "*-ijaz > -īs"
+    match: "i j a z"
+    replace: "ī s"
+    env: {right: "#"}
+    tier: established
+    description: >
+      The ja-stems with a heavy stem end in -eis (phonemically -īs): *mēkijaz
+      'sword' > mēkeis, *hirdijaz > hairdeis, *wilþijaz 'wild' > wilþeis.
+    references: [braune-ebbinghaus, wright-1910, krause-1968]
+    examples:
+      - {in: "*mēkijaz", out: "*mēkīs", gloss: "sword (mēkeis)"}
+
+  - id: final_ijan_to_jan
+    order: 52
+    name: "*-ijaną > -jan"
+    match: "i j a n ą"
+    replace: "j a n ą"
+    env: {right: "#"}
+    tier: established
+    description: >
+      The class-1 weak infinitive of a heavy stem loses its *i: *sandijaną 'to
+      send' > sandjan, *dailijaną 'to divide' > dailjan, *haunijaną 'to humble'
+      > haunjan, *waltijaną 'to roll' > waltjan.  The light stems never had the
+      *i (*tahjaną > tahjan).
+    references: [braune-ebbinghaus, wright-1910, krause-1968]
+    examples:
+      - {in: "*sandijaną", out: "*sandjaną", gloss: "to send (sandjan)"}
+
+  - id: final_jaz_to_jis
+    order: 62
+    name: "*-jaz > -jis"
+    match: "j a z"
+    replace: "j i s"
+    env: {right: "#"}
+    tier: established
+    description: >
+      The ja-stems with a light stem keep the j and end in -jis: *harjaz
+      'army' > harjis, *midjaz 'middle' > midjis, *aljaz 'other' > aljis.
+    references: [braune-ebbinghaus, wright-1910]
+    examples:
+      - {in: "*harjaz", out: "*harjis", gloss: "army (harjis)"}
+
+  - id: final_az_to_s
+    order: 63
+    name: "*-az > -s"
+    match: "a z"
+    replace: s
+    env: {right: "#"}
+    tier: established
+    description: >
+      The a-stem nominative singular loses its vowel and devoices its *-z:
+      *hundaz 'dog' > hunds, *wulfaz 'wolf' > wulfs, *stainaz 'stone' > stains,
+      *fiskaz 'fish' > fisks.
+    references: [braune-ebbinghaus, wright-1910, krause-1968]
+    examples:
+      - {in: "*hundaz", out: "*hunds", gloss: "dog (hunds)"}
+
+  - id: final_iz_to_s
+    order: 64
+    name: "*-iz > -s"
+    match: "i z"
+    replace: s
+    env: {right: "#"}
+    tier: established
+    description: >
+      The i-stem nominative singular loses its vowel and devoices its *-z:
+      *aihtiz 'property' > aihts, *anstiz 'favour' > ansts, *naudiz 'need' >
+      nauþs.  The u-stems keep their vowel (see final_z_to_s: *sunuz > sunus).
+    references: [braune-ebbinghaus, wright-1910, krause-1968]
+    examples:
+      - {in: "*aihtiz", out: "*aihts", gloss: "property (aihts)"}
+
+  - id: final_z_to_s
+    order: 65
+    name: "Word-final *-z > -s"
+    match: z
+    replace: s
+    env: {right: "#"}
+    tier: established
+    description: >
+      Germanic *-z is devoiced to -s in final position: *sunuz > sunus, *maiz
+      'more' > mais, *hailagaz > hailags.
+    references: [braune-ebbinghaus, wright-1910, krause-1968]
+    examples:
+      - {in: "*sunuz", out: "*sunus", gloss: "son (sunus)"}
+
+  - id: final_d_to_th
+    order: 66
+    name: "Final *-d > -þ after a vowel"
+    match: d
+    replace: "θ"
+    env: {left: "(V|ː)", right: "s #"}
+    tier: established
+    description: >
+      The voiced dental is devoiced to þ before the final -s when a vowel
+      precedes it: *gōdaz 'good' > gōþs, *daudaz 'dead' > dauþs, *stadiz 'place'
+      > staþs, *naudiz 'need' > nauþs.  After a consonant the stop stays
+      (hunds, gards, alds), which is why the environment is stated.
+    notes: >
+      The rule is stated and illustrated on the form the earlier ending rules
+      produce (*-az already written *-z, *-s after the devoicing), not on the
+      Germanic citation form.
+    references: [braune-ebbinghaus, wright-1910, krause-1968]
+    examples:
+      - {in: "*gōds", out: "*gōþs", gloss: "good (gōþs)"}
+
+  - id: final_b_to_f
+    order: 67
+    name: "Final *-b > -f after a vowel"
+    match: b
+    replace: f
+    env: {left: "(V|ː)", right: "s #"}
+    tier: established
+    description: >
+      The voiced labial is devoiced to f before the final -s when a vowel
+      precedes it: *hlaibaz 'loaf' > hlaifs, *þeubaz 'thief' > þiufs, *daubaz
+      'deaf' > daufs, *leubaz 'dear' > liufs.  After a liquid the stop stays
+      (halbs, þarbs, gaƕairbs).
+    notes: >
+      The rule is stated and illustrated on the form the earlier ending rules
+      produce (*-az already written *-z), not on the Germanic citation form.
+    references: [braune-ebbinghaus, wright-1910, krause-1968]
+    examples:
+      - {in: "*hlaibs", out: "*hlaifs", gloss: "loaf (hlaifs)"}
+
+  - id: final_ą_loss
+    order: 55
+    name: "Word-final *-ą is lost"
+    match: ą
+    replace: ""
+    env: {right: "#"}
+    tier: established
+    description: >
+      The neuter a-stem nominative-accusative ending *-ą is lost: *akraną
+      'fruit' > akran, *juką 'yoke' > juk, *grasą 'grass' > gras, *hurną >
+      haurn.  Gothic neuter a-stems are endingless.
+    references: [braune-ebbinghaus, wright-1910, krause-1968]
+    examples:
+      - {in: "*akraną", out: "*akran", gloss: "fruit (akran)"}
+
+  - id: final_ō_to_a
+    order: 71
+    name: "Word-final *-ō > -a"
+    match: ō
+    replace: a
+    env: {right: "#"}
+    tier: established
+    description: >
+      The feminine ō-stem nominative singular ends in -a: *gebō 'gift' > giba,
+      *rūnō 'rune' > rūna, *þeudō 'people' > þiuda, *bōkō 'book' > bōka.
+    references: [braune-ebbinghaus, wright-1910, krause-1968]
+    examples:
+      - {in: "*gebō", out: "*geba", gloss: "gift (giba)"}
+
+  - id: final_ǭ_to_ō
+    order: 72
+    name: "Word-final *-ǭ > -ō"
+    match: ǭ
+    replace: ō
+    env: {right: "#"}
+    tier: established
+    description: >
+      The nasalised long vowel of the ōn-stems ends in -ō: *sunnǭ 'sun' >
+      sunnō, *kwenǭ 'woman' > qinō, *sternǭ 'star' > stairnō.
+    references: [braune-ebbinghaus, wright-1910]
+    examples:
+      - {in: "*sunnǭ", out: "*sunnō", gloss: "sun (sunnō)"}
+
+  - id: final_ô_to_a
+    order: 73
+    name: "Word-final *-ô > -a"
+    match: ô
+    replace: a
+    env: {right: "#"}
+    tier: established
+    description: >
+      The weak masculine nouns end in -a: *maþô 'maggot' > maþa, *gumô 'man' >
+      guma, *attô 'father' > atta, *blōmô 'flower' > blōma, and so do the
+      comparatives (*batizô > batiza).
+    references: [braune-ebbinghaus, wright-1910, krause-1968]
+    examples:
+      - {in: "*gumô", out: "*guma", gloss: "man (guma)"}
+
+  - id: final_ê_to_ē
+    order: 74
+    name: "Word-final *-ê > -ē"
+    match: ê
+    replace: ē
+    env: {right: "#"}
+    tier: established
+    description: >
+      The adverbial -ê is written -ē in Gothic: *þandê 'then' > þandē, *simlê
+      'once' > simlē, *hidrê 'hither' > hidrē.
+    references: [braune-ebbinghaus, krause-1968]
+    examples:
+      - {in: "*þandê", out: "*þandē", gloss: "then (þandē)"}
+
+  - id: final_į̄_to_ī
+    order: 75
+    name: "Word-final *-į̄ > -ī"
+    match: "į̄"
+    replace: "ī"
+    env: {right: "#"}
+    tier: established
+    description: >
+      The abstract nouns in *-į̄ end in -ī (written ei): *managį̄ 'multitude' >
+      managei, *aiþį̄ 'oath' > aiþei, *diupį̄ 'depth' > diupei.
+    references: [braune-ebbinghaus, wright-1910]
+    examples:
+      - {in: "*managį̄", out: "*managī", gloss: "multitude (managei)"}

@@ -1,0 +1,13 @@
+rules:
+  - id: kt_to_xt
+    order: 44
+    name: "*k > χ before *t"
+    match: "k t"
+    replace: "χ t"
+    tier: established
+    description: >
+      The cluster -κτ- becomes -χτ- in the modern language: νύκτα is νύχτα,
+      ὀκτώ is οχτώ, ἐκτός is εχτός (Horrocks 2010, 171; Browning 1983, 66).
+    references: [horrocks-2010]
+    examples:
+      - {in: "nˈykta", out: "nˈyχta", gloss: "night (νύκτα > νύχτα)"}

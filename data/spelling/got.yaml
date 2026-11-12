@@ -1,0 +1,399 @@
+stage:
+  name: Gothic orthography (Wulfila's alphabet)
+  date_start: 350
+  date_end: null
+  description: >
+    How a Gothic phonological form is written in Wulfila's alphabet.  The
+    alphabet is a letter table, not a syllabary: every segment has one letter of
+    its own — a 𐌰, b 𐌱, g 𐌲, d 𐌳, e 𐌴, q 𐌵, z 𐌶, h 𐌷, þ 𐌸, i 𐌹,
+    k 𐌺, l 𐌻, m 𐌼, n 𐌽, j 𐌾, u 𐌿, p 𐍀, r 𐍂, s 𐍃, t 𐍄, w 𐍅,
+    f 𐍆, ƕ 𐍈, o 𐍉 — so the table is a set of ordinary substitutions rather
+    than a syllabification like Devanagari's.  The one thing the alphabet does
+    not do is mark length or vowel quality: ai 𐌰𐌹 writes /ɛː/, au 𐌰𐌿 writes
+    /ɔː/, ei 𐌴𐌹 writes /iː/, and the single letters e and o write the long
+    close vowels /eː/ and /oː/ as well as any short e or o a loanword has.  The
+    digraph iu 𐌹𐌿 writes the falling diphthong /iu/, and the labiovelars are
+    q 𐌵 for /kʷ/, ƕ 𐍈 for /ʍ/ and the two letters g𐍅 for /gʷ/.  Nothing
+    here is a sound change: a word matched through this layer is counted as
+    spelled, never as reconstructed, and the sounds the transition derives are
+    the ones this table writes.
+  references: [braune-ebbinghaus, wright-1910, krause-1968]
+
+rules:
+  - id: drop_stress
+    order: 5
+    name: "Stress is not written"
+    match: "ˈ"
+    replace: ""
+    tier: orthographic
+    description: >
+      Wulfila's alphabet marks neither stress nor pitch, and the dictionary
+      headword writes none; the phonemic layer's stress token is not a letter.
+    references: [braune-ebbinghaus]
+    examples:
+      - {in: "wˈulfs", out: "𐍅𐌿𐌻𐍆𐍃", gloss: "wolf (wulfs)"}
+
+  - id: long_ae_to_ai
+    order: 10
+    name: "/ɛː/ is written ⟨ai⟩"
+    match: "ɛ ː"
+    replace: "𐌰𐌹"
+    tier: orthographic
+    description: >
+      The digraph ai (𐌰𐌹) writes the long open front vowel /ɛː/, whatever its
+      source: inherited *ai, the breaking of a short vowel before r, h or ƕ, or
+      *ē before a vowel.  It is a digraph of two letters, so it is written
+      before the single letters.
+    references: [braune-ebbinghaus, wright-1910]
+    examples:
+      - {in: "pɛːda", out: "𐍀𐌰𐌹𐌳𐌰", gloss: "cloak (paida)"}
+
+  - id: long_ao_to_au
+    order: 11
+    name: "/ɔː/ is written ⟨au⟩"
+    match: "ɔ ː"
+    replace: "𐌰𐌿"
+    tier: orthographic
+    description: >
+      The digraph au (𐌰𐌿) writes the long open back vowel /ɔː/, from inherited
+      *au, from the breaking of *u before r, h or ƕ, and from *ū before a vowel
+      (bauan < *būaną).
+    references: [braune-ebbinghaus, wright-1910]
+    examples:
+      - {in: "fɔːhō", out: "𐍆𐌰𐌿𐌷𐍉", gloss: "wealth (fauhō)"}
+
+  - id: long_i_written_ei
+    order: 12
+    name: "/iː/ is written ⟨ei⟩"
+    match: "ī"
+    replace: "𐌴𐌹"
+    tier: orthographic
+    description: >
+      Wulfila writes the long high front vowel with the digraph ei (𐌴𐌹):
+      managei 'multitude', hairdeis 'shepherd', swein 'swine'.  It must be
+      written before the single letter i, or the two letters would come out in
+      the wrong order.
+    references: [braune-ebbinghaus, wright-1910]
+    examples:
+      - {in: "swīn", out: "𐍃𐍅𐌴𐌹𐌽", gloss: "swine (swein)"}
+
+  - id: iu_digraph
+    order: 13
+    name: "/iu/ is written ⟨iu⟩"
+    match: "i u"
+    replace: "𐌹𐌿"
+    tier: orthographic
+    description: >
+      The falling diphthong /iu/ is written with the two letters i and u
+      (𐌹𐌿): dius 'wild beast', þiuda 'people', diups 'deep'.  It precedes the
+      single letters so that the two are not written in the opposite order.
+    references: [braune-ebbinghaus, wright-1910]
+    examples:
+      - {in: "dius", out: "𐌳𐌹𐌿𐍃", gloss: "wild beast (dius)"}
+
+  - id: letter_hw
+    order: 14
+    name: "/ʍ/ is written ⟨𐍈⟩"
+    match: "ƕ"
+    replace: "𐍈"
+    tier: orthographic
+    description: >
+      The labiovelar fricative has a letter of its own, ƕ (𐍈), taken from the
+      Greek theta: ƕas 'who', ƕar 'where', saiƕan 'to see'.  The phonemic layer
+      writes the one segment with the one letter ƕ; this layer writes the one
+      sign of the alphabet.
+    references: [braune-ebbinghaus, wright-1910]
+    examples:
+      - {in: "ƕar", out: "𐍈𐌰𐍂", gloss: "where (ƕar)"}
+
+  - id: letter_gw
+    order: 15
+    name: "/gʷ/ is written ⟨𐌲𐍅⟩"
+    match: "gʷ"
+    replace: "𐌲𐍅"
+    tier: orthographic
+    description: >
+      The alphabet has no single letter for the labiovelar /gʷ/, only the two
+      letters g and w: siggwan 'to sing', triggws 'faithful'.  The phoneme is
+      one segment and the writing spends two signs on it, the mirror image of q
+      for /kʷ/.
+    references: [braune-ebbinghaus, wright-1910]
+    examples:
+      - {in: "triggʷs", out: "𐍄𐍂𐌹𐌲𐌲𐍅𐍃", gloss: "faithful (triggws)"}
+
+  - id: letter_q
+    order: 16
+    name: "/kʷ/ is written ⟨𐌵⟩"
+    match: "kʷ"
+    replace: "𐌵"
+    tier: orthographic
+    description: >
+      Wulfila writes the labiovelar stop with a letter of its own, q (𐌵), taken
+      from the Greek koppa: qiman 'come', qinō 'woman', naqaþs 'naked'.
+    references: [braune-ebbinghaus, wright-1910]
+    examples:
+      - {in: "kʷinō", out: "𐌵𐌹𐌽𐍉", gloss: "woman (qinō)"}
+
+  - id: letter_a
+    order: 20
+    name: "/a/ and /aː/ are written ⟨𐌰⟩"
+    match: "(a|ā)"
+    replace: "𐌰"
+    tier: orthographic
+    description: >
+      The first letter of the alphabet writes short /a/ and long /aː/ alike
+      (akran, fastān); the alphabet has no mark of length.
+    references: [wright-1910, krause-1968]
+    examples:
+      - {in: "maθa", out: "𐌼𐌰𐌸𐌰", gloss: "maggot (maþa)"}
+
+  - id: letter_b
+    order: 21
+    name: "/b/ is written ⟨𐌱⟩"
+    match: "b"
+    replace: "𐌱"
+    tier: orthographic
+    description: >
+      The letter b writes the labial, a stop after a nasal and a fricative
+      elsewhere (sibun, hlaifs); the alphabet does not distinguish the two, and
+      this layer writes the letter the phoneme has, not the allophone.
+    references: [braune-ebbinghaus, wright-1910]
+    examples:
+      - {in: "sibun", out: "𐍃𐌹𐌱𐌿𐌽", gloss: "seven (sibun)"}
+
+  - id: letter_g
+    order: 22
+    name: "/g/ is written ⟨𐌲⟩"
+    match: "g"
+    replace: "𐌲"
+    tier: orthographic
+    description: "The letter g writes the velar (guma, dags, triggwa)."
+    references: [braune-ebbinghaus, wright-1910]
+    examples:
+      - {in: "guma", out: "𐌲𐌿𐌼𐌰", gloss: "man (guma)"}
+
+  - id: letter_d
+    order: 23
+    name: "/d/ is written ⟨𐌳⟩"
+    match: "d"
+    replace: "𐌳"
+    tier: orthographic
+    description: "The letter d writes the dental (dags, dauþus, fadar)."
+    references: [braune-ebbinghaus, wright-1910]
+    examples:
+      - {in: "hunds", out: "𐌷𐌿𐌽𐌳𐍃", gloss: "dog (hunds)"}
+
+  - id: letter_e
+    order: 24
+    name: "/e/ and /eː/ are written ⟨𐌴⟩"
+    match: "(e|ē)"
+    replace: "𐌴"
+    tier: orthographic
+    description: >
+      The letter e writes the long close /eː/ of mēna 'moon' and the short e
+      that survives before r, h and ƕ; the alphabet marks neither length nor
+      quality, so both are the one letter.
+    references: [braune-ebbinghaus, wright-1910, krause-1968]
+    examples:
+      - {in: "mēnōθs", out: "𐌼𐌴𐌽𐍉𐌸𐍃", gloss: "month (mēnōþs)"}
+
+  - id: letter_z
+    order: 25
+    name: "/z/ is written ⟨𐌶⟩"
+    match: "z"
+    replace: "𐌶"
+    tier: orthographic
+    description: >
+      The letter z writes the voiced sibilant that stands for Germanic *z, and
+      it is a pair the alphabet does mark: 𐍃 is /s/, 𐌶 is /z/ (aiz 'bronze',
+      maiza 'greater', batiza 'better').
+    references: [braune-ebbinghaus, wright-1910]
+    examples:
+      - {in: "batiza", out: "𐌱𐌰𐍄𐌹𐌶𐌰", gloss: "better (batiza)"}
+
+  - id: letter_h
+    order: 26
+    name: "/h/ is written ⟨𐌷⟩"
+    match: "h"
+    replace: "𐌷"
+    tier: orthographic
+    description: "The letter h writes the velar fricative, initial and medial (hunds, nahts, taihun)."
+    references: [braune-ebbinghaus, wright-1910]
+    examples:
+      - {in: "hunds", out: "𐌷𐌿𐌽𐌳𐍃", gloss: "dog (hunds)"}
+
+  - id: letter_thorn
+    order: 27
+    name: "/θ/ is written ⟨𐌸⟩"
+    match: "θ"
+    replace: "𐌸"
+    tier: orthographic
+    description: >
+      The letter þ (𐌸) writes the voiceless dental fricative inherited from
+      Germanic *þ: þiuda 'people', brōþar 'brother', dauþus 'death'.  The
+      phonemic layer writes the segment θ.
+    references: [braune-ebbinghaus, wright-1910]
+    examples:
+      - {in: "maθa", out: "𐌼𐌰𐌸𐌰", gloss: "maggot (maþa)"}
+
+  - id: letter_i
+    order: 28
+    name: "/i/ is written ⟨𐌹⟩"
+    match: "i"
+    replace: "𐌹"
+    tier: orthographic
+    description: "The letter i writes the short high front vowel (katils, fisks, giba)."
+    references: [braune-ebbinghaus, wright-1910]
+    examples:
+      - {in: "katils", out: "𐌺𐌰𐍄𐌹𐌻𐍃", gloss: "kettle (katils)"}
+
+  - id: letter_k
+    order: 29
+    name: "/k/ is written ⟨𐌺⟩"
+    match: "k"
+    replace: "𐌺"
+    tier: orthographic
+    description: "The letter k writes the voiceless velar stop (akran, fisks, katils)."
+    references: [wright-1910, krause-1968]
+    examples:
+      - {in: "katils", out: "𐌺𐌰𐍄𐌹𐌻𐍃", gloss: "kettle (katils)"}
+
+  - id: letter_l
+    order: 30
+    name: "/l/ is written ⟨𐌻⟩"
+    match: "l"
+    replace: "𐌻"
+    tier: orthographic
+    description: "The letter l writes the lateral (wulfs, hlaifs, miluks)."
+    references: [wright-1910, krause-1968]
+    examples:
+      - {in: "wˈulfs", out: "𐍅𐌿𐌻𐍆𐍃", gloss: "wolf (wulfs)"}
+
+  - id: letter_m
+    order: 31
+    name: "/m/ is written ⟨𐌼⟩"
+    match: "m"
+    replace: "𐌼"
+    tier: orthographic
+    description: "The letter m writes the labial nasal (maþa, guma, namō)."
+    references: [wright-1910, krause-1968]
+    examples:
+      - {in: "maθa", out: "𐌼𐌰𐌸𐌰", gloss: "maggot (maþa)"}
+
+  - id: letter_n
+    order: 32
+    name: "/n/ is written ⟨𐌽⟩"
+    match: "n"
+    replace: "𐌽"
+    tier: orthographic
+    description: "The letter n writes the dental nasal (nahts, sunus, akran)."
+    references: [wright-1910, krause-1968]
+    examples:
+      - {in: "hunds", out: "𐌷𐌿𐌽𐌳𐍃", gloss: "dog (hunds)"}
+
+  - id: letter_j
+    order: 33
+    name: "/j/ is written ⟨𐌾⟩"
+    match: "j"
+    replace: "𐌾"
+    tier: orthographic
+    description: "The letter j writes the palatal glide (jūs, midjis, harjis)."
+    references: [braune-ebbinghaus, wright-1910]
+    examples:
+      - {in: "jūs", out: "𐌾𐌿𐍃", gloss: "you (pl.) (jūs)"}
+
+  - id: letter_u
+    order: 34
+    name: "/u/ and /uː/ are written ⟨𐌿⟩"
+    match: "(u|ū)"
+    replace: "𐌿"
+    tier: orthographic
+    description: "The letter u writes short and long u alike (sunus, rūna, juk)."
+    references: [wright-1910, krause-1968]
+    examples:
+      - {in: "hunds", out: "𐌷𐌿𐌽𐌳𐍃", gloss: "dog (hunds)"}
+
+  - id: letter_p
+    order: 35
+    name: "/p/ is written ⟨𐍀⟩"
+    match: "p"
+    replace: "𐍀"
+    tier: orthographic
+    description: "The letter p writes the voiceless labial stop (paida, diups)."
+    references: [wright-1910, krause-1968]
+    examples:
+      - {in: "pɛːda", out: "𐍀𐌰𐌹𐌳𐌰", gloss: "cloak (paida)"}
+
+  - id: letter_r
+    order: 36
+    name: "/r/ is written ⟨𐍂⟩"
+    match: "r"
+    replace: "𐍂"
+    tier: orthographic
+    description: "The letter r writes the rhotic (rūna, brōþar, akran)."
+    references: [wright-1910, krause-1968]
+    examples:
+      - {in: "akran", out: "𐌰𐌺𐍂𐌰𐌽", gloss: "fruit (akran)"}
+
+  - id: letter_s
+    order: 37
+    name: "/s/ is written ⟨𐍃⟩"
+    match: "s"
+    replace: "𐍃"
+    tier: orthographic
+    description: >
+      The letter s writes the voiceless sibilant, including the -s of the
+      nominative singular (hunds, stains, wilþeis); word-final -s is the same
+      letter as any other s and needs no rule of its own.
+    references: [braune-ebbinghaus, wright-1910]
+    examples:
+      - {in: "hunds", out: "𐌷𐌿𐌽𐌳𐍃", gloss: "dog (hunds)"}
+
+  - id: letter_t
+    order: 38
+    name: "/t/ is written ⟨𐍄⟩"
+    match: "t"
+    replace: "𐍄"
+    tier: orthographic
+    description: "The letter t writes the voiceless dental stop (twai, taihun, katils)."
+    references: [wright-1910, krause-1968]
+    examples:
+      - {in: "katils", out: "𐌺𐌰𐍄𐌹𐌻𐍃", gloss: "kettle (katils)"}
+
+  - id: letter_w
+    order: 39
+    name: "/w/ is written ⟨𐍅⟩"
+    match: "w"
+    replace: "𐍅"
+    tier: orthographic
+    description: "The letter w writes the labial glide (wulfs, winds, wair)."
+    references: [braune-ebbinghaus, wright-1910]
+    examples:
+      - {in: "wˈulfs", out: "𐍅𐌿𐌻𐍆𐍃", gloss: "wolf (wulfs)"}
+
+  - id: letter_f
+    order: 40
+    name: "/f/ is written ⟨𐍆⟩"
+    match: "f"
+    replace: "𐍆"
+    tier: orthographic
+    description: >
+      The letter f writes the labial fricative, [ɸ] in the handbooks'
+      transcription and written f in the alphabet (wulfs, fisks, hlaifs).
+    references: [braune-ebbinghaus, wright-1910]
+    examples:
+      - {in: "wˈulfs", out: "𐍅𐌿𐌻𐍆𐍃", gloss: "wolf (wulfs)"}
+
+  - id: letter_o
+    order: 41
+    name: "/o/ and /oː/ are written ⟨𐍉⟩"
+    match: "(o|ō)"
+    replace: "𐍉"
+    tier: orthographic
+    description: >
+      The letter o writes the long close /oː/ (sunnō 'sun', augō 'eye',
+      brōþar's ō); Gothic has no short o of its own, so the letter is in
+      practice always the long vowel.
+    references: [braune-ebbinghaus, wright-1910, krause-1968]
+    examples:
+      - {in: "sunnō", out: "𐍃𐌿𐌽𐌽𐍉", gloss: "sun (sunnō)"}

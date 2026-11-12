@@ -1,0 +1,128 @@
+stage:
+  name: Middle English → Modern English
+  date_start: 1500
+  date_end: 1700
+  description: >
+    Loss of final -e, the qualitative changes of the Middle English short
+    vowels, the Great Vowel Shift (a push chain), and the raising of ME open
+    *ɔ̄ to *ō. The output is a phonological form, not modern spelling.
+  references: [luick-1914, dobson-1968]
+
+rules:
+  # ---- final -e -----------------------------------------------------------
+  - id: final_e_loss
+    order: 100
+    name: "Final *-e is lost"
+    match: e
+    replace: ""
+    env: {right: "#"}
+    tier: established
+    description: "Middle English final *-e is lost in pronunciation in early Modern English (*name > *nam)."
+    notes: "The spelling usually keeps a silent -e; only the pronunciation is modelled."
+    references: [dobson-1968, luick-1914]
+    examples:
+      - {in: "*name", out: "*nam", gloss: "name"}
+
+  # ---- short vowels -------------------------------------------------------
+  - id: short_a_fronting
+    order: 200
+    name: "Short *a > *æ"
+    match: a
+    replace: æ
+    tier: established
+    description: "Middle English short *a fronts to *æ (*cat > *cæt)."
+    references: [dobson-1968]
+    examples:
+      - {in: "*cat", out: "*cæt", gloss: "cat"}
+
+  - id: short_o_lowering
+    order: 210
+    name: "Short *o > *ɔ"
+    match: o
+    replace: ɔ
+    tier: established
+    description: "Middle English short *o lowers to *ɔ (*dog > *dɔg)."
+    references: [dobson-1968]
+    examples:
+      - {in: "*dog", out: "*dɔg", gloss: "dog"}
+
+  - id: short_u_unrounding
+    order: 220
+    name: "Short *u > *ʌ"
+    match: u
+    replace: ʌ
+    tier: established
+    description: "Middle English short *u unrounds and lowers to *ʌ (*sun > *sʌn)."
+    notes: "Only partly regular: *u remains after labials (*put, *bull)."
+    references: [dobson-1968]
+    examples:
+      - {in: "*sun", out: "*sʌn", gloss: "sun"}
+
+  # ---- Great Vowel Shift --------------------------------------------------
+  - id: gvs_i
+    order: 300
+    name: "Great Vowel Shift: *ī > *ai"
+    match: ī
+    replace: ai
+    tier: established
+    description: "Long *ī diphthongises to *ai (*mīs > *mais)."
+    references: [dobson-1968, luick-1914]
+    examples:
+      - {in: "*mīs", out: "*mais", gloss: "mice"}
+
+  - id: gvs_u
+    order: 301
+    name: "Great Vowel Shift: *ū > *au"
+    match: ū
+    replace: au
+    tier: established
+    description: "Long *ū diphthongises to *au (*mūs > *maus)."
+    references: [dobson-1968, luick-1914]
+    examples:
+      - {in: "*mūs", out: "*maus", gloss: "mouse"}
+
+  - id: gvs_e
+    order: 310
+    name: "Great Vowel Shift: *ē > *ī"
+    match: ē
+    replace: ī
+    tier: established
+    description: "Long *ē raises to *ī after the older *ī has diphthongised (*mētan > *mītan)."
+    references: [dobson-1968, luick-1914]
+    examples:
+      - {in: "*mētan", out: "*mītan", gloss: "to meet"}
+
+  - id: gvs_o
+    order: 311
+    name: "Great Vowel Shift: *ō > *ū"
+    match: ō
+    replace: ū
+    tier: established
+    description: "Long *ō raises to *ū after the older *ū has diphthongised (*fōt > *fūt)."
+    notes: "This is the close *ō that continues OE *ō; the open *ɔ̄ from OE *ā is kept apart and raised by a separate rule."
+    references: [dobson-1968, luick-1914]
+    examples:
+      - {in: "*fōt", out: "*fūt", gloss: "foot"}
+
+  - id: gvs_a
+    order: 320
+    name: "Great Vowel Shift: *ā > *ai"
+    match: ā
+    replace: ai
+    tier: established
+    description: "Middle English long *ā (from open-syllable lengthening) diphthongises to *ai (*nām > *naim)."
+    notes: "The outcome is the vowel of name, take; the notation *ai stands for the raised front diphthong /ɛi/ > /eɪ/."
+    references: [dobson-1968]
+    examples:
+      - {in: "*nām", out: "*naim", gloss: "name"}
+
+  - id: open_o_raising
+    order: 330
+    name: "ME open *ɔ̄ > *ō"
+    match: ɔ̄
+    replace: ō
+    tier: established
+    description: "Middle English open *ɔ̄ (from OE *ā) raises to *ō (*stɔ̄n > *stōn)."
+    references: [dobson-1968, luick-1914]
+    examples:
+      - {in: "*stɔ̄n", out: "*stōn", gloss: "stone"}

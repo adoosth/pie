@@ -1,0 +1,232 @@
+language: fa
+
+note: >
+  The derivational suffixes and inflectional endings a Persian word may take,
+  for the timeline's form builder at the Persian rung. Persian is an attested
+  stage, not a reconstruction: every row names a morpheme the dictionaries
+  record and quotes the page it is read on, but a word the builder puts
+  together is this repo's formation and no dictionary holds it, so it is
+  labelled where it appears and never counted as a derivation by sound law.
+  Persian attaches these suffixes to the word as it stands — there is no
+  thematic vowel to drop — so `attach` is `keep` throughout, and the pieces are
+  joined as Persian orthography joins them, which is the `joining` block below.
+
+  The spelling tells the reader which morpheme is meant: a suffix is written
+  with its joining form (ـمند), a word that happens to end in the same letters
+  with the ordinary one. Three of the letters below spell more than one
+  morpheme (ـی), and each note says which sense its row is.
+
+suffixes:
+  - id: i
+    form: "-ی"
+    surface: "ـی"
+    ending: ""
+    attach: keep
+    gloss: "relational adjective — of, pertaining to (خورشید → خورشیدی 'solar')"
+    note: >
+      Wiktionary, ـی (en.wiktionary.org/wiki/ـی), Etymology 2: "Forms
+      adjectives (often nominalizable ones) from nouns", sense "of or
+      pertaining to", with خورشید 'sun' → خورشیدی 'solar' and پارس 'Fars' →
+      پارسی. The same letters spell three other morphemes the same page keeps
+      apart: the indefinite article ـی (-ē / -i, inherited from Middle Persian
+      𐭸 /ē(w)/, Old Persian 𐎠𐎡𐎺 aiva), the abstract-noun ـی of بزرگی 'bigness'
+      (بزرگ + ـی, Etymology 3), and the 2sg ending of میدانی. This row is the
+      relational-adjective sense only; a ladder that means the abstract noun or
+      the article must name that sense itself.
+    outcomes: "Persian خورشیدی 'solar', پارسی 'Persian'; Tajik -ӣ"
+    sources: [wiktionary]
+    example: "خورشید 'sun' + ـی → خورشیدی 'solar'"
+
+  - id: mand
+    form: "-مند"
+    surface: "ـمند"
+    ending: ""
+    attach: keep
+    gloss: "possessive — having, endowed with (ارزش → ارزشمند 'valuable')"
+    note: >
+      Wiktionary, ـمند (en.wiktionary.org/wiki/ـمند), glosses the suffix "with,
+      having" and takes it back to Proto-Iranian *-mánts, Proto-Indo-Iranian
+      *-mánts and Proto-Indo-European *-ménts, beside Avestan -𐬨𐬀𐬥𐬝 (-mant̰)
+      and Sanskrit -मत् (-mat); the page's derived terms include ارزشمند
+      'valuable', بهرهمند 'enjoying' and ارادتمند 'devoted'. It is the inherited
+      possessive, so unlike the other rows here it also has a PIE etymon of its
+      own — but the law that would carry *-ménts into Persian is not registered
+      in this repo, and this row composes the Persian form by hand and says so.
+    outcomes: "Avestan -mant̰, Sanskrit -mat; Persian ارزشمند 'valuable'"
+    sources: [wiktionary]
+    example: "ارزش 'worth' + ـمند → ارزشمند 'valuable'"
+
+  - id: nak
+    form: "-ناک"
+    surface: "ـناک"
+    ending: ""
+    attach: keep
+    gloss: "full of, characterized by (ترس → ترسناک 'frightening')"
+    note: >
+      Wiktionary, ـناک (en.wiktionary.org/wiki/ـناک), gives the suffix the sense
+      "polluted with ... full of ..." and lists ترسناک 'frightening', دردناک
+      'painful', غمناک 'sorrowful' and وحشتناک 'terrifying' among the words it
+      forms; it points to the near-synonym ـگین (-gīn). The page states no
+      etymology for it, and this row repeats none: the meaning and the words
+      are what is cited.
+    outcomes: "Persian ترسناک 'frightening', دردناک 'painful', غمناک 'sorrowful'"
+    sources: [wiktionary]
+    example: "ترس 'fear' + ـناک → ترسناک 'frightening'"
+
+  - id: gah
+    form: "-گاه"
+    surface: "ـگاه"
+    ending: ""
+    attach: keep
+    gloss: "place or time where something is done (ایست → ایستگاه 'station')"
+    note: >
+      Wiktionary, ـگاه (en.wiktionary.org/wiki/ـگاه), records "a suffix forming
+      words of location" and "a suffix forming words of time", and derives it
+      from the free word گاه (gāh / gâh) "time; (obsolete) place". Its derived
+      terms are the ordinary places of the language — ایستگاه 'station',
+      دانشگاه 'university', فروشگاه 'shop', آرایشگاه 'barber's', دادگاه 'court'
+      — so the suffix is the second member of a compound as much as a bound
+      morpheme, and the join is a plain one.
+    outcomes: "Persian ایستگاه 'station', دانشگاه 'university', جایگاه 'position'"
+    sources: [wiktionary]
+    example: "ایست 'stop!' + ـگاه → ایستگاه 'station'"
+
+  - id: gar
+    form: "-گر"
+    surface: "ـگر"
+    ending: ""
+    attach: keep
+    gloss: "agent — one who does or makes (آهن → آهنگر 'blacksmith')"
+    note: >
+      Wiktionary, ـگر (en.wiktionary.org/wiki/ـگر), glosses the suffix "-er" and
+      makes it the synonym of ـچی (-či); it inherits it from Middle Persian
+      -(ī)gar, -(ī)kar and Old Persian *-kara-, *-kāra-, and compares Central
+      Kurdish ـگەر / ـگار, Armenian -կար and Hindustani -kār. Its derived terms
+      include آهنگر 'blacksmith', بازیگر 'actor', آرایشگر 'barber' and امدادگر
+      'rescuer'.
+    outcomes: "Persian آهنگر 'blacksmith', بازیگر 'actor'; Central Kurdish -گەر"
+    sources: [wiktionary]
+    example: "آهن 'iron' + ـگر → آهنگر 'blacksmith'"
+
+  - id: stan
+    form: "-ستان"
+    surface: "ـستان"
+    ending: ""
+    attach: keep
+    gloss: "place of, land of (-istan, -stan)"
+    note: >
+      Wiktionary, ـستان (en.wiktionary.org/wiki/ـستان), glosses the suffix
+      "-istan, -estan, -stan" and takes it from Middle Persian -stʾn'
+      (-estān), Old Persian 𐎿𐎫𐎠𐎴 (s-t-a-n /stānaʰ/), Proto-Iranian *stā́nam,
+      Proto-Indo-Iranian *stáHnam and Proto-Indo-European *steh₂- 'to stand'
+      (Sanskrit स्थान, Avestan 𐬯𐬙𐬁𐬥𐬀, Ossetian -ыстон). The page's usage note
+      gives the allomorphy the form builder must respect: ـِستان (-estân) after
+      a consonant, as in گل → گلستان and افغان → افغانستان, and ـستان (-stân)
+      after a long vowel, as in هندو → هندوستان and پری → پریستان.
+    outcomes: "Persian گلستان, افغانستان; Ossetian -ыстон; Sanskrit स्थान"
+    sources: [wiktionary]
+    example: "گل 'rose' + ـستان → گلستان 'rose garden'"
+
+  - id: che
+    form: "-چه"
+    surface: "ـچه"
+    ending: ""
+    attach: keep
+    gloss: "diminutive (دریا → دریاچه 'a small sea, lake')"
+    note: >
+      Wiktionary, ـچه (en.wiktionary.org/wiki/ـچه), records "suffix which forms
+      diminutives" and names ـک (-ak) as its synonym; the page's derived terms
+      include دریاچه 'lake' (from دریا 'sea'), خوکچه 'piglet', تیمچه 'small
+      arcade' and آلوچه 'small plum'. The page marks its own etymology "missing
+      or incomplete", and this row therefore claims only the function and the
+      words, not a path back to Middle Persian.
+    outcomes: "Persian دریاچه 'lake', خوکچه 'piglet', آلوچه 'small plum'"
+    sources: [wiktionary]
+    example: "دریا 'sea' + ـچه → دریاچه 'lake'"
+
+  - id: k
+    form: "-ک"
+    surface: "ـک"
+    ending: ""
+    attach: keep
+    gloss: "diminutive, often affectionate (پسر → پسرک 'little boy')"
+    note: >
+      Wiktionary, ـک (en.wiktionary.org/wiki/ـک), records "suffix which forms
+      diminutives", inherited from Middle Persian 𐭪 (k /-ak/), with ـچه and
+      ـیزه as synonyms; the same page notes a dialectal Yazd use as a definite
+      marker, which is a different morpheme. Its derived terms include پسرک
+      'little boy', دخترک 'little girl', چشمک 'a wink' and the lexicalised موشک
+      'rocket' (from موش 'mouse'). The diminutive is not always diminutive in
+      meaning once a word is coined, and the note keeps that distinction.
+    outcomes: "Persian پسرک 'little boy', دخترک 'little girl', موشک 'rocket'"
+    sources: [wiktionary]
+    example: "پسر 'boy' + ـک → پسرک 'little boy'"
+
+  - id: var
+    form: "-وار"
+    surface: "ـوار"
+    ending: ""
+    attach: keep
+    gloss: "similative — like, in the manner of (شیر → شیروار 'lion-like')"
+    note: >
+      Wiktionary, ـوار (en.wiktionary.org/wiki/ـوار), calls the suffix "somewhat
+      productive" and gives three functions: adjectives "denoting a specific
+      quality or characteristic", adverbs of the same kind, and, after an
+      animal's name, "the amount the animal could carry"; it derives the suffix
+      from Middle Persian -wʾl (-wār), Old Persian *-bāra-, Proto-Iranian
+      *bāráh and Proto-Indo-European *bʰorós. The page's usage note also states
+      the orthography this row depends on: the Academy (APLL) prescribes a ZWNJ
+      before a joining letter, which is why the compound is written with the
+      pieces kept apart. Its examples include راهوار / رهوار 'easy-paced' and
+      سوگوار 'mourning'.
+    outcomes: "Persian رهوار 'easy-paced', سوگوار 'mourning'; Middle Persian -wār"
+    sources: [wiktionary]
+    example: "ره 'road' + ـوار → رهوار 'easy-paced'"
+
+  - id: ane
+    form: "-انه"
+    surface: "ـانه"
+    ending: ""
+    attach: keep
+    gloss: "adjectival/adverbial — in the manner of (مرد → مردانه 'manly')"
+    note: >
+      Wiktionary, ـانه (en.wiktionary.org/wiki/ـانه), records "Forms adjectives
+      from nouns" — مرد 'man' → مردانه 'manly', شب 'night' → شبانه 'nocturnal'
+      — and a second use, "Forms adjectives/adverbs describing concepts or
+      actions, from adjectives describing humans", which is why the same suffix
+      yields both an adjective and an adverb and this row does not force one.
+      The page gives no etymology, and none is claimed here.
+    outcomes: "Persian مردانه 'manly', شبانه 'nocturnal'"
+    sources: [wiktionary]
+    example: "شب 'night' + ـانه → شبانه 'nocturnal'"
+
+endings:
+  - form: "-ها"
+    name: >
+      plural of nouns — the general one, and the only one usable with
+      inanimates in the formal language
+    note: >
+      Wiktionary, ـها (en.wiktionary.org/wiki/ـها): "a suffix forming the plural
+      of a noun; used for most nouns in colloquial language and inanimate nouns
+      in formal language", inherited from Middle Persian 𐭩𐭧𐭠 (yḥʾ /-īhā/),
+      and it "always bears the primary stress in a word" (گفتگو → گفتگوها). It
+      is inflection, not derivation: it changes the number of a word and not
+      which word it is, so it is listed here and never offered as a way to
+      build a new lexeme.
+    sources: [wiktionary]
+  - form: "-ان"
+    name: "plural of nouns, chiefly animate"
+    note: >
+      Wiktionary, ـان (en.wiktionary.org/wiki/ـان): "suffix forming the plural
+      of nouns, chiefly animate ones", from Middle Persian 𐭠𐭭 (-ān), with
+      ـگان (-gān) after a word in silent ه and ـیان (-yān) after و or ا
+      (چشمان 'eyes', سخنان 'words', آقایان 'misters'). Inflectional like ـها,
+      and the two are listed together so the builder never presents a plural as
+      a derivative.
+    sources: [wiktionary]
+
+joining:
+  linker: ""            # Persian joins two words as they stand, or with a ZWNJ
+  zwnj: true            # the normal orthography writes the join with a ZWNJ (دست‌نویس)
+  note: "A Persian compound is written as its two words are, with a ZWNJ where the second element begins a new word; nothing is added between them."
+  sources: [wiktionary]

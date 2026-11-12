@@ -1,0 +1,384 @@
+stage:
+  name: Old Persian → Middle Persian
+  date_start: -300
+  date_end: 650
+  description: >
+    The restructuring of Old Persian into Middle Persian: intervocalic lenition
+    of the stops (*-b- *-d- *-g- > *-w- *-y-) and voicing of *-p- *-t- *-k-,
+    θ > s and ç > h, simplification of *xš to š, monophthongisation of the
+    diphthongs, loss of final *-h, of the final syllable and of final *-a / *-am,
+    and j > z.
+    Initial *w- becomes g- before the u that breaks up *r̥ (*wr̥ka- 'wolf' >
+    gurg, *wr̥tka- > gurdag), a change attested over a handful of etyma and
+    therefore registered as proposed.
+    The rules are ordered so that the lenition of the voiced stops runs before
+    the voicing of the voiceless ones (OP *pitar- > *pidar-, not **piyar-).
+  references: [skjaervo-2009b, durkin-meisterernst-2014, mackenzie-1971]
+
+rules:
+  # ---- initial *waR- and the labiovelar *w ---------------------------------
+  - id: war_rounding
+    order: 5
+    name: "Initial *waR- > *wuR- (the vowel after *w is *u)"
+    match: a
+    replace: u
+    env: {left: "w ˈ?", right: "r"}
+    tier: proposed
+    notes: >
+      Proto-Iranian *wr̥ka- reaches Middle Persian as gurg 'wolf', *wr̥tka- as
+      gurdag 'kidney' and *wr̥paka- as gurba 'cat': the vowel that breaks up the
+      *r̥ is u beside the labiovelar, as in *mr̥ga- > MP murg 'bird', and not the
+      ar of the Old Persian spelling (OP varka-).  Cathcart (2015) writes the
+      group as *u̯r̥ka- and cites exactly these words; no grammar consulted
+      states the vowel as a law, so the rule is proposed.
+    references: [cathcart-2015]
+    examples:
+      - {in: "*warkah", out: "*wurkah", gloss: "wolf"}
+
+  - id: w_to_g_before_ur
+    order: 6
+    name: "Initial *w- > MP g- before *ur"
+    match: w
+    replace: g
+    env: {left: "#", right: "ˈ? u r"}
+    tier: proposed
+    notes: >
+      Cathcart (2015): "The fate of initial *u̯- is highly irregular across West
+      Iranian (see Schwartz 1982 for some possible conditioning environments)":
+      *u̯r̥ka- > MP gurg 'wolf', *u̯r̥tka- > gurdag 'kidney', *u̯r̥paka- > gurba
+      'cat', but *u̯i-nāśa- keeps w- in Middle Persian (wināh).  The law is
+      registered in the environment the sources show and stays proposed: the
+      *w- > g- correspondence is a diffused change over a handful of etyma, not
+      a regular one.
+    references: [cathcart-2015]
+    examples:
+      - {in: "*wurkah", out: "*gurkah", gloss: "wolf"}
+
+  # ---- intervocalic lenition of the voiced stops --------------------------
+  - id: b_to_w
+    order: 10
+    name: "Intervocalic *-b- > MP *-w-"
+    match: b
+    replace: w
+    env: {left: V, right: "ˈ? V"}
+    description: Old Persian /b/ continues as the glide w between vowels.
+    references: [skjaervo-2009b, durkin-meisterernst-2014]
+    examples:
+      - {in: "*abam", out: "*awam", gloss: "water (acc. sg.)"}
+
+  - id: d_to_y
+    order: 11
+    name: "Intervocalic *-d- > MP *-y-"
+    match: d
+    replace: y
+    env: {left: V, right: "ˈ? V"}
+    references: [skjaervo-2009b, durkin-meisterernst-2014]
+    examples:
+      - {in: "*adam", out: "*ayam", gloss: "I"}
+
+  - id: g_to_y
+    order: 12
+    name: "Intervocalic *-g- > MP *-y-"
+    match: g
+    replace: y
+    env: {left: V, right: "ˈ? V"}
+    references: [skjaervo-2009b]
+    examples:
+      - {in: "*bagah", out: "*bayah", gloss: "god (OP baga-)"}
+
+  # ---- voicing of the intervocalic voiceless stops ------------------------
+  - id: p_to_b
+    order: 20
+    name: "Intervocalic *-p- > MP *-b-"
+    match: p
+    replace: b
+    env: {left: V, right: "ˈ? V"}
+    references: [skjaervo-2009b, durkin-meisterernst-2014]
+    examples:
+      - {in: "*apam", out: "*abam", gloss: "water (acc. sg.)"}
+
+  - id: r_stem_oblique
+    order: 19
+    name: "The r-stem kinship nouns continue their oblique stem: *-tār > MP -tar"
+    match: ā
+    replace: a
+    env: {left: "t ˈ?", right: "r #"}
+    tier: custom
+    off_by_default: true
+    notes: >
+      Morphological, not phonological, so it is registered custom and switched
+      off for every word but the ones whose record states the short vowel.  The
+      Old Persian kinship nouns are r-stems: the nominative singular ends in -tā
+      (OP pitā, mātā, brātā — Kent 1953), but the stem the next stage continues
+      is the oblique -tar-, which has a short *a (Middle Persian pidar 'father',
+      pytl in MacKenzie; mādar, brādar) and gives New Persian pedar, mādar,
+      barādar.  The long *-ā of the nominative is therefore not shortened by a
+      sound law: it is simply not the vowel the following stage has.  This rule
+      stands in for the paradigm layer this model does not have yet (ROADMAP §2).
+      It cannot tell the kinship suffix from the agent-noun *-tār of NP dādār
+      'creator', which keeps its long ā: both end -tār, and no phonological
+      feature separates them.  That is why it is switched off for every word and
+      only a word's own pathway turns it on — پدر, مادر and the Old Persian
+      pitā, mātā they come from.
+    references: [kent-1953, skjaervo-2009b, mackenzie-1971]
+    examples:
+      - {in: "*pitˈār", out: "*pitˈar", gloss: "father; t_to_d then gives MP pidar, NP pedar"}
+      - {in: "*mātˈār", out: "*mātˈar", gloss: "mother; t_to_d then gives MP mādar, NP mādar"}
+
+  - id: t_to_d
+    order: 21
+    name: "Intervocalic *-t- > MP *-d-"
+    match: t
+    replace: d
+    env: {left: V, right: "ˈ? V"}
+    description: OP pitar- > MP pidar- 'father'.
+    references: [skjaervo-2009b, mackenzie-1971]
+    examples:
+      - {in: "*pitā", out: "*pidā", gloss: "father"}
+
+  - id: k_to_g
+    order: 22
+    name: "Intervocalic *-k- > MP *-g-"
+    match: k
+    replace: g
+    env: {left: V, right: "ˈ? V"}
+    description: OP *yakar- 'liver' > MP yagar- (NP jigar).
+    references: [skjaervo-2009b]
+    examples:
+      - {in: "*yakar", out: "*yagar", gloss: "liver"}
+
+  # ---- stops after *r are voiced ------------------------------------------
+  - id: rk_to_rg
+    order: 23
+    name: "OP *-rk- > MP -rg- (a stop is voiced after *r)"
+    match: k
+    replace: g
+    env: {left: "r", right: "ˈ? V"}
+    tier: proposed
+    notes: >
+      Middle Persian writes the stop after *r voiced: PIr *wr̥ka- > MP gurg
+      'wolf', and MacKenzie's headwords show -rg- ten times against no -rk- at
+      all (burg 'tower', arg 'citadel', xwarg 'meal').  The same voicing is
+      visible after nasals (nd 45 : nt 1, mb 4 : mp 0).  That distribution is
+      the evidence; the wording of the rule is this repo's, so it is proposed
+      and not established.
+    references: [mackenzie-1971]
+    examples:
+      - {in: "*warkah", out: "*wargah", gloss: "wolf (OP varka-, MP gurg)"}
+
+  - id: rt_to_rd
+    order: 24
+    name: "OP *-rt- > MP -rd- (a stop is voiced after *r)"
+    match: t
+    replace: d
+    env: {left: "r", right: "ˈ? V"}
+    tier: proposed
+    notes: >
+      The same voicing for *t after *r: PIr *wr̥tka- 'kidney' > MP gurdag, and
+      MacKenzie's headwords have -rd- twenty-eight times against a single -rt-
+      (a loanword).  Proposed for the same reason as rk_to_rg.
+    references: [mackenzie-1971]
+    examples:
+      - {in: "*wartakah", out: "*wardakah", gloss: "kidney (MP gurdag)"}
+
+  - id: rp_to_rb
+    order: 25
+    name: "OP *-rp- > MP -rb- (a stop is voiced after *r)"
+    match: p
+    replace: b
+    env: {left: "r", right: "ˈ? V"}
+    tier: proposed
+    notes: >
+      The voicing of a stop after *r extends to *p: PIr *wr̥paka- ‘cat’ > MP gurbag
+      (gwlbk) and PIr *karpačá- ‘lizard’ > MP karbāš (krbʾš), both from MacKenzie.
+      In the glossary the reading -rb- is the usual one (gurbag, karbāš, karbas,
+      xarbuz) and -rp- is rare (harpat), but the change is not stated as a law in
+      the grammars consulted, so it is proposed like rk_to_rg and rt_to_rd.
+    references: [mackenzie-1971, de-vaan-2000]
+    examples:
+      - {in: "*wurpakah", out: "*wurbakah", gloss: "cat (MP gurbag, gwlbk)"}
+
+  # ---- fricatives and clusters --------------------------------------------
+  - id: athetah_to_ah
+    order: 29
+    name: "OP final *-āθah > MP -āh"
+    match: "θ STRESS? a h"
+    replace: h
+    env: {left: "ā", right: "#"}
+    tier: proposed
+    notes: >
+      The animal suffix *-āća- reaches Middle Persian as -āh in rōbāh 'fox'
+      (lwpʾh, MacKenzie) but as -ās in kargās 'vulture' (klkʾs) and -āš in
+      karbāš 'lizard' (krbʾš), so the outcomes are lexical and not one regular
+      correspondence. de Vaan (2000) §2 records the Middle Persian form beside
+      Old Persian *raupāθa-, which is the pair the rule is stated on. Proposed.
+    references: [de-vaan-2000, mackenzie-1971]
+    examples:
+      - {in: "*raupāθah", out: "*raupāh", gloss: "fox (MP rōbāh, lwpʾh)"}
+
+  - id: theta_to_s
+    order: 30
+    name: "OP θ > MP s"
+    match: θ
+    replace: s
+    tier: proposed
+    notes: >
+      Southwest Iranian shows s where Old Persian writes θ (MP sad 'hundred' and
+      MP sāl 'year' beside OP θarda-), but the medial θ of OP xšāyaθiya-
+      contracts in MP šāh and the change is not stated as a law in the reference
+      grammars consulted, so it is marked proposed.
+    references: [durkin-meisterernst-2014, skjaervo-2009b]
+    examples:
+      - {in: "*θatam", out: "*satam", gloss: "hundred"}
+
+  - id: cedilla_to_s_before_final_a
+    order: 30
+    name: "OP word-final *-ça(h) > MP -s"
+    match: ç
+    replace: s
+    env: {right: "a ʰ? #"}
+    tier: proposed
+    description: >
+      The Old Persian outcome of Proto-Iranian *-θra- is written with ç, and
+      Southwest Iranian continues it as s at the end of a word: OP puça 'son'
+      (𐎱𐎢𐏂, from *puθra-) > MP pus (MacKenzie s.v. pus, BRE).  The change is
+      stated only for the word-final position, because the same ç continues as
+      h elsewhere (OP xšaça- > MP šahr 'realm', the law below), and the
+      grammars consulted do not state the split as one conditioned rule.
+    notes: >
+      The environment is the final *-a(h) the word loses in Middle Persian;
+      the rule must run before final_h_loss and final_vowel_loss, which delete
+      the conditioning vowels.  Ablation (tools/whatif.py --from peo --to
+      pal): +1 word in pal, none lost.  It only fires because final_h_loss
+      reads the aspirated notation of the final *-h (the two together were
+      measured at pal +1, fa +7 by tools/council.py); on its own it carries
+      pal +1 (pus) and fa +2 (داس, پاس), and dropping it costs nothing else.
+    references: [skjaervo-2009b, mackenzie-1971]
+    examples:
+      - {in: "*puça", out: "*pusa", gloss: "son (MP pus, BRE)"}
+
+  - id: cedilla_to_h
+    order: 31
+    name: "OP ç > MP h"
+    match: ç
+    replace: h
+    notes: "OP xšaça- > MP šahr 'realm, city', with the *r of the cluster restored in the stem."
+    references: [skjaervo-2009b, mackenzie-1971]
+    examples:
+      - {in: "*xšaçam", out: "*xšaham", gloss: "rule, kingdom"}
+
+  - id: xsh_to_sh
+    order: 40
+    name: "OP xš > MP š"
+    match: "x š"
+    replace: š
+    description: OP xšāyaθiya- > MP šāh, OP xšap- > MP šab 'night'.
+    references: [skjaervo-2009b, mackenzie-1971]
+    examples:
+      - {in: "*xšapā", out: "*šapā", gloss: "night"}
+
+  # ---- diphthongs ---------------------------------------------------------
+  - id: ai_to_e
+    order: 50
+    name: "OP ai > MP ē"
+    match: "a i"
+    replace: ē
+    references: [skjaervo-2009b, durkin-meisterernst-2014]
+    examples:
+      - {in: "*daina", out: "*dēna", gloss: "religion (MP dēn)"}
+
+  - id: au_to_o
+    order: 51
+    name: "OP au > MP ō"
+    match: "a u"
+    replace: ō
+    references: [skjaervo-2009b, durkin-meisterernst-2014]
+    examples:
+      - {in: "*gaušah", out: "*gōšah", gloss: "ear (MP gōš)"}
+
+  - id: final_h_loss
+    order: 55
+    name: "Final *-h is lost after a short vowel"
+    match: "(h|ʰ)"
+    replace: ""
+    env: {left: "(a|i|u)", right: "#"}
+    description: >
+      The final *-h of Old Persian (from PIr *-ah) is lost in Middle Persian:
+      OP aspa(h) > MP asp 'horse', OP bāgah > MP bāy 'garden'.  The short vowel
+      that preceded it falls by the apocope below.
+
+      The record transcribes that *-h two ways: a plain ``h``, and the
+      modifying ``ʰ`` the cuneiform reading uses for the same final consonant
+      (OP puçaʰ).  It is one *-h of Proto-Iranian *-ah, so the rule matches
+      either notation; without it the aspirated spelling skipped both this
+      law and the apocope behind it (2026-11-09: pal +1, fa +7).
+    references: [skjaervo-2009b, durkin-meisterernst-2014, mackenzie-1971]
+    examples:
+      - {in: "*aspah", out: "*aspa", gloss: "horse"}
+      - {in: "*puçaʰ", out: "*puça", gloss: "son (the aspirated notation of the same *-h)"}
+
+  # ---- final syllables ----------------------------------------------------
+  - id: final_am_loss
+    order: 60
+    name: "Final *-am is lost"
+    match: "ˈ? a m"
+    replace: ""
+    env: {right: "#"}
+    description: The accusative singular in *-am loses its ending (OP *zanam > MP zan).
+    references: [skjaervo-2009b, durkin-meisterernst-2014]
+    examples:
+      - {in: "*zanam", out: "*zan", gloss: "woman"}
+
+  - id: final_vowel_loss
+    order: 61
+    name: "Final short vowels are lost"
+    match: "ˈ? (a|i|u)"
+    replace: ""
+    env: {right: "#"}
+    description: Apocope of final short vowels (OP aspa- > MP asp 'horse').
+    references: [skjaervo-2009b, durkin-meisterernst-2014]
+    examples:
+      - {in: "*aspa", out: "*asp", gloss: "horse"}
+
+  - id: final_ish_loss
+    order: 62
+    name: "Final *-iš is lost"
+    match: "ˈ? i š"
+    replace: ""
+    env: {right: "#"}
+    tier: proposed
+    description: >
+      The Old Persian nominative singular in *-iš (būmiš 'earth', OP 𐏏) has no
+      Middle Persian ending: MP būm (MacKenzie bwm).  The apocope of the final
+      short vowels above does not reach it, because the *š closes the syllable.
+      Measured with tools/whatif.py and through the word page: pal +1 (bwm),
+      nothing lost; the tier stays proposed because the grammars consulted name
+      the loss of final syllables as a whole rather than this ending.
+    references: [skjaervo-2009b, mackenzie-1971]
+    examples:
+      - {in: "*būmiš", out: "*būm", gloss: "earth (MP būm, bwm)"}
+
+  # ---- palatal and labial adjustments -------------------------------------
+  - id: j_to_z
+    order: 70
+    name: "OP j > MP z"
+    match: j
+    replace: z
+    description: OP jīva- 'alive' > MP zīw-, OP *jana- > MP zan- 'woman'.
+    references: [durkin-meisterernst-2014, mackenzie-1971]
+    examples:
+      - {in: "*jīva", out: "*zīva", gloss: "alive"}
+
+  - id: wk_to_k
+    order: 75
+    name: "OP *wk > MP *k"
+    match: "w k"
+    replace: k
+    tier: proposed
+    notes: >
+      Checked only against MP pāk 'pure'; the conditioning is not described in
+      a reference grammar and the change has not been independently verified,
+      hence proposed.
+    references: [mackenzie-1971]
+    examples:
+      - {in: "*pāwka", out: "*pāka", gloss: "pure (MP pāk)"}

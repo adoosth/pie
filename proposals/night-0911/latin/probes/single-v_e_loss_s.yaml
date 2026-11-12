@@ -1,0 +1,21 @@
+stage:
+  name: x
+  references:
+  - sihler-1995
+rules:
+- id: v_e_loss_s
+  order: 98
+  name: Initial *e- is lost before *s
+  match: e
+  replace: ''
+  env:
+    left: '#'
+    right: s
+  tier: proposed
+  description: Initial *e- is lost before *s in *esom > sum.
+  references:
+  - sihler-1995
+  examples:
+  - in: '*esom'
+    out: '*som'
+    gloss: I am

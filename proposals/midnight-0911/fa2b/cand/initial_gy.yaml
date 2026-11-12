@@ -1,0 +1,17 @@
+stage: {source: pal, target: fa}
+rules:
+  - id: initial_gy_to_j
+    order: 17
+    name: "MP initial *gy- > NP j-"
+    match: "g y"
+    replace: j
+    env: {left: "#"}
+    tier: proposed
+    description: >
+      The Middle Persian cluster gy- becomes NP j-: MP gyān > NP jān 'soul',
+      MP gyānwar > NP jānvar 'animal'.  The environment is word-initial; the
+      palatalisation does not apply to gy elsewhere (the corpus has no
+      counter-example that matches today).
+    references: [sadeghi-1978, windfuhr-2009]
+    examples:
+      - {in: "gyān", out: "jān", gloss: "soul"}

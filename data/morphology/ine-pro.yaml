@@ -1,0 +1,203 @@
+language: ine-pro
+
+note: >
+  Derivational suffixes a Proto-Indo-European word may take before the sound
+  laws carry it into a daughter language. Each entry states what the suffix
+  means, how it attaches (whether the word's own thematic vowel stays), and the
+  inflectional ending it brings with it, so the composed form can be read off
+  rather than guessed. The composition itself is this repo's hypothesis: no
+  dictionary records the words it produces, and the page says so. The suffixes
+  and their functions are the ones in the handbooks; the outcomes are given as
+  orientation, not as derivations.
+
+  Attach modes: `keep` adds the suffix to the stem as it stands (a thematic stem
+  keeps its *-o-); `drop` first drops a final thematic vowel (*-o-, *-eh2-,
+  *-i-, *-u-).
+
+suffixes:
+  - id: ka-animal
+    form: "-ka-"
+    surface: "-ka"
+    ending: ""
+    attach: drop
+    gloss: "animal noun (de Vaan's Indo-Iranian *-ka-)"
+    note: >
+      The Indo-Iranian animal suffix: de Vaan (2000) takes the words for the
+      cat and the fox back to the root *(H)ulp- with *-ka-, giving *ul̥.paka-
+      (Persian گربه, Middle Persian gurbag) beside Latin vulpēs and Lithuanian
+      vilpišỹs. Unlike the other suffixes here it is not composed by hand: this
+      entry names the registered formation law `animal_ka`, which is switched
+      off for every word except the one whose own pathway turns it on. Choosing
+      it below therefore runs the same law the word's ladder runs.
+    outcomes: "Persian گربه, Middle Persian gurbag, Balochi ropāsk (the fox)"
+    sources: [de-vaan-2000, wiktionary]
+    rule: "ine-pro~iir-pro:animal_ka"
+    example: "*h₂wl̥pís ‘marten’ → *h₂wl̥paka ‘cat’"
+
+  - id: eh2
+    form: "-eh₂"
+    ending: ""
+    attach: drop
+    gloss: "feminine or collective"
+    note: >
+      The productive feminine and collective marker: a thematic adjective in
+      *-o- becomes a feminine in *-eh₂- (the type behind Latin -a, Greek -η,
+      Proto-Germanic *-ō). With a collective sense it names a set or a mass.
+    outcomes: "Latin -a, Greek -η, Proto-Germanic -ō"
+    sources: [fortson-2004, beekes-2011]
+    example: "*néwos ‘new’ → *néweh₂ ‘new (fem.)’"
+
+  - id: ih2
+    form: "-ih₂"
+    ending: ""
+    attach: drop
+    gloss: "feminine of the devī́-type"
+    note: >
+      The other inherited feminine, added to athematic, *-i- and *-u- stems; it
+      survives as Sanskrit -ī and Greek -ια.
+    outcomes: "Sanskrit -ī, Greek -ια"
+    sources: [fortson-2004, beekes-2011]
+    example: "*séh₂wōl ‘sun’ (type only)"
+
+  - id: kos
+    form: "-ko-"
+    ending: "-s"
+    attach: drop
+    gloss: "relational adjective"
+    note: >
+      A thematic suffix forming an adjective that belongs to or is made of the
+      base — the *-ko- of Latin -cus, Greek -κος and Proto-Germanic *-gaz.
+    outcomes: "Latin -cus, Greek -κος, Proto-Germanic -gaz"
+    sources: [fortson-2004, beekes-2011]
+    example: "*h₂erǵ- ‘white’ → *h₂erǵkós (type: Greek ἀργός)"
+
+  - id: ter
+    form: "-tēr-"
+    ending: ""
+    attach: drop
+    gloss: "agent and kinship noun"
+    note: >
+      The *-ter-/*-tor- agent and kinship suffix, hysterokinetic (nom.sg.
+      *-tēr): *ph₂tḗr ‘father’, *dʰéh₁tōr ‘one who puts’. It gives Greek -τήρ,
+      Latin -tor and Sanskrit -tā.
+    outcomes: "Greek -τήρ, Latin -tor, Sanskrit -tā"
+    sources: [fortson-2004, ringe-2006]
+    example: "*dʰeh₁- ‘to put’ → *dʰeh₁tōr ‘placer’"
+
+  - id: tis
+    form: "-ti-"
+    ending: "-s"
+    attach: drop
+    gloss: "abstract action noun"
+    note: >
+      The *-ti- abstract, an action or its result (*gʷémtis ‘going, step’); it
+      gives Sanskrit -ti-, Greek -σις and Latin -tiō.
+    outcomes: "Sanskrit -ti-, Greek -σις, Latin -tiō"
+    sources: [fortson-2004, beekes-2011]
+    example: "*gʷem- ‘to go’ → *gʷémtis ‘going’"
+
+  - id: tu
+    form: "-tu-"
+    ending: "-s"
+    attach: drop
+    gloss: "abstract noun of action"
+    note: >
+      The *-tu- abstract beside *-ti- (*méntus ‘thought’); it gives Latin -tus,
+      Sanskrit -tu- and the Germanic *-þu- abstracts.
+    outcomes: "Latin -tus, Sanskrit -tu-"
+    sources: [fortson-2004]
+    example: "*men- ‘to think’ → *méntus ‘thought’"
+
+  - id: trom
+    form: "-tro-"
+    ending: "-m"
+    attach: drop
+    gloss: "instrument noun"
+    note: >
+      The *-tro- instrument, the thing with which the action is done
+      (*h₂érh₃trom ‘plough’, Greek ἄροτρον). Neuter thematic, nom.sg. *-trom.
+    outcomes: "Greek -τρον, Latin -trum"
+    sources: [fortson-2004, beekes-2011]
+    example: "*h₂erh₃- ‘to plough’ → *h₂érh₃trom ‘plough’"
+
+  - id: wont
+    form: "-wont-"
+    ending: "-s"
+    attach: keep
+    gloss: "possessive adjective"
+    note: >
+      The possessive *-wont- ‘having, endowed with’ (*h₁éḱwont- ‘having
+      horses’), continued by Sanskrit -vant- and Greek -ϝοντ-.
+    outcomes: "Sanskrit -vant-, Greek -ϝοντ-"
+    sources: [fortson-2004]
+    example: "*h₁eḱu- ‘horse’ → *h₁éḱwonts ‘having horses’"
+
+  - id: isko
+    form: "-isko-"
+    ending: "-s"
+    attach: drop
+    gloss: "diminutive or belonging adjective"
+    note: >
+      The *-(i)sko- formation behind Greek -ισκος, Latin -iscus and the Germanic
+      *-iskaz adjectives (English -ish).
+    outcomes: "Latin -iscus, Proto-Germanic -iskaz, English -ish"
+    sources: [fortson-2004, ringe-2006]
+    example: "Latin puer → pueriscus (the type, in Latin)"
+
+# The grammatical endings a construction may carry (2026-11-08: # the *-ós* in *dl̥h₁gʰós* must say what it is). A construction names a stem and
+# the letters the headword wears after it; when those letters are the
+# paradigm's ending rather than a derivational suffix, this table says what the
+# ending is. It speaks only for a row that states nothing itself: an entry that
+# writes "deverbal adjectival suffix" keeps its own words. The dictionary also
+# records the same letters as a suffix entry (`-ós` "Forms adjectives from
+# verbal roots"), and the picker shows that entry beside this row, so a reader
+# can see both readings without either being passed off as the other.
+endings:
+  - form: "-os"
+    name: "nominative/accusative singular in the o- and s-stems"
+    note: >
+      *-o- + *-s in a thematic word (h₂ŕ̥tḱos); the same letters close the
+      s-stems, where they are the nom./acc. sg. of an *-es- stem (ménos,
+      nébʰos, ǵénh₁os) — the dictionary's *-os- action/result noun. Which of
+      the two a word wears is its stem class, not the letters.
+    sources: [fortson-2004]
+  - form: "-ós"
+    name: "thematic nominative singular of an oxytone stem"
+    note: "*-ó- + *-s; the same formation is the adjective-forming *-ós"
+    sources: [fortson-2004]
+  - form: "-om"
+    name: "thematic nominative/accusative singular (neuter)"
+    note: "*-o- + *-m"
+    sources: [fortson-2004]
+  - form: "-ōm"
+    name: "n-stem nominative/accusative singular; also the genitive plural"
+    note: >
+      The amphikinetic n-stems wear *-ōm in the nom./acc. sg. (dʰéǵʰōm
+      ‘earth’, ǵʰéyōm ‘winter’); the genitive plural has the same shape
+      (*-o- + *-om), and the letters alone do not say which one closes a word.
+    sources: [fortson-2004]
+  - form: "-s"
+    name: "athematic nominative singular"
+    note: "the ending a root noun wears (*pṓds, *dṓm, *dyḗws)"
+    sources: [fortson-2004]
+  - form: "-us"
+    name: "u-stem nominative singular"
+    note: >
+      The nom. sg. of the *-u- stems (smérus, pérkus, h₁su-); the dictionary
+      also records a homograph *-us that forms Caland adjectives, which is a
+      derivational suffix and not this ending.
+    sources: [fortson-2004]
+  - form: "-is"
+    name: "i-stem nominative singular"
+    note: >
+      The nom. sg. of the *-i- stems (h₁léwdʰis); the dictionary's *-is that
+      forms nouns from thematic adjectives is a different, derivational
+      homograph.
+    sources: [fortson-2004]
+  - form: "-éh₁"
+    name: "instrumental singular"
+    note: >
+      *-é- + *-h₁: the instrumental of the é-stems (the dictionary's *-h₁ is
+      "athematic nominal ending of instrumental singular"). h₁réh₁ is the
+      petrified instrumental of *h₁er-.
+    sources: [fortson-2004]

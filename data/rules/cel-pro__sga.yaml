@@ -1,0 +1,378 @@
+stage:
+  name: Proto-Celtic → Old Irish
+  date_start: -800
+  date_end: 700
+  description: >
+    The last step of the Goidelic chain, from the Proto-Celtic reconstruction
+    to the normalized Old Irish headword of the dictionary.  The voiceless
+    bilabial *ɸ is lost, *w becomes f word-initially and is lost between
+    vowels, the labiovelars give up their rounding (*kʷ > k, *gʷ > b) and
+    intervocalic *s becomes h and falls.  Between vowels and word-finally the
+    voiceless stops are spirantised (*t > θ, *k > x) - the change the modern
+    spelling writes th and ch.  The vowels are refashioned by affection before
+    the endings go: *a, *e and *o are raised or diphthongised before a
+    following *i (i-affection), *i and *u are lowered before a following
+    non-high vowel (a-affection).  Last the inflectional endings are cut away:
+    *-os, *-om, *-us, *-is and *-ā are lost, so a Proto-Celtic nominative is
+    the bare stem in Old Irish.  The stage stops at the phonemes: long vowels
+    are still written with a macron and the spirants with their phonetic
+    letters, because the acute of the dictionary (á) and the digraphs th and
+    ch are writing conventions, and those live in data/spelling/sga.yaml.
+  references: [matasovic-2009, mccone-1996, fortson-2004]
+
+rules:
+  # ---- consonants: losses and mergers ---------------------------------------
+  - id: p_loss_initial
+    order: 20
+    name: "*ɸ is lost word-initially"
+    match: ɸ
+    replace: ""
+    env: {left: "#"}
+    tier: established
+    description: >
+      The Proto-Celtic bilabial spirant *ɸ (from PIE *p) disappears in
+      Goidelic: *ɸatīr 'father' > athair, *ɸalos 'rock' > ail, *ɸare 'for' >
+      ar, *ɸitu 'thirst' > ith.  Thurneysen 1946, §203 and §205; Pedersen
+      1909, i.81-83; Matasović 2009, 13.
+    references: [matasovic-2009, mccone-1996]
+    examples:
+      - {in: "*ɸatīr", out: "*atīr", gloss: "father (athair)"}
+      - {in: "*ɸare", out: "*are", gloss: "for (ar)"}
+
+  - id: p_loss_medial
+    order: 21
+    name: "*ɸ is lost between vowels"
+    match: ɸ
+    replace: ""
+    env: {left: V, right: V}
+    tier: established
+    description: >
+      Between vowels the same spirant is lost without trace: *uɸostos 'what
+      is left' > foss (the *s is restored by the *-st- outcome), *kaɸukos
+      'cup' > cuach.  Thurneysen 1946, §203; Pedersen 1909, i.81.
+    references: [matasovic-2009]
+    examples:
+      - {in: "*kaɸukos", out: "*kaukos", gloss: "cup (cuach)"}
+
+  - id: w_to_f
+    order: 30
+    name: "Initial *w- > f-"
+    match: w
+    replace: f
+    env: {left: "#", right: V}
+    tier: established
+    description: >
+      Word-initial *w becomes f before a vowel: *windos 'white' > find,
+      *welsos 'deceit' > fell, *wlatis 'lordship' > flaith, *westā 'food' >
+      fess.  It is the only source of Old Irish f-, since *ɸ was lost.
+      Thurneysen 1946, §231; McCone 1996, 21-22; Matasović 2009, 14.
+    references: [mccone-1996, matasovic-2009]
+    examples:
+      - {in: "*windos", out: "*findos", gloss: "white (find)"}
+      - {in: "*welsos", out: "*felsos", gloss: "deceit (fell)"}
+
+  - id: w_loss_intervocalic
+    order: 31
+    name: "*w is lost between vowels"
+    match: w
+    replace: ""
+    env: {left: V, right: V}
+    tier: established
+    description: >
+      Between vowels *w disappears and the vowels meet: *līwos 'stone' > lie,
+      *owis 'sheep' > oí, *towe 'your' > do.  Thurneysen 1946, §231.
+    references: [mccone-1996, matasovic-2009]
+    examples:
+      - {in: "*līwos", out: "*līos", gloss: "stone (lie)"}
+
+  - id: kw_to_k
+    order: 40
+    name: "Labiovelar *kʷ > k"
+    match: kʷ
+    replace: k
+    tier: established
+    description: >
+      Goidelic gives up the labiovelar rounding: *kʷennom 'head' > cenn,
+      *kʷezdis 'basket' > cuit, *sekʷos 'each' > sech.  The resulting velar
+      is written c, which the spelling layer says.  Thurneysen 1946, §180;
+      McCone 1996, 15-16.
+    references: [mccone-1996, matasovic-2009]
+    examples:
+      - {in: "*kʷennom", out: "*kennom", gloss: "head (cenn)"}
+      - {in: "*sekʷos", out: "*sekos", gloss: "each (sech)"}
+
+  - id: gw_to_b
+    order: 41
+    name: "Labiovelar *gʷ > b before a non-front vowel"
+    match: gʷ
+    replace: b
+    env: {right: (a|o|ā|ō)}
+    tier: established
+    description: >
+      Before a non-front vowel the voiced labiovelar becomes b: *gʷa? no -
+      the Proto-Celtic stage already writes *b for that environment, so the
+      only words this rule reaches are those whose ancestor still writes *gʷ.
+      Thurneysen 1946, §179; McCone 1996, 15-16.
+    references: [mccone-1996]
+    examples:
+      - {in: "*gʷarnos", out: "*barnos", gloss: "noise (barn)"}
+
+  - id: gw_to_g_before_front
+    order: 42
+    name: "Labiovelar *gʷ > g before a front vowel"
+    match: gʷ
+    replace: g
+    env: {right: (e|i|ē|ī)}
+    tier: established
+    description: >
+      Before a front vowel the labiovelar loses its rounding and its velar
+      closure alone remains, written g: *gʷenom 'birth' > gen, *gʷeltā
+      'grazing' > gelt, *gʷeleti 'to graze' > gelid, *gʷedyā 'prayer' >
+      guide.  This is why Goidelic has both b and g from one labiovelar, a
+      split conditioned by the following vowel.  Thurneysen 1946, §179;
+      McCone 1996, 15-16.
+    references: [mccone-1996]
+    examples:
+      - {in: "*gʷenom", out: "*genom", gloss: "birth (gen)"}
+      - {in: "*gʷeltā", out: "*geltā", gloss: "grazing (gelt)"}
+
+  - id: s_to_h
+    order: 50
+    name: "Intervocalic *s > h"
+    match: s
+    replace: h
+    env: {left: V, right: V}
+    tier: established
+    description: >
+      Between vowels *s is weakened to h: *es 'is' > is (spelt with s after
+      the h is lost), *nekʷos 'not' > nach.  Thurneysen 1946, §230; Pedersen
+      1909, i.85-86.
+    references: [mccone-1996]
+    examples:
+      - {in: "*sweseros", out: "*sweheros", gloss: "yours (for)"}
+
+  - id: h_loss_intervocalic
+    order: 51
+    name: "Intervocalic *h is lost"
+    match: h
+    replace: ""
+    env: {left: V, right: V}
+    tier: established
+    description: >
+      The h that *s became between vowels falls again, and the two vowels
+      meet: *deiwos 'god' > día, *sweseros 'yours' > for (with *w > f).
+      Thurneysen 1946, §230.
+    references: [mccone-1996]
+    examples:
+      - {in: "*sweheros", out: "*sweeros", gloss: "yours (for)"}
+
+  - id: final_ti_to_d
+    order: 55
+    name: "Final *-ti > -d"
+    match: t i
+    replace: d
+    env: {left: V, right: "#"}
+    tier: established
+    description: >
+      The third-person singular present ending *-ti becomes -d: *bereti
+      'carries' > beirid, *dligeti 'owes' > dligid, *regeti 'stretches' >
+      rigid, *ɸibeti 'drinks' > ibid.  The preceding vowel has already been
+      affected by the *i (i-affection), which is why the ending is written
+      -id and not -ed.  The rule must run before the lenition, or the *t
+      would already be θ and the ending could never be written -d: the
+      gerund's *-ti is a lenition environment that gives a stop, not a
+      spirant.  Thurneysen 1946, §541; McCone 1996, ch. 6.
+    references: [mccone-1996]
+    examples:
+      - {in: "*dligeti", out: "*dliged", gloss: "owes (dligid)"}
+
+  # ---- lenition of the voiceless stops --------------------------------------
+  - id: t_to_theta_intervocalic
+    order: 60
+    name: "Intervocalic *t > θ"
+    match: t
+    replace: θ
+    env: {left: V, right: V}
+    tier: established
+    description: >
+      Between vowels *t is spirantised to θ, which the spelling writes th:
+      *klutos 'fame' > cloth, *ɸratom 'grace' > rath, *kritos 'body of a
+      law' > crith.  Thurneysen 1946, §233; Pedersen 1909, i.92-93; the
+      rule is the ancestor of the modern lenition.
+    references: [mccone-1996, matasovic-2009]
+    examples:
+      - {in: "*kritos", out: "*kriθos", gloss: "body of a law (crith)"}
+
+  - id: k_to_x_intervocalic
+    order: 63
+    name: "Intervocalic *k > x"
+    match: k
+    replace: x
+    env: {left: V, right: V}
+    tier: established
+    description: >
+      Between vowels the velar stop is spirantised like *t: *loku 'lake' >
+      loch, *kaɸukos > cuach.  Thurneysen 1946, §233; Pedersen 1909,
+      i.92.
+    references: [mccone-1996]
+    examples:
+      - {in: "*loku", out: "*loxu", gloss: "lake (loch)"}
+
+  # ---- vowel affection (must run before the endings are cut) ----------------
+  - id: i_affection_a
+    order: 80
+    name: "i-affection: *a > ai before a following *i"
+    match: a
+    replace: ai
+    env: {right: C (i|ī)}
+    tier: established
+    description: >
+      A short *a of the stressed syllable is diphthongised to ai when the
+      next syllable has *i or *ī: *matis 'good' > maith, *sanis 'different' >
+      sain, *wlatis 'lordship' > flaith, *galis 'valour' > gaile.  Thurneysen
+      1946, §70; McCone 1996, ch. 4.
+    references: [mccone-1996, matasovic-2009]
+    examples:
+      - {in: "*matis", out: "*maitis", gloss: "good (maith)"}
+
+  - id: i_affection_e
+    order: 81
+    name: "i-affection: *e > i before a following *i"
+    match: e
+    replace: i
+    env: {right: C (i|ī)}
+    tier: established
+    description: >
+      A short *e is raised to i before *i of the next syllable: *menis
+      'mind' > min, *wenyā > fine.  Thurneysen 1946, §70.
+    references: [mccone-1996]
+    examples:
+      - {in: "*menis", out: "*minis", gloss: "mind (min)"}
+
+  - id: i_affection_o
+    order: 82
+    name: "i-affection: *o > u before a following *i"
+    match: o
+    replace: u
+    env: {right: C (i|ī)}
+    tier: established
+    description: >
+      A short *o is raised to u before *i: *monis 'neck' > muin, *kʷrimis
+      'worm' > cruim, *toɸliyom > tuile.  Thurneysen 1946, §70.
+    references: [mccone-1996]
+    examples:
+      - {in: "*monis", out: "*munis", gloss: "neck (muin)"}
+
+  - id: a_affection_i
+    order: 85
+    name: "a-affection: *i > e before a following non-high vowel"
+    match: i
+    replace: e
+    env: {right: "C C? (a|o|ā|ō)"}
+    tier: established
+    description: >
+      A short *i of the stressed syllable is lowered to e before a
+      non-high vowel of the next syllable: *limos 'elm' > lem, *klibos?
+      no.  Where a nasal precedes the i the lowering does not happen
+      (*windos 'white' > find), which is why this rule is stated as the
+      lowering and not as a general fronting.  Thurneysen 1946, §74;
+      McCone 1996, ch. 4.
+    references: [mccone-1996]
+    examples:
+      - {in: "*limos", out: "*lemos", gloss: "elm (lem)"}
+
+  - id: a_affection_u
+    order: 86
+    name: "a-affection: *u > o before a following non-high vowel"
+    match: u
+    replace: o
+    env: {right: "C C? (a|o|ā|ō)"}
+    tier: established
+    description: >
+      A short *u of the stressed syllable is lowered to o before a
+      non-high vowel of the next syllable: *bukkos 'he-goat' > boc, *trummos
+      'heavy' > trom, *dubus > dub (the final *u keeps the u high).
+      Thurneysen 1946, §74.
+    references: [mccone-1996]
+    examples:
+      - {in: "*bukkos", out: "*bokkos", gloss: "he-goat (boc)"}
+      - {in: "*trummos", out: "*trommos", gloss: "heavy (trom)"}
+
+  # ---- the endings are cut away ---------------------------------------------
+  - id: final_os_loss
+    order: 100
+    name: "Final *-os is lost"
+    match: o s
+    replace: ""
+    env: {left: ., right: "#"}
+    tier: established
+    description: >
+      The o-stem nominative singular ending *-os is cut away, so the word is
+      the bare stem: *branos 'raven' > bran, *artos 'bear' > art, *dubus >
+      dub (with *-us), *ballos 'limb' > ball.  Thurneysen 1946, §100 and
+      §250; this is the apocope that gives Old Irish its final-stress look.
+    references: [mccone-1996, matasovic-2009]
+    examples:
+      - {in: "*branos", out: "*bran", gloss: "raven (bran)"}
+      - {in: "*artos", out: "*art", gloss: "bear (art)"}
+
+  - id: final_om_loss
+    order: 101
+    name: "Final *-om is lost"
+    match: o m
+    replace: ""
+    env: {left: ., right: "#"}
+    tier: established
+    description: >
+      The neuter nominative-accusative *-om goes the same way: *kʷennom
+      'head' > cenn, *klutom 'fame' > cloth, *ɸratom 'grace' > rath.
+      Thurneysen 1946, §100.
+    references: [mccone-1996]
+    examples:
+      - {in: "*klutom", out: "*klut", gloss: "fame (cloth)"}
+
+  - id: final_us_loss
+    order: 102
+    name: "Final *-us is lost"
+    match: u s
+    replace: ""
+    env: {left: ., right: "#"}
+    tier: established
+    description: >
+      The u-stem nominative singular is lost like *-os: *dubus 'black' > dub,
+      *matus 'good' > math, *bitus 'world' > bith.  Thurneysen 1946, §100.
+    references: [mccone-1996]
+    examples:
+      - {in: "*dubus", out: "*dub", gloss: "black (dub)"}
+
+  - id: final_is_loss
+    order: 103
+    name: "Final *-is is lost"
+    match: i s
+    replace: ""
+    env: {left: ., right: "#"}
+    tier: established
+    description: >
+      The i-stem nominative singular *-is is lost, leaving the palatalised
+      consonant that the spelling marks with i: *matis 'good' > maith,
+      *monis 'neck' > muin, *mīnis 'mild' > mín.  Thurneysen 1946, §100 and
+      §122.
+    references: [mccone-1996]
+    examples:
+      - {in: "*mīnis", out: "*mīn", gloss: "mild (mín)"}
+
+  - id: final_long_a_loss
+    order: 104
+    name: "Final *-ā is lost"
+    match: ā
+    replace: ""
+    env: {left: C, right: "#"}
+    tier: established
+    description: >
+      The ā-stem nominative singular loses its long vowel: *benā 'woman' >
+      ben, *menā 'mind' > men, *walsā 'neglect' > fall, *longā 'ship' >
+      long.  Thurneysen 1946, §100.
+    references: [mccone-1996]
+    examples:
+      - {in: "*benā", out: "*ben", gloss: "woman (ben)"}
+      - {in: "*menā", out: "*men", gloss: "flour (men)"}

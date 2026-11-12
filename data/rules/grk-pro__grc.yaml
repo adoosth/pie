@@ -1,0 +1,490 @@
+stage:
+  name: Proto-Hellenic → Ancient Greek
+  date_start: -1600
+  date_end: -800
+  description: 'The last mile into Attic-Ionic: the split of the labiovelars, the loss of *w (digamma), the resolution of the remaining syllabic *ə, the loss of *h before a sonorant, Grassmann''s law, compensatory
+    lengthening before a lost *h, assibilation of *ti, and the vowel changes that give the Classical vowel system (inherited *ē, *ō, *ā > η, ω, η, with the spurious close *ē of *ei kept apart).  The breathings
+    are not modelled: the Greek writing layer owns the letters, and rough breathing is not a segment this stage can decide.
+
+    '
+  references:
+  - sihler-1995
+  - lejeune-1972
+  - smyth-1920
+  - beekes-2011
+  - fortson-2004
+rules:
+- id: kw_to_p
+  order: 100
+  name: '*kʷ > *p before *a or *o'
+  match: kʷ
+  replace: p
+  env:
+    right: ˈ? (a|o|ā|ō)
+  tier: established
+  description: Labiovelar *kʷ becomes the labial *p before *a or *o (*kʷóteros > *póteros).
+  references:
+  - sihler-1995
+  - lejeune-1972
+  examples:
+  - in: '*kʷóteros'
+    out: '*póteros'
+    gloss: which of two
+- id: kw_to_t
+  order: 101
+  name: '*kʷ > *t before *e or *i'
+  match: kʷ
+  replace: t
+  env:
+    right: ˈ? (e|i|ē|ī)
+  tier: established
+  description: Labiovelar *kʷ becomes the dental *t before *e or *i (*kʷetwóres > *tetwóres).
+  references:
+  - sihler-1995
+  - lejeune-1972
+  examples:
+  - in: '*kʷetwóres'
+    out: '*tetwóres'
+    gloss: four
+- id: kw_to_k
+  order: 102
+  name: '*kʷ > *k elsewhere'
+  match: kʷ
+  replace: k
+  tier: established
+  description: Before *u or a consonant, *kʷ becomes the plain velar *k.
+  references:
+  - sihler-1995
+  examples:
+  - in: '*kʷu'
+    out: '*ku'
+    gloss: labiovelar before *u
+- id: gw_to_b
+  order: 110
+  name: '*gʷ > *b before *a or *o'
+  match: gʷ
+  replace: b
+  env:
+    right: ˈ? (a|o|ā|ō)
+  tier: established
+  description: Labiovelar *gʷ becomes *b before *a or *o (*gʷōus > *bōus).
+  references:
+  - sihler-1995
+  - lejeune-1972
+  examples:
+  - in: '*gʷōus'
+    out: '*bōus'
+    gloss: cow
+- id: gw_to_d
+  order: 111
+  name: '*gʷ > *d before *e or *i'
+  match: gʷ
+  replace: d
+  env:
+    right: ˈ? (e|i|ē|ī)
+  tier: established
+  description: Labiovelar *gʷ becomes *d before *e or *i.
+  references:
+  - sihler-1995
+  examples:
+  - in: '*gʷé'
+    out: '*dé'
+    gloss: labiovelar before *e
+- id: gw_to_g
+  order: 112
+  name: '*gʷ > *g elsewhere'
+  match: gʷ
+  replace: g
+  tier: established
+  description: Before *u or a consonant, *gʷ becomes the plain velar *g.
+  references:
+  - sihler-1995
+  examples:
+  - in: '*gʷu'
+    out: '*gu'
+    gloss: labiovelar before *u
+- id: gwh_to_ph
+  order: 120
+  name: '*gʷʰ > *pʰ before *a or *o'
+  match: gʷʰ
+  replace: pʰ
+  env:
+    right: ˈ? (a|o|ā|ō)
+  tier: established
+  description: Labiovelar aspirate *gʷʰ becomes *pʰ before *a or *o (*gʷʰónos > *pʰónos).
+  references:
+  - sihler-1995
+  - lejeune-1972
+  examples:
+  - in: '*gʷʰónos'
+    out: '*pʰónos'
+    gloss: murder
+- id: gwh_to_th
+  order: 121
+  name: '*gʷʰ > *tʰ before *e or *i'
+  match: gʷʰ
+  replace: tʰ
+  env:
+    right: ˈ? (e|i|ē|ī)
+  tier: established
+  description: Labiovelar aspirate *gʷʰ becomes *tʰ before *e or *i (*gʷʰérmos > *tʰérmos).
+  references:
+  - sihler-1995
+  - lejeune-1972
+  examples:
+  - in: '*gʷʰérmos'
+    out: '*tʰérmos'
+    gloss: warm
+- id: gwh_to_kh
+  order: 122
+  name: '*gʷʰ > *kʰ elsewhere'
+  match: gʷʰ
+  replace: kʰ
+  tier: established
+  description: Before *u or a consonant, *gʷʰ becomes the plain aspirate *kʰ.
+  references:
+  - sihler-1995
+  examples:
+  - in: '*gʷʰu'
+    out: '*kʰu'
+    gloss: labiovelar aspirate before *u
+- id: w_loss
+  order: 131
+  name: '*w is lost'
+  match: w
+  replace: ''
+  tier: established
+  description: 'The glide *w (digamma) disappears in Attic-Ionic in every position (*wérgon > *érgon, *kórwā > *kórā).  The dialects that kept digamma and the few words whose rough breathing continues *w
+    are not modelled here.
+
+    '
+  notes: Digamma is not written by the Attic-Ionic target; its dialectal survival is out of scope.
+  references:
+  - sihler-1995
+  - lejeune-1972
+  - smyth-1920
+  examples:
+  - in: '*wérgon'
+    out: '*érgon'
+    gloss: work
+- id: long_a_to_eta
+  order: 142
+  name: '*ā > η, written ē'
+  match: ā
+  replace: ē
+  tier: established
+  description: The long *ā of Proto-Greek becomes Attic-Ionic η, which the dictionaries romanise ē (*díkā > *díkē). The retention of ᾱ after ε, ι and ρ is a lexical residue the surface form does not mark;
+    it is not modelled and its words are counted as misses.
+  notes: 'Not conditioned on the surface: ā after ε/ι/ρ is a known residue (χώρα, οἰκία), see the report.'
+  references:
+  - sihler-1995
+  - lejeune-1972
+  - smyth-1920
+  examples:
+  - in: '*díkā'
+    out: '*díkē'
+    gloss: custom
+- id: schwa_to_a
+  order: 150
+  name: Syllabic *ə > α
+  match: ə
+  replace: a
+  tier: established
+  description: 'The reduced vowel that Proto-Greek writes *ə (the reflex of a syllabic nasal or liquid) becomes α in Attic (*dékə > *déka, *kərdíyā > *kardíyā).
+
+    '
+  references:
+  - sihler-1995
+  - beekes-2011
+  examples:
+  - in: '*dékə'
+    out: '*déka'
+    gloss: ten
+- id: grassmann
+  order: 200
+  name: Grassmann's law
+  transform: grassmann
+  tier: established
+  description: When a word contains two aspirates, the first one loses its aspiration (*pʰéitʰō > *péitʰō).
+  references:
+  - sihler-1995
+  - lejeune-1972
+  examples:
+  - in: '*pʰéitʰō'
+    out: '*péitʰō'
+    gloss: I persuade
+- id: lengthening_before_h
+  order: 300
+  name: Compensatory lengthening before *h, written ει
+  match: e
+  replace: ei
+  env:
+    right: h
+  tier: established
+  description: A short *e lengthens when the following *h is lost; the long close vowel is written ει in the dictionaries (*ehmi > *eimi), not η.
+  references:
+  - sihler-1995
+  - lejeune-1972
+  examples:
+  - in: '*ehmi'
+    out: '*eihmi'
+    gloss: I am
+- id: h_loss_before_consonant
+  order: 310
+  name: '*h is lost before a consonant'
+  match: h
+  replace: ''
+  env:
+    left: V
+    right: C
+  tier: established
+  description: The *h that caused lengthening is lost before a consonant (*ēhmi > *ēmi).
+  references:
+  - sihler-1995
+  examples:
+  - in: '*ēhmi'
+    out: '*ēmi'
+    gloss: I am
+- id: h_loss_before_sonorant
+  order: 320
+  name: Initial *h is lost before *m, *l, *n
+  match: h
+  replace: ''
+  env:
+    left: '#'
+    right: (m|l|n)
+  tier: established
+  description: 'The *h that came from PIE *s is lost before a sonorant, leaving smooth breathing (not written) where *s once stood (*hmeros > *meros, *sleymōn > *leymɔ̄n).  Before *w the *h survives (*swéḱs
+    > *heks), which is why no *-sw- word is touched by this rule.
+
+    '
+  references:
+  - sihler-1995
+  - lejeune-1972
+  examples:
+  - in: '*hmeros'
+    out: '*meros'
+    gloss: day
+- id: ti_to_si
+  order: 400
+  name: '*ti > *si'
+  match: t i
+  replace: s i
+  tier: established
+  description: '*t assibilates before *i (*dídōti > *dídōsi).'
+  references:
+  - sihler-1995
+  - smyth-1920
+  examples:
+  - in: '*dídōti'
+    out: '*dídōsi'
+    gloss: he gives
+- id: palatal_t_geminate
+  order: 409
+  name: '*ťť > σσ'
+  match: ť ť
+  replace: s s
+  tier: established
+  references:
+  - sihler-1995
+  examples:
+  - in: '*péťťō'
+    out: '*péssō'
+    gloss: I cook
+- id: palatal_t_to_s_initial
+  order: 410
+  name: '*ť > σ word-initially'
+  match: ť
+  replace: s
+  env:
+    left: '#'
+  tier: established
+  references:
+  - sihler-1995
+  examples:
+  - in: '*ťāmeron'
+    out: '*sāmeron'
+    gloss: today
+- id: palatal_t_after_consonant
+  order: 412
+  name: '*ť > τ after a consonant'
+  match: ť
+  replace: t
+  env:
+    left: C
+  tier: established
+  references:
+  - sihler-1995
+  examples:
+  - in: '*klépťō'
+    out: '*kléptō'
+    gloss: I steal
+- id: palatal_d_geminate
+  order: 420
+  name: '*ďď > ζ, written z'
+  match: ď ď
+  replace: z
+  tier: established
+  references:
+  - sihler-1995
+  examples:
+  - in: '*skʰíďďō'
+    out: '*skʰízō'
+    gloss: I split
+- id: palatal_d_initial
+  order: 421
+  name: '*ď > ζ, written z, word-initially'
+  match: ď
+  replace: z
+  env:
+    left: '#'
+  tier: established
+  references:
+  - sihler-1995
+  examples:
+  - in: '*ďṓwō'
+    out: '*zṓwō'
+    gloss: I live
+- id: palatal_d_after_consonant
+  order: 423
+  name: '*ď > δ after a consonant'
+  match: ď
+  replace: d
+  env:
+    left: C
+  tier: established
+  references:
+  - sihler-1995
+  examples:
+  - in: '*wérďō'
+    out: '*wérdō'
+    gloss: I do
+- id: y_loss_intervocalic_grc
+  order: 95
+  name: '*y is lost between vowels'
+  match: y
+  replace: ''
+  env:
+    left: V
+    right: ˈ? V
+  tier: established
+  references:
+  - sihler-1995
+  examples:
+  - in: '*hágiyos'
+    out: '*hágios'
+    gloss: holy
+- id: ts_to_s
+  order: 620
+  name: '*ts > σ'
+  match: t s
+  replace: s
+  tier: established
+  references:
+  - sihler-1995
+  examples:
+  - in: '*métsos'
+    out: '*mésos'
+    gloss: middle
+- id: lengthen_e_before_ns
+  order: 610
+  name: '*e > *ē before a lost *ns'
+  match: e
+  replace: ei
+  env:
+    right: n s
+  tier: established
+  references:
+  - sihler-1995
+  examples:
+  - in: '*ens'
+    out: '*eins'
+    gloss: into
+- id: lengthen_e_before_nts
+  order: 612
+  name: '*e > *ē before a lost *nts'
+  match: e
+  replace: ei
+  env:
+    right: n t s
+  tier: established
+  references:
+  - sihler-1995
+  examples:
+  - in: '*pents'
+    out: '*peints'
+    gloss: a comb
+- id: lengthen_a_before_ns
+  order: 611
+  name: '*a > *ā before a lost *ns'
+  match: a
+  replace: ā
+  env:
+    right: n s
+  tier: established
+  references:
+  - sihler-1995
+  examples:
+  - in: '*mélans'
+    out: '*mélāns'
+    gloss: black
+- id: ns_to_s
+  order: 631
+  name: '*ns > σ'
+  match: n s
+  replace: s
+  tier: established
+  references:
+  - sihler-1995
+  examples:
+  - in: '*mélāns'
+    out: '*mélās'
+    gloss: black
+- id: palatal_n_geminate
+  order: 430
+  name: '*ňň > ιν'
+  match: ň ň
+  replace: i n
+  tier: established
+  references:
+  - sihler-1995
+  examples:
+  - in: '*pʰáňňō'
+    out: '*pʰáinō'
+    gloss: I show
+- id: palatal_r_geminate
+  order: 431
+  name: '*řř > ιρ'
+  match: ř ř
+  replace: i r
+  tier: established
+  references:
+  - sihler-1995
+  examples:
+  - in: '*kʰəřřō'
+    out: '*kʰəirō'
+    gloss: I rejoice
+- id: palatal_l_geminate
+  order: 432
+  name: '*ľľ > λλ'
+  match: ľ ľ
+  replace: l l
+  tier: established
+  references:
+  - sihler-1995
+  examples:
+  - in: '*stéľľō'
+    out: '*stéllō'
+    gloss: I set
+- id: ii_to_i
+  order: 505
+  name: '*ii > *ī'
+  match: i i
+  replace: ī
+  tier: established
+  references:
+  - sihler-1995
+  examples:
+  - in: '*kríinō'
+    out: '*krī́nō'
+    gloss: I judge

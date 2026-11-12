@@ -1,0 +1,22 @@
+stage:
+  name: Proto-Italic → Latin (candidate 4)
+  references:
+  - sihler-1995
+  - weiss-2009
+  - meiser-1998
+rules:
+- id: c4_e_to_u_l
+  order: 242
+  name: '*e > *u before *l'
+  match: e
+  replace: u
+  env:
+    right: l (C|#)
+  tier: established
+  description: Short *e becomes *u before a dark *l (*famelos > *famulos).
+  references:
+  - sihler-1995
+  examples:
+  - in: '*famelos'
+    out: '*famulos'
+    gloss: servant

@@ -1,0 +1,19 @@
+# Rejected — fires nowhere the corpus can see.
+#   python tools/whatif.py --from peo --to pal --rules <this file> --layers exact,script
+#   explained 20 -> 20 (+0), gained 0, lost 0
+# The suffix *-aka- > MP -ag is real (OP *pistaka- > MP pistag, the transition's
+# one exact word, which the existing final_h_loss + final_vowel_loss already
+# derive).  Written as one step it changes nothing the corpus can see, because
+# every word that would show it is already derived by the two-step path.
+id: final_aka_to_ag
+order: 64
+name: "OP final *-akah > MP -ag"
+match: "a k a h"
+replace: "a g"
+env: {right: "#"}
+tier: proposed
+claim: "Old Persian final *-aka(h) continues as Middle Persian -ag."
+references: [skjaervo-2009b, mackenzie-1971]
+gain: {pal: {explained: 0, gained: [], lost: []}}
+verdict: rejected
+reason: "dead rule: the two-step path already derives every visible word"

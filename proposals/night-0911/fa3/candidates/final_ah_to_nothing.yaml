@@ -1,0 +1,26 @@
+# Rejected in favour of widening the registered final_h_loss (same effect, one
+# law instead of two).
+#   python tools/whatif.py --from peo --to pal --rules <this file> --layers exact,script
+#   explained 20 -> 21 (+1), gained [pus], lost []
+#   python tools/council.py --stage peo --to pal --rules <this file> --layers exact,orthographic,script
+#   pal 20 -> 21 (+1), fa 268 -> 275 (+7: اسپ, بزرگ, داس, شب, ماه, پاس, کاسه), ACCEPT
+# It works, but it deletes *-aʰ in one step where the model already has
+# final_h_loss (h lost) followed by final_vowel_loss (the short vowel lost).
+# The defect was that final_h_loss matched only the plain token h, so the
+# aspirated notation skipped both laws.  Widening that one rule keeps the
+# two-step derivation and the same measurement; this candidate stays as the
+# record of the alternative that was not chosen.
+id: final_ah_to_nothing
+order: 62
+name: "OP final *-aʰ > MP ∅"
+match: "a ʰ"
+replace: ""
+env: {right: "#"}
+tier: proposed
+claim: "The Old Persian final *-ah is lost whole in Middle Persian."
+references: [skjaervo-2009b, durkin-meisterernst-2014]
+gain:
+  pal: {explained: 1, gained: [pus], lost: []}
+  fa: {explained: 7, gained: ["اسپ", "بزرگ", "داس", "شب", "ماه", "پاس", "کاسه"], lost: []}
+verdict: rejected
+reason: "duplicates final_h_loss + final_vowel_loss; the widening of final_h_loss to (h|ʰ) was registered instead"

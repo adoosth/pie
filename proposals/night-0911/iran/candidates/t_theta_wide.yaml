@@ -1,0 +1,10 @@
+rules:
+  - id: probe_t_theta_wide
+    order: 123
+    name: "PII *t > PIr *θ before a sonorant (no left context)"
+    match: t
+    replace: θ
+    env: {right: "(NAS|GLIDE|r|l|y)"}
+    references: [hoffmann-forssman-2004]
+    examples:
+      - {in: "*putráh", out: "*puθráh", gloss: "son"}

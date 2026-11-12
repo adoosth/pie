@@ -1,0 +1,107 @@
+# Display names for language codes the descendant-tree harvest did not reach.
+#
+# `tools/build_language_names.py` reads Wiktionary's Proto-Indo-European
+# descendant tree, which names every *modelled* stage and its relatives.  A
+# borrowed word's ancestry, though, may pass through a language that is not in
+# that tree at all — Yiddish, Portuguese, Middle Chinese, Koine Greek — and a
+# rung of the loan ladder must not print a bare code (`ltc`) where an edited
+# page would print a name.
+#
+# Two things are read from this file, and nothing else.  The name is printed on
+# a rung.  The `family` says the code is a language of that family, which is how
+# a dictionary's own mark is read when there is no ancestry chain to read
+# instead: Dehkhoda prints (فرانسوی) beside a French loan, and French is a
+# sister branch, so the word is an `ie_loan` and not "no recorded etymology"
+# (2026-11-10).  It is never a test for "outside the family": membership in
+# `data/non_ie_sources.yaml` is that one test, and a code named here is not
+# thereby called non-Indo-European (Portuguese and Koine Greek are inside it).
+# Names follow Wiktionary's own headings for the code.
+names:
+  yi: {name: Yiddish, family: Germanic}
+  pt: {name: Portuguese, family: Italic}
+  scn: {name: Sicilian, family: Italic}
+  vec: {name: Venetian, family: Italic}
+  lmo: {name: Lombard, family: Italic}
+  nap: {name: Neapolitan, family: Italic}
+  osp: {name: Old Spanish, family: Italic}
+  es-ear: {name: Early Modern Spanish, family: Italic}
+  es-MX: {name: Mexican Spanish, family: Italic}
+  es-PH: {name: Philippine Spanish, family: Italic}
+  roa-oit: {name: Old Italian, family: Italic}
+  pro: {name: Old Occitan, family: Italic}
+  xno: {name: Anglo-Norman, family: Italic}
+  la-ecc: {name: Ecclesiastical Latin, family: Italic}
+  grc-koi: {name: Koine Greek, family: Hellenic}
+  si: {name: Sinhala, family: Indo-Aryan}
+  ltc: {name: Middle Chinese, family: Sino-Tibetan}
+  och: {name: Old Chinese, family: Sino-Tibetan}
+  nan-tws: {name: Teochew, family: Sino-Tibetan}
+  hak: {name: Hakka, family: Sino-Tibetan}
+  yue: {name: Cantonese, family: Sino-Tibetan}
+  jv: {name: Javanese, family: Austronesian}
+  kaw: {name: Old Javanese, family: Austronesian}
+  pam: {name: Kapampangan, family: Austronesian}
+  ty: {name: Tahitian, family: Austronesian}
+  poz-pro: {name: Proto-Malayo-Polynesian, family: Austronesian}
+  poz-mly-pro: {name: Proto-Malayic, family: Austronesian}
+  poz-oce-pro: {name: Proto-Oceanic, family: Austronesian}
+  poz-pol-pro: {name: Proto-Polynesian, family: Austronesian}
+  poz-pnp-pro: {name: Proto-Nuclear Polynesian, family: Austronesian}
+  map-pro: {name: Proto-Austronesian, family: Austronesian}
+  xaa: {name: Andalusian Arabic, family: Semitic}
+  arz: {name: Egyptian Arabic, family: Semitic}
+  ary: {name: Moroccan Arabic, family: Semitic}
+  apc: {name: North Levantine Arabic, family: Semitic}
+  aeb: {name: Tunisian Arabic, family: Semitic}
+  afb: {name: Gulf Arabic, family: Semitic}
+  aii: {name: Assyrian Neo-Aramaic, family: Semitic}
+  gez: {name: Ge'ez, family: Semitic}
+  sem-wes-pro: {name: Proto-West Semitic, family: Semitic}
+  mt: {name: Maltese, family: Semitic}
+  egx-dem: {name: Demotic Egyptian, family: Afro-Asiatic}
+  ha: {name: Hausa, family: Afro-Asiatic}
+  so: {name: Somali, family: Cushitic}
+  chg: {name: Chagatai, family: Turkic}
+  trk-oat: {name: Old Anatolian Turkish, family: Turkic}
+  trk-cmn-pro: {name: Proto-Common Turkic, family: Turkic}
+  xng: {name: Middle Mongolian, family: Mongolic}
+  cmg: {name: Classical Mongolian, family: Mongolic}
+  mnc: {name: Manchu, family: Tungusic}
+  kn: {name: Kannada, family: Dravidian}
+  lo: {name: Lao, family: Tai}
+  shn: {name: Shan, family: Tai}
+  lg: {name: Luganda, family: Bantu}
+  ain: {name: Ainu, family: Ainu}
+  ay: {name: Aymara, family: Aymaran}
+  xhu: {name: Hurrian, family: Hurro-Urartian}
+  mkh-pro: {name: Proto-Mon-Khmer, family: Austroasiatic}
+  aav-pro: {name: Proto-Austroasiatic, family: Austroasiatic}
+  arc-imp: {name: Imperial Aramaic, family: Semitic}
+  mul: {name: Translingual, family: Translingual}
+  mul-tax: {name: Translingual (taxonomy), family: Translingual}
+
+  # Sister branches a dictionary's mark may name (2026-11-10).  Dehkhoda marks
+  # French, Russian and English loans in modern Persian, and every one of them
+  # is inside the family — a loan from a sister branch, never "unexplained".
+  fr: {name: French, family: Romance}
+  es: {name: Spanish, family: Romance}
+  ro: {name: Romanian, family: Romance}
+  ru: {name: Russian, family: Slavic}
+  pl: {name: Polish, family: Slavic}
+  cs: {name: Czech, family: Slavic}
+  bg: {name: Bulgarian, family: Slavic}
+  sr: {name: Serbian, family: Slavic}
+  nl: {name: Dutch, family: Germanic}
+  da: {name: Danish, family: Germanic}
+  sv: {name: Swedish, family: Germanic}
+  hi: {name: Hindi, family: Indo-Aryan}
+  ur: {name: Urdu, family: Indo-Aryan}
+  ku: {name: Kurdish, family: Iranian}
+
+  # Codes the full Wiktionary table does not define, met in the lexicons
+  # (2026-11-12).
+  bkk: {name: Brokskat, family: Indo-Iranian}
+  enm-esc: {name: Early Scots, family: Germanic}
+  ms-old: {name: Old Malay, family: Austronesian}
+  sio-pro: {name: Proto-Siouan, family: Siouan}
+  en-IE: {name: Irish English, family: Germanic}

@@ -1,0 +1,148 @@
+stage:
+  name: English orthography
+  date_end: null
+  description: >
+    The writing conventions of Modern English, applied to the phonemic output of
+    the last sound-law stage.  English spelling is conservative: it writes the
+    Middle English vowel letters, not the vowels after the Great Vowel Shift, and
+    it keeps a final -e that the pronunciation lost.  Only what the pipeline's
+    own segments allow is written here; a spelling that depends on a word's
+    history (⟨ea⟩ vs ⟨ee⟩, ⟨ou⟩ vs ⟨oo⟩) is left as a miss rather than guessed,
+    and a match is only counted when the phonemes behind it are plausible
+    (`spelling.plausible`, the consonant-and-syllable guard).
+  references: [carney-1994, scragg-1974]
+
+rules:
+  - id: yod
+    order: 19
+    name: "Word-initial /j/ is written ⟨y⟩"
+    match: j
+    replace: y
+    env: {left: "#"}
+    tier: orthographic
+    notes: "Only word-initially: after a consonant the same glide is written u or ew (music, few, tune), and that spelling is not modelled."
+    references: [carney-1994]
+    examples:
+      - {in: "jes", out: "yes"}
+  - id: th_theta
+    order: 20
+    name: "/θ/ is written ⟨th⟩"
+    match: θ
+    replace: th
+    tier: orthographic
+    description: "Modern English has no letter for /θ/; the digraph th was borrowed from Latin usage in Middle English."
+    references: [scragg-1974, carney-1994]
+    examples:
+      - {in: "θin", out: "thin"}
+  - id: k_onset_c
+    order: 27
+    name: "Word-initial /k/ before a back vowel is written ⟨c⟩"
+    match: k
+    replace: c
+    env: {left: "#", right: "(a|o|u|æ|ɒ|ʌ|ɔ)"}
+    tier: orthographic
+    description: "English writes /k/ as c before a, o, u (cat, cot, cut) and as k before e, i (ken, kin); the choice is a spelling convention, not a sound change."
+    references: [carney-1994]
+    examples:
+      - {in: "kæt", out: "cat"}
+  - id: ck
+    order: 30
+    name: "Final /k/ after a short checked vowel is written ⟨ck⟩"
+    match: k
+    replace: ck
+    env: {left: "(æ|ɛ|ɪ|ʌ|ɒ)", right: "#"}
+    tier: orthographic
+    description: "The doubling marks a preceding short vowel (back, pick, duck); after a long vowel or an unstressed vowel the letter is k or c (book, music)."
+    notes: "The unstressed-vowel exception is not modelled, so a word like music stays a miss."
+    references: [carney-1994, scragg-1974]
+    examples:
+      - {in: "bæk", out: "back"}
+  - id: final_i_y
+    order: 60
+    name: "Final /i/ is written ⟨y⟩"
+    match: i
+    replace: y
+    env: {left: "C", right: "#"}
+    tier: orthographic
+    description: "English writes an unstressed final /i/ with y (happy, city, many); i in that position belongs to learned loans (taxi)."
+    notes: "A default among two spellings; loans are left as misses."
+    references: [carney-1994]
+    examples:
+      - {in: "hæppi", out: "happy"}
+  - id: final_v_ve
+    order: 61
+    name: "Final /v/ is written ⟨ve⟩"
+    match: v
+    replace: ve
+    env: {left: "V", right: "#"}
+    tier: orthographic
+    description: "No English word ends in ⟨v⟩ alone: love, give, twelve all write ve."
+    references: [carney-1994]
+    examples:
+      - {in: "giv", out: "give"}
+  - id: ae_ash
+    order: 100
+    name: "/æ/ is written ⟨a⟩"
+    match: æ
+    replace: a
+    tier: orthographic
+    description: "The letter æ (ash) is not used for /æ/ in Modern English; the short front vowel is written a."
+    references: [carney-1994, scragg-1974]
+    examples:
+      - {in: "kæt", out: "cat"}
+  - id: open_o
+    order: 101
+    name: "Short /ɔ/ is written ⟨o⟩"
+    match: ɔ
+    replace: o
+    tier: orthographic
+    description: "The short back rounded vowel of this stage — the reflex of Middle English short o — is written o (pond, dog, long).  The long vowel also written o in some words (door, four) is a different segment here and is not covered by this rule."
+    references: [carney-1994]
+    examples:
+      - {in: "pɔnd", out: "pond"}
+  - id: wedge
+    order: 103
+    name: "/ʌ/ is written ⟨u⟩"
+    match: ʌ
+    replace: u
+    tier: orthographic
+    references: [carney-1994]
+    examples:
+      - {in: "sʌn", out: "sun"}
+  - id: macron_i
+    order: 112
+    name: "Long /ī/ is written ⟨i⟩"
+    match: "ī"
+    replace: i
+    tier: orthographic
+    references: [carney-1994]
+    examples:
+      - {in: "mīn", out: "min"}
+  - id: macron_o
+    order: 113
+    name: "Long /ō/ is written ⟨o⟩"
+    match: "ō"
+    replace: o
+    tier: orthographic
+    references: [carney-1994]
+    examples:
+      - {in: "bōk", out: "bok"}
+  - id: macron_u
+    order: 114
+    name: "Long /ū/ is written ⟨u⟩"
+    match: "ū"
+    replace: u
+    tier: orthographic
+    references: [carney-1994]
+    examples:
+      - {in: "hūs", out: "hus"}
+  - id: drop_stress
+    order: 200
+    name: "Stress marks are not written"
+    match: "ˈ"
+    replace: ""
+    tier: orthographic
+    description: "The phonemic layer marks stress; English spelling does not."
+    references: [carney-1994]
+    examples:
+      - {in: "fˈūt", out: "fut"}

@@ -1,0 +1,49 @@
+# Measured 2026-11-09: 0 gained, 0 lost — a finding, not a fix, so it is not
+# shipped. The two words it was written for (Hnā́kš, Hmíkš) differ from the
+# derivation in more than the devoicing, so the law buys nothing here.
+rules:
+- id: bh_devoice_s
+  order: 64
+  name: 'Voiced aspirate devoices before *s: *bʰ'
+  match: bʰ
+  replace: p
+  env:
+    right: (ˈ|ˌ)? s
+  tier: proposed
+  description: '*h₃nṓgʰs > *h₃nṓks > *Hnā́kš (Skt. nakhá-). The devoicing is written once per aspirate; the *s is retracted afterwards by ruki.'
+  references:
+  - mayrhofer-1986
+  examples:
+  - in: '*nebʰs'
+    out: '*neps'
+    gloss: cloud
+- id: dh_devoice_s
+  order: 64
+  name: 'Voiced aspirate devoices before *s: *dʰ'
+  match: dʰ
+  replace: t
+  env:
+    right: (ˈ|ˌ)? s
+  tier: proposed
+  description: '*dʰ > *t before *s; measured 2026-11-09: no word gained.'
+  references:
+  - mayrhofer-1986
+  examples:
+  - in: '*sedʰs'
+    out: '*sets'
+    gloss: a test form for the context
+- id: gh_devoice_s
+  order: 64
+  name: 'Voiced aspirate devoices before *s: *gʰ'
+  match: gʰ
+  replace: k
+  env:
+    right: (ˈ|ˌ)? s
+  tier: proposed
+  description: '*h₃nṓgʰs > *h₃nṓks (Skt. nakhá-); the *s is then retracted to *š by ruki after the *k.'
+  references:
+  - mayrhofer-1986
+  examples:
+  - in: '*h₃nṓgʰs'
+    out: '*h₃nṓks'
+    gloss: nail

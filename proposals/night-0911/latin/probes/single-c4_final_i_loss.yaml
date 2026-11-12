@@ -1,0 +1,23 @@
+stage:
+  name: Proto-Italic → Latin (candidate 4)
+  references:
+  - sihler-1995
+  - weiss-2009
+  - meiser-1998
+rules:
+- id: c4_final_i_loss
+  order: 430
+  name: Final *-i is lost after *t
+  match: i
+  replace: ''
+  env:
+    left: t
+    right: '#'
+  tier: proposed
+  description: Final *-i is lost after *t in a few adverbs (*posti > *post).
+  references:
+  - sihler-1995
+  examples:
+  - in: '*posti'
+    out: '*post'
+    gloss: after

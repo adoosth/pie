@@ -1,0 +1,9 @@
+rules:
+  - id: probe_sc_to_s
+    order: 109
+    name: "PII *sć > PIr *š"
+    match: "s ć"
+    replace: "š"
+    references: [hoffmann-forssman-2004]
+    examples:
+      - {in: "*tr̥sćáti", out: "*tr̥šáti", gloss: "is afraid"}

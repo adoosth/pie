@@ -1,0 +1,10 @@
+rules:
+  - id: probe_k_x_wide
+    order: 141
+    name: "PII *k > PIr *x before a consonant (no left context)"
+    match: k
+    replace: x
+    env: {right: "(STOP|NAS|SIB|GLIDE|r|l)"}
+    references: [hoffmann-forssman-2004]
+    examples:
+      - {in: "*ćakráh", out: "*ćaxráh", gloss: "wheel"}

@@ -1,0 +1,81 @@
+stage:
+  name: Sanskrit orthography (Devanagari)
+  date_start: -600
+  date_end: null
+  description: >
+    How a Sanskrit phonological form is written: Devanagari is an abugida, so a
+    consonant sign carries an inherent a (क ka), a following vowel is written as
+    a dependent sign (कि ki), and a following consonant takes the inherent vowel
+    away with the virama (क् k).  The whole alphabet is one convention, so this
+    file has a single rule and one citation rather than a list of letter
+    substitutions: Whitney, A Sanskrit Grammar (1889), ch. 1-2, gives the
+    inventory and the syllabification the rule follows.  Nothing here is a
+    sound change, and a word matched through this layer is counted as spelled,
+    never as reconstructed.
+  references: [whitney-1889]
+
+guard:
+  # The reading guard compares a phonemic form's consonant skeleton and syllable
+  # count with the dictionary's own IPA, and folds notation the two sides write
+  # differently so that it compares segments and not alphabets (applied to both
+  # sides, never to a rule's output) — the same job the Greek file's guard does
+  # for ει/η and ζ/zd.  Measured 2026-11-09: without these the guard refuses
+  # spellings whose letters are right, 336 of the words this file spells.
+  equivalences:
+    # य is the palatal approximant, IPA /j/ (Whitney 1889, §5: y is the palatal
+    # semivowel).  The laws write y, and every dictionary transcribes /j/.
+    y: j
+    # The syllabic resonant carries the stress accent as an acute in the
+    # dictionaries' transcription (/mŕ̩.tɐ/) and as the engine's own stress token in
+    # the laws' (mˈr̥ta): the acute marks the syllable, not the consonant.
+    ŕ: r
+    # e and o continue PIA *ai and *au, which the dictionaries still write ai̯ and
+    # au̯ in their transcription (Whitney §22: e and o are the products of the
+    # older ai and au).  One nucleus, two letters.
+    ai: e
+    au: o
+    # The vocalic resonants: the laws write them with a ring below (r̥, l̥) and
+    # the dictionaries with the syllabic mark (/r̩/), which the guard's reader
+    # expands to schwa plus consonant.  Whitney 1889, §§11-13: r̥ and l̥ are one
+    # vocalic segment, the "r-vowel" and "l-vowel", not a vowel plus a consonant.
+    əŕ: r
+    ər: r
+    əl: l
+    əm: m
+    ən: n
+    # The letters that carry a diacritic.  The guard's reader treats a combining
+    # mark as transcription detail and reads ṣ ṭ ḍ ṇ ś ñ ḥ as their base letter
+    # (it keeps every letter, so nothing is lost from the skeleton); the IPA side
+    # arrives with the same letters precomposed (ʂ ʈ ɖ ɳ ɕ ɲ), so they are folded
+    # to the base too.  The guard is a shape test — consonant skeleton and
+    # syllable count — and the *spelling* still has to be the attested word,
+    # character for character, so a merged retroflex in the guard can never turn
+    # a wrong word into a match (ष and स are different letters).
+    ṣ: s
+    ṭ: t
+    ḍ: d
+    ṇ: n
+    ś: s
+    ñ: n
+    ḥ: h
+
+rules:
+  - id: devanagari
+    order: 10
+    name: "The form is written in Devanagari"
+    transform: devanagari
+    tier: orthographic
+    description: >
+      Write the phonemic form with the Devanagari signs: consonants carry the
+      inherent a, a vowel after a consonant is a matra, a consonant after a
+      consonant takes the virama, and a word ends with the virama if it ends in
+      a consonant (tat is तत्).  Anusvāra and visarga (ṃ, ḥ) close the syllable
+      they follow.  A form carrying notation the table does not own (a
+      laryngeal, an unresolved affricate) is written with that character kept,
+      so it cannot masquerade as a match.
+    references: [whitney-1889]
+    examples:
+      - {in: "dˈevas", out: "देवस्", gloss: "god (stem devá-, nom. deváḥ)"}
+      - {in: "śatˈam", out: "शतम्", gloss: "hundred (śatám)"}
+      - {in: "bhāgˈas", out: "भागस्", gloss: "portion (bhāgá-)"}
+      - {in: "r̥tˈam", out: "ऋतम्", gloss: "truth (r̥tám)"}

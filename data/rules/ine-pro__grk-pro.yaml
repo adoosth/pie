@@ -1,0 +1,455 @@
+stage:
+  name: Proto-Indo-European → Proto-Hellenic
+  date_start: -2500
+  date_end: -1600
+  description: The Hellenic branch is centum.  Laryngeals colour and vocalise, vowels lengthen before
+    a lost laryngeal, syllabic resonants are resolved, initial *s becomes *h (before a vowel or a sonorant),
+    the voiced aspirates become voiceless aspirates, final *-m becomes *-n, and *w is still present at
+    this stage (it is lost later, in Greek).
+  references:
+  - sihler-1995
+  - lejeune-1972
+  - beekes-2011
+  - fortson-2004
+rules:
+- id: syllabic_laryngeals
+  order: 5
+  name: Syllabic laryngeals vocalise
+  transform: syllabic_laryngeals
+  params:
+    h₁: e
+    h₂: a
+    h₃: o
+  tier: established
+  description: A laryngeal that is a syllable nucleus becomes *e, *a or *o according to its colour (*ph₂tḗr
+    > *patḗr).
+  references:
+  - sihler-1995
+  - beekes-2011
+  examples:
+  - in: '*ph₂tḗr'
+    out: '*patḗr'
+    gloss: father
+- id: h2_colours_e
+  order: 20
+  name: '*h₂ colours *e to *a'
+  match: e
+  replace: a
+  env:
+    right: h₂
+  tier: established
+  description: 'Regressive colouring: *e before *h₂ becomes *a.'
+  references:
+  - sihler-1995
+  - beekes-2011
+  examples:
+  - in: '*bʰréh₂tēr'
+    out: '*bʰráh₂tēr'
+    gloss: brother
+- id: h3_colours_e
+  order: 21
+  name: '*h₃ colours *e to *o'
+  match: e
+  replace: o
+  env:
+    right: h₃
+  tier: established
+  description: 'Regressive colouring: *e before *h₃ becomes *o.'
+  references:
+  - sihler-1995
+  - beekes-2011
+  examples:
+  - in: '*deh₃-'
+    out: '*doh₃-'
+    gloss: to give
+- id: lengthen_e_h1
+  order: 22
+  name: 'Lengthening: *e before *h₁ > *ē'
+  match: e
+  replace: ē
+  env:
+    right: h₁
+  tier: established
+  description: A vowel lengthens when the following laryngeal is lost (*tréh₁-ti-s > *trḗtis).
+  references:
+  - sihler-1995
+  examples:
+  - in: '*méh₁-ti-s'
+    out: '*mḗh₁-ti-s'
+    gloss: counsel
+- id: lengthen_a_h2
+  order: 23
+  name: 'Lengthening: *a before *h₂ > *ā'
+  match: a
+  replace: ā
+  env:
+    right: h₂
+  tier: established
+  description: The vowel coloured by *h₂ lengthens when the laryngeal is lost (*-eh₂- > *-ā-).
+  references:
+  - sihler-1995
+  examples:
+  - in: '*ped-ah₂'
+    out: '*ped-āh₂'
+    gloss: foot (dual)
+- id: lengthen_o_h3
+  order: 24
+  name: 'Lengthening: *o before *h₃ > *ō'
+  match: o
+  replace: ō
+  env:
+    right: h₃
+  tier: established
+  description: The vowel coloured by *h₃ lengthens when the laryngeal is lost.
+  references:
+  - sihler-1995
+  examples:
+  - in: '*doh₃-tōr'
+    out: '*dōh₃-tōr'
+    gloss: giver
+- id: h2_vocalises_initial
+  order: 25
+  name: Word-initial *h₂ before a consonant > *a
+  match: h₂
+  replace: a
+  env:
+    left: '#'
+    right: (!GLIDE) (!V)
+  tier: established
+  description: A laryngeal that cannot take a vowel before it surfaces as *a (*h₂p-tós > *aptós).
+  references:
+  - sihler-1995
+  - beekes-2011
+  examples:
+  - in: '*h₂p-tó-s'
+    out: '*aptó-s'
+    gloss: fastened
+- id: h2_colours_e_progressive
+  order: 27
+  name: '*h₂ colours a following *e to *a'
+  match: e
+  replace: a
+  env:
+    left: h₂ (ˈ|ˌ)?
+  tier: established
+  description: Colouring also works from a preceding laryngeal (*h₂ép-s-os > *áp-s-os).
+  references:
+  - sihler-1995
+  examples:
+  - in: '*h₂ép-s-os'
+    out: '*h₂áp-s-os'
+    gloss: summit
+- id: h3_colours_e_progressive
+  order: 28
+  name: '*h₃ colours a following *e to *o'
+  match: e
+  replace: o
+  env:
+    left: h₃ (ˈ|ˌ)?
+  tier: established
+  description: A preceding *h₃ rounds the following *e.
+  references:
+  - sihler-1995
+  examples:
+  - in: '*h₃ép-'
+    out: '*h₃óp-'
+    gloss: to see
+- id: laryngeal_loss
+  order: 30
+  name: Laryngeals are lost
+  match: h₁|h₂|h₃
+  replace: ''
+  tier: established
+  description: Remaining laryngeals disappear after colouring and vocalisation.
+  references:
+  - sihler-1995
+  examples:
+  - in: '*bʰráh₂tēr'
+    out: '*bʰrátēr'
+    gloss: brother
+- id: syllabic_m
+  order: 40
+  name: Syllabic *m̥ > *a
+  match: m̥
+  replace: a
+  tier: established
+  description: Syllabic *m̥ becomes *a in Greek (*ḱm̥tóm > *ḱatóm).
+  references:
+  - sihler-1995
+  - lejeune-1972
+  examples:
+  - in: '*ḱm̥tóm'
+    out: '*ḱatóm'
+    gloss: hundred
+- id: resonant_after_vowel
+  order: 41
+  name: A syllabic resonant after a vowel is non-syllabic
+  match: r̥
+  replace: r
+  env:
+    left: V
+  tier: established
+  description: When a laryngeal has already supplied the nucleus, the following resonant is consonantal
+    (*h₂r̥- > *ar-).
+  references:
+  - sihler-1995
+  examples:
+  - in: '*ar̥-mó-s'
+    out: '*ar-mó-s'
+    gloss: joint
+- id: syllabic_n
+  order: 41
+  name: Syllabic *n̥ > *a
+  match: n̥
+  replace: a
+  tier: established
+  description: Syllabic *n̥ becomes *a, as in the privative prefix (*n̥- > *a-).
+  references:
+  - sihler-1995
+  examples:
+  - in: '*n̥'
+    out: '*a'
+    gloss: not
+- id: syllabic_r
+  order: 42
+  name: Syllabic *r̥ > *ar
+  match: r̥
+  replace: ar
+  tier: established
+  description: Syllabic *r̥ becomes *ar (*kr̥d- > *kard-).
+  references:
+  - sihler-1995
+  - lejeune-1972
+  examples:
+  - in: '*kr̥d-'
+    out: '*kard'
+    gloss: heart
+- id: m_to_n_final
+  order: 45
+  name: Final *-m > *-n
+  match: m
+  replace: n
+  env:
+    right: '#'
+  tier: established
+  description: Word-final *m becomes *n in Greek (*bʰér-tr-o-m > *pʰértron).
+  references:
+  - sihler-1995
+  - beekes-2011
+  examples:
+  - in: '*téḱ-no-m'
+    out: '*téḱ-no-n'
+    gloss: child
+- id: s_to_h_initial
+  order: 50
+  name: Initial *s > *h
+  match: s
+  replace: h
+  env:
+    left: '#'
+    right: V
+  tier: established
+  description: Word-initial *s before a vowel becomes *h (*septm̥ > *heptm̥).
+  references:
+  - sihler-1995
+  - lejeune-1972
+  examples:
+  - in: '*septm̥'
+    out: '*heptm̥'
+    gloss: seven
+- id: s_to_h_intervocalic
+  order: 51
+  name: Intervocalic *s > *h
+  match: s
+  replace: h
+  env:
+    left: V
+    right: V
+  tier: established
+  description: '*s between vowels becomes *h (*ésō > *éhō).'
+  references:
+  - sihler-1995
+  examples:
+  - in: '*ésō'
+    out: '*éhō'
+    gloss: I will be
+- id: h_loss_intervocalic
+  order: 52
+  name: Intervocalic *h is lost
+  match: h
+  replace: ''
+  env:
+    left: V
+    right: V
+  tier: established
+  description: The *h that comes from *s is lost between vowels (*éhō > *éō).
+  references:
+  - sihler-1995
+  - lejeune-1972
+  examples:
+  - in: '*éhō'
+    out: '*éō'
+    gloss: I will be
+- id: s_to_h_before_consonant
+  order: 52
+  name: Initial *s > *h before a consonant
+  match: s
+  replace: h
+  env:
+    left: '#'
+    right: (r|l|m|n|w|j|y)
+  tier: established
+  description: Word-initial *s becomes *h before a consonant as well as before a vowel (*srów-o-s > *hrṓwos).
+  references:
+  - sihler-1995
+  examples:
+  - in: '*srów-o-s'
+    out: '*hrów-o-s'
+    gloss: stream
+- id: y_to_z_before_u
+  order: 70
+  name: Initial *y > *z before *u
+  match: y
+  replace: z
+  env:
+    left: '#'
+    right: u
+  tier: established
+  description: Word-initial *y becomes *z before *u (*yugóm > *zugóm).
+  references:
+  - sihler-1995
+  examples:
+  - in: '*yugóm'
+    out: '*zugóm'
+    gloss: yoke
+- id: y_to_h_initial
+  order: 71
+  name: Initial *y > *h
+  match: y
+  replace: h
+  env:
+    left: '#'
+  tier: established
+  description: Word-initial *y becomes *h elsewhere (*yékʷr̥ > *hékʷr̥).
+  references:
+  - sihler-1995
+  - lejeune-1972
+  examples:
+  - in: '*yékʷr̥'
+    out: '*hékʷr̥'
+    gloss: liver
+- id: y_loss_intervocalic
+  order: 72
+  name: Intervocalic *y is lost
+  match: y
+  replace: ''
+  env:
+    left: V
+    right: V
+  tier: established
+  description: '*y disappears between vowels (*tréyes > *trées).'
+  references:
+  - sihler-1995
+  examples:
+  - in: '*tréyes'
+    out: '*trées'
+    gloss: three
+- id: y_to_i
+  order: 80
+  name: Non-syllabic *i̯ after a vowel > *i
+  match: y
+  replace: i
+  env:
+    left: V
+  tier: established
+  description: The second element of a diphthong is written *i (*loyg-ó-s > *loigós).
+  references:
+  - sihler-1995
+  examples:
+  - in: '*loyg-ó-s'
+    out: '*loig-ó-s'
+    gloss: crooked
+- id: centum_k
+  order: 90
+  name: Palatovelar *ḱ > *k
+  match: ḱ
+  replace: k
+  tier: established
+  description: 'Hellenic is a centum branch: *ḱ merges with the plain velar *k (*ḱóros > *kóros).'
+  references:
+  - sihler-1995
+  - beekes-2011
+  examples:
+  - in: '*ḱór-o-s'
+    out: '*kór-o-s'
+    gloss: youth
+- id: centum_g
+  order: 91
+  name: Palatovelar *ǵ > *g
+  match: ǵ
+  replace: g
+  tier: established
+  description: Palatovelar *ǵ merges with the plain velar *g.
+  references:
+  - sihler-1995
+  - beekes-2011
+  examples:
+  - in: '*ǵénos'
+    out: '*génos'
+    gloss: race
+- id: centum_gh
+  order: 92
+  name: Palatovelar *ǵʰ > *gʰ
+  match: ǵʰ
+  replace: gʰ
+  tier: established
+  description: Palatovelar *ǵʰ merges with the plain aspirate *gʰ, which then becomes *kʰ.
+  references:
+  - sihler-1995
+  - beekes-2011
+  examples:
+  - in: '*ǵʰérs-o-s'
+    out: '*gʰérs-o-s'
+    gloss: dry land
+- id: bh_to_ph
+  order: 100
+  name: '*bʰ > *pʰ'
+  match: bʰ
+  replace: pʰ
+  tier: established
+  description: Voiced aspirate *bʰ becomes the voiceless aspirate *pʰ (*bʰérō > *pʰérō).
+  references:
+  - sihler-1995
+  - lejeune-1972
+  examples:
+  - in: '*bʰérō'
+    out: '*pʰérō'
+    gloss: I carry
+- id: dh_to_th
+  order: 101
+  name: '*dʰ > *tʰ'
+  match: dʰ
+  replace: tʰ
+  tier: established
+  description: Voiced aspirate *dʰ becomes the voiceless aspirate *tʰ (*dʰéh₁- > *tʰéh₁-).
+  references:
+  - sihler-1995
+  - lejeune-1972
+  examples:
+  - in: '*dʰéh₁-'
+    out: '*tʰéh₁-'
+    gloss: to put
+- id: gh_to_kh
+  order: 102
+  name: '*gʰ > *kʰ'
+  match: gʰ
+  replace: kʰ
+  tier: established
+  description: Voiced aspirate *gʰ becomes the voiceless aspirate *kʰ (*gʰóstis > *kʰóstis).
+  references:
+  - sihler-1995
+  - lejeune-1972
+  examples:
+  - in: '*gʰóstis'
+    out: '*kʰóstis'
+    gloss: guest

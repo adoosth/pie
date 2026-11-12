@@ -1,0 +1,53 @@
+# Curated derivation checks, written from the standard literature (not derived
+# from the engine).  `chain` is the list of stages; `expect` is the recorded
+# proto-form of the last stage.  Forms are phonological, so the comparison
+# ignores stress marks and hyphens.
+- chain: [ine-pro, gem-pro]
+  pie: "*pṓds"
+  expect: "*fōts"
+  gloss: foot
+  sources: [ringe-2006]
+- chain: [ine-pro, gem-pro]
+  pie: "*ph₂tḗr"
+  expect: "*fadēr"
+  gloss: father
+  sources: [ringe-2006]
+- chain: [ine-pro, gem-pro]
+  pie: "*bʰréh₂tēr"
+  expect: "*brōþēr"
+  gloss: brother
+  sources: [ringe-2006]
+- chain: [ine-pro, gem-pro]
+  pie: "*dʰugh₂tḗr"
+  expect: "*duhtēr"
+  gloss: daughter
+  sources: [ringe-2006]
+- chain: [ine-pro, gem-pro]
+  pie: "*ḱm̥tóm"
+  expect: "*hundą"
+  gloss: hundred
+  sources: [ringe-2006]
+  known_gap: "final *-om > *-ą is an ending, not modelled"
+- chain: [ine-pro, gem-pro]
+  pie: "*wĺ̥kʷos"
+  expect: "*wulfaz"
+  gloss: wolf
+  sources: [ringe-2006]
+  known_gap: "*kʷ > *f here is irregular (dissimilation after *w)"
+- chain: [ine-pro, gem-pro]
+  pie: "*h₁ésti"
+  expect: "*isti"
+  gloss: is
+  sources: [ringe-2006]
+  known_gap: "raising of *e before *i in the next syllable"
+- chain: [ine-pro, iir-pro]
+  pie: "*ḱm̥tóm"
+  expect: "*ćatám"
+  gloss: hundred
+  sources: [mayrhofer-1986]
+- chain: [ine-pro, iir-pro]
+  pie: "*ph₂tḗr"
+  expect: "*pHtā́"
+  gloss: father
+  sources: [mayrhofer-1986]
+  known_gap: "PII keeps a laryngeal reflex in this lexeme"

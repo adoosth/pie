@@ -1,0 +1,23 @@
+stage:
+  name: Proto-Italic → Latin (candidate 4)
+  references:
+  - sihler-1995
+  - weiss-2009
+  - meiser-1998
+rules:
+- id: v_ei_cons
+  order: 213
+  name: '*ei > *ī'
+  match: e i
+  replace: ī
+  tier: established
+  description: The diphthong *ei monophthongises to *ī (*eizā > *īzā, *deiwos > *dīwos).
+  references:
+  - sihler-1995
+  - weiss-2009
+  examples:
+  - in: '*eizā'
+    out: '*īzā'
+    gloss: anger
+  env:
+    right: (b|d|g|k|p|t|m|n|l|r|s)

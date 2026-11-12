@@ -1,0 +1,138 @@
+# Persian (New Persian) in the Perso-Arabic script: what each letter says.
+#
+# This is not a sound law and not an orthographic rule.  It is the writing
+# system itself: the relationship between a headword a text writes (خانه) and
+# the sounds a reader gives it (xāne).  Persian is written in an abjad: it
+# writes the consonants, the long vowels ā ī ū, and the two word-final short
+# vowels -a and -e (with ه), and it leaves the short vowels a e o (and short
+# i u) unwritten in the body of a word.  A spelling is therefore read only up
+# to its letters, and the matcher gives every sign one letter of the reading
+# in order, and lets an unwritten short vowel cost no sign.  Two leniencies
+# are the matcher's, not the script's and not this table's: length is folded
+# (ā and a are one letter, so نام cannot tell nām from nam), and an unwritten
+# short vowel of the reading may pass a written sign unspent.  Both are
+# inherited from the Middle Persian table and are stated in the report; the
+# count they produce is kept in its own column and never in the historical
+# figure.
+#
+# The values are Thackston's letter inventory (An Introduction to Persian,
+# 1993, §1–3) and the phoneme correspondences of Windfuhr (1979) and the
+# Iranian Languages handbook (2009).  The Arabic letters that Persian keeps for
+# loans (ث ص ض ط ظ ح ذ ع) write the same sounds as their Persian counterparts,
+# so a sign may stand for more than one phoneme's letter: the table records
+# what the script distinguishes, not what the language does.  Length is
+# writing, not a letter, so the matcher folds ā/ī/ū to a/i/u; a sign's
+# `sounds` are therefore written in that folded alphabet, while `value` keeps
+# the dictionary's transliteration for the page.
+#
+# Two limits are stated rather than papered over.  A written letter is never
+# silent here: the و of خواب is read /w/ (classical xwāb) and its loss in the
+# modern /xāb/ is a sound change (pal__fa xw_to_x_initial), so a reading with
+# no /w/ does not fit the spelling — the correct spelling is still produced
+# from the phonemic xwāb, which is the direction the spelling layer runs.  A
+# final -ow (نو now) writes one letter و for two segments and is likewise a
+# miss, not a licence to drop the glide.  The script layer's alphabet also
+# folds š/ž to s/z (the same fold the Middle Persian table undergoes), so it
+# cannot tell س from ش; matches are reported in their own column and audited,
+# never added to the historical figure.
+stage:
+  id: fa
+  name: Persian (New Persian), Perso-Arabic script
+  description: >
+    An abjad.  Consonants and the long vowels ā ī ū are written; the short
+    vowels a e o (and short i u) are left to the reader.  Word-initially a
+    vowel takes ا as its seat (and ā takes آ); word-finally -a and -e are
+    written ه.  The Arabic letters kept for loans write the same sounds as
+    their Persian counterparts, so the spelling underdetermines the phoneme
+    exactly as it underdetermines the short vowels.
+  references: [thackston-1993, windfuhr-2009]
+
+signs:
+  - {char: "ا", letter: "ALEF", value: "ā", sounds: ["ʾ", "a", "e", "i", "o", "u"], kind: abjad, note: "word-initial seat for any vowel; medial and final ā"}
+  - {char: "آ", letter: "ALEF_MADDA", value: "ā", sounds: ["a", "ʾ"], kind: abjad, note: "word-initial ā"}
+  - {char: "ب", letter: "BE", value: "b", sounds: ["b"], kind: abjad}
+  - {char: "پ", letter: "PE", value: "p", sounds: ["p"], kind: abjad}
+  - {char: "ت", letter: "TE", value: "t", sounds: ["t"], kind: abjad}
+  - {char: "ث", letter: "THE", value: "s", sounds: ["s"], kind: abjad, note: "Arabic letter, read /s/"}
+  - {char: "ج", letter: "JIM", value: "ǰ", sounds: ["j"], kind: abjad}
+  - {char: "چ", letter: "CHE", value: "č", sounds: ["c"], kind: abjad}
+  - {char: "ح", letter: "HE_HET", value: "h", sounds: ["h"], kind: abjad, note: "Arabic letter, read /h/"}
+  - {char: "خ", letter: "KHE", value: "x", sounds: ["x"], kind: abjad}
+  - {char: "د", letter: "DAL", value: "d", sounds: ["d"], kind: abjad}
+  - {char: "ذ", letter: "DHAL", value: "z", sounds: ["z"], kind: abjad, note: "Arabic letter, read /z/"}
+  - {char: "ر", letter: "RE", value: "r", sounds: ["r"], kind: abjad}
+  - {char: "ز", letter: "ZE", value: "z", sounds: ["z"], kind: abjad}
+  - {char: "ژ", letter: "ZHE", value: "ž", sounds: ["z"], kind: abjad}
+  - {char: "س", letter: "SIN", value: "s", sounds: ["s"], kind: abjad}
+  - {char: "ش", letter: "SHIN", value: "š", sounds: ["s"], kind: abjad}
+  - {char: "ص", letter: "SAD", value: "s", sounds: ["s"], kind: abjad, note: "Arabic letter, read /s/"}
+  - {char: "ض", letter: "DAD", value: "z", sounds: ["z"], kind: abjad, note: "Arabic letter, read /z/"}
+  - {char: "ط", letter: "TA", value: "t", sounds: ["t"], kind: abjad, note: "Arabic letter, read /t/"}
+  - {char: "ظ", letter: "ZA", value: "z", sounds: ["z"], kind: abjad, note: "Arabic letter, read /z/"}
+  - {char: "ع", letter: "AIN", value: "ʿ", sounds: ["ʾ"], kind: abjad}
+  - {char: "غ", letter: "GHAIN", value: "ɣ", sounds: ["ɣ"], kind: abjad}
+  - {char: "ف", letter: "FE", value: "f", sounds: ["f"], kind: abjad}
+  - {char: "ق", letter: "QAF", value: "q", sounds: ["ɣ", "q"], kind: abjad, note: "read /ɣ/ (and /q/ in some loans)"}
+  - {char: "ک", letter: "KAF", value: "k", sounds: ["k"], kind: abjad}
+  - {char: "گ", letter: "GAF", value: "g", sounds: ["g"], kind: abjad}
+  - {char: "ل", letter: "LAM", value: "l", sounds: ["l"], kind: abjad}
+  - {char: "م", letter: "MIM", value: "m", sounds: ["m"], kind: abjad}
+  - {char: "ن", letter: "NUN", value: "n", sounds: ["n"], kind: abjad}
+  - {char: "و", letter: "WAW", value: "w", sounds: ["v", "u", "o", "w"], kind: abjad, note: "/v/; long ū; the glide /w/ of xwāb"}
+  - {char: "ه", letter: "HE", value: "h", sounds: ["h", "e"], kind: abjad, note: "/h/; word-final -e"}
+  - {char: "ی", letter: "YE", value: "y", sounds: ["j", "i", "e"], kind: abjad, note: "/j/; long ī; word-final -i"}
+  - {char: "ء", letter: "HAMZA", value: "ʾ", sounds: ["ʾ"], kind: abjad}
+  - {char: "أ", letter: "ALEF_HAMZA_ABOVE", value: "ʾa", sounds: ["ʾ"], kind: abjad, note: "hamza seat on alef"}
+  - {char: "ؤ", letter: "WAW_HAMZA", value: "ʾu", sounds: ["ʾ", "v", "u", "o"], kind: abjad, note: "hamza seat on waw"}
+  - {char: "ئ", letter: "YE_HAMZA", value: "ʾi", sounds: ["ʾ", "j", "i", "e"], kind: abjad, note: "hamza seat on ye"}
+  - {char: "ة", letter: "TE_MARBUTA", value: "h", sounds: ["h", "e"], kind: abjad, note: "Arabic letter, final -a/-e"}
+  - {char: "ى", letter: "ALEF_MAQSURA", value: "ā", sounds: ["a", "i"], kind: abjad, note: "Arabic letter, final -ā/-ī"}
+  - {char: "ي", letter: "ARABIC_YE", value: "y", sounds: ["j", "i", "e"], kind: abjad, note: "Arabic spelling of ی"}
+  - {char: "ك", letter: "ARABIC_KAF", value: "k", sounds: ["k"], kind: abjad, note: "Arabic spelling of ک"}
+
+conventions:
+  - id: short_vowels_unwritten
+    name: "a short vowel (a e o, and short i u) is not written in the body of a word"
+    kind: unwritten
+    note: >
+      The abjad writes no short vowel: پدر is pidar, سر sar, گوش gūš.  A
+      reading may supply any short vowel between the signs; the matcher uses
+      this and never invents one (Thackston 1993 §2).
+  - id: initial_vowel_seat
+    name: "a word-initial vowel is carried by alef (and ā by آ)"
+    kind: unwritten
+    note: >
+      ابر abr, اسم esm, امید omīd: the letter is the seat, the quality is the
+      reader's.  This is why ا may stand for any vowel in the table.
+  - id: final_short_vowel_written
+    name: "word-final -a and -e are written with ه"
+    kind: letter
+    note: >
+      خانه xāne, ده de, نه na: the place a short vowel is normally written.
+      The table writes the letter, but the alignment cannot *require* it: the
+      matcher's trailing-vowel rule (inherited from the syllabary) lets a
+      word-final short vowel stay unwritten, so خان is also accepted as a
+      reading of xāne.  That is a limit of the alignment, not a licence to
+      drop the letter when spelling.
+  - id: shadda_is_a_mark
+    name: "a shadda marks gemination and writes no letter of its own"
+    kind: unwritten
+    note: >
+      A geminate consonant is written once with the mark U+0651 over it
+      (مُدَرِّس).  The mark is not a sign: the alignment ignores combining
+      marks, so the doubled consonant costs one letter, not two
+      (Thackston 1993 §1).
+  - id: historic_waw
+    name: "خوا writes historic *xw-: و is read /w/ (xwāb) and is graphic in the modern /xāb/"
+    kind: historic
+    note: >
+      خواب xwāb, خواهر xwāhar, خواندن xwāndan keep the Middle Persian *w in
+      the spelling.  The modern Tehrani reading /xāb/ drops it by sound change,
+      not by a reading convention, so a reading with /w/ fits the signs and a
+      reading without it does not (Windfuhr 1979, 2009).
+  - id: tanwin_and_marks
+    name: "the Arabic tanwīn and vowel marks are marks, not letters"
+    kind: unwritten
+    note: >
+      A loan may be written with ً ٌ ٍ (tanwīn) or the short-vowel marks; none
+      of them writes a letter, and the alignment ignores them.

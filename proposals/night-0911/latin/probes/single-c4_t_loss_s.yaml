@@ -1,0 +1,24 @@
+stage:
+  name: Proto-Italic → Latin (candidate 4)
+  references:
+  - sihler-1995
+  - weiss-2009
+  - meiser-1998
+rules:
+- id: c4_t_loss_s
+  order: 411
+  name: '*-t- is lost before final *-s'
+  match: t
+  replace: ''
+  env:
+    right: 's #'
+  tier: established
+  description: A *t before the final *-s is lost, whatever precedes it (*pets > *pes,
+    *anats > *anas, *pōnts > *pōns).
+  references:
+  - sihler-1995
+  - weiss-2009
+  examples:
+  - in: '*pets'
+    out: '*pes'
+    gloss: foot

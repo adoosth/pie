@@ -1,0 +1,453 @@
+# Source languages outside the Indo-European family.
+#
+# Membership in this file is the classifier's only test (src/pie/loans.py): a
+# language listed here is a non-Indo-European donor, and a language absent from
+# it is read as Indo-European, because every node the model holds is
+# Indo-European (data/languages.yaml) and the corpus records no other family
+# outside this list.  Each entry names the family, one line on why the language
+# is outside the family or how it reached the corpus, and two to four recorded
+# loans with the source form beside the attested target word.
+
+sources:
+  ar:
+    name: Arabic
+    family: Semitic
+    note: Afro-Asiatic; the largest non-Indo-European donor to Persian, Turkish, Spanish and English.
+    examples:
+      - {source: "إِمَام", target: "fa:امام"}
+      - {source: "كِتَاب", target: "fa:کتاب"}
+      - {source: "سَلَام", target: "fa:سلام"}
+
+  he:
+    name: Hebrew
+    family: Semitic
+    note: Afro-Asiatic; religious and scholarly vocabulary reached Europe through Greek and Latin but the donor is Hebrew.
+    examples:
+      - {source: "שָׁלוֹם", target: "en:shalom"}
+      - {source: "שַׁבָּת", target: "de:Sabbat"}
+      - {source: "קַיִן", target: "ang:Cain"}
+
+  hbo:
+    name: Biblical Hebrew
+    family: Semitic
+    note: The Hebrew of the Hebrew Bible, recorded under its own code; the same family as he.
+    examples:
+      - {source: "שִׁמְעוֹן", target: "ang:Symon"}
+      - {source: "צֹעַר", target: "ang:Segor"}
+      - {source: "אֲמֹרִי", target: "ang:amorreisc"}
+
+  sem-pro:
+    name: Proto-Semitic
+    family: Semitic
+    note: Reconstructed ancestor of the Semitic languages; a loan or letter name whose recorded source is the proto-form is still outside the family.
+    examples:
+      - {source: "*bayt-", target: "en:beth"}
+      - {source: "*ʿayn-", target: "en:ayin"}
+      - {source: "*malk-", target: "en:Moloch"}
+
+  am:
+    name: Amharic
+    family: Semitic
+    note: Afro-Asiatic, Ethiopian Semitic; place names and church vocabulary.
+    examples:
+      - {source: "አዲስ አበባ", target: "de:Addis Abeba"}
+      - {source: "አቡነ", target: "en:abuna"}
+
+  phn:
+    name: Phoenician
+    family: Semitic
+    note: Canaanite Semitic; the alphabet names and the god-name Baal entered Greek and Latin from it.
+    examples:
+      - {source: "𐤁𐤏𐤋", target: "en:Baal"}
+      - {source: "𐤌𐤌", target: "en:mem"}
+      - {source: "𐤃𐤋𐤕", target: "en:dalet"}
+
+  arc:
+    name: Aramaic
+    family: Semitic
+    note: Northwest Semitic; the everyday language of the Near East beside Hebrew, and a donor through Greek, Latin and Arabic.
+    examples:
+      - {source: "אבא", target: "en:abba"}
+      - {source: "תגא", target: "en:tag"}
+      - {source: "מנא תקל", target: "de:Menetekel"}
+
+  syc:
+    name: Classical Syriac
+    family: Semitic
+    note: The Aramaic of Edessa, recorded under its own code; liturgical and scholarly loans.
+    examples:
+      - {source: "ܩܘܪܒܢܐ", target: "en:Qurbana"}
+      - {source: "ܡܐܢܝ", target: "en:Mani"}
+
+  xpu:
+    name: Punic
+    family: Semitic
+    note: The Phoenician of Carthage, recorded under its own code; Canaanite names and letters reached Latin and Greek through it.
+    examples:
+      - {source: "𐤇𐤍𐤁𐤏𐤋", target: "ang:Hannibal"}
+      - {source: "𐤁𐤓𐤒", target: "en:Barca"}
+
+  akk:
+    name: Akkadian
+    family: Semitic
+    note: East Semitic, the oldest recorded Semitic language; cultural loans reached Europe through Hebrew, Aramaic and Greek.
+    examples:
+      - {source: "ziqqurratum", target: "en:ziggurat"}
+      - {source: "ziqqurratum", target: "de:Zikkurat"}
+
+  egy:
+    name: Egyptian
+    family: Afro-Asiatic (Egyptian)
+    note: The Egyptian branch of Afro-Asiatic, with no close relative inside or outside the family.
+    examples:
+      - {source: "bꜣ", target: "en:ba"}
+      - {source: "nwt", target: "de:Nut"}
+
+  tr:
+    name: Turkish
+    family: Turkic
+    note: Turkic; Ottoman and modern Turkish supplied Persian, Arabic, Greek and the European languages with everyday and culinary vocabulary.
+    examples:
+      - {source: "döner", target: "de:Döner"}
+      - {source: "baba", target: "de:baba"}
+      - {source: "yarak", target: "de:yarak"}
+
+  ota:
+    name: Ottoman Turkish
+    family: Turkic
+    note: The Turkic written language of the Ottoman Empire, recorded under its own code; the usual route for Turkic loans into Persian, Arabic and Greek.
+    examples:
+      - {source: "حرم", target: "de:Harem"}
+      - {source: "آذربایجان", target: "de:Aserbaidschan"}
+
+  az:
+    name: Azerbaijani
+    family: Turkic
+    note: Oghuz Turkic; names and food vocabulary.
+    examples:
+      - {source: "manat", target: "en:manat"}
+      - {source: "piti", target: "en:piti"}
+
+  ug:
+    name: Uyghur
+    family: Turkic
+    note: Karluk Turkic; the ethnonym and its derivatives.
+    examples:
+      - {source: "ئۇيغۇر", target: "en:Uyghur"}
+      - {source: "تەڭرىتاغ", target: "en:Tian Shan"}
+      - {source: "مۇقام", target: "en:muqam"}
+
+  trk-pro:
+    name: Proto-Turkic
+    family: Turkic
+    note: Reconstructed ancestor of the Turkic languages; the recorded source of a few early loans into Slavic and English.
+    examples:
+      - {source: "*bēg", target: "en:beg"}
+      - {source: "*sï(y)n", target: "chu:сꙑнъ"}
+      - {source: "*kēp", target: "chu:капь"}
+
+  sux:
+    name: Sumerian
+    family: Sumerian (isolate)
+    note: A language isolate with no demonstrated relative; the oldest written language of Mesopotamia.
+    examples:
+      - {source: "𒀭𒀫𒌓", target: "en:Marduk"}
+      - {source: "𒋀𒀕𒆠", target: "en:Ur"}
+      - {source: "𒍑𒆪", target: "en:gala"}
+
+  zh:
+    name: Chinese
+    family: Sino-Tibetan
+    note: Sino-Tibetan; the written language behind most Chinese loans into European languages.
+    examples:
+      - {source: "叩頭", target: "de:Kotau"}
+      - {source: "李", target: "de:Li"}
+      - {source: "元", target: "de:Yuan"}
+
+  cmn:
+    name: Mandarin Chinese
+    family: Sino-Tibetan
+    note: The modern standard Chinese, recorded under its own code; place names and recent loans.
+    examples:
+      - {source: "北京", target: "de:Peking"}
+      - {source: "毛", target: "de:Mao"}
+
+  yue:
+    name: Cantonese
+    family: Sino-Tibetan
+    note: Yue Chinese; food and place vocabulary reached English through Cantonese, not Mandarin.
+    examples:
+      - {source: "香港", target: "en:Hong Kong"}
+      - {source: "分", target: "en:fan"}
+
+  nan-hbl:
+    name: Hokkien
+    family: Sino-Tibetan
+    note: Southern Min Chinese; the donor for several English loans usually mistaken for Mandarin.
+    examples:
+      - {source: "無", target: "en:bo"}
+      - {source: "啊", target: "en:ah"}
+
+  my:
+    name: Burmese
+    family: Sino-Tibetan
+    note: Lolo-Burmese; country and place names.
+    examples:
+      - {source: "မြန်မာ", target: "en:Myanmar"}
+      - {source: "ဗမာ", target: "en:Burma"}
+
+  bo:
+    name: Tibetan
+    family: Sino-Tibetan
+    note: Bodish; Buddhist vocabulary entered European languages through Mongolian, Sanskrit and Chinese.
+    examples:
+      - {source: "བླ་མ", target: "de:Lama"}
+      - {source: "བོན", target: "de:Bön"}
+
+  ja:
+    name: Japanese
+    family: Japonic
+    note: Japonic, with no demonstrated genetic link to any other family; a large recent donor to English and German.
+    examples:
+      - {source: "盆栽", target: "de:Bonsai"}
+      - {source: "布団", target: "de:Futon"}
+      - {source: "アニメ", target: "de:Anime"}
+
+  ko:
+    name: Korean
+    family: Koreanic
+    note: Koreanic, a family with no demonstrated relative; place names and culture vocabulary.
+    examples:
+      - {source: "김치", target: "de:Kimchi"}
+      - {source: "서울", target: "de:Seoul"}
+      - {source: "평양", target: "de:Pjöngjang"}
+
+  hu:
+    name: Hungarian
+    family: Uralic
+    note: Uralic, not Indo-European; German borrowed a cluster of everyday and culinary words from it.
+    examples:
+      - {source: "kocsi", target: "de:Kutsche"}
+      - {source: "gulyás", target: "de:Gulasch"}
+      - {source: "paprika", target: "de:Paprika"}
+
+  fi:
+    name: Finnish
+    family: Uralic
+    note: Uralic, not Indo-European; the sauna and the national epic are the familiar loans.
+    examples:
+      - {source: "sauna", target: "de:Sauna"}
+      - {source: "Kalevala", target: "de:Kalevala"}
+      - {source: "kainulaiset", target: "ang:Cwenas"}
+
+  et:
+    name: Estonian
+    family: Uralic
+    note: Uralic, closely related to Finnish; place names are the recorded loans.
+    examples:
+      - {source: "Pärnu", target: "de:Pernau"}
+      - {source: "Laiuse", target: "de:Lais"}
+
+  ber:
+    name: Berber
+    family: Berber (Afro-Asiatic)
+    note: The Berber branch of Afro-Asiatic; its loans reach Europe through Arabic, and couscous is the best-known case.
+    examples:
+      - {source: "seksu", target: "en:couscous"}
+      - {source: "agadir", target: "en:Agadir"}
+
+  shi:
+    name: Tashelhit
+    family: Berber (Afro-Asiatic)
+    note: A Berber language of southern Morocco, recorded under its own code; Agadir and a few animal names are its loans.
+    examples:
+      - {source: "agadir", target: "en:Agadir"}
+      - {source: "udad", target: "en:aoudad"}
+      - {source: "agnaw", target: "en:Gnawa"}
+
+  kab:
+    name: Kabyle
+    family: Berber (Afro-Asiatic)
+    note: A Berber language of northern Algeria, recorded under its own code; touiza is its English loan.
+    examples:
+      - {source: "tiwizi", target: "en:touiza"}
+      - {source: "ɣer", target: "la:Tingis"}
+
+  rif:
+    name: Tarifit
+    family: Berber (Afro-Asiatic)
+    note: A Berber language of the Rif, recorded under its own code.
+    examples:
+      - {source: "tarifit", target: "en:Tarifit"}
+
+  tzm:
+    name: Central Atlas Tamazight
+    family: Berber (Afro-Asiatic)
+    note: A Berber language of the Atlas, recorded under its own code; several Moroccan place names.
+    examples:
+      - {source: "ⴰⵎⴽⵏⴰⵙ", target: "en:Meknes"}
+      - {source: "ⴰⵡⵔⴰⵙ", target: "en:Aurès"}
+
+  tmh:
+    name: Tamasheq
+    family: Berber (Afro-Asiatic)
+    note: The Tuareg Berber of the Sahara, recorded under its own code.
+    examples:
+      - {source: "ⴰⵎⵏⵓⴽⴰⵍ", target: "en:amenukal"}
+
+  ka:
+    name: Georgian
+    family: Kartvelian
+    note: Kartvelian, a family of the Caucasus with no demonstrated link to Indo-European.
+    examples:
+      - {source: "სუფრა", target: "el:σούπρα"}
+      - {source: "ალაზანი", target: "de:Alasani"}
+
+  eu:
+    name: Basque
+    family: Basque (isolate)
+    note: A language isolate in the Pyrenees, surrounded by Indo-European and related to none of it.
+    examples:
+      - {source: "Ziloeta", target: "en:silhouette"}
+      - {source: "buru", target: "en:Burin"}
+
+  ms:
+    name: Malay
+    family: Austronesian
+    note: Austronesian; the trade language of Southeast Asia and the source of many English loans.
+    examples:
+      - {source: "agar", target: "de:Agar"}
+      - {source: "Kuala Lumpur", target: "de:Kuala Lumpur"}
+
+  id:
+    name: Indonesian
+    family: Austronesian
+    note: Austronesian, the standardized variety of Malay; recorded under its own code.
+    examples:
+      - {source: "tempe", target: "de:Tempeh"}
+      - {source: "anoa", target: "en:anoa"}
+
+  mi:
+    name: Maori
+    family: Austronesian
+    note: Polynesian, Austronesian; the donor for kiwi and other New Zealand vocabulary.
+    examples:
+      - {source: "kiwi", target: "en:kiwi"}
+      - {source: "tutū", target: "en:tutu"}
+
+  tl:
+    name: Tagalog
+    family: Austronesian
+    note: Philippine Austronesian; food and kinship loans into English.
+    examples:
+      - {source: "tuba", target: "en:tuba"}
+      - {source: "ate", target: "en:ate"}
+
+  haw:
+    name: Hawaiian
+    family: Austronesian
+    note: Polynesian, Austronesian; aloha and kanaka are the familiar loans.
+    examples:
+      - {source: "aloha", target: "en:aloha"}
+      - {source: "kanaka", target: "de:Kanake"}
+
+  ceb:
+    name: Cebuano
+    family: Austronesian
+    note: Philippine Austronesian; the donor for dugong.
+    examples:
+      - {source: "dugong", target: "de:Dugong"}
+      - {source: "keso", target: "en:keso"}
+
+  sw:
+    name: Swahili
+    family: Bantu (Niger-Congo)
+    note: Bantu, Niger-Congo; the lingua franca of East Africa and the donor for a small English set.
+    examples:
+      - {source: "Kiswahili", target: "de:Kisuaheli"}
+      - {source: "shamba", target: "de:Schamba"}
+
+  yo:
+    name: Yoruba
+    family: Niger-Congo
+    note: Volta-Niger, Niger-Congo; food and personal names entered English through the Atlantic trade.
+    examples:
+      - {source: "dòdò", target: "en:dodo"}
+      - {source: "ayò", target: "en:ayo"}
+
+  nah:
+    name: Nahuatl
+    family: Uto-Aztecan
+    note: Uto-Aztecan; the language of the Aztec world and the donor for a cluster of Spanish and English words.
+    examples:
+      - {source: "tzapocuahuitl", target: "en:sapodilla"}
+      - {source: "zacatecah", target: "en:Zacatecas"}
+
+  nci:
+    name: Classical Nahuatl
+    family: Uto-Aztecan
+    note: The sixteenth-century Nahuatl recorded under its own code; axolotl and atlatl are the familiar loans.
+    examples:
+      - {source: "āxōlōtl", target: "de:Axolotl"}
+      - {source: "ahtlatl", target: "de:Atlatl"}
+
+  qu:
+    name: Quechua
+    family: Quechuan
+    note: Quechuan, the language family of the Inca empire; quinoa and cocaine are its best-known loans.
+    examples:
+      - {source: "kinwa", target: "de:Quinoa"}
+      - {source: "kuka", target: "en:cocaine"}
+
+  ta:
+    name: Tamil
+    family: Dravidian
+    note: Dravidian, the family of southern India and Sri Lanka, unrelated to Indo-European.
+    examples:
+      - {source: "காசு", target: "en:cash"}
+      - {source: "தமிழ்", target: "en:Tamil"}
+
+  te:
+    name: Telugu
+    family: Dravidian
+    note: South-Central Dravidian; bandicoot is the familiar loan.
+    examples:
+      - {source: "పందికొక్కు", target: "en:bandicoot"}
+
+  dra-pro:
+    name: Proto-Dravidian
+    family: Dravidian
+    note: Reconstructed ancestor of the Dravidian languages; a recorded substrate source in Sanskrit.
+    examples:
+      - {source: "*paẓam", target: "sa:फल"}
+      - {source: "*ām", target: "sa:ॐ"}
+
+  mn:
+    name: Mongolian
+    family: Mongolic
+    note: Mongolic; administrative and animal vocabulary reached Persian, Turkic and Russian from it.
+    examples:
+      - {source: "сум", target: "en:sum"}
+      - {source: "мануул", target: "de:Manul"}
+
+  vi:
+    name: Vietnamese
+    family: Austroasiatic
+    note: Vietic, Austroasiatic; place and country names.
+    examples:
+      - {source: "Việt Nam", target: "de:Vietnam"}
+      - {source: "Hà Nội", target: "de:Hanoi"}
+
+  km:
+    name: Khmer
+    family: Austroasiatic
+    note: Khmer, Austroasiatic; the ethnonym and its derivatives.
+    examples:
+      - {source: "ខ្មែរ", target: "en:Khmer"}
+
+  th:
+    name: Thai
+    family: Kra-Dai
+    note: Kra-Dai, a family of mainland Southeast Asia unconnected to Sino-Tibetan.
+    examples:
+      - {source: "ไทย", target: "en:Thai"}

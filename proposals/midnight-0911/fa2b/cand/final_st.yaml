@@ -1,0 +1,16 @@
+stage: {source: pal, target: fa}
+rules:
+  - id: final_st_to_s
+    order: 85
+    name: "MP final *-st > NP -s"
+    match: "s t"
+    replace: s
+    env: {right: "#"}
+    tier: proposed
+    description: >
+      A word-final *-st loses the stop: MP parwast > NP parvās.  The
+      environment is the word end; the corpus has no counter-example that
+      matches today.
+    references: [sadeghi-1978]
+    examples:
+      - {in: "parwast", out: "parwas", gloss: "(NP parvās)"}

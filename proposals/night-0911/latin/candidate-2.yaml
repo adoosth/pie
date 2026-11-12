@@ -1,0 +1,46 @@
+stage:
+  name: Proto-Italic → Latin (candidate 2)
+  references: [sihler-1995, weiss-2009, meiser-1998]
+rules:
+  - id: c2_final_s_to_r
+    order: 131
+    name: "Final *-s > -r after a vowel in a polysyllable"
+    match: s
+    replace: r
+    env: {left: "V C V", right: "#"}
+    tier: established
+    description: "In words of more than one syllable final *-s becomes -r after a vowel (honōs > honor, kelōs > kelōr), while monosyllables keep it (flōs, mōs)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*kelōs", out: "*kelōr", gloss: "colour"}
+  - id: c2_oi_to_u
+    order: 221
+    name: "*oi > *ū before a consonant"
+    match: o i
+    replace: ū
+    tier: established
+    description: "The diphthong *oi monophthongises to *ū (*oinos > ūnos)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*oinos", out: "*ūnos", gloss: "one"}
+  - id: c2_ai_to_ae
+    order: 222
+    name: "*ai > *ae"
+    match: a i
+    replace: ae
+    tier: established
+    description: "The diphthong *ai becomes *ae (*prai > prae)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*prai", out: "*prae", gloss: "before"}
+  - id: c2_e_to_o_l
+    order: 310
+    name: "*e > *o before dark *l"
+    match: e
+    replace: o
+    env: {right: "l (C|a|o|u)"}
+    tier: established
+    description: "Short *e becomes *o before a velarised *l (*kelōs > kolōs, *welō > wolō)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*kelōs", out: "*kolōs", gloss: "colour"}

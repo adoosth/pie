@@ -1,0 +1,26 @@
+# Candidate for ira-pro -> ave, night 0911 (Avestan worker).  REJECTED.
+# Claim: the Avestan -ar stems are cited with the short -ar (brātar-, θrātar-).
+# Measured 2026-11-09, replacing final_ar_to_a (which it cannot follow: both sit
+# at order 65 and the existing law deletes the r first):
+#   +1 counted word (𐬠𐬭𐬁𐬙𐬀𐬭, brātar), 0 lost.
+# Rejected because the short -ar of the stem is not a sound change: the
+# nominative is brāta (which final_ar_to_a already derives), and the stem form is
+# the dictionary's citation.  A law written to win one word by citing the
+# paradigm is the veto of docs/REVIEW.md question 4.  Kept with its number.
+stage:
+  name: Proto-Iranian → Avestan (candidate, final *-ār to -ar)
+rules:
+  - id: final_ar_to_ar
+    order: 65
+    tier: proposed
+    name: "Final *-ār > Av. -ar (citation form of the -ar stems)"
+    match: "ā r"
+    replace: "a r"
+    env: {right: "#"}
+    description: >
+      Avestan dictionaries cite the -ar stems as brātar-, θrātar-, astar-,
+      with a short a and the r kept.
+    references: [hoffmann-forssman-2004]
+    examples:
+      - {in: "*brātār", out: "*brātar", gloss: "brother (Av. brātar-)"}
+      - {in: "*θrātār", out: "*θrātar", gloss: "creator (Av. θrātar-)"}

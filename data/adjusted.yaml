@@ -1,0 +1,11 @@
+# Words and laws that count as "fully explained with adjustments".
+#
+# A word may be listed here only when BOTH reports exist and the change is
+# approved: one report for the law or etymon that was adjusted
+# (reports/laws/) and one for the word that needed it (reports/words/).
+# `tools/coverage.py` reads this file; a word whose derivation uses a custom or
+# proposed rule but is not listed here stays "partially explained" with the
+# reason "needs approval of our modification", so nothing turns green quietly.
+schema: 1
+words: []
+rules: []

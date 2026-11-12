@@ -1,0 +1,410 @@
+stage:
+  name: Proto-Indo-Iranian → Proto-Iranian
+  date_start: -2000
+  date_end: -1000
+  description: >
+    The changes that separate Iranian from Indo-Aryan.  PII *s becomes *h except
+    before a stop, the voiced aspirates lose their aspiration while the
+    voiceless aspirates become the fricatives *f *θ *x, the palatal affricates
+    are retracted to the dental affricates *c [ts] and *j [dz], *p and *t
+    become *f and *θ before a following sonorant (*prá > *frá, *putrá- >
+    *puθrá-), *k becomes *x before a following consonant, and *l merges with
+    *r.  Laryngeal outcomes and the vowel mergers belong to the
+    Proto-Indo-European → Proto-Indo-Iranian stage and are not repeated here.
+  references: [hoffmann-forssman-2004, skjaervo-2009, mayrhofer-1986, beekes-2011]
+
+rules:
+  # ---- voiced aspirates ----------------------------------------------------
+  - id: deaspirate_bh
+    order: 100
+    name: "PII *bʰ > PIr *b"
+    match: bʰ
+    replace: b
+    description: >
+      Iranian merges the voiced aspirates with the plain voiced stops; the
+      aspiration is lost and the voicing kept (Avestan and Old Persian b, d, g).
+    references: [hoffmann-forssman-2004, beekes-2011]
+    examples:
+      - {in: "*bʰárati", out: "*bárati", gloss: "carries"}
+
+  - id: deaspirate_dh
+    order: 101
+    name: "PII *dʰ > PIr *d"
+    match: dʰ
+    replace: d
+    references: [hoffmann-forssman-2004]
+    examples:
+      - {in: "*dʰarati", out: "*darati", gloss: "holds"}
+
+  - id: deaspirate_gh
+    order: 102
+    name: "PII *gʰ > PIr *g"
+    match: gʰ
+    replace: g
+    references: [hoffmann-forssman-2004]
+    examples:
+      - {in: "*gʰarmáh", out: "*garmáh", gloss: "warm"}
+
+  - id: deaspirate_palatal
+    order: 103
+    tier: established
+    name: "PII *ȷ́ʰ > PIr *ȷ́ — the palatal aspirate loses its aspiration"
+    match: "ʰ"
+    replace: ""
+    env: {left: "(ȷ́|ǰ|ž)"}
+    description: >
+      Iranian loses the aspiration of the voiced aspirates while keeping the
+      voice (the bʰ dʰ gʰ laws above); the palatal member of the series follows
+      the same law, but its segment is written with the aspiration as a token of
+      its own rather than fused into one (``ȷ́ ʰ``, whereas *bʰ is a single
+      token).  The law therefore deletes the mark and leaves the segment alone.
+      The corpus writes the aspirated segment three ways — ȷ́ʰ in 49 forms, ǰʰ in
+      12 and žʰ in 5 — and all three lose the mark in Proto-Iranian (PIr *jágnat
+      'slew', *θanǰáyati 'pulls', *wábžah 'wasp'), so the environment names the
+      three spellings instead of deciding which segment the author meant.
+      It must not touch the aspiration that is fused into a stop token
+      (*dʰárati is deaspirate_dh's business) or the laryngeal *H, which is not
+      an aspiration mark at all.
+    references: [hoffmann-forssman-2004]
+    examples:
+      - {in: "*ȷ́ʰimás", out: "*ȷ́imás", gloss: "winter"}
+      - {in: "*ǰʰatráH", out: "*ǰatráH", gloss: "poison (PIr *ǰaθráH)"}
+      - {in: "*tʰanǰʰáyati", out: "*tʰanǰáyati", gloss: "pulls, weighs down"}
+      - {in: "*Háǰʰiš", out: "*Háǰiš", gloss: "snake"}
+      - {in: "*dʰárati", out: "*dʰárati", gloss: "holds — *dʰ is one token, not this law's"}
+
+  # ---- sibilant weakening --------------------------------------------------
+  - id: ps_to_fsh
+    order: 106
+    name: "PII *ps > PIr *fš"
+    match: "p s"
+    replace: "f š"
+    description: >
+      The cluster *ps is assimilated to *fš (PII *Hā́ps 'water' > PIr *Hā́fš);
+      the voiced counterpart *bz > *βž is not modelled.
+    references: [hoffmann-forssman-2004]
+    examples:
+      - {in: "*Hā́ps", out: "*Hā́fš", gloss: "water (nom. sg.)"}
+
+  - id: palatal_plus_sibilant
+    order: 107
+    name: "PII *ćš > PIr *š"
+    match: "ć š"
+    replace: š
+    description: >
+      An affricate plus a sibilant reduces to the sibilant (PII *Hŕ̥ćšas
+      'bear' > PIr *Hŕ̥šah, *čáćšma 'eye' > PIr *čášma).
+    references: [hoffmann-forssman-2004]
+    examples:
+      - {in: "*Hŕ̥ćšas", out: "*Hŕ̥šas", gloss: "bear"}
+
+  - id: ts_to_c
+    order: 108
+    tier: established
+    name: "PII *ts > PIr *c [ts]"
+    match: "t s"
+    replace: c
+    description: >
+      The dental cluster *ts merges with the Proto-Iranian reflex of PII *ć:
+      PII *matsya- 'fish' is PIr *macya-, since the two were identical in
+      Iranian (Wikipedia, Proto-Iranian: the *ts of *matsya- has merged to *c).
+      The rule runs before *s > *h, so the *s of the cluster is not taken for
+      the later sibilant.
+    references: [hoffmann-forssman-2004, mayrhofer-1986]
+    examples:
+      - {in: "*mátsyas", out: "*mácyas", gloss: "fish (PIr *macya-)"}
+
+  - id: tt_to_st
+    order: 109
+    tier: established
+    name: "PII *-tt- (> *tˢt) > PIr *-st-"
+    match: "t ˢ"
+    replace: "s"
+    env: {right: t}
+    description: >
+      A dental stop plus *t, which Proto-Indo-Iranian already writes as an
+      affricate (*tˢt, e.g. *winátˢti from PIE *wi-né-d-ti, *Háwāytˢt from
+      *wḗyd-s), becomes PIr *-st-: the affricate loses its stop before the
+      following *t and the cluster surfaces as a sibilant plus *t.  This is
+      the change that separates the two branches in the participle and the
+      3rd singular — Avestan vista- 'known, found' against Sanskrit vittá-,
+      both from PIE *wid-tó- (Hoffmann & Forssman 2004, Lautlehre, on *-tt- >
+      *-st-; Mayrhofer 1986 on the same correspondence).  The law matches the
+      affricated spelling only, and only before *t: a plain geminate *tt that
+      the record writes as two *t (PII *kúttas, PIr *kútah) is not touched,
+      and neither is a *tˢ that another segment follows.  It runs before
+      s_to_h so that the *s it writes is created after that law's chance to
+      turn it into *h; the *s stands before *t anyway, which s_to_h keeps.
+    references: [hoffmann-forssman-2004, mayrhofer-1986]
+    notes: >
+      Ablation (2026-11-09, tools/whatif.py --to ira-pro): dropping the rule
+      costs exactly 2 words (*winásti, *Háwāyst) and gains none, at every
+      instant it was measured.  The absolute base moved between runs (199 ->
+      204) because the files on either side of this transition were being
+      edited by other workers the same night; the +2/0 is the law's own.
+    examples:
+      - {in: "*winátˢti", out: "*winásti", gloss: "finds (Av. vista- : Skt. vittá-)"}
+      - {in: "*Háwāytˢt", out: "*Háwāyst", gloss: "recognised (s-aorist of *weyd- 'see', PIE *wḗyd-s-t)"}
+      - {in: "*kúttas", out: "*kúttas", gloss: "short — a plain geminate *tt, not this law's"}
+
+  - id: s_to_h
+    order: 110
+    name: "PII *s > PIr *h (except before a stop)"
+    match: s
+    replace: h
+    env: {right: "ˈ? !STOP"}
+    description: >
+      Iranian *s becomes *h before vowels, glides, nasals and liquids, but is
+      kept before a stop (PIr *stā-, *spas-, *skand-), where Avestan and Old
+      Persian also keep s.
+    references: [hoffmann-forssman-2004, skjaervo-2009]
+    examples:
+      - {in: "*ásuras", out: "*áhuras", gloss: "lord, god"}
+      - {in: "*sráwtas", out: "*hráwtas", gloss: "stream, flow"}
+
+  - id: final_s_to_h
+    order: 112
+    name: "Final *-Vs > PIr *-Vh"
+    match: s
+    replace: h
+    env: {left: (a|i|u|ā|ī|ū), right: "#"}
+    description: >
+      Word-final *s becomes *h: the source of the Old Persian nominative in -ah
+      and of the Avestan ending -ō.
+    references: [hoffmann-forssman-2004, kent-1953]
+    examples:
+      - {in: "*daiwás", out: "*daiwáh", gloss: "god, demon"}
+      - {in: "*Hušā́s", out: "*Hušā́h", gloss: "dawn"}
+
+  - id: ph_to_f
+    order: 113
+    name: "PII *pʰ > PIr *f"
+    match: pʰ
+    replace: f
+    description: >
+      The voiceless aspirate becomes the labial fricative, parallel to *tʰ > θ
+      and *kʰ > x (PIr *fáynah 'foam').
+    references: [hoffmann-forssman-2004]
+    examples:
+      - {in: "*pʰáynas", out: "*fáynas", gloss: "foam"}
+
+  - id: kh_to_x
+    order: 114
+    name: "PII *kʰ > PIr *x"
+    match: kʰ
+    replace: x
+    description: PIr *xáH 'well, spring', *sáxā 'friend' (Av. haxā, OP haxā-).
+    references: [hoffmann-forssman-2004]
+    examples:
+      - {in: "*sákʰā", out: "*sáxā", gloss: "friend, companion"}
+
+  - id: cluster_t_deaspiration
+    order: 115
+    name: "PII *tʰ > PIr *t after an obstruent"
+    match: tʰ
+    replace: t
+    env: {left: "(STOP|SIB)"}
+    description: >
+      In an obstruent cluster the aspiration of *tʰ is simply lost, without a
+      fricative outcome: *pr̥štʰás > *pr̥štás 'back', *sáktʰi > *sákti 'thigh'.
+    references: [hoffmann-forssman-2004]
+    examples:
+      - {in: "*pr̥štʰás", out: "*pr̥štás", gloss: "back, spine"}
+
+  - id: th_to_theta
+    order: 116
+    name: "PII *tʰ > PIr *θ"
+    match: tʰ
+    replace: θ
+    description: >
+      Outside an obstruent cluster the aspirated dental becomes the fricative θ
+      word-initially and after a vowel (PIr *θanǰáyati 'pulls', *Hrāθáh 'road').
+    references: [hoffmann-forssman-2004]
+    examples:
+      - {in: "*Hrātʰás", out: "*Hrāθás", gloss: "road, way"}
+
+  - id: laryngeal_after_t
+    order: 117
+    tier: proposed
+    name: "PII *H > PIr ∅ between *t and a vowel"
+    match: H
+    replace: ""
+    env: {left: t, right: "(a|ā|i|ī|u|ū|e|o)"}
+    description: >
+      The laryngeal that the superlative suffix *-ištHas carries between its *t
+      and its final vowel is lost in Proto-Iranian: PII *názdištHas > PIr
+      *názdištah, *káćištHas > *kácištah, *bʰárȷ́ʰištHas > *bárjištah (the
+      ordinary final *-as > *-ah then follows).  The environment is the pair of
+      segments either side of the *H — a *t before it and a vowel after it — so
+      the law cannot fire on a laryngeal at the end of a word (*HástʰH > PIr
+      *HástH keeps it) or on one that stands before a consonant (*dmáHnas >
+      *dmáHnah).  The record writes the same suffix with the *H in Proto-Indo-
+      Iranian (iir-pro *HwásištHas, *ćráyHištHas, *swáHdištHas, *maȷ́ʰištHas)
+      and without it in Proto-Iranian, which is what makes this a change of
+      this transition rather than of the stage above.
+    references: [hoffmann-forssman-2004]
+    notes: >
+      Measured (proposals/night-0911/piir2/measure.py --stage iir-pro --to
+      ira-pro --add): +3 exact words in ira-pro, nothing lost in ira-pro,
+      ave, peo, pal or fa.  Three etyma, one suffix: the evidence is for the
+      suffix's laryngeal, and the environment is stated as segments because
+      the corpus records nothing else of this shape.
+    examples:
+      - {in: "*názdištHas", out: "*názdištas", gloss: "nearest (PIr *názdištah)"}
+      - {in: "*káćištHas", out: "*káćištas", gloss: "smallest (PIr *kácištah)"}
+      - {in: "*bʰárȷ́ʰištHas", out: "*bʰárȷ́ʰištas", gloss: "highest (PIr *bárjištah)"}
+      - {in: "*HástʰH", out: "*HástʰH", gloss: "bone — the *H is word-final, not between *t and a vowel"}
+
+  # ---- clusters and palatals -----------------------------------------------
+  - id: p_to_f_before_sonorant_initial
+    order: 120
+    name: "PII *p > PIr *f before a sonorant word-initially"
+    match: p
+    replace: f
+    env: {left: "#", right: "(NAS|GLIDE|r|l|y)"}
+    description: "*pr- yields *fr- (Av. and OP fra- 'forth', *priHnáHti > *friHnáHti)."
+    references: [hoffmann-forssman-2004]
+    examples:
+      - {in: "*prá", out: "*frá", gloss: "forth, forward"}
+
+  - id: p_to_f_before_sonorant_after_vowel
+    order: 121
+    name: "PII *p > PIr *f before a sonorant after a vowel"
+    match: p
+    replace: f
+    env: {left: "(a|i|u|ā|ī|ū|e|o|ə|y)", right: "(NAS|GLIDE|r|l|y)"}
+    description: >
+      *kápras > *káfrah, *wapras > *wafrah, *Hr̥ȷ́ipyás > *Hr̥ȷ́ifyás.  A *p
+      that closes the preceding syllable is untouched (*tr̥prás > *tr̥práh).
+    references: [hoffmann-forssman-2004, skjaervo-2009]
+    examples:
+      - {in: "*kápras", out: "*káfras", gloss: "kid, young goat"}
+
+  - id: t_to_theta_before_sonorant_initial
+    order: 122
+    name: "PII *t > PIr *θ before a sonorant word-initially"
+    match: t
+    replace: θ
+    env: {left: "#", right: "(NAS|GLIDE|r|l|y)"}
+    description: >
+      *tr- > *θr- (*θráyah- 'three', Av. θri-, OP çi-); a *t before syllabic
+      *r̥ is untouched (*tr̥sćáti).
+    references: [hoffmann-forssman-2004, skjaervo-2009, mayrhofer-1986]
+    examples:
+      - {in: "*tráyah", out: "*θráyah", gloss: "three"}
+
+  - id: t_to_theta_before_sonorant
+    order: 123
+    name: "PII *t > PIr *θ before a sonorant after a vowel"
+    match: t
+    replace: θ
+    env: {left: "(a|i|u|ā|ī|ū|e|o|ə|y|GLIDE|H)", right: "(NAS|GLIDE|r|l|y)"}
+    description: >
+      Tautosyllabic *t before a sonorant becomes *θ in the onset of the next
+      syllable: *-tr- > *-θr- (*puθrá- 'son', *xšaθrá- 'rule'), *ty > *θy
+      (*haθyá- 'true', Av. haiθya-), *tw > *θw (*piθwá- 'master', Av.
+      piθwa-), *tn > *θn (*hapaθní-').  A *t before a stop (*ptā́r), after a
+      sibilant (*úštra- 'camel') or after a liquid (*mártya- 'mortal', Av.
+      marəta-) is untouched, because it is then in the coda.
+    references: [hoffmann-forssman-2004, skjaervo-2009, mayrhofer-1986]
+    examples:
+      - {in: "*putráh", out: "*puθráh", gloss: "son"}
+      - {in: "*satyás", out: "*saθyás", gloss: "true"}
+      - {in: "*pitwás", out: "*piθwás", gloss: "master"}
+
+  - id: c_from_palatal
+    order: 130
+    name: "PII *ć > PIr *c [ts]"
+    match: ć
+    replace: c
+    description: The voiceless palatal affricate is retracted to a dental affricate, written *c.
+    references: [hoffmann-forssman-2004, mayrhofer-1986]
+    examples:
+      - {in: "*ćatám", out: "*catám", gloss: "hundred"}
+
+  - id: j_from_palatal
+    order: 131
+    name: "PII *ȷ́ > PIr *j [dz]"
+    match: ȷ́
+    replace: j
+    references: [hoffmann-forssman-2004, mayrhofer-1986]
+    examples:
+      - {in: "*ȷ́ā́nu", out: "*jā́nu", gloss: "knee"}
+
+  - id: k_to_x_initial
+    order: 140
+    name: "PII *k > PIr *x word-initially before a consonant"
+    match: k
+    replace: x
+    env: {left: "#", right: "(STOP|NAS|SIB|GLIDE|r|l)"}
+    description: "*krátu- > *xratu-, *kšatrá- > *xšaθrá-."
+    references: [hoffmann-forssman-2004, skjaervo-2009]
+    examples:
+      - {in: "*krátuh", out: "*xrátuh", gloss: "intellect"}
+
+  - id: k_to_x_internal
+    order: 141
+    name: "PII *k > PIr *x before a consonant word-internally"
+    match: k
+    replace: x
+    env: {left: "!SIB", right: "(STOP|NAS|SIB|GLIDE|r|l)"}
+    description: >
+      Word-internally before a following consonant: *ćakrá- > *ćaxrá-,
+      *táwkma- > *táwxma-.  After a sibilant the stop is kept (PIr *skand-
+      'breaks'), and a syllabic resonant does not trigger the change because
+      *k is then a syllable coda (*yákr̥ 'liver', Av. yākarə), hence the literal
+      *r and *l in the context instead of the LIQ class.
+    references: [hoffmann-forssman-2004]
+    examples:
+      - {in: "*ćakráh", out: "*ćaxráh", gloss: "wheel"}
+
+  # ---- liquids -------------------------------------------------------------
+  - id: suffix_nah
+    order: 105
+    name: 'The adjective suffix *-nás: *daywás > *daywánas > *daywánah'
+    match: a s
+    replace: a n a s
+    env:
+      right: '#'
+    tier: formation
+    off_by_default: true
+    description: >
+      The adjective suffix Proto-Indo-Iranian *-nás (Wiktionary:
+      Reconstruction:Proto-Iranian/-nah, inherited from PII *-nás, itself from
+      PIE *-nós) forms adjectives and nouns from a stem. Persian دیوانه 'mad'
+      is Proto-Iranian *daywánah, which that page analyses as *daywá- 'demon'
+      plus *-nah; Middle Persian has dyw'nk' /dēwānag/. The law adds the PII
+      morpheme *-nás to the stem and leaves its final *s alone: the ordinary
+      change *-Vs > PIr *-Vh (final_s_to_h) then gives *-nah, so the suffix is
+      not spelled out a second time in this rule. Like the animal suffix
+      *-ka-, this is a formation, not a sound change: it adds a syllable, so it
+      is registered switched off and applies only to a word whose record says
+      it wears the suffix.
+    references: [wiktionary, hoffmann-forssman-2004]
+    examples:
+      - {in: daywˈas, out: daywˈanas, gloss: "demon + PII *-nás (PIr *daywánah, Persian دیوانه)"}
+  - id: l_to_r
+    order: 150
+    tier: established
+    name: "PII *l > PIr *r"
+    match: l
+    replace: r
+    description: >
+      Iranian merges *l with *r: PII *lawkáh 'light' is PIr *rawkáh, the form
+      behind Avestan raocah- against Sanskrit róka- (Hoffmann & Forssman 2004,
+      Lautlehre, on the merger of the liquids; Mayrhofer 1986; Beekes 2011 on
+      the Iranian outcome).  The law changes nothing else — a Proto-Iranian
+      *l that a record writes is a segment this file has no other account of,
+      and the *l > *r merger is not conditioned by any environment.
+    references: [hoffmann-forssman-2004, beekes-2011, mayrhofer-1986]
+    notes: >
+      Ablation (2026-11-09, tools/whatif.py --to ira-pro): carries 1 exact
+      word (*Hragúš), loses none.  Note for the integrator: the *earlier*
+      file ine-pro__iir-pro.yaml registers its own l_to_r at the
+      Proto-Indo-Iranian stage, so a word that enters at Proto-Indo-Iranian
+      has usually lost its *l before it reaches this transition; this rule
+      answers the words whose Proto-Indo-Iranian record still spells *l.
+    examples:
+      - {in: "*lawkáh", out: "*rawkáh", gloss: "light (Av. raocah- : Skt. róka-)"}
+      - {in: "*Hlagúš", out: "*Hragúš", gloss: "swift (corpus *Hlagʰúš after deaspirate_gh; Av. ragu-), the word this law carries"}
+

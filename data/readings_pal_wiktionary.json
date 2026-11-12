@@ -1,0 +1,524 @@
+{
+ "-kʾn'": {
+  "reading": "-gān",
+  "source": "en.wiktionary.org, Middle Persian \"-kʾn'\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "-𐫁𐫏𐫅": {
+  "reading": "-bed",
+  "source": "en.wiktionary.org, Middle Persian \"-𐫁𐫏𐫅\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "-𐭮𐭲𐭭": {
+  "reading": "-estān",
+  "source": "en.wiktionary.org, Middle Persian \"-𐭮𐭲𐭭\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "-𐭯𐭲": {
+  "reading": "-bed",
+  "source": "en.wiktionary.org, Middle Persian \"-𐭯𐭲\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "-𐭯𐭲𐭩": {
+  "reading": "-bed",
+  "source": "en.wiktionary.org, Middle Persian \"-𐭯𐭲𐭩\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "dywʾn'": {
+  "reading": "dīwān",
+  "source": "en.wiktionary.org, Middle Persian \"dywʾn'\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "kwʾt": {
+  "reading": "Kawād",
+  "source": "en.wiktionary.org, Middle Persian \"kwʾt\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "kʾlwʾn'": {
+  "reading": "kārawān",
+  "source": "en.wiktionary.org, Middle Persian \"kʾlwʾn'\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "kʾlwʾnyk'": {
+  "reading": "kārawānīg",
+  "source": "en.wiktionary.org, Middle Persian \"kʾlwʾnyk'\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "kʾpwl": {
+  "reading": "kābul",
+  "source": "en.wiktionary.org, Middle Persian \"kʾpwl\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "lpʾd-": {
+  "reading": "rubāy-",
+  "source": "en.wiktionary.org, Middle Persian \"lpʾd-\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "mlgʾlcʾn'": {
+  "reading": "margarzān",
+  "source": "en.wiktionary.org, Middle Persian \"mlgʾlcʾn'\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "nʾn": {
+  "reading": "nān",
+  "source": "en.wiktionary.org, Middle Persian \"nʾn\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "nʾn'": {
+  "reading": "nān",
+  "source": "en.wiktionary.org, Middle Persian \"nʾn'\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "nʿnpʿk": {
+  "reading": "nānbāg",
+  "source": "en.wiktionary.org, Middle Persian \"nʿnpʿk\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "pʾrsy": {
+  "reading": "Pārs",
+  "source": "en.wiktionary.org, Middle Persian \"pʾrsy\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "tʾc-": {
+  "reading": "tāz-",
+  "source": "en.wiktionary.org, Middle Persian \"tʾc-\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "wʾcʾlpt": {
+  "reading": "wāzārbed",
+  "source": "en.wiktionary.org, Middle Persian \"wʾcʾlpt\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "wʾčʾl": {
+  "reading": "wāzār",
+  "source": "en.wiktionary.org, Middle Persian \"wʾčʾl\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "wʾčʾlkʾn'": {
+  "reading": "wāzāragān",
+  "source": "en.wiktionary.org, Middle Persian \"wʾčʾlkʾn'\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "wʾčʾlpt": {
+  "reading": "wāzārbed",
+  "source": "en.wiktionary.org, Middle Persian \"wʾčʾlpt\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾnyr": {
+  "reading": "anēr-",
+  "source": "en.wiktionary.org, Middle Persian \"ʾnyr\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾnyrʾn": {
+  "reading": "anērān",
+  "source": "en.wiktionary.org, Middle Persian \"ʾnyrʾn\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾwd": {
+  "reading": "ud",
+  "source": "en.wiktionary.org, Middle Persian \"ʾwd\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾyrʾn": {
+  "reading": "ērān",
+  "source": "en.wiktionary.org, Middle Persian \"ʾyrʾn\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾyrʾnštry": {
+  "reading": "ērānšahr",
+  "source": "en.wiktionary.org, Middle Persian \"ʾyrʾnštry\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫀𐫍𐫡𐫖𐫗": {
+  "reading": "Ahreman",
+  "source": "en.wiktionary.org, Middle Persian \"𐫀𐫍𐫡𐫖𐫗\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫁𐫡𐫏𐫗𐫉": {
+  "reading": "brynz",
+  "source": "en.wiktionary.org, Middle Persian \"𐫁𐫡𐫏𐫗𐫉\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫅𐫏𐫇": {
+  "reading": "dēw",
+  "source": "en.wiktionary.org, Middle Persian \"𐫅𐫏𐫇\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫉𐫍𐫡": {
+  "reading": "zahr",
+  "source": "en.wiktionary.org, Middle Persian \"𐫉𐫍𐫡\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫉𐫡𐫅𐫇𐫢𐫤": {
+  "reading": "Zardušt",
+  "source": "en.wiktionary.org, Middle Persian \"𐫉𐫡𐫅𐫇𐫢𐫤\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫍𐫏𐫗𐫅𐫇𐫐": {
+  "reading": "hindūg",
+  "source": "en.wiktionary.org, Middle Persian \"𐫍𐫏𐫗𐫅𐫇𐫐\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫖𐫇𐫍𐫡": {
+  "reading": "muhr",
+  "source": "en.wiktionary.org, Middle Persian \"𐫖𐫇𐫍𐫡\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫖𐫇𐫡𐫇": {
+  "reading": "murw",
+  "source": "en.wiktionary.org, Middle Persian \"𐫖𐫇𐫡𐫇\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫖𐫏𐫍𐫡": {
+  "reading": "mihr",
+  "source": "en.wiktionary.org, Middle Persian \"𐫖𐫏𐫍𐫡\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫗𐫀𐫖": {
+  "reading": "nām",
+  "source": "en.wiktionary.org, Middle Persian \"𐫗𐫀𐫖\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫗𐫀𐫗": {
+  "reading": "nān",
+  "source": "en.wiktionary.org, Middle Persian \"𐫗𐫀𐫗\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫗𐫇𐫃": {
+  "reading": "nōg",
+  "source": "en.wiktionary.org, Middle Persian \"𐫗𐫇𐫃\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫗𐫏𐫢𐫀𐫗": {
+  "reading": "nīšān",
+  "source": "en.wiktionary.org, Middle Persian \"𐫗𐫏𐫢𐫀𐫗\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫗𐫖𐫏𐫍𐫐": {
+  "reading": "namak",
+  "source": "en.wiktionary.org, Middle Persian \"𐫗𐫖𐫏𐫍𐫐\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫙𐫏𐫇": {
+  "reading": "ēw",
+  "source": "en.wiktionary.org, Middle Persian \"𐫙𐫏𐫇\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫛𐫇𐫡": {
+  "reading": "purr",
+  "source": "en.wiktionary.org, Middle Persian \"𐫛𐫇𐫡\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫟𐫀𐫗𐫃": {
+  "reading": "xānag",
+  "source": "en.wiktionary.org, Middle Persian \"𐫟𐫀𐫗𐫃\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫢𐫃𐫡": {
+  "reading": "šagr",
+  "source": "en.wiktionary.org, Middle Persian \"𐫢𐫃𐫡\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐬱𐬖𐬀𐬮": {
+  "reading": "šaγāl",
+  "source": "en.wiktionary.org, Middle Persian \"𐬱𐬖𐬀𐬮\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭠𐭧𐭫𐭬𐭭𐭩": {
+  "reading": "Ahreman",
+  "source": "en.wiktionary.org, Middle Persian \"𐭠𐭧𐭫𐭬𐭭𐭩\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭠𐭩𐭥𐭠𐭭": {
+  "reading": "ērān",
+  "source": "en.wiktionary.org, Middle Persian \"𐭠𐭩𐭥𐭠𐭭\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭠𐭩𐭥𐭠𐭭𐭱𐭲𐭥𐭩": {
+  "reading": "ērānšahr",
+  "source": "en.wiktionary.org, Middle Persian \"𐭠𐭩𐭥𐭠𐭭𐭱𐭲𐭥𐭩\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭠𐭩𐭫": {
+  "reading": "ēr-",
+  "source": "en.wiktionary.org, Middle Persian \"𐭠𐭩𐭫\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭠𐭩𐭫𐭩": {
+  "reading": "ēr",
+  "source": "en.wiktionary.org, Middle Persian \"𐭠𐭩𐭫𐭩\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭠𐭬𐭠𐭫𐭪𐭫𐭩": {
+  "reading": "āmārgar",
+  "source": "en.wiktionary.org, Middle Persian \"𐭠𐭬𐭠𐭫𐭪𐭫𐭩\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭠𐭭𐭩𐭥": {
+  "reading": "anēr-",
+  "source": "en.wiktionary.org, Middle Persian \"𐭠𐭭𐭩𐭥\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭠𐭭𐭩𐭥𐭠𐭭": {
+  "reading": "anērān",
+  "source": "en.wiktionary.org, Middle Persian \"𐭠𐭭𐭩𐭥𐭠𐭭\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭠𐭭𐭩𐭥𐭠𐭭𐭱𐭲𐭥𐭩": {
+  "reading": "Anērānšahr",
+  "source": "en.wiktionary.org, Middle Persian \"𐭠𐭭𐭩𐭥𐭠𐭭𐭱𐭲𐭥𐭩\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭡𐭩𐭭": {
+  "reading": "andar",
+  "source": "en.wiktionary.org, Middle Persian \"𐭡𐭩𐭭\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭡𐭲𐭧𐭱𐭩": {
+  "reading": "badaxš",
+  "source": "en.wiktionary.org, Middle Persian \"𐭡𐭲𐭧𐭱𐭩\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭣𐭥𐭱𐭧𐭥𐭩": {
+  "reading": "dušox",
+  "source": "en.wiktionary.org, Middle Persian \"𐭣𐭥𐭱𐭧𐭥𐭩\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭥": {
+  "reading": "ud",
+  "source": "en.wiktionary.org, Middle Persian \"𐭥\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭥𐭠𐭰𐭠𐭫𐭯𐭲": {
+  "reading": "wāzārbed",
+  "source": "en.wiktionary.org, Middle Persian \"𐭥𐭠𐭰𐭠𐭫𐭯𐭲\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭥𐭫𐭤𐭱𐭠𐭭": {
+  "reading": "awēšān",
+  "source": "en.wiktionary.org, Middle Persian \"𐭥𐭫𐭤𐭱𐭠𐭭\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭦𐭥𐭦𐭭": {
+  "reading": "drahm",
+  "source": "en.wiktionary.org, Middle Persian \"𐭦𐭥𐭦𐭭\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭦𐭭𐭤": {
+  "reading": "ēn",
+  "source": "en.wiktionary.org, Middle Persian \"𐭦𐭭𐭤\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭧𐭫𐭥𐭬𐭠𐭣𐭩𐭪": {
+  "reading": "Hrōmāyīg",
+  "source": "en.wiktionary.org, Middle Persian \"𐭧𐭫𐭥𐭬𐭠𐭣𐭩𐭪\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭧𐭲": {
+  "reading": "agar",
+  "source": "en.wiktionary.org, Middle Persian \"𐭧𐭲\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭩𐭧𐭠": {
+  "reading": "īhā",
+  "source": "en.wiktionary.org, Middle Persian \"𐭩𐭧𐭠\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭪𐭥𐭠𐭲": {
+  "reading": "Kawād",
+  "source": "en.wiktionary.org, Middle Persian \"𐭪𐭥𐭠𐭲\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭪𐭫𐭲": {
+  "reading": "-kirt",
+  "source": "en.wiktionary.org, Middle Persian \"𐭪𐭫𐭲\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭫𐭠": {
+  "reading": "nē",
+  "source": "en.wiktionary.org, Middle Persian \"𐭫𐭠\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭫𐭧𐭬𐭠": {
+  "reading": "nān",
+  "source": "en.wiktionary.org, Middle Persian \"𐭫𐭧𐭬𐭠\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭫𐭭𐭤": {
+  "reading": "amāh",
+  "source": "en.wiktionary.org, Middle Persian \"𐭫𐭭𐭤\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭬𐭣𐭬": {
+  "reading": "abar",
+  "source": "en.wiktionary.org, Middle Persian \"𐭬𐭣𐭬\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭬𐭤": {
+  "reading": "čē",
+  "source": "en.wiktionary.org, Middle Persian \"𐭬𐭤\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭬𐭫𐭪𐭠": {
+  "reading": "šāh",
+  "source": "en.wiktionary.org, Middle Persian \"𐭬𐭫𐭪𐭠\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭬𐭫𐭪𐭠𐭭": {
+  "reading": "šāhān",
+  "source": "en.wiktionary.org, Middle Persian \"𐭬𐭫𐭪𐭠𐭭\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭬𐭫𐭪𐭠𐭭 𐭬𐭫𐭪𐭠": {
+  "reading": "šāhān šāh",
+  "source": "en.wiktionary.org, Middle Persian \"𐭬𐭫𐭪𐭠𐭭 𐭬𐭫𐭪𐭠\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭬𐭫𐭪𐭲𐭠": {
+  "reading": "bāmbišn",
+  "source": "en.wiktionary.org, Middle Persian \"𐭬𐭫𐭪𐭲𐭠\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭬𐭭": {
+  "reading": "az",
+  "source": "en.wiktionary.org, Middle Persian \"𐭬𐭭\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭬𐭭𐭥": {
+  "reading": "kē",
+  "source": "en.wiktionary.org, Middle Persian \"𐭬𐭭𐭥\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭭𐭠𐭭𐭯𐭠𐭪": {
+  "reading": "nānbāg",
+  "source": "en.wiktionary.org, Middle Persian \"𐭭𐭠𐭭𐭯𐭠𐭪\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭭𐭥𐭪𐭩": {
+  "reading": "nōg",
+  "source": "en.wiktionary.org, Middle Persian \"𐭭𐭥𐭪𐭩\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭮𐭯𐭠𐭧𐭯𐭲": {
+  "reading": "spāhbed",
+  "source": "en.wiktionary.org, Middle Persian \"𐭮𐭯𐭠𐭧𐭯𐭲\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭯𐭠𐭥𐭮𐭩": {
+  "reading": "Pārs",
+  "source": "en.wiktionary.org, Middle Persian \"𐭯𐭠𐭥𐭮𐭩\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭯𐭠𐭯𐭪𐭠𐭭": {
+  "reading": "Pābagān",
+  "source": "en.wiktionary.org, Middle Persian \"𐭯𐭠𐭯𐭪𐭠𐭭\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭯𐭥𐭭": {
+  "reading": "pad",
+  "source": "en.wiktionary.org, Middle Persian \"𐭯𐭥𐭭\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭯𐭪𐭥𐭥𐭩": {
+  "reading": "pakur",
+  "source": "en.wiktionary.org, Middle Persian \"𐭯𐭪𐭥𐭥𐭩\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭯𐭪𐭥𐭫": {
+  "reading": "pakur",
+  "source": "en.wiktionary.org, Middle Persian \"𐭯𐭪𐭥𐭫\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭱𐭭𐭲": {
+  "reading": "sāl",
+  "source": "en.wiktionary.org, Middle Persian \"𐭱𐭭𐭲\"",
+  "tier": "quoted",
+  "translit": ""
+ }
+}

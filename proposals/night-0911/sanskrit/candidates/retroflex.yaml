@@ -1,0 +1,28 @@
+rules:
+  - id: n_to_retroflex_after_ruki
+    order: 40
+    name: "n > ṇ after r, ṛ or ṣ (ruki)"
+    match: n
+    replace: ṇ
+    env: {left: "(r|r̥|ṣ)"}
+    references: [whitney-1889]
+    examples:
+      - {in: "*tr̥nám", out: "*tr̥ṇám", gloss: "grass (Skt tṛṇá-)"}
+  - id: t_to_retroflex_after_sh
+    order: 41
+    name: "t > ṭ after ṣ"
+    match: t
+    replace: ṭ
+    env: {left: "ṣ"}
+    references: [whitney-1889]
+    examples:
+      - {in: "*piṣṭás", out: "*piṣṭás", gloss: "ground (Skt piṣṭá-)"}
+  - id: th_to_retroflex_after_sh
+    order: 42
+    name: "th > ṭh after ṣ"
+    match: "t ʰ"
+    replace: "ṭ ʰ"
+    env: {left: "ṣ"}
+    references: [whitney-1889]
+    examples:
+      - {in: "*ṣṭʰā́nam", out: "*ṣṭʰā́nam", gloss: "standing-place (Skt ṣṭhāna-)"}

@@ -1,0 +1,22 @@
+stage:
+  name: Proto-West-Germanic notation
+  description: >
+    How the stage's forms are written.  Proto-West-Germanic is a reconstruction,
+    so "orthography" here means the notation the handbooks and the dictionary
+    use, not a spelling anyone wrote.  Only notation that is uniform in the
+    literature belongs here: a convention that varies between authors (final
+    endings, for instance) is left as a miss, because choosing one would be this
+    repo's editorial decision rather than a record.
+  references: [ringe-2017, braune-2004]
+
+rules:
+  - id: thorn
+    order: 10
+    name: "/θ/ is written ⟨þ⟩"
+    match: θ
+    replace: þ
+    tier: orthographic
+    description: "Germanic philology writes the voiceless dental fricative with thorn, both for Proto-Germanic and for Proto-West-Germanic (PGmc *þingą, PWGmc *þing); the phonemic layer's θ is the same segment."
+    references: [ringe-2017, braune-2004]
+    examples:
+      - {in: "θing", out: "þing"}

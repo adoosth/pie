@@ -1,0 +1,442 @@
+guard:
+  # The reading guard compares a phonemic form's consonant skeleton and vowel
+  # count with the dictionary's own IPA.  Persian writes its vowels in three
+  # systems at once — the laws' philological letters, the dictionary's IPA, and
+  # an abjad that omits the short ones — so the notation has to be folded
+  # before the guard compares segments rather than alphabets.  The table is
+  # applied to both sides and never rewrites a rule's output, exactly as the
+  # Sanskrit and Greek files do (docs/REVIEW.md).
+  equivalences:
+    # ی is the palatal approximant, IPA /j/ (Thackston 1993, §1-3; Windfuhr
+    # 2009, the Persian chapter's consonant inventory).  The laws write y for
+    # that segment, and the dictionaries transcribe it /j/.
+    y: j
+    # /ŋ/ is not a phoneme of Persian: it is the velar allophone of /n/ before
+    # a velar stop (Windfuhr 2009, Persian phonology).  The laws write the
+    # underlying n, the dictionary writes the surface ŋ, and the two are one
+    # segment.
+    ŋ: n
+    # Length first: the dictionary's /aː iː uː eː oː/ are the written long
+    # vowels, and the laws write them ā ī ū (ē/ō are raised to ī/ū upstream).
+    aː: ā
+    iː: ī
+    uː: ū
+    eː: ī
+    oː: ū
+    ɑː: ā
+    ɒː: ā
+    # Then the short vowels are dropped from *both* sides.  The Perso-Arabic
+    # abjad does not write them, so their number is not evidence about the
+    # spelling: درخت is written d-r-x-t and read /da.ˈraxt/ with an anaptyctic
+    # vowel the script never shows (Thackston 1993, §1-3).  A guard that
+    # compared short-vowel counts would refuse every word whose spoken form
+    # breaks an initial cluster, which is a fact about pronunciation, not about
+    # the letters.
+    a: ""
+    e: ""
+    o: ""
+    i: ""
+    u: ""
+    æ: ""
+    ɑ: ""
+    ɒ: ""
+    ɛ: ""
+    ɔ: ""
+    ɪ: ""
+    ʊ: ""
+    ə: ""
+    ɐ: ""
+
+stage:
+  name: Persian orthography
+  date_start: 800
+  date_end: null
+  description: >
+    The writing conventions of New Persian in the Perso-Arabic script, applied
+    to the phonemic output of the last sound-law stage (pal → fa).  The script
+    is an abjad: it writes consonants and the long vowels, and leaves the short
+    vowels /a e o/ unwritten, so most of this file is a letter table plus the
+    two positions where the script does write a short vowel — word-initially,
+    where a vowel needs a seat and is written with ا (alef), and word-finally,
+    where /-a/ and /-e/ are written ه.  A word whose recorded spelling chooses
+    a letter these phonemes do not derive (Arabic ظ ض ط ص for /z d t s/,
+    Arabic-initial أ إ, the silent و of خوا-) is left as a miss rather than
+    guessed, and a match is only counted when `spelling.plausible` says the
+    phonemes behind it fit the dictionary's own IPA.
+  references: [windfuhr-2009, sadeghi-1978]
+
+rules:
+  - id: drop_stress
+    order: 10
+    name: "Stress marks are not written"
+    match: "ˈ"
+    replace: ""
+    tier: orthographic
+    description: >
+      New Persian orthography writes no accent.  The pal → fa stage already
+      drops the accent token, so this rule only keeps a form that still carries
+      one from losing its vowels to it.
+    references: [windfuhr-2009]
+    examples:
+      - {in: "ˈnām", out: "نام", gloss: "name"}
+
+  - id: initial_long_a
+    order: 20
+    name: "Word-initial /ā/ is written ⟨آ⟩"
+    match: ā
+    replace: آ
+    env: {left: "#"}
+    tier: orthographic
+    description: >
+      The initial long vowel /ā/ is the one place where the alef carries a
+      madda: آب āb 'water', آسمان āsmān 'sky', آزād āzād 'free'.  Medial and
+      final /ā/ take the bare alef (rule long_a).
+    references: [windfuhr-2009, sadeghi-1978]
+    examples:
+      - {in: "āb", out: "آب", gloss: "water"}
+      - {in: "āsmān", out: "آسمان", gloss: "sky"}
+
+  - id: initial_long_i
+    order: 21
+    name: "Word-initial /ī/ is written ⟨ای⟩"
+    match: ī
+    replace: ای
+    env: {left: "#"}
+    tier: orthographic
+    description: >
+      A word cannot begin with the letter ی alone; the initial long /ī/ takes an
+      alef as its seat: ایران īrān 'Iran', ایمان īmān 'faith'.
+    references: [windfuhr-2009, sadeghi-1978]
+    examples:
+      - {in: "īrān", out: "ایران", gloss: "Iran"}
+
+  - id: initial_long_u
+    order: 22
+    name: "Word-initial /ū/ is written ⟨او⟩"
+    match: ū
+    replace: او
+    env: {left: "#"}
+    tier: orthographic
+    description: >
+      As with /ī/, an initial /ū/ needs the alef as its seat, because the bare
+      و would be read as a consonant: او ū 'he, she'.  Initial /ū/ is rare in
+      the native vocabulary outside this word and the pronouns.
+    references: [windfuhr-2009]
+    examples:
+      - {in: "ū", out: "او", gloss: "he, she"}
+
+  - id: initial_short_vowel
+    order: 23
+    name: "A word-initial short vowel is carried by ⟨ا⟩"
+    match: "(a|e|o|i|u)"
+    replace: ا
+    env: {left: "#"}
+    tier: orthographic
+    description: >
+      The short vowels are not written in the body of a word (rule short_vowels),
+      but a word cannot begin with a consonant letter where the phonemic form
+      has no consonant: the initial vowel is written with alef, which serves as
+      its seat and is read with whatever short vowel the word has — ابر abr
+      'cloud', اسم esm 'name', امید omīd 'hope'.  The letter is the same for
+      every short vowel; the quality is supplied by the reader, exactly as the
+      unwritten medial short vowels are.  After pal → fa the vowels are a e o,
+      and the /i u/ arms only guard a form that did not pass that lowering.
+    notes: >
+      This is the only place a short vowel is written in initial position; it
+      is not a claim about vowel quality and it does not write /a e o/ elsewhere.
+    references: [windfuhr-2009, sadeghi-1978]
+    examples:
+      - {in: "abr", out: "ابر", gloss: "cloud"}
+      - {in: "esm", out: "اسم", gloss: "name"}
+      - {in: "omīd", out: "امید", gloss: "hope"}
+
+  - id: final_short_a
+    order: 30
+    name: "Word-final /-a/ and /-e/ are written ⟨ه⟩"
+    match: "(a|e)"
+    replace: ه
+    env: {right: "#"}
+    tier: orthographic
+    description: >
+      A final short vowel is written, unlike a medial one, and the letter is ه
+      (he): خانه xāne 'house', نامه nāme 'letter', ده de 'village', نه na 'no'.
+      This is how the old noun-ending -ag surfaces after the pal → fa law
+      final_ag_to_e (gurbag > gurbe, گربه).
+    notes: >
+      /-o/ is not covered: final -o is rare in the standard language and its
+      letter is lexical, so it stays a miss.
+    references: [windfuhr-2009, sadeghi-1978]
+    examples:
+      - {in: "xāne", out: "خانه", gloss: "house"}
+      - {in: "gurbe", out: "گربه", gloss: "cat"}
+      - {in: "nāme", out: "نامه", gloss: "letter"}
+
+  - id: long_a
+    order: 40
+    name: "/ā/ is written ⟨ا⟩"
+    match: ā
+    replace: ا
+    tier: orthographic
+    references: [windfuhr-2009]
+    examples:
+      - {in: "nām", out: "نام", gloss: "name"}
+
+  - id: long_i
+    order: 41
+    name: "/ī/ is written ⟨ی⟩"
+    match: ī
+    replace: ی
+    tier: orthographic
+    references: [windfuhr-2009]
+    examples:
+      - {in: "šīr", out: "شیر", gloss: "lion"}
+
+  - id: long_u
+    order: 42
+    name: "/ū/ is written ⟨و⟩"
+    match: ū
+    replace: و
+    tier: orthographic
+    references: [windfuhr-2009]
+    examples:
+      - {in: "gūš", out: "گوش", gloss: "ear"}
+
+  - id: p_letter
+    order: 50
+    name: "/p/ is written ⟨پ⟩"
+    match: p
+    replace: پ
+    tier: orthographic
+    references: [windfuhr-2009]
+    examples:
+      - {in: "pidar", out: "پدر", gloss: "father"}
+  - id: b_letter
+    order: 50
+    name: "/b/ is written ⟨ب⟩"
+    match: b
+    replace: ب
+    tier: orthographic
+    references: [windfuhr-2009]
+    examples:
+      - {in: "bād", out: "باد", gloss: "wind"}
+  - id: t_letter
+    order: 50
+    name: "/t/ is written ⟨ت⟩"
+    match: t
+    replace: ت
+    tier: orthographic
+    references: [windfuhr-2009]
+    examples:
+      - {in: "tū", out: "تو", gloss: "you"}
+  - id: d_letter
+    order: 50
+    name: "/d/ is written ⟨د⟩"
+    match: d
+    replace: د
+    tier: orthographic
+    references: [windfuhr-2009]
+    examples:
+      - {in: "dādār", out: "دادار", gloss: "just"}
+  - id: k_letter
+    order: 50
+    name: "/k/ is written ⟨ک⟩"
+    match: k
+    replace: ک
+    tier: orthographic
+    references: [windfuhr-2009]
+    examples:
+      - {in: "kār", out: "کار", gloss: "work"}
+  - id: g_letter
+    order: 50
+    name: "/g/ is written ⟨گ⟩"
+    match: g
+    replace: گ
+    tier: orthographic
+    references: [windfuhr-2009]
+    examples:
+      - {in: "gūš", out: "گوش", gloss: "ear"}
+  - id: c_hachek_letter
+    order: 50
+    name: "/č/ is written ⟨چ⟩"
+    match: č
+    replace: چ
+    tier: orthographic
+    references: [windfuhr-2009]
+    examples:
+      - {in: "čeh", out: "چه", gloss: "what"}
+  - id: j_letter
+    order: 50
+    name: "/ǰ/ is written ⟨ج⟩"
+    match: ǰ
+    replace: ج
+    tier: orthographic
+    references: [windfuhr-2009]
+    examples:
+      - {in: "ǰān", out: "جان", gloss: "soul"}
+  - id: f_letter
+    order: 50
+    name: "/f/ is written ⟨ف⟩"
+    match: f
+    replace: ف
+    tier: orthographic
+    references: [windfuhr-2009]
+    examples:
+      - {in: "fard", out: "فرد", gloss: "individual"}
+  - id: v_letter
+    order: 50
+    name: "/v/ is written ⟨و⟩"
+    match: v
+    replace: و
+    tier: orthographic
+    notes: >
+      The letter و carries both /v/ and /u/; reading it back is ambiguous, but
+      writing it from a phonemic /v/ is not.
+    references: [windfuhr-2009]
+    examples:
+      - {in: "vazn", out: "وزن", gloss: "weight"}
+  - id: s_letter
+    order: 50
+    name: "/s/ is written ⟨س⟩"
+    match: s
+    replace: س
+    tier: orthographic
+    references: [windfuhr-2009]
+    examples:
+      - {in: "sar", out: "سر", gloss: "head"}
+  - id: z_letter
+    order: 50
+    name: "/z/ is written ⟨ز⟩"
+    match: z
+    replace: ز
+    tier: orthographic
+    references: [windfuhr-2009]
+    examples:
+      - {in: "zīr", out: "زیر", gloss: "under"}
+  - id: sh_letter
+    order: 50
+    name: "/š/ is written ⟨ش⟩"
+    match: š
+    replace: ش
+    tier: orthographic
+    references: [windfuhr-2009]
+    examples:
+      - {in: "šīr", out: "شیر", gloss: "lion"}
+  - id: zh_letter
+    order: 50
+    name: "/ž/ is written ⟨ژ⟩"
+    match: ž
+    replace: ژ
+    tier: orthographic
+    references: [windfuhr-2009]
+    examples:
+      - {in: "žarf", out: "ژرف", gloss: "deep"}
+  - id: x_letter
+    order: 50
+    name: "/x/ is written ⟨خ⟩"
+    match: x
+    replace: خ
+    tier: orthographic
+    references: [windfuhr-2009]
+    examples:
+      - {in: "xar", out: "خر", gloss: "donkey"}
+  - id: gh_letter
+    order: 50
+    name: "/ɣ/ is written ⟨غ⟩"
+    match: ɣ
+    replace: غ
+    tier: orthographic
+    references: [windfuhr-2009]
+    examples:
+      - {in: "ɣam", out: "غم", gloss: "grief"}
+  - id: h_letter
+    order: 50
+    name: "/h/ is written ⟨ه⟩"
+    match: h
+    replace: ه
+    tier: orthographic
+    notes: >
+      Word-final /h/ is written ه as well (māh 'moon' ماه); when a short vowel
+      precedes it, the letter is the same and only the reading differs.
+    references: [windfuhr-2009]
+    examples:
+      - {in: "māh", out: "ماه", gloss: "moon"}
+  - id: m_letter
+    order: 50
+    name: "/m/ is written ⟨م⟩"
+    match: m
+    replace: م
+    tier: orthographic
+    references: [windfuhr-2009]
+    examples:
+      - {in: "mard", out: "مرد", gloss: "man"}
+  - id: n_letter
+    order: 50
+    name: "/n/ is written ⟨ن⟩"
+    match: n
+    replace: ن
+    tier: orthographic
+    references: [windfuhr-2009]
+    examples:
+      - {in: "nām", out: "نام", gloss: "name"}
+  - id: r_letter
+    order: 50
+    name: "/r/ is written ⟨ر⟩"
+    match: r
+    replace: ر
+    tier: orthographic
+    references: [windfuhr-2009]
+    examples:
+      - {in: "rūz", out: "روز", gloss: "day"}
+  - id: l_letter
+    order: 50
+    name: "/l/ is written ⟨ل⟩"
+    match: l
+    replace: ل
+    tier: orthographic
+    references: [windfuhr-2009]
+    examples:
+      - {in: "lab", out: "لب", gloss: "lip"}
+  - id: w_letter
+    order: 50
+    name: "/w/ is written ⟨و⟩"
+    match: w
+    replace: و
+    tier: orthographic
+    notes: >
+      The glide /w/ shares the letter و with /v/ and /u/; where New Persian has
+      lost an older *w the phonemic form still carries it, and that is a sound
+      law's business, not this rule's.
+    references: [windfuhr-2009]
+    examples:
+      - {in: "gāw", out: "گاو", gloss: "cow"}
+  - id: y_letter
+    order: 50
+    name: "/y/ is written ⟨ی⟩"
+    match: y
+    replace: ی
+    tier: orthographic
+    references: [windfuhr-2009]
+    examples:
+      - {in: "yār", out: "یار", gloss: "friend"}
+
+  - id: short_vowels
+    order: 60
+    name: "Short /a e o/ (and short /i u/) are not written"
+    match: "(a|e|o|i|u)"
+    replace: ""
+    tier: orthographic
+    description: >
+      The abjad writes no short vowel in the body of a word: پدر pidar, سر sar,
+      گوش gūš, شهر šahr, کمر kamar.  Every short vowel of the phonemic layer is
+      therefore deleted here, after the two positions that do write one
+      word-initially (initial_short_vowel) and word-finally (final_short_a)
+      have had their chance.
+    notes: >
+      This rule deletes short /i/ and /u/ as well, which is what the script
+      does; it cannot be conditioned on vowel quality, because the letter is
+      absent either way.
+    references: [windfuhr-2009, sadeghi-1978]
+    examples:
+      - {in: "pidar", out: "پدر", gloss: "father"}
+      - {in: "kamar", out: "کمر", gloss: "waist"}
+      - {in: "gul", out: "گل", gloss: "flower"}

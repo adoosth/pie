@@ -1,0 +1,11 @@
+rules:
+  - id: soft_jer_jь_to_ii
+    order: 71
+    name: "Final *-ьjь > -ii"
+    match: "ь j ь"
+    replace: "i i"
+    tier: established
+    description: "The final sequence *-ьjь gives OCS -ii (PSl *zmьjь > змии zmii, *čьjь > чии čii, *žerbьjь > жрѣбии žrěbii).  It runs before the transliteration of the yers."
+    references: [vaillant-1950, meillet-1934]
+    examples:
+      - {in: "zmьjь", out: "zmii", gloss: "snake (змии)"}

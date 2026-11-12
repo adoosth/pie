@@ -1,0 +1,10 @@
+rules:
+  - id: probe_h_after_consonant
+    order: 160
+    name: "PII *H > ∅ after a consonant"
+    match: H
+    replace: ""
+    env: {left: C}
+    references: [hoffmann-forssman-2004, skjaervo-2009]
+    examples:
+      - {in: "*názdištHas", out: "*názdištas", gloss: "nearest"}

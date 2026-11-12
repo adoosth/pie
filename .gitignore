@@ -1,0 +1,22 @@
+__pycache__/
+*.pyc
+.venv/
+build/
+dist/
+*.egg-info/
+.DS_Store
+data/lexicon/*.tmp
+data/lexicon/_supplement/*_candidates.json
+/tmp/
+
+# Fetched meanings (vajehyab/Dehkhoda), cached per word at runtime
+data/meanings/
+
+# Matches the engine could not verify, queued for review at runtime
+data/review/
+
+# Dehkhoda inventory: the sitemap cache and the per-worker reading files are
+# working state; the headword list and the merged supplement are the data.
+data/dehkhoda/sitemaps/
+data/dehkhoda/glosses.jsonl.gz
+data/dehkhoda/glosses-*.jsonl.gz

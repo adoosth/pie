@@ -1,0 +1,46 @@
+# REJECTED 2026-11-09: *kʷ > *č before *e outside the diphthong *ey.
+# Measured (council, layers exact,orthographic,cited,script,identity,bound):
+# +3 iir-pro, +2 sa (चक्र, चम्), -1 ave (𐬐𐬀𐬭 = *kʷer- "make").  Excluding the
+# diphthong is not enough: *r blocks the change too, which is the environment
+# the shipped rule states (kw_palatal_e_r_no.yaml, report.md).
+# The wider claim (before any *e) gains the same four PII words and costs
+# Middle Persian kyš (PIE *kʷeys- > PII *kayšás > pal kēš, Avestan kaēša-,
+# Skt. keśa-, both of which keep *k).  Split into two environments because
+# the pattern language cannot name "word end" inside a group.
+rules:
+  - id: labiovelar_k_palatal_e_noey
+    order: 44
+    name: "*kʷ > *č before *e + a consonant"
+    match: kʷ
+    replace: č
+    env:
+      right: '(ˈ|ˌ)? e !V'
+    tier: proposed
+    references: [mayrhofer-1986]
+    description: >
+      The labiovelar palatalises before the front vowel *e: *pénkʷe > *pánče,
+      *kʷetwóres > *čatwā́ras, *kʷélh₁eti > *čárHati.  It is the *diphthong*
+      *ey that blocks the change: PIE *kʷeys- keeps its *k (PII *kayšás,
+      Middle Persian kēš, Avestan kaēša-, Skt. keśa-).  A plain *k before *e
+      is not in the environment either (PIE *ker > OP kāra-), which is why the
+      rule runs before the labiovelar merger and names *kʷ, not *k.
+    examples:
+      - {in: "*kʷetwóres", out: "*četwóres", gloss: "four"}
+      - {in: "*kʷékʷlos", out: "*čékʷlos", gloss: "wheel — the second *kʷ is before *o"}
+      - {in: "*kʷeys", out: "*kʷeys", gloss: "hair — the *ey diphthong blocks it (Skt. keśa-)"}
+  - id: labiovelar_k_palatal_e_noey_final
+    order: 44
+    name: "*kʷ > *č before word-final *e"
+    match: kʷ
+    replace: č
+    env:
+      right: '(ˈ|ˌ)? e #'
+    tier: proposed
+    references: [mayrhofer-1986]
+    description: >
+      *-kʷe is *-če in Indo-Iranian whether it is the conjunction (Skt. -ca) or
+      the final syllable of *pénkʷe > *pánča; the environment is word-final *e
+      and nothing else.
+    examples:
+      - {in: "*pénkʷe", out: "*pénče", gloss: "five"}
+      - {in: "*nékʷe", out: "*néče", gloss: "and not — the conjunctive clitic"}

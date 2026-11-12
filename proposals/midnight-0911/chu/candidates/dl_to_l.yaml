@@ -1,0 +1,11 @@
+rules:
+  - id: dl_to_l
+    order: 10
+    name: "*dl > l"
+    match: d l
+    replace: l
+    tier: established
+    description: "Common Slavic *dl simplifies to l in Old Church Slavonic (PSl *modlitva > молитва molitva, *pravidlo > правило pravilo, *kridlo > крило krilo)."
+    references: [vaillant-1950, shevelov-1964, meillet-1934]
+    examples:
+      - {in: "modlitva", out: "molitva", gloss: "prayer (молитва)"}

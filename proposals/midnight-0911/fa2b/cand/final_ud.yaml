@@ -1,0 +1,15 @@
+stage: {source: pal, target: fa}
+rules:
+  - id: final_ud_to_u
+    order: 14
+    name: "MP final *-ūd > NP -ū"
+    match: d
+    replace: ""
+    env: {left: ū, right: "#"}
+    tier: proposed
+    description: >
+      A word-final *-d after long *ū is lost: MP drūd > NP durūd?  Candidate
+      only; measured before any claim.
+    references: [sadeghi-1978]
+    examples:
+      - {in: "drūd", out: "drū", gloss: "candidate"}

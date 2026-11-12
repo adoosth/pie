@@ -1,0 +1,15 @@
+stage: {source: pal, target: fa}
+rules:
+  - id: sp_to_sf
+    order: 30
+    name: "MP *-sp- > NP -sf-"
+    match: "s p"
+    replace: "s f"
+    tier: proposed
+    description: >
+      The cluster *sp becomes sf: MP gōspand > NP gōsfand 'sheep'.  The
+      change is a dissimilation of the labial stop to the following dental
+      (or an early spirantisation) and is stated as proposed.
+    references: [sadeghi-1978]
+    examples:
+      - {in: "gōspand", out: "gōsfand", gloss: "sheep"}

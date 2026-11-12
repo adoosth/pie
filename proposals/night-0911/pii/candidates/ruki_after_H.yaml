@@ -1,0 +1,20 @@
+# Measured 2026-11-09 and REJECTED (see ../report.md).
+# ruki with *H in the left environment: +1 word (yúHš), -5 (HbʰrúHs, Hstā́,
+# Hsumánās, náHs, pántaHs) and -1 in ira-pro. A law may not name a segment its
+# own corpus shows outside the environment.
+rules:
+- id: ruki_s
+  order: 70
+  name: 'RUKI: *s > *š after r, u, k, i, the glides, the satem affricates — and *H (rejected)'
+  match: s
+  replace: š
+  env:
+    left: (r|r̥|u|ū|k|i|ī|y|ć|ȷ́|w|H)
+  tier: proposed
+  description: 'The shipped ruki law with *H added to the left environment.'
+  references:
+  - mayrhofer-1986
+  examples:
+  - in: '*yúHs'
+    out: '*yúHš'
+    gloss: youth

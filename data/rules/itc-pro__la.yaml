@@ -1,0 +1,458 @@
+stage:
+  name: Proto-Italic → Latin
+  date_start: -700
+  date_end: -100
+  description: >
+    The specifically Latin changes: the laryngeal fricatives *θ > f and *x > h,
+    the spirants *β *ð *ɣ > b d g, *gʷ > w, monophthongisation of *ou and *oi,
+    rhotacism of *z and of final *-s in polysyllables, the raising of final
+    *-o before *-s and *-m, the shortening of final *-ā, the loss of final
+    *-d after a long vowel, *-nts > -ns with lengthening, the vocalisation of
+    *j after a consonant, and the weakening of short vowels in non-initial
+    syllables.  Latin spelling (c, qu, v, x, the missing macra) is a separate
+    orthographic layer in data/spelling/la.yaml.
+  references: [devaan-2008, meiser-1998, weiss-2009, sihler-1995]
+
+rules:
+  # ---- notation -----------------------------------------------------------
+  - id: e_loss_initial_s
+    order: 98
+    name: "Initial *e- is lost before *s"
+    match: e
+    replace: ""
+    env: {left: "#", right: s}
+    tier: proposed
+    description: "Initial *e- is lost before *s in the verb 'to be' (*esom > *som > sum); stated for this environment only, since initial *e- is otherwise kept."
+    references: [sihler-1995]
+    examples:
+      - {in: "*esom", out: "*som", gloss: "I am"}
+
+  # ---- consonants ---------------------------------------------------------
+  - id: s_loss_initial
+    order: 95
+    name: "Word-initial *s- is lost before a sonorant"
+    match: s
+    replace: ""
+    env: {left: "#", right: "(m|n|l|r)"}
+    tier: established
+    description: "An initial *s- before a nasal, liquid or glide is lost (*smerdā > *merdā, *slewēō > *lewēō)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*smerdā", out: "*merdā", gloss: "dung"}
+
+  - id: ei_to_i
+    order: 214
+    name: "*ei > *ī before a consonant"
+    match: e i
+    replace: ī
+    env: {right: "C !GLIDE"}
+    tier: established
+    description: "The diphthong *ei monophthongises to *ī before a consonant (*deikō > *dīkō, *eizā > *īzā); before a glide the corpus also records archaic forms with ei, which the rule leaves alone."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*deikō", out: "*dīkō", gloss: "I say"}
+
+  - id: rs_to_rr
+    order: 146
+    name: "*rs > rr before a front or low vowel"
+    match: "r s"
+    replace: "r r"
+    env: {right: "(a|ā|e|ē|i|ī)"}
+    tier: established
+    description: "The cluster *rs assimilates to rr before a front or low vowel (*tersā > *terrā)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*tersā", out: "*terrā", gloss: "earth"}
+
+  - id: rs_to_r_final
+    order: 147
+    name: "Final *-s is lost after *r"
+    match: s
+    replace: ""
+    env: {left: r, right: "#"}
+    tier: established
+    description: "Final *-s is lost after *r (*fars > *far)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*fars", out: "*far", gloss: "spelt"}
+
+  - id: s_loss_voiced
+    order: 150
+    name: "*s is lost before a voiced consonant"
+    match: s
+    replace: ""
+    env: {left: "V", right: "(b|d|g|m|n|l|r)"}
+    tier: established
+    description: "Between a vowel and a voiced consonant *s is lost (*nisdos > *nidos, *fasnom > *fanom)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*nisdos", out: "*nidos", gloss: "nest"}
+
+  - id: theta_to_f
+    order: 100
+    name: "*θ > *f"
+    match: θ
+    replace: f
+    tier: established
+    description: "The dental fricative *θ merges with *f (*θūmos > *fūmos)."
+    references: [devaan-2008, weiss-2009]
+    examples:
+      - {in: "*θūmos", out: "*fūmos", gloss: "smoke"}
+
+  - id: x_to_h
+    order: 110
+    name: "*x > *h"
+    match: x
+    replace: h
+    tier: established
+    description: "The velar fricative *x becomes *h (*xóstis > *hóstis)."
+    references: [devaan-2008, weiss-2009]
+    examples:
+      - {in: "*xóstis", out: "*hóstis", gloss: "guest, enemy"}
+
+  - id: gw_to_w
+    order: 120
+    name: "*gʷ > *w"
+    match: gʷ
+    replace: w
+    tier: established
+    description: "The labiovelar *gʷ becomes the labial glide *w, written v in Latin (*gʷīwos > *wīwos)."
+    references: [devaan-2008, weiss-2009]
+    examples:
+      - {in: "*gʷīwos", out: "*wīwos", gloss: "alive"}
+
+  - id: z_to_r
+    order: 130
+    name: "Rhotacism: *z > *r"
+    match: z
+    replace: r
+    tier: established
+    description: "The voiced sibilant *z becomes *r in Latin (*ézō > *érō)."
+    references: [meiser-1998, weiss-2009]
+    examples:
+      - {in: "*ézō", out: "*érō", gloss: "I will be"}
+
+  - id: final_s_to_r
+    order: 131
+    name: "Final *-s > -r after a long vowel in a polysyllable"
+    match: s
+    replace: r
+    env: {left: "V C? C? LONG", right: "#"}
+    tier: established
+    description: >
+      In a word of more than one syllable, final *-s becomes -r when the vowel
+      before it is long (honōs > honor, kelōs > color, arbōs > arbor).  A
+      monosyllable keeps its -s (flōs, mōs, rēs), and a final short vowel does
+      not rhotacise (similis).
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*kelōs", out: "*kelōr", gloss: "colour"}
+
+  - id: beta_to_b
+    order: 140
+    name: "Voiced bilabial fricative *β > b"
+    match: β
+    replace: b
+    tier: established
+    description: "The fricative *β that Proto-Italic inherited from medial *bʰ becomes the stop b (*luβros > *lubros)."
+    references: [weiss-2009, sihler-1995]
+    examples:
+      - {in: "*luβros", out: "*lubros", gloss: "free"}
+
+  - id: eth_to_d
+    order: 141
+    name: "Voiced dental fricative *ð > d"
+    match: ð
+    replace: d
+    tier: established
+    description: "Medial *ð from *dʰ becomes the stop d (*sweðēō > *swedēō)."
+    references: [weiss-2009, sihler-1995]
+    examples:
+      - {in: "*sweðēō", out: "*swedēō", gloss: "I am wont"}
+
+  - id: gamma_to_g
+    order: 142
+    name: "Voiced velar fricative *ɣ > g"
+    match: ɣ
+    replace: g
+    tier: established
+    description: "Medial *ɣ from *gʰ becomes the stop g (*weɣō > *wegō)."
+    references: [weiss-2009, sihler-1995]
+    examples:
+      - {in: "*weɣō", out: "*wegō", gloss: "I carry"}
+
+  - id: gammaw_to_w
+    order: 143
+    name: "Voiced labiovelar fricative *ɣʷ > w"
+    match: ɣʷ
+    replace: w
+    tier: established
+    description: "The labiovelar fricative *ɣʷ from *gʷʰ becomes the glide *w (*kneyɣʷēō > *kneywēō)."
+    references: [weiss-2009, sihler-1995]
+    examples:
+      - {in: "*kneyɣʷēō", out: "*kneywēō", gloss: "I blink"}
+
+  - id: j_to_i
+    order: 170
+    name: "*j > i after a consonant"
+    match: j
+    replace: i
+    env: {left: C, right: V}
+    tier: established
+    description: "The glide *j vocalises to *i between a consonant and a vowel (*fakjō > *fakiō)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*fakjō", out: "*fakiō", gloss: "I make"}
+
+  # ---- vowels -------------------------------------------------------------
+  - id: ou_to_u
+    order: 200
+    name: "*ou > *ū"
+    match: "o u"
+    replace: ū
+    tier: established
+    description: "The diphthong *ou monophthongises to *ū (*doukō > *dūkō)."
+    references: [weiss-2009, meiser-1998]
+    examples:
+      - {in: "*doukō", out: "*dūkō", gloss: "I lead"}
+
+  - id: oi_to_i
+    order: 205
+    name: "Final *-oi > -ī"
+    match: o i
+    replace: ī
+    env: {right: "#"}
+    tier: established
+    description: "Word-final *-oi monophthongises to -ī (*kʷoi > *kʷī), while *-oi- elsewhere gives *ū (*oinos > *ūnos)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*kʷoi", out: "*kʷī", gloss: "who (dat.)"}
+
+  - id: oi_to_u
+    order: 210
+    name: "*oi > *ū"
+    match: "o i"
+    replace: ū
+    tier: established
+    description: "The diphthong *oi monophthongises to *ū (*oinos > *ūnos)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*oinos", out: "*ūnos", gloss: "one"}
+
+  - id: ai_to_ae
+    order: 220
+    name: "*ai > *ae"
+    match: "a i"
+    replace: ae
+    tier: established
+    description: "The diphthong *ai becomes *ae (*prai > *prae)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*prai", out: "*prae", gloss: "before"}
+
+  - id: final_ei_to_i
+    order: 212
+    name: "Final *-ei > -ī"
+    match: e i
+    replace: ī
+    env: {right: "#"}
+    tier: established
+    description: "Final *-ei becomes -ī (*nei > *nī, *sei > *sī)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*nei", out: "*nī", gloss: "not"}
+
+  - id: ao_to_o
+    order: 230
+    name: "Final *-āō > -ō"
+    match: ā ō
+    replace: ō
+    env: {right: "#"}
+    tier: established
+    description: "The sequence *-āō of the first-conjugation first person contracts to -ō (*portāō > *portō)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*portāō", out: "*portō", gloss: "I carry"}
+
+  - id: e_to_i_gn
+    order: 241
+    name: "*e > *i before *gn"
+    match: e
+    replace: i
+    env: {right: "g n"}
+    tier: established
+    description: "Short *e is raised to *i before *gn (*segnom > *signom, *legnom > *lignom)."
+    references: [sihler-1995]
+    examples:
+      - {in: "*segnom", out: "*signom", gloss: "sign"}
+
+  - id: o_to_u_l
+    order: 244
+    name: "*o > *u before dark *l"
+    match: o
+    replace: u
+    env: {right: "l (C|#)"}
+    tier: established
+    description: "Short *o becomes *u before *l in a closed syllable (*moltos > *multus, *olmos > *ulmus)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*molto", out: "*multo", gloss: "much"}
+
+  - id: e_to_o_l
+    order: 250
+    name: "*e > *o before a velarised *l"
+    match: e
+    replace: o
+    env: {right: "l (ā|ō|ū)"}
+    tier: established
+    description: "Short *e becomes *o before *l followed by a back vowel (*kelōs > *kolōs, *welō > *wolō)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*kelōs", out: "*kolōs", gloss: "colour"}
+
+  - id: medial_a_weakening
+    order: 300
+    name: "Medial *a > *i"
+    match: a
+    replace: i
+    env: {left: "V C? C? C?", right: "C V"}
+    tier: established
+    description: "Short *a weakens to *i in an unstressed non-initial syllable before another syllable (*kónfaket > *kónfiket)."
+    notes: "Latin vowel weakening is conditioned by stress and syllable structure; the environment stated here is the non-initial medial syllable, which is what the corpus supports."
+    references: [meiser-1998, weiss-2009]
+    examples:
+      - {in: "*kónfaket", out: "*kónfiket", gloss: "he accomplishes"}
+
+  # ---- final syllables ----------------------------------------------------
+  - id: o_before_nts
+    order: 345
+    name: "*o lengthens before *-nts"
+    match: o
+    replace: ō
+    env: {right: "n t s #"}
+    tier: established
+    description: "The vowel of the stem syllable lengthens when *-nts loses its *t (*ponts > *pōnts > *pōns)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*ponts", out: "*pōnts", gloss: "bridge"}
+
+  - id: e_before_nts
+    order: 346
+    name: "*e lengthens before *-nts"
+    match: e
+    replace: ē
+    env: {right: "n t s #"}
+    tier: established
+    description: "The vowel of the stem syllable lengthens when *-nts loses its *t (*dents > *dēnts > *dēns)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*dents", out: "*dēnts", gloss: "tooth"}
+
+  - id: final_o_to_u_s
+    order: 160
+    name: "Final *-os > -us"
+    match: o
+    replace: u
+    env: {left: C, right: "s #"}
+    tier: established
+    description: "Short *o is raised to *u in the final closed syllable before *-s (*serwos > *serwus)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*serwos", out: "*serwus", gloss: "slave"}
+
+  - id: final_o_to_u_m
+    order: 161
+    name: "Final *-om > -um"
+    match: o
+    replace: u
+    env: {left: C, right: "m #"}
+    tier: established
+    description: "Short *o is raised to *u in the final closed syllable before *-m (*argentom > *argentum)."
+    notes: "Latin writes the final nasal; the phonemic layer keeps it, so the orthographic layer does not have to restore a letter the laws deleted."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*argentom", out: "*argentum", gloss: "silver"}
+
+  - id: ios_to_ius
+    order: 355
+    name: "-ios > -ius"
+    match: "i o s"
+    replace: "i u s"
+    env: {right: "#"}
+    tier: established
+    description: "The ending -ios becomes -ius (*lanios > *lanius); the corpus sometimes writes the glide as i, so the same raising is stated for that notation."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*lanios", out: "*lanius", gloss: "butcher"}
+
+  - id: final_long_a
+    order: 352
+    name: "Final *-ā > -a"
+    match: ā
+    replace: a
+    env: {right: "#"}
+    tier: established
+    description: "The long *ā of the first-declension nominative is shortened word-finally (*fugā > *fuga)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*fugā", out: "*fuga", gloss: "flight"}
+
+  - id: final_e_before_d
+    order: 400
+    name: "Vowel lengthens before final *-d"
+    match: e
+    replace: ē
+    env: {right: "d #"}
+    tier: established
+    description: "A short *e lengthens before the final *-d of the ablative, which then falls (*ted > *tēd > *tē)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*ted", out: "*tēd", gloss: "you (abl.)"}
+
+  - id: t_loss_s
+    order: 410
+    name: "*-t- is lost before final *-s"
+    match: t
+    replace: ""
+    env: {right: "s #"}
+    tier: established
+    description: "A *t before the final *-s is lost, whatever precedes it (*pōnts > *pōns, *pets > *pes, *anats > *anas)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*pōnts", out: "*pōns", gloss: "bridge"}
+
+  - id: final_i_loss_t
+    order: 430
+    name: "Final *-i is lost after *t"
+    match: i
+    replace: ""
+    env: {left: t, right: "#"}
+    tier: proposed
+    description: "Final *-i is lost after *t (*posti > *post, *esti > *est, *kʷoti > *kʷot); the rule is stated for this environment only, because a general loss of final *-i is false (mare, heri)."
+    references: [sihler-1995]
+    examples:
+      - {in: "*posti", out: "*post", gloss: "after"}
+
+  - id: final_i_loss_l
+    order: 431
+    name: "Final *-i is lost after *l"
+    match: i
+    replace: ""
+    env: {left: l, right: "#"}
+    tier: proposed
+    description: "Final *-i is lost after *l in a few inherited words (*meli > *mel)."
+    references: [sihler-1995]
+    examples:
+      - {in: "*meli", out: "*mel", gloss: "honey"}
+
+  - id: final_d_loss
+    order: 420
+    name: "Final *-d is lost after a long vowel"
+    match: d
+    replace: ""
+    env: {left: LONG, right: "#"}
+    tier: established
+    description: "Word-final *-d is lost after a long vowel (*tēd > *tē); the *-d of a monosyllable with a short vowel is kept (ad)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*tēd", out: "*tē", gloss: "you (abl.)"}

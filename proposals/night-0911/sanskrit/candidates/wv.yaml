@@ -1,0 +1,9 @@
+rules:
+  - id: w_to_v_recorded
+    order: 15
+    name: "recorded PIA *w is written Skt v"
+    match: w
+    replace: v
+    references: [mayrhofer-1986]
+    examples:
+      - {in: "*wádati", out: "*vádati", gloss: "speaks (Skt vádati)"}

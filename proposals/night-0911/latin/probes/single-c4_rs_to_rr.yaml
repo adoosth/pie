@@ -1,0 +1,23 @@
+stage:
+  name: Proto-Italic → Latin (candidate 4)
+  references:
+  - sihler-1995
+  - weiss-2009
+  - meiser-1998
+rules:
+- id: c4_rs_to_rr
+  order: 145
+  name: '*rs > rr before a vowel'
+  match: r s
+  replace: r r
+  env:
+    right: V
+  tier: established
+  description: The cluster *rs assimilates to rr before a vowel (*tersā > *terrā).
+  references:
+  - sihler-1995
+  - weiss-2009
+  examples:
+  - in: '*tersā'
+    out: '*terrā'
+    gloss: earth

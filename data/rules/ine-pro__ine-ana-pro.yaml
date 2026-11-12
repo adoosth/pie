@@ -1,0 +1,103 @@
+stage:
+  name: Proto-Indo-European → Proto-Anatolian
+  date_start: -3000
+  date_end: -2000
+  description: 'Anatolian is centum and keeps the laryngeals, which are written *H.  The recorded reconstructions
+    are few and provisional, so this file states only what they support: the palatovelar merger, deaspiration,
+    and laryngeal preservation.  The textbook change *o > *a is not applied because the recorded pairs
+    keep *o (*wedos, *sṓgʷos); see docs/DECISIONS.md.'
+  references:
+  - kloekhorst-2007
+  - fortson-2004
+rules:
+- id: centum_k
+  order: 30
+  name: Palatovelar *ḱ > *k
+  match: ḱ
+  replace: k
+  tier: established
+  description: 'Anatolian is a centum branch: *ḱ merges with the plain velar *k (*ḱm̥tóm > *kmtóm).'
+  references:
+  - kloekhorst-2007
+  examples:
+  - in: '*ḱm̥tóm'
+    out: '*km̥tóm'
+    gloss: hundred
+- id: centum_g
+  order: 31
+  name: Palatovelar *ǵ > *g
+  match: ǵ
+  replace: g
+  tier: established
+  description: Palatovelar *ǵ merges with the plain velar *g (*h₂érǵ-i-s > *h₂érg-is).
+  references:
+  - kloekhorst-2007
+  examples:
+  - in: '*h₂érǵ-i-s'
+    out: '*h₂érg-i-s'
+    gloss: white
+- id: centum_gh
+  order: 32
+  name: Palatovelar *ǵʰ > *g
+  match: ǵʰ
+  replace: g
+  tier: established
+  description: Palatovelar *ǵʰ loses its aspiration and merges with *g.
+  references:
+  - kloekhorst-2007
+  examples:
+  - in: '*ǵʰéymō'
+    out: '*géymō'
+    gloss: winter
+- id: bh_to_b
+  order: 40
+  name: '*bʰ > *b'
+  match: bʰ
+  replace: b
+  tier: established
+  description: 'Anatolian has no voiced aspirates: *bʰ becomes *b.'
+  references:
+  - kloekhorst-2007
+  examples:
+  - in: '*h₃yebʰ-o-s'
+    out: '*h₃yeb-o-s'
+    gloss: garden
+- id: dh_to_d
+  order: 41
+  name: '*dʰ > *d'
+  match: dʰ
+  replace: d
+  tier: established
+  description: '*dʰ becomes *d (*wedʰ-o-s > *wedos).'
+  references:
+  - kloekhorst-2007
+  examples:
+  - in: '*wedʰ-o-s'
+    out: '*wed-o-s'
+    gloss: water
+- id: gh_to_g
+  order: 42
+  name: '*gʰ > *g'
+  match: gʰ
+  replace: g
+  tier: established
+  description: '*gʰ becomes *g.'
+  references:
+  - kloekhorst-2007
+  examples:
+  - in: '*h₁égʰ-ti'
+    out: '*h₁ég-ti'
+    gloss: dies
+- id: h2_to_H
+  order: 60
+  name: 'Laryngeals are preserved: *h₂ *h₃ > *H'
+  match: (h₂|h₃)
+  replace: H
+  tier: established
+  description: Unlike the other branches, Anatolian keeps the laryngeals; they are written *H.
+  references:
+  - kloekhorst-2007
+  examples:
+  - in: '*h₂érg-i-s'
+    out: '*Hérg-i-s'
+    gloss: white

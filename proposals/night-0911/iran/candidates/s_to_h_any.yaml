@@ -1,0 +1,9 @@
+rules:
+  - id: probe_s_to_h_any
+    order: 110
+    name: "PII *s > PIr *h (no stop exception)"
+    match: s
+    replace: h
+    references: [hoffmann-forssman-2004]
+    examples:
+      - {in: "*ásuras", out: "*áhuras", gloss: "lord"}

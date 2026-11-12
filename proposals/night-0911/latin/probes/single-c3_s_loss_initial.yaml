@@ -1,0 +1,24 @@
+stage:
+  name: Proto-Italic → Latin (candidate 3)
+  references:
+  - sihler-1995
+  - weiss-2009
+  - meiser-1998
+rules:
+- id: c3_s_loss_initial
+  order: 95
+  name: Word-initial *s- is lost before a sonorant
+  match: s
+  replace: ''
+  env:
+    left: '#'
+    right: (m|n|l|r|w)
+  tier: established
+  description: An initial *s- before a nasal, liquid or glide is lost (*smerdā > *merdā).
+  references:
+  - sihler-1995
+  - weiss-2009
+  examples:
+  - in: '*smerdā'
+    out: '*merdā'
+    gloss: dung

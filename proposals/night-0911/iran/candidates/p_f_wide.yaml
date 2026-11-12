@@ -1,0 +1,10 @@
+rules:
+  - id: probe_p_f_wide
+    order: 121
+    name: "PII *p > PIr *f before a sonorant (no left context)"
+    match: p
+    replace: f
+    env: {right: "(NAS|GLIDE|r|l|y)"}
+    references: [hoffmann-forssman-2004]
+    examples:
+      - {in: "*prá", out: "*frá", gloss: "forth"}

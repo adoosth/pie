@@ -1,0 +1,12 @@
+rules:
+  - id: kv_to_cv
+    order: 91
+    name: "*kv > cv before a front vowel"
+    match: k v
+    replace: cv
+    env: {right: (ě|i)}
+    tier: established
+    description: "Before a front vowel the cluster *kv palatalises to cv (PSl *květъ > OCS цвѣтъ cvětŭ, *kvisti > цвисти cvisti); *kvasъ and *skvara keep kv because no front vowel follows."
+    references: [vaillant-1950, shevelov-1964, meillet-1934]
+    examples:
+      - {in: "květъ", out: "cvětъ", gloss: "flower (цвѣтъ)"}

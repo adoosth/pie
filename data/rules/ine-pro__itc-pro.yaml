@@ -1,0 +1,492 @@
+stage:
+  name: Proto-Indo-European → Proto-Italic
+  date_start: -2500
+  date_end: -700
+  description: 'The Italic branch is centum: palatovelars merge with the plain velars.  Voiced aspirates
+    are spirantised (word-initial *bʰ *dʰ *gʰ > *f, medial > *β *ð *ɣ), syllabic laryngeals and resonants
+    are resolved, a laryngeal before a consonant vocalises to *a, vowels lengthen before a lost laryngeal,
+    *eu > *ou and *oi > *ū, and intervocalic *s is voiced to *z (the input to Latin rhotacism).'
+  references:
+  - devaan-2008
+  - meiser-1998
+  - weiss-2009
+  - fortson-2004
+rules:
+- id: syllabic_laryngeals
+  order: 5
+  name: Syllabic laryngeals become *a
+  transform: syllabic_laryngeals
+  tier: established
+  description: A laryngeal that is a syllable nucleus surfaces as *a (*ph₂tḗr > *patḗr).
+  references:
+  - weiss-2009
+  - meiser-1998
+  examples:
+  - in: '*ph₂tḗr'
+    out: '*patḗr'
+    gloss: father
+- id: h2_colours_e
+  order: 10
+  name: '*h₂ colours *e to *a'
+  match: e
+  replace: a
+  env:
+    right: h₂
+  tier: established
+  description: 'Regressive colouring: *e before *h₂ becomes *a.'
+  references:
+  - weiss-2009
+  - beekes-2011
+  examples:
+  - in: '*bʰréh₂tēr'
+    out: '*bʰráh₂tēr'
+    gloss: brother
+- id: h3_colours_e
+  order: 11
+  name: '*h₃ colours *e to *o'
+  match: e
+  replace: o
+  env:
+    right: h₃
+  tier: established
+  description: 'Regressive colouring: *e before *h₃ becomes *o.'
+  references:
+  - weiss-2009
+  - beekes-2011
+  examples:
+  - in: '*deh₃-'
+    out: '*doh₃-'
+    gloss: to give
+- id: lengthen_e_h1
+  order: 12
+  name: 'Lengthening: *e before *h₁ > *ē'
+  match: e
+  replace: ē
+  env:
+    right: h₁
+  tier: established
+  description: A vowel before a laryngeal lengthens when the laryngeal is lost (*seh₁- > *sē-).
+  references:
+  - weiss-2009
+  examples:
+  - in: '*seh₁-ros'
+    out: '*sēh₁-ros'
+    gloss: seed
+- id: lengthen_a_h2
+  order: 13
+  name: 'Lengthening: *a before *h₂ > *ā'
+  match: a
+  replace: ā
+  env:
+    right: h₂
+  tier: established
+  description: The vowel coloured by *h₂ lengthens when the laryngeal is lost (*-eh₂- > *-ā-).
+  references:
+  - weiss-2009
+  - meiser-1998
+  examples:
+  - in: '*men-ah₂'
+    out: '*men-āh₂'
+    gloss: mind
+- id: lengthen_o_h3
+  order: 14
+  name: 'Lengthening: *o before *h₃ > *ō'
+  match: o
+  replace: ō
+  env:
+    right: h₃
+  tier: established
+  description: The vowel coloured by *h₃ lengthens when the laryngeal is lost (*-oh₃- > *-ō-).
+  references:
+  - weiss-2009
+  - meiser-1998
+  examples:
+  - in: '*doh₃-tor'
+    out: '*dōh₃-tor'
+    gloss: giver
+- id: lengthen_i_H
+  order: 15
+  name: 'Lengthening: *i before *h₂, *h₃ or *H > *ī'
+  match: i
+  replace: ī
+  env:
+    right: (h₂|h₃|H)
+  tier: established
+  description: A high vowel followed by a laryngeal lengthens when the laryngeal is lost (*-ih₂- > *-ī-).
+  references:
+  - weiss-2009
+  examples:
+  - in: '*h₃riH-tó-s'
+    out: '*h₃rīH-tó-s'
+    gloss: counted
+- id: lengthen_u_H
+  order: 16
+  name: 'Lengthening: *u before *h₂, *h₃ or *H > *ū'
+  match: u
+  replace: ū
+  env:
+    right: (h₂|h₃|H)
+  tier: established
+  description: A high vowel followed by a laryngeal lengthens when the laryngeal is lost.
+  references:
+  - weiss-2009
+  examples:
+  - in: '*dʰuH-mó-s'
+    out: '*dʰūH-mó-s'
+    gloss: smoke
+- id: h2_vocalises_initial
+  order: 17
+  name: Word-initial *h₂ before a consonant > *a
+  match: h₂
+  replace: a
+  env:
+    left: '#'
+    right: (!GLIDE) (!V)
+  tier: established
+  description: A laryngeal that cannot take a vowel before it surfaces as *a (*h₂p-tós > *aptos), but
+    not before a glide.
+  references:
+  - weiss-2009
+  examples:
+  - in: '*h₂p-tó-s'
+    out: '*ap-tó-s'
+    gloss: fastened
+- id: h2_colours_e_progressive
+  order: 18
+  name: '*h₂ colours a following *e to *a'
+  match: e
+  replace: a
+  env:
+    left: h₂ (ˈ|ˌ)?
+  tier: established
+  description: Colouring also works from a preceding laryngeal, across the accent mark (*h₂ed- > *ad-).
+  references:
+  - weiss-2009
+  examples:
+  - in: '*h₂el-mo-s'
+    out: '*h₂al-mo-s'
+    gloss: nourishing
+- id: h3_colours_e_progressive
+  order: 19
+  name: '*h₃ colours a following *e to *o'
+  match: e
+  replace: o
+  env:
+    left: h₃ (ˈ|ˌ)?
+  tier: established
+  description: A preceding *h₃ rounds the following *e (*h₃ép- > *op-).
+  references:
+  - weiss-2009
+  examples:
+  - in: '*h₃ép-(i)s'
+    out: '*h₃óp-(i)s'
+    gloss: sight
+- id: laryngeal_loss
+  order: 20
+  name: Laryngeals are lost
+  match: h₁|h₂|h₃
+  replace: ''
+  tier: established
+  description: Remaining laryngeals disappear after colouring and vocalisation.
+  references:
+  - weiss-2009
+  examples:
+  - in: '*bʰráh₂tēr'
+    out: '*bʰrátēr'
+    gloss: brother
+- id: laryngeal_H_loss
+  order: 22
+  name: The cover symbol *H is lost
+  match: H
+  replace: ''
+  tier: established
+  description: The abstract laryngeal *H is lost like *h₁ *h₂ *h₃.
+  references:
+  - weiss-2009
+  examples:
+  - in: '*polH-nó-s'
+    out: '*pol-nó-s'
+    gloss: full
+- id: centum_k
+  order: 30
+  name: Palatovelar *ḱ > *k
+  match: ḱ
+  replace: k
+  tier: established
+  description: 'Italic is a centum branch: *ḱ merges with the plain velar *k.'
+  references:
+  - devaan-2008
+  - fortson-2004
+  examples:
+  - in: '*ḱm̥tóm'
+    out: '*km̥tóm'
+    gloss: hundred
+- id: centum_g
+  order: 31
+  name: Palatovelar *ǵ > *g
+  match: ǵ
+  replace: g
+  tier: established
+  description: Palatovelar *ǵ merges with the plain velar *g.
+  references:
+  - devaan-2008
+  - fortson-2004
+  examples:
+  - in: '*ǵénos'
+    out: '*génos'
+    gloss: race, family
+- id: centum_gh
+  order: 32
+  name: Palatovelar *ǵʰ > *gʰ
+  match: ǵʰ
+  replace: gʰ
+  tier: established
+  description: Palatovelar *ǵʰ merges with the plain aspirate *gʰ.
+  references:
+  - devaan-2008
+  - fortson-2004
+  examples:
+  - in: '*ǵʰóstis'
+    out: '*gʰóstis'
+    gloss: guest
+- id: bh_f_initial
+  order: 100
+  name: Word-initial *bʰ > *f
+  match: bʰ
+  replace: f
+  env:
+    left: '#'
+  tier: established
+  description: '*bʰ is spirantised to *f word-initially.'
+  references:
+  - weiss-2009
+  - devaan-2008
+  examples:
+  - in: '*bʰerō'
+    out: '*ferō'
+    gloss: I carry
+- id: bh_beta_medial
+  order: 101
+  name: Medial *bʰ > *β
+  match: bʰ
+  replace: β
+  tier: established
+  description: Between vowels *bʰ gives the bilabial fricative *β, which Latin later writes b.
+  references:
+  - weiss-2009
+  examples:
+  - in: '*h₁ne-bʰ-'
+    out: '*h₁ne-β-'
+    gloss: cloud
+- id: dh_f_initial
+  order: 110
+  name: Word-initial *dʰ > *f
+  match: dʰ
+  replace: f
+  env:
+    left: '#'
+  tier: established
+  description: '*dʰ is spirantised to *f word-initially (*dʰeh₁- > *fe-).'
+  references:
+  - weiss-2009
+  - devaan-2008
+  examples:
+  - in: '*dʰéh₁k-s'
+    out: '*féh₁k-s'
+    gloss: torch
+- id: syllabic_m
+  order: 110
+  name: Syllabic *m̥ > *em
+  match: m̥
+  replace: em
+  env:
+    left: C
+    right: C
+  tier: established
+  description: Syllabic *m̥ becomes *em between consonants (*ḱm̥tóm > *ḱemtóm).
+  references:
+  - weiss-2009
+  - meiser-1998
+  examples:
+  - in: '*ḱm̥tóm'
+    out: '*ḱemtóm'
+    gloss: hundred
+- id: dh_eth_medial
+  order: 111
+  name: Medial *dʰ > *ð
+  match: dʰ
+  replace: ð
+  tier: established
+  description: Between vowels *dʰ gives the voiced dental fricative *ð, which Latin later writes d.
+  references:
+  - weiss-2009
+  examples:
+  - in: '*krey-dʰro-m'
+    out: '*krey-ðro-m'
+    gloss: sieve
+- id: syllabic_n
+  order: 111
+  name: Syllabic *n̥ > *en
+  match: n̥
+  replace: en
+  env:
+    left: C
+    right: C
+  tier: established
+  description: Syllabic *n̥ becomes *en between consonants (*tn̥tós > *tentós).
+  references:
+  - weiss-2009
+  examples:
+  - in: '*tn̥tós'
+    out: '*tentós'
+    gloss: stretched
+- id: syllabic_r
+  order: 112
+  name: Syllabic *r̥ > *or
+  match: r̥
+  replace: or
+  env:
+    left: C
+    right: C
+  tier: established
+  description: Syllabic *r̥ becomes *or between consonants (*kr̥d- > *kord-).
+  references:
+  - weiss-2009
+  - meiser-1998
+  examples:
+  - in: '*kr̥d-'
+    out: '*kord'
+    gloss: heart
+- id: syllabic_l
+  order: 113
+  name: Syllabic *l̥ > *ol
+  match: l̥
+  replace: ol
+  env:
+    left: C
+    right: C
+  tier: established
+  description: Syllabic *l̥ becomes *ol between consonants (*pl̥-tós > *poltos).
+  references:
+  - weiss-2009
+  - meiser-1998
+  examples:
+  - in: '*pl̥-tós'
+    out: '*pol-tós'
+    gloss: carried
+- id: gh_x_initial
+  order: 120
+  name: Word-initial *gʰ > *x
+  match: gʰ
+  replace: x
+  env:
+    left: '#'
+  tier: established
+  description: '*gʰ is spirantised to the velar fricative *x word-initially (*gʰóstis > *xóstis).'
+  references:
+  - weiss-2009
+  - devaan-2008
+  examples:
+  - in: '*gʰóstis'
+    out: '*xóstis'
+    gloss: guest
+- id: gh_gamma_medial
+  order: 121
+  name: Medial *gʰ > *ɣ
+  match: gʰ
+  replace: ɣ
+  tier: established
+  description: Between vowels *gʰ gives the voiced velar fricative *ɣ.
+  references:
+  - weiss-2009
+  examples:
+  - in: '*gʰ-o-'
+    out: '*ɣ-o-'
+    gloss: behind
+- id: gwh_f_initial
+  order: 130
+  name: Word-initial *gʷʰ > *f
+  match: gʷʰ
+  replace: f
+  env:
+    left: '#'
+  tier: established
+  description: The labiovelar aspirate gives *f word-initially (*gʷʰén-dʰe-ti > *fendō).
+  references:
+  - weiss-2009
+  examples:
+  - in: '*gʷʰén-dʰe-ti'
+    out: '*fén-dʰe-ti'
+    gloss: I strike
+- id: gwh_gammaw_medial
+  order: 131
+  name: Medial *gʷʰ > *ɣʷ
+  match: gʷʰ
+  replace: ɣʷ
+  tier: established
+  description: Between vowels *gʷʰ gives the voiced labiovelar fricative *ɣʷ.
+  references:
+  - weiss-2009
+  examples:
+  - in: '*kneygʷʰ-éh₁y-e-ti'
+    out: '*kneyɣʷ-éh₁y-e-ti'
+    gloss: I lean
+- id: eu_to_ou
+  order: 210
+  name: '*eu > *ou'
+  match: e u
+  replace: ou
+  tier: established
+  description: The diphthong *eu becomes *ou (*deukō > *doukō).
+  references:
+  - weiss-2009
+  - meiser-1998
+  examples:
+  - in: '*deukō'
+    out: '*doukō'
+    gloss: I lead
+- id: oi_to_u
+  order: 220
+  name: '*oi > *ū'
+  match: o i
+  replace: ū
+  tier: established
+  description: The diphthong *oi monophthongises to *ū (*oinos > *ūnos).
+  references:
+  - weiss-2009
+  examples:
+  - in: '*oinos'
+    out: '*ūnos'
+    gloss: one
+- id: y_to_i
+  order: 230
+  name: Non-syllabic *i̯ after a vowel > *i
+  match: y
+  replace: i
+  env:
+    left: V
+  tier: established
+  description: The second element of a diphthong is written *i in Proto-Italic (*skoy-to-m > *skoitom).
+  references:
+  - devaan-2008
+  examples:
+  - in: '*mey-ros'
+    out: '*meiros'
+    gloss: great
+- id: s_to_z
+  order: 300
+  name: Intervocalic *s > *z
+  match: s
+  replace: z
+  env:
+    left: V
+    right: V
+  tier: established
+  description: Voiceless *s is voiced between vowels; Latin later rhotacises this *z.
+  references:
+  - weiss-2009
+  - meiser-1998
+  examples:
+  - in: '*ésō'
+    out: '*ézō'
+    gloss: I will be

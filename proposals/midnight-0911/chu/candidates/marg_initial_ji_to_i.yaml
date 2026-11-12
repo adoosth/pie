@@ -1,0 +1,18 @@
+rules:
+- id: cand_initial_ji_to_i
+  order: 64
+  name: Initial *ji- > i-
+  match: j i
+  replace: i
+  env:
+    left: '#'
+  tier: established
+  description: The initial sequence *ji- loses its j (PSl *jinъ > OCS инъ inъ, *jistъ
+    > истъ istъ), like *jь- > i-.
+  references:
+  - vaillant-1950
+  - meillet-1934
+  examples:
+  - in: jinъ
+    out: inъ
+    gloss: other (инъ)

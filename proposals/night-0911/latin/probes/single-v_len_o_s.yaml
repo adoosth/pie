@@ -1,0 +1,22 @@
+stage:
+  name: Proto-Italic → Latin (candidate 4)
+  references:
+  - sihler-1995
+  - weiss-2009
+  - meiser-1998
+rules:
+- id: v_len_o_s
+  order: 149
+  name: o lengthens before lost *s
+  match: o
+  replace: ō
+  env:
+    right: s (b|d|g|m|n|l|r)
+  tier: established
+  description: Compensatory lengthening when *s is lost before a voiced consonant.
+  references:
+  - sihler-1995
+  examples:
+  - in: '*nosdo'
+    out: '*nōsdo'
+    gloss: x

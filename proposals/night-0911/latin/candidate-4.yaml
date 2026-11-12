@@ -1,0 +1,80 @@
+stage:
+  name: Proto-Italic → Latin (candidate 4)
+  references: [sihler-1995, weiss-2009, meiser-1998]
+rules:
+  - id: c4_t_loss_s
+    order: 411
+    name: "*-t- is lost before final *-s"
+    match: t
+    replace: ""
+    env: {right: "s #"}
+    tier: established
+    description: "A *t before the final *-s is lost, whatever precedes it (*pets > *pes, *anats > *anas, *pōnts > *pōns)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*pets", out: "*pes", gloss: "foot"}
+  - id: c4_ei_to_i_all
+    order: 213
+    name: "*ei > *ī"
+    match: e i
+    replace: ī
+    tier: established
+    description: "The diphthong *ei monophthongises to *ī (*eizā > *īzā, *deiwos > *dīwos)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*eizā", out: "*īzā", gloss: "anger"}
+  - id: c4_s_loss_voiced
+    order: 150
+    name: "*s is lost before a voiced consonant"
+    match: s
+    replace: ""
+    env: {left: V, right: "(b|d|g|m|n|l|r)"}
+    tier: established
+    description: "Between a vowel and a voiced consonant *s is lost (*nisdos > *nidos, *persnā > *pernā)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*nisdos", out: "*nidos", gloss: "nest"}
+  - id: c4_rs_to_rr
+    order: 145
+    name: "*rs > rr before a vowel"
+    match: "r s"
+    replace: "r r"
+    env: {right: V}
+    tier: established
+    description: "The cluster *rs assimilates to rr before a vowel (*tersā > *terrā)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*tersā", out: "*terrā", gloss: "earth"}
+  - id: c4_rs_to_r_final
+    order: 146
+    name: "Final *-rs > -r"
+    match: s
+    replace: ""
+    env: {left: r, right: "#"}
+    tier: established
+    description: "Final *-s is lost after *r (*fars > *far)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*fars", out: "*far", gloss: "spelt"}
+  - id: c4_e_to_u_l
+    order: 242
+    name: "*e > *u before *l"
+    match: e
+    replace: u
+    env: {right: "l (C|#)"}
+    tier: established
+    description: "Short *e becomes *u before a dark *l (*famelos > *famulos)."
+    references: [sihler-1995]
+    examples:
+      - {in: "*famelos", out: "*famulos", gloss: "servant"}
+  - id: c4_final_i_loss
+    order: 430
+    name: "Final *-i is lost after *t"
+    match: i
+    replace: ""
+    env: {left: t, right: "#"}
+    tier: proposed
+    description: "Final *-i is lost after *t in a few adverbs (*posti > *post)."
+    references: [sihler-1995]
+    examples:
+      - {in: "*posti", out: "*post", gloss: "after"}

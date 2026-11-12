@@ -1,0 +1,23 @@
+stage:
+  name: Proto-Italic → Latin (candidate 4)
+  references:
+  - sihler-1995
+  - weiss-2009
+  - meiser-1998
+rules:
+- id: v_final_i_after_l
+  order: 431
+  name: Final *-i lost after l
+  match: i
+  replace: ''
+  env:
+    left: l
+    right: '#'
+  tier: proposed
+  description: Final *-i is lost after *l in a few inherited words (*meli > *mel).
+  references:
+  - sihler-1995
+  examples:
+  - in: '*meli'
+    out: '*mel'
+    gloss: honey

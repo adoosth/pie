@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>pie — Indo-European language family</title>
+<link rel="stylesheet" href="/static/style.css">
+<!-- Light is the default (2026-11-08). The choice is applied before
+     first paint so a saved dark theme never flashes white. -->
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem("pie-theme");
+      if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+    } catch (e) { /* private mode: the default stands */ }
+  })();
+</script>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <a class="logo" href="#/">p<em>ie</em></a>
+    <nav id="nav">
+      <a href="#/rules" data-route="rules">Rules</a>
+      <a href="#/lab" data-route="lab">Lab</a>
+      <a href="#/glossary" data-route="glossary">Glossary</a>
+      <a href="#/compare" data-route="compare">Compare</a>
+      <a href="#/coverage" data-route="coverage">Coverage</a>
+      <a href="#/about" data-route="about">About</a>
+    </nav>
+    <input id="q" placeholder="search words…  /" autocomplete="off" aria-label="Search words">
+    <button id="theme" class="themebtn" type="button" aria-label="Switch between light and dark"
+            data-tip="Light or dark"><span class="theme-icon" aria-hidden="true"></span></button>
+    <button id="buildrefresh" class="ghost" type="button" hidden
+            data-tip="This tab was opened before the current build; reload to get it">new version · reload</button>
+  </div>
+</header>
+<main id="app"></main>
+<script src="/static/app.js"></script>
+</body>
+</html>

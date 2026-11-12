@@ -1,0 +1,10 @@
+rules:
+  - id: probe_t_to_theta_before_h
+    order: 124
+    name: "PII *t > PIr *θ before a laryngeal"
+    match: t
+    replace: θ
+    env: {right: H}
+    references: [hoffmann-forssman-2004]
+    examples:
+      - {in: "*meytH-", out: "*mayθH-", gloss: "dwell"}

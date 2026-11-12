@@ -1,0 +1,574 @@
+stage:
+  name: Proto-Slavic → Old Church Slavonic
+  date_start: 700
+  date_end: 1100
+  description: >
+    The last mile of the Slavic chain: the Common Slavic (Proto-Slavic) stage
+    of data/rules/ine-bsl-pro__sla-pro.yaml to the language of the oldest
+    Slavonic texts.  The laws are the ordinary Common Slavic → Old Church
+    Slavonic changes as the grammars state them: the liquid metatheses (the
+    tortile groups *TorT *TerT *TolT *TelT and the jer groups *TьrT *TъrT
+    *TьlT *TъlT), *dl > l before them, the palatal clusters (*tj *kt > št,
+    *dj > žd, *šč > št), the simplification of *ř *ľ *ň, *zt > st and *kv > cv,
+    the prothetic j before an initial front vowel, initial *jь- and *ji- > i-,
+    and the final *-ьjь > -ii.  Thirteen orthographic rules state the
+    transliteration the dictionaries use for the yers (ъ = ŭ, ь = ĭ) and the
+    accent marks the record writes but the language does not: they are
+    notation, not sound change, and carry their own tier.  The script layer
+    (data/script/chu.yaml) then reads the Cyrillic and Glagolitic headwords
+    from the form these rules produce.
+  references: [vaillant-1950, meillet-1934, shevelov-1964, fortson-2004]
+
+rules:
+  # ------------------------------------------------------------------
+  # Notation: the accent marks of the PSl lemma are the dictionary's
+  # transcription, not OCS letters.  Orthographic tier, never historical.
+  # ------------------------------------------------------------------
+  - id: stress_token_dropped
+    order: 1
+    name: "The stress token is notation and is not written in OCS"
+    match: ˈ
+    replace: ""
+    tier: orthographic
+    description: >
+      The Proto-Slavic lemmas of Wiktionary mark stress with an acute
+      (*slàva*, *vīnò*); the engine stores the acute of a vowel as a separate
+      token.  The Old Church Slavonic headword writes no stress, so the token
+      is dropped as transcription (Vaillant 1950, §9; Schenker 1995, 71).
+    references: [vaillant-1950, olander-2015]
+    examples:
+      - {in: "slˈava", out: "slava", gloss: "glory"}
+  - id: accent_grave_a
+    order: 2
+    name: "A grave or macron on a is an accent, not a letter"
+    match: "(à|ā)"
+    replace: a
+    tier: orthographic
+    description: >
+      Wiktionary writes a short falling accent with a grave (slàva) and a long
+      vowel with a macron (lāpa); neither is a letter of the OCS alphabet.
+      Dropping it is notation, and the length it may mark is not written in OCS
+      either (Carlton 1991, 31-33; Lunt 1974, 20-24).
+    references: [vaillant-1950, meillet-1934]
+    examples:
+      - {in: "slàva", out: "slava", gloss: "glory"}
+  - id: accent_grave_e
+    order: 2
+    name: "A grave or breve on e is an accent, not a letter"
+    match: "(è|ȅ|ĕ)"
+    replace: e
+    tier: orthographic
+    description: "As accent_grave_a, for the vowels written with e."
+    references: [vaillant-1950, meillet-1934]
+    examples:
+      - {in: "vèdro", out: "vedro", gloss: "bucket"}
+  - id: accent_grave_ě
+    order: 2
+    name: "An accent on ě keeps the jat'"
+    match: "(ě̀|ě̑)"
+    replace: "ě"
+    tier: orthographic
+    description: >
+      A grave or an inverted breve on the jat' marks stress; the letter stays
+      ě, because the jat' is a phoneme and the accent is transcription.
+    references: [vaillant-1950, meillet-1934]
+    examples:
+      - {in: "tě̀lo", out: "tělo", gloss: "body"}
+  - id: accent_grave_ę
+    order: 2
+    name: "An accent on ę keeps the nasal vowel"
+    match: "(ę̀|ę̑)"
+    replace: "ę"
+    tier: orthographic
+    description: "As accent_grave_ě, for the front nasal vowel."
+    references: [vaillant-1950, meillet-1934]
+    examples:
+      - {in: "mę̀so", out: "męso", gloss: "meat"}
+  - id: accent_grave_i
+    order: 2
+    name: "A grave, macron or tilde on i is an accent, not a letter"
+    match: "(ì|ī|ȋ|ĩ)"
+    replace: i
+    tier: orthographic
+    description: "As accent_grave_a, for the vowels written with i."
+    references: [vaillant-1950, meillet-1934]
+    examples:
+      - {in: "vīno", out: "vino", gloss: "wine"}
+  - id: accent_grave_o
+    order: 2
+    name: "A grave, macron or inverted breve on o is an accent, not a letter"
+    match: "(ò|ȍ|ȏ|ō)"
+    replace: o
+    tier: orthographic
+    description: "As accent_grave_a, for the vowels written with o."
+    references: [vaillant-1950, meillet-1934]
+    examples:
+      - {in: "slȍvo", out: "slovo", gloss: "word"}
+  - id: accent_grave_u
+    order: 2
+    name: "A grave or inverted breve on u is an accent, not a letter"
+    match: "(ù|ȗ)"
+    replace: u
+    tier: orthographic
+    description: "As accent_grave_a, for the vowel u."
+    references: [vaillant-1950, meillet-1934]
+    examples:
+      - {in: "bùky", out: "buky", gloss: "letter"}
+  - id: accent_grave_y
+    order: 2
+    name: "A grave on y is an accent, not a letter"
+    match: "ỳ"
+    replace: y
+    tier: orthographic
+    description: "As accent_grave_a, for the vowel y."
+    references: [vaillant-1950, meillet-1934]
+    examples:
+      - {in: "sỳnъ", out: "synъ", gloss: "son"}
+  - id: accent_yer_hard
+    order: 2
+    name: "An accent on ъ keeps the yer"
+    match: "(ъ̀|ъ́|ъ̏|ъ̑)"
+    replace: "ъ"
+    tier: orthographic
+    description: "A stress mark on the hard jer is transcription; the jer is a letter."
+    references: [vaillant-1950, meillet-1934]
+    examples:
+      - {in: "sъ̀nъ", out: "sъnъ", gloss: "sleep"}
+  - id: accent_yer_soft
+    order: 2
+    name: "An accent on ь keeps the yer"
+    match: "ь̀"
+    replace: "ь"
+    tier: orthographic
+    description: "A stress mark on the soft jer is transcription; the jer is a letter."
+    references: [vaillant-1950, meillet-1934]
+    examples:
+      - {in: "dь̀nь", out: "dьnь", gloss: "day"}
+
+  # ------------------------------------------------------------------
+  # The *dl cluster: simplified before the liquid metathesis can hide it
+  # behind a vowel (a rule ordered after the metathesis cannot see *d + *l
+  # in *dьlgъ or *dolnь, and those words keep their dl: длъгъ, длань).
+  # ------------------------------------------------------------------
+  - id: dl_to_l
+    order: 10
+    name: "*dl > l"
+    match: d l
+    replace: l
+    tier: established
+    description: >
+      The Common Slavic cluster *dl is simplified to l (PSl *modlitva > OCS
+      молитва molitva, *pravidlo > правило pravilo, *kridlo > крило krilo,
+      *kadidlo > кадило kadilo).  It is ordered before the liquid metatheses:
+      the *dl of *dьlgъ and *dolnь is not an original cluster but the result
+      of *ьl/*ol metathesis, and those words keep their dl (длъгъ, длань), so
+      the law must see only an original *d + *l (Vaillant 1950, 70-74;
+      Shevelov 1964, 421-424; Carlton 1991, 143-145).
+    references: [vaillant-1950, shevelov-1964, meillet-1934]
+    examples:
+      - {in: "modlitva", out: "molitva", gloss: "prayer (молитва)"}
+
+  # ------------------------------------------------------------------
+  # The liquid metatheses of the tortile groups.
+  # ------------------------------------------------------------------
+  - id: liquid_or_to_ra
+    order: 20
+    name: "*TorT > TraT (metathesis of the liquid with *o > a)"
+    match: o r
+    replace: ra
+    env: {left: "(b|v|g|d|ž|z|k|l|m|n|p|r|s|t|f|x|c|č|š|j|ť|ď|ľ|ň|ř)", right: "(b|v|g|d|ž|z|k|l|m|n|p|r|s|t|f|x|c|č|š|j|ť|ď|ľ|ň|ř)"}
+    tier: established
+    description: >
+      A liquid followed by a consonant metathesises with the preceding vowel:
+      *orC > raC (PBS *bordā > PSl *borda > OCS брада brada).  The environment
+      is a consonant on both sides, so *gora (no following consonant) and the
+      jer groups are untouched (Vaillant 1950, 61-66; Shevelov 1964, 391-400;
+      Carlton 1991, 130-133; Schenker 1995, 100-103).
+    references: [vaillant-1950, shevelov-1964, meillet-1934]
+    examples:
+      - {in: "borda", out: "brada", gloss: "beard (брада)"}
+  - id: liquid_or_to_ra_initial
+    order: 20
+    name: "*orT- > raT- word-initially"
+    match: o r
+    replace: ra
+    env: {left: "#", right: "(b|v|g|d|ž|z|k|l|m|n|p|r|s|t|f|x|c|č|š|j|ť|ď|ľ|ň|ř)"}
+    tier: established
+    description: >
+      The same metathesis word-initially (PSl *orbota > OCS работа rabota,
+      *orz- > раз- raz-).  It is a separate rule because the pattern language
+      states a word edge as a boundary atom, which a group of alternatives
+      cannot hold (Vaillant 1950, 61-66; Shevelov 1964, 391-400).
+    references: [vaillant-1950, shevelov-1964, meillet-1934]
+    examples:
+      - {in: "orbota", out: "rabota", gloss: "work (работа)"}
+  - id: liquid_ol_to_la
+    order: 21
+    name: "*TolT > TlaT"
+    match: o l
+    replace: la
+    env: {left: "(b|v|g|d|ž|z|k|l|m|n|p|r|s|t|f|x|c|č|š|j|ť|ď|ľ|ň|ř)", right: "(b|v|g|d|ž|z|k|l|m|n|p|r|s|t|f|x|c|č|š|j|ť|ď|ľ|ň|ř)"}
+    tier: established
+    description: >
+      *TolT > TlaT (PSl *zolto > OCS злато zlato, *golva > глава glava).
+    references: [vaillant-1950, shevelov-1964, meillet-1934]
+    examples:
+      - {in: "zolto", out: "zlato", gloss: "gold (злато)"}
+  - id: liquid_ol_to_la_initial
+    order: 21
+    name: "*olT- > laT- word-initially"
+    match: o l
+    replace: la
+    env: {left: "#", right: "(b|v|g|d|ž|z|k|l|m|n|p|r|s|t|f|x|c|č|š|j|ť|ď|ľ|ň|ř)"}
+    tier: established
+    description: "The same metathesis word-initially (PSl *olkъtь > OCS лакъть lakъtь)."
+    references: [vaillant-1950, shevelov-1964, meillet-1934]
+    examples:
+      - {in: "olkъtь", out: "lakъtь", gloss: "elbow (лакъть)"}
+  - id: liquid_er_to_rě
+    order: 22
+    name: "*TerT > TrěT"
+    match: e r
+    replace: "rě"
+    env: {left: "(b|v|g|d|ž|z|k|l|m|n|p|r|s|t|f|x|c|č|š|j|ť|ď|ľ|ň|ř)", right: "(b|v|g|d|ž|z|k|l|m|n|p|r|s|t|f|x|c|č|š|j|ť|ď|ľ|ň|ř)"}
+    tier: established
+    description: >
+      *TerT > TrěT: the vowel *e gives the jat' (PSl *dervo > OCS дрѣво drěvo,
+      *melko > млѣко mlěko, *berza > брѣза brěza).
+    references: [vaillant-1950, shevelov-1964, meillet-1934]
+    examples:
+      - {in: "dervo", out: "drěvo", gloss: "tree (дрѣво)"}
+  - id: liquid_el_to_lě
+    order: 23
+    name: "*TelT > TlěT"
+    match: e l
+    replace: "lě"
+    env: {left: "(b|v|g|d|ž|z|k|l|m|n|p|r|s|t|f|x|c|č|š|j|ť|ď|ľ|ň|ř)", right: "(b|v|g|d|ž|z|k|l|m|n|p|r|s|t|f|x|c|č|š|j|ť|ď|ľ|ň|ř)"}
+    tier: established
+    description: >
+      *TelT > TlěT (PSl *melko > OCS млѣко mlěko).  It is a separate rule from
+      *TerT because the liquid is l and the pair must not fire twice.
+    references: [vaillant-1950, shevelov-1964, meillet-1934]
+    examples:
+      - {in: "melko", out: "mlěko", gloss: "milk (млѣко)"}
+
+  # ------------------------------------------------------------------
+  # The jer + liquid groups.
+  # ------------------------------------------------------------------
+  - id: yer_r_soft_metathesis
+    order: 30
+    name: "*TьrT > TrьT"
+    match: "ь r"
+    replace: "rь"
+    env: {left: "(b|v|g|d|ž|z|k|l|m|n|p|r|s|t|f|x|c|č|š|j|ť|ď|ľ|ň|ř)", right: "(b|v|g|d|ž|z|k|l|m|n|p|r|s|t|f|x|c|č|š|j|ť|ď|ľ|ň|ř)"}
+    tier: established
+    description: >
+      The jer groups metathesise like the tortile groups: *TьrT > TrьT (PSl
+      *sьrdьce > OCS срьдьце srьdьce, *pьrstъ > прьстъ prьstъ), with the jer
+      unchanged and only its place different (Vaillant 1950, 66-70; Shevelov
+      1964, 400-408).
+    references: [vaillant-1950, shevelov-1964, meillet-1934]
+    examples:
+      - {in: "sьrdьce", out: "srьdьce", gloss: "heart (срьдьце)"}
+  - id: yer_r_hard_metathesis
+    order: 31
+    name: "*TъrT > TrъT"
+    match: "ъ r"
+    replace: "rъ"
+    env: {left: "(b|v|g|d|ž|z|k|l|m|n|p|r|s|t|f|x|c|č|š|j|ť|ď|ľ|ň|ř)", right: "(b|v|g|d|ž|z|k|l|m|n|p|r|s|t|f|x|c|č|š|j|ť|ď|ľ|ň|ř)"}
+    tier: established
+    description: "*TъrT > TrъT (PSl *tъrga > OCS тръгъ trъgъ)."
+    references: [vaillant-1950, shevelov-1964, meillet-1934]
+    examples:
+      - {in: "tъrgъ", out: "trъgъ", gloss: "market (тръгъ)"}
+  - id: yer_l_soft_metathesis
+    order: 32
+    name: "*TьlT > TlьT"
+    match: "ь l"
+    replace: "lь"
+    env: {left: "(b|v|g|d|ž|z|k|l|m|n|p|r|s|t|f|x|c|č|š|j|ť|ď|ľ|ň|ř)", right: "(b|v|g|d|ž|z|k|l|m|n|p|r|s|t|f|x|c|č|š|j|ť|ď|ľ|ň|ř)"}
+    tier: established
+    description: "*TьlT > TlьT (PSl *vьlkъ > OCS влькъ vlьkъ)."
+    references: [vaillant-1950, shevelov-1964, meillet-1934]
+    examples:
+      - {in: "vьlkъ", out: "vlьkъ", gloss: "wolf (влькъ)"}
+  - id: yer_l_hard_metathesis
+    order: 33
+    name: "*TъlT > TlъT"
+    match: "ъ l"
+    replace: "lъ"
+    env: {left: "(b|v|g|d|ž|z|k|l|m|n|p|r|s|t|f|x|c|č|š|j|ť|ď|ľ|ň|ř)", right: "(b|v|g|d|ž|z|k|l|m|n|p|r|s|t|f|x|c|č|š|j|ť|ď|ľ|ň|ř)"}
+    tier: established
+    description: "*TъlT > TlъT (PSl *dъlgъ > OCS длъгъ dlъgъ)."
+    references: [vaillant-1950, shevelov-1964, meillet-1934]
+    examples:
+      - {in: "dъlgъ", out: "dlъgъ", gloss: "debt (длъгъ)"}
+
+  # ------------------------------------------------------------------
+  # The palatal clusters.
+  # ------------------------------------------------------------------
+  - id: t_palatal_to_sht
+    order: 40
+    name: "*ť > št"
+    match: "ť"
+    replace: "št"
+    tier: established
+    description: >
+      The Proto-Slavic palatal *ť (from *tj, *kt, *skj) gives the OCS cluster
+      /št/, written щ (PSl *piťa > OCS пища pišta, *noťь > нощь noštь).  The
+      cluster is written as two letters here because щ is one sign for two
+      segments and the script matcher cannot align it (Vaillant 1950, 74-78;
+      Carlton 1991, 137-140; Huntley 1993, 148-152).
+    references: [vaillant-1950, shevelov-1964, meillet-1934]
+    examples:
+      - {in: "piťa", out: "pišta", gloss: "food (пища)"}
+  - id: d_palatal_to_zhd
+    order: 41
+    name: "*ď > žd"
+    match: "ď"
+    replace: "žd"
+    tier: established
+    description: >
+      The palatal *ď (from *dj) gives /žd/, written жд (PSl *voďь > OCS вождь
+      voždь, *meďa > межда mežda).  The letters are two, so the script layer
+      aligns them sign by sign (Vaillant 1950, 74-78).
+    references: [vaillant-1950, shevelov-1964, meillet-1934]
+    examples:
+      - {in: "voďь", out: "voždь", gloss: "leader (вождь)"}
+  - id: shch_to_sht
+    order: 42
+    name: "*šč > št"
+    match: š č
+    replace: "št"
+    tier: established
+    description: >
+      The cluster *šč of Proto-Slavic gives OCS /št/ (PSl *ešče > OCS еще
+      ešte, *pišča > пища pišta, *ščitъ > щитъ ščitъ).  It is stated apart from
+      *ť > št because the input is the two segments *š + *č, not the palatal.
+    references: [vaillant-1950, shevelov-1964, meillet-1934]
+    examples:
+      - {in: "ešče", out: "ešte", gloss: "still (еще)"}
+  - id: r_caron_to_r
+    order: 45
+    name: "*ř > r"
+    match: "ř"
+    replace: r
+    tier: established
+    description: >
+      Proto-Slavic *ř (from *rj) is written р in OCS (PSl *moře > море more,
+      *cěsařь > цѣсарь cěsarь): the palatal articulation was not written
+      (Vaillant 1950, 70-74; Shevelov 1964, 408-415).
+    references: [vaillant-1950, shevelov-1964, meillet-1934]
+    examples:
+      - {in: "moře", out: "more", gloss: "sea (море)"}
+
+  # ------------------------------------------------------------------
+  # The palatal sonorants before a back vowel keep a written j.
+  # ------------------------------------------------------------------
+  - id: l_palatal_to_lj
+    order: 50
+    name: "*ľ > lj before a back vowel"
+    match: "ľ"
+    replace: "lj"
+    env: {right: "(a|o|u|y|ъ)"}
+    tier: established
+    description: >
+      Proto-Slavic *ľ is written л, and before a back vowel the j of the
+      palatal articulation is written: *ľudъ > людъ ljudъ, *zemľa > землꙗ
+      zemlja (Vaillant 1950, 70-74; Carlton 1991, 141-143).
+    references: [vaillant-1950, meillet-1934]
+    examples:
+      - {in: "ľudъ", out: "ljudъ", gloss: "people (людъ)"}
+  - id: l_palatal_to_l
+    order: 51
+    name: "*ľ > l elsewhere"
+    match: "ľ"
+    replace: l
+    tier: established
+    description: "Before a front vowel or a consonant the j is not written: *korabľь > корабль korablь."
+    references: [vaillant-1950, meillet-1934]
+    examples:
+      - {in: "korabľь", out: "korablь", gloss: "ship (корабль)"}
+  - id: n_palatal_to_nj
+    order: 52
+    name: "*ň > nj before a back vowel"
+    match: "ň"
+    replace: "nj"
+    env: {right: "(a|o|u|y|ъ)"}
+    tier: established
+    description: "*baňa > банꙗ banja."
+    references: [vaillant-1950, meillet-1934]
+    examples:
+      - {in: "baňa", out: "banja", gloss: "bath (банꙗ)"}
+  - id: n_palatal_to_n
+    order: 53
+    name: "*ň > n elsewhere"
+    match: "ň"
+    replace: n
+    tier: established
+    description: "*ňiva > нива niva."
+    references: [vaillant-1950, meillet-1934]
+    examples:
+      - {in: "ňiva", out: "niva", gloss: "field (нива)"}
+
+  # ------------------------------------------------------------------
+  # Initial syllables.
+  # ------------------------------------------------------------------
+  - id: initial_jer_i
+    order: 60
+    name: "Initial *jь- > i-"
+    match: j ь
+    replace: i
+    env: {left: "#"}
+    tier: established
+    description: >
+      Word-initially *jь- loses its j and its jer merges with i (PSl *jьz >
+      OCS изъ izъ, *jьmę > имѧ imę, *jь > и i).  The environment is the word
+      edge, so a medial *jь (e.g. *pijь) is untouched (Vaillant 1950, 84-88;
+      Shevelov 1964, 415-420).
+    references: [vaillant-1950, shevelov-1964, meillet-1934]
+    examples:
+      - {in: "jьzъ", out: "izъ", gloss: "out of (изъ)"}
+  - id: prothesis_e
+    order: 61
+    name: "Initial *e- > je- before s or z"
+    match: e
+    replace: je
+    env: {left: "#", right: (s|z)}
+    tier: proposed
+    description: >
+      The *es- and *ez- words take a prothetic j (PSl *estь > OCS ѥстъ jestъ,
+      *esi > ѥси jesi, *ezero > ѥзеро jezero, *esenь > ѥсень jesenь).  The
+      prothesis is not exceptionless in this corpus: единъ edinъ, етеръ eterъ
+      and еще ešte keep their e-, so the general statement "*e- > je-" loses
+      three words that already match and is rejected (see the report).  What
+      the record supports is the narrower environment above, which is
+      therefore marked *proposed*, not *established* (Vaillant 1950, 84-88;
+      Carlton 1991, 145).
+    references: [vaillant-1950, shevelov-1964, meillet-1934]
+    examples:
+      - {in: "estь", out: "jestь", gloss: "is (ѥстъ)"}
+  - id: prothesis_ě
+    order: 62
+    name: "Initial *ě- > ja-"
+    match: "ě"
+    replace: "ja"
+    env: {left: "#"}
+    tier: established
+    description: >
+      Initial *ě gives ja-, written ꙗ (PSl *ěsti > OCS ꙗсти jasti, *ěsnъ >
+      ꙗснъ jasnъ).  The jat' is kept everywhere else.
+    references: [vaillant-1950, shevelov-1964, meillet-1934]
+    examples:
+      - {in: "ěsti", out: "jasti", gloss: "to eat (ꙗсти)"}
+  - id: prothesis_ę
+    order: 63
+    name: "Initial *ę- > ję-"
+    match: "ę"
+    replace: "ję"
+    env: {left: "#"}
+    tier: established
+    description: >
+      Initial *ę takes a prothetic j (PSl *ęzykъ > OCS ѩзꙑкъ językъ, *ęti >
+      ѩти jęti).  Medial *ę is untouched.
+    references: [vaillant-1950, shevelov-1964, meillet-1934]
+    examples:
+      - {in: "ęzykъ", out: "językъ", gloss: "tongue (ѩзꙑкъ)"}
+
+  # ------------------------------------------------------------------
+  # *ьj > ij.
+  # ------------------------------------------------------------------
+
+  - id: initial_ji_to_i
+    order: 64
+    name: "Initial *ji- > i-"
+    match: j i
+    replace: i
+    env: {left: "#"}
+    tier: established
+    description: >
+      The initial sequence *ji- loses its j (PSl *jinъ > OCS инъ inъ, *jistъ >
+      истъ istъ), exactly as *jь- does.  The environment is the word edge, so
+      the *ji of a medial syllable is untouched.
+    references: [vaillant-1950, meillet-1934]
+    examples:
+      - {in: "jinъ", out: "inъ", gloss: "other (инъ)"}
+
+  - id: zt_to_st
+    order: 90
+    name: "*zt > st"
+    match: z t
+    replace: st
+    tier: established
+    description: >
+      The cluster *zt loses its voicing before *t (PSl *vezti > OCS вести
+      vesti, *lězti > лѣсти lěsti).  It runs after the liquid metathesis,
+      whose *erzt gives rězt > rěst (PSl *otъverzti > отъврѣсти otъvrěsti).
+    references: [vaillant-1950, shevelov-1964, meillet-1934]
+    examples:
+      - {in: "vezti", out: "vesti", gloss: "to carry (вести)"}
+  - id: kv_to_cv
+    order: 91
+    name: "*kv > cv before a front vowel"
+    match: k v
+    replace: cv
+    env: {right: (ě|i)}
+    tier: established
+    description: >
+      Before a front vowel the cluster *kv palatalises to cv (PSl *květъ > OCS
+      цвѣтъ cvětŭ, *kvisti > цвисти cvisti).  *kvasъ, *skvara and *skvьrna keep
+      their kv because no front vowel follows, which is why the environment is
+      stated and not the whole transition.
+    references: [vaillant-1950, shevelov-1964, meillet-1934]
+    examples:
+      - {in: "květъ", out: "cvětъ", gloss: "flower (цвѣтъ)"}
+
+
+  # ------------------------------------------------------------------
+  # The final sequence *-ьjь.
+  # ------------------------------------------------------------------
+  - id: soft_jer_jь_to_ii
+    order: 71
+    name: "Final *-ьjь > -ii"
+    match: "ь j ь"
+    replace: "i i"
+    tier: established
+    description: >
+      The final sequence *-ьjь gives OCS -ii (PSl *zmьjь > змии zmii, *čьjь >
+      чии čii, *žerbьjь > жрѣбии žrěbii, *bolьjь > болии bolii).  It runs before
+      the transliteration of the yers, so both jers are still letters when it
+      fires.
+    references: [vaillant-1950, meillet-1934]
+    examples:
+      - {in: "zmьjь", out: "zmii", gloss: "snake (змии)"}
+
+  # ------------------------------------------------------------------
+  # Notation: the transliteration of the yers.  Orthographic tier.
+  # ------------------------------------------------------------------
+  - id: soft_jer_transliteration
+    order: 200
+    name: "ь is transliterated ĭ"
+    match: "ь"
+    replace: "ĭ"
+    tier: orthographic
+    description: >
+      The dictionaries transliterate the soft jer as ĭ (šestĭ, kostĭ); the
+      general Slavicist transliteration writes ʹ.  This is a transliteration
+      convention, not a sound change, and it is what the script layer's ь
+      reads.  It runs last so that every law above still sees the letter ь
+      (Schenker 1995, 71-74; Lunt 1974, 24-30).
+    references: [vaillant-1950, olander-2015]
+    examples:
+      - {in: "kostь", out: "kostĭ", gloss: "bone (кость)"}
+  - id: hard_jer_transliteration
+    order: 201
+    name: "ъ is transliterated ŭ"
+    match: "ъ"
+    replace: "ŭ"
+    tier: orthographic
+    description: >
+      The dictionaries transliterate the hard jer as ŭ (gradŭ, domŭ).  A
+      transliteration convention (Schenker 1995, 71-74).
+    references: [vaillant-1950, olander-2015]
+    examples:
+      - {in: "gradъ", out: "gradŭ", gloss: "city (градъ)"}

@@ -1,0 +1,54 @@
+stage:
+  name: Italian orthography
+  description: >
+    How Italian is written in the dictionaries the corpus is built from.  The
+    standard orthography does not mark the open/close quality of mid vowels,
+    so the phonemic layer's /ɛ/ and /ɔ/ are written e and o.  The letter y
+    belongs to Latin and Greek loanwords and is written i in Italian.  Stress
+    is normally not written.
+  references: [maiden-1995, sihler-1995]
+
+rules:
+  - id: drop_stress
+    order: 5
+    name: Stress is not written
+    match: "ˈ"
+    replace: ""
+    tier: orthographic
+    description: "Italian writes an accent only to mark final stress or a monosyllable's homograph; the dictionary's ordinary lemmas carry none."
+    references: [maiden-1995]
+    examples:
+      - {in: "ˈsɔl", out: "sol"}
+
+  - id: open_e
+    order: 100
+    name: "/ɛ/ is written ⟨e⟩"
+    match: "ɛ"
+    replace: "e"
+    tier: orthographic
+    description: "Italian spelling does not distinguish open /ɛ/ from close /e/: both are written e (bene, festa).  The distinction is phonological, not orthographic."
+    references: [maiden-1995]
+    examples:
+      - {in: "dɛ", out: "de"}
+
+  - id: open_o
+    order: 101
+    name: "/ɔ/ is written ⟨o⟩"
+    match: "ɔ"
+    replace: "o"
+    tier: orthographic
+    description: "Italian spelling does not distinguish open /ɔ/ from close /o/: both are written o (sole, cosa)."
+    references: [maiden-1995]
+    examples:
+      - {in: "sɔl", out: "sol"}
+
+  - id: y_to_i
+    order: 50
+    name: "/y/ is written ⟨i⟩"
+    match: "y"
+    replace: "i"
+    tier: orthographic
+    description: "The letter y has no place in native Italian spelling; the vowel of Greek and Latin loanwords is written i (Siria, ginnasio)."
+    references: [maiden-1995]
+    examples:
+      - {in: "syria", out: "siria"}

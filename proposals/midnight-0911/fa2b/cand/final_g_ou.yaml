@@ -1,0 +1,17 @@
+stage: {source: pal, target: fa}
+rules:
+  - id: final_g_after_o_u
+    order: 14
+    name: "MP final *-ōg / *-ūg > NP -ū"
+    match: g
+    replace: ""
+    env: {left: "(ō|ū)", right: "#"}
+    tier: proposed
+    description: >
+      A word-final *-g after a long back vowel is lost: MP mēnōg 'heaven' > NP
+      mīnū, sōg > sū, tīhōg > tīhū.  The environment names the vowel, because
+      the same *-g is kept after *ē (dēg 'pot' > dīg).
+    references: [sadeghi-1978, windfuhr-2009]
+    examples:
+      - {in: "mēnōg", out: "mēnō", gloss: "heaven (NP mīnū)"}
+      - {in: "sōg", out: "sō", gloss: "(NP sū)"}

@@ -1,0 +1,487 @@
+stage:
+  name: Proto-Indo-European → Proto-Celtic
+  date_start: -1500
+  date_end: -800
+  description: Celtic is centum and keeps short *o and *a apart.  The palatovelars merge with the plain
+    velars, the voiced aspirates lose their aspiration, *gʷ becomes *b before a non-front vowel, *p becomes
+    *ɸ, syllabic resonants resolve with *a and a laryngeal lengthens the vowel it colours; *ē becomes
+    *ī and final *ō becomes *ū.
+  references:
+  - matasovic-2009
+  - mccone-1996
+  - fortson-2004
+rules:
+- id: syllabic_m_h2
+  order: 4
+  name: Syllabic *m̥ + laryngeal > *ma
+  match: m̥ h₂
+  replace: ma
+  tier: established
+  description: A syllabic nasal before *h₂ takes *a (*m̥h₂d-yé-ti > *madyeti).
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*m̥h₂d-yé-ti'
+    out: '*ma-dyé-ti'
+    gloss: to be wet
+- id: syllabic_laryngeals
+  order: 5
+  name: Syllabic laryngeals become *a
+  transform: syllabic_laryngeals
+  tier: established
+  description: A laryngeal that is a syllable nucleus surfaces as *a (*ph₂tḗr > *fatīr).
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*ph₂tḗr'
+    out: '*patḗr'
+    gloss: father
+- id: syllabic_r_h2
+  order: 6
+  name: Syllabic *r̥ + laryngeal > *rā
+  match: r̥ (h₁|h₂|h₃)
+  replace: rā
+  tier: established
+  description: A syllabic liquid before a laryngeal takes *a and lengthens (*tr̥h₁-tó-s > *trātos).
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*tr̥h₁-tó-s'
+    out: '*trā-tó-s'
+    gloss: through
+- id: syllabic_l_h2
+  order: 7
+  name: Syllabic *l̥ + laryngeal > *lā
+  match: l̥ h₂
+  replace: lā
+  tier: established
+  description: A syllabic liquid before *h₂ takes *a as its vowel and lengthens it (*pl̥h₂-trom > *ɸlātrom).
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*pl̥h₂-trom'
+    out: '*plā-trom'
+    gloss: vessel
+- id: syllabic_l_h2_long
+  order: 9
+  name: '*o + *h₂ > *ā'
+  match: o h₂
+  replace: ā
+  tier: established
+  description: A short *o before *h₂ gives long *ā in Proto-Celtic (*ploh₂-trom > *plātrom).
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*ploh₂-trom'
+    out: '*plā-trom'
+    gloss: vessel
+- id: h2_colours_e
+  order: 10
+  name: '*h₂ colours *e to *a'
+  match: e
+  replace: a
+  env:
+    right: h₂
+  tier: established
+  description: 'Regressive colouring: *e before *h₂ becomes *a.'
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*bʰréh₂tēr'
+    out: '*bʰráh₂tēr'
+    gloss: brother
+- id: h3_colours_e
+  order: 11
+  name: '*h₃ colours *e to *o'
+  match: e
+  replace: o
+  env:
+    right: h₃
+  tier: established
+  description: 'Regressive colouring: *e before *h₃ becomes *o.'
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*deh₃-'
+    out: '*doh₃-'
+    gloss: to give
+- id: lengthen_e_h1
+  order: 12
+  name: 'Lengthening: *e before *h₁ > *ē'
+  match: e
+  replace: ē
+  env:
+    right: h₁
+  tier: established
+  description: A vowel lengthens when the laryngeal is lost (*seh₁-ros > *sēros).
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*seh₁-ros'
+    out: '*sēh₁-ros'
+    gloss: seed
+- id: lengthen_a_h2
+  order: 13
+  name: 'Lengthening: *a before *h₂ > *ā'
+  match: a
+  replace: ā
+  env:
+    right: h₂
+  tier: established
+  description: The vowel coloured by *h₂ lengthens (*séh₂-tis > *sātis).
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*sah₂-tis'
+    out: '*sāh₂-tis'
+    gloss: sweetness
+- id: lengthen_o_h3
+  order: 14
+  name: 'Lengthening: *o before *h₃ > *ō'
+  match: o
+  replace: ō
+  env:
+    right: h₃
+  tier: established
+  description: The vowel coloured by *h₃ lengthens.
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*doh₃-'
+    out: '*dōh₃-'
+    gloss: to give
+- id: ih2_to_i
+  order: 15
+  name: '*-ih₂ > *-ī'
+  match: i h₂
+  replace: ī
+  tier: established
+  description: A laryngeal after *i lengthens it and is lost (*pléw-ih₂ > *plowī).
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*plow-ih₂'
+    out: '*plow-ī'
+    gloss: boat
+- id: h2_colours_e_progressive
+  order: 16
+  name: '*h₂ colours a following *e to *a'
+  match: e
+  replace: a
+  env:
+    left: h₂ (ˈ|ˌ)?
+  tier: established
+  description: Colouring also works from a preceding laryngeal (*h₂el-tó-s > *altos).
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*h₂el-tó-s'
+    out: '*h₂al-tó-s'
+    gloss: nourished
+- id: laryngeal_loss
+  order: 20
+  name: Laryngeals are lost
+  match: h₁|h₂|h₃
+  replace: ''
+  tier: established
+  description: Remaining laryngeals disappear after colouring and vocalisation.
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*h₂r̥ǵ-yó-s'
+    out: '*r̥ǵ-yó-s'
+    gloss: silver
+- id: laryngeal_H_loss
+  order: 21
+  name: The cover symbol *H is lost
+  match: H
+  replace: ''
+  tier: established
+  description: The abstract laryngeal *H is lost like *h₁ *h₂ *h₃.
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*Hriǵ-é-ti'
+    out: '*riǵ-é-ti'
+    gloss: to run
+- id: centum_k
+  order: 30
+  name: Palatovelar *ḱ > *k
+  match: ḱ
+  replace: k
+  tier: established
+  description: 'Celtic is a centum branch: *ḱ merges with the plain velar *k.'
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*ḱm̥tóm'
+    out: '*km̥tóm'
+    gloss: hundred
+- id: centum_g
+  order: 31
+  name: Palatovelar *ǵ > *g
+  match: ǵ
+  replace: g
+  tier: established
+  description: Palatovelar *ǵ merges with the plain velar *g.
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*h₂r̥ǵ-yó-s'
+    out: '*h₂r̥g-yó-s'
+    gloss: silver
+- id: centum_gh
+  order: 32
+  name: Palatovelar *ǵʰ > *g
+  match: ǵʰ
+  replace: g
+  tier: established
+  description: Palatovelar *ǵʰ loses its aspiration and merges with *g.
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*ǵʰostis'
+    out: '*gostis'
+    gloss: guest
+- id: bh_to_b
+  order: 40
+  name: '*bʰ > *b'
+  match: bʰ
+  replace: b
+  tier: established
+  description: 'Proto-Celtic has no voiced aspirates: *bʰ becomes *b (*bʰru-tis > *brutis).'
+  references:
+  - matasovic-2009
+  - mccone-1996
+  examples:
+  - in: '*bʰru-tis'
+    out: '*bru-tis'
+    gloss: clash
+- id: dh_to_d
+  order: 41
+  name: '*dʰ > *d'
+  match: dʰ
+  replace: d
+  tier: established
+  description: '*dʰ becomes *d (*wedʰ-ó-s > *wedos).'
+  references:
+  - matasovic-2009
+  - mccone-1996
+  examples:
+  - in: '*wedʰ-ó-s'
+    out: '*wed-ó-s'
+    gloss: lead
+- id: gh_to_g
+  order: 42
+  name: '*gʰ > *g'
+  match: gʰ
+  replace: g
+  tier: established
+  description: '*gʰ becomes *g.'
+  references:
+  - matasovic-2009
+  - mccone-1996
+  examples:
+  - in: '*gʰóstis'
+    out: '*góstis'
+    gloss: guest
+- id: gw_to_b
+  order: 50
+  name: Labiovelar *gʷ > *b before a non-front vowel
+  match: gʷ
+  replace: b
+  env:
+    right: (a|o|ā|ō)
+  tier: established
+  description: The voiced labiovelar becomes *b in Celtic (*gʷh₂-tó-s > *batos).
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*gʷa-tó-s'
+    out: '*ba-tó-s'
+    gloss: struck
+- id: gwh_to_b
+  order: 51
+  name: Labiovelar *gʷʰ > *b before a non-front vowel
+  match: gʷʰ
+  replace: b
+  env:
+    right: (a|o|ā|ō)
+  tier: established
+  description: The voiced aspirated labiovelar also becomes *b.
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*gʷʰa-tó-s'
+    out: '*ba-tó-s'
+    gloss: struck
+- id: gw_to_g
+  order: 52
+  name: Labiovelar *gʷ > *gʷ before a front vowel (remains labiovelar)
+  match: gʷʰ
+  replace: gʷ
+  env:
+    right: (ˈ|ˌ)? (e|i|ī|ē)
+  tier: established
+  description: Before a front vowel the labiovelar keeps its lip-rounding and loses only the aspiration
+    (*gʷʰér-e-ti > *gʷereti).
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*gʷʰér-e-ti'
+    out: '*gʷér-e-ti'
+    gloss: to be hot
+- id: p_to_phi
+  order: 60
+  name: '*p > *ɸ'
+  match: p
+  replace: ɸ
+  tier: established
+  description: PIE *p becomes the bilabial fricative *ɸ, which is later lost in most Celtic languages
+    (*perḱ-ó-s > *ɸerkos).
+  references:
+  - matasovic-2009
+  - mccone-1996
+  examples:
+  - in: '*perḱ-ó-s'
+    out: '*ɸerḱ-ó-s'
+    gloss: furrow
+- id: k_to_x_before_t
+  order: 70
+  name: '*k > *x before *t'
+  match: k
+  replace: x
+  env:
+    right: t
+  tier: established
+  description: A velar becomes a fricative before the dental stop (*mh₂ḱ-tós > *maxtos).
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*mh₂k-tó-s'
+    out: '*mh₂x-tó-s'
+    gloss: great
+- id: g_to_x_before_t
+  order: 71
+  name: '*g > *x before *t'
+  match: g
+  replace: x
+  env:
+    right: t
+  tier: established
+  description: A voiced velar is devoiced and spirantised before *t (*leg-to-s > *lextos).
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*leg-to-s'
+    out: '*lex-to-s'
+    gloss: law
+- id: syllabic_m
+  order: 110
+  name: Syllabic *m̥ > *am
+  match: m̥
+  replace: am
+  tier: established
+  description: Syllabic *m̥ becomes *am (*sm̥h₂-ōn > *samū).
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*sm̥h₂-ōn'
+    out: '*samh₂-ōn'
+    gloss: summer
+- id: syllabic_n
+  order: 111
+  name: Syllabic *n̥ > *an
+  match: n̥
+  replace: an
+  tier: established
+  description: Syllabic *n̥ becomes *an.
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*n̥-'
+    out: '*an-'
+    gloss: un-
+- id: syllabic_r
+  order: 112
+  name: Syllabic *r̥ > *ar
+  match: r̥
+  replace: ar
+  tier: established
+  description: Syllabic *r̥ becomes *ar (*h₂r̥ǵ-yó-s > *argyos).
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*h₂r̥ǵ-yó-s'
+    out: '*h₂arǵ-yó-s'
+    gloss: silver
+- id: syllabic_l
+  order: 113
+  name: Syllabic *l̥ > *al
+  match: l̥
+  replace: al
+  tier: established
+  description: Syllabic *l̥ becomes *al (*h₂wl̥h₁-o-s > *walos).
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*h₂wl̥h₁-o-s'
+    out: '*h₂walh₁-o-s'
+    gloss: ruler
+- id: final_on_to_u
+  order: 200
+  name: Final *-ō(n) > *-ū
+  match: ō
+  replace: ū
+  env:
+    right: '(n)? #'
+  tier: established
+  description: Word-final *ō becomes *ū (*sm̥h₂-ōn > *samū).
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*samh₂-ōn'
+    out: '*samh₂-ūn'
+    gloss: summer
+- id: ew_to_ow
+  order: 210
+  name: '*ew > *ow'
+  match: e w
+  replace: ow
+  tier: established
+  description: The diphthong *ew becomes *ow (*pléw-ih₂ > *ɸlowī).
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*pléw-ih₂'
+    out: '*plów-ih₂'
+    gloss: boat
+- id: e_to_i_long
+  order: 300
+  name: '*ē > *ī'
+  match: ē
+  replace: ī
+  tier: established
+  description: PIE long *ē becomes *ī in Proto-Celtic (*seh₁-ros > *sīros).
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*sēros'
+    out: '*sīros'
+    gloss: seed
+- id: y_to_i
+  order: 320
+  name: Non-syllabic *i̯ in a diphthong > *i
+  match: y
+  replace: i
+  env:
+    left: V
+    right: (!V)
+  tier: established
+  description: The second element of a diphthong is written *i (*krey-tro-s > *kreitros).
+  references:
+  - matasovic-2009
+  examples:
+  - in: '*krey-tro-s'
+    out: '*krei-tro-s'
+    gloss: sieve

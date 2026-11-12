@@ -1,0 +1,3124 @@
+{
+"-ς": {
+"lang": "grc",
+"reading": "s",
+"source": "Greek -ς",
+"translit": ""
+},
+"Γ": {
+"lang": "grc",
+"reading": "G",
+"source": "Gothic 𐌲",
+"translit": ""
+},
+"آداش": {
+"lang": "ota",
+"reading": "adaş",
+"source": "Armenian ադաշ",
+"translit": ""
+},
+"آرا": {
+"lang": "fa",
+"reading": "ārā",
+"source": "Persian آرایه",
+"translit": ""
+},
+"آزاددرخت": {
+"lang": "fa",
+"reading": "âzâd-deraxt",
+"source": "English azedarach",
+"translit": ""
+},
+"آستان": {
+"lang": "fa",
+"reading": "āstān",
+"source": "Persian آستانه",
+"translit": ""
+},
+"آستر": {
+"lang": "fa-cls",
+"reading": "astar",
+"source": "Greek αστάρι",
+"translit": ""
+},
+"آسک": {
+"lang": "fa",
+"reading": "ásk",
+"source": "Persian آهو",
+"translit": ""
+},
+"آسیا": {
+"lang": "fa",
+"reading": "âsiyâ",
+"source": "Persian آسیایی",
+"translit": ""
+},
+"آغا": {
+"lang": "ota",
+"reading": "ağa",
+"source": "Albanian ago",
+"translit": ""
+},
+"آفند": {
+"lang": "fa",
+"reading": "âfand",
+"source": "Persian پدافند",
+"translit": ""
+},
+"آلای": {
+"lang": "ota",
+"reading": "alay",
+"source": "Albanian allajbe",
+"translit": ""
+},
+"آور": {
+"lang": "fa",
+"reading": "âvar",
+"source": "Persian الزام‌آور",
+"translit": ""
+},
+"آگر": {
+"lang": "fa",
+"reading": "agir",
+"source": "Persian گر",
+"translit": ""
+},
+"آیاز": {
+"lang": "ota",
+"reading": "ayaz",
+"source": "Greek αγιάζι",
+"translit": ""
+},
+"آیران": {
+"lang": "ota",
+"reading": "ayran",
+"source": "Armenian այրան",
+"translit": ""
+},
+"ابا": {
+"lang": "fa",
+"reading": "abā",
+"source": "Persian با",
+"translit": ""
+},
+"اباض": {
+"lang": "fa",
+"reading": "ebâz",
+"source": "Persian اباضی",
+"translit": ""
+},
+"ابل": {
+"lang": "fa",
+"reading": "abol",
+"source": "Persian ارس",
+"translit": ""
+},
+"ابلا": {
+"lang": "ota",
+"reading": "abla",
+"source": "Greek αμπλά",
+"translit": ""
+},
+"ابهل": {
+"lang": "fa",
+"reading": "abhol",
+"source": "Persian ارس",
+"translit": ""
+},
+"ابواب": {
+"lang": "fa",
+"reading": "abvâb",
+"source": "English abwab",
+"translit": ""
+},
+"اجاق": {
+"lang": "fa",
+"reading": "ojâq",
+"source": "Persian اجاق‌گاز",
+"translit": ""
+},
+"اردستان": {
+"lang": "fa",
+"reading": "ardestân",
+"source": "English Ardestan",
+"translit": ""
+},
+"اردل": {
+"lang": "ota",
+"reading": "Erdel",
+"source": "English Erdel",
+"translit": ""
+},
+"اسار": {
+"lang": "fa",
+"reading": "osâr",
+"source": "Persian افسار",
+"translit": ""
+},
+"استحکام": {
+"lang": "fa",
+"reading": "estehkâm",
+"source": "Persian استحکامات",
+"translit": ""
+},
+"استمرار": {
+"lang": "fa",
+"reading": "estemrâr",
+"source": "Persian استمراری",
+"translit": ""
+},
+"اسپناج": {
+"lang": "fa",
+"reading": "espanâj",
+"source": "Persian سنجد",
+"translit": ""
+},
+"اسپناخ": {
+"lang": "fa-cls",
+"reading": "ispanāx",
+"source": "Greek σπανάκι",
+"translit": ""
+},
+"اسک": {
+"lang": "fa",
+"reading": "ask",
+"source": "Persian اسکدار",
+"translit": ""
+},
+"اشکل": {
+"lang": "fa",
+"reading": "eškel",
+"source": "Persian شل",
+"translit": ""
+},
+"اصناف": {
+"lang": "ota",
+"reading": "esnaf",
+"source": "Armenian էսնաֆ",
+"translit": ""
+},
+"افتتاح": {
+"lang": "fa",
+"reading": "iftitāh",
+"source": "Persian افتتاحیه",
+"translit": ""
+},
+"افراختن": {
+"lang": "fa",
+"reading": "afrâxtan",
+"source": "Persian آراستن",
+"translit": ""
+},
+"افراط": {
+"lang": "fa",
+"reading": "efrât",
+"source": "Persian افراطی",
+"translit": ""
+},
+"افگار": {
+"lang": "fa",
+"reading": "afgâr",
+"source": "Persian دلفگار",
+"translit": ""
+},
+"اقتدار": {
+"lang": "fa",
+"reading": "eqtedâr",
+"source": "Persian اقتدارگرا",
+"translit": ""
+},
+"ال": {
+"lang": "ar",
+"reading": "al",
+"source": "English Albacete",
+"translit": ""
+},
+"انباز": {
+"lang": "fa",
+"reading": "anbâz",
+"source": "Persian شریک",
+"translit": ""
+},
+"انتظام": {
+"lang": "fa",
+"reading": "entezâm",
+"source": "Persian انتظامی",
+"translit": ""
+},
+"انجرک": {
+"lang": "fa",
+"reading": "anjarak",
+"source": "Armenian անճարակ",
+"translit": ""
+},
+"اند": {
+"lang": "fa",
+"reading": "and",
+"source": "Persian اندک",
+"translit": ""
+},
+"انداز": {
+"lang": "fa",
+"reading": "andāz",
+"source": "Persian تیر انداز",
+"translit": ""
+},
+"اندر": {
+"lang": "fa",
+"reading": "andar",
+"source": "Persian سمندر",
+"translit": ""
+},
+"انصار": {
+"lang": "fa",
+"reading": "ansâr",
+"source": "Persian انصاری",
+"translit": ""
+},
+"انفراد": {
+"lang": "fa",
+"reading": "enferâd",
+"source": "Persian انفرادی",
+"translit": ""
+},
+"انور": {
+"lang": "ota",
+"reading": "Enver",
+"source": "Albanian Enver",
+"translit": ""
+},
+"انگ": {
+"lang": "fa",
+"reading": "ang",
+"source": "Persian انگبین",
+"translit": ""
+},
+"انگار": {
+"lang": "fa",
+"reading": "engâr",
+"source": "Persian ساده‌انگاری",
+"translit": ""
+},
+"اورنگ": {
+"lang": "fa",
+"reading": "owrang",
+"source": "Persian ابرنجن",
+"translit": ""
+},
+"اوگ": {
+"lang": "fa",
+"reading": "owg",
+"source": "Persian اوج",
+"translit": ""
+},
+"اژدر": {
+"lang": "fa-cls",
+"reading": "aždar",
+"source": "Albanian ezhdërha",
+"translit": ""
+},
+"بابا": {
+"lang": "ota",
+"reading": "baba",
+"source": "Greek μπαμπάς",
+"translit": ""
+},
+"باج": {
+"lang": "fa-cls",
+"reading": "bāj",
+"source": "Greek μπάτσος",
+"translit": ""
+},
+"بادشاه": {
+"lang": "fa-cls",
+"reading": "bādšāh",
+"source": "English Badshah",
+"translit": ""
+},
+"بادنگان": {
+"lang": "fa-cls",
+"reading": "bādingān",
+"source": "English melongene",
+"translit": ""
+},
+"بادیان": {
+"lang": "fa",
+"reading": "bâdiyân",
+"source": "English badian",
+"translit": ""
+},
+"بازارگان": {
+"lang": "fa",
+"reading": "bâzârgân",
+"source": "Persian بازرگان",
+"translit": ""
+},
+"باش": {
+"lang": "ota",
+"reading": "baş",
+"source": "English pasha",
+"translit": ""
+},
+"باف": {
+"lang": "fa",
+"reading": "bâf",
+"source": "Persian قالیباف",
+"translit": ""
+},
+"بافت": {
+"lang": "fa",
+"reading": "bâft",
+"source": "Persian زربفت",
+"translit": ""
+},
+"بالس": {
+"lang": "ar",
+"reading": "Balis",
+"source": "English Balis",
+"translit": ""
+},
+"بالنگ": {
+"lang": "fa",
+"reading": "bâlang",
+"source": "Persian بلنجمشک",
+"translit": ""
+},
+"بامیا": {
+"lang": "fa",
+"reading": "bāmiyā",
+"source": "Persian توتیا",
+"translit": ""
+},
+"بایات": {
+"lang": "ota",
+"reading": "bayat",
+"source": "Greek μπαγιάτικος",
+"translit": ""
+},
+"بجشک": {
+"lang": "fa",
+"reading": "beješk",
+"source": "Persian گنجشک",
+"translit": ""
+},
+"بخسم": {
+"lang": "xqa",
+"reading": "buxsum",
+"source": "English boza",
+"translit": ""
+},
+"بخشای": {
+"lang": "fa",
+"reading": "baxšāy",
+"source": "Persian بخشودن",
+"translit": ""
+},
+"بده": {
+"lang": "fa",
+"reading": "bidih",
+"source": "Persian بدهی",
+"translit": ""
+},
+"برات": {
+"lang": "ota",
+"reading": "Berat",
+"source": "English Berat",
+"translit": ""
+},
+"براز": {
+"lang": "fa",
+"reading": "berâz",
+"source": "Persian گراز",
+"translit": ""
+},
+"بربر": {
+"lang": "fa",
+"reading": "barbar",
+"source": "Persian بربری",
+"translit": ""
+},
+"برد": {
+"lang": "fa",
+"reading": "bord",
+"source": "Persian بردبار",
+"translit": ""
+},
+"بردار": {
+"lang": "fa",
+"reading": "bardâr",
+"source": "Persian کلاهبرداری",
+"translit": ""
+},
+"برنس": {
+"lang": "ota",
+"reading": "burnus",
+"source": "Greek μπουρνούζι",
+"translit": ""
+},
+"بریان": {
+"lang": "fa-cls",
+"reading": "biryan",
+"source": "Greek μπριάμ",
+"translit": ""
+},
+"بزرگمهر": {
+"lang": "fa",
+"reading": "bozorgmehr",
+"source": "Persian بوذرجمهر",
+"translit": ""
+},
+"بزن": {
+"lang": "fa",
+"reading": "bezan",
+"source": "Persian بادبزن",
+"translit": ""
+},
+"بستام": {
+"lang": "fa",
+"reading": "bestâm",
+"source": "Persian بسد",
+"translit": ""
+},
+"بستان": {
+"lang": "fa",
+"reading": "bostân",
+"source": "Persian سرابستان",
+"translit": ""
+},
+"بقر": {
+"lang": "fa",
+"reading": "baqar",
+"source": "Persian بقر‌عید",
+"translit": ""
+},
+"بلاط": {
+"lang": "arz",
+"reading": "balāṭ",
+"source": "Greek μπαλάτι",
+"translit": ""
+},
+"بلخش": {
+"lang": "fa",
+"reading": "balaxš",
+"source": "English balas",
+"translit": ""
+},
+"بلگ": {
+"lang": "fa",
+"reading": "balg",
+"source": "Persian برگ",
+"translit": ""
+},
+"بنداد": {
+"lang": "fa",
+"reading": "bondâd",
+"source": "Persian بنیاد",
+"translit": ""
+},
+"بندان": {
+"lang": "fa",
+"reading": "bandân",
+"source": "Persian شهربندان",
+"translit": ""
+},
+"بندش": {
+"lang": "fa-cls",
+"reading": "bandiš",
+"source": "English bandish",
+"translit": ""
+},
+"بندگشا": {
+"lang": "fa-cls",
+"reading": "bandgušā",
+"source": "Greek μεντεσές",
+"translit": ""
+},
+"بنلاد": {
+"lang": "fa",
+"reading": "bonlâd",
+"source": "Persian بنیاد",
+"translit": ""
+},
+"بوزک": {
+"lang": "fa",
+"reading": "bawzak",
+"source": "Persian بوزه",
+"translit": ""
+},
+"بک": {
+"lang": "fa",
+"reading": "bak",
+"source": "Persian جلبک",
+"translit": ""
+},
+"بکتاش": {
+"lang": "fa",
+"reading": "baktāš",
+"source": "Persian بکتاشی",
+"translit": ""
+},
+"بگم": {
+"lang": "fa",
+"reading": "bagam",
+"source": "Persian بیگم",
+"translit": ""
+},
+"بگماز": {
+"lang": "fa-cls",
+"reading": "bagmāz",
+"source": "Greek πετιμέζι",
+"translit": ""
+},
+"بیرام": {
+"lang": "ota",
+"reading": "bayrâm",
+"source": "Albanian Bajram",
+"translit": ""
+},
+"تات": {
+"lang": "fa",
+"reading": "tat",
+"source": "Persian تخت",
+"translit": ""
+},
+"تاجک": {
+"lang": "fa",
+"reading": "tâjik",
+"source": "Persian تاجکستان",
+"translit": ""
+},
+"تاز": {
+"lang": "fa",
+"reading": "tâz",
+"source": "Persian تازی",
+"translit": ""
+},
+"تال": {
+"lang": "fa",
+"reading": "tal",
+"source": "Persian تار",
+"translit": ""
+},
+"تالان": {
+"lang": "ota",
+"reading": "talan",
+"source": "Armenian թալան",
+"translit": ""
+},
+"تان": {
+"lang": "fa",
+"reading": "tân",
+"source": "Persian تاتول",
+"translit": ""
+},
+"تبر": {
+"lang": "fa",
+"reading": "tabar",
+"source": "Persian تبرزين",
+"translit": ""
+},
+"تخار": {
+"lang": "fa",
+"reading": "taxâr",
+"source": "English Takhar",
+"translit": ""
+},
+"تراب": {
+"lang": "fa",
+"reading": "turāb",
+"source": "Persian ترابی",
+"translit": ""
+},
+"تراش": {
+"lang": "fa",
+"reading": "tarâš",
+"source": "Persian قلمتراش",
+"translit": ""
+},
+"ترد": {
+"lang": "fa",
+"reading": "turd",
+"source": "Persian سخت‌ترد",
+"translit": ""
+},
+"ترفند": {
+"lang": "fa",
+"reading": "tarfand",
+"source": "Persian ترفندباز",
+"translit": ""
+},
+"ترنا": {
+"lang": "fa",
+"reading": "turna",
+"source": "Persian درنا",
+"translit": ""
+},
+"ترکمان": {
+"lang": "fa-cls",
+"reading": "turkamān",
+"source": "English Turcoman",
+"translit": ""
+},
+"تسکا": {
+"lang": "fa",
+"reading": "teskā",
+"source": "Persian توسکا",
+"translit": ""
+},
+"تشت": {
+"lang": "fa",
+"reading": "tašt",
+"source": "Persian طاس",
+"translit": ""
+},
+"تفتن": {
+"lang": "fa",
+"reading": "taftan",
+"source": "Persian تفت",
+"translit": ""
+},
+"تفنگ": {
+"lang": "fa-cls",
+"reading": "tufang",
+"source": "Greek τουφέκι",
+"translit": ""
+},
+"تلک": {
+"lang": "fa",
+"reading": "talk",
+"source": "Latin talcum",
+"translit": ""
+},
+"تناسل": {
+"lang": "fa",
+"reading": "tanâsol",
+"source": "Persian تناسلی",
+"translit": ""
+},
+"تنکار": {
+"lang": "fa",
+"reading": "tankâr",
+"source": "English tincal",
+"translit": ""
+},
+"ته": {
+"lang": "fa",
+"reading": "tah",
+"source": "Persian ته‌دیگ",
+"translit": ""
+},
+"تهران": {
+"lang": "fa",
+"reading": "tihrān",
+"source": "Persian تهرانی",
+"translit": ""
+},
+"توانستن": {
+"lang": "fa",
+"reading": "tavânestan",
+"source": "Persian توانا",
+"translit": ""
+},
+"تکان": {
+"lang": "fa",
+"reading": "takân",
+"source": "Persian تکان دادن",
+"translit": ""
+},
+"جاود": {
+"lang": "fa",
+"reading": "jâved",
+"source": "Persian جاودانه",
+"translit": ""
+},
+"جای": {
+"lang": "fa",
+"reading": "jây",
+"source": "Persian جایگزین",
+"translit": ""
+},
+"جزو": {
+"lang": "fa",
+"reading": "jozv",
+"source": "Persian جزوه",
+"translit": ""
+},
+"جغ": {
+"lang": "fa",
+"reading": "joġ",
+"source": "Persian یوغ",
+"translit": ""
+},
+"جغتای": {
+"lang": "fa",
+"reading": "jaġatây",
+"source": "Persian جغتایی",
+"translit": ""
+},
+"جغنگ": {
+"lang": "fa",
+"reading": "jaġang",
+"source": "Persian سیچغنه",
+"translit": ""
+},
+"جل": {
+"lang": "fa",
+"reading": "jol",
+"source": "Persian جلبک",
+"translit": ""
+},
+"جه": {
+"lang": "fa",
+"reading": "jah",
+"source": "Persian جهش",
+"translit": ""
+},
+"جواد": {
+"lang": "fa",
+"reading": "javâd",
+"source": "Persian محمدجواد",
+"translit": ""
+},
+"حام": {
+"lang": "fa",
+"reading": "hâm",
+"source": "Persian حامی",
+"translit": ""
+},
+"حب": {
+"lang": "ota",
+"reading": "hab",
+"source": "Greek χάπι",
+"translit": ""
+},
+"حبش": {
+"lang": "ota",
+"reading": "habeş",
+"source": "Albanian Habesh",
+"translit": ""
+},
+"حظ": {
+"lang": "ota",
+"reading": "haz",
+"source": "Greek χαζός",
+"translit": ""
+},
+"حمص": {
+"lang": "ota",
+"reading": "humus",
+"source": "Greek χούμους",
+"translit": ""
+},
+"خاست": {
+"lang": "fa",
+"reading": "xâst",
+"source": "Persian خاستگاه",
+"translit": ""
+},
+"خاستن": {
+"lang": "fa",
+"reading": "xāstan",
+"source": "Persian برخاستن",
+"translit": ""
+},
+"خال": {
+"lang": "fa",
+"reading": "xâl",
+"source": "Persian خال‌کوبی",
+"translit": ""
+},
+"خاویار": {
+"lang": "ota",
+"reading": "xavyar",
+"source": "Armenian խավիար",
+"translit": ""
+},
+"خدمتگار": {
+"lang": "fa-cls",
+"reading": "xidmatgār",
+"source": "English khitmatgar",
+"translit": ""
+},
+"خراج": {
+"lang": "fa",
+"reading": "xarâj",
+"source": "Persian مالیات",
+"translit": ""
+},
+"خراش": {
+"lang": "fa",
+"reading": "xarâš",
+"source": "Persian آسمان‌خراش",
+"translit": ""
+},
+"خربز": {
+"lang": "fa-cls",
+"reading": "xarbuz",
+"source": "Greek καρπούζι",
+"translit": ""
+},
+"خزر": {
+"lang": "fa",
+"reading": "xazar",
+"source": "Persian دریای خزر",
+"translit": ""
+},
+"خلج": {
+"lang": "fa",
+"reading": "xalaj",
+"source": "Persian خلجستان",
+"translit": ""
+},
+"خماهن": {
+"lang": "fa-cls",
+"reading": "xumāhan",
+"source": "Latin camaeus",
+"translit": ""
+},
+"خمب": {
+"lang": "fa",
+"reading": "xomb",
+"source": "Persian خم",
+"translit": ""
+},
+"خنب": {
+"lang": "fa",
+"reading": "xunb",
+"source": "Persian خم",
+"translit": ""
+},
+"خند": {
+"lang": "fa",
+"reading": "xand",
+"source": "Persian خندان",
+"translit": ""
+},
+"خواه": {
+"lang": "fa",
+"reading": "xwāh",
+"source": "Persian خواهش",
+"translit": ""
+},
+"خوراسان": {
+"lang": "fa-cls",
+"reading": "xwarāsān",
+"source": "English Khorasan",
+"translit": ""
+},
+"دادا": {
+"lang": "fa-cls",
+"reading": "dādā",
+"source": "Greek νταντά",
+"translit": ""
+},
+"دارم": {
+"lang": "fa",
+"reading": "dâram",
+"source": "Persian خبر ندارم",
+"translit": ""
+},
+"داشت": {
+"lang": "fa",
+"reading": "dâšt",
+"source": "Persian یادداشت",
+"translit": ""
+},
+"دالان": {
+"lang": "fa",
+"reading": "dâlân",
+"source": "Armenian դալան",
+"translit": ""
+},
+"دامن": {
+"lang": "fa",
+"reading": "dâman",
+"source": "Persian دامنه",
+"translit": ""
+},
+"داور": {
+"lang": "fa",
+"reading": "dâvar",
+"source": "Persian داوری",
+"translit": ""
+},
+"درامن": {
+"lang": "ks",
+"reading": "drāmn",
+"source": "English Lal Draman",
+"translit": ""
+},
+"درم": {
+"lang": "fa",
+"reading": "deram",
+"source": "English diram",
+"translit": ""
+},
+"درهم": {
+"lang": "fa",
+"reading": "dirhem",
+"source": "English dirhem",
+"translit": ""
+},
+"دروان": {
+"lang": "fa-cls",
+"reading": "drvān",
+"source": "English durwan",
+"translit": ""
+},
+"درکردن": {
+"lang": "fa",
+"reading": "darkardan",
+"source": "Persian قمپز درکردن",
+"translit": ""
+},
+"دزدار": {
+"lang": "fa-cls",
+"reading": "dizdâr",
+"source": "English dizdar",
+"translit": ""
+},
+"دستان": {
+"lang": "fa",
+"reading": "dastân",
+"source": "Persian هزاردستان",
+"translit": ""
+},
+"دستک": {
+"lang": "fa",
+"reading": "dastak",
+"source": "English dustuck",
+"translit": ""
+},
+"دش": {
+"lang": "fa",
+"reading": "duš",
+"source": "Persian دشوار",
+"translit": ""
+},
+"دفاتر": {
+"lang": "ar",
+"reading": "dafātir",
+"source": "Persian دفتر",
+"translit": ""
+},
+"دلاور": {
+"lang": "fa",
+"reading": "dilâwar",
+"source": "Persian دلیر",
+"translit": ""
+},
+"دلتنگ": {
+"lang": "fa",
+"reading": "diltang",
+"source": "Persian دلتنگی",
+"translit": ""
+},
+"دمب": {
+"lang": "fa",
+"reading": "domb",
+"source": "Persian دنب",
+"translit": ""
+},
+"دند": {
+"lang": "fa",
+"reading": "dand",
+"source": "Persian دنده",
+"translit": ""
+},
+"دهب": {
+"lang": "arz",
+"reading": "dahab",
+"source": "English Dahab",
+"translit": ""
+},
+"دهنج": {
+"lang": "fa",
+"reading": "dahnaj",
+"source": "Persian دهنه",
+"translit": ""
+},
+"دهگان": {
+"lang": "fa",
+"reading": "dehgân",
+"source": "Persian دهقان",
+"translit": ""
+},
+"دوازده": {
+"lang": "fa",
+"reading": "davâzdah",
+"source": "Persian دوازدهم",
+"translit": ""
+},
+"دوسر": {
+"lang": "fa",
+"reading": "dowsar",
+"source": "Persian جو دوسر",
+"translit": ""
+},
+"دگر": {
+"lang": "fa",
+"reading": "digar",
+"source": "Persian دگردیسی",
+"translit": ""
+},
+"راجا": {
+"lang": "ur",
+"reading": "rājā",
+"source": "English rajah",
+"translit": ""
+},
+"راسخت": {
+"lang": "fa",
+"reading": "râsoxt",
+"source": "English rastik",
+"translit": ""
+},
+"راف": {
+"lang": "ota",
+"reading": "raf",
+"source": "Greek ράφι",
+"translit": ""
+},
+"راهدار": {
+"lang": "fa",
+"reading": "rāhdār",
+"source": "English rahdar",
+"translit": ""
+},
+"راهوان": {
+"lang": "ota",
+"reading": "rahvan",
+"source": "Greek ραβάνι",
+"translit": ""
+},
+"راوند": {
+"lang": "ota",
+"reading": "râvend",
+"source": "Armenian ռավենտ",
+"translit": ""
+},
+"ربا": {
+"lang": "fa",
+"reading": "robâ",
+"source": "Persian دلربا",
+"translit": ""
+},
+"رت": {
+"lang": "fa",
+"reading": "rot",
+"source": "Persian لخت",
+"translit": ""
+},
+"رسان": {
+"lang": "fa",
+"reading": "resân",
+"source": "Persian به‌روزرسانی",
+"translit": ""
+},
+"رسوا": {
+"lang": "fa",
+"reading": "ruswā",
+"source": "Persian رسوایی",
+"translit": ""
+},
+"رش": {
+"lang": "fa",
+"reading": "raš",
+"source": "Persian رخش",
+"translit": ""
+},
+"رشوت": {
+"lang": "ota",
+"reading": "rişvet",
+"source": "Greek ρουσφέτι",
+"translit": ""
+},
+"رغم": {
+"lang": "fa",
+"reading": "raġm",
+"source": "Persian علی رغم",
+"translit": ""
+},
+"رفت": {
+"lang": "fa",
+"reading": "raft",
+"source": "Persian پیشرفت",
+"translit": ""
+},
+"رفسنجان": {
+"lang": "fa",
+"reading": "rafsanjān",
+"source": "Persian رفسنجانی",
+"translit": ""
+},
+"رنج": {
+"lang": "fa",
+"reading": "ranj",
+"source": "Persian رنجیدن",
+"translit": ""
+},
+"ره": {
+"lang": "fa",
+"reading": "rah",
+"source": "Persian رهبر",
+"translit": ""
+},
+"رو": {
+"lang": "fa",
+"reading": "raw",
+"source": "Persian روی",
+"translit": ""
+},
+"رکاب": {
+"lang": "fa",
+"reading": "rekâb",
+"source": "Persian رکابی",
+"translit": ""
+},
+"ریال": {
+"lang": "fa",
+"reading": "riyâl",
+"source": "English rial",
+"translit": ""
+},
+"زابل": {
+"lang": "fa-cls",
+"reading": "zābul",
+"source": "English Zabul",
+"translit": ""
+},
+"زاد": {
+"lang": "fa",
+"reading": "zâd",
+"source": "Persian زادگاه",
+"translit": ""
+},
+"زاگ": {
+"lang": "fa",
+"reading": "zâg",
+"source": "Persian زاج",
+"translit": ""
+},
+"زاگرس": {
+"lang": "fa-ira",
+"reading": "zâgros",
+"source": "English Zagros",
+"translit": ""
+},
+"زای": {
+"lang": "fa",
+"reading": "zây",
+"source": "Persian زایچه",
+"translit": ""
+},
+"زایش": {
+"lang": "fa",
+"reading": "zāyiš",
+"source": "Persian زایشگاه",
+"translit": ""
+},
+"زبل": {
+"lang": "ota",
+"reading": "zibil",
+"source": "Armenian զիբիլ",
+"translit": ""
+},
+"زد": {
+"lang": "fa",
+"reading": "zad",
+"source": "Persian نامزد",
+"translit": ""
+},
+"زدوار": {
+"lang": "fa",
+"reading": "zadvâr",
+"source": "Persian جدوار",
+"translit": ""
+},
+"زرباف": {
+"lang": "fa",
+"reading": "zarbâf",
+"source": "Armenian զարբաբ",
+"translit": ""
+},
+"زرنا": {
+"lang": "fa-cls",
+"reading": "zurnā",
+"source": "Greek ζουρνάς",
+"translit": ""
+},
+"زغر": {
+"lang": "ota",
+"reading": "zaǧar",
+"source": "Greek ζαγάρι",
+"translit": ""
+},
+"زغن": {
+"lang": "fa",
+"reading": "zaġan",
+"source": "Persian سیچغنه",
+"translit": ""
+},
+"زفت": {
+"lang": "ota",
+"reading": "zift",
+"source": "Albanian zift",
+"translit": ""
+},
+"زل": {
+"lang": "ota",
+"reading": "zil",
+"source": "English zill",
+"translit": ""
+},
+"زنگبار": {
+"lang": "fa",
+"reading": "zangebâr",
+"source": "German Sansibar",
+"translit": ""
+},
+"زی": {
+"lang": "fa",
+"reading": "ziy",
+"source": "Persian زنده",
+"translit": ""
+},
+"سا": {
+"lang": "fa",
+"reading": "sā",
+"source": "Persian مهسا",
+"translit": ""
+},
+"ساخت": {
+"lang": "fa",
+"reading": "sâxt",
+"source": "Persian زیرساخت",
+"translit": ""
+},
+"سار": {
+"lang": "fa",
+"reading": "sâr",
+"source": "Persian خشنسار",
+"translit": ""
+},
+"ساز": {
+"lang": "fa",
+"reading": "sâz",
+"source": "English saz",
+"translit": ""
+},
+"سازان": {
+"lang": "ota",
+"reading": "sazan",
+"source": "Albanian Sazan",
+"translit": ""
+},
+"سبد": {
+"lang": "fa-cls",
+"reading": "sabad",
+"source": "Albanian sepete",
+"translit": ""
+},
+"ستا": {
+"lang": "fa",
+"reading": "setâ",
+"source": "Persian ستایش",
+"translit": ""
+},
+"ستار": {
+"lang": "ur",
+"reading": "sitār",
+"source": "English sitar",
+"translit": ""
+},
+"ستان": {
+"lang": "fa",
+"reading": "estân",
+"source": "Persian دبیرستان",
+"translit": ""
+},
+"ستر": {
+"lang": "fa",
+"reading": "satar",
+"source": "Persian سترون",
+"translit": ""
+},
+"سحرگاه": {
+"lang": "fa",
+"reading": "sahargâh",
+"source": "Persian سحرگاهی",
+"translit": ""
+},
+"سختن": {
+"lang": "fa",
+"reading": "saxtan",
+"source": "Persian سنجیدن",
+"translit": ""
+},
+"سردار": {
+"lang": "fa",
+"reading": "serdâr",
+"source": "English serdar",
+"translit": ""
+},
+"سرق": {
+"lang": "fa",
+"reading": "saraq",
+"source": "Persian سره",
+"translit": ""
+},
+"سرمج": {
+"lang": "fa",
+"reading": "sarmaj",
+"source": "Persian سرمه",
+"translit": ""
+},
+"سرمق": {
+"lang": "fa",
+"reading": "sarmaq",
+"source": "Persian سرمه",
+"translit": ""
+},
+"سلاحدار": {
+"lang": "ota",
+"reading": "silahdar",
+"source": "English selictar",
+"translit": ""
+},
+"سلمان": {
+"lang": "fa",
+"reading": "salmān",
+"source": "Persian سلمانی",
+"translit": ""
+},
+"سمنگان": {
+"lang": "fa",
+"reading": "samangân",
+"source": "English Samangan",
+"translit": ""
+},
+"سنباد": {
+"lang": "fa",
+"reading": "sanbâd",
+"source": "Persian سنبادیه",
+"translit": ""
+},
+"سنجاق": {
+"lang": "fa",
+"reading": "sanjāq",
+"source": "Persian سنجاق قفلی",
+"translit": ""
+},
+"سندان": {
+"lang": "fa",
+"reading": "sendân",
+"source": "Armenian զնդան",
+"translit": ""
+},
+"سهام": {
+"lang": "fa",
+"reading": "sahâm",
+"source": "Persian سهام‌دار",
+"translit": ""
+},
+"سهر": {
+"lang": "fa",
+"reading": "suhr",
+"source": "Persian سرخ",
+"translit": ""
+},
+"سهراب": {
+"lang": "fa",
+"reading": "suhrāb",
+"source": "Persian سرخ",
+"translit": ""
+},
+"سواحل": {
+"lang": "fa",
+"reading": "savâhel",
+"source": "Persian سواحلی",
+"translit": ""
+},
+"سپار": {
+"lang": "fa",
+"reading": "sepâr",
+"source": "Persian سفارش",
+"translit": ""
+},
+"سپاهان": {
+"lang": "fa",
+"reading": "sipahān",
+"source": "Persian اصفهان",
+"translit": ""
+},
+"سپاهسالار": {
+"lang": "fa",
+"reading": "sepâhsâlâr",
+"source": "Persian سپهسالار",
+"translit": ""
+},
+"سپت": {
+"lang": "ota",
+"reading": "sepet",
+"source": "Albanian sepete",
+"translit": ""
+},
+"سپسار": {
+"lang": "fa",
+"reading": "sapsâr",
+"source": "Italian sensale",
+"translit": ""
+},
+"سپی": {
+"lang": "fa",
+"reading": "spëy",
+"source": "Persian اسبه",
+"translit": ""
+},
+"سگپستان": {
+"lang": "fa",
+"reading": "sag-pestân",
+"source": "English sebesten",
+"translit": ""
+},
+"سیام": {
+"lang": "fa",
+"reading": "siyâm",
+"source": "Persian سیامی",
+"translit": ""
+},
+"سیان": {
+"lang": "ckb",
+"reading": "syan",
+"source": "English Sian",
+"translit": ""
+},
+"سیران": {
+"lang": "ota",
+"reading": "seyran",
+"source": "Greek σεργιάνι",
+"translit": ""
+},
+"شاباش": {
+"lang": "fa-cls",
+"reading": "šābāš",
+"source": "English shabash",
+"translit": ""
+},
+"شاش": {
+"lang": "fa",
+"reading": "šâš",
+"source": "Persian شاشیدن",
+"translit": ""
+},
+"شانگ": {
+"lang": "fa",
+"reading": "šánag",
+"source": "Persian افشاندن",
+"translit": ""
+},
+"شایستن": {
+"lang": "fa",
+"reading": "šāyistan",
+"source": "Persian شاید",
+"translit": ""
+},
+"شروان": {
+"lang": "fa",
+"reading": "širwān",
+"source": "Persian شروانشاه",
+"translit": ""
+},
+"ششت": {
+"lang": "fa-cls",
+"reading": "šušt",
+"source": "Armenian շուշտ",
+"translit": ""
+},
+"شمار": {
+"lang": "fa",
+"reading": "šumār",
+"source": "Persian بی‌شمار",
+"translit": ""
+},
+"شمشار": {
+"lang": "fa",
+"reading": "šemšâr",
+"source": "Persian بسد",
+"translit": ""
+},
+"شناخت": {
+"lang": "fa",
+"reading": "šenâxt",
+"source": "Persian ناشناخت",
+"translit": ""
+},
+"شناس": {
+"lang": "fa",
+"reading": "šinās",
+"source": "Persian ستاره‌شناس",
+"translit": ""
+},
+"شناسا": {
+"lang": "fa",
+"reading": "šenâsâ",
+"source": "Persian شناسایی",
+"translit": ""
+},
+"شنوا": {
+"lang": "fa",
+"reading": "šenavâ",
+"source": "Persian ناشنوا",
+"translit": ""
+},
+"شه": {
+"lang": "fa",
+"reading": "šah",
+"source": "Persian شهسوار",
+"translit": ""
+},
+"شهردار": {
+"lang": "fa",
+"reading": "šahrdâr",
+"source": "Persian شهرداری",
+"translit": ""
+},
+"شورج": {
+"lang": "fa",
+"reading": "šawraj",
+"source": "Persian شوره",
+"translit": ""
+},
+"شکست": {
+"lang": "fa",
+"reading": "šikast",
+"source": "Persian شکست‌خورده",
+"translit": ""
+},
+"شکفتن": {
+"lang": "fa",
+"reading": "šikuftan",
+"source": "Persian شکوفه",
+"translit": ""
+},
+"شکن": {
+"lang": "fa",
+"reading": "šikan",
+"source": "Persian فندق‌شکن",
+"translit": ""
+},
+"شکنب": {
+"lang": "fa",
+"reading": "šekanb",
+"source": "Persian شکمبه",
+"translit": ""
+},
+"صاغ": {
+"lang": "ota",
+"reading": "sağ",
+"source": "Armenian սաղ",
+"translit": ""
+},
+"صراح": {
+"lang": "fa",
+"reading": "sorâh",
+"source": "Persian صراحی",
+"translit": ""
+},
+"صراط": {
+"lang": "fa",
+"reading": "serât",
+"source": "Persian بی‌صراط",
+"translit": ""
+},
+"صفاقس": {
+"lang": "aeb",
+"reading": "ṣfāqis",
+"source": "German Sfax",
+"translit": ""
+},
+"طالبان": {
+"lang": "ps",
+"reading": "tālibān",
+"source": "German Taliban",
+"translit": ""
+},
+"طاهر": {
+"lang": "ota",
+"reading": "Tâhir",
+"source": "Albanian Tahir",
+"translit": ""
+},
+"طراح": {
+"lang": "fa",
+"reading": "tarāh",
+"source": "Persian طراحی",
+"translit": ""
+},
+"طربال": {
+"lang": "fa",
+"reading": "tarbâl",
+"source": "Persian تالار",
+"translit": ""
+},
+"طرخ": {
+"lang": "fa",
+"reading": "tarx",
+"source": "Persian ترخون",
+"translit": ""
+},
+"طشت": {
+"lang": "fa",
+"reading": "tašt",
+"source": "Persian طاس",
+"translit": ""
+},
+"طغرا": {
+"lang": "ota",
+"reading": "tuğra",
+"source": "English tughra",
+"translit": ""
+},
+"عدالت": {
+"lang": "ota",
+"reading": "ʿadālet",
+"source": "Armenian ադալաթ",
+"translit": ""
+},
+"غانم": {
+"lang": "ar",
+"reading": "ḡānim",
+"source": "English Ghanem",
+"translit": ""
+},
+"غلغل": {
+"lang": "fa",
+"reading": "ġolġol",
+"source": "Persian غلغلستان",
+"translit": ""
+},
+"غن": {
+"lang": "fa",
+"reading": "ġon",
+"source": "Persian غنچه",
+"translit": ""
+},
+"غنم": {
+"lang": "fa",
+"reading": "ǧanëm",
+"source": "Persian گندم",
+"translit": ""
+},
+"غوغا": {
+"lang": "fa-cls",
+"reading": "ğavğa",
+"source": "Greek καβγάς",
+"translit": ""
+},
+"غژ": {
+"lang": "fa",
+"reading": "ġaž",
+"source": "Persian غژگاو",
+"translit": ""
+},
+"غژغاو": {
+"lang": "fa",
+"reading": "ġažġâv",
+"source": "Persian غژگاو",
+"translit": ""
+},
+"فاضل": {
+"lang": "fa",
+"reading": "fâzel",
+"source": "Persian فاضلاب",
+"translit": ""
+},
+"فحص": {
+"lang": "ar",
+"reading": "faḥṣ",
+"source": "English Fahs",
+"translit": ""
+},
+"فدان": {
+"lang": "ota",
+"reading": "fidan",
+"source": "Greek φιντάνι",
+"translit": ""
+},
+"فرا": {
+"lang": "fa",
+"reading": "farâ",
+"source": "Persian فراگرفتن",
+"translit": ""
+},
+"فراه": {
+"lang": "fa",
+"reading": "farâh",
+"source": "English Farah",
+"translit": ""
+},
+"فرحان": {
+"lang": "ar",
+"reading": "farḥān",
+"source": "English Farhan",
+"translit": ""
+},
+"فرزاد": {
+"lang": "fa",
+"reading": "farzâd",
+"source": "English Farzad",
+"translit": ""
+},
+"فرزان": {
+"lang": "fa",
+"reading": "farzân",
+"source": "Persian فرزانه",
+"translit": ""
+},
+"فرسخ": {
+"lang": "fa",
+"reading": "farsax",
+"source": "English farsakh",
+"translit": ""
+},
+"فرقد": {
+"lang": "ar",
+"reading": "farqad",
+"source": "English Pherkad",
+"translit": ""
+},
+"فرما": {
+"lang": "fa",
+"reading": "farmâ",
+"source": "Persian فرمایش",
+"translit": ""
+},
+"فس": {
+"lang": "ota",
+"reading": "fes",
+"source": "Greek φέσι",
+"translit": ""
+},
+"فستق": {
+"lang": "fa-cls",
+"reading": "fustuq",
+"source": "Greek φιστίκι",
+"translit": ""
+},
+"فشار": {
+"lang": "fa",
+"reading": "fešâr",
+"source": "Persian فشارسنج",
+"translit": ""
+},
+"فشاندن": {
+"lang": "fa",
+"reading": "fešândan",
+"source": "Persian آتش‌فشان",
+"translit": ""
+},
+"فغستان": {
+"lang": "fa",
+"reading": "faġistān",
+"source": "Persian بیستون",
+"translit": ""
+},
+"فلمنک": {
+"lang": "fa",
+"reading": "felamank",
+"source": "Persian فلمنکی",
+"translit": ""
+},
+"فنار": {
+"lang": "ota",
+"reading": "fenar",
+"source": "Persian فنر",
+"translit": ""
+},
+"فکن": {
+"lang": "fa",
+"reading": "fekan",
+"source": "Persian فرافکنی",
+"translit": ""
+},
+"قات": {
+"lang": "ar",
+"reading": "qāt",
+"source": "English cath",
+"translit": ""
+},
+"قاز": {
+"lang": "fa",
+"reading": "qaz",
+"source": "Persian غاز",
+"translit": ""
+},
+"قان": {
+"lang": "fa",
+"reading": "qân",
+"source": "Persian توسکا",
+"translit": ""
+},
+"قتبان": {
+"lang": "ar",
+"reading": "qatabān",
+"source": "English Qataban",
+"translit": ""
+},
+"قدس": {
+"lang": "fa",
+"reading": "qods",
+"source": "Persian قدسی",
+"translit": ""
+},
+"قرا": {
+"lang": "fa",
+"reading": "qarâ",
+"source": "Persian ترکمن",
+"translit": ""
+},
+"قزاق": {
+"lang": "fa",
+"reading": "qazāq",
+"source": "Persian قزاقستان",
+"translit": ""
+},
+"قلا": {
+"lang": "fa",
+"reading": "qalâ",
+"source": "Persian کلاغ",
+"translit": ""
+},
+"قلاغ": {
+"lang": "fa",
+"reading": "qalâğ",
+"source": "Persian کلاغ",
+"translit": ""
+},
+"قلندر": {
+"lang": "fa-cls",
+"reading": "qalandar",
+"source": "English calender",
+"translit": ""
+},
+"قم": {
+"lang": "fa-ira",
+"reading": "qom",
+"source": "English Qom",
+"translit": ""
+},
+"قوران": {
+"lang": "fa",
+"reading": "quran",
+"source": "Persian قور",
+"translit": "qwrʾn"
+},
+"قیطان": {
+"lang": "fa",
+"reading": "qaytān",
+"source": "Persian قیطانچی",
+"translit": ""
+},
+"قیقناق": {
+"lang": "fa",
+"reading": "qayqanāq",
+"source": "Persian خاگینه",
+"translit": ""
+},
+"لاب": {
+"lang": "fa",
+"reading": "lâb",
+"source": "Persian دولاب",
+"translit": ""
+},
+"لاز": {
+"lang": "fa",
+"reading": "lâz",
+"source": "Persian لازستان",
+"translit": ""
+},
+"لاف": {
+"lang": "fa-cls",
+"reading": "lâf",
+"source": "Albanian llaf",
+"translit": ""
+},
+"لال": {
+"lang": "ks",
+"reading": "lāl",
+"source": "English Lal Draman",
+"translit": ""
+},
+"لالا": {
+"lang": "ota",
+"reading": "lâlâ",
+"source": "Armenian լալա",
+"translit": ""
+},
+"لاوک": {
+"lang": "fa",
+"reading": "lâvak",
+"source": "Persian لاک",
+"translit": ""
+},
+"لاچ": {
+"lang": "fa",
+"reading": "lâč",
+"source": "Persian لاغ",
+"translit": ""
+},
+"لاژورد": {
+"lang": "fa",
+"reading": "lâžvard",
+"source": "English azurite",
+"translit": ""
+},
+"لر": {
+"lang": "fa",
+"reading": "Lur",
+"source": "Persian لرستان",
+"translit": ""
+},
+"لرزان": {
+"lang": "fa",
+"reading": "larzân",
+"source": "Persian لرزانک",
+"translit": ""
+},
+"لغمان": {
+"lang": "fa",
+"reading": "laġmân",
+"source": "English Laghman",
+"translit": ""
+},
+"لق": {
+"lang": "fa",
+"reading": "laq",
+"source": "Armenian լակ",
+"translit": ""
+},
+"لنکران": {
+"lang": "fa",
+"reading": "lankarân",
+"source": "English Lankaran",
+"translit": ""
+},
+"لو": {
+"lang": "fa",
+"reading": "law",
+"source": "Persian درو",
+"translit": ""
+},
+"لوند": {
+"lang": "fa-cls",
+"reading": "levend",
+"source": "Greek λεβέντης",
+"translit": ""
+},
+"لچر": {
+"lang": "fa",
+"reading": "lačar",
+"source": "Armenian լաչառ",
+"translit": ""
+},
+"مان": {
+"lang": "fa",
+"reading": "mân",
+"source": "Persian زایمان",
+"translit": ""
+},
+"مانگ": {
+"lang": "fa",
+"reading": "mâng",
+"source": "Persian مه‌مانگ",
+"translit": ""
+},
+"مایخوش": {
+"lang": "fa-cls",
+"reading": "māyxwaš",
+"source": "Albanian majhosh",
+"translit": ""
+},
+"محافه": {
+"lang": "fa",
+"reading": "miḥâfah",
+"source": "English mihaffa",
+"translit": ""
+},
+"مزدیسن": {
+"lang": "fa",
+"reading": "mazdayasn",
+"source": "Persian مزدیسنا",
+"translit": ""
+},
+"مزکت": {
+"lang": "fa-cls",
+"reading": "mazkit",
+"source": "Old Armenian մզկիթ",
+"translit": ""
+},
+"مس": {
+"lang": "fa",
+"reading": "mes",
+"source": "Persian مسی",
+"translit": ""
+},
+"مستقبل": {
+"lang": "ar",
+"reading": "mustaqbal",
+"source": "English Neom",
+"translit": ""
+},
+"مسمار": {
+"lang": "ota",
+"reading": "mismar",
+"source": "Armenian մսմար",
+"translit": ""
+},
+"مغاور": {
+"lang": "xaa",
+"reading": "muḡā́wir",
+"source": "English almogavar",
+"translit": ""
+},
+"مغل": {
+"lang": "ur",
+"reading": "muġal",
+"source": "English Moghul",
+"translit": ""
+},
+"ملتان": {
+"lang": "skr",
+"reading": "multān",
+"source": "English Multan",
+"translit": ""
+},
+"ملتم": {
+"lang": "ota",
+"reading": "meltem",
+"source": "Greek μελτέμι",
+"translit": ""
+},
+"منقاش": {
+"lang": "ary",
+"reading": "manqāš",
+"source": "English menqach",
+"translit": ""
+},
+"مهماندار": {
+"lang": "fa",
+"reading": "mehmândâr",
+"source": "English mehmandar",
+"translit": ""
+},
+"مکامن": {
+"lang": "fa",
+"reading": "mekāmun",
+"source": "Persian مکیدن",
+"translit": ""
+},
+"مکران": {
+"lang": "bal",
+"reading": "makrān",
+"source": "English Makran",
+"translit": ""
+},
+"نا": {
+"lang": "fa",
+"reading": "nā",
+"source": "Persian ناکام",
+"translit": ""
+},
+"ناآرام": {
+"lang": "fa",
+"reading": "nâ-ârâm",
+"source": "Persian ناآرامی",
+"translit": ""
+},
+"نابلس": {
+"lang": "ota",
+"reading": "Nablus",
+"source": "English Nablus",
+"translit": ""
+},
+"ناراض": {
+"lang": "fa",
+"reading": "nārāz",
+"source": "Persian ناراضگی",
+"translit": ""
+},
+"ناصر": {
+"lang": "fa",
+"reading": "nâser",
+"source": "Persian ناصرگرا",
+"translit": ""
+},
+"نانبا": {
+"lang": "fa",
+"reading": "nânbâ",
+"source": "Persian نانوا",
+"translit": ""
+},
+"ناوخدا": {
+"lang": "fa",
+"reading": "nâvxodâ",
+"source": "Persian ناخدا",
+"translit": ""
+},
+"ناوک": {
+"lang": "fa",
+"reading": "nâvak",
+"source": "Persian لاک",
+"translit": ""
+},
+"نخ": {
+"lang": "fa",
+"reading": "nax",
+"source": "Persian نخ‌ریسی",
+"translit": ""
+},
+"نسوار": {
+"lang": "ps",
+"reading": "naswâr",
+"source": "Persian نسواری",
+"translit": ""
+},
+"نشاندن": {
+"lang": "fa",
+"reading": "nešândan",
+"source": "Persian خاطرنشان",
+"translit": ""
+},
+"نصارا": {
+"lang": "fa",
+"reading": "nasârâ",
+"source": "Persian عنبرنسارا",
+"translit": ""
+},
+"نغن": {
+"lang": "fa",
+"reading": "naġan",
+"source": "Persian نغم",
+"translit": ""
+},
+"نما": {
+"lang": "fa",
+"reading": "namâ",
+"source": "Persian نمایش",
+"translit": ""
+},
+"نماد": {
+"lang": "fa",
+"reading": "namâd",
+"source": "Persian نمادین",
+"translit": ""
+},
+"نمس": {
+"lang": "arz",
+"reading": "nims",
+"source": "English nems",
+"translit": ""
+},
+"نمچ": {
+"lang": "fa",
+"reading": "namč",
+"source": "Persian قارچ",
+"translit": ""
+},
+"نواخت": {
+"lang": "fa",
+"reading": "navâxt",
+"source": "Persian یکنواخت",
+"translit": ""
+},
+"نواده": {
+"lang": "fa",
+"reading": "nawādeh",
+"source": "Persian خانواده",
+"translit": ""
+},
+"نوار": {
+"lang": "fa",
+"reading": "navâr",
+"source": "Persian نواربهداشتی",
+"translit": ""
+},
+"نواز": {
+"lang": "ur",
+"reading": "nvāz",
+"source": "English Nawaz",
+"translit": ""
+},
+"نوبر": {
+"lang": "fa",
+"reading": "nowbar",
+"source": "Armenian Նուբար",
+"translit": ""
+},
+"نوشت": {
+"lang": "fa",
+"reading": "nevešt",
+"source": "Persian رونوشت",
+"translit": ""
+},
+"نوی": {
+"lang": "fa",
+"reading": "nëway",
+"source": "Persian نو",
+"translit": ""
+},
+"نگار": {
+"lang": "fa-ira",
+"reading": "negâr",
+"source": "English Negar",
+"translit": ""
+},
+"هاشم": {
+"lang": "fa",
+"reading": "hāšim",
+"source": "Persian هاشمیان",
+"translit": ""
+},
+"هبر": {
+"lang": "fa",
+"reading": "habar",
+"source": "Persian هو",
+"translit": ""
+},
+"هست": {
+"lang": "fa",
+"reading": "hast",
+"source": "Persian هستن",
+"translit": ""
+},
+"هلبج": {
+"lang": "fa",
+"reading": "halbaj",
+"source": "Persian هلونگ",
+"translit": ""
+},
+"هلند": {
+"lang": "fa",
+"reading": "holand",
+"source": "Persian هلندی",
+"translit": ""
+},
+"همال": {
+"lang": "fa",
+"reading": "homâl",
+"source": "Persian شریک",
+"translit": ""
+},
+"همای": {
+"lang": "fa",
+"reading": "homây",
+"source": "Persian هما",
+"translit": ""
+},
+"همدان": {
+"lang": "fa",
+"reading": "hamadân",
+"source": "English Hamadan",
+"translit": ""
+},
+"هنباز": {
+"lang": "fa",
+"reading": "hanbâz",
+"source": "Persian شریک",
+"translit": ""
+},
+"هندام": {
+"lang": "fa",
+"reading": "handâm",
+"source": "Persian اندام",
+"translit": ""
+},
+"هندل": {
+"lang": "chg",
+"reading": "hndl",
+"source": "English Hindal",
+"translit": ""
+},
+"وا": {
+"lang": "fa",
+"reading": "wā",
+"source": "Persian واکنش",
+"translit": ""
+},
+"وار": {
+"lang": "fa",
+"reading": "wār",
+"source": "Persian موتروار",
+"translit": ""
+},
+"وراز": {
+"lang": "fa",
+"reading": "verâz",
+"source": "Persian گراز",
+"translit": ""
+},
+"ورف": {
+"lang": "fa",
+"reading": "warf",
+"source": "Persian برف",
+"translit": ""
+},
+"وزوز": {
+"lang": "fa",
+"reading": "vez-vez",
+"source": "Persian وزوز گوش",
+"translit": ""
+},
+"ولد": {
+"lang": "ota",
+"reading": "veled",
+"source": "Albanian velet",
+"translit": ""
+},
+"وند": {
+"lang": "fa",
+"reading": "wand",
+"source": "Persian آوند",
+"translit": ""
+},
+"وهل": {
+"lang": "fa",
+"reading": "vohl",
+"source": "Persian ارس",
+"translit": ""
+},
+"ویل": {
+"lang": "fa",
+"reading": "veyl",
+"source": "Persian واویلا",
+"translit": ""
+},
+"پاردم": {
+"lang": "fa",
+"reading": "pardüm",
+"source": "Albanian palldëm",
+"translit": ""
+},
+"پارسا": {
+"lang": "fa",
+"reading": "pârsâ",
+"source": "English Parsa",
+"translit": ""
+},
+"پاشا": {
+"lang": "ota",
+"reading": "paşa",
+"source": "German Pascha",
+"translit": ""
+},
+"پالا": {
+"lang": "fa",
+"reading": "pâlâ",
+"source": "Persian پالهنگ",
+"translit": ""
+},
+"پالای": {
+"lang": "fa",
+"reading": "pâlây",
+"source": "Persian پالایشگاه",
+"translit": ""
+},
+"پایز": {
+"lang": "fa",
+"reading": "payz",
+"source": "Persian پاییز",
+"translit": ""
+},
+"پران": {
+"lang": "fa",
+"reading": "parān",
+"source": "Persian گدیپران",
+"translit": ""
+},
+"پرتوان": {
+"lang": "fa",
+"reading": "por-tavân",
+"source": "Persian پرتوانی",
+"translit": ""
+},
+"پرداخت": {
+"lang": "fa",
+"reading": "pardâxt",
+"source": "Persian بازپرداخت",
+"translit": ""
+},
+"پرداز": {
+"lang": "fa",
+"reading": "pardâz",
+"source": "Persian خودپرداز",
+"translit": ""
+},
+"پرن": {
+"lang": "fa",
+"reading": "paran",
+"source": "Persian پرندوش",
+"translit": ""
+},
+"پروان": {
+"lang": "fa-cls",
+"reading": "parwān",
+"source": "English Parwan",
+"translit": ""
+},
+"پروند": {
+"lang": "fa",
+"reading": "parwand",
+"source": "Persian پرونده",
+"translit": ""
+},
+"پرگال": {
+"lang": "ota",
+"reading": "pargâl",
+"source": "Armenian փարգալ",
+"translit": ""
+},
+"پز": {
+"lang": "fa",
+"reading": "paz",
+"source": "Persian تندپز",
+"translit": ""
+},
+"پستا": {
+"lang": "fa",
+"reading": "pastā",
+"source": "Persian نوبت",
+"translit": ""
+},
+"پش": {
+"lang": "ota",
+"reading": "peş",
+"source": "Armenian փեշ",
+"translit": ""
+},
+"پشاور": {
+"lang": "ur",
+"reading": "piśāvar",
+"source": "English Peshawar",
+"translit": ""
+},
+"پشماگند": {
+"lang": "fa",
+"reading": "pašmâgand",
+"source": "Ancient Greek σαγματοπασμαγάδια",
+"translit": ""
+},
+"پشنگ": {
+"lang": "fa",
+"reading": "pašang",
+"source": "Persian فشنگ",
+"translit": ""
+},
+"پف": {
+"lang": "fa",
+"reading": "pof",
+"source": "Persian پفک",
+"translit": ""
+},
+"پلاو": {
+"lang": "fa-cls",
+"reading": "pilāw",
+"source": "English pilaf",
+"translit": ""
+},
+"پلپل": {
+"lang": "fa-cls",
+"reading": "pilpil",
+"source": "Persian فلفل",
+"translit": ""
+},
+"پنچ": {
+"lang": "ur",
+"reading": "pañc",
+"source": "English sarpanch",
+"translit": ""
+},
+"پگاه": {
+"lang": "fa",
+"reading": "pagâh",
+"source": "English Pegah",
+"translit": ""
+},
+"پی": {
+"lang": "fa",
+"reading": "pey",
+"source": "Persian پیامد",
+"translit": ""
+},
+"پیام": {
+"lang": "fa",
+"reading": "payâm",
+"source": "Persian پیامبر",
+"translit": ""
+},
+"پیغامبر": {
+"lang": "fa",
+"reading": "peyġâmbar",
+"source": "Persian پیامبر",
+"translit": ""
+},
+"پیما": {
+"lang": "fa",
+"reading": "peymâ",
+"source": "Persian فضاپیما",
+"translit": ""
+},
+"چاریک": {
+"lang": "fa",
+"reading": "čāryak",
+"source": "Persian چارک",
+"translit": ""
+},
+"چام": {
+"lang": "ota",
+"reading": "çam",
+"source": "Albanian çam",
+"translit": ""
+},
+"چاوش": {
+"lang": "ota",
+"reading": "çavuş",
+"source": "English chiaus",
+"translit": ""
+},
+"چسپ": {
+"lang": "fa",
+"reading": "časp",
+"source": "Persian دلچسپ",
+"translit": ""
+},
+"چغتای": {
+"lang": "chg",
+"reading": "čaġatay",
+"source": "English Chagatai",
+"translit": ""
+},
+"چفت": {
+"lang": "ota",
+"reading": "çift",
+"source": "Armenian չիֆթ",
+"translit": ""
+},
+"چفته": {
+"lang": "fa",
+"reading": "čaftah",
+"source": "Persian خم",
+"translit": ""
+},
+"چق": {
+"lang": "fa-cls",
+"reading": "ciq",
+"source": "English chick",
+"translit": ""
+},
+"چلو": {
+"lang": "fa",
+"reading": "čelow",
+"source": "English chelow",
+"translit": ""
+},
+"چنان": {
+"lang": "fa",
+"reading": "čonân",
+"source": "Persian چنانکه",
+"translit": ""
+},
+"چنگل": {
+"lang": "ota",
+"reading": "çengel",
+"source": "Greek τσιγκέλι",
+"translit": ""
+},
+"چهاریک": {
+"lang": "fa",
+"reading": "čahāryak",
+"source": "Persian چارک",
+"translit": ""
+},
+"چوار": {
+"lang": "fa",
+"reading": "çwar",
+"source": "Persian چهار",
+"translit": ""
+},
+"چپر": {
+"lang": "fa",
+"reading": "čapar",
+"source": "Armenian չափար",
+"translit": ""
+},
+"ژد": {
+"lang": "fa",
+"reading": "žad",
+"source": "Persian ژدوار",
+"translit": ""
+},
+"ژول": {
+"lang": "fa",
+"reading": "žovạl",
+"source": "Persian جویدن",
+"translit": ""
+},
+"کاروانسرای": {
+"lang": "fa",
+"reading": "kârvânsarây",
+"source": "German Karawanserei",
+"translit": ""
+},
+"کارورز": {
+"lang": "fa",
+"reading": "kârvarz",
+"source": "Persian کارورزی",
+"translit": ""
+},
+"کاشان": {
+"lang": "fa",
+"reading": "kâšân",
+"source": "English Kashan",
+"translit": ""
+},
+"کال": {
+"lang": "fa",
+"reading": "kâl",
+"source": "Persian کاله‌جوش",
+"translit": ""
+},
+"کالب": {
+"lang": "fa",
+"reading": "kâlob",
+"source": "Italian garbo",
+"translit": ""
+},
+"کالجار": {
+"lang": "fa",
+"reading": "kāljār",
+"source": "Persian کارزار",
+"translit": ""
+},
+"کامخ": {
+"lang": "fa",
+"reading": "kāmax",
+"source": "Persian کامه",
+"translit": ""
+},
+"کاند": {
+"lang": "fa",
+"reading": "kând",
+"source": "Persian قند",
+"translit": ""
+},
+"کاه": {
+"lang": "fa",
+"reading": "kâh",
+"source": "Persian کهکشان",
+"translit": ""
+},
+"کبست": {
+"lang": "fa",
+"reading": "kabast",
+"source": "Persian کمبیزه",
+"translit": ""
+},
+"کتلت": {
+"lang": "fa",
+"reading": "kotlet",
+"source": "English kotlet",
+"translit": ""
+},
+"کحل": {
+"lang": "fa",
+"reading": "kuhl",
+"source": "Persian الکحل",
+"translit": ""
+},
+"کرفا": {
+"lang": "fa",
+"reading": "kerfâ",
+"source": "Persian کرپا",
+"translit": ""
+},
+"کرنگ": {
+"lang": "fa",
+"reading": "kuráng",
+"source": "Persian کرند",
+"translit": ""
+},
+"کسوت": {
+"lang": "fa",
+"reading": "kesvat",
+"source": "Persian پیشکسوت",
+"translit": ""
+},
+"کشاورز": {
+"lang": "fa",
+"reading": "kešâvarz",
+"source": "Persian کشاورزی",
+"translit": ""
+},
+"کشت": {
+"lang": "fa",
+"reading": "kešt",
+"source": "Persian کشتی",
+"translit": ""
+},
+"کلاج": {
+"lang": "fa",
+"reading": "kalāǰ",
+"source": "Persian کلاغ",
+"translit": ""
+},
+"کلانتر": {
+"lang": "fa",
+"reading": "kalântar",
+"source": "Persian کلانتری",
+"translit": ""
+},
+"کلندر": {
+"lang": "fa-cls",
+"reading": "kalandar",
+"source": "English calender",
+"translit": ""
+},
+"کمخا": {
+"lang": "fa",
+"reading": "kamxâ",
+"source": "Armenian քամխա",
+"translit": ""
+},
+"کن": {
+"lang": "fa",
+"reading": "kon",
+"source": "Persian کنش",
+"translit": ""
+},
+"کنب": {
+"lang": "fa",
+"reading": "kunb",
+"source": "Persian کمبیزه",
+"translit": ""
+},
+"کندگ": {
+"lang": "fa",
+"reading": "kandag",
+"source": "Persian خندیدن",
+"translit": ""
+},
+"کنف": {
+"lang": "fa",
+"reading": "kanaf",
+"source": "English kenaf",
+"translit": ""
+},
+"کنگر": {
+"lang": "fa",
+"reading": "kangar",
+"source": "Persian انگنار",
+"translit": ""
+},
+"کهربای": {
+"lang": "fa",
+"reading": "kahrobây",
+"source": "Persian کهربا",
+"translit": ""
+},
+"کوسک": {
+"lang": "fa",
+"reading": "*kõsak ~ *kōsē",
+"source": "Persian کوسه",
+"translit": "kwsk"
+},
+"کیفر": {
+"lang": "fa",
+"reading": "keyfar",
+"source": "Persian کیفری",
+"translit": ""
+},
+"کیگ": {
+"lang": "fa",
+"reading": "keyg",
+"source": "Persian کیک",
+"translit": ""
+},
+"گار": {
+"lang": "fa",
+"reading": "gār",
+"source": "Persian یادگار",
+"translit": ""
+},
+"گاس": {
+"lang": "fa",
+"reading": "gâs",
+"source": "Persian نگاه",
+"translit": ""
+},
+"گان": {
+"lang": "fa",
+"reading": "gān",
+"source": "Persian زندگانی",
+"translit": ""
+},
+"گت": {
+"lang": "fa",
+"reading": "gat",
+"source": "Persian کتی",
+"translit": ""
+},
+"گرا": {
+"lang": "fa",
+"reading": "garâ",
+"source": "Persian گرایش",
+"translit": ""
+},
+"گرداندن": {
+"lang": "fa",
+"reading": "gardāndan",
+"source": "Persian برگرداندن",
+"translit": ""
+},
+"گردن": {
+"lang": "fa",
+"reading": "gardan",
+"source": "Persian گردنبند",
+"translit": ""
+},
+"گزار": {
+"lang": "fa",
+"reading": "gozâr",
+"source": "Persian سپاسگزار",
+"translit": ""
+},
+"گستر": {
+"lang": "fa",
+"reading": "gostar",
+"source": "Persian گستره",
+"translit": ""
+},
+"گشاد": {
+"lang": "fa",
+"reading": "gošâd",
+"source": "Persian کون‌گشاد",
+"translit": ""
+},
+"گشادن": {
+"lang": "fa",
+"reading": "gošâdan",
+"source": "Persian برگشادن",
+"translit": ""
+},
+"گشای": {
+"lang": "fa",
+"reading": "gošây",
+"source": "Persian گشایش",
+"translit": ""
+},
+"گفت": {
+"lang": "fa",
+"reading": "goft",
+"source": "Persian گفتگو",
+"translit": ""
+},
+"گلفهشنگ": {
+"lang": "fa",
+"reading": "galafahšang",
+"source": "Persian فشنگ",
+"translit": ""
+},
+"گلنار": {
+"lang": "fa",
+"reading": "golnâr",
+"source": "Persian گلناری",
+"translit": ""
+},
+"گندلاش": {
+"lang": "fa",
+"reading": "gandalâš",
+"source": "Persian گندنا",
+"translit": ""
+},
+"گوار": {
+"lang": "fa",
+"reading": "govâr",
+"source": "Persian خوشگوار",
+"translit": ""
+},
+"گود": {
+"lang": "fa",
+"reading": "gowd",
+"source": "Persian گودال",
+"translit": ""
+},
+"گپ": {
+"lang": "fa",
+"reading": "gap",
+"source": "Persian گپ زدن",
+"translit": ""
+},
+"گیهان": {
+"lang": "fa",
+"reading": "gayhān",
+"source": "Persian کیهان",
+"translit": ""
+},
+"یار": {
+"lang": "fa-cls",
+"reading": "yār",
+"source": "English yaar",
+"translit": ""
+},
+"یارا": {
+"lang": "phr",
+"reading": "yārā",
+"source": "English yaara",
+"translit": ""
+},
+"یاساق": {
+"lang": "fa",
+"reading": "yasaq",
+"source": "Persian یاسا",
+"translit": ""
+},
+"یاش": {
+"lang": "ota",
+"reading": "yaş",
+"source": "Armenian Յաշ",
+"translit": ""
+},
+"یال": {
+"lang": "fa",
+"reading": "yâl",
+"source": "Persian فریال",
+"translit": ""
+},
+"یامان": {
+"lang": "ota",
+"reading": "yaman",
+"source": "Armenian յաման",
+"translit": ""
+},
+"یان": {
+"lang": "ota",
+"reading": "yan",
+"source": "Armenian յան",
+"translit": ""
+},
+"یاور": {
+"lang": "fa",
+"reading": "yâvar",
+"source": "Persian یاوری",
+"translit": ""
+},
+"یشم": {
+"lang": "fa",
+"reading": "yašm",
+"source": "Persian یشمی",
+"translit": ""
+},
+"یواش": {
+"lang": "ota",
+"reading": "yavaş",
+"source": "Albanian avash",
+"translit": ""
+},
+"یکتاپرست": {
+"lang": "fa",
+"reading": "yektâparast",
+"source": "Persian یکتاپرستی",
+"translit": ""
+},
+"𐌸𐌹𐌿𐌳𐌰𐍂𐌴𐌹𐌺𐍃": {
+"lang": "got",
+"reading": "þiudareiks",
+"source": "Greek Θευδέριχος",
+"translit": ""
+},
+"𐎠𐎼𐎷𐎡𐎴": {
+"lang": "peo",
+"reading": "Armina",
+"source": "English Armenia",
+"translit": "a-r-mi-i-n"
+},
+"𐎫𐎵𐎢": {
+"lang": "peo",
+"reading": "tanūš",
+"source": "Middle Persian tn'",
+"tier": "quoted",
+"translit": ""
+},
+"𐎴": {
+"lang": "peo",
+"reading": "*-naʰ",
+"source": "Old Persian 𐎺𐎼𐎣𐎠𐎴",
+"translit": "n"
+},
+"𐎹": {
+"lang": "peo",
+"reading": "*-yaʰ",
+"source": "Old Persian Bagayah",
+"translit": "y"
+},
+"𐎼𐎢𐎨": {
+"lang": "peo",
+"reading": "raučah",
+"source": "Middle Persian lwc",
+"tier": "quoted",
+"translit": ""
+},
+"𐫁𐫏𐫇𐫡": {
+"lang": "pal",
+"reading": "bēwar",
+"source": "Persian بیور",
+"translit": "bywr"
+},
+"𐫋𐫗𐫗𐫃": {
+"lang": "pal",
+"reading": "ǰang",
+"source": "Persian جنگ",
+"translit": "jnng"
+},
+"𐬀𐬵𐬎𐬭𐬀": {
+"lang": "ae",
+"reading": "ahura",
+"source": "Persian اهورا",
+"translit": ""
+},
+"𐬐𐬀𐬎𐬎𐬌": {
+"lang": "ae",
+"reading": "kauui",
+"source": "Persian کی",
+"translit": ""
+},
+"𐬙𐬀𐬎𐬭𐬎𐬥𐬀": {
+"lang": "ae",
+"reading": "taᵘruna",
+"source": "Persian توله",
+"translit": ""
+},
+"𐬬𐬌𐬛": {
+"lang": "ae",
+"reading": "vid",
+"source": "Persian ویستا",
+"translit": ""
+},
+"𐬯𐬞𐬁𐬵⸱𐬯𐬁𐬮𐬁𐬭": {
+"lang": "pal",
+"reading": "spāh-sālār",
+"source": "Persian سپهسالار",
+"translit": ""
+},
+"𐬰𐬀𐬌𐬭𐬌": {
+"lang": "ae",
+"reading": "zaⁱri",
+"source": "Persian زریون",
+"translit": ""
+},
+"𒋻𒈠𒀸": {
+"lang": "hit",
+"reading": "tarmaš",
+"source": "Hittite 𒋻𒈠𒀀𒄑𒍣",
+"translit": "tar-ma-aš"
+}
+}

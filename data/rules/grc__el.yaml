@@ -1,0 +1,440 @@
+stage:
+  name: Ancient Greek → Modern Greek
+  date_start: 300
+  date_end: 1700
+  description: >
+    The changes between the Koine of the first centuries and the modern
+    language, as the corpus of modern headwords and their recorded Ancient
+    Greek ancestors shows them.  Greek keeps writing the letters it inherited,
+    so the derived form is the sound change in the notation the Greek
+    dictionaries transliterate with (ē for η, ō for ω, y for υ, and ei oi ai au
+    eu for the digraphs); the spellings the change did not alter are written
+    from that notation by data/spelling/el.yaml.  Three changes have no
+    consequence for the letters and are therefore stated here in prose with
+    their citation instead of as a rewrite, because a rewrite would make the
+    modern spelling unreachable: the itacism (η υ ει οι > /i/, ω > /o/, and the
+    loss of the quantity of ē and ō), the loss of gemination (ἄλλος is still
+    written λλ), and the loss of the dative and of the infinitive, which is a
+    fact about the paradigm that no rewrite of a word can state.  Every rule
+    below is a change the corpus shows and the writing followed.
+  references: [horrocks-2010, smyth-1920]
+
+rules:
+  # ---- notation: the glossaries write the aspirates with a digraph --------
+  - id: ph_digraph
+    order: 5
+    name: "The transliteration's ph is the aspirate *pʰ*"
+    match: "p h"
+    replace: "pʰ"
+    tier: orthographic
+    description: >
+      A Greek dictionary transliterates φ as ph.  The digraph is the notation
+      of one segment, the aspirate *pʰ*, and the law below it is the change of
+      that segment.
+    references: [smyth-1920]
+    examples:
+      - {in: "phˈilos", out: "pʰˈilos", gloss: "friend (φίλος)"}
+
+  - id: th_digraph
+    order: 6
+    name: "The transliteration's th is the aspirate *tʰ*"
+    match: "t h"
+    replace: "tʰ"
+    tier: orthographic
+    description: "θ is transliterated th; the digraph is one segment."
+    references: [smyth-1920]
+    examples:
+      - {in: "thˈalassa", out: "tʰˈalassa", gloss: "sea (θάλασσα)"}
+
+  - id: kh_digraph
+    order: 7
+    name: "The transliteration's kh is the aspirate *kʰ*"
+    match: "k h"
+    replace: "kʰ"
+    tier: orthographic
+    description: "χ is transliterated kh; the digraph is one segment."
+    references: [smyth-1920]
+    examples:
+      - {in: "khˈōra", out: "kʰˈōra", gloss: "land (χώρα)"}
+
+  - id: xi_digraph
+    order: 8
+    name: "The transliteration's x is ξ, that is *ks*"
+    match: x
+    replace: "k s"
+    tier: orthographic
+    description: >
+      The dictionaries transliterate ξ as x; ξ is one sign for the cluster /ks/
+      (Smyth 1920, §1), so the digraph is two segments and the spelling writes
+      them as the single sign again.
+    references: [smyth-1920]
+    examples:
+      - {in: "dexiˈos", out: "deksiˈos", gloss: "right (δεξιός)"}
+
+  # ---- the accent: the circumflex of a long vowel becomes the tonos --------
+  - id: circumflex_a_to_tonos
+    order: 10
+    name: "A circumflex *â becomes *á"
+    match: â
+    replace: "ˈ a"
+    tier: orthographic
+    description: >
+      The circumflex marked a long accented vowel.  Once the quantity was lost
+      the modern system writes the one accent it has, the acute (tonos), on the
+      same syllable: ᾶ is written ά (Horrocks 2010, 175-6; the monotonic system
+      made it obligatory in 1982).  The dictionaries transliterate ᾶ as â.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "tâm", out: "tˈam", gloss: "them (τᾶν, a Doric form)"}
+
+  - id: circumflex_e_to_tonos
+    order: 11
+    name: "A circumflex *ê becomes *ḗ (the letter is η)"
+    match: ê
+    replace: "ˈ ē"
+    tier: orthographic
+    description: >
+      ê is the transliteration of ῆ; the accent becomes the tonos and the letter
+      is η, which the spelling writes: ῆ is written ή.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "sêma", out: "sˈēma", gloss: "sign (σῆμα > σήμα)"}
+
+  - id: circumflex_i_to_tonos
+    order: 12
+    name: "A circumflex *î becomes *í"
+    match: î
+    replace: "ˈ i"
+    tier: orthographic
+    description: >
+      î is the transliteration of ῖ or of the iota of a circumflexed diphthong
+      (οἶκος); the accent becomes the tonos on the i, which the spelling writes
+      as ί (οἶκος > οίκος).
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "oîkos", out: "oˈikos", gloss: "house (οἶκος > οίκος)"}
+
+  - id: circumflex_o_to_tonos
+    order: 13
+    name: "A circumflex *ô becomes *ṓ (the letter is ω)"
+    match: ô
+    replace: "ˈ ō"
+    tier: orthographic
+    description: >
+      ô is the transliteration of ῶ; the accent becomes the tonos and the letter
+      is ω: ῶ is written ώ (χρῶμα > χρώμα).
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "khrôma", out: "khrˈōma", gloss: "colour (χρῶμα > χρώμα)"}
+
+  - id: circumflex_u_to_tonos
+    order: 14
+    name: "A circumflex *û becomes *ú"
+    match: û
+    replace: "ˈ u"
+    tier: orthographic
+    description: >
+      û is the transliteration of ῦ, the circumflexed υ; the accent becomes the
+      tonos on the same vowel (δοῦλος > δούλος).
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "doûlos", out: "doˈulos", gloss: "slave (δοῦλος > δούλος)"}
+
+  - id: iota_subscript_loss
+    order: 16
+    name: "The iota of a long vowel (the iota subscript) is not written"
+    match: i
+    replace: ""
+    env: {left: "(â|ê|ô|ā|ē|ō)"}
+    tier: orthographic
+    description: >
+      The iota subscript of the dative and of the -ῳ- stems is no longer
+      pronounced or written: τῷ is τω, ζῷον is ζώο, τραγῳδία is τραγωδία
+      (Horrocks 2010, 175-6).  A dictionary transliterates it as an i after the
+      long vowel.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "zôion", out: "zôon", gloss: "animal (ζῷον > ζώο)"}
+
+  # ---- the rough breathing is lost ---------------------------------------
+  - id: h_loss_initial
+    order: 20
+    name: "The rough breathing is lost word-initially"
+    match: h
+    replace: ""
+    env: {left: "#"}
+    tier: established
+    description: >
+      The rough breathing of a vowel-initial word is no longer pronounced and
+      no longer written: ἵππος is ίππος, ἕξ is έξ (Horrocks 2010, 168-70;
+      Browning 1983, 60-2).  The dictionaries transliterate it as an initial h.
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "hˈippos", out: "ˈippos", gloss: "horse (ἵππος > ίππος)"}
+
+  - id: h_loss_after_rho
+    order: 21
+    name: "The rough breathing of an initial ῥ is lost"
+    match: h
+    replace: ""
+    env: {left: r}
+    tier: established
+    description: >
+      Initial ῥ keeps its rho and loses the breathing: ῥήτωρ is ρήτωρ
+      (Horrocks 2010, 169).  A dictionary transliterates ῥ as rh.
+    references: [horrocks-2010]
+    examples:
+      - {in: "rhˈētōr", out: "rˈētōr", gloss: "orator (ῥήτωρ > ρήτωρ)"}
+
+  # ---- vowel quantity is lost --------------------------------------------
+  - id: loss_of_long_quantity
+    order: 30
+    name: "The long vowels lose their quantity: *ā *ī *ū > *a *i *u"
+    match: ā
+    replace: a
+    tier: established
+    description: >
+      The length contrast of the vowels is lost in the Koine; the letters α ι υ
+      are written the same either way (Horrocks 2010, 169-71; Browning 1983,
+      56-8).  The two long mid vowels are not merged here: η and ω are
+      different letters from ε and ο, and the spelling keeps them (see the
+      stage description).
+    references: [horrocks-2010]
+    examples:
+      - {in: "āetˈos", out: "aetˈos", gloss: "eagle (ἀετός > αετός)"}
+
+  - id: loss_of_long_i
+    order: 31
+    name: "*ī > *i"
+    match: ī
+    replace: i
+    tier: established
+    description: "Long *ī is shortened; the letter ι is written either way."
+    references: [horrocks-2010]
+    examples:
+      - {in: "līmˈēn", out: "limˈēn", gloss: "harbour (λιμήν)"}
+
+  - id: loss_of_long_u
+    order: 32
+    name: "*ū > *u"
+    match: ū
+    replace: u
+    tier: established
+    description: "Long *ū is shortened; the letter υ is written either way."
+    references: [horrocks-2010]
+    examples:
+      - {in: "psūxˈē", out: "psuxˈē", gloss: "soul (ψυχή)"}
+
+  - id: loss_of_breve_a
+    order: 33
+    name: "A short *ă is written and pronounced like every other *a"
+    match: ă
+    replace: a
+    tier: established
+    description: >
+      The breve of the dictionaries marks a short vowel; the modern language
+      has no quantity, and the letter is the same.
+    references: [horrocks-2010]
+    examples:
+      - {in: "ănthrōpos", out: "anthrōpos", gloss: "man (ἄνθρωπος)"}
+
+
+  - id: loss_of_breve_i
+    order: 35
+    name: "A short *ĭ is written and pronounced like every other *i"
+    match: ĭ
+    replace: i
+    tier: established
+    description: "The breve marks quantity, which the modern language has lost."
+    references: [horrocks-2010]
+    examples:
+      - {in: "pŏlĭs", out: "pŏlis", gloss: "city (πόλις)"}
+
+
+  - id: loss_of_breve_u
+    order: 37
+    name: "A short *ŭ is written and pronounced like every other *u"
+    match: ŭ
+    replace: u
+    tier: established
+    description: "The breve marks quantity, which the modern language has lost."
+    references: [horrocks-2010]
+    examples:
+      - {in: "mŭrmēx", out: "murmēx", gloss: "ant (μύρμηξ)"}
+
+  # ---- the aspirates become fricatives ----------------------------------
+  - id: ph_to_f
+    order: 40
+    name: "*pʰ > *f"
+    match: pʰ
+    replace: f
+    tier: established
+    description: >
+      The voiceless aspirate φ spirantises to /f/ in the Koine (Horrocks 2010,
+      168-71; Browning 1983, 56-8).
+    references: [horrocks-2010]
+    examples:
+      - {in: "pʰōnˈē", out: "fōnˈē", gloss: "voice (φωνή)"}
+
+  - id: th_to_theta
+    order: 41
+    name: "*tʰ > *θ"
+    match: tʰ
+    replace: θ
+    tier: established
+    description: "θ spirantises to the dental fricative /θ/."
+    references: [horrocks-2010]
+    examples:
+      - {in: "tʰerapˈeia", out: "θerapˈeia", gloss: "service (θεραπεία)"}
+
+  - id: kh_to_chi
+    order: 42
+    name: "*kʰ > the velar fricative /x/"
+    match: kʰ
+    replace: χ
+    tier: established
+    description: "χ spirantises to the velar fricative /x/ (palatal [ç] before a front vowel)."
+    references: [horrocks-2010]
+    examples:
+      - {in: "kʰōrˈa", out: "χōrˈa", gloss: "land (χώρα)"}
+
+  # ---- the diphthongs αυ and ευ -----------------------------------------
+  - id: au_to_af
+    order: 50
+    name: "*au > *af before a voiceless consonant"
+    match: "a u"
+    replace: "a f"
+    env: {right: "(p|t|k|s|f|θ|χ|pʰ|tʰ|kʰ)"}
+    tier: established
+    description: >
+      The second element of *au is a fricative in the modern language, voiced
+      before a vowel or a voiced consonant and voiceless before a voiceless
+      one: αὐτός is /afˈtos/, αὐλή is /avˈli/ (Horrocks 2010, 168-9; Holton,
+      Mackridge & Philippaki-Warburton 1997, 1.2).
+    references: [horrocks-2010]
+    examples:
+      - {in: "autˈos", out: "aftˈos", gloss: "self (αὐτός > αυτός, /afˈtos/)"}
+
+  - id: au_to_av
+    order: 51
+    name: "*au > *av elsewhere"
+    match: "a u"
+    replace: "a v"
+    tier: established
+    description: >
+      Before a vowel or a voiced consonant the fricative is voiced: αὐλή is
+      /avˈli/.  This rule is the complement of the preceding one and must run
+      after it.
+    references: [horrocks-2010]
+    examples:
+      - {in: "aulˈē", out: "avlˈē", gloss: "courtyard (αὐλή > αυλή, /avˈli/)"}
+
+  - id: eu_to_ef
+    order: 52
+    name: "*eu > *ef before a voiceless consonant"
+    match: "e u"
+    replace: "e f"
+    env: {right: "(p|t|k|s|f|θ|χ|pʰ|tʰ|kʰ)"}
+    tier: established
+    description: "εὐχή is /efˈçi/: the same voicing split as *au."
+    references: [horrocks-2010]
+    examples:
+      - {in: "eukʰˈē", out: "efkʰˈē", gloss: "prayer (εὐχή > ευχή, /efˈçi/)"}
+
+  - id: eu_to_ev
+    order: 53
+    name: "*eu > *ev elsewhere"
+    match: "e u"
+    replace: "e v"
+    tier: established
+    description: "Before a vowel or a voiced consonant: εὖ is /ev/."
+    references: [horrocks-2010]
+    examples:
+      - {in: "eugnōmˈōn", out: "evgnōmˈōn", gloss: "fair-minded (εὐγνώμων)"}
+
+  # ---- the voiced stops become fricatives -------------------------------
+  - id: b_to_v
+    order: 70
+    name: "*b > *v"
+    match: b
+    replace: v
+    tier: established
+    description: >
+      The voiced stop β spirantises to /v/ (Horrocks 2010, 168-71).  The modern
+      language still writes the letter β, so the spelling layer maps the
+      fricative back to its letter.
+    references: [horrocks-2010]
+    examples:
+      - {in: "bˈasis", out: "vˈasis", gloss: "base (βάσις)"}
+
+  - id: d_to_delta
+    order: 71
+    name: "*d > *ð"
+    match: d
+    replace: ð
+    tier: established
+    description: "δ spirantises to the dental fricative /ð/, still written δ."
+    references: [horrocks-2010]
+    examples:
+      - {in: "dˈōron", out: "ðˈōron", gloss: "gift (δῶρον)"}
+
+  - id: g_to_gamma
+    order: 72
+    name: "*g > *ɣ"
+    match: g
+    replace: ɣ
+    tier: established
+    description: >
+      γ spirantises to the velar fricative /ɣ/ (palatal [ʝ] before a front
+      vowel), still written γ.
+    references: [horrocks-2010]
+    examples:
+      - {in: "gˈala", out: "ɣˈala", gloss: "milk (γάλα)"}
+
+  - id: w_loss_initial
+    order: 75
+    name: "Initial *w (digamma) is lost"
+    match: w
+    replace: ""
+    env: {left: "#"}
+    tier: established
+    description: >
+      The digamma ϝ was no longer pronounced in the standard language, but the
+      dictionaries still write it where the record has it: ϝοῖκος is οἶκος,
+      ϝέργον is ἔργον (Smyth 1920, §24; Horrocks 2010, 160).
+    references: [smyth-1920, horrocks-2010]
+    examples:
+      - {in: "woikˈos", out: "oikˈos", gloss: "house (ϝοῖκος > οἶκος)"}
+
+  - id: pt_to_ft_initial
+    order: 76
+    name: "Initial *pt > *ft"
+    match: "p t"
+    replace: "f t"
+    env: {left: "#"}
+    tier: established
+    description: >
+      Word-initial πτ- is pronounced and written φτ- in the modern language:
+      πτύω is φτύνω, πτέρνα is φτέρνα (Horrocks 2010, 171; Browning 1983, 66).
+    references: [horrocks-2010]
+    examples:
+      - {in: "ptˈuō", out: "ftˈuō", gloss: "I spit (πτύω > φτύνω)"}
+
+  # ---- the neuter in -ιον and the synizesis classes ---------------------
+
+  # ---- final *-n ---------------------------------------------------------
+  - id: final_n_loss
+    order: 95
+    name: "Final *-n is lost"
+    match: n
+    replace: ""
+    env: {right: "#"}
+    tier: established
+    description: >
+      Word-final /n/ is lost in the great majority of words (τὸν > το, δῶρον >
+      δώρο); it is kept in a handful of monosyllabic function words (δεν, μην,
+      σαν, τον, την), and those words remain misses here (Horrocks 2010,
+      176-8).
+    references: [horrocks-2010, smyth-1920]
+    examples:
+      - {in: "dˈōron", out: "dˈōro", gloss: "gift (δῶρον > δώρο)"}

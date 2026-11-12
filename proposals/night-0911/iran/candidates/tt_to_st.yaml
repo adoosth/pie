@@ -1,0 +1,10 @@
+rules:
+  - id: probe_tt_to_st
+    order: 109
+    name: "PII *tˢt > PIr *st"
+    match: "t ˢ"
+    replace: "s"
+    env: {right: t}
+    references: [hoffmann-forssman-2004, mayrhofer-1986]
+    examples:
+      - {in: "*winátˢti", out: "*winásti", gloss: "finds"}

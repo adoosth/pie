@@ -1,0 +1,19 @@
+stage: {source: pal, target: fa}
+rules:
+  - id: final_ug_to_u
+    order: 14
+    name: "MP final *-ūg > NP -ū"
+    match: g
+    replace: ""
+    env: {left: ū, right: "#"}
+    tier: proposed
+    description: >
+      A word-final *-g after long *ū is lost: MP hindūg > NP hindū 'Hindu',
+      bānūg > bānū 'lady', anōš-dārūg > (a)nōš-dārū 'elixir'.  The environment
+      is the long back vowel, because *-ōg is not uniform (MP sōg > NP sūg
+      keeps the stop while mēnōg > mīnū does not), so only the *-ūg class is
+      claimed here.
+    references: [mackenzie-1971, sadeghi-1978, windfuhr-2009]
+    examples:
+      - {in: "hindūg", out: "hindū", gloss: "Hindu"}
+      - {in: "bānūg", out: "bānū", gloss: "lady"}

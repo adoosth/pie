@@ -1,0 +1,100 @@
+# The Old Persian syllabary: every sign, its transliteration and its kind.
+#
+# This is not a sound law and not an orthographic rule: it is the writing
+# system itself, the relationship between a headword a monument spells
+# (𐎺𐎼𐎣) and the sounds a reader gives it (warkaʰ).  The signs are Kent's
+# (Old Persian: Grammar, Texts, Lexicon, 2nd ed. 1953, §5).
+stage:
+  id: peo
+  name: Old Persian cuneiform
+  description: >
+    A syllabary: signs spell a vowel (a, i, u) or a consonant plus a vowel
+    (ka, ku, ki …).  Four conventions matter for reading a word:
+    a word is written with the vowels the scribe chose to spell, and an
+    a-sign or a-sign vowel may stand as a filler inside a cluster (da-ra-ya
+    for /draya/); a word-final /h/ is left unwritten (𐎭𐎠𐎭 d-a-d is
+    dādaʰ, 𐎺𐎼𐎣 v-r-k is warkaʰ); and a word-final short -i is closed with
+    the y-sign, which adds no sound (𐎠𐎡𐎫𐎡𐎹 a-i-t-i-y is /aiti/, not
+    /aitiya/).  A nasal before a consonant is not written either: 𐏃𐎡𐎯𐎢𐏁
+    h-i-du-u-š is Hiⁿduš, 𐎠𐎰𐎥 a-θa-ga is aθaⁿga-, and 𐏃𐎥𐎶𐎫𐎠𐎴
+    ha-ga-ma-ta-a-na is Haⁿgmatāna-, so those readings cannot be matched by a
+    consonant skeleton that requires a written sign for the nasal.
+    A cuneiform spelling therefore
+    underdetermines the vowels, and a reconstruction is a reasonable reading
+    of it when the consonants are the ones it writes and no vowel it writes
+    contradicts it.
+  references: [kent-1953, schmitt-2014]
+
+# Reading conventions: pairs of signs that write one vowel at the end of a
+# word.  They are orthography — how a scribe closes a word — not sound, and a
+# reading that ends on the vowel alone is still a reading of those signs.
+#   𐎠𐎿𐎫𐎡𐎹 a-s-t-i-y /asti/ 'is',  𐎠𐎡𐎫𐎡𐎹 a-i-t-i-y /aiti/ 'goes'
+# (Kent 1953 counts the y as a graphic mark of a final -i).
+conventions:
+  - id: final_i_iy
+    name: "a word-final -i is written i-y"
+    vowel_sign: "𐎡"
+    final_sign: "𐎹"
+    examples:
+      - {word: "𐎠𐎿𐎫𐎡𐎹", translit: "a-s-t-i-y", reading: "asti", gloss: "is"}
+      - {word: "𐎠𐎡𐎫𐎡𐎹", translit: "a-i-t-i-y", reading: "aiti", gloss: "goes"}
+  - id: nasal_before_consonant
+    kind: unwritten
+    name: "a nasal before a consonant is not written"
+    note: >
+      The syllabary writes no sign for a nasal before another consonant:
+      𐏃𐎡𐎯𐎢𐏁 h-i-du-u-š is Hiⁿduš, 𐎠𐎰𐎥 a-θa-ga is aθaⁿga-, 𐏃𐎥𐎶𐎫𐎠𐎴
+      ha-ga-ma-ta-a-na is Haⁿgmatāna-.  The nasal is in the reading, not in
+      the signs, so a matcher that requires a written consonant cannot see
+      these three words; the convention records the gap and does not forgive
+      it.
+
+# kind: vowel (a sign of its own), cv (a consonant with an inherent vowel),
+# word-divider and logogram (an ideogram that stands for a whole word).
+signs:
+  - {char: "𐎠", value: "a", kind: vowel}
+  - {char: "𐎡", value: "i", kind: vowel}
+  - {char: "𐎢", value: "u", kind: vowel}
+  - {char: "𐎣", value: "ka", kind: cv}
+  - {char: "𐎤", value: "ku", kind: cv}
+  - {char: "𐎥", value: "ga", kind: cv}
+  - {char: "𐎦", value: "gu", kind: cv}
+  - {char: "𐎧", value: "xa", kind: cv}
+  - {char: "𐎨", value: "ca", kind: cv}
+  - {char: "𐎩", value: "ja", kind: cv}
+  - {char: "𐎪", value: "ji", kind: cv}
+  - {char: "𐎫", value: "ta", kind: cv}
+  - {char: "𐎬", value: "tu", kind: cv}
+  - {char: "𐎭", value: "da", kind: cv}
+  - {char: "𐎮", value: "di", kind: cv}
+  - {char: "𐎯", value: "du", kind: cv}
+  - {char: "𐎰", value: "θa", kind: cv}
+  - {char: "𐎱", value: "pa", kind: cv}
+  - {char: "𐎲", value: "ba", kind: cv}
+  - {char: "𐎳", value: "fa", kind: cv}
+  - {char: "𐎴", value: "na", kind: cv}
+  - {char: "𐎵", value: "nu", kind: cv}
+  - {char: "𐎶", value: "ma", kind: cv}
+  - {char: "𐎷", value: "mi", kind: cv}
+  - {char: "𐎸", value: "mu", kind: cv}
+  - {char: "𐎹", value: "ya", kind: cv}
+  - {char: "𐎺", value: "va", kind: cv}
+  - {char: "𐎻", value: "vi", kind: cv}
+  - {char: "𐎼", value: "ra", kind: cv}
+  - {char: "𐎽", value: "ru", kind: cv}
+  - {char: "𐎾", value: "la", kind: cv}
+  - {char: "𐎿", value: "sa", kind: cv}
+  - {char: "𐏀", value: "za", kind: cv}
+  - {char: "𐏁", value: "ša", kind: cv}
+  - {char: "𐏂", value: "ça", kind: cv}
+  - {char: "𐏃", value: "ha", kind: cv}
+  - {char: "𐏐", value: " ", kind: divider}
+logograms:
+  - {char: "𐏈", value: "Auramazdā", kind: logogram}
+  - {char: "𐏉", value: "Auramazdā", kind: logogram}
+  - {char: "𐏊", value: "Auramazdā", kind: logogram}
+  - {char: "𐏋", value: "xšāyaθiya", kind: logogram}
+  - {char: "𐏌", value: "xšāyaθiya", kind: logogram}
+  - {char: "𐏍", value: "dahyāvuš", kind: logogram}
+  - {char: "𐏎", value: "baga", kind: logogram}
+  - {char: "𐏏", value: "būmiš", kind: logogram}

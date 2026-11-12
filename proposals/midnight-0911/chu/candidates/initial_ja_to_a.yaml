@@ -1,0 +1,12 @@
+rules:
+  - id: initial_ja_to_a
+    order: 65
+    name: "Initial *ja- > a-"
+    match: j a
+    replace: a
+    env: {left: "#"}
+    tier: proposed
+    description: "The pronoun *jazъ appears as азъ azŭ with no j, a change usually treated as analogical rather than regular; it is proposed here and measured, and must not touch ꙗко jako or ꙗдъ jadъ."
+    references: [vaillant-1950, meillet-1934]
+    examples:
+      - {in: "jazъ", out: "azъ", gloss: "I (азъ)"}

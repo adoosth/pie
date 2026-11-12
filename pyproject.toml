@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pie"
+version = "0.17.0"
+description = "A rule-driven model of the Proto-Indo-European language family"
+readme = "README.md"
+license = { text = "GPL-3.0-or-later" }
+requires-python = ">=3.10"
+dependencies = ["PyYAML>=6"]
+
+[project.scripts]
+pie = "pie.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+pie = ["app/web/*"]

@@ -1,0 +1,222 @@
+# Old Church Slavonic in its own letters: what each sign writes.
+#
+# This is not a sound law and not an orthographic rule.  It is the writing
+# system itself: the relationship between a headword a manuscript writes (вода)
+# and the reading a dictionary gives it (voda).  Old Church Slavonic is written
+# in an alphabet — every vowel and consonant has its own letter, and the letters
+# are read one by one — so the alignment here is the strictest in the repo: one
+# sign stands for one letter of the reading, and no letter of the reading and no
+# sign may be left over.  The values are the transliteration the record itself
+# uses (ъ = ŭ, ь = ĭ, ѣ = ě, ѫ = ǫ, ѧ = ę, ы = y, щ = št, ж = ž, ч = č,
+# ш = š, ц = c), which is also the transliteration of Schenker (1995), Carlton
+# (1991), Lunt (1974) and Huntley (in Comrie & Corbett 1993), with the letter
+# values of Vaillant (Manuel du vieux slave I, 1950, §§1-8).
+#
+# Four limits are stated here rather than papered over, because each of them
+# makes a word a miss and none of them may be hidden:
+#
+# * **The matcher reads one sign for one letter.**  The yus letters ѩ, ѭ and the
+#   iotified ю, ѥ, ꙗ are j + vowel and the matcher can still align them (the
+#   sign's value carries both, as a cv sign does in the Old Persian table), but
+#   five signs write two *consonants* and cannot be aligned: щ (št, 71
+#   headwords), ѕ/ꙃ (dz, 15), ꙉ (dž) and the Greek loans ѯ (ks), ѱ (ps); the
+#   capital Ѯ and the Glagolitic ⰷ ⱋ ⱜ behave the same way.  Those words
+#   are misses in the script column, reported as such.
+# * **The digraph оу writes one vowel.**  /u/ is written with two signs, and the
+#   matcher has one letter to spend on them; a word spelled оу is a miss unless
+#   the laws happen to write it with two letters, which they may not do.
+# * **Diacritics are folded.**  The aligner compares base letters, so ѣ and е
+#   are one letter, ѫ and о one, ѧ and е one.  The table cannot tell the jat'
+#   from the e, and a wrong vowel of the same letter class would pass.  This is
+#   the same fold the Persian table states for ā/a, and it is why the matches
+#   are counted in the script column and never in the historical one.
+# * **Glagolitic is the same script in another hand.**  The 11 headwords the
+#   record writes in Glagolitic are listed with the values of the Cyrillic
+#   letters they correspond to (Vaillant 1950, §§5-8; Schenker 1995, 169-171).
+stage:
+  id: chu
+  name: Old Church Slavonic, Cyrillic and Glagolitic
+  description: >
+    An alphabet.  Each letter writes one segment; the yers ъ ь write the two
+    ultra-short vowels, the yuses ѧ ѫ the two nasal vowels, ѣ the jat', and щ
+    the cluster /št/.  The iotified letters ѥ ѩ ѭ ю ꙗ are j plus a vowel, and
+    one sign therefore writes two letters of the reading.  Nothing here is a
+    pronunciation: the values are the dictionary's transliteration, not an IPA.
+  references: [vaillant-1950, meillet-1934, shevelov-1964]
+
+signs:
+  # --- consonants ---------------------------------------------------------
+  - {char: "б", letter: "BUKY", value: "b", kind: cv}
+  - {char: "в", letter: "VĚDĚ", value: "v", kind: cv}
+  - {char: "г", letter: "GLAGOLI", value: "g", kind: cv}
+  - {char: "д", letter: "DOBRO", value: "d", kind: cv}
+  - {char: "ж", letter: "ŽIVĚTE", value: "ž", kind: cv}
+  - {char: "з", letter: "ZEMLJA", value: "z", kind: cv}
+  - {char: "к", letter: "KAKO", value: "k", kind: cv}
+  - {char: "л", letter: "LJUDIJE", value: "l", kind: cv}
+  - {char: "м", letter: "MYSLITE", value: "m", kind: cv}
+  - {char: "н", letter: "NAŠI", value: "n", kind: cv}
+  - {char: "п", letter: "POKOJI", value: "p", kind: cv}
+  - {char: "р", letter: "RЬCI", value: "r", kind: cv}
+  - {char: "с", letter: "SLOVO", value: "s", kind: cv}
+  - {char: "т", letter: "TVRЬDO", value: "t", kind: cv}
+  - {char: "ф", letter: "FRЬTЬ", value: "f", kind: cv}
+  - {char: "х", letter: "XĚRЬ", value: "x", kind: cv}
+  - {char: "ц", letter: "CI", value: "c", kind: cv}
+  - {char: "ч", letter: "ČRЬVЬ", value: "č", kind: cv}
+  - {char: "ш", letter: "ŠA", value: "š", kind: cv}
+  - {char: "й", letter: "I_KRATKOJE", value: "j", kind: cv}
+
+  # --- vowels -------------------------------------------------------------
+  - {char: "а", letter: "AZЬ", value: "a", kind: vowel}
+  - {char: "е", letter: "ESTЬ", value: "e", kind: vowel}
+  - {char: "и", letter: "IŽE", value: "i", kind: vowel}
+  - {char: "і", letter: "I_DESJATERIČNOJE", value: "i", kind: vowel, note: "the Ukrainian i, a spelling of и"}
+  - {char: "о", letter: "ONЬ", value: "o", kind: vowel}
+  - {char: "у", letter: "UKЬ", value: "u", kind: vowel, note: "the second sign of the digraph оу"}
+  - {char: "ы", letter: "JERY", value: "y", kind: cv, note: "one letter, a consonant to the matcher's alphabet"}
+  - {char: "ꙑ", letter: "JERY_BACK", value: "y", kind: cv, note: "the older shape of ы"}
+  - {char: "ь", letter: "JERЬ", value: "ĭ", kind: vowel, note: "the soft jer, read as the short front vowel"}
+  - {char: "ъ", letter: "JERЪ", value: "ŭ", kind: vowel, note: "the hard jer, read as the short back vowel"}
+  - {char: "ѣ", letter: "JATЬ", value: "ě", kind: vowel, note: "the jat', a long open e in the reading"}
+  - {char: "ѧ", letter: "MALYJ_JUS", value: "ę", kind: vowel, note: "the front nasal vowel"}
+  - {char: "ѫ", letter: "BOLЬŠIJ_JUS", value: "ǫ", kind: vowel, note: "the back nasal vowel"}
+  - {char: "ѳ", letter: "FITA", value: "f", kind: cv, note: "Greek theta, read /f/"}
+  - {char: "ѵ", letter: "IŽICA", value: "y", kind: cv, note: "Greek upsilon, read /y/ in the loans"}
+  - {char: "ѷ", letter: "IŽICA_DOUBLE_GRAVE", value: "y", kind: cv, note: "izhitsa with the double grave, a spelling of ѵ"}
+  - {char: "ѡ", letter: "OMEGA", value: "ō", kind: vowel, note: "Greek omega, a long o"}
+
+  # --- iotified letters: j + vowel in one sign ---------------------------
+  - {char: "ѥ", letter: "IOTIFIED_ESTЬ", value: "je", kind: cv, note: "j + e"}
+  - {char: "ю", letter: "JU", value: "ju", kind: cv, note: "j + u"}
+  - {char: "ꙗ", letter: "IOTIFIED_A", value: "ja", kind: cv, note: "j + a, the reflex of initial *ě"}
+  - {char: "я", letter: "JA", value: "ja", kind: cv, note: "a later spelling of ꙗ"}
+  - {char: "є", letter: "UKRAINIAN_JE", value: "je", kind: cv, note: "a later spelling of ѥ"}
+  - {char: "ѩ", letter: "IOTIFIED_MALYJ_JUS", value: "ję", kind: cv, note: "j + ę"}
+  - {char: "ѭ", letter: "IOTIFIED_BOLЬŠIJ_JUS", value: "jǫ", kind: cv, note: "j + ǫ"}
+
+  # --- clusters the matcher cannot align (two consonants in one sign) -----
+  - {char: "щ", letter: "ŠTA", value: "št", kind: cv, note: "one sign, two segments: a miss in the script layer"}
+  - {char: "ѕ", letter: "DZĚLO", value: "dz", kind: cv, note: "one sign, two segments"}
+  - {char: "ꙃ", letter: "DZĚLO_OLD", value: "dz", kind: cv, note: "one sign, two segments"}
+  - {char: "ꙉ", letter: "DJERVЬ", value: "dž", kind: cv, note: "one sign, two segments"}
+  - {char: "ѯ", letter: "KSI", value: "ks", kind: cv, note: "Greek xi, two segments"}
+  - {char: "ѱ", letter: "PSI", value: "ps", kind: cv, note: "Greek psi, two segments"}
+
+  # --- capitals (sentence-initial in the manuscripts) ---------------------
+  - {char: "А", letter: "A_CAP", value: "a", kind: vowel}
+  - {char: "Б", letter: "B_CAP", value: "b", kind: cv}
+  - {char: "В", letter: "V_CAP", value: "v", kind: cv}
+  - {char: "Г", letter: "G_CAP", value: "g", kind: cv}
+  - {char: "Д", letter: "D_CAP", value: "d", kind: cv}
+  - {char: "Е", letter: "E_CAP", value: "e", kind: vowel}
+  - {char: "И", letter: "I_CAP", value: "i", kind: vowel}
+  - {char: "І", letter: "I_DESJATERIČNOJE_CAP", value: "i", kind: vowel}
+  - {char: "К", letter: "K_CAP", value: "k", kind: cv}
+  - {char: "Л", letter: "L_CAP", value: "l", kind: cv}
+  - {char: "М", letter: "M_CAP", value: "m", kind: cv}
+  - {char: "Н", letter: "N_CAP", value: "n", kind: cv}
+  - {char: "О", letter: "O_CAP", value: "o", kind: vowel}
+  - {char: "П", letter: "P_CAP", value: "p", kind: cv}
+  - {char: "Р", letter: "R_CAP", value: "r", kind: cv}
+  - {char: "С", letter: "S_CAP", value: "s", kind: cv}
+  - {char: "Т", letter: "T_CAP", value: "t", kind: cv}
+  - {char: "Ф", letter: "F_CAP", value: "f", kind: cv}
+  - {char: "Є", letter: "JE_CAP", value: "je", kind: cv}
+  - {char: "Ѳ", letter: "FITA_CAP", value: "f", kind: cv}
+  - {char: "Ѵ", letter: "IŽICA_CAP", value: "y", kind: cv}
+  - {char: "Ѯ", letter: "KSI_CAP", value: "ks", kind: cv}
+  - {char: "Ꙁ", letter: "ZEMLJA_CAP", value: "z", kind: cv}
+
+  # --- Glagolitic ---------------------------------------------------------
+  # The round Glagolitic letters, with the values their Cyrillic counterparts
+  # carry above (the two alphabets are one script in two hands; Vaillant 1950,
+  # §§5-8; Schenker 1995, 169-171).
+  - {char: "ⰰ", letter: "AZU", value: "a", kind: vowel}
+  - {char: "ⰱ", letter: "BUKY", value: "b", kind: cv}
+  - {char: "ⰲ", letter: "VEDE", value: "v", kind: cv}
+  - {char: "ⰳ", letter: "GLAGOLI", value: "g", kind: cv}
+  - {char: "ⰴ", letter: "DOBRO", value: "d", kind: cv}
+  - {char: "ⰵ", letter: "YESTU", value: "e", kind: vowel}
+  - {char: "ⰶ", letter: "ZHIVETE", value: "ž", kind: cv}
+  - {char: "ⰷ", letter: "DZELO", value: "dz", kind: cv, note: "one sign, two segments"}
+  - {char: "ⰸ", letter: "ZEMLJA", value: "z", kind: cv}
+  - {char: "ⰹ", letter: "IZHE", value: "i", kind: vowel}
+  - {char: "ⰺ", letter: "INITIAL_IZHE", value: "i", kind: vowel}
+  - {char: "ⰻ", letter: "I", value: "i", kind: vowel}
+  - {char: "ⰼ", letter: "DJERVI", value: "đ", kind: cv, note: "the palatal of *dj, one segment"}
+  - {char: "ⰽ", letter: "KAKO", value: "k", kind: cv}
+  - {char: "ⰾ", letter: "LJUDIJE", value: "l", kind: cv}
+  - {char: "ⰿ", letter: "MYSLITE", value: "m", kind: cv}
+  - {char: "ⱀ", letter: "NASHI", value: "n", kind: cv}
+  - {char: "ⱁ", letter: "ONU", value: "o", kind: vowel}
+  - {char: "ⱂ", letter: "POKOJI", value: "p", kind: cv}
+  - {char: "ⱃ", letter: "RITSI", value: "r", kind: cv}
+  - {char: "ⱄ", letter: "SLOVO", value: "s", kind: cv}
+  - {char: "ⱅ", letter: "TVRIDO", value: "t", kind: cv}
+  - {char: "ⱆ", letter: "UKU", value: "u", kind: vowel}
+  - {char: "ⱇ", letter: "FRITU", value: "f", kind: cv}
+  - {char: "ⱈ", letter: "HERU", value: "x", kind: cv}
+  - {char: "ⱉ", letter: "OTU", value: "ō", kind: vowel}
+  - {char: "ⱊ", letter: "PE", value: "p", kind: cv}
+  - {char: "ⱋ", letter: "SHTA", value: "št", kind: cv, note: "one sign, two segments"}
+  - {char: "ⱌ", letter: "TSI", value: "c", kind: cv}
+  - {char: "ⱍ", letter: "CHRIVI", value: "č", kind: cv}
+  - {char: "ⱎ", letter: "SHA", value: "š", kind: cv}
+  - {char: "ⱏ", letter: "YERU", value: "ŭ", kind: vowel}
+  - {char: "ⱐ", letter: "YERI", value: "ĭ", kind: vowel}
+  - {char: "ⱑ", letter: "YATI", value: "ě", kind: vowel}
+  - {char: "ⱒ", letter: "SPIDERY_HA", value: "x", kind: cv, note: "a variant of heru"}
+  - {char: "ⱓ", letter: "YU", value: "ju", kind: cv, note: "j + u"}
+  - {char: "ⱔ", letter: "SMALL_YUS", value: "ę", kind: vowel}
+  - {char: "ⱕ", letter: "SMALL_YUS_WITH_TAIL", value: "ę", kind: vowel}
+  - {char: "ⱖ", letter: "YO", value: "jo", kind: cv}
+  - {char: "ⱗ", letter: "IOTATED_SMALL_YUS", value: "ję", kind: cv, note: "j + ę"}
+  - {char: "ⱘ", letter: "BIG_YUS", value: "ǫ", kind: vowel}
+  - {char: "ⱙ", letter: "IOTATED_BIG_YUS", value: "jǫ", kind: cv, note: "j + ǫ"}
+  - {char: "ⱚ", letter: "FITA", value: "f", kind: cv, note: "Greek theta, read /f/"}
+  - {char: "ⱛ", letter: "IZHITSA", value: "y", kind: cv}
+  - {char: "ⱜ", letter: "SHTAPIC", value: "št", kind: cv, note: "a variant of shta, two segments"}
+
+conventions:
+  - id: one_letter_one_segment
+    name: "an alphabet: every sign writes one letter of the reading"
+    kind: letter
+    note: >
+      Old Church Slavonic is written alphabetically, so the alignment is
+      strict: a sign the reading does not fill is a miss and a reading letter
+      the signs do not write is a miss (Vaillant 1950, §§1-8; Carlton 1991,
+      ch. 1).  The only exception the matcher states for itself is the
+      word-final /h/ it never requires, which no Slavic word needs.
+  - id: iotified_signs
+    name: "ѥ ю ꙗ ѩ ѭ write j plus a vowel in one sign"
+    kind: letter
+    note: >
+      The iotified letters are one sign for two letters of the reading.  The
+      matcher aligns them because a cv sign may carry its own vowel; a sign
+      with two consonants (щ ѕ ꙃ ѯ ѱ) cannot be aligned and its words are
+      reported as misses.
+  - id: yers_are_vowels
+    name: "ъ and ь write the two ultra-short vowels, transliterated ŭ and ĭ"
+    kind: letter
+    note: >
+      The yers are vowels phonologically and letters of the alphabet: ь is read
+      ĭ and ъ ŭ in the dictionaries' transliteration (Schenker 1995, 71-74;
+      Lunt 1974, 24-30).  They are written wherever the record writes them;
+      the table never supplies a vowel the letters do not carry.
+  - id: digraph_ou
+    name: "the vowel /u/ is written оу with two signs"
+    kind: letter
+    note: >
+      The digraph оу writes one vowel (Vaillant 1950, §9; Carlton 1991, 118).
+      A one-sign-one-letter matcher cannot spend one letter on two signs, so a
+      headword spelled оу is a miss unless the laws write it as two letters;
+      those words are listed with the residue.
+  - id: diacritics_folded
+    name: "the aligner compares base letters, so ѣ/е, ѫ/о and ѧ/е are one letter each"
+    kind: fold
+    note: >
+      The matcher drops combining marks, so the jat', the yuses and the plain
+      vowels of the same base letter are indistinguishable to it.  This is a
+      limit of the measurement, stated here; the matches it produces are
+      counted in the script column and never in the historical one.

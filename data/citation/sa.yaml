@@ -1,0 +1,26 @@
+# Sanskrit dictionaries cite the bare stem.
+#
+# The laws end where the recorded ancestor ends: *deywós is a nominative, so the
+# chain gives deváḥ, while the entry's lemma is देव devá-, the stem the paradigm
+# is built on.  That is a fact about the dictionary, not about the sound laws,
+# so it is counted in its own column ("same word, cited as the stem") and never
+# folded into `exact`: the laws did produce a real Sanskrit word form, and the
+# record cites another form of the same word.  Only an ending listed here may be
+# dropped, the rest of the word must spell the lemma exactly, and the guard that
+# protects the orthographic layer (spelling.plausible) must still agree with the
+# entry's own recorded pronunciation.
+language: sa
+name: Sanskrit citation form
+note: >
+  A Sanskrit noun is cited by its stem; the nominative singular of an -a stem
+  ends in -aḥ (devá- 'god', nom. deváḥ), of an -i stem in -iḥ, of a consonant
+  stem in the bare stem with the nominative -s that the visarga writes.  The
+  endings below are the ones the corpus's records actually carry; nothing else
+  is stripped, and a word whose lemma is its nominative simply matches in the
+  ordinary column and never reaches this one.
+references: [whitney-1889]
+endings:
+  - {form: "aḥ", gloss: "nominative singular of the -a- stems (devá- ~ deváḥ)"}
+  - {form: "aH", gloss: "the same ending before the visarga is written (*deváHs)"}
+  - {form: "as", gloss: "the same ending in the stage's own notation (*devás)"}
+  - {form: "ḥ", gloss: "the nominative -s of the -i- and -u- stems, written as visarga"}

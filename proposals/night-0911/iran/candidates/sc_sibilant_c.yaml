@@ -1,0 +1,9 @@
+rules:
+  - id: probe_ssc_to_c
+    order: 109
+    name: "PII *ść > PIr *c"
+    match: "ś ć"
+    replace: "c"
+    references: [hoffmann-forssman-2004]
+    examples:
+      - {in: "*śćaHyáH", out: "*caHyáH", gloss: "shadow"}

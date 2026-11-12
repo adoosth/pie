@@ -1,0 +1,10 @@
+rules:
+  - id: final_sh_to_visarga
+    order: 21
+    name: "Final *-ṣ > Skt -ḥ"
+    match: ṣ
+    replace: ḥ
+    env: {right: "#"}
+    references: [whitney-1889]
+    examples:
+      - {in: "*sūnúṣ", out: "*sūnúḥ", gloss: "son (Skt sūnú-)"}

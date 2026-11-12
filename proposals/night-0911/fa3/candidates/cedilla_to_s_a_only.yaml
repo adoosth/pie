@@ -1,0 +1,17 @@
+# Rejected — the environment was narrower than the data.
+#   env right "a #" fires on nothing: the ancestry's Old Persian forms carry the
+#   final *-h as a separate aspiration token (puçaʰ), so the ç is never in
+#   word-final position when the law runs.
+#   python tools/whatif.py ... : explained 20 -> 20 (+0)
+# The registered law states env "a ʰ? #" and carries pal +1 / fa +2.
+id: cedilla_to_s_before_final_a
+order: 30
+match: ç
+replace: s
+env: {right: "a #"}
+tier: proposed
+claim: "Old Persian word-final *-ça gives Middle Persian -s."
+references: [skjaervo-2009b, mackenzie-1971]
+gain: {pal: {explained: 0, gained: [], lost: []}}
+verdict: rejected
+reason: "environment too narrow: the final *-h is a separate token (ʰ) in the recorded forms"

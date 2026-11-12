@@ -1,0 +1,56 @@
+# Candidate: the labiovelar palatalisation before *e (kʷ and gʷʰ).
+rules:
+  - id: labiovelar_k_palatal_e
+    order: 44
+    name: "*kʷ > *č before *e + a consonant"
+    match: kʷ
+    replace: č
+    env:
+      right: '(ˈ|ˌ)? e !V'
+    tier: proposed
+    references: [mayrhofer-1986]
+    description: >
+      The labiovelar palatalises before the front vowel *e: *pénkʷe > *pánče,
+      *kʷetwóres > *čatwā́ras, *kʷélh₁eti > *čárHati.  It is the *diphthong*
+      *ey that blocks the change: PIE *kʷeys- keeps its *k (PII *kayšás,
+      Middle Persian kēš, Avestan kaēša-, Skt. keśa-).  A plain *k before *e
+      is not in the environment either (PIE *ker > OP kāra-), which is why the
+      rule runs before the labiovelar merger and names *kʷ, not *k.
+    examples:
+      - {in: "*kʷetwóres", out: "*četwóres", gloss: "four"}
+      - {in: "*kʷékʷlos", out: "*čékʷlos", gloss: "wheel — the second *kʷ is before *o"}
+      - {in: "*kʷeys", out: "*kʷeys", gloss: "hair — the *ey diphthong blocks it (Skt. keśa-)"}
+  - id: labiovelar_k_palatal_e_final
+    order: 44
+    name: "*kʷ > *č before word-final *e"
+    match: kʷ
+    replace: č
+    env:
+      right: '(ˈ|ˌ)? e #'
+    tier: proposed
+    references: [mayrhofer-1986]
+    description: >
+      *-kʷe is *-če in Indo-Iranian whether it is the conjunction (Skt. -ca) or
+      the final syllable of *pénkʷe > *pánča; the environment is word-final *e
+      and nothing else.
+    examples:
+      - {in: "*pénkʷe", out: "*pénče", gloss: "five"}
+      - {in: "*nékʷe", out: "*néče", gloss: "and not — the conjunctive clitic"}
+  - id: labiovelar_gh_palatal_e
+    order: 44
+    name: "*gʷʰ > *ǰʰ before *e"
+    match: gʷʰ
+    replace: ǰʰ
+    env:
+      right: (ˈ|ˌ)? e
+    tier: proposed
+    references: [mayrhofer-1986]
+    description: >
+      The aspirated labiovelar palatalises before the front vowel *e (*gʷʰénti
+      > *ǰʰánti, *dʰégʷʰeti > *dʰáǰʰati), exactly as the plain labiovelar does;
+      the plain voiced member is a separate question because the corpus keeps
+      *g in *gʷémtis > *gátiš and palatalises it in *gʷétu > *ǰátu.
+    examples:
+      - {in: "*gʷʰénti", out: "*ǰʰénti", gloss: "slays"}
+      - {in: "*dʰégʷʰeti", out: "*dʰéǰʰeti", gloss: "burns"}
+      - {in: "*gʷʰórdʰos", out: "*gʷʰórdʰos", gloss: "enclosure — no front vowel"}

@@ -1,0 +1,808 @@
+stage:
+  name: Proto-Indo-European → Proto-Germanic
+  date_start: -800
+  date_end: -200
+  description: 'Grimm''s law and Verner''s law on top of the pre-Germanic vowel and laryngeal changes.  Rules
+    are ordered; earlier rules feed later ones.
+
+    '
+  references:
+  - ringe-2006
+  - fortson-2004
+  - grimm-1822
+  - verner-1877
+rules:
+- id: h2_colours_e_after
+  order: 8
+  name: '*h₂ colours a following *e to *a'
+  match: e
+  replace: a
+  env:
+    left: h₂
+  tier: established
+  description: A laryngeal before the vowel colours it too — *h₂e- is the book's own first example of PGm *a.
+  notes: 'Kroonen 2013 §2.1.1.1 (xvii): *h₂ep-ō > *abō, *h₂en > *an. The file only coloured *e before *h₂, so every word with the laryngeal first kept its *e.'
+  references:
+  - kroonen-2013
+  examples:
+  - in: '*h₂epō'
+    out: '*h₂apō'
+    gloss: from, off
+- id: h3_colours_e_after
+  order: 9
+  name: '*h₃ colours a following *e to *o'
+  match: e
+  replace: o
+  env:
+    left: h₃
+  tier: established
+  description: A following *e is coloured to *o by *h₃.
+  notes: 'Kroonen 2013 §2.1.1.1 (xvii): *h₃ep- "work" > *ōb- (the length comes from the laryngeal loss).'
+  references:
+  - kroonen-2013
+  examples:
+  - in: '*h₃ep'
+    out: '*h₃op'
+    gloss: work
+- id: h2_colours_e
+  order: 10
+  name: '*h₂ colours *e to *a'
+  match: e
+  replace: a
+  env:
+    right: h₂
+  description: 'Regressive colouring: *e before *h₂ becomes *a.'
+  references:
+  - beekes-2011
+  - mayrhofer-1986
+  examples:
+  - in: '*bʰréh₂tēr'
+    out: '*bʰráh₂tēr'
+    gloss: brother
+- id: h3_colours_e
+  order: 11
+  name: '*h₃ colours *e to *o'
+  match: e
+  replace: o
+  env:
+    right: h₃
+  description: 'Regressive colouring: *e before *h₃ becomes *o.'
+  references:
+  - beekes-2011
+  examples:
+  - in: '*deh₃-'
+    out: '*doh₃-'
+    gloss: to give
+- id: h2_lengthening
+  order: 12
+  name: Vowel lengthening before *h₂
+  match: a
+  replace: ā
+  env:
+    right: h₂
+  description: A vowel coloured by *h₂ lengthens when the laryngeal is lost (compensatory lengthening).
+  references:
+  - ringe-2006
+  examples:
+  - in: '*bʰráh₂tēr'
+    out: '*bʰrā́h₂tēr'
+    gloss: brother
+- id: syllabic_laryngeals
+  order: 13
+  name: Syllabic laryngeals become *a
+  transform: syllabic_laryngeals
+  params:
+    h₁: a
+    h₂: a
+    h₃: a
+  description: A laryngeal that has to carry a syllable surfaces as *a; between a vowel and a consonant
+    it needs no syllable and simply deletes.
+  references:
+  - ringe-2006
+  examples:
+  - in: '*ph₂tḗr'
+    out: '*patḗr'
+    gloss: father
+  - in: '*dʰugh₂tḗr'
+    out: dʰugh₂tˈēr
+    gloss: daughter
+- id: eh1_to_e_long
+  order: 14
+  name: Vowel lengthening before *h₁
+  match: e
+  replace: ē
+  env:
+    right: LARYN
+  tier: established
+  description: A vowel before a laryngeal lengthens when the laryngeal is lost, giving PGm *ē.
+  notes: 'Kroonen 2013 §2.1.3.1 (xxi): *seh₁-tí- > *sēdi-. The laryngeal itself is deleted by the next law.'
+  references:
+  - kroonen-2013
+  examples:
+  - in: '*seh₁tí-'
+    out: '*sēh₁tí-'
+    gloss: seed
+- id: eh3_to_o_long
+  order: 15
+  name: Vowel lengthening before *h₃
+  match: o
+  replace: ō
+  env:
+    right: h₃|H
+  tier: established
+  description: '*e coloured to *o by *h₃ lengthens to *ō when the laryngeal is lost.'
+  notes: 'Kroonen 2013 §2.1.3.2 (xxii): *dʰeh₃- > *dō-. Runs after h3_colours_e, which has already written the *o.'
+  references:
+  - kroonen-2013
+  examples:
+  - in: '*doh₃-'
+    out: '*dōh₃-'
+    gloss: to put, do
+- id: oh_to_o_long
+  order: 16
+  name: Vowel lengthening before any laryngeal
+  match: o
+  replace: ō
+  env:
+    right: LARYN
+  tier: established
+  description: '*o before a laryngeal lengthens to *ō when the laryngeal is lost.'
+  notes: 'Kroonen 2013 §2.1.3.2 (xxii, "*oh₁;₂;₃"): *dʰoh₁-mo- > *dōma-.'
+  references:
+  - kroonen-2013
+  examples:
+  - in: '*dʰoh₁mo-'
+    out: '*dʰōh₁mo-'
+    gloss: judgement
+- id: ih_to_i_long
+  order: 17
+  name: '*iH > *ī'
+  match: i
+  replace: ī
+  env:
+    right: LARYN
+  tier: established
+  description: A short *i before a laryngeal lengthens when the laryngeal is lost.
+  notes: 'Kroonen 2013 §2.1.3.3 (xxii): PGm *ī comes from *iH (*swīną, *wīsa-).'
+  references:
+  - kroonen-2013
+  examples:
+  - in: '*swiHno-'
+    out: '*swīHno-'
+    gloss: pig
+- id: uh_to_u_long
+  order: 18
+  name: '*uH > *ū'
+  match: u
+  replace: ū
+  env:
+    right: LARYN
+  tier: established
+  description: A short *u before a laryngeal lengthens when the laryngeal is lost.
+  notes: 'Kroonen 2013 §2.1.3.4 (xxii): PGm *ū comes from *uH (*mūs-, *brū-).'
+  references:
+  - kroonen-2013
+  examples:
+  - in: '*muHs-'
+    out: '*mūHs-'
+    gloss: mouse
+- id: laryngeal_loss
+  order: 20
+  name: Laryngeals are lost
+  match: h₁|h₂|h₃
+  replace: ''
+  description: Any remaining laryngeal disappears; colouring and lengthening have already applied.
+  references:
+  - ringe-2006
+  examples:
+  - in: '*bʰrā́h₂tēr'
+    out: '*bʰrā́tēr'
+    gloss: brother
+- id: syllabic_m
+  order: 30
+  name: Syllabic *m̥ becomes *um
+  match: m̥
+  replace: um
+  references:
+  - ringe-2006
+  examples:
+  - in: '*ḱm̥tóm'
+    out: '*ḱumtóm'
+    gloss: hundred
+- id: syllabic_n
+  order: 31
+  name: Syllabic *n̥ becomes *un
+  match: n̥
+  replace: un
+  references:
+  - ringe-2006
+- id: syllabic_r
+  order: 32
+  name: Syllabic *r̥ becomes *ur
+  match: r̥
+  replace: ur
+  references:
+  - ringe-2006
+  examples:
+  - in: '*ḱr̥d-'
+    out: '*ḱurd-'
+    gloss: heart
+- id: syllabic_l
+  order: 33
+  name: Syllabic *l̥ becomes *ul
+  match: l̥
+  replace: ul
+  references:
+  - ringe-2006
+  examples:
+  - in: '*wĺ̥kʷos'
+    out: '*wúlkʷos'
+    gloss: wolf
+- id: lkw_to_lp
+  order: 80
+  name: 'Pre-Germanic *kʷ > *p in *-lkʷ-'
+  match: kʷ
+  replace: p
+  env:
+    left: l
+  tier: proposed
+  description: 'The wolf assimilation: after *l the labiovelar becomes *p, and Grimm''s law then
+    gives *f — *wĺ̥kʷos > *wúlkʷos > *wúlpos > *wulfaz. The regular outcome of *kʷ is *hw (*wulhwaz);
+    this is an assimilation at a distance (German artikulatorischer Sprung), not a general law.'
+  notes: 'EDPG s.v. *wulfa- reconstructs *wúlkʷos > *wúlpos > *wulfaz and compares, as a parallel
+    rather than the same change, *pénkʷe > *pémpe > *fimf; Wiktionary''s *wulfaz entry says outright
+    that the expected form would have been **wulhwaz. Registered as proposed because the change is
+    sporadic, and its environment is stated exactly as the one attested case has it.'
+  references:
+  - kroonen-2013
+  - wiktionary
+  examples:
+  - in: '*wúlkʷos'
+    out: '*wúlpos'
+    gloss: wolf
+- id: oi_to_ai
+  order: 40
+  name: '*oi > *ai'
+  match: o
+  replace: a
+  env:
+    right: i
+  tier: established
+  description: The PIE diphthong *oi becomes PGm *ai.
+  notes: 'Kroonen 2013 §2.1.4.1 (xxiii): *h₂eidʰ-o- > *aida-, *snoigʷʰ-o- > *snaiwa-.'
+  references:
+  - kroonen-2013
+  examples:
+  - in: '*h₂oidʰo-'
+    out: '*h₂aidʰo-'
+    gloss: pyre
+- id: ou_to_au
+  order: 41
+  name: '*ou > *au'
+  match: o
+  replace: a
+  env:
+    right: u
+  tier: established
+  description: The PIE diphthong *ou becomes PGm *au.
+  notes: 'Kroonen 2013 §2.1.4.2 (xxiii): *h₁roudʰ-o- > *rauda-.'
+  references:
+  - kroonen-2013
+  examples:
+  - in: '*h₁roudʰo-'
+    out: '*h₁raudʰo-'
+    gloss: red
+- id: dental_assibilation_tt
+  order: 86
+  name: '*tt > *ss'
+  match: t t
+  replace: s s
+  tier: established
+  description: Two colliding dentals do not simplify but acquire a sibilant, and the resulting *-tst- gives PGm *-ss-.
+  notes: 'Kroonen 2013 §2.2.5.1 (xxxiii): *sed-to- > *sessa-, *uid-to- > *wissa-, *gʷet-ti- > *kwessi-. It must run before Grimm, which would otherwise turn the first dental into *þ.'
+  references:
+  - kroonen-2013
+  examples:
+  - in: '*gʷetti'
+    out: '*gʷessi'
+    gloss: consent
+- id: dental_assibilation_dt
+  order: 87
+  name: '*dt > *ss'
+  match: d t
+  replace: s s
+  tier: established
+  description: A dental + *t cluster gives PGm *ss by the same assibilation.
+  references:
+  - kroonen-2013
+  examples:
+  - in: '*widto'
+    out: '*wisso'
+    gloss: known
+- id: dental_assibilation_dht
+  order: 88
+  name: '*dʰt > *ss'
+  match: dʰ t
+  replace: s s
+  tier: established
+  description: A voiced aspirate + *t cluster gives PGm *ss as well.
+  references:
+  - kroonen-2013
+  examples:
+  - in: '*udʰti'
+    out: '*ussi'
+    gloss: joint
+- id: centum_palatal_k
+  order: 90
+  name: Palatovelar *ḱ merges with *k
+  match: ḱ
+  replace: k
+  tier: established
+  references:
+  - fortson-2004
+  notes: 'Germanic is a centum branch: the palatovelars merge with the plain velars before Grimm''s law.'
+  examples:
+  - in: '*ḱm̥tóm'
+    out: '*km̥tóm'
+    gloss: hundred
+- id: centum_palatal_g
+  order: 91
+  name: Palatovelar *ǵ merges with *g
+  match: ǵ
+  replace: g
+  references:
+  - fortson-2004
+- id: centum_palatal_gh
+  order: 92
+  name: Palatovelar *ǵʰ merges with *gʰ
+  match: ǵʰ
+  replace: gʰ
+  references:
+  - fortson-2004
+- id: grimm_k_initial
+  order: 97
+  name: 'Grimm: *k > *h word-initially'
+  match: k
+  replace: h
+  env:
+    left: '#'
+  tier: established
+  description: 'Grimm: *k > *h word-initially.'
+  references:
+  - grimm-1822
+  - ringe-2006
+  examples:
+  - in: '*km̥tóm'
+    out: '*hm̥tóm'
+    gloss: hundred
+- id: grimm_p_initial
+  order: 98
+  name: 'Grimm: *p > *f word-initially'
+  match: p
+  replace: f
+  env:
+    left: '#'
+  tier: established
+  description: 'Grimm: *p > *f word-initially.'
+  references:
+  - grimm-1822
+  - ringe-2006
+  examples:
+  - in: '*pṓds'
+    out: '*fṓds'
+    gloss: foot
+- id: grimm_t_initial
+  order: 99
+  name: 'Grimm: *t > *þ word-initially'
+  match: t
+  replace: þ
+  env:
+    left: '#'
+  tier: established
+  description: 'Grimm: *t > *þ word-initially.'
+  references:
+  - grimm-1822
+  - ringe-2006
+  examples:
+  - in: '*tréyes'
+    out: '*þréyes'
+    gloss: three
+- id: grimm_p
+  order: 100
+  name: 'Grimm: *p > *f after anything but *s'
+  match: p
+  replace: f
+  env:
+    left: (!SIB)
+  tier: established
+  description: 'Grimm: *p > *f after anything but *s, except in the clusters *sp, *st, *sk, which the
+    shift leaves alone.'
+  references:
+  - grimm-1822
+  - ringe-2006
+  examples:
+  - in: '*apṓds'
+    out: '*afṓds'
+    gloss: foot (compound)
+- id: grimm_t
+  order: 101
+  name: 'Grimm: *t > *þ after anything but *s'
+  match: t
+  replace: þ
+  env:
+    left: (!SIB)
+  tier: established
+  description: 'Grimm: *t > *þ after anything but *s, except in the clusters *sp, *st, *sk, which the
+    shift leaves alone.'
+  references:
+  - grimm-1822
+  - ringe-2006
+  examples:
+  - in: '*bʰréh₂tēr'
+    out: '*bʰréh₂θēr'
+    gloss: brother
+- id: grimm_k
+  order: 102
+  name: 'Grimm: *k > *h after anything but *s'
+  match: k
+  replace: h
+  env:
+    left: (!SIB)
+  tier: established
+  description: 'Grimm: *k > *h after anything but *s, except in the clusters *sp, *st, *sk, which the
+    shift leaves alone.'
+  references:
+  - grimm-1822
+  - ringe-2006
+  examples:
+  - in: '*dék-m̥'
+    out: '*déh-m̥'
+    gloss: ten
+- id: grimm_kw
+  order: 103
+  name: 'Grimm: *kʷ > *hw'
+  match: kʷ
+  replace: xʷ
+  references:
+  - grimm-1822
+  - ringe-2006
+  examples:
+  - in: '*kʷód'
+    out: '*xʷód'
+    gloss: what
+- id: grimm_b
+  order: 110
+  name: 'Grimm: *b > *p'
+  match: b
+  replace: p
+  references:
+  - grimm-1822
+- id: grimm_d
+  order: 111
+  name: 'Grimm: *d > *t'
+  match: d
+  replace: t
+  references:
+  - grimm-1822
+  - ringe-2006
+  examples:
+  - in: '*déḱm̥t'
+    out: '*téḱm̥t'
+    gloss: ten
+- id: grimm_g
+  order: 112
+  name: 'Grimm: *g > *k'
+  match: g
+  replace: k
+  references:
+  - grimm-1822
+- id: grimm_gw
+  order: 113
+  name: 'Grimm: *gʷ > *kw'
+  match: gʷ
+  replace: kʷ
+  references:
+  - grimm-1822
+- id: grimm_bh
+  order: 120
+  name: 'Grimm: *bʰ > *b'
+  match: bʰ
+  replace: b
+  references:
+  - grimm-1822
+  - ringe-2006
+  examples:
+  - in: '*bʰréh₂tēr'
+    out: '*bréh₂tēr'
+    gloss: brother
+- id: grimm_dh
+  order: 121
+  name: 'Grimm: *dʰ > *d'
+  match: dʰ
+  replace: d
+  references:
+  - grimm-1822
+  examples:
+  - in: '*dʰugh₂tḗr'
+    out: '*dugh₂tḗr'
+    gloss: daughter
+- id: grimm_gh
+  order: 122
+  name: 'Grimm: *gʰ > *g'
+  match: gʰ
+  replace: g
+  references:
+  - grimm-1822
+- id: grimm_gwh
+  order: 123
+  name: 'Grimm: *gʷʰ > *gw'
+  match: gʷʰ
+  replace: gʷ
+  references:
+  - grimm-1822
+- id: verner_f
+  order: 130
+  name: 'Verner: *f > *b (after unstressed syllable)'
+  match: f
+  replace: β
+  unstressed_left: true
+  references:
+  - verner-1877
+  - ringe-2006
+- id: verner_th
+  order: 131
+  name: 'Verner: *þ > *đ (after unstressed syllable)'
+  match: θ
+  replace: ð
+  unstressed_left: true
+  references:
+  - verner-1877
+  - ringe-2006
+  examples:
+  - in: '*faθḗr'
+    out: '*faðḗr'
+    gloss: father
+- id: verner_h
+  order: 132
+  name: 'Verner: *h > *g (after unstressed syllable)'
+  match: x
+  replace: ɣ
+  unstressed_left: true
+  references:
+  - verner-1877
+- id: verner_hw
+  order: 133
+  name: 'Verner: *hw > *gw (after unstressed syllable)'
+  match: xʷ
+  replace: ɣʷ
+  unstressed_left: true
+  references:
+  - verner-1877
+- id: verner_s
+  order: 134
+  name: 'Verner: *s > *z (after unstressed syllable)'
+  match: s
+  replace: z
+  unstressed_left: true
+  references:
+  - verner-1877
+  examples:
+  - in: '*h₂éwsōs'
+    out: '*h₂éwsōz'
+    gloss: dawn
+- id: gw_before_u_r
+  order: 136
+  name: '*gʷ > *g word-initially before *u or *r'
+  match: gʷ
+  replace: g
+  env:
+    left: '#'
+    right: u|r
+  tier: proposed
+  description: The labiovelar keeps a velar articulation word-initially before *u and *r (*gʷʰu-tó- > *guda-, *gʷʰor-mo- > *warmaz does not qualify).
+  notes: 'Kroonen 2013 §2.2.1 (xxviii) calls this "especially initially before *u and *r" and hedges it, so it is proposed. It must run before gw_to_w, or the word-initial *g would be lost.'
+  references:
+  - kroonen-2013
+  examples:
+  - in: '*gʷuto-'
+    out: '*guto'
+    gloss: god
+- id: gw_to_w
+  order: 137
+  name: '*gʷ > *w'
+  match: gʷ
+  replace: w
+  tier: established
+  description: The labiovelar loses its velar closure and surfaces as *w when it is not protected before *u or *r.
+  notes: 'Kroonen 2013 §2.2.1 (xxviii): "The default outcome of PGm. *gw seems to have been *w" — *snoigʷʰ-o- > *snaiwa-, *negʷʰ-r-on- > *neuran-. It runs after Grimm and Verner, because the *gʷ it converts is the one the aspirates and Verner produced.'
+  references:
+  - kroonen-2013
+  examples:
+  - in: '*snaigʷo-'
+    out: '*snaiwo'
+    gloss: snow
+- id: spirant_law_stop
+  order: 140
+  name: 'Germanic spirant law: stop + *t > fricative + *t'
+  match: k|g
+  replace: x
+  env:
+    right: θ
+  description: A stop before the *t that Grimm turned into *þ becomes a fricative, giving *ht (PIE *oḱtṓw
+    > PGmc *ahtōu, *dʰugh₂tḗr > *duhtēr).
+  notes: The general spirant law also affects *p/*b and gemination (*sed-tó- > *sess-); only the *ht outcome
+    is modelled here.
+  references:
+  - ringe-2006
+  examples:
+  - in: '*dʰugθḗr'
+    out: '*dʰuxθḗr'
+    gloss: daughter
+- id: spirant_law_theta
+  order: 141
+  name: '*þ after a fricative becomes *t'
+  match: θ
+  replace: t
+  env:
+    left: x
+  description: 'The *þ of a cluster *ht loses its spirant articulation: *dʰuxθḗr > *duxtēr.'
+  references:
+  - ringe-2006
+  examples:
+  - in: '*dʰuxθḗr'
+    out: '*dʰuxtḗr'
+    gloss: daughter
+- id: o_to_a
+  order: 200
+  name: '*o merges into *a'
+  match: o
+  replace: a
+  references:
+  - ringe-2006
+  examples:
+  - in: '*oḱtṓw'
+    out: '*aḱtṓw'
+    gloss: eight
+  - in: '*gʷónos'
+    out: '*gʷánas'
+    gloss: race, family
+- id: long_a_to_o
+  order: 201
+  name: '*ā > *ō'
+  match: ā
+  replace: ō
+  references:
+  - ringe-2006
+  examples:
+  - in: '*bʰrā́tēr'
+    out: '*bʰrṓtēr'
+    gloss: brother
+- id: final_nasal_a
+  order: 205
+  name: Final *-am > *-ą
+  match: a m
+  replace: ą
+  env:
+    right: '#'
+  tier: established
+  description: Word-final *-am becomes the nasal vowel *-ą (*mus-o-m > *musą).
+  references:
+  - ringe-2006
+  - fortson-2004
+  examples:
+  - in: '*mus-a-m'
+    out: '*mus-ą'
+    gloss: mouse
+- id: final_nasal_u
+  order: 206
+  name: Final *-um > *-ų
+  match: u m
+  replace: ų
+  env:
+    right: '#'
+  tier: established
+  description: Word-final *-um becomes the nasal vowel *-ų.
+  references:
+  - ringe-2006
+  examples:
+  - in: '*wīr-u-m'
+    out: '*wīr-ų'
+    gloss: man
+- id: ei_to_i
+  order: 210
+  name: '*ei > *ī'
+  match: e
+  replace: ī
+  env:
+    right: y
+  references:
+  - ringe-2006
+  examples:
+  - in: '*θreyes'
+    out: '*θrīyes'
+    gloss: three
+- id: e_raising_nasal_c
+  order: 215
+  name: '*e > *i before a nasal and a consonant'
+  match: e
+  replace: i
+  env:
+    right: NAS C
+  tier: established
+  description: '*e is raised to *i before a tautosyllabic nasal (Kroonen: after *o > *a, since *o would otherwise have become *u).'
+  notes: 'Kroonen 2013 §2.1.1.3 (xix–xx): *bʰendʰ-e- > *bindan-, *pent-e- > *finþan-. Only a nasal that closes the syllable triggers it, so the environment is NAS + consonant, never a bare nasal.'
+  references:
+  - kroonen-2013
+  examples:
+  - in: '*bʰendʰe'
+    out: '*bʰindʰe'
+    gloss: to bind
+- id: e_raising_nasal_final
+  order: 216
+  name: '*e > *i before a word-final nasal'
+  match: e
+  replace: i
+  env:
+    right: NAS #
+  tier: established
+  description: '*e is raised to *i before a nasal that closes the word (*-en > *-in).'
+  references:
+  - kroonen-2013
+  examples:
+  - in: '*h₁en'
+    out: '*h₁in'
+    gloss: in
+- id: eu_to_iu
+  order: 211
+  name: '*eu > *iu'
+  match: e
+  replace: i
+  env:
+    right: w
+  notes: '*eu becomes *iu; the *u is kept.'
+  references:
+  - ringe-2006
+- id: beta_to_b
+  order: 300
+  name: '*β is written *b'
+  match: β
+  replace: b
+  notes: PGmc *b is a voiced bilabial spirant [β]; the conventional spelling is b.
+- id: eth_to_d
+  order: 301
+  name: '*đ is written *d'
+  match: ð
+  replace: d
+  notes: PGmc *d is a voiced dental spirant [ð]; conventionally written d.
+- id: gamma_to_g
+  order: 302
+  name: '*γ is written *g'
+  match: ɣ
+  replace: g
+- id: gammaw_to_gw
+  order: 303
+  name: '*γʷ is written *gw'
+  match: ɣʷ
+  replace: gʷ
+- id: h_notation
+  order: 310
+  name: '*x is written *h'
+  match: x
+  replace: h
+  notes: PGmc *h is a velar fricative [x]; the conventional transcription is h.
+  tier: established
+  examples:
+  - in: '*duxtēr'
+    out: '*duhtēr'
+    gloss: daughter
+- id: hw_notation
+  order: 311
+  name: '*xʷ is written *hw'
+  match: xʷ
+  replace: hw
+  notes: 'Conventional transcription of the labiovelar fricative: *hw, as in *hwat.'
+  tier: established
+  examples:
+  - in: '*xʷat'
+    out: hwat
+    gloss: what

@@ -1,0 +1,235 @@
+stage:
+  name: Proto-Germanic → Proto-West Germanic
+  date_start: 1
+  date_end: 400
+  description: >
+    Changes shared by the West Germanic dialects: rhotacism and loss of final
+    *-z and *-s, shortening of final *-ē, *ē₂ > *ā, lowering of *u before *a,
+    loss of final short *-a after a heavy syllable, and West Germanic gemination
+    before *j.
+  references: [ringe-2006, ringe-2017, neri-2010, fortson-2004]
+
+rules:
+  # ---- final consonants ---------------------------------------------------
+  - id: z_rhotacism
+    order: 100
+    name: "*z > *r (rhotacism)"
+    match: z
+    replace: r
+    env: {right: "."}
+    tier: established
+    description: "Voiced *z becomes *r in every position except word-finally."
+    references: [ringe-2006, ringe-2017]
+    examples:
+      - {in: "*hauzijan", out: "*haurijan", gloss: "to hear"}
+
+  - id: final_z_loss
+    order: 110
+    name: "Word-final *-z is lost"
+    match: z
+    replace: ""
+    env: {right: "#"}
+    tier: established
+    description: "Word-final *-z disappears; the preceding short *-a is lost by a later rule (*dagaz > *dag)."
+    references: [ringe-2017, fortson-2004]
+    examples:
+      - {in: "*dagaz", out: "*daga", gloss: "day"}
+
+  - id: final_s_loss
+    order: 120
+    name: "Final *-s is lost after a consonant"
+    match: s
+    replace: ""
+    env: {left: "C", right: "#"}
+    tier: established
+    description: "In a final cluster *-s is lost after a consonant (*fōts > *fōt, *nahts > *naht)."
+    notes: "The change affects final clusters, not *-s after a vowel: PGmc *mūs 'mouse' keeps its *-s."
+    references: [ringe-2017]
+    examples:
+      - {in: "*fōts", out: "*fōt", gloss: "foot"}
+
+  # ---- final vowels -------------------------------------------------------
+  - id: final_e_shortening
+    order: 130
+    name: "Final-syllable *ē shortens"
+    match: ē
+    replace: e
+    env: {right: "C #"}
+    tier: established
+    description: "Long *ē in a word-final syllable shortens because Germanic stress had moved to the root (*fadēr > *fader)."
+    notes: "Only word-final syllables are shortened here; *ē elsewhere remains long. Stressed monosyllables such as *hēr are wrongly shortened, because the model cannot see Germanic root stress."
+    references: [ringe-2017]
+    examples:
+      - {in: "*fadēr", out: "*fader", gloss: "father"}
+
+  - id: long_e2_to_a
+    order: 140
+    name: "*ē₂ > *ā"
+    match: ē
+    replace: ā
+    tier: established
+    description: "The inherited *ē₂ becomes *ā (*lētan > *lātan)."
+    notes: "PGmc *ē₁ and *ē₂ are both written *ē in this model; the change is regular only for *ē₂, so other *ē forms may be affected incorrectly."
+    references: [ringe-2017, neri-2010]
+    examples:
+      - {in: "*lētan", out: "*lātan", gloss: "to let"}
+
+  # ---- vowels -------------------------------------------------------------
+  - id: u_lowering
+    order: 150
+    name: "Short *u > *o before *a"
+    match: u
+    replace: o
+    env: {right: "C? C? a"}
+    tier: established
+    description: "Short *u lowers to *o when the following syllable contains *a (*wulfaz > *wolfaz)."
+    notes: "Only partly regular: lowering is blocked by a following nasal or by a geminate in words such as *wundrą and *fullaz."
+    references: [ringe-2017, neri-2010]
+    examples:
+      - {in: "*wulfaz", out: "*wolfaz", gloss: "wolf"}
+
+  - id: final_a_loss
+    order: 160
+    name: "Final short *-a is lost"
+    match: a
+    replace: ""
+    env: {left: "C", right: "#"}
+    tier: established
+    description: "Word-final short *-a is lost after a heavy syllable (*daga > *dag)."
+    notes: "The rule is stated as loss after any final consonant; the real conditioning is syllable weight."
+    references: [ringe-2017]
+    examples:
+      - {in: "*wera", out: "*wer", gloss: "man"}
+
+  # ---- West Germanic gemination ------------------------------------------
+  - id: gemination_p
+    order: 200
+    name: "West Germanic gemination: *p > *pp before *j"
+    match: p
+    replace: pp
+    env: {left: "SHORT", right: "j"}
+    tier: established
+    description: "A consonant is doubled after a short vowel when *j follows."
+    references: [ringe-2017, fortson-2004]
+    examples:
+      - {in: "*skapjan", out: "*skappjan", gloss: "to shape"}
+
+  - id: gemination_t
+    order: 201
+    name: "West Germanic gemination: *t > *tt before *j"
+    match: t
+    replace: tt
+    env: {left: "SHORT", right: "j"}
+    tier: established
+    description: "A consonant is doubled after a short vowel when *j follows."
+    references: [ringe-2017, fortson-2004]
+    examples:
+      - {in: "*satjan", out: "*sattjan", gloss: "to sit"}
+
+  - id: gemination_k
+    order: 202
+    name: "West Germanic gemination: *k > *kk before *j"
+    match: k
+    replace: kk
+    env: {left: "SHORT", right: "j"}
+    tier: established
+    description: "A consonant is doubled after a short vowel when *j follows."
+    references: [ringe-2017, fortson-2004]
+    examples:
+      - {in: "*bakjan", out: "*bakkjan", gloss: "to bake"}
+
+  - id: gemination_b
+    order: 203
+    name: "West Germanic gemination: *b > *bb before *j"
+    match: b
+    replace: bb
+    env: {left: "SHORT", right: "j"}
+    tier: established
+    description: "A consonant is doubled after a short vowel when *j follows."
+    references: [ringe-2017, fortson-2004]
+    examples:
+      - {in: "*habjan", out: "*habbjan", gloss: "to have"}
+
+  - id: gemination_d
+    order: 204
+    name: "West Germanic gemination: *d > *dd before *j"
+    match: d
+    replace: dd
+    env: {left: "SHORT", right: "j"}
+    tier: established
+    description: "A consonant is doubled after a short vowel when *j follows."
+    references: [ringe-2017, fortson-2004]
+    examples:
+      - {in: "*wadjan", out: "*waddjan", gloss: "to wade"}
+
+  - id: gemination_g
+    order: 205
+    name: "West Germanic gemination: *g > *gg before *j"
+    match: g
+    replace: gg
+    env: {left: "SHORT", right: "j"}
+    tier: established
+    description: "A consonant is doubled after a short vowel when *j follows."
+    references: [ringe-2017, fortson-2004]
+    examples:
+      - {in: "*lagjan", out: "*laggjan", gloss: "to lay"}
+
+  - id: gemination_f
+    order: 206
+    name: "West Germanic gemination: *f > *ff before *j"
+    match: f
+    replace: ff
+    env: {left: "SHORT", right: "j"}
+    tier: established
+    description: "A consonant is doubled after a short vowel when *j follows."
+    references: [ringe-2017, fortson-2004]
+    examples:
+      - {in: "*hafjan", out: "*haffjan", gloss: "to lift"}
+
+  - id: gemination_s
+    order: 207
+    name: "West Germanic gemination: *s > *ss before *j"
+    match: s
+    replace: ss
+    env: {left: "SHORT", right: "j"}
+    tier: established
+    description: "A consonant is doubled after a short vowel when *j follows."
+    references: [ringe-2017, fortson-2004]
+    examples:
+      - {in: "*wasjan", out: "*wassjan", gloss: "to wear"}
+
+  - id: gemination_m
+    order: 208
+    name: "West Germanic gemination: *m > *mm before *j"
+    match: m
+    replace: mm
+    env: {left: "SHORT", right: "j"}
+    tier: established
+    description: "A consonant is doubled after a short vowel when *j follows."
+    references: [ringe-2017, fortson-2004]
+    examples:
+      - {in: "*samjan", out: "*sammjan", gloss: "to seem"}
+
+  - id: gemination_n
+    order: 209
+    name: "West Germanic gemination: *n > *nn before *j"
+    match: n
+    replace: nn
+    env: {left: "SHORT", right: "j"}
+    tier: established
+    description: "A consonant is doubled after a short vowel when *j follows."
+    references: [ringe-2017, fortson-2004]
+    examples:
+      - {in: "*banjan", out: "*bannjan", gloss: "to summon"}
+
+  - id: gemination_l
+    order: 210
+    name: "West Germanic gemination: *l > *ll before *j"
+    match: l
+    replace: ll
+    env: {left: "SHORT", right: "j"}
+    tier: established
+    description: "A consonant is doubled after a short vowel when *j follows; *r does not geminate."
+    references: [ringe-2017, fortson-2004]
+    examples:
+      - {in: "*saljan", out: "*salljan", gloss: "to sell"}

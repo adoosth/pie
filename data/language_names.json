@@ -1,0 +1,1458 @@
+{
+"generated": "2026-11-07",
+"source": "Wiktionary descendant trees (kaikki.org), registry overrides",
+"languages": {
+"aae": {
+"name": "Arbëresh Albanian",
+"branch": "Albanian"
+},
+"acw": {
+"name": "Hijazi Arabic",
+"branch": "Contact / non-IE"
+},
+"ae": {
+"name": "Avestan",
+"branch": "Indo-Iranian"
+},
+"ae-old": {
+"name": "Old Avestan",
+"branch": "Indo-Iranian"
+},
+"ae-yng": {
+"name": "Younger Avestan",
+"branch": "Indo-Iranian"
+},
+"af": {
+"name": "Afrikaans",
+"branch": "Germanic"
+},
+"akk": {
+"name": "Akkadian",
+"branch": "Contact / non-IE"
+},
+"aln": {
+"name": "Gheg Albanian",
+"branch": "Albanian"
+},
+"als": {
+"name": "Tosk Albanian",
+"branch": "Albanian"
+},
+"ang": {
+"name": "Old English",
+"branch": "Germanic"
+},
+"ar": {
+"name": "Arabic",
+"branch": "Contact / non-IE"
+},
+"arc-bib": {
+"name": "Biblical Aramaic",
+"branch": "Contact / non-IE"
+},
+"as": {
+"name": "Assamese",
+"branch": "Indo-Iranian"
+},
+"ask": {
+"name": "Ashkun",
+"branch": "Indo-Iranian"
+},
+"atn": {
+"name": "Ashtiani",
+"branch": "Indo-Iranian"
+},
+"axm": {
+"name": "Middle Armenian",
+"branch": "Armenian"
+},
+"bal": {
+"name": "Baluchi",
+"branch": "Indo-Iranian"
+},
+"bar": {
+"name": "Bavarian",
+"branch": "Germanic"
+},
+"bat-eas": {
+"name": "East Baltic",
+"branch": "Balto-Slavic"
+},
+"bat-pro": {
+"name": "Proto-Baltic",
+"branch": "Balto-Slavic"
+},
+"be": {
+"name": "Belarusian",
+"branch": "Balto-Slavic"
+},
+"bg": {
+"name": "Bulgarian",
+"branch": "Balto-Slavic"
+},
+"bn": {
+"name": "Bengali",
+"branch": "Indo-Iranian"
+},
+"bqi": {
+"name": "Bakhtiari",
+"branch": "Hellenic"
+},
+"br": {
+"name": "Breton",
+"branch": "Celtic"
+},
+"bsh": {
+"name": "Kamkata-viri",
+"branch": "Indo-Iranian"
+},
+"bsh-kat": {
+"name": "Kativiri",
+"branch": "Indo-Iranian"
+},
+"ca": {
+"name": "Catalan",
+"branch": "Italic"
+},
+"cau-nec-pro": {
+"name": "Proto-Northeast Caucasian",
+"branch": "Contact / non-IE"
+},
+"cau-nwc-pro": {
+"name": "Proto-Northwest Caucasian",
+"branch": "Contact / non-IE"
+},
+"ccs-pro": {
+"name": "Proto-Kartvelian",
+"branch": "Contact / non-IE"
+},
+"ce": {
+"name": "Chechen",
+"branch": "Contact / non-IE"
+},
+"cel": {
+"name": "Celtic",
+"branch": "Celtic"
+},
+"cel-bry": {
+"name": "Brythonic",
+"branch": "Celtic"
+},
+"cel-bry-pro": {
+"name": "Proto-Brythonic",
+"branch": "Celtic"
+},
+"cel-gal": {
+"name": "Gallaecian",
+"branch": "Celtic"
+},
+"cel-gau": {
+"name": "Gaulish",
+"branch": "Celtic"
+},
+"cel-pro": {
+"name": "Proto-Celtic",
+"branch": "Celtic"
+},
+"chm": {
+"name": "Mari",
+"branch": "Contact / non-IE"
+},
+"chm-pro": {
+"name": "Proto-Mari",
+"branch": "Contact / non-IE"
+},
+"cim": {
+"name": "Cimbrian",
+"branch": "Germanic"
+},
+"ckb": {
+"name": "Central Kurdish",
+"branch": "Indo-Iranian"
+},
+"cms": {
+"name": "Messapic",
+"branch": "Palaeo-Balkan"
+},
+"cnx": {
+"name": "Middle Cornish",
+"branch": "Celtic"
+},
+"cop": {
+"name": "Coptic",
+"branch": "Contact / non-IE"
+},
+"cs": {
+"name": "Czech",
+"branch": "Balto-Slavic"
+},
+"cu": {
+"name": "Old Church Slavonic",
+"branch": "Balto-Slavic"
+},
+"cy": {
+"name": "Welsh",
+"branch": "Celtic"
+},
+"da": {
+"name": "Danish",
+"branch": "Germanic"
+},
+"ddo": {
+"name": "Tsez",
+"branch": "Contact / non-IE"
+},
+"de": {
+"name": "German",
+"branch": "Germanic"
+},
+"dsb": {
+"name": "Lower Sorbian",
+"branch": "Balto-Slavic"
+},
+"dum": {
+"name": "Middle Dutch",
+"branch": "Germanic"
+},
+"el": {
+"name": "Greek",
+"branch": "Greek"
+},
+"el-crt": {
+"name": "Cretan Greek",
+"branch": "Hellenic"
+},
+"elx": {
+"name": "Elamite",
+"branch": "Contact / non-IE"
+},
+"en": {
+"name": "English",
+"branch": "Germanic"
+},
+"enm": {
+"name": "Middle English",
+"branch": "Germanic"
+},
+"es": {
+"name": "Spanish",
+"branch": "Italic"
+},
+"esh": {
+"name": "Eshtehardi",
+"branch": "Indo-Iranian"
+},
+"et": {
+"name": "Estonian",
+"branch": "Contact / non-IE"
+},
+"ett": {
+"name": "Etruscan",
+"branch": "Contact / non-IE"
+},
+"eu": {
+"name": "Basque",
+"branch": "Contact / non-IE"
+},
+"fa": {
+"name": "Persian",
+"branch": "Indo-Iranian (Iranian)"
+},
+"fa-cls": {
+"name": "Classical Persian",
+"branch": "Indo-Iranian"
+},
+"fa-ira": {
+"name": "Iranian Persian",
+"branch": "Indo-Iranian"
+},
+"fi": {
+"name": "Finnish",
+"branch": "Contact / non-IE"
+},
+"fo": {
+"name": "Faroese",
+"branch": "Germanic"
+},
+"fr": {
+"name": "French",
+"branch": "Italic"
+},
+"frk": {
+"name": "Frankish",
+"branch": "Germanic"
+},
+"frm": {
+"name": "Middle French",
+"branch": "Italic"
+},
+"fro": {
+"name": "Old French",
+"branch": "Italic"
+},
+"frr": {
+"name": "North Frisian",
+"branch": "Germanic"
+},
+"fy": {
+"name": "West Frisian",
+"branch": "Germanic"
+},
+"ga": {
+"name": "Irish",
+"branch": "Celtic"
+},
+"gbz": {
+"name": "Zoroastrian Dari",
+"branch": "Indo-Iranian"
+},
+"gd": {
+"name": "Scottish Gaelic",
+"branch": "Celtic"
+},
+"gem-pro": {
+"name": "Proto-Germanic",
+"branch": "Germanic"
+},
+"ghc": {
+"name": "Classical Gaelic",
+"branch": "Celtic"
+},
+"gkm": {
+"name": "Medieval Greek",
+"branch": "Hellenic"
+},
+"gl": {
+"name": "Galician",
+"branch": "Italic"
+},
+"glh": {
+"name": "Northwest Pashayi",
+"branch": "Indo-Iranian"
+},
+"glk": {
+"name": "Gilaki",
+"branch": "Indo-Iranian"
+},
+"gmh": {
+"name": "Middle High German",
+"branch": "Germanic"
+},
+"gml": {
+"name": "Middle Low German",
+"branch": "Germanic"
+},
+"gmq-oda": {
+"name": "Old Danish",
+"branch": "Germanic"
+},
+"gmq-ogt": {
+"name": "Old Gutnish",
+"branch": "Germanic"
+},
+"gmq-osw": {
+"name": "Old Swedish",
+"branch": "Germanic"
+},
+"gmq-pro": {
+"name": "Proto-Norse",
+"branch": "Germanic"
+},
+"gmw-pro": {
+"name": "Proto-West Germanic",
+"branch": "Germanic"
+},
+"gmy": {
+"name": "Mycenaean Greek",
+"branch": "Hellenic"
+},
+"goh": {
+"name": "Old High German",
+"branch": "Germanic"
+},
+"got": {
+"name": "Gothic",
+"branch": "Germanic (East)"
+},
+"grc": {
+"name": "Ancient Greek",
+"branch": "Greek"
+},
+"grc-aeo": {
+"name": "Aeolic Greek",
+"branch": "Hellenic"
+},
+"grc-arp": {
+"name": "Arcadocypriot Greek",
+"branch": "Hellenic"
+},
+"grc-att": {
+"name": "Attic Greek",
+"branch": "Hellenic"
+},
+"grc-dor": {
+"name": "Doric Greek",
+"branch": "Hellenic"
+},
+"grc-ela": {
+"name": "Elean Greek",
+"branch": "Hellenic"
+},
+"grc-epc": {
+"name": "Epic Greek",
+"branch": "Hellenic"
+},
+"grc-ion": {
+"name": "Ionic Greek",
+"branch": "Hellenic"
+},
+"grc-kre": {
+"name": "Cretan Ancient Greek",
+"branch": "Hellenic"
+},
+"grk": {
+"name": "Hellenic",
+"branch": "Hellenic"
+},
+"grk-ita": {
+"name": "Italiot Greek",
+"branch": "Hellenic"
+},
+"grk-mar": {
+"name": "Mariupol Greek",
+"branch": "Hellenic"
+},
+"grk-pro": {
+"name": "Proto-Hellenic",
+"branch": "Greek"
+},
+"gsw": {
+"name": "Alemannic German",
+"branch": "Germanic"
+},
+"gu": {
+"name": "Gujarati",
+"branch": "Indo-Iranian"
+},
+"gv": {
+"name": "Manx",
+"branch": "Celtic"
+},
+"hac": {
+"name": "Gurani",
+"branch": "Indo-Iranian"
+},
+"hi": {
+"name": "Hindi",
+"branch": "Indo-Iranian"
+},
+"hit": {
+"name": "Hittite",
+"branch": "Anatolian"
+},
+"hrz": {
+"name": "Harzani",
+"branch": "Indo-Iranian"
+},
+"hsb": {
+"name": "Upper Sorbian",
+"branch": "Balto-Slavic"
+},
+"hu": {
+"name": "Hungarian",
+"branch": "Contact / non-IE"
+},
+"hy": {
+"name": "Armenian",
+"branch": "Armenian"
+},
+"hyx-pro": {
+"name": "Proto-Armenian",
+"branch": "Armenian"
+},
+"id": {
+"name": "Indonesian",
+"branch": "Germanic"
+},
+"iir": {
+"name": "Indo-Iranian",
+"branch": "Indo-Iranian"
+},
+"iir-nur-pro": {
+"name": "Proto-Nuristani",
+"branch": "Indo-Iranian"
+},
+"iir-pro": {
+"name": "Proto-Indo-Iranian",
+"branch": "Indo-Iranian"
+},
+"ims": {
+"name": "Marsian",
+"branch": "Italic"
+},
+"imy": {
+"name": "Milyan",
+"branch": "Anatolian"
+},
+"inc-ash": {
+"name": "Ashokan Prakrit",
+"branch": "Indo-Iranian"
+},
+"inc-cen": {
+"name": "Central Indo-Aryan",
+"branch": "Indo-Iranian"
+},
+"inc-dar": {
+"name": "Dardic",
+"branch": "Indo-Iranian"
+},
+"inc-hnd": {
+"name": "Hindustani",
+"branch": "Indo-Iranian"
+},
+"inc-nwe": {
+"name": "Northwestern Indo-Aryan",
+"branch": "Indo-Iranian"
+},
+"inc-ogu": {
+"name": "Old Gujarati",
+"branch": "Indo-Iranian"
+},
+"inc-pro": {
+"name": "Proto-Indo-Aryan",
+"branch": "Indo-Iranian (Indic)"
+},
+"inc-wes": {
+"name": "Western Indo-Aryan",
+"branch": "Indo-Iranian"
+},
+"ine-ana": {
+"name": "Anatolian",
+"branch": "Anatolian"
+},
+"ine-ana-pro": {
+"name": "Proto-Anatolian",
+"branch": "Anatolian"
+},
+"ine-bsl": {
+"name": "Balto-Slavic",
+"branch": "Balto-Slavic"
+},
+"ine-bsl-pro": {
+"name": "Proto-Balto-Slavic",
+"branch": "Balto-Slavic"
+},
+"ine-pae": {
+"name": "Paeonian",
+"branch": "Palaeo-Balkan"
+},
+"ine-pro": {
+"name": "Proto-Indo-European",
+"branch": "Indo-European"
+},
+"ine-toc": {
+"name": "Tocharian",
+"branch": "Tocharian"
+},
+"ine-toc-pro": {
+"name": "Proto-Tocharian",
+"branch": "Tocharian"
+},
+"inh": {
+"name": "Ingush",
+"branch": "Contact / non-IE"
+},
+"ira": {
+"name": "Iranian",
+"branch": "Indo-Iranian"
+},
+"ira-mpr-pro": {
+"name": "Proto-Medo-Parthian",
+"branch": "Indo-Iranian"
+},
+"ira-nwi": {
+"name": "Northwestern Iranian",
+"branch": "Indo-Iranian"
+},
+"ira-pro": {
+"name": "Proto-Iranian",
+"branch": "Indo-Iranian (Iranian)"
+},
+"ira-sgc-pro": {
+"name": "Proto-Sogdic",
+"branch": "Indo-Iranian"
+},
+"ira-shr-pro": {
+"name": "Proto-Shughni-Roshani",
+"branch": "Indo-Iranian"
+},
+"ira-shy-pro": {
+"name": "Proto-Shughni-Yazghulami",
+"branch": "Indo-Iranian"
+},
+"ira-swi": {
+"name": "Southwestern Iranian",
+"branch": "Indo-Iranian"
+},
+"ira-sym-pro": {
+"name": "Proto-Shughni-Yazghulami-Munji",
+"branch": "Indo-Iranian"
+},
+"ira-zgr-pro": {
+"name": "Proto-Zaza-Gorani",
+"branch": "Indo-Iranian"
+},
+"is": {
+"name": "Icelandic",
+"branch": "Germanic"
+},
+"isk": {
+"name": "Ishkashimi",
+"branch": "Indo-Iranian"
+},
+"it": {
+"name": "Italian",
+"branch": "Italic"
+},
+"itc-ola": {
+"name": "Old Latin",
+"branch": "Italic"
+},
+"itc-pro": {
+"name": "Proto-Italic",
+"branch": "Italic"
+},
+"itc-psa": {
+"name": "Pre-Samnite",
+"branch": "Italic"
+},
+"itc-sbl": {
+"name": "Osco-Umbrian",
+"branch": "Italic"
+},
+"ka": {
+"name": "Georgian",
+"branch": "Contact / non-IE"
+},
+"kca": {
+"name": "Khanty",
+"branch": "Contact / non-IE"
+},
+"kca-eas": {
+"name": "Eastern Khanty",
+"branch": "Contact / non-IE"
+},
+"kca-nor": {
+"name": "Northern Khanty",
+"branch": "Contact / non-IE"
+},
+"kfm": {
+"name": "Khunsari",
+"branch": "Indo-Iranian"
+},
+"kgn": {
+"name": "Karingani",
+"branch": "Indo-Iranian"
+},
+"kho": {
+"name": "Khotanese",
+"branch": "Indo-Iranian"
+},
+"khw": {
+"name": "Khowar",
+"branch": "Indo-Iranian"
+},
+"kls": {
+"name": "Kalasha",
+"branch": "Indo-Iranian"
+},
+"kmr": {
+"name": "Northern Kurdish",
+"branch": "Indo-Iranian"
+},
+"koi": {
+"name": "Komi-Permyak",
+"branch": "Contact / non-IE"
+},
+"kok": {
+"name": "Konkani",
+"branch": "Indo-Iranian"
+},
+"kpv": {
+"name": "Komi-Zyrian",
+"branch": "Contact / non-IE"
+},
+"ks": {
+"name": "Kashmiri",
+"branch": "Indo-Iranian"
+},
+"ku": {
+"name": "Kurdish",
+"branch": "Indo-Iranian"
+},
+"ku-pro": {
+"name": "Proto-Kurdish",
+"branch": "Indo-Iranian"
+},
+"kv": {
+"name": "Komi",
+"branch": "Contact / non-IE"
+},
+"kw": {
+"name": "Cornish",
+"branch": "Celtic"
+},
+"ky": {
+"name": "Kyrgyz",
+"branch": "Indo-Iranian"
+},
+"la": {
+"name": "Latin",
+"branch": "Italic"
+},
+"la-lat": {
+"name": "Late Latin",
+"branch": "Italic"
+},
+"la-med": {
+"name": "Medieval Latin",
+"branch": "Italic"
+},
+"la-vul": {
+"name": "Vulgar Latin",
+"branch": "Italic"
+},
+"lb": {
+"name": "Luxembourgish",
+"branch": "Germanic"
+},
+"ldd": {
+"name": "Luri",
+"branch": "Indo-Iranian"
+},
+"lki": {
+"name": "Laki",
+"branch": "Indo-Iranian"
+},
+"lng": {
+"name": "Lombardic",
+"branch": "Germanic"
+},
+"lrc": {
+"name": "Northern Luri",
+"branch": "Indo-Iranian"
+},
+"lrl": {
+"name": "Larestani",
+"branch": "Indo-Iranian"
+},
+"lt": {
+"name": "Lithuanian",
+"branch": "Balto-Slavic (Baltic)"
+},
+"ltg": {
+"name": "Latgalian",
+"branch": "Balto-Slavic"
+},
+"luz": {
+"name": "Southern Luri",
+"branch": "Indo-Iranian"
+},
+"lv": {
+"name": "Latvian",
+"branch": "Balto-Slavic"
+},
+"mdf": {
+"name": "Moksha",
+"branch": "Contact / non-IE"
+},
+"mga": {
+"name": "Middle Irish",
+"branch": "Celtic"
+},
+"mhr": {
+"name": "Eastern Mari",
+"branch": "Contact / non-IE"
+},
+"mis-xnu": {
+"name": "Xiongnu",
+"branch": "Contact / non-IE"
+},
+"mk": {
+"name": "Macedonian",
+"branch": "Balto-Slavic"
+},
+"ml": {
+"name": "Malayalam",
+"branch": "Indo-Iranian"
+},
+"mr": {
+"name": "Marathi",
+"branch": "Indo-Iranian"
+},
+"mrj": {
+"name": "Western Mari",
+"branch": "Contact / non-IE"
+},
+"mul": {
+"name": "Translingual",
+"branch": "Contact / non-IE"
+},
+"mwr": {
+"name": "Marwari",
+"branch": "Indo-Iranian"
+},
+"myv": {
+"name": "Erzya",
+"branch": "Contact / non-IE"
+},
+"myz": {
+"name": "Classical Mandaic",
+"branch": "Contact / non-IE"
+},
+"mzn": {
+"name": "Mazanderani",
+"branch": "Indo-Iranian"
+},
+"nb": {
+"name": "Norwegian Bokmål",
+"branch": "Germanic"
+},
+"nds": {
+"name": "Low German",
+"branch": "Germanic"
+},
+"ne": {
+"name": "Nepali",
+"branch": "Indo-Iranian"
+},
+"nl": {
+"name": "Dutch",
+"branch": "Germanic"
+},
+"nn": {
+"name": "Norwegian Nynorsk",
+"branch": "Germanic"
+},
+"no": {
+"name": "Norwegian",
+"branch": "Germanic"
+},
+"non": {
+"name": "Old Norse",
+"branch": "Germanic (North)"
+},
+"nrf": {
+"name": "Norman",
+"branch": "Italic"
+},
+"nrn": {
+"name": "Norn",
+"branch": "Germanic"
+},
+"obt": {
+"name": "Old Breton",
+"branch": "Celtic"
+},
+"oc": {
+"name": "Occitan",
+"branch": "Italic"
+},
+"och-lat": {
+"name": "Late Old Chinese",
+"branch": "Contact / non-IE"
+},
+"oco": {
+"name": "Old Cornish",
+"branch": "Celtic"
+},
+"odt": {
+"name": "Old Dutch",
+"branch": "Germanic"
+},
+"ofs": {
+"name": "Old Frisian",
+"branch": "Germanic"
+},
+"oge": {
+"name": "Old Georgian",
+"branch": "Contact / non-IE"
+},
+"olt": {
+"name": "Old Lithuanian",
+"branch": "Balto-Slavic"
+},
+"omr": {
+"name": "Old Marathi",
+"branch": "Indo-Iranian"
+},
+"or": {
+"name": "Odia",
+"branch": "Indo-Iranian"
+},
+"oru": {
+"name": "Ormuri",
+"branch": "Indo-Iranian"
+},
+"orv": {
+"name": "Old East Slavic",
+"branch": "Balto-Slavic"
+},
+"os": {
+"name": "Ossetian",
+"branch": "Indo-Iranian"
+},
+"os-dig": {
+"name": "Digor Ossetian",
+"branch": "Indo-Iranian"
+},
+"os-iro": {
+"name": "Iron Ossetian",
+"branch": "Indo-Iranian"
+},
+"osc": {
+"name": "Oscan",
+"branch": "Italic (Sabellic)"
+},
+"osx": {
+"name": "Old Saxon",
+"branch": "Germanic"
+},
+"otk": {
+"name": "Old Turkic",
+"branch": "Contact / non-IE"
+},
+"oui": {
+"name": "Old Uyghur",
+"branch": "Contact / non-IE"
+},
+"ovd": {
+"name": "Elfdalian",
+"branch": "Germanic"
+},
+"owl": {
+"name": "Old Welsh",
+"branch": "Celtic"
+},
+"pa": {
+"name": "Punjabi",
+"branch": "Indo-Iranian"
+},
+"pal": {
+"name": "Middle Persian",
+"branch": "Indo-Iranian (Iranian)"
+},
+"pap": {
+"name": "Papiamentu",
+"branch": "Germanic"
+},
+"peo": {
+"name": "Old Persian",
+"branch": "Indo-Iranian (Iranian)"
+},
+"pgn": {
+"name": "Paelignian",
+"branch": "Italic"
+},
+"phl": {
+"name": "Palula",
+"branch": "Indo-Iranian"
+},
+"pi": {
+"name": "Pali",
+"branch": "Indo-Iranian"
+},
+"pl": {
+"name": "Polish",
+"branch": "Balto-Slavic"
+},
+"plq": {
+"name": "Palaic",
+"branch": "Anatolian"
+},
+"pra": {
+"name": "Prakrit",
+"branch": "Indo-Iranian"
+},
+"pra-mah": {
+"name": "Maharastri Prakrit",
+"branch": "Indo-Iranian"
+},
+"pra-sau": {
+"name": "Sauraseni Prakrit",
+"branch": "Indo-Iranian"
+},
+"prg": {
+"name": "Old Prussian",
+"branch": "Balto-Slavic"
+},
+"prn": {
+"name": "Prasuni",
+"branch": "Indo-Iranian"
+},
+"ps": {
+"name": "Pashto",
+"branch": "Indo-Iranian"
+},
+"qfa-yen-pro": {
+"name": "Proto-Yeniseian",
+"branch": "Contact / non-IE"
+},
+"ro": {
+"name": "Romanian",
+"branch": "Italic"
+},
+"ru": {
+"name": "Russian",
+"branch": "Balto-Slavic"
+},
+"sa": {
+"name": "Sanskrit",
+"branch": "Indo-Iranian (Indic)"
+},
+"sa-cls": {
+"name": "Classical Sanskrit",
+"branch": "Indo-Iranian"
+},
+"sa-ved": {
+"name": "Vedic Sanskrit",
+"branch": "Indo-Iranian"
+},
+"sbv": {
+"name": "Sabine",
+"branch": "Italic"
+},
+"sco": {
+"name": "Scots",
+"branch": "Germanic"
+},
+"sdh": {
+"name": "Southern Kurdish",
+"branch": "Indo-Iranian"
+},
+"sem-pro": {
+"name": "Proto-Semitic",
+"branch": "Contact / non-IE"
+},
+"sga": {
+"name": "Old Irish",
+"branch": "Celtic"
+},
+"sgh": {
+"name": "Shughni",
+"branch": "Indo-Iranian"
+},
+"sgh-ros": {
+"name": "Roshani",
+"branch": "Indo-Iranian"
+},
+"sgs": {
+"name": "Samogitian",
+"branch": "Balto-Slavic"
+},
+"sgy": {
+"name": "Sanglechi",
+"branch": "Hellenic"
+},
+"sh": {
+"name": "Serbo-Croatian",
+"branch": "Balto-Slavic"
+},
+"siy": {
+"name": "Sivandi",
+"branch": "Indo-Iranian"
+},
+"sjd": {
+"name": "Kildin Sami",
+"branch": "Contact / non-IE"
+},
+"sk": {
+"name": "Slovak",
+"branch": "Balto-Slavic"
+},
+"skr": {
+"name": "Saraiki",
+"branch": "Hellenic"
+},
+"sl": {
+"name": "Slovene",
+"branch": "Balto-Slavic"
+},
+"sla-pro": {
+"name": "Proto-Slavic",
+"branch": "Balto-Slavic"
+},
+"smi-pro": {
+"name": "Proto-Sami",
+"branch": "Contact / non-IE"
+},
+"smy": {
+"name": "Semnani",
+"branch": "Indo-Iranian"
+},
+"sog": {
+"name": "Sogdian",
+"branch": "Indo-Iranian"
+},
+"sog-Latn": {
+"name": "Buddhist",
+"branch": "Indo-Iranian"
+},
+"spx": {
+"name": "South Picene",
+"branch": "Italic"
+},
+"sq": {
+"name": "Albanian",
+"branch": "Albanian"
+},
+"sqj-pro": {
+"name": "Proto-Albanian",
+"branch": "Albanian"
+},
+"srh": {
+"name": "Sarikoli",
+"branch": "Indo-Iranian"
+},
+"sts": {
+"name": "Shumashti",
+"branch": "Indo-Iranian"
+},
+"su": {
+"name": "Sundanese",
+"branch": "Indo-Iranian"
+},
+"sv": {
+"name": "Swedish",
+"branch": "Germanic"
+},
+"syc": {
+"name": "Classical Syriac",
+"branch": "Contact / non-IE"
+},
+"te": {
+"name": "Telugu",
+"branch": "Indo-Iranian"
+},
+"tg": {
+"name": "Tajik",
+"branch": "Indo-Iranian"
+},
+"tks": {
+"name": "Ramandi",
+"branch": "Indo-Iranian"
+},
+"tly": {
+"name": "Talysh",
+"branch": "Indo-Iranian"
+},
+"tmr": {
+"name": "Jewish Babylonian Aramaic",
+"branch": "Contact / non-IE"
+},
+"tr": {
+"name": "Turkish",
+"branch": "Contact / non-IE"
+},
+"trk-pro": {
+"name": "Proto-Turkic",
+"branch": "Contact / non-IE"
+},
+"tsd": {
+"name": "Tsakonian",
+"branch": "Hellenic"
+},
+"txb": {
+"name": "Tocharian B",
+"branch": "Tocharian"
+},
+"txh": {
+"name": "Thracian",
+"branch": "Palaeo-Balkan"
+},
+"udm": {
+"name": "Udmurt",
+"branch": "Contact / non-IE"
+},
+"uk": {
+"name": "Ukrainian",
+"branch": "Balto-Slavic"
+},
+"umc": {
+"name": "Marrucinian",
+"branch": "Italic"
+},
+"und": {
+"name": "Eastern Baltic",
+"branch": "Balto-Slavic"
+},
+"unknown": {
+"name": "Hellenic",
+"branch": "Hellenic"
+},
+"ur": {
+"name": "Urdu",
+"branch": "Indo-Iranian"
+},
+"urj-fin-pro": {
+"name": "Proto-Finnic",
+"branch": "Balto-Slavic"
+},
+"urj-mdv-pro": {
+"name": "Proto-Mordvinic",
+"branch": "Contact / non-IE"
+},
+"urj-prm-pro": {
+"name": "Proto-Permic",
+"branch": "Indo-Iranian"
+},
+"urj-pro": {
+"name": "Proto-Finno-Ugric",
+"branch": "Other"
+},
+"urj-ugr-pro": {
+"name": "Proto-Ugric",
+"branch": "Other"
+},
+"uz": {
+"name": "Uzbek",
+"branch": "Indo-Iranian"
+},
+"vls": {
+"name": "West Flemish",
+"branch": "Germanic"
+},
+"wbk": {
+"name": "Waigali",
+"branch": "Hellenic"
+},
+"wbl": {
+"name": "Wakhi",
+"branch": "Indo-Iranian"
+},
+"wlm": {
+"name": "Middle Welsh",
+"branch": "Celtic"
+},
+"xag": {
+"name": "Aghwan",
+"branch": "Indo-Iranian"
+},
+"xbc": {
+"name": "Bactrian",
+"branch": "Indo-Iranian"
+},
+"xbm": {
+"name": "Middle Breton",
+"branch": "Celtic"
+},
+"xce": {
+"name": "Celtiberian",
+"branch": "Celtic"
+},
+"xcg": {
+"name": "Cisalpine Gaulish",
+"branch": "Celtic"
+},
+"xcl": {
+"name": "Old Armenian",
+"branch": "Armenian"
+},
+"xco": {
+"name": "Khwarezmian",
+"branch": "Indo-Iranian"
+},
+"xcr": {
+"name": "Carian",
+"branch": "Anatolian"
+},
+"xcu": {
+"name": "Curonian",
+"branch": "Balto-Slavic"
+},
+"xdc": {
+"name": "Dacian",
+"branch": "Palaeo-Balkan"
+},
+"xfa": {
+"name": "Faliscan",
+"branch": "Italic"
+},
+"xhc": {
+"name": "Hunnic",
+"branch": "Contact / non-IE"
+},
+"xil": {
+"name": "Illyrian",
+"branch": "Palaeo-Balkan"
+},
+"xlc": {
+"name": "Lycian",
+"branch": "Anatolian"
+},
+"xld": {
+"name": "Lydian",
+"branch": "Anatolian"
+},
+"xln": {
+"name": "Alanic",
+"branch": "Indo-Iranian"
+},
+"xlp": {
+"name": "Lepontic",
+"branch": "Celtic"
+},
+"xls": {
+"name": "Lusitanian",
+"branch": "Other"
+},
+"xlu": {
+"name": "Luwian",
+"branch": "Anatolian"
+},
+"xlu-Latn": {
+"name": "unknown",
+"branch": "Other"
+},
+"xly": {
+"name": "Elymian",
+"branch": "Palaeo-Balkan"
+},
+"xme-azr": {
+"name": "Old Azari",
+"branch": "Indo-Iranian"
+},
+"xme-ker": {
+"name": "Central Iranian",
+"branch": "Indo-Iranian"
+},
+"xme-kls": {
+"name": "Kalasuri",
+"branch": "Indo-Iranian"
+},
+"xme-mid": {
+"name": "Middle Median",
+"branch": "Indo-Iranian"
+},
+"xme-old": {
+"name": "Old Median",
+"branch": "Indo-Iranian"
+},
+"xme-ott": {
+"name": "Old Tati",
+"branch": "Indo-Iranian"
+},
+"xme-ttc-pro": {
+"name": "Proto-Tatic",
+"branch": "Indo-Iranian"
+},
+"xmf": {
+"name": "Mingrelian",
+"branch": "Armenian"
+},
+"xmk": {
+"name": "Ancient Macedonian",
+"branch": "Palaeo-Balkan"
+},
+"xmn": {
+"name": "Manichaean script",
+"branch": "Indo-Iranian"
+},
+"xpg": {
+"name": "Phrygian",
+"branch": "Palaeo-Balkan"
+},
+"xpi": {
+"name": "Pictish",
+"branch": "Celtic"
+},
+"xpr": {
+"name": "Parthian",
+"branch": "Indo-Iranian (Iranian, Northwest)"
+},
+"xsc-pro": {
+"name": "Proto-Scythian",
+"branch": "Indo-Iranian"
+},
+"xsc-sar-pro": {
+"name": "Proto-Sarmatian",
+"branch": "Indo-Iranian"
+},
+"xsc-skw-pro": {
+"name": "Proto-Saka-Wakhi",
+"branch": "Indo-Iranian"
+},
+"xsv": {
+"name": "Sudovian",
+"branch": "Balto-Slavic"
+},
+"xto": {
+"name": "Tocharian A",
+"branch": "Tocharian"
+},
+"xum": {
+"name": "Umbrian",
+"branch": "Italic"
+},
+"xur": {
+"name": "Urartian",
+"branch": "Contact / non-IE"
+},
+"xve": {
+"name": "Venetic",
+"branch": "Palaeo-Balkan"
+},
+"xvi": {
+"name": "Kamviri",
+"branch": "Indo-Iranian"
+},
+"xvo": {
+"name": "Volscian",
+"branch": "Italic"
+},
+"yah": {
+"name": "Yazghulami",
+"branch": "Indo-Iranian"
+},
+"yai": {
+"name": "Yaghnobi",
+"branch": "Indo-Iranian"
+},
+"ydg": {
+"name": "Yidgha",
+"branch": "Indo-Iranian"
+},
+"yms": {
+"name": "Mysian",
+"branch": "Anatolian"
+},
+"zh": {
+"name": "Chinese",
+"branch": "Contact / non-IE"
+},
+"zle-ort": {
+"name": "Old Ruthenian",
+"branch": "Balto-Slavic"
+},
+"zlw-ocs": {
+"name": "Old Czech",
+"branch": "Balto-Slavic"
+},
+"zlw-opl": {
+"name": "Old Polish",
+"branch": "Balto-Slavic"
+},
+"zlw-slv": {
+"name": "Slovincian",
+"branch": "Balto-Slavic"
+},
+"zum": {
+"name": "Kumzari",
+"branch": "Indo-Iranian"
+},
+"zza": {
+"name": "Zazaki",
+"branch": "Indo-Iranian"
+}
+}
+}

@@ -1,0 +1,15 @@
+stage: {source: pal, target: fa}
+rules:
+  - id: initial_y_to_j
+    order: 42
+    name: "MP initial *y- > NP j-"
+    match: y
+    replace: j
+    env: {left: "#"}
+    tier: proposed
+    description: >
+      Word-initial *y- becomes j-: MP yām > NP jām 'cup', MP yagar > NP jagar
+      'liver'.  The environment is the word edge; a medial y is untouched.
+    references: [sadeghi-1978, windfuhr-2009]
+    examples:
+      - {in: "yām", out: "jām", gloss: "cup"}

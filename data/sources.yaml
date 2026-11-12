@@ -1,0 +1,265 @@
+- id: ringe-2006
+  title: Ringe, From Proto-Indo-European to Proto-Germanic (A History of English, vol. 1, 2006)
+  url: https://doi.org/10.1093/acprof:oso/9780199284139.001.0001
+  kind: monograph
+- id: ringe-2017
+  title: Ringe & Taylor, The Development of Old English (2014); The Linguistic History of English (2017)
+  kind: monograph
+- id: kroonen-2013
+  title: Kroonen, Etymological Dictionary of Proto-Germanic (Leiden Indo-European Etymological
+    Dictionary Series 11, 2013)
+  kind: dictionary
+- id: kloekhorst-2007
+  title: Kloekhorst, Etymological Dictionary of the Hittite Inherited Lexicon (2007)
+  kind: dictionary
+- id: fortson-2004
+  title: Fortson, Indo-European Language and Culture (2nd ed. 2010)
+  kind: handbook
+- id: beekes-2011
+  title: 'Beekes, Comparative Indo-European Linguistics: An Introduction (2nd ed. 2011)'
+  kind: handbook
+- id: szemerenyi-1996
+  title: Szemerényi, Introduction to Indo-European Linguistics (1996)
+  kind: handbook
+- id: mayrhofer-1986
+  title: 'Mayrhofer, Indogermanische Grammatik I/2: Lautlehre (1986)'
+  kind: grammar
+- id: hoffmann-forssman-2004
+  title: Hoffmann & Forssman, Avestische Laut- und Flexionslehre (2nd ed. 2004)
+  kind: grammar
+- id: skjaervo-2009
+  title: Skjærvø, The Avestan Language (Iranian Studies 37, 2009)
+  kind: article
+- id: kent-1953
+  title: 'Kent, Old Persian: Grammar, Texts, Lexicon (2nd ed. 1953)'
+  url: https://archive.org/details/old-persian-grammar-texts-lexicon
+  kind: grammar
+- id: mackenzie-1971
+  title: MacKenzie, A Concise Pahlavi Dictionary (1971/2014)
+  kind: dictionary
+- id: durkin-meisterernst-2014
+  title: Durkin-Meisterernst, Grammatik des Westmitteliranischen (2014)
+  kind: grammar
+- id: skjaervo-2009b
+  title: Skjærvø, Middle Persian (in The Iranian Languages, ed. Windfuhr 2009)
+  kind: chapter
+- id: windfuhr-2009
+  title: Windfuhr (ed.), The Iranian Languages (2009)
+  kind: handbook
+- id: korn-2016
+  title: Korn, A New Locative Case in Transitional Middle Persian (2016); Iranian sound changes
+  kind: article
+- id: lumsden-2006
+  title: Lumsden, Early Parthian and Middle Persian (2006)
+  kind: article
+- id: sadeghi-1978
+  title: Sadeghi, Tarikh-e zabān-e fārsi (1978)
+  kind: monograph
+- id: brugmann-1897
+  title: Brugmann, Grundriss der vergleichenden Grammatik der indogermanischen Sprachen (1897)
+  kind: grammar
+- id: grassmann-1863
+  title: Grassmann, Über die Aspiraten (1863)
+  kind: article
+- id: bartholomae-1882
+  title: Bartholomae, Die arische Aspiration (1882)
+  kind: article
+- id: verner-1877
+  title: Verner, Eine Ausnahme der ersten Lautverschiebung (1877)
+  kind: article
+- id: grimm-1822
+  title: Grimm, Deutsche Grammatik I (2nd ed. 1822)
+  kind: grammar
+- id: sievers-1878
+  title: Sievers, Zur accent- und lautlehre der germanischen sprachen (1878)
+  kind: article
+- id: vennemann-1988
+  title: Vennemann, Preference Laws for Syllable Structure (1988)
+  kind: monograph
+- id: meiser-1998
+  title: Meiser, Historische Laut- und Formenlehre der lateinischen Sprache (1998)
+  kind: grammar
+- id: sandoz-1985
+  title: Sandoz, The Proto-Greek verbal system; Greek sound changes
+  kind: article
+- id: lejeune-1972
+  title: Lejeune, Phonétique historique du mycénien et du grec ancien (1972)
+  kind: grammar
+- id: neri-2010
+  title: Neri, Il sistema di vocali del germanico; Germanische Lautgesetze
+  kind: article
+- id: wiktionary
+  title: Wiktionary, etymology sections (CC BY-SA 4.0)
+  url: https://en.wiktionary.org
+  kind: corpus
+- id: fa-wiktionary
+  title: ویکی‌واژه فارسی (Persian Wiktionary), per-word pages (CC BY-SA 4.0)
+  url: https://fa.wiktionary.org
+  kind: lexicon
+- id: kaikki
+  title: Wiktextract / kaikki.org machine-readable Wiktionary (CC BY-SA 4.0)
+  url: https://kaikki.org/dictionary/
+  kind: corpus
+- id: wikipedia-ie
+  title: Wikipedia, Proto-Indo-European and daughter-language articles
+  url: https://en.wikipedia.org/wiki/Proto-Indo-European_language
+  kind: encyclopedia
+- id: campbell-1959
+  title: Campbell, Old English Grammar (1959)
+  kind: grammar
+- id: wright-1908
+  title: Wright & Wright, Old English Grammar (1908)
+  kind: grammar
+- id: luick-1914
+  title: Luick, Historische Grammatik der englischen Sprache (1914–1940)
+  kind: grammar
+- id: dobson-1968
+  title: Dobson, English Pronunciation 1500–1700 (2nd ed. 1968)
+  kind: monograph
+- id: braune-2004
+  title: Braune & Reiffenstein, Althochdeutsche Grammatik I (15th ed. 2004)
+  kind: grammar
+- id: paul-2007
+  title: Paul, Mittelhochdeutsche Grammatik (25th ed. 2007)
+  kind: grammar
+- id: kluge-2011
+  title: Kluge, Etymologisches Wörterbuch der deutschen Sprache (25th ed. 2011)
+  kind: dictionary
+- id: wells-1985
+  title: 'Wells, German: A Linguistic History to 1945 (1985)'
+  kind: handbook
+- id: devaan-2008
+  title: de Vaan, Etymological Dictionary of Latin and the Other Italic Languages (2008)
+  kind: dictionary
+- id: weiss-2009
+  title: Weiss, Outline of the Historical and Comparative Grammar of Latin (2009)
+  kind: grammar
+- id: maiden-1995
+  title: Maiden, A Linguistic History of Italian (1995)
+  kind: monograph
+- id: sihler-1995
+  title: Sihler, New Comparative Grammar of Greek and Latin (1995)
+  kind: grammar
+- id: horrocks-2010
+  title: 'Horrocks, Greek: A History of the Language and its Speakers (2nd ed. 2010)'
+  kind: monograph
+- id: smyth-1920
+  title: Smyth, A Greek Grammar for Colleges (1920)
+  kind: grammar
+- id: carney-1994
+  title: Carney, A Survey of English Spelling (1994)
+  kind: monograph
+- id: scragg-1974
+  title: Scragg, A History of English Spelling (1974)
+  kind: monograph
+- id: duden-2017
+  title: Duden — Die deutsche Rechtschreibung (27th ed. 2017)
+  kind: reference
+- id: matasovic-2009
+  title: Matasović, Etymological Dictionary of Proto-Celtic (2009)
+  url: https://brill.com/display/title/16280
+  kind: dictionary
+- id: mccone-1996
+  title: McCone, Towards a Relative Chronology of Ancient and Medieval Celtic Sound Change (1996)
+  url: ''
+  kind: monograph
+- id: cathcart-2015
+  title: Cathcart, Iranian Dialectology and Dialectometry (PhD dissertation, UC Berkeley, 2015)
+  url: ''
+  kind: monograph
+- id: de-vaan-2000
+  title: 'de Vaan, The Indo-Iranian animal suffix *-āćá-?, Indo-Iranian Journal 43 (2000) 279–293'
+  url: https://doi.org/10.1023/A:1003961021383
+  kind: article
+- id: schrijver-1998
+  title: 'Schrijver, The British word for *fox and its Indo-European origin, JIES 26 (1998) 421–434'
+  kind: article
+- id: whitney-1889
+  title: Whitney, A Sanskrit Grammar, including both the classical language and the older dialects of Veda and Brāhmaṇa (2nd ed., Leipzig 1889; 1896 printing at archive.org)
+  url: https://archive.org/details/whitney-a-sanskrit-grammar
+  kind: grammar
+- id: braune-ebbinghaus
+  title: Braune & Ebbinghaus, Gotische Grammatik (20th ed. 2004; 1st ed. 1880)
+  url: https://www.degruyter.com/document/doi/10.1515/9783110938923/html
+  kind: grammar
+- id: wright-1910
+  title: Wright, A Grammar of the Gothic Language (1910)
+  url: https://archive.org/details/grammarofgothicl00wrig
+  kind: grammar
+- id: krause-1968
+  title: Krause, Handbuch des Gotischen (3rd ed. 1968)
+  kind: handbook
+- id: allen-1987
+  title: Allen, Vox Graeca. The Pronunciation of Classical Greek (3rd ed. 1987)
+  url: ''
+  kind: grammar
+- id: meillet-1934
+  title: Meillet, Le slave commun (2nd ed. 1934)
+  kind: grammar
+- id: vaillant-1950
+  title: Vaillant, Manuel du vieux slave, I (1950)
+  kind: grammar
+- id: shevelov-1964
+  title: Shevelov, A Prehistory of Slavic (1964)
+  kind: monograph
+- id: derksen-2008
+  title: Derksen, Etymological Dictionary of the Slavic Inherited Lexicon (2008)
+  kind: dictionary
+- id: olander-2015
+  title: Olander, Proto-Slavic Inflectional Morphology (2015)
+  kind: monograph
+- id: kortlandt-1978
+  title: Kortlandt, On the history of the Slavic nasal vowels (1978)
+  kind: article
+- id: kortlandt-1994
+  title: Kortlandt, From Proto-Indo-European to Slavic (1994)
+  kind: article
+- id: schmitt-2014
+  title: Schmitt, Die altpersischen Inschriften der Achaimeniden (2nd ed. 2014)
+  kind: grammar
+- id: thackston-1993
+  title: Thackston, An Introduction to Persian (revised 3rd ed. 1993)
+  kind: grammar
+- id: gordon-1957
+  title: Gordon, An Introduction to Old Norse (2nd ed., rev. Taylor, 1957)
+  kind: grammar
+- id: noreen-1923
+  title: "Noreen, Altnordische Grammatik I: Altisländische und altnorwegische Grammatik (4th ed. 1923)"
+  kind: grammar
+- id: haugen-1982
+  title: "Haugen, Scandinavian Language Structures: A Comparative Historical Survey (1982)"
+  kind: handbook
+- id: ringe-taylor-2014
+  title: Ringe & Taylor, The Development of Old English (2014)
+  kind: monograph
+- id: thurneysen-1946
+  title: Thurneysen, A Grammar of Old Irish (Dublin Institute for Advanced Studies, 1946)
+  kind: grammar
+- id: pedersen-1909
+  title: "Pedersen, Vergleichende Grammatik der keltischen Sprachen (Vandenhoeck & Ruprecht, 1909-1913)"
+  kind: grammar
+- id: schenker-1995
+  title: "Schenker, The Dawn of Slavic: An Introduction to Slavic Philology (Yale University Press, 1995)"
+  kind: handbook
+- id: carlton-1991
+  title: "Carlton, Introduction to the Phonological History of the Slavic Languages (Slavica, 1991)"
+  kind: monograph
+- id: lunt-1974
+  title: "Lunt, Old Church Slavonic Grammar (6th ed., Mouton, 1974)"
+  kind: grammar
+- id: stang-1966
+  title: "Stang, Vergleichende Grammatik der baltischen Sprachen (Universitetsforlaget, 1966)"
+  kind: grammar
+- id: ambrazas-1997
+  title: "Ambrazas (ed.), Lithuanian Grammar (Baltos lankos, 1997)"
+  kind: grammar
+- id: holton-1997
+  title: "Holton, Mackridge & Philippaki-Warburton, Greek: A Comprehensive Grammar of the Modern Language (Routledge, 1997)"
+  kind: grammar
+- id: browning-1983
+  title: "Browning, Medieval and Modern Greek (2nd ed., Cambridge University Press, 1983)"
+  kind: monograph
+- id: dehkhoda
+  title: Dehkhoda, لغت‌نامه (Loghatnāmeh), as printed on vajehyab.com
+  url: https://vajehyab.com/dehkhoda/
+  kind: dictionary

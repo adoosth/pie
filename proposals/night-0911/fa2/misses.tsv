@@ -1,0 +1,1532 @@
+word	ipa	distance	matched_spelling	plausible	stage	anc	output	written	steps	step_ids	ladder
+است		0	False	False	ine-pro	h₃ésth₁	ast	است	6	syllabic_laryngeals,laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,final_vowel_loss,stress_not_written	h₃ésth₁ > Hˈasti > Hˈasti > ˈasti > ˈast > ast
+افسار	/ʔa.ˈfsaːr/	0	False	True	pal	afsār	afsār	افسار	0		afsār > afsār
+بادیه	/baː.di.ˈja/	0	False	False	peo	bātiyakah	bādeye	بادیه	6	t_to_d,k_to_g,final_h_loss,final_vowel_loss,i_to_e,final_ag_to_e	bātiyakah > bādiyag > bādeye
+درنگ	/di.ˈranɡ/	0	False	False	ine-pro	dlongʰos	drang	درنگ	6	vowel_merger_a,l_to_r,deaspirate_gh,final_s_to_h,final_h_loss,final_vowel_loss	dlongʰos > drangʰas > drangah > drangah > drang > drang
+درو	/di.ˈraw/	0	False	False	ira-pro	drauH	draū	درو	1	laryngeal_lengthening	drauH > draū > draū > draū
+درو	/di.ˈraw/	0	False	False	ira-pro	drauH	draū	درو	1	laryngeal_lengthening	drauH > draū > draū > draū
+دشت	/ˈdaʃt/	0	False	False	ira-pro	dáxštah	dašt	دشت	4	xsh_to_sh,final_h_loss,final_vowel_loss,stress_not_written	dáxštah > dˈaxštah > dˈašt > dašt
+دله		0	False	False	pal	dalag	dale	دله	1	final_ag_to_e	dalag > dale
+دهنه		0	False	False	pal	dahanag	dahane	دهنه	1	final_ag_to_e	dahanag > dahane
+دی		0	False	False	iir-pro	ȷ́ʰyás	dy	دی	6	deaspirate_palatal,final_s_to_h,j_from_palatal,j_to_d,final_h_loss,final_vowel_loss	ȷ́ʰyás > jyˈah > dyˈah > dy > dy
+رازیانه		0	False	False	pal	rāziyānag	rāzeyāne	رازیانه	2	i_to_e,final_ag_to_e	rāziyānag > rāzeyāne
+روی	/ˈroːj/	0	False	False	iir-pro	Hrawdáh	rūy	روی	7	laryngeal_loss_initial,aw_to_au,d_to_y,au_to_o,final_h_loss,final_vowel_loss,long_o_to_long_u	Hrawdáh > Hrawdˈah > raudˈah > rōy > rūy
+ریش	/ˈreːʃ/	0	False	False	iir-pro	rayšás	rīš	ریش	6	final_s_to_h,ay_to_ai,ai_to_e,final_h_loss,final_vowel_loss,long_e_to_long_i	rayšás > rayšˈah > raišˈah > rēš > rīš
+زنگ	/ˈzanɡ/	0	False	True	pal	zang	zang	زنگ	0		zang > zang
+زه	/ˈzah/	0	False	True	pal	zah	zah	زه	0		zah > zah
+سرای	/sa.ˈraːj/	0	False	False	peo	srāda	srāy	سرای	2	d_to_y,final_vowel_loss	srāda > srāy > srāy
+سرو	/su.ˈruː/	0	False	False	iir-pro	ćr̥Hwás	sarw	سرو	8	final_s_to_h,c_from_palatal,laryngeal_lengthening,c_to_theta,r_syllabic_to_ar,theta_to_s,final_h_loss,final_vowel_loss	ćr̥Hwás > cr̥Hwˈah > θarwˈah > sarw > sarw
+شمن	/ʃa.ˈman/	0	False	False	pal	šmn	šmn	شمن	0		šmn > šmn
+شید	/ˈʃeːd/	0	False	False	ira-pro	xšaytah	šīd	شید	7	ay_to_ai,t_to_d,xsh_to_sh,ai_to_e,final_h_loss,final_vowel_loss,long_e_to_long_i	xšaytah > xšaitah > šēd > šīd
+شید	/ˈʃeːd/	0	False	False	ira-pro	xšaytah	šīd	شید	7	ay_to_ai,t_to_d,xsh_to_sh,ai_to_e,final_h_loss,final_vowel_loss,long_e_to_long_i	xšaytah > xšaitah > šēd > šīd
+شیر	/ˈʃiːr/	0	False	False	iir-pro	kšiHrám	šīr	شیر	4	k_to_x_initial,laryngeal_lengthening,xsh_to_sh,final_am_loss	kšiHrám > xšiHrˈam > xšīrˈam > šīr > šīr
+شیره	/ʃiː.ˈra/	0	False	False	pal	šīrag	šīre	شیره	1	final_ag_to_e	šīrag > šīre
+مغ	/ˈmaɣ/	0	False	False	pal	mγ	mɣ	مغ	0		mγ > mɣ
+ناز	/ˈnaːz/	0	False	True	ira-pro	nāz	nāz	ناز	0		nāz > nāz > nāz > nāz
+نزد	/naz.ˈdi/	0	False	False	ira-pro	názdah	nazd	نزد	3	final_h_loss,final_vowel_loss,stress_not_written	názdah > nˈazdah > nˈazd > nazd
+نیله		0	False	False	pal	nīlag	nīle	نیله	1	final_ag_to_e	nīlag > nīle
+هور	/ˈhoːr/	0	False	False	ira-pro	húHar	hūar	هور	2	laryngeal_lengthening,stress_not_written	húHar > hˈūar > hˈūar > hūar
+پند	/ˈpand/	0	False	False	pal	pnd	pnd	پند	0		pnd > pnd
+پیل	/ˈpiːl/	0	False	True	pal	pyl	pyl	پیل	0		pyl > pyl
+چشم	/ˈt͡ʃaʃm/	0	False	False	iir-pro	čáćšma	čašm	چشم	3	palatal_plus_sibilant,final_vowel_loss,stress_not_written	čáćšma > čˈašma > čˈašma > čˈašm > čašm
+چشم	/ˈt͡ʃaʃm/	0	False	False	iir-pro	čáćšma	čašm	چشم	3	palatal_plus_sibilant,final_vowel_loss,stress_not_written	čáćšma > čˈašma > čˈašma > čˈašm > čašm
+گر		0	False	False	ine-pro	wer	gor	گر	4	vowel_merger_a,war_rounding,w_to_g_before_ur,u_to_o	wer > war > war > war > gur > gor
+گران	/ɡi.ˈraːn/	0	False	False	ira-pro	grā-na	grān	گران	1	final_vowel_loss	grā-na > grāna > grān > grān
+گرس		0	False	False	ine-pro	wólḱ-o-s	gors	گرس	13	vowel_merger_a,satem_k,l_to_r,final_s_to_h,c_from_palatal,c_to_theta,war_rounding,w_to_g_before_ur,theta_to_s,final_h_loss,final_vowel_loss,u_to_o,stress_not_written	wólḱ-o-s > wˈarćas > wˈarcah > wˈarθah > gˈurs > gors
+گوز	/ˈɡawz/	0	False	False	ira-pro	gauz	gūz	گوز	2	au_to_o,long_o_to_long_u	gauz > gauz > gōz > gūz
+آذر	/ʔaː.ˈðar/	1	False	False	ine-pro	h₂eh₁ter	ādar	آدر	5	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,laryngeal_lengthening,t_to_d	h₂eh₁ter > HaHtar > HaHtar > ātar > ādar > ādar
+آذر	/ʔaː.ˈðar/	1	False	False	ine-pro	h₂eh₁ter	ādar	آدر	5	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,laryngeal_lengthening,t_to_d	h₂eh₁ter > HaHtar > HaHtar > ātar > ādar > ādar
+آس	/ˈʔaːs/	1	False	True	ine-pro	h₂eḱ	as	اس	7	laryngeal_to_H,vowel_merger_a,satem_k,c_from_palatal,laryngeal_loss_initial,c_to_theta,theta_to_s	h₂eḱ > Hać > Hac > aθ > as > as
+ابریشم	/ʔab.reː.ˈʃam/	1	False	False	ira-pro	upawraišamah	obūrīšam	ابوریشم	9	aw_to_au,p_to_b,ai_to_e,au_to_o,final_h_loss,final_vowel_loss,u_to_o,long_e_to_long_i,long_o_to_long_u	upawraišamah > upauraišamah > ubōrēšam > obūrīšam
+ارز	/ˈʔarz/	1	False	False	ine-pro	h₂elgʷʰ	arg	ارگ	6	laryngeal_to_H,vowel_merger_a,labiovelar_gh,l_to_r,deaspirate_gh,laryngeal_loss_initial	h₂elgʷʰ > Hargʰ > Harg > arg > arg > arg
+ارز	/ˈʔarz/	1	False	False	ine-pro	h₂elgʷʰ	arg	ارگ	6	laryngeal_to_H,vowel_merger_a,labiovelar_gh,l_to_r,deaspirate_gh,laryngeal_loss_initial	h₂elgʷʰ > Hargʰ > Harg > arg > arg > arg
+ارم	/ˈʔarm/	1	False	False	ine-pro	h₂rH-mo	rm	رم	5	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,laryngeal_lengthening,final_vowel_loss	h₂rH-mo > HrHma > HrHma > rma > rm > rm
+اروند	/ʔar.ˈwand/	1	False	False	iir-pro	Hárwants	arwans	ارونس	5	ts_to_c,laryngeal_loss_initial,c_to_theta,theta_to_s,stress_not_written	Hárwants > Hˈarwanc > ˈarwanθ > ˈarwans > arwans
+اروند	/ʔar.ˈwand/	1	False	False	iir-pro	Hárwants	arwans	ارونس	5	ts_to_c,laryngeal_loss_initial,c_to_theta,theta_to_s,stress_not_written	Hárwants > Hˈarwanc > ˈarwanθ > ˈarwans > arwans
+ارگ	/ˈʔarɡ/	1	False	False	ine-pro	h₂erk	ark	ارک	3	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial	h₂erk > Hark > Hark > ark > ark > ark
+از	/æz/	1	False	False	ine-pro	éǵh₂	ad	اد	7	laryngeal_to_H,vowel_merger_a,satem_g,j_from_palatal,laryngeal_lengthening,j_to_d,stress_not_written	éǵh₂ > ˈaȷ́H > ˈajH > ˈad > ˈad > ad
+اسب	/ˈʔasb/	1	False	False	ine-pro	h₁éḱwos	asp	اسپ	10	laryngeal_to_H,vowel_merger_a,satem_k,final_s_to_h,c_from_palatal,laryngeal_loss_initial,cw_to_sp,final_h_loss,final_vowel_loss,stress_not_written	h₁éḱwos > Hˈaćwas > Hˈacwah > ˈaspah > ˈasp > asp
+استر		1	False	False	peo	asatarah	asadar	اسدر	3	t_to_d,final_h_loss,final_vowel_loss	asatarah > asadar > asadar
+افسر	/ʔaf.ˈsar/	1	False	False	ira-pro	upasarah	obasar	ابسر	4	p_to_b,final_h_loss,final_vowel_loss,u_to_o	upasarah > upasarah > ubasar > obasar
+انوشه	/ʔa.noː.ˈʃa/	1	False	False	ira-pro	an-awša	anūš	انوش	4	aw_to_au,au_to_o,final_vowel_loss,long_o_to_long_u	an-awša > anauša > anōš > anūš
+انوشه	/ʔa.noː.ˈʃa/	1	False	False	ira-pro	an-awša	anūš	انوش	4	aw_to_au,au_to_o,final_vowel_loss,long_o_to_long_u	an-awša > anauša > anōš > anūš
+انگبین	/ʔan.ɡu.ˈbiːn/	1	False	False	ira-pro	Hangubáynah	angowīn	انگوین	9	laryngeal_loss_initial,ay_to_ai,b_to_w,ai_to_e,final_h_loss,final_vowel_loss,u_to_o,long_e_to_long_i,stress_not_written	Hangubáynah > angubˈainah > anguwˈēn > angowīn
+اوج	/ˈʔawd͡ʒ/	1	False	False	ine-pro	h₂ewg	ūg	اوگ	6	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,aw_to_au,au_to_o,long_o_to_long_u	h₂ewg > Hawg > Hawg > aug > ōg > ūg
+اپوش	/ʔa.ˈpoːʃ/	1	False	False	ira-pro	apauša	abūš	ابوش	4	p_to_b,au_to_o,final_vowel_loss,long_o_to_long_u	apauša > apauša > abōš > abūš
+اژ	/æʒ/	1	False	False	ine-pro	éǵh₂	ad	اد	7	laryngeal_to_H,vowel_merger_a,satem_g,j_from_palatal,laryngeal_lengthening,j_to_d,stress_not_written	éǵh₂ > ˈaȷ́H > ˈajH > ˈad > ˈad > ad
+ای		1	False	False	pal	ʾy	ʾy	ʾی	0		ʾy > ʾy
+بادام	/baː.ˈdaːm/	1	False	False	iir-pro	vātādám	bādāy	بادای	4	d_to_y,t_to_d,final_am_loss,v_to_b_initial	vātādám > vātādˈam > vātādˈam > vādāy > bādāy
+باده	/baː.ˈda/	1	False	False	peo	bātah	bād	باد	3	t_to_d,final_h_loss,final_vowel_loss	bātah > bād > bād
+بار	/ˈbaːr/	1	False	True	ine-pro	bʰer	bar	بر	2	vowel_merger_a,deaspirate_bh	bʰer > bʰar > bar > bar > bar > bar
+بار	/ˈbaːr/	1	False	True	ine-pro	bʰerH	bar	بر	3	vowel_merger_a,deaspirate_bh,laryngeal_lengthening	bʰerH > bʰarH > barH > bar > bar > bar
+باند	[bɒːn̪d̪̥]	1	False	True	ine-pro	bʰendʰ	band	بند	3	vowel_merger_a,grassmann,deaspirate_dh	bʰendʰ > bandʰ > band > band > band > band
+بانو	/baː.ˈnuː/	1	False	False	peo	bānūka	bānūg	بانوگ	2	k_to_g,final_vowel_loss	bānūka > bānūg > bānūg
+بانو	/baː.ˈnuː/	1	False	False	peo	bānūka	bānūg	بانوگ	2	k_to_g,final_vowel_loss	bānūka > bānūg > bānūg
+باژ	/ˈbaːʒ/	1	False	False	ira-pro	bāǰi	bāǰ	باج	1	final_vowel_loss	bāǰi > bāǰi > bāǰ > bāǰ
+بر	/ˈbar/	1	False	False	iir-pro	Hwŕ̥Has	gor	گر	10	final_s_to_h,laryngeal_loss_initial,laryngeal_lengthening,r_syllabic_to_ar,war_rounding,w_to_g_before_ur,final_h_loss,final_vowel_loss,u_to_o,stress_not_written	Hwŕ̥Has > Hwˈr̥Hah > wˈarah > gˈur > gor
+برز		1	False	False	ine-pro	bʰerǵʰ	bard	برد	6	vowel_merger_a,satem_gh,deaspirate_bh,deaspirate_palatal,j_from_palatal,j_to_d	bʰerǵʰ > bʰarȷ́ʰ > barj > bard > bard > bard
+برگ	/ˈbarɡ/	1	False	False	iir-pro	walkás	gorg	گرگ	8	final_s_to_h,l_to_r,war_rounding,w_to_g_before_ur,rk_to_rg,final_h_loss,final_vowel_loss,u_to_o	walkás > warkˈah > warkˈah > gurg > gorg
+برین	/bi.ˈriːn/	1	False	False	ine-pro	bʰreyH	bray	بری	3	vowel_merger_a,deaspirate_bh,laryngeal_lengthening	bʰreyH > bʰrayH > brayH > bray > bray > bray
+بستر	/bis.ˈtar/	1	False	False	ine-pro	sterh₃	star	ستر	3	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening	sterh₃ > starH > starH > star > star > star
+بسـ		1	False	False	ine-pro	weḱ	bas	بس	6	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,theta_to_s,w_to_b_initial	weḱ > wać > wac > waθ > was > bas
+بـ	/bi-/	1	False	False	ine-pro	bʰe	b	ب	3	vowel_merger_a,deaspirate_bh,final_vowel_loss	bʰe > bʰa > ba > ba > b > b
+بن	/ˈbun/	1	False	True	ira-pro	buHnáh	būn	بون	3	laryngeal_lengthening,final_h_loss,final_vowel_loss	buHnáh > būnˈah > būn > būn
+به	/ˈbih/	1	False	False	ine-pro	h₁wésus	bahoš	بهش	8	laryngeal_to_H,vowel_merger_a,ruki_s,s_to_h,laryngeal_loss_initial,u_to_o,w_to_b_initial,stress_not_written	h₁wésus > Hwˈasuš > Hwˈahuš > wˈahuš > wˈahuš > bahoš
+بو	/ˈboː/	1	False	False	ine-pro	bʰewdʰ	būd	بود	6	vowel_merger_a,grassmann,deaspirate_dh,aw_to_au,au_to_o,long_o_to_long_u	bʰewdʰ > bawdʰ > bawd > baud > bōd > būd
+بوته	/boː.ˈta/	1	False	False	pal	bōdag	būde	بوده	2	final_ag_to_e,long_o_to_long_u	bōdag > būde
+بوم	/ˈbuːm/	1	False	False	ine-pro	bʰuH	bū	بو	2	deaspirate_bh,laryngeal_lengthening	bʰuH > bʰuH > buH > bū > bū > bū
+بید	/ˈbeːd/	1	False	False	iir-pro	waytaháh	bīdah	بیده	7	ay_to_ai,t_to_d,ai_to_e,final_h_loss,final_vowel_loss,long_e_to_long_i,w_to_b_initial	waytaháh > waytahˈah > waitahˈah > wēdah > bīdah
+بیوه	/beː.ˈwa/	1	False	False	ine-pro	h₁widʰéwh₂	beyaw	بیو	9	laryngeal_to_H,vowel_merger_a,deaspirate_dh,laryngeal_loss_initial,laryngeal_lengthening,d_to_y,i_to_e,w_to_b_initial,stress_not_written	h₁widʰéwh₂ > HwidʰˈawH > HwidˈawH > widˈaw > wiyˈaw > beyaw
+ترش	/tu.ˈruʃ/	1	False	False	ira-pro	tr̥fšah	tarfš	ترفش	3	r_syllabic_to_ar,final_h_loss,final_vowel_loss	tr̥fšah > tarfšah > tarfš > tarfš
+تنک	/ta.ˈnuk/	1	False	False	ine-pro	ténh₂us	tanoš	تنش	6	laryngeal_to_H,vowel_merger_a,ruki_s,laryngeal_lengthening,u_to_o,stress_not_written	ténh₂us > tˈanHuš > tˈanHuš > tˈanuš > tˈanuš > tanoš
+تنگ	/ˈtanɡ/	1	False	False	ine-pro	tenk	tank	تنک	1	vowel_merger_a	tenk > tank > tank > tank > tank > tank
+توده	/toː.ˈda/	1	False	True	ine-pro	tewtéh₂	tūdā	تودا	9	h2_colours_e,laryngeal_to_H,vowel_merger_a,laryngeal_lengthening,aw_to_au,t_to_d,au_to_o,long_o_to_long_u,stress_not_written	tewtéh₂ > tawtˈaH > tawtˈaH > tautˈā > tōdˈā > tūdā
+تور		1	False	False	pal	twl	twl	تول	0		twl > twl
+تور		1	False	False	pal	twl	twl	تول	0		twl > twl
+جان	/ˈd͡ʒaːn/	1	False	False	ine-pro	h₂enh₁	an	ان	4	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,laryngeal_lengthening	h₂enh₁ > HanH > HanH > an > an > an
+جان	/ˈd͡ʒaːn/	1	False	False	ine-pro	h₂enh₁	an	ان	4	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,laryngeal_lengthening	h₂enh₁ > HanH > HanH > an > an > an
+جو	/ˈd͡ʒaw/	1	False	False	ine-pro	yéwos	yaw	یو	5	vowel_merger_a,final_s_to_h,final_h_loss,final_vowel_loss,stress_not_written	yéwos > yˈawas > yˈawah > yˈawah > yˈaw > yaw
+جگر	/d͡ʒi.ˈɡar/	1	False	False	ine-pro	Hyékʷr̥	yagar	یگر	6	vowel_merger_a,labiovelar_k,laryngeal_loss_initial,r_syllabic_to_ar,k_to_g,stress_not_written	Hyékʷr̥ > Hyˈakr̥ > Hyˈakr̥ > yˈakar > yˈagar > yagar
+جیوه	/d͡ʒiː.ˈwa/	1	False	False	ine-pro	gʷih₃wós	ǰīw	جیو	8	laryngeal_to_H,vowel_merger_a,labiovelar_g,palatal_g,final_s_to_h,laryngeal_lengthening,final_h_loss,final_vowel_loss	gʷih₃wós > ǰiHwˈas > ǰiHwˈah > ǰīwˈah > ǰīw > ǰīw
+خرد	/xi.ˈrad/	1	False	False	ine-pro	kret	xrat	خرت	2	vowel_merger_a,k_to_x_initial	kret > krat > xrat > xrat > xrat > xrat
+خشین	/xa.ˈʃiːn/	1	False	False	ira-pro	axšáyHnah	ašīn	اشین	8	laryngeal_lengthening,ay_to_ai,xsh_to_sh,ai_to_e,final_h_loss,final_vowel_loss,long_e_to_long_i,stress_not_written	axšáyHnah > axšˈainah > ašˈēn > ašīn
+خفه	/xa.ˈfa/	1	False	False	ira-pro	xaf	xaf	خف	0		xaf > xaf > xaf > xaf
+خود	/ˈxʷad/	1	False	False	peo	hvatah	hvad	هود	3	t_to_d,final_h_loss,final_vowel_loss	hvatah > hvad > hvad
+خود	/ˈxʷad/	1	False	False	peo	hvatah	hvad	هود	3	t_to_d,final_h_loss,final_vowel_loss	hvatah > hvad > hvad
+خور	/ˈxʷar/	1	False	False	iir-pro	súHar	hūar	هور	3	s_to_h,laryngeal_lengthening,stress_not_written	súHar > hˈuHar > hˈūar > hˈūar > hūar
+دادار	/daː.ˈdaːr/	1	False	False	iir-pro	dʰaHtā́	dādā	دادا	4	deaspirate_dh,laryngeal_lengthening,t_to_d,stress_not_written	dʰaHtā́ > daHtˈā > dātˈā > dādˈā > dādā
+دارو	/daː.ˈruː/	1	False	False	ira-pro	dā́rukah	dārog	دارگ	5	k_to_g,final_h_loss,final_vowel_loss,u_to_o,stress_not_written	dā́rukah > dˈārukah > dˈārug > dārog
+داس	/ˈdaːs/	1	False	False	iir-pro	dáHtram	dāh	داه	6	t_to_theta_before_sonorant,laryngeal_lengthening,theta_r_to_cedilla,cedilla_to_h,final_am_loss,stress_not_written	dáHtram > dˈaHθram > dˈāçam > dˈāh > dāh
+دان		1	False	False	ine-pro	dʰoHnéh₂	dānā	دانا	6	h2_colours_e,laryngeal_to_H,vowel_merger_a,deaspirate_dh,laryngeal_lengthening,stress_not_written	dʰoHnéh₂ > dʰaHnˈaH > daHnˈaH > dānˈā > dānˈā > dānā
+دانه	/daː.ˈna/	1	False	True	ine-pro	dʰoHnéh₂	dānā	دانا	6	h2_colours_e,laryngeal_to_H,vowel_merger_a,deaspirate_dh,laryngeal_lengthening,stress_not_written	dʰoHnéh₂ > dʰaHnˈaH > daHnˈaH > dānˈā > dānˈā > dānā
+دانه	/daː.ˈna/	1	False	True	ine-pro	dʰoHnéh₂	dānā	دانا	6	h2_colours_e,laryngeal_to_H,vowel_merger_a,deaspirate_dh,laryngeal_lengthening,stress_not_written	dʰoHnéh₂ > dʰaHnˈaH > daHnˈaH > dānˈā > dānˈā > dānā
+دایه	/daː.ˈja/	1	False	False	ine-pro	dʰeh₁y	dāy	دای	4	laryngeal_to_H,vowel_merger_a,deaspirate_dh,laryngeal_lengthening	dʰeh₁y > dʰaHy > daHy > dāy > dāy > dāy
+درزی	/dar.ˈziː/	1	False	False	ira-pro	darz	darz	درز	0		darz > darz > darz > darz
+درود	/du.ˈroːd/	1	False	False	ira-pro	druwáh	drow	درو	3	final_h_loss,final_vowel_loss,u_to_o	druwáh > druwˈah > druw > drow
+درود	/du.ˈroːd/	1	False	False	ira-pro	druwáh	drow	درو	3	final_h_loss,final_vowel_loss,u_to_o	druwáh > druwˈah > druw > drow
+دروغ	/du.ˈroːɣ/	1	False	False	ine-pro	dʰrówgʰos	drūy	دروی	11	vowel_merger_a,grassmann,deaspirate_gh,final_s_to_h,aw_to_au,g_to_y,au_to_o,final_h_loss,final_vowel_loss,long_o_to_long_u,stress_not_written	dʰrówgʰos > drˈawgʰas > drˈawgah > drˈaugah > drˈōy > drūy
+درونه	/da.ruː.ˈna/	1	False	False	ira-pro	dráwnam	drūn	درون	5	aw_to_au,au_to_o,final_am_loss,long_o_to_long_u,stress_not_written	dráwnam > drˈaunam > drˈōn > drūn
+دشت	/ˈdaʃt/	1	False	False	iir-pro	dáćšinas	dašen	دشن	6	palatal_plus_sibilant,final_s_to_h,final_h_loss,final_vowel_loss,i_to_e,stress_not_written	dáćšinas > dˈašinah > dˈašinah > dˈašin > dašen
+دشت	/ˈduʃt/	1	False	False	ira-pro	duš	doš	دش	1	u_to_o	duš > duš > duš > doš
+دشنه		1	False	False	iir-pro	dáćšinas	dašen	دشن	6	palatal_plus_sibilant,final_s_to_h,final_h_loss,final_vowel_loss,i_to_e,stress_not_written	dáćšinas > dˈašinah > dˈašinah > dˈašin > dašen
+دم	/ˈdam/	1	False	False	ine-pro	dʰemH	d	د	4	vowel_merger_a,deaspirate_dh,laryngeal_lengthening,final_am_loss	dʰemH > dʰamH > damH > dam > d > d
+دم	/ˈdam/	1	False	False	ine-pro	ǵómbʰos	damb	دمب	9	vowel_merger_a,satem_g,deaspirate_bh,final_s_to_h,j_from_palatal,j_to_d,final_h_loss,final_vowel_loss,stress_not_written	ǵómbʰos > ȷ́ˈambʰas > jˈambah > dˈambah > dˈamb > damb
+دنده	/dan.ˈda/	1	False	False	pal	dandak	dandak	دندک	0		dandak > dandak
+دو	/ˈdu/	1	False	False	ine-pro	dwóh₁	dwā	دوا	4	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening,stress_not_written	dwóh₁ > dwˈaH > dwˈaH > dwˈā > dwˈā > dwā
+دو	/ˈdu/	1	False	False	ine-pro	dwóh₁	dwā	دوا	4	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening,stress_not_written	dwóh₁ > dwˈaH > dwˈaH > dwˈā > dwˈā > dwā
+دود	/ˈduːd/	1	False	False	ine-pro	dʰuh₂mós	dūm	دوم	7	laryngeal_to_H,vowel_merger_a,deaspirate_dh,final_s_to_h,laryngeal_lengthening,final_h_loss,final_vowel_loss	dʰuh₂mós > dʰuHmˈas > duHmˈah > dūmˈah > dūm > dūm
+دوش	/ˈdoːʃ/	1	False	False	ine-pro	dóws	dūs	دوس	5	vowel_merger_a,aw_to_au,au_to_o,long_o_to_long_u,stress_not_written	dóws > dˈaws > dˈaws > dˈaus > dˈōs > dūs
+دوش	/ˈdoːʃ/	1	False	False	ira-pro	dáwxšati	dūšad	دوشد	7	aw_to_au,t_to_d,xsh_to_sh,au_to_o,final_vowel_loss,long_o_to_long_u,stress_not_written	dáwxšati > dˈauxšati > dˈōšad > dūšad
+دوغ	/ˈdoːɣ/	1	False	False	ira-pro	dáwgah	dūy	دوی	7	aw_to_au,g_to_y,au_to_o,final_h_loss,final_vowel_loss,long_o_to_long_u,stress_not_written	dáwgah > dˈaugah > dˈōy > dūy
+دیگ	/ˈdeːɡ/	1	False	False	ine-pro	deyh₂	day	دی	3	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening	deyh₂ > dayH > dayH > day > day > day
+راد	/ˈraːd/	1	False	False	iir-pro	HráHdʰas	rāy	رای	8	deaspirate_dh,final_s_to_h,laryngeal_loss_initial,laryngeal_lengthening,d_to_y,final_h_loss,final_vowel_loss,stress_not_written	HráHdʰas > HrˈaHdah > rˈādah > rˈāy > rāy
+راز		1	False	False	iir-pro	Hrā́ćš	rāš	راش	3	palatal_plus_sibilant,laryngeal_loss_initial,stress_not_written	Hrā́ćš > Hrˈāš > rˈāš > rˈāš > rāš
+رای	/ˈraːj/	1	False	False	ine-pro	Hreh₁dʰ	rād	راد	5	laryngeal_to_H,vowel_merger_a,deaspirate_dh,laryngeal_loss_initial,laryngeal_lengthening	Hreh₁dʰ > HraHdʰ > HraHd > rād > rād > rād
+رسن	/ra.ˈsan/	1	False	False	iir-pro	raćanáH	rasanā	رسنا	5	c_from_palatal,laryngeal_lengthening,c_to_theta,theta_to_s,stress_not_written	raćanáH > racanˈaH > raθanˈā > rasanˈā > rasanā
+رشن	/ˈraʃn/	1	False	False	pal	lšn	lšn	لشن	0		lšn > lšn
+رنگ	/ˈraŋɡ/	1	False	False	pal	lng	lng	لنگ	0		lng > lng
+روده	/roː.ˈda/	1	False	False	iir-pro	Hrawtás	rūd	رود	8	final_s_to_h,laryngeal_loss_initial,aw_to_au,t_to_d,au_to_o,final_h_loss,final_vowel_loss,long_o_to_long_u	Hrawtás > Hrawtˈah > rautˈah > rōd > rūd
+روشن	/raw.ˈʃan/	1	False	False	ine-pro	lówksneh₂	rūšnā	روشنا	12	h2_colours_e,laryngeal_to_H,vowel_merger_a,l_to_r,ruki_s,k_to_x_internal,laryngeal_lengthening,aw_to_au,xsh_to_sh,au_to_o,long_o_to_long_u,stress_not_written	lówksneh₂ > rˈawkšnaH > rˈawxšnaH > rˈauxšnā > rˈōšnā > rūšnā
+روغن	/raw.ˈɣan/	1	False	False	iir-pro	ráwgʰnas	rūgn	روگن	8	deaspirate_gh,final_s_to_h,aw_to_au,au_to_o,final_h_loss,final_vowel_loss,long_o_to_long_u,stress_not_written	ráwgʰnas > rˈawgnah > rˈaugnah > rˈōgn > rūgn
+روی	/ˈroːj/	1	False	False	ine-pro	h₁lewdʰ	rūd	رود	8	laryngeal_to_H,vowel_merger_a,l_to_r,deaspirate_dh,laryngeal_loss_initial,aw_to_au,au_to_o,long_o_to_long_u	h₁lewdʰ > Hrawdʰ > Hrawd > raud > rōd > rūd
+روی	/ˈroːj/	1	False	False	ine-pro	h₁lewdʰ	rūd	رود	8	laryngeal_to_H,vowel_merger_a,l_to_r,deaspirate_dh,laryngeal_loss_initial,aw_to_au,au_to_o,long_o_to_long_u	h₁lewdʰ > Hrawdʰ > Hrawd > raud > rōd > rūd
+ریش	/ˈreːʃ/	1	False	False	ira-pro	xraiša	xrīš	خریش	3	ai_to_e,final_vowel_loss,long_e_to_long_i	xraiša > xraiša > xrēš > xrīš
+ریگ	/ˈreːɡ/	1	False	False	ine-pro	h₃reyH	ray	ری	4	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,laryngeal_lengthening	h₃reyH > HrayH > HrayH > ray > ray > ray
+زر	/ˈzarr/	1	False	False	ine-pro	ǵʰelh₃	dar	در	8	laryngeal_to_H,vowel_merger_a,satem_gh,l_to_r,deaspirate_palatal,j_from_palatal,laryngeal_lengthening,j_to_d	ǵʰelh₃ > ȷ́ʰarH > jarH > dar > dar > dar
+زر	/ˈzur/	1	False	False	ine-pro	gʰer	gar	گر	2	vowel_merger_a,deaspirate_gh	gʰer > gʰar > gar > gar > gar > gar
+زر	/ˈzar/	1	False	False	ine-pro	ǵerh₂	dar	در	6	laryngeal_to_H,vowel_merger_a,satem_g,j_from_palatal,laryngeal_lengthening,j_to_d	ǵerh₂ > ȷ́arH > jarH > dar > dar > dar
+زنگ	/ˈzanɡ/	1	False	False	ine-pro	geng	gang	گنگ	1	vowel_merger_a	geng > gang > gang > gang > gang > gang
+سبز	/ˈsabz/	1	False	False	pal	spz	spz	سپز	0		spz > spz
+سبز	/ˈsabz/	1	False	False	pal	spz	spz	سپز	0		spz > spz
+ستدن	/si.ta.ˈdan/	1	False	False	ira-pro	staHn	stān	ستان	1	laryngeal_lengthening	staHn > stān > stān > stān
+ستور	/su.ˈtoːr/	1	False	False	ine-pro	táwros	tūr	تور	8	vowel_merger_a,final_s_to_h,aw_to_au,au_to_o,final_h_loss,final_vowel_loss,long_o_to_long_u,stress_not_written	táwros > tˈawras > tˈawrah > tˈaurah > tˈōr > tūr
+ستون	/su.ˈtuːn/	1	False	True	iir-pro	stʰuHnáH	stūnā	ستونا	3	cluster_t_deaspiration,laryngeal_lengthening,stress_not_written	stʰuHnáH > stuHnˈaH > stūnˈā > stūnˈā > stūnā
+سرا	/su.ˈraː/	1	False	False	iir-pro	súraH	horā	هرا	4	s_to_h,laryngeal_lengthening,u_to_o,stress_not_written	súraH > hˈuraH > hˈurā > hˈurā > horā
+سره		1	False	False	pal	srg	srg	سرگ	0		srg > srg
+سروش	/su.ˈroːʃ/	1	False	False	pal	slwš	slwš	سلوش	0		slwš > slwš
+سم	/ˈsum/	1	False	False	iir-pro	ćapʰás	saf	سف	7	final_s_to_h,ph_to_f,c_from_palatal,c_to_theta,theta_to_s,final_h_loss,final_vowel_loss	ćapʰás > cafˈah > θafˈah > saf > saf
+سمور	/sa.ˈmoːr/	1	False	False	pal	smwl	smwl	سمول	0		smwl > smwl
+سنجیدن	/san.ˈd͡ʒiː.dan/	1	False	False	ira-pro	θanǰáyati	sanǰayad	سنجید	4	t_to_d,theta_to_s,final_vowel_loss,stress_not_written	θanǰáyati > θanǰˈayati > sanǰˈayad > sanǰayad
+سهم	/ˈsahm/	1	False	False	iir-pro	trásma	hahm	ههم	6	s_to_h,t_to_theta_before_sonorant_initial,theta_r_to_cedilla,cedilla_to_h,final_vowel_loss,stress_not_written	trásma > θrˈahma > çˈahma > hˈahm > hahm
+سور		1	False	False	ine-pro	ḱewH	saw	سو	6	vowel_merger_a,satem_k,c_from_palatal,laryngeal_lengthening,c_to_theta,theta_to_s	ḱewH > ćawH > cawH > θaw > saw > saw
+سوگ	/ˈsoːɡ/	1	False	False	ine-pro	ḱewk	sūk	سوک	8	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,aw_to_au,theta_to_s,au_to_o,long_o_to_long_u	ḱewk > ćawk > cawk > θauk > sōk > sūk
+سپاس	/si.ˈpaːs/	1	False	False	ine-pro	speḱ	spas	سپس	5	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,theta_to_s	speḱ > spać > spac > spaθ > spas > spas
+سپاس	/si.ˈpaːs/	1	False	False	ine-pro	speḱ	spas	سپس	5	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,theta_to_s	speḱ > spać > spac > spaθ > spas > spas
+سپر	/si.ˈpar/	1	False	False	pal	spl	spl	سپل	0		spl > spl
+سپهر	/si.ˈpihr/	1	False	False	peo	spiθrah	spesr	سپسر	4	theta_to_s,final_h_loss,final_vowel_loss,i_to_e	spiθrah > spisr > spesr
+سپهر	/si.ˈpihr/	1	False	False	peo	spiθrah	spesr	سپسر	4	theta_to_s,final_h_loss,final_vowel_loss,i_to_e	spiθrah > spisr > spesr
+سگ	/ˈsaɡ/	1	False	False	peo	sakah	se	سه	4	k_to_g,final_h_loss,final_vowel_loss,final_ag_to_e	sakah > sag > se
+سگرنه	/su.ɡur.ˈna/	1	False	False	ira-pro	sikurnah	segorn	سگرن	5	k_to_g,final_h_loss,final_vowel_loss,i_to_e,u_to_o	sikurnah > sikurnah > sigurn > segorn
+سیاه	/si.ˈjaːh/	1	False	False	iir-pro	ćyaHwás	syāw	سیاو	7	final_s_to_h,c_from_palatal,laryngeal_lengthening,c_to_theta,theta_to_s,final_h_loss,final_vowel_loss	ćyaHwás > cyaHwˈah > θyāwˈah > syāw > syāw
+سیاه	/si.ˈjaːh/	1	False	False	iir-pro	ćyaHwás	syāw	سیاو	7	final_s_to_h,c_from_palatal,laryngeal_lengthening,c_to_theta,theta_to_s,final_h_loss,final_vowel_loss	ćyaHwás > cyaHwˈah > θyāwˈah > syāw > syāw
+شتر	/ʃu.ˈtur/	1	False	False	iir-pro	úštras	oštr	اشتر	5	final_s_to_h,final_h_loss,final_vowel_loss,u_to_o,stress_not_written	úštras > ˈuštrah > ˈuštrah > ˈuštr > oštr
+شنا	/ʃi.ˈnaː/	1	False	False	ine-pro	sneh₂	hnā	هنا	4	h2_colours_e,laryngeal_to_H,s_to_h,laryngeal_lengthening	sneh₂ > snaH > hnaH > hnā > hnā > hnā
+شهر	/ˈʃahr/	1	False	False	iir-pro	kšatrám	šah	شه	6	t_to_theta_before_sonorant,k_to_x_initial,theta_r_to_cedilla,cedilla_to_h,xsh_to_sh,final_am_loss	kšatrám > xšaθrˈam > xšaçˈam > šah > šah
+شپش	/ʃi.ˈpiʃ/	1	False	False	ira-pro	cwíšah	speš	سپش	5	cw_to_sp,final_h_loss,final_vowel_loss,i_to_e,stress_not_written	cwíšah > spˈišah > spˈiš > speš
+صندل	/san.ˈdal/	1	False	False	pal	cndl	cndl	cندل	0		cndl > cndl
+ـتر	/‿ˈtar/	1	False	True	ine-pro	teros	tar	تر	4	vowel_merger_a,final_s_to_h,final_h_loss,final_vowel_loss	teros > taras > tarah > tarah > tar > tar
+ـه	[‿e]	1	False	False	ira-pro	há	h	ه	1	final_vowel_loss	há > hˈa > h > h
+ـین	/ˈ‿eːn/	1	False	True	ira-pro	ayHnah	īn	این	6	laryngeal_lengthening,ay_to_ai,ai_to_e,final_h_loss,final_vowel_loss,long_e_to_long_i	ayHnah > ainah > ēn > īn
+فراز		1	False	False	ira-pro	frāča	frāč	فراچ	1	final_vowel_loss	frāča > frāča > frāč > frāč
+فراز		1	False	False	ira-pro	frāča	frāč	فراچ	1	final_vowel_loss	frāča > frāča > frāč > frāč
+فرب	/fa.ˈrab/	1	False	False	ine-pro	plew	fraw	فرو	3	vowel_merger_a,l_to_r,p_to_f_before_sonorant_initial	plew > praw > fraw > fraw > fraw > fraw
+فردا	/far.ˈdaː/	1	False	False	ira-pro	frata	frad	فرد	2	t_to_d,final_vowel_loss	frata > frata > frad > frad
+فردا	/far.ˈdaː/	1	False	False	ira-pro	frata	frad	فرد	2	t_to_d,final_vowel_loss	frata > frata > frad > frad
+فرـ	/f.ˈra./	1	False	False	ine-pro	pro	fr	فر	3	vowel_merger_a,p_to_f_before_sonorant_initial,final_vowel_loss	pro > pra > fra > fra > fr > fr
+فریدون	/fa.reː.ˈduːn/	1	False	False	ira-pro	Θraitauna	Θrīdūn	Θریدون	6	t_to_d,ai_to_e,au_to_o,final_vowel_loss,long_e_to_long_i,long_o_to_long_u	Θraitauna > Θraitauna > Θrēdōn > Θrīdūn
+فیروزه	/feː.roː.ˈza/	1	False	False	pal	pērōzag	pīrūze	پیروزه	3	final_ag_to_e,long_e_to_long_i,long_o_to_long_u	pērōzag > pīrūze
+فیروزه	/feː.roː.ˈza/	1	False	False	pal	pērōzag	pīrūze	پیروزه	3	final_ag_to_e,long_e_to_long_i,long_o_to_long_u	pērōzag > pīrūze
+لب	/ˈlab/	1	False	False	ine-pro	leb	rab	رب	2	vowel_merger_a,l_to_r	leb > rab > rab > rab > rab > rab
+لیو	/ˈleːw/	1	False	False	ine-pro	dyew	dyaw	دیو	1	vowel_merger_a	dyew > dyaw > dyaw > dyaw > dyaw > dyaw
+مات	/ˈmaːt/	1	False	False	ine-pro	meh₁	mā	ما	3	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening	meh₁ > maH > maH > mā > mā > mā
+مادر	/maː.ˈdar/	1	False	False	ira-pro	máHtā	mādā	مادا	3	laryngeal_lengthening,t_to_d,stress_not_written	máHtā > mˈātā > mˈādā > mādā
+ماه	/ˈmaːh/	1	False	False	ine-pro	mḗh₁n̥s	mā	ما	8	laryngeal_to_H,long_vowel_merger,syllabic_n,final_s_to_h,laryngeal_lengthening,final_h_loss,final_vowel_loss,stress_not_written	mḗh₁n̥s > mˈāHas > mˈāHah > mˈāah > mˈā > mā
+مردم	/mar.ˈdum/	1	False	False	ira-pro	mártyah	mardy	مردی	4	rt_to_rd,final_h_loss,final_vowel_loss,stress_not_written	mártyah > mˈartyah > mˈardy > mardy
+مرده	/mur.ˈda/	1	False	False	ine-pro	mr̥tós	mard	مرد	6	vowel_merger_a,final_s_to_h,r_syllabic_to_ar,rt_to_rd,final_h_loss,final_vowel_loss	mr̥tós > mr̥tˈas > mr̥tˈah > martˈah > mard > mard
+مرده	/mur.ˈda/	1	False	False	ine-pro	mr̥tós	mard	مرد	6	vowel_merger_a,final_s_to_h,r_syllabic_to_ar,rt_to_rd,final_h_loss,final_vowel_loss	mr̥tós > mr̥tˈas > mr̥tˈah > martˈah > mard > mard
+مرده	/mur.ˈda/	1	False	False	ine-pro	mr̥tós	mard	مرد	6	vowel_merger_a,final_s_to_h,r_syllabic_to_ar,rt_to_rd,final_h_loss,final_vowel_loss	mr̥tós > mr̥tˈas > mr̥tˈah > martˈah > mard > mard
+مرزبان	/marz.ˈbaːn/	1	False	False	peo	marzapā	marzabā	مرزبا	1	p_to_b	marzapā > marzabā > marzabā
+مرغ	/ˈmurɣ/	1	False	False	ira-pro	mr̥gáh	marg	مرگ	3	r_syllabic_to_ar,final_h_loss,final_vowel_loss	mr̥gáh > margˈah > marg > marg
+مزد	/ˈmuzd/	1	False	False	ine-pro	misdʰós	mešd	مشد	7	vowel_merger_a,ruki_s,deaspirate_dh,final_s_to_h,final_h_loss,final_vowel_loss,i_to_e	misdʰós > mišdʰˈas > mišdˈah > mišdˈah > mišd > mešd
+مزنه	/muz.ˈna/	1	False	True	ira-pro	miznya	mezny	مزنی	2	final_vowel_loss,i_to_e	miznya > miznya > mizny > mezny
+مشت		1	False	False	iir-pro	muštíš	mošteš	مشتش	3	i_to_e,u_to_o,stress_not_written	muštíš > muštˈiš > muštˈiš > muštˈiš > mošteš
+مـ		1	False	False	ine-pro	méh₁	mā	ما	4	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening,stress_not_written	méh₁ > mˈaH > mˈaH > mˈā > mˈā > mā
+مفت	/ˈmuft/	1	False	False	iir-pro	muktás	moxt	مخت	5	final_s_to_h,k_to_x_internal,final_h_loss,final_vowel_loss,u_to_o	muktás > muxtˈah > muxtˈah > muxt > moxt
+مل	/ˈmul/	1	False	False	ine-pro	médʰu	may	می	5	vowel_merger_a,deaspirate_dh,d_to_y,final_vowel_loss,stress_not_written	médʰu > mˈadʰu > mˈadu > mˈadu > mˈay > may
+ملخ	/ma.ˈlax/	1	False	False	ira-pro	madaxa	mayax	میخ	2	d_to_y,final_vowel_loss	madaxa > madaxa > mayax > mayax
+منش	/ma.ˈniʃ/	1	False	False	ine-pro	men	man	من	1	vowel_merger_a	men > man > man > man > man > man
+مه	/mæ/	1	False	True	ine-pro	méh₁	mā	ما	4	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening,stress_not_written	méh₁ > mˈaH > mˈaH > mˈā > mˈā > mā
+مهر	/ˈmahr/	1	False	False	iir-pro	mitra	meh	مه	5	t_to_theta_before_sonorant,theta_r_to_cedilla,cedilla_to_h,final_vowel_loss,i_to_e	mitra > miθra > miça > mih > meh
+مهر	/ˈmihr/	1	False	False	iir-pro	mitra	meh	مه	5	t_to_theta_before_sonorant,theta_r_to_cedilla,cedilla_to_h,final_vowel_loss,i_to_e	mitra > miθra > miça > mih > meh
+مهر	/ˈmihr/	1	False	False	iir-pro	mitra	meh	مه	5	t_to_theta_before_sonorant,theta_r_to_cedilla,cedilla_to_h,final_vowel_loss,i_to_e	mitra > miθra > miça > mih > meh
+مو		1	False	False	ira-pro	mádu	may	می	3	d_to_y,final_vowel_loss,stress_not_written	mádu > mˈadu > mˈay > may
+میز	/ˈmeːz/	1	False	False	iir-pro	myázdʰas	myazd	میزد	5	deaspirate_dh,final_s_to_h,final_h_loss,final_vowel_loss,stress_not_written	myázdʰas > myˈazdah > myˈazdah > myˈazd > myazd
+میش	/ˈmeːʃ/	1	False	False	ine-pro	moysós	mīh	میه	8	vowel_merger_a,s_to_h,final_s_to_h,ay_to_ai,ai_to_e,final_h_loss,final_vowel_loss,long_e_to_long_i	moysós > maysˈas > mayhˈah > maihˈah > mēh > mīh
+میغ	/ˈmeːɣ/	1	False	False	ine-pro	h₃meygʰ	mīg	میگ	7	laryngeal_to_H,vowel_merger_a,deaspirate_gh,laryngeal_loss_initial,ay_to_ai,ai_to_e,long_e_to_long_i	h₃meygʰ > Hmaygʰ > Hmayg > maig > mēg > mīg
+میهن	/meː.ˈhan/	1	False	False	pal	myhn'	myhn'	میهن'	0		myhn' > myhn'
+میگو		1	False	False	ira-pro	madika	mayeg	میگ	4	d_to_y,k_to_g,final_vowel_loss,i_to_e	madika > madika > mayig > mayeg
+ناب		1	False	False	pal	anāb	anāb	اناب	0		anāb > anāb
+نامه	/naː.ˈma/	1	False	False	ira-pro	Hnā́ma	nām	نام	3	laryngeal_loss_initial,final_vowel_loss,stress_not_written	Hnā́ma > nˈāma > nˈām > nām
+نان	/ˈnaːn/	1	False	False	ira-pro	nagna	nagn	نگن	1	final_vowel_loss	nagna > nagna > nagn > nagn
+نای	/ˈnaːj/	1	False	False	ine-pro	nedo	nay	نی	3	vowel_merger_a,d_to_y,final_vowel_loss	nedo > nada > nada > nada > nay > nay
+نبیگ	/ni.ˈbeːɡ/	1	False	True	pal	nibeg	nebeg	نبگ	1	i_to_e	nibeg > nebeg
+نر	/ˈnar/	1	False	False	iir-pro	Hnā́	nā	نا	2	laryngeal_loss_initial,stress_not_written	Hnā́ > Hnˈā > nˈā > nˈā > nā
+نر	/ˈnar/	1	False	False	iir-pro	Hnā́	nā	نا	2	laryngeal_loss_initial,stress_not_written	Hnā́ > Hnˈā > nˈā > nˈā > nā
+نزوق		1	False	False	pal	nizōg	nezūg	نزوگ	2	i_to_e,long_o_to_long_u	nizōg > nezūg
+نی	/ˈneː/	1	False	False	ine-pro	né	n	ن	2	vowel_merger_a,final_vowel_loss	né > nˈa > nˈa > nˈa > n > n
+نیش		1	False	False	ira-pro	náyjam	nīy	نیی	7	ay_to_ai,j_to_d,d_to_y,ai_to_e,final_am_loss,long_e_to_long_i,stress_not_written	náyjam > nˈaidam > nˈēy > nīy
+نیمروز	/niːm.ˈroːz/	1	False	False	pal	nymrwc	nymrwc	نیمروc	0		nymrwc > nymrwc
+نیمروز	/niːm.ˈroːz/	1	False	False	pal	nymrwc	nymrwc	نیمروc	0		nymrwc > nymrwc
+نیک	/ˈneːk/	1	False	False	ira-pro	naybah	nīw	نیو	6	ay_to_ai,b_to_w,ai_to_e,final_h_loss,final_vowel_loss,long_e_to_long_i	naybah > naibah > nēw > nīw
+نیک	/ˈneːk/	1	False	False	ira-pro	naybah	nīw	نیو	6	ay_to_ai,b_to_w,ai_to_e,final_h_loss,final_vowel_loss,long_e_to_long_i	naybah > naibah > nēw > nīw
+هفت	/ˈhaft/	1	False	False	ine-pro	septḿ̥	hapt	هپت	4	vowel_merger_a,syllabic_m,s_to_h,final_vowel_loss	septḿ̥ > saptˈa > haptˈa > haptˈa > hapt > hapt
+هم	/ˈham/	1	False	False	ine-pro	sem	h	ه	3	vowel_merger_a,s_to_h,final_am_loss	sem > sam > ham > ham > h > h
+هم	/ˈham/	1	False	False	ine-pro	sem	h	ه	3	vowel_merger_a,s_to_h,final_am_loss	sem > sam > ham > ham > h > h
+هماورد		1	False	False	pal	hamābard	hamābard	همابرد	0		hamābard > hamābard
+هو		1	False	False	ine-pro	sab	hab	هب	1	s_to_h	sab > sab > hab > hab > hab > hab
+هی	[hej]	1	False	False	iir-pro	sádaH	hayā	هیا	4	s_to_h,laryngeal_lengthening,d_to_y,stress_not_written	sádaH > hˈadaH > hˈadā > hˈayā > hayā
+و	/ˈ‿u/	1	False	False	ine-pro	h₂ew	aw	او	3	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial	h₂ew > Haw > Haw > aw > aw > aw
+ون		1	False	False	iir-pro	wán	ban	بن	2	w_to_b_initial,stress_not_written	wán > wˈan > wˈan > wˈan > ban
+ویر	/ˈwiːr/	1	False	False	ira-pro	wiHr̥Háh	bīar	بیر	5	laryngeal_lengthening,r_syllabic_to_ar,final_h_loss,final_vowel_loss,w_to_b_initial	wiHr̥Háh > wīarˈah > wīar > bīar
+ویس	/ˈwiːs/	1	False	False	ine-pro	weyḱ	bīs	بیس	9	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,ay_to_ai,theta_to_s,ai_to_e,long_e_to_long_i,w_to_b_initial	weyḱ > wayć > wayc > waiθ > wēs > bīs
+ویس	/ˈwiːs/	1	False	False	ine-pro	weyḱ	bīs	بیس	9	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,ay_to_ai,theta_to_s,ai_to_e,long_e_to_long_i,w_to_b_initial	weyḱ > wayć > wayc > waiθ > wēs > bīs
+ویم	/ˈwiːm/	1	False	False	pal	wym	bym	بیم	1	w_to_b_initial	wym > bym
+ٔ	/‿ˈji/	1	False	False	ine-pro	Hyós	y	ی	5	vowel_merger_a,final_s_to_h,laryngeal_loss_initial,final_h_loss,final_vowel_loss	Hyós > Hyˈas > Hyˈah > yˈah > y > y
+پا	/ˈpaː/	1	False	False	iir-pro	pā́ts	pās	پاس	4	ts_to_c,c_to_theta,theta_to_s,stress_not_written	pā́ts > pˈāc > pˈāθ > pˈās > pās
+پاد	/ˈpaːd/	1	False	False	ine-pro	peh₂	pā	پا	3	h2_colours_e,laryngeal_to_H,laryngeal_lengthening	peh₂ > paH > paH > pā > pā > pā
+پاس	/ˈpaːs/	1	False	False	ine-pro	peh₂	pā	پا	3	h2_colours_e,laryngeal_to_H,laryngeal_lengthening	peh₂ > paH > paH > pā > pā > pā
+پای	/ˈpaːj/	1	False	False	iir-pro	pā́ts	pās	پاس	4	ts_to_c,c_to_theta,theta_to_s,stress_not_written	pā́ts > pˈāc > pˈāθ > pˈās > pās
+پر	/ˈpur/	1	False	False	ine-pro	pl̥h₁nós	parn	پرن	8	laryngeal_to_H,vowel_merger_a,syllabic_l_to_r,final_s_to_h,laryngeal_lengthening,r_syllabic_to_ar,final_h_loss,final_vowel_loss	pl̥h₁nós > pr̥Hnˈas > pr̥Hnˈah > parnˈah > parn > parn
+پر	/ˈpar/	1	False	False	ine-pro	pornóm	parn	پرن	2	vowel_merger_a,final_am_loss	pornóm > parnˈam > parnˈam > parnˈam > parn > parn
+پرت	/ˈpart/	1	False	False	ine-pro	pr̥to	pard	پرد	4	vowel_merger_a,r_syllabic_to_ar,rt_to_rd,final_vowel_loss	pr̥to > pr̥ta > pr̥ta > parta > pard > pard
+پرست	/pa.ˈrast/	1	False	False	pal	plst	plst	پلست	0		plst > plst
+پریش		1	False	False	ine-pro	pers	parš	پرش	2	vowel_merger_a,ruki_s	pers > parš > parš > parš > parš > parš
+پس	/ˈpas/	1	False	False	ine-pro	pós	p	پ	4	vowel_merger_a,final_s_to_h,final_h_loss,final_vowel_loss	pós > pˈas > pˈah > pˈah > p > p
+پس	/ˈpas/	1	False	False	ine-pro	pós	p	پ	4	vowel_merger_a,final_s_to_h,final_h_loss,final_vowel_loss	pós > pˈas > pˈah > pˈah > p > p
+پس	/ˈpas/	1	False	False	ine-pro	pós	p	پ	4	vowel_merger_a,final_s_to_h,final_h_loss,final_vowel_loss	pós > pˈas > pˈah > pˈah > p > p
+پس	/ˈpas/	1	False	False	ine-pro	pós	p	پ	4	vowel_merger_a,final_s_to_h,final_h_loss,final_vowel_loss	pós > pˈas > pˈah > pˈah > p > p
+پشت	/ˈpuʃt/	1	False	False	ira-pro	pr̥štáh	paršt	پرشت	3	r_syllabic_to_ar,final_h_loss,final_vowel_loss	pr̥štáh > parštˈah > paršt > paršt
+پشت	/ˈpuʃt/	1	False	False	ira-pro	pr̥štáh	paršt	پرشت	3	r_syllabic_to_ar,final_h_loss,final_vowel_loss	pr̥štáh > parštˈah > paršt > paršt
+پنج	/ˈpand͡ʒ/	1	False	False	ine-pro	pénkʷe	pank	پنک	4	vowel_merger_a,labiovelar_k,final_vowel_loss,stress_not_written	pénkʷe > pˈanka > pˈanka > pˈanka > pˈank > pank
+پندک	/pun.ˈduk/	1	False	False	pal	pndk'	pndk'	پندک'	0		pndk' > pndk'
+پنیر	/pa.ˈniːr/	1	False	False	pal	pnyl	pnyl	پنیل	0		pnyl > pnyl
+پوچ	/ˈpuːt͡ʃ/	1	False	False	ira-pro	pū	pū	پو	0		pū > pū > pū > pū
+پیر	/ˈpiːr/	1	False	True	ira-pro	paru	par	پر	1	final_vowel_loss	paru > paru > par > par
+پیر	/ˈpiːr/	1	False	True	ira-pro	paru	par	پر	1	final_vowel_loss	paru > paru > par > par
+پیه	/ˈpiːh/	1	False	False	ine-pro	péyh₂tu	pīd	پید	9	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening,ay_to_ai,t_to_d,ai_to_e,final_vowel_loss,long_e_to_long_i,stress_not_written	péyh₂tu > pˈayHtu > pˈayHtu > pˈaitu > pˈēd > pīd
+چال	/ˈt͡ʃaːl/	1	False	False	ira-pro	čāt	čāt	چات	0		čāt > čāt > čāt > čāt
+چست		1	False	False	ira-pro	custáh	sost	سست	5	c_to_theta,theta_to_s,final_h_loss,final_vowel_loss,u_to_o	custáh > θustˈah > sust > sost
+چهر	/ˈt͡ʃihr/	1	False	False	ira-pro	čiθráh	čeh	چه	5	theta_r_to_cedilla,cedilla_to_h,final_h_loss,final_vowel_loss,i_to_e	čiθráh > čiçˈah > čih > čeh
+چون	/ˈt͡ʃuːn/	1	False	False	ira-pro	či-gauna	čeyūn	چیون	5	g_to_y,au_to_o,final_vowel_loss,i_to_e,long_o_to_long_u	či-gauna > čigauna > čiyōn > čeyūn
+چون	/ˈt͡ʃuːn/	1	False	False	ira-pro	či-gauna	čeyūn	چیون	5	g_to_y,au_to_o,final_vowel_loss,i_to_e,long_o_to_long_u	či-gauna > čigauna > čiyōn > čeyūn
+کج	/ˈkad͡ʒ/	1	False	False	ine-pro	kog	ke	که	2	vowel_merger_a,final_ag_to_e	kog > kag > kag > kag > kag > ke
+کر	/ˈkar/	1	False	False	pal	kl	kl	کل	0		kl > kl
+کرم	/ˈkirm/	1	False	False	ine-pro	kʷŕ̥mis	karmeš	کرمش	5	labiovelar_k,ruki_s,r_syllabic_to_ar,i_to_e,stress_not_written	kʷŕ̥mis > kˈr̥miš > kˈr̥miš > kˈarmiš > kˈarmiš > karmeš
+کفش	/kæfʃ/	1	False	False	pal	kpš	kpš	کپش	0		kpš > kpš
+کله	/kal.ˈla/	1	False	True	ira-pro	kalā	kalā	کلا	0		kalā > kalā > kalā > kalā
+کندن	/kan.ˈdan/	1	False	False	ira-pro	kánHati	kanad	کند	4	laryngeal_lengthening,t_to_d,final_vowel_loss,stress_not_written	kánHati > kˈanati > kˈanad > kanad
+کنیز		1	False	False	ira-pro	kanyáH	kanyā	کنیا	2	laryngeal_lengthening,stress_not_written	kanyáH > kanyˈā > kanyˈā > kanyā
+که	/ˈki/	1	False	False	ine-pro	kʷís	keš	کش	4	labiovelar_k,ruki_s,i_to_e,stress_not_written	kʷís > kˈiš > kˈiš > kˈiš > kˈiš > keš
+کو	/ˈkuː/	1	False	False	ine-pro	kʷís	keš	کش	4	labiovelar_k,ruki_s,i_to_e,stress_not_written	kʷís > kˈiš > kˈiš > kˈiš > kˈiš > keš
+کوزابری		1	False	False	pal	kūzābrēg	kūzābrīg	کوزابریگ	1	long_e_to_long_i	kūzābrēg > kūzābrīg
+کوش	/ˈkoːʃ/	1	False	False	ine-pro	kewh₂	kaw	کو	3	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening	kewh₂ > kawH > kawH > kaw > kaw > kaw
+کوه	/ˈkoːh/	1	False	False	ine-pro	kewHp	kūp	کوپ	5	vowel_merger_a,laryngeal_lengthening,aw_to_au,au_to_o,long_o_to_long_u	kewHp > kawHp > kawHp > kaup > kōp > kūp
+کژ	/ˈkaʒ/	1	False	False	ine-pro	kog	ke	که	2	vowel_merger_a,final_ag_to_e	kog > kag > kag > kag > kag > ke
+گاز	/ˈɡaːz/	1	False	True	ira-pro	gaz	gaz	گز	0		gaz > gaz > gaz > gaz
+گاه		1	False	False	ine-pro	geH	gā	گا	2	vowel_merger_a,laryngeal_lengthening	geH > gaH > gaH > gā > gā > gā
+گاو	/ˈɡaːw/	1	False	False	ine-pro	gʷṓws	gāws	گاوس	3	long_vowel_merger,labiovelar_g,stress_not_written	gʷṓws > gˈāws > gˈāws > gˈāws > gˈāws > gāws
+گره	/ɡi.ˈrih/	1	False	False	ine-pro	ger	gar	گر	1	vowel_merger_a	ger > gar > gar > gar > gar > gar
+گرو	/ɡi.ˈraw/	1	False	False	ine-pro	gʰrebʰ	grab	گرب	3	vowel_merger_a,grassmann,deaspirate_bh	gʰrebʰ > grabʰ > grab > grab > grab > grab
+گمان	/ɡu.ˈmaːn/	1	False	False	ira-pro	wimānah	bemān	بمان	4	final_h_loss,final_vowel_loss,i_to_e,w_to_b_initial	wimānah > wimānah > wimān > bemān
+گنج	/ˈɡand͡ʒ/	1	False	False	peo	ganzah	ganz	گنز	2	final_h_loss,final_vowel_loss	ganzah > ganz > ganz
+گند		1	False	False	pal	gwnd	gwnd	گوند	0		gwnd > gwnd
+گنده	/ɡan.ˈda/	1	False	False	iir-pro	gʰandʰ	gand	گند	2	deaspirate_dh,deaspirate_gh	gʰandʰ > gand > gand > gand > gand
+گنده	/ɡan.ˈda/	1	False	False	iir-pro	gʰandʰ	gand	گند	2	deaspirate_dh,deaspirate_gh	gʰandʰ > gand > gand > gand > gand
+گه	[ɡ̥oʱ]	1	False	False	ine-pro	gʷuH	gū	گو	2	labiovelar_g,laryngeal_lengthening	gʷuH > guH > guH > gū > gū > gū
+گوش	/ˈɡoːʃ/	1	False	False	ine-pro	gʰows	gūs	گوس	5	vowel_merger_a,deaspirate_gh,aw_to_au,au_to_o,long_o_to_long_u	gʰows > gʰaws > gaws > gaus > gōs > gūs
+گوشت	/ˈɡoːʃt/	1	False	False	ira-pro	gawštaH	gūštā	گوشتا	4	laryngeal_lengthening,aw_to_au,au_to_o,long_o_to_long_u	gawštaH > gauštā > gōštā > gūštā
+گوهر	/ɡaw.ˈhar/	1	False	False	pal	gwhl	gwhl	گوهل	0		gwhl > gwhl
+گوهر	/ɡaw.ˈhar/	1	False	False	pal	gwhl	gwhl	گوهل	0		gwhl > gwhl
+گیاخن	/ɡu.jaː.ˈxan/	1	False	False	ira-pro	wiyāxana	beyāxan	بیاخن	3	final_vowel_loss,i_to_e,w_to_b_initial	wiyāxana > wiyāxana > wiyāxan > beyāxan
+گیان	/ɡu.ˈjaːn/	1	False	False	ira-pro	widaHna	beyān	بیان	5	laryngeal_lengthening,d_to_y,final_vowel_loss,i_to_e,w_to_b_initial	widaHna > widāna > wiyān > beyān
+یاد	/ˈjaːd/	1	False	False	ine-pro	yeh₂	yā	یا	3	h2_colours_e,laryngeal_to_H,laryngeal_lengthening	yeh₂ > yaH > yaH > yā > yā > yā
+یاکند	/jaː.ˈkand/	1	False	False	pal	yʾknd	yʾknd	یʾکند	0		yʾknd > yʾknd
+یزد	/ˈjazd/	1	False	False	ine-pro	h₁yaǵ	yad	ید	5	laryngeal_to_H,satem_g,j_from_palatal,laryngeal_loss_initial,j_to_d	h₁yaǵ > Hyaȷ́ > Hyaj > yad > yad > yad
+یشت	/ˈjaʃt/	1	False	False	pal	yšt'	yšt'	یشت'	0		yšt' > yšt'
+یوز	/ˈjoːz/	1	False	False	pal	ywc	ywc	یوc	0		ywc > ywc
+آب	/ˈʔaːb/	2	False	False	ine-pro	h₂ep	ap	اپ	3	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial	h₂ep > Hap > Hap > ap > ap > ap
+آخور	/ʔaː.ˈxʷar/	2	False	False	ira-pro	hwar	hwor	هور	2	war_rounding,u_to_o	hwar > hwar > hwur > hwor
+آرد	/ˈʔaːrd/	2	False	False	ine-pro	h₂elh₁	ar	ار	5	laryngeal_to_H,vowel_merger_a,l_to_r,laryngeal_loss_initial,laryngeal_lengthening	h₂elh₁ > HarH > HarH > ar > ar > ar
+آروغ	/ʔaː.ˈroːɣ/	2	False	False	ine-pro	h₁rewg	rūg	روگ	6	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,aw_to_au,au_to_o,long_o_to_long_u	h₁rewg > Hrawg > Hrawg > raug > rōg > rūg
+آریا	/ʔaː.ri.ˈjaː/	2	False	False	iir-pro	Áryas	Áry	Áری	3	final_s_to_h,final_h_loss,final_vowel_loss	Áryas > Áryah > Áryah > Áry > Áry
+آریا	/ʔaː.ri.ˈjaː/	2	False	False	iir-pro	Áryas	Áry	Áری	3	final_s_to_h,final_h_loss,final_vowel_loss	Áryas > Áryah > Áryah > Áry > Áry
+آسمان	/ʔaːs.ˈmaːn/	2	False	False	ine-pro	h₂éḱmō	asmā	اسما	9	laryngeal_to_H,vowel_merger_a,long_vowel_merger,satem_k,c_from_palatal,laryngeal_loss_initial,c_to_theta,theta_to_s,stress_not_written	h₂éḱmō > Hˈaćmā > Hˈacmā > ˈaθmā > ˈasmā > asmā
+آشنا	/ʔaːʃ.ˈnaː/	2	False	False	ine-pro	ǵneh₃	dnā	دنا	7	h3_colours_e,laryngeal_to_H,vowel_merger_a,satem_g,j_from_palatal,laryngeal_lengthening,j_to_d	ǵneh₃ > ȷ́naH > jnaH > dnā > dnā > dnā
+آشنا	/ʔaːʃ.ˈnaː/	2	False	False	ine-pro	ǵneh₃	dnā	دنا	7	h3_colours_e,laryngeal_to_H,vowel_merger_a,satem_g,j_from_palatal,laryngeal_lengthening,j_to_d	ǵneh₃ > ȷ́naH > jnaH > dnā > dnā > dnā
+آن	/ˈʔaːn/	2	False	False	ira-pro	ha	h	ه	1	final_vowel_loss	ha > ha > h > h
+آن	/ˈʔaːn/	2	False	False	ira-pro	ha	h	ه	1	final_vowel_loss	ha > ha > h > h
+آهنگ	/ʔaː.ˈhanɡ/	2	False	False	pal	ʾʾhng	ʾʾhng	ʾʾهنگ	0		ʾʾhng > ʾʾhng
+ابرو	/ʔab.ˈruː/	2	False	False	ine-pro	h₃bʰrúHs	brūs	بروس	5	laryngeal_to_H,deaspirate_bh,laryngeal_loss_initial,laryngeal_lengthening,stress_not_written	h₃bʰrúHs > HbʰrˈuHs > HbrˈuHs > brˈūs > brˈūs > brūs
+اخم	[ʔäxm]	2	False	False	ine-pro	ákas	e	ا	6	final_s_to_h,k_to_g,final_h_loss,final_vowel_loss,final_ag_to_e,stress_not_written	ákas > ˈakas > ˈakah > ˈakah > ˈag > e
+ارزش	/ʔar.ˈziʃ/	2	False	False	iir-pro	Hargʰás	arg	ارگ	5	deaspirate_gh,final_s_to_h,laryngeal_loss_initial,final_h_loss,final_vowel_loss	Hargʰás > Hargˈah > argˈah > arg > arg
+ارس	/ˈʔars/	2	False	False	ine-pro	h₂éḱru	ah	اه	10	laryngeal_to_H,vowel_merger_a,satem_k,c_from_palatal,laryngeal_loss_initial,c_to_theta,theta_r_to_cedilla,cedilla_to_h,final_vowel_loss,stress_not_written	h₂éḱru > Hˈaćru > Hˈacru > ˈaçu > ˈah > ah
+اره	/ʔar.ˈra/	2	False	False	ine-pro	sers	harš	هرش	3	vowel_merger_a,ruki_s,s_to_h	sers > sarš > harš > harš > harš > harš
+از	/ˈʔaz/	2	False	False	pal	𐭬𐭭	𐭬𐭭	𐭬𐭭	0		𐭬𐭭 > 𐭬𐭭
+استاد	/ʔus.ˈtaːd/	2	False	False	ine-pro	steh₂	stā	ستا	3	h2_colours_e,laryngeal_to_H,laryngeal_lengthening	steh₂ > staH > staH > stā > stā > stā
+استاد	/ʔus.ˈtaːd/	2	False	False	ine-pro	steh₂	stā	ستا	3	h2_colours_e,laryngeal_to_H,laryngeal_lengthening	steh₂ > staH > staH > stā > stā > stā
+اسپرم		2	False	False	ira-pro	spr̥Hgmáh	spargm	سپرگم	4	laryngeal_lengthening,r_syllabic_to_ar,final_h_loss,final_vowel_loss	spr̥Hgmáh > spargmˈah > spargm > spargm
+اسپریس	/ʔasp.ˈreːs/	2	False	False	pal	ʾsplys	ʾsplys	ʾسپلیس	0		ʾsplys > ʾsplys
+اسپست	/ʔas.ˈpist/	2	False	False	ira-pro	HacwaHastiš	aspāasteš	اسپاستش	4	laryngeal_loss_initial,laryngeal_lengthening,cw_to_sp,i_to_e	HacwaHastiš > aspāastiš > aspāastiš > aspāasteš
+اشک	/ˈʔaʃk/	2	False	False	ine-pro	h₂éḱru	ah	اه	10	laryngeal_to_H,vowel_merger_a,satem_k,c_from_palatal,laryngeal_loss_initial,c_to_theta,theta_r_to_cedilla,cedilla_to_h,final_vowel_loss,stress_not_written	h₂éḱru > Hˈaćru > Hˈacru > ˈaçu > ˈah > ah
+اشکان	/ʔaʃ.ˈkaːn/	2	False	False	pal	ʾškʾn	ʾškʾn	ʾشکʾن	0		ʾškʾn > ʾškʾn
+افشار	/ʔaf.ˈʃaːr/	2	False	False	pal	ʾpšār	ʾpšār	ʾپشار	0		ʾpšār > ʾpšār
+الماس	/ʔal.ˈmaːs/	2	False	False	pal	ʾlmʾs	ʾlmʾs	ʾلمʾس	0		ʾlmʾs > ʾlmʾs
+انگشت	/ʔaŋ.ˈɡiʃt/	2	False	False	ine-pro	h₁óngʷl̥	angar	انگر	7	laryngeal_to_H,vowel_merger_a,labiovelar_g,syllabic_l_to_r,laryngeal_loss_initial,r_syllabic_to_ar,stress_not_written	h₁óngʷl̥ > Hˈangr̥ > Hˈangr̥ > ˈangar > ˈangar > angar
+ای		2	False	False	pal	ʾyd	ʾyd	ʾید	0		ʾyd > ʾyd
+ایدر	/ʔeː.ˈdar/	2	False	False	iir-pro	Hidʰá	ey	ای	5	deaspirate_dh,laryngeal_loss_initial,d_to_y,final_vowel_loss,i_to_e	Hidʰá > Hidˈa > idˈa > iy > ey
+ایزد	/ʔeː.ˈzad/	2	False	False	ine-pro	h₁yaǵ	yad	ید	5	laryngeal_to_H,satem_g,j_from_palatal,laryngeal_loss_initial,j_to_d	h₁yaǵ > Hyaȷ́ > Hyaj > yad > yad > yad
+ایزد	/ʔeː.ˈzad/	2	False	False	ine-pro	h₁yaǵ	yad	ید	5	laryngeal_to_H,satem_g,j_from_palatal,laryngeal_loss_initial,j_to_d	h₁yaǵ > Hyaȷ́ > Hyaj > yad > yad > yad
+بابک	/baː.ˈbak/	2	False	False	peo	Pāpakah	Pābe	Pابه	5	p_to_b,k_to_g,final_h_loss,final_vowel_loss,final_ag_to_e	Pāpakah > Pābag > Pābe
+بابک	/baː.ˈbak/	2	False	False	peo	Pāpakah	Pābe	Pابه	5	p_to_b,k_to_g,final_h_loss,final_vowel_loss,final_ag_to_e	Pāpakah > Pābag > Pābe
+بابک	/baː.ˈbak/	2	False	False	peo	Pāpakah	Pābe	Pابه	5	p_to_b,k_to_g,final_h_loss,final_vowel_loss,final_ag_to_e	Pāpakah > Pābag > Pābe
+باران	/baː.ˈraːn/	2	False	False	ine-pro	weh₁r	bār	بار	4	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening,w_to_b_initial	weh₁r > waHr > waHr > wār > wār > bār
+باران	/baː.ˈraːn/	2	False	False	ine-pro	weh₁r	bār	بار	4	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening,w_to_b_initial	weh₁r > waHr > waHr > wār > wār > bār
+باران	/baː.ˈraːn/	2	False	False	ine-pro	weh₁r	bār	بار	4	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening,w_to_b_initial	weh₁r > waHr > waHr > wār > wār > bār
+باز	/ˈbaːz/	2	False	False	ine-pro	bʰe	b	ب	3	vowel_merger_a,deaspirate_bh,final_vowel_loss	bʰe > bʰa > ba > ba > b > b
+بام	/ˈbaːm/	2	False	False	ine-pro	wes	b	ب	5	vowel_merger_a,final_s_to_h,final_h_loss,final_vowel_loss,w_to_b_initial	wes > was > wah > wah > w > b
+بان	/ˈbaːn/	2	False	False	ine-pro	peh₂	pā	پا	3	h2_colours_e,laryngeal_to_H,laryngeal_lengthening	peh₂ > paH > paH > pā > pā > pā
+بان	/ˈbaːn/	2	False	False	ine-pro	peh₂	pā	پا	3	h2_colours_e,laryngeal_to_H,laryngeal_lengthening	peh₂ > paH > paH > pā > pā > pā
+بان	/ˈbaːn/	2	False	False	ine-pro	wes	b	ب	5	vowel_merger_a,final_s_to_h,final_h_loss,final_vowel_loss,w_to_b_initial	wes > was > wah > wah > w > b
+بانگ	/ˈbaːnɡ/	2	False	False	ine-pro	wṓkʷs	bāš	باش	7	long_vowel_merger,labiovelar_k,ruki_s,k_to_x_internal,xsh_to_sh,w_to_b_initial,stress_not_written	wṓkʷs > wˈākš > wˈāxš > wˈāxš > wˈāš > bāš
+باک	/ˈbaːk/	2	False	False	ine-pro	bʰeyh₂	bay	بی	4	laryngeal_to_H,vowel_merger_a,deaspirate_bh,laryngeal_lengthening	bʰeyh₂ > bʰayH > bayH > bay > bay > bay
+ببر	/ˈbabr/	2	False	False	pal	bpl	bpl	بپل	0		bpl > bpl
+بخت	/ˈbaxt/	2	False	False	ine-pro	bʰeh₂g	bāg	باگ	4	h2_colours_e,laryngeal_to_H,deaspirate_bh,laryngeal_lengthening	bʰeh₂g > bʰaHg > baHg > bāg > bāg > bāg
+بختن	/bux.ˈtan/	2	False	False	ira-pro	bauxtah	būxt	بوخت	4	au_to_o,final_h_loss,final_vowel_loss,long_o_to_long_u	bauxtah > bauxtah > bōxt > būxt
+بخش	/ˈbaxʃ/	2	False	False	ine-pro	bʰeh₂g	bāg	باگ	4	h2_colours_e,laryngeal_to_H,deaspirate_bh,laryngeal_lengthening	bʰeh₂g > bʰaHg > baHg > bāg > bāg > bāg
+بخش	/ˈbaxʃ/	2	False	False	ine-pro	bʰeh₂g	bāg	باگ	4	h2_colours_e,laryngeal_to_H,deaspirate_bh,laryngeal_lengthening	bʰeh₂g > bʰaHg > baHg > bāg > bāg > bāg
+بدست	/bi.ˈdast/	2	False	False	pal	wtst'	btst'	بتست'	1	w_to_b_initial	wtst' > btst'
+بدست		2	False	False	ira-pro	watah	bad	بد	4	t_to_d,final_h_loss,final_vowel_loss,w_to_b_initial	watah > watah > wad > bad
+بدشت		2	False	False	ira-pro	watah	bad	بد	4	t_to_d,final_h_loss,final_vowel_loss,w_to_b_initial	watah > watah > wad > bad
+برای	/ba.ˈraː.ji/	2	False	False	ine-pro	Hreh₁dʰ	rād	راد	5	laryngeal_to_H,vowel_merger_a,deaspirate_dh,laryngeal_loss_initial,laryngeal_lengthening	Hreh₁dʰ > HraHdʰ > HraHd > rād > rād > rād
+برز		2	False	False	pal	wlc	blc	بلc	1	w_to_b_initial	wlc > blc
+برم		2	False	False	ine-pro	wer	gor	گر	4	vowel_merger_a,war_rounding,w_to_g_before_ur,u_to_o	wer > war > war > war > gur > gor
+برنا	/bur.ˈnaː/	2	False	False	ira-pro	pr̥Hnáh	parn	پرن	4	laryngeal_lengthening,r_syllabic_to_ar,final_h_loss,final_vowel_loss	pr̥Hnáh > parnˈah > parn > parn
+برنا	/bur.ˈnaː/	2	False	False	ira-pro	pr̥Hnáh	parn	پرن	4	laryngeal_lengthening,r_syllabic_to_ar,final_h_loss,final_vowel_loss	pr̥Hnáh > parnˈah > parn > parn
+برنج	/bi.ˈrind͡ʒ/	2	False	False	pal	blnc	blnc	بلنc	0		blnc > blnc
+برگ	/ˈbarɡ/	2	False	False	ine-pro	welh₁	gor	گر	7	laryngeal_to_H,vowel_merger_a,l_to_r,laryngeal_lengthening,war_rounding,w_to_g_before_ur,u_to_o	welh₁ > warH > warH > war > gur > gor
+بز	/ˈbuz/	2	False	False	ine-pro	bʰūǵ-o-s	būy	بوی	9	vowel_merger_a,satem_g,deaspirate_bh,final_s_to_h,j_from_palatal,j_to_d,d_to_y,final_h_loss,final_vowel_loss	bʰūǵ-o-s > bʰūȷ́as > būjah > būdah > būy > būy
+بلبل	/bul.ˈbul/	2	False	False	ine-pro	balbal	barbar	بربر	1	l_to_r	balbal > barbar > barbar > barbar > barbar > barbar
+بلد	/ba.ˈlad/	2	False	False	iir-pro	bálas	bar	بر	5	final_s_to_h,l_to_r,final_h_loss,final_vowel_loss,stress_not_written	bálas > bˈarah > bˈarah > bˈar > bar
+بلند	/bu.ˈland/	2	False	False	ine-pro	bʰerǵʰ	bard	برد	6	vowel_merger_a,satem_gh,deaspirate_bh,deaspirate_palatal,j_from_palatal,j_to_d	bʰerǵʰ > bʰarȷ́ʰ > barj > bard > bard > bard
+بلوط	/ba.ˈluːt/	2	False	False	pal	blwt'	blwt'	بلوت'	0		blwt' > blwt'
+به	/ˈba/	2	False	False	ira-pro	pati	pad	پد	2	t_to_d,final_vowel_loss	pati > pati > pad > pad
+بها	/ba.ˈhaː/	2	False	False	ine-pro	wes	b	ب	5	vowel_merger_a,final_s_to_h,final_h_loss,final_vowel_loss,w_to_b_initial	wes > was > wah > wah > w > b
+بودن	/buː.ˈdan/	2	False	False	ine-pro	bʰewH	baw	بو	3	vowel_merger_a,deaspirate_bh,laryngeal_lengthening	bʰewH > bʰawH > bawH > baw > baw > baw
+بوز		2	False	False	ira-pro	wábžah	babž	ببژ	4	final_h_loss,final_vowel_loss,w_to_b_initial,stress_not_written	wábžah > wˈabžah > wˈabž > babž
+بوز		2	False	False	ira-pro	wábžah	babž	ببژ	4	final_h_loss,final_vowel_loss,w_to_b_initial,stress_not_written	wábžah > wˈabžah > wˈabž > babž
+بچه	/ba.ˈt͡ʃa/	2	False	False	ira-pro	wacáh	bas	بس	5	c_to_theta,theta_to_s,final_h_loss,final_vowel_loss,w_to_b_initial	wacáh > waθˈah > was > bas
+بی	/ˈbeː/	2	False	True	ine-pro	h₂epó	ab	اب	5	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,p_to_b,final_vowel_loss	h₂epó > Hapˈa > Hapˈa > apˈa > ab > ab
+بیستون	/beːs.ˈtuːn/	2	False	False	peo	Bagastānah	Bayastān	Bیستان	3	g_to_y,final_h_loss,final_vowel_loss	Bagastānah > Bayastān > Bayastān
+بیل	/ˈbeːl/	2	False	False	ine-pro	bʰedʰh₂	bad	بد	5	laryngeal_to_H,vowel_merger_a,grassmann,deaspirate_dh,laryngeal_lengthening	bʰedʰh₂ > badʰH > badH > bad > bad > bad
+بیمه	/biː.ˈma/	2	False	False	ine-pro	bʰeyh₂	bay	بی	4	laryngeal_to_H,vowel_merger_a,deaspirate_bh,laryngeal_lengthening	bʰeyh₂ > bʰayH > bayH > bay > bay > bay
+بیو		2	False	False	ine-pro	wedʰ	bad	بد	3	vowel_merger_a,deaspirate_dh,w_to_b_initial	wedʰ > wadʰ > wad > wad > wad > bad
+تاب		2	False	False	ine-pro	temp	tamp	تمپ	1	vowel_merger_a	temp > tamp > tamp > tamp > tamp > tamp
+تاب		2	False	False	ine-pro	temp	tamp	تمپ	1	vowel_merger_a	temp > tamp > tamp > tamp > tamp > tamp
+تار	/ˈtaːr/	2	False	False	ine-pro	temH	t	ت	3	vowel_merger_a,laryngeal_lengthening,final_am_loss	temH > tamH > tamH > tam > t > t
+تار	/ˈtaːr/	2	False	False	ine-pro	ten	tan	تن	1	vowel_merger_a	ten > tan > tan > tan > tan > tan
+تارا	/taː.ˈraː/	2	False	False	ine-pro	h₂stḗr	stār	ستار	4	laryngeal_to_H,long_vowel_merger,laryngeal_loss_initial,stress_not_written	h₂stḗr > Hstˈār > Hstˈār > stˈār > stˈār > stār
+تارا	/taː.ˈraː/	2	False	False	ine-pro	h₂stḗr	stār	ستار	4	laryngeal_to_H,long_vowel_merger,laryngeal_loss_initial,stress_not_written	h₂stḗr > Hstˈār > Hstˈār > stˈār > stˈār > stār
+تخش	/ˈtaxʃ/	2	False	False	ine-pro	tekʷ	tak	تک	2	vowel_merger_a,labiovelar_k	tekʷ > tak > tak > tak > tak > tak
+تخم	/ˈtuxm/	2	False	False	ine-pro	tewk	tūk	توک	4	vowel_merger_a,aw_to_au,au_to_o,long_o_to_long_u	tewk > tawk > tawk > tauk > tōk > tūk
+ترف	[t̪ʰæɾf]	2	False	False	ira-pro	tr̥práh	tarpr	ترپر	3	r_syllabic_to_ar,final_h_loss,final_vowel_loss	tr̥práh > tarprˈah > tarpr > tarpr
+تفت	/ˈtaft/	2	False	False	ine-pro	tep	tap	تپ	1	vowel_merger_a	tep > tap > tap > tap > tap > tap
+تلخ	/ˈtalx/	2	False	False	iir-pro	tákram	taxr	تخر	3	k_to_x_internal,final_am_loss,stress_not_written	tákram > tˈaxram > tˈaxram > tˈaxr > taxr
+تند	/ˈtund/	2	False	False	ine-pro	stewd	stūd	ستود	4	vowel_merger_a,aw_to_au,au_to_o,long_o_to_long_u	stewd > stawd > stawd > staud > stōd > stūd
+تنومند	/ta.nuː.ˈmand/	2	False	False	pal	tn'ʾwmnd	tn'ʾwmnd	تن'ʾومند	0		tn'ʾwmnd > tn'ʾwmnd
+تنیدن	/ta.niː.ˈdan/	2	False	False	ine-pro	tn̥néwti	tanūd	تنود	8	vowel_merger_a,syllabic_n,aw_to_au,t_to_d,au_to_o,final_vowel_loss,long_o_to_long_u,stress_not_written	tn̥néwti > tanˈawti > tanˈawti > tanˈauti > tanˈōd > tanūd
+تهی	/tu.ˈhiː/	2	False	False	iir-pro	tuŝćyás	toŝsy	تŝسی	7	final_s_to_h,c_from_palatal,c_to_theta,theta_to_s,final_h_loss,final_vowel_loss,u_to_o	tuŝćyás > tuŝcyˈah > tuŝθyˈah > tuŝsy > toŝsy
+توان	/tu.ˈwaːn/	2	False	False	ine-pro	tewh₂	taw	تو	3	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening	tewh₂ > tawH > tawH > taw > taw > taw
+توان	/tu.ˈwaːn/	2	False	False	ine-pro	tewh₂	taw	تو	3	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening	tewh₂ > tawH > tawH > taw > taw > taw
+توله	/toː.ˈla/	2	False	False	pal	twlkʾ	twlkʾ	تولکʾ	0		twlkʾ > twlkʾ
+تیز	/ˈteːz/	2	False	False	ine-pro	steyg	stīg	ستیگ	4	vowel_merger_a,ay_to_ai,ai_to_e,long_e_to_long_i	steyg > stayg > stayg > staig > stēg > stīg
+جر		2	False	False	ine-pro	ǵʰoh₁ro	dār	دار	8	laryngeal_to_H,vowel_merger_a,satem_gh,deaspirate_palatal,j_from_palatal,laryngeal_lengthening,j_to_d,final_vowel_loss	ǵʰoh₁ro > ȷ́ʰaHra > jaHra > dāra > dār > dār
+جم	/ˈd͡ʒam/	2	False	False	pal	𐭩𐭬	𐭩𐭬	𐭩𐭬	0		𐭩𐭬 > 𐭩𐭬
+جن	/ˈd͡ʒan/	2	False	False	ine-pro	h₁ey	ay	ای	3	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial	h₁ey > Hay > Hay > ay > ay > ay
+جوراب	/d͡ʒoː.ˈraːb/	2	False	False	pal	gōrab	gūrab	گورب	1	long_o_to_long_u	gōrab > gūrab
+جوهر	/d͡ʒaw.ˈhar/	2	False	False	pal	gwhl	gwhl	گوهل	0		gwhl > gwhl
+جوهر	/d͡ʒaw.ˈhar/	2	False	False	pal	gwhl	gwhl	گوهل	0		gwhl > gwhl
+خام	/ˈxaːm/	2	False	False	ine-pro	h₂eh₃mós	ām	آم	8	h3_colours_e,laryngeal_to_H,vowel_merger_a,final_s_to_h,laryngeal_loss_initial,laryngeal_lengthening,final_h_loss,final_vowel_loss	h₂eh₃mós > HaHmˈas > HaHmˈah > āmˈah > ām > ām
+خشم	/ˈxaʃm/	2	False	False	iir-pro	HayšHmas	īšm	ایشم	8	final_s_to_h,laryngeal_loss_initial,laryngeal_lengthening,ay_to_ai,ai_to_e,final_h_loss,final_vowel_loss,long_e_to_long_i	HayšHmas > HayšHmah > aišmah > ēšm > īšm
+خندق	/xan.ˈdaq/	2	False	False	pal	handag	hande	هنده	1	final_ag_to_e	handag > hande
+خود	/ˈxoːd/	2	False	False	ine-pro	kadʰ	kad	کد	1	deaspirate_dh	kadʰ > kadʰ > kad > kad > kad > kad
+خوهر		2	False	False	ira-pro	hwáhā	hwahā	هوها	1	stress_not_written	hwáhā > hwˈahā > hwˈahā > hwahā
+خوک	/ˈxuːk/	2	False	False	ine-pro	suH	hū	هو	2	s_to_h,laryngeal_lengthening	suH > suH > huH > hū > hū > hū
+خوی	/ˈxʷaj/	2	False	False	ine-pro	swóyd-o-s	hwīy	هویی	10	vowel_merger_a,s_to_h,final_s_to_h,ay_to_ai,d_to_y,ai_to_e,final_h_loss,final_vowel_loss,long_e_to_long_i,stress_not_written	swóyd-o-s > swˈaydas > hwˈaydah > hwˈaidah > hwˈēy > hwīy
+خیس	/ˈxeːs/	2	False	False	ine-pro	seykʷ	hīk	هیک	6	vowel_merger_a,labiovelar_k,s_to_h,ay_to_ai,ai_to_e,long_e_to_long_i	seykʷ > sayk > hayk > haik > hēk > hīk
+داغ	/ˈdaːɣ/	2	False	False	ine-pro	dʰégʷʰeti	dayad	دید	8	vowel_merger_a,labiovelar_gh,grassmann,deaspirate_gh,g_to_y,t_to_d,final_vowel_loss,stress_not_written	dʰégʷʰeti > dˈagʰati > dˈagati > dˈagati > dˈayad > dayad
+داغ	/ˈdaːɣ/	2	False	False	ine-pro	dʰégʷʰeti	dayad	دید	8	vowel_merger_a,labiovelar_gh,grassmann,deaspirate_gh,g_to_y,t_to_d,final_vowel_loss,stress_not_written	dʰégʷʰeti > dˈagʰati > dˈagati > dˈagati > dˈayad > dayad
+داغ	/ˈdaːɣ/	2	False	False	ine-pro	dʰégʷʰeti	dayad	دید	8	vowel_merger_a,labiovelar_gh,grassmann,deaspirate_gh,g_to_y,t_to_d,final_vowel_loss,stress_not_written	dʰégʷʰeti > dˈagʰati > dˈagati > dˈagati > dˈayad > dayad
+دام	/ˈdaːm/	2	False	False	ine-pro	demh₂	d	د	4	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening,final_am_loss	demh₂ > damH > damH > dam > d > d
+دخمه	/dax.ˈma/	2	False	False	ine-pro	dʰembʰ	damb	دمب	3	vowel_merger_a,grassmann,deaspirate_bh	dʰembʰ > dambʰ > damb > damb > damb > damb
+دراز	/da.ˈraːz/	2	False	False	ine-pro	dl̥h₁gʰós	darg	درگ	9	laryngeal_to_H,vowel_merger_a,syllabic_l_to_r,deaspirate_gh,final_s_to_h,laryngeal_lengthening,r_syllabic_to_ar,final_h_loss,final_vowel_loss	dl̥h₁gʰós > dr̥Hgʰˈas > dr̥Hgˈah > dargˈah > darg > darg
+درخت	/da.ˈraxt/	2	False	False	ira-pro	drag	dre	دره	1	final_ag_to_e	drag > drag > drag > dre
+درست	/du.ˈrust/	2	False	False	pal	drwst'	drwst'	دروست'	0		drwst' > drwst'
+درفش	/di.ˈrafʃ/	2	False	False	ine-pro	drep	drap	درپ	1	vowel_merger_a	drep > drap > drap > drap > drap > drap
+دزد	/ˈduzd/	2	False	False	ine-pro	dus	doš	دش	2	ruki_s,u_to_o	dus > duš > duš > duš > duš > doš
+دشمن	/duʃ.ˈman/	2	False	False	ira-pro	dušmánāh	došmanāh	دشمناه	2	u_to_o,stress_not_written	dušmánāh > dušmˈanāh > dušmˈanāh > došmanāh
+دغد	/ˈduɣd/	2	False	False	ira-pro	dúgdā	dogdā	دگدا	2	u_to_o,stress_not_written	dúgdā > dˈugdā > dˈugdā > dogdā
+دنب	/ˈdunb/	2	False	False	ira-pro	dumáh	dom	دم	3	final_h_loss,final_vowel_loss,u_to_o	dumáh > dumˈah > dum > dom
+دندان	/dan.ˈdaːn/	2	False	False	ira-pro	Hdántā	dantā	دنتا	2	laryngeal_loss_initial,stress_not_written	Hdántā > dˈantā > dˈantā > dantā
+ده	/ˈdah/	2	False	False	pal	𐫅𐫍	𐫅𐫍	𐫅𐫍	0		𐫅𐫍 > 𐫅𐫍
+دوختن	/doːx.ˈtan/	2	False	False	pal	dwhtn'	dwhtn'	دوهتن'	0		dwhtn' > dwhtn'
+دوش	/ˈdoːʃ/	2	False	False	ine-pro	dowséh₂	dūhā	دوها	9	h2_colours_e,laryngeal_to_H,vowel_merger_a,s_to_h,laryngeal_lengthening,aw_to_au,au_to_o,long_o_to_long_u,stress_not_written	dowséh₂ > dawsˈaH > dawhˈaH > dauhˈā > dōhˈā > dūhā
+دوشیدن	/doː.ʃiː.ˈdan/	2	False	False	ira-pro	dáwxšati	dūšad	دوشد	7	aw_to_au,t_to_d,xsh_to_sh,au_to_o,final_vowel_loss,long_o_to_long_u,stress_not_written	dáwxšati > dˈauxšati > dˈōšad > dūšad
+دژـ	/ˈduʒ./	2	False	False	ine-pro	dus	doš	دش	2	ruki_s,u_to_o	dus > duš > duš > duš > duš > doš
+دیبا	/deː.ˈbaː/	2	False	False	ira-pro	diHp	dīp	دیپ	1	laryngeal_lengthening	diHp > dīp > dīp > dīp
+دیدن	/diː.ˈdan/	2	False	False	ine-pro	weyd	bīd	بید	5	vowel_merger_a,ay_to_ai,ai_to_e,long_e_to_long_i,w_to_b_initial	weyd > wayd > wayd > waid > wēd > bīd
+دیوانه	/deː.waː.ˈna/	2	False	False	ira-pro	daywánah	dīwan	دیون	6	ayw_to_aiv,ai_to_e,final_h_loss,final_vowel_loss,long_e_to_long_i,stress_not_written	daywánah > daiwˈanah > dēwˈan > dīwan
+را	/ˈraː/	2	False	True	ine-pro	h₂er	ar	ار	3	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial	h₂er > Har > Har > ar > ar > ar
+راز		2	False	False	iir-pro	raȷ́ʰ	rad	رد	3	deaspirate_palatal,j_from_palatal,j_to_d	raȷ́ʰ > raj > rad > rad > rad
+راست	/ˈraːst/	2	False	False	ine-pro	h₃reǵtós	radt	ردت	9	laryngeal_to_H,vowel_merger_a,satem_g,final_s_to_h,j_from_palatal,laryngeal_loss_initial,j_to_d,final_h_loss,final_vowel_loss	h₃reǵtós > Hraȷ́tˈas > Hrajtˈah > radtˈah > radt > radt
+راست	/ˈraːst/	2	False	False	ine-pro	h₃reǵtós	radt	ردت	9	laryngeal_to_H,vowel_merger_a,satem_g,final_s_to_h,j_from_palatal,laryngeal_loss_initial,j_to_d,final_h_loss,final_vowel_loss	h₃reǵtós > Hraȷ́tˈas > Hrajtˈah > radtˈah > radt > radt
+رام	/ˈraːm/	2	False	False	ine-pro	h₁rem	r	ر	4	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,final_am_loss	h₁rem > Hram > Hram > ram > r > r
+رخت	/ˈraxt/	2	False	False	ine-pro	h₁lengʷʰ	rang	رنگ	6	laryngeal_to_H,vowel_merger_a,labiovelar_gh,l_to_r,deaspirate_gh,laryngeal_loss_initial	h₁lengʷʰ > Hrangʰ > Hrang > rang > rang > rang
+رخش	/ˈraxʃ/	2	False	False	ine-pro	reǵ	rad	رد	4	vowel_merger_a,satem_g,j_from_palatal,j_to_d	reǵ > raȷ́ > raj > rad > rad > rad
+رخش	/ˈraxʃ/	2	False	False	ine-pro	reǵ	rad	رد	4	vowel_merger_a,satem_g,j_from_palatal,j_to_d	reǵ > raȷ́ > raj > rad > rad > rad
+رخش	/ˈruxʃ/	2	False	False	ine-pro	lewk	rūk	روک	5	vowel_merger_a,l_to_r,aw_to_au,au_to_o,long_o_to_long_u	lewk > rawk > rawk > rauk > rōk > rūk
+رخشان	/rax.ˈʃaːn/	2	False	False	ine-pro	lówksneh	rūšn	روشن	11	vowel_merger_a,l_to_r,ruki_s,k_to_x_internal,aw_to_au,xsh_to_sh,au_to_o,final_h_loss,final_vowel_loss,long_o_to_long_u,stress_not_written	lówksneh > rˈawkšnah > rˈawxšnah > rˈauxšnah > rˈōšn > rūšn
+رخشان	/rax.ˈʃaːn/	2	False	False	ine-pro	lówksneh	rūšn	روشن	11	vowel_merger_a,l_to_r,ruki_s,k_to_x_internal,aw_to_au,xsh_to_sh,au_to_o,final_h_loss,final_vowel_loss,long_o_to_long_u,stress_not_written	lówksneh > rˈawkšnah > rˈawxšnah > rˈauxšnah > rˈōšn > rūšn
+رده	/ra.ˈda/	2	False	False	ine-pro	h₂rey	ray	ری	3	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial	h₂rey > Hray > Hray > ray > ray > ray
+رشت	/ˈruʃt/	2	False	False	ine-pro	lewk	rūk	روک	5	vowel_merger_a,l_to_r,aw_to_au,au_to_o,long_o_to_long_u	lewk > rawk > rawk > rauk > rōk > rūk
+رشک	/ˈraʃk/	2	False	False	ine-pro	h₁ers	arš	ارش	4	laryngeal_to_H,vowel_merger_a,ruki_s,laryngeal_loss_initial	h₁ers > Harš > Harš > arš > arš > arš
+رم	/ˈram/	2	False	False	ira-pro	θráhma	hahm	ههم	4	theta_r_to_cedilla,cedilla_to_h,final_vowel_loss,stress_not_written	θráhma > çˈahma > hˈahm > hahm
+رودنگ		2	False	False	ine-pro	h₁rewdʰ	rūd	رود	7	laryngeal_to_H,vowel_merger_a,deaspirate_dh,laryngeal_loss_initial,aw_to_au,au_to_o,long_o_to_long_u	h₁rewdʰ > Hrawdʰ > Hrawd > raud > rōd > rūd
+روزه	/roː.ˈza/	2	False	False	ine-pro	lewk	rūk	روک	5	vowel_merger_a,l_to_r,aw_to_au,au_to_o,long_o_to_long_u	lewk > rawk > rawk > rauk > rōk > rūk
+رژه	/ra.ˈʒa/	2	False	False	ine-pro	h₃reǵ	rad	رد	6	laryngeal_to_H,vowel_merger_a,satem_g,j_from_palatal,laryngeal_loss_initial,j_to_d	h₃reǵ > Hraȷ́ > Hraj > rad > rad > rad
+رگ	/ˈraɡ/	2	False	False	ine-pro	h₁rṓs	rāh	راه	5	laryngeal_to_H,long_vowel_merger,final_s_to_h,laryngeal_loss_initial,stress_not_written	h₁rṓs > Hrˈās > Hrˈāh > rˈāh > rˈāh > rāh
+ریدن	/riː.ˈdan/	2	False	False	ine-pro	h₃reyH	ray	ری	4	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,laryngeal_lengthening	h₃reyH > HrayH > HrayH > ray > ray > ray
+زادن	/zaː.ˈdan/	2	False	False	ine-pro	ǵenh₁	dan	دن	6	laryngeal_to_H,vowel_merger_a,satem_g,j_from_palatal,laryngeal_lengthening,j_to_d	ǵenh₁ > ȷ́anH > janH > dan > dan > dan
+زاده	/zaː.ˈda/	2	False	False	ine-pro	ǵn̥h₁tós	dād	داد	11	laryngeal_to_H,vowel_merger_a,satem_g,syllabic_n,final_s_to_h,j_from_palatal,laryngeal_lengthening,j_to_d,t_to_d,final_h_loss,final_vowel_loss	ǵn̥h₁tós > ȷ́aHtˈas > jaHtˈah > dātˈah > dād > dād
+زاق	/ˈzaːq/	2	False	False	ira-pro	zanH	zan	زن	1	laryngeal_lengthening	zanH > zan > zan > zan
+زانو	/zaː.ˈnuː/	2	False	False	ine-pro	ǵónu	dān	دان	6	brugmann_o_a,satem_g,j_from_palatal,j_to_d,final_vowel_loss,stress_not_written	ǵónu > ȷ́ˈānu > jˈānu > dˈānu > dˈān > dān
+زنخ	/za.ˈnax/	2	False	False	ine-pro	ǵénus	danoš	دنش	7	vowel_merger_a,satem_g,ruki_s,j_from_palatal,j_to_d,u_to_o,stress_not_written	ǵénus > ȷ́ˈanuš > jˈanuš > dˈanuš > dˈanuš > danoš
+زند	/ˈzand/	2	False	False	ine-pro	ǵneh₃	dnā	دنا	7	h3_colours_e,laryngeal_to_H,vowel_merger_a,satem_g,j_from_palatal,laryngeal_lengthening,j_to_d	ǵneh₃ > ȷ́naH > jnaH > dnā > dnā > dnā
+زنگی	/zan.ˈɡiː/	2	False	False	pal	zngyk'	zngyk'	زنگیک'	0		zngyk' > zngyk'
+زه	/ˈzah/	2	False	False	ine-pro	ǵenh₁	dan	دن	6	laryngeal_to_H,vowel_merger_a,satem_g,j_from_palatal,laryngeal_lengthening,j_to_d	ǵenh₁ > ȷ́anH > janH > dan > dan > dan
+زه	/ˈzah/	2	False	False	ine-pro	ǵenh₁	dan	دن	6	laryngeal_to_H,vowel_merger_a,satem_g,j_from_palatal,laryngeal_lengthening,j_to_d	ǵenh₁ > ȷ́anH > janH > dan > dan > dan
+زهر	/ˈzahr/	2	False	False	pal	zʾhl	zʾhl	زʾهل	0		zʾhl > zʾhl
+زوج	/ˈzawd͡ʒ/	2	False	False	ine-pro	yewg	yūg	یوگ	4	vowel_merger_a,aw_to_au,au_to_o,long_o_to_long_u	yewg > yawg > yawg > yaug > yōg > yūg
+زود	/ˈzuːd/	2	False	False	ine-pro	ǵewH	daw	دو	5	vowel_merger_a,satem_g,j_from_palatal,laryngeal_lengthening,j_to_d	ǵewH > ȷ́awH > jawH > daw > daw > daw
+زود	/ˈzuːd/	2	False	False	ine-pro	ǵewH	daw	دو	5	vowel_merger_a,satem_g,j_from_palatal,laryngeal_lengthening,j_to_d	ǵewH > ȷ́awH > jawH > daw > daw > daw
+زور	/ˈzoːr/	2	False	False	ine-pro	gew	gaw	گو	1	vowel_merger_a	gew > gaw > gaw > gaw > gaw > gaw
+زور	/ˈzoːr/	2	False	False	ine-pro	gew	gaw	گو	1	vowel_merger_a	gew > gaw > gaw > gaw > gaw > gaw
+سام	/ˈsaːm/	2	False	False	ine-pro	sḱeh₃	ssā	سسا	8	h3_colours_e,laryngeal_to_H,vowel_merger_a,satem_k,c_from_palatal,laryngeal_lengthening,c_to_theta,theta_to_s	sḱeh₃ > sćaH > scaH > sθā > ssā > ssā
+سام	/ˈsaːm/	2	False	False	ine-pro	sḱeh₃	ssā	سسا	8	h3_colours_e,laryngeal_to_H,vowel_merger_a,satem_k,c_from_palatal,laryngeal_lengthening,c_to_theta,theta_to_s	sḱeh₃ > sćaH > scaH > sθā > ssā > ssā
+سترون	/sa.tar.ˈwan/	2	False	False	ine-pro	ster	star	ستر	1	vowel_merger_a	ster > star > star > star > star > star
+سترگ	/su.ˈturɡ/	2	False	False	ira-pro	stūrakah	stūre	ستوره	4	k_to_g,final_h_loss,final_vowel_loss,final_ag_to_e	stūrakah > stūrakah > stūrag > stūre
+ستیزه	/si.teː.ˈza/	2	False	False	ine-pro	steyg	stīg	ستیگ	4	vowel_merger_a,ay_to_ai,ai_to_e,long_e_to_long_i	steyg > stayg > stayg > staig > stēg > stīg
+سخت	/ˈsaxt/	2	False	False	ine-pro	ḱek	sak	سک	5	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,theta_to_s	ḱek > ćak > cak > θak > sak > sak
+سخت	/ˈsaxt/	2	False	False	ine-pro	ḱek	sak	سک	5	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,theta_to_s	ḱek > ćak > cak > θak > sak > sak
+سرخ	/ˈsurx/	2	False	False	iir-pro	ćukrás	soxr	سخر	8	final_s_to_h,c_from_palatal,k_to_x_internal,c_to_theta,theta_to_s,final_h_loss,final_vowel_loss,u_to_o	ćukrás > cuxrˈah > θuxrˈah > suxr > soxr
+سرنا	/sur.ˈnaː/	2	False	False	ine-pro	ḱerh₂	sar	سر	7	laryngeal_to_H,vowel_merger_a,satem_k,c_from_palatal,laryngeal_lengthening,c_to_theta,theta_to_s	ḱerh₂ > ćarH > carH > θar > sar > sar
+سره		2	False	False	ine-pro	krey	xray	خری	2	vowel_merger_a,k_to_x_initial	krey > kray > xray > xray > xray > xray
+سنه	/su.ˈnuh/	2	False	False	ine-pro	snusós	hnoš	هنش	7	vowel_merger_a,ruki_s,s_to_h,final_s_to_h,final_h_loss,final_vowel_loss,u_to_o	snusós > snušˈas > hnušˈah > hnušˈah > hnuš > hnoš
+سه	/ˈsi/	2	False	False	ine-pro	tréyes	hay	هی	8	vowel_merger_a,final_s_to_h,t_to_theta_before_sonorant_initial,theta_r_to_cedilla,cedilla_to_h,final_h_loss,final_vowel_loss,stress_not_written	tréyes > trˈayas > θrˈayah > çˈayah > hˈay > hay
+سو	/ˈsoː/	2	False	False	pal	swk'	swk'	سوک'	0		swk' > swk'
+سو	/ˈsoː/	2	False	False	pal	swk'	swk'	سوک'	0		swk' > swk'
+سو	/ˈsoː/	2	False	False	pal	swk'	swk'	سوک'	0		swk' > swk'
+سوری	/suː.ˈriː/	2	False	False	ira-pro	cuxráh	soxr	سخر	5	c_to_theta,theta_to_s,final_h_loss,final_vowel_loss,u_to_o	cuxráh > θuxrˈah > suxr > soxr
+سوری	/suː.ˈriː/	2	False	False	ira-pro	cuxráh	soxr	سخر	5	c_to_theta,theta_to_s,final_h_loss,final_vowel_loss,u_to_o	cuxráh > θuxrˈah > suxr > soxr
+سوشیانس	/soːʃ.ˈjaːns/	2	False	False	pal	swkšydns	swkšydns	سوکشیدنس	0		swkšydns > swkšydns
+سوشیانس	/soːʃ.ˈjaːns/	2	False	False	pal	swkšydns	swkšydns	سوکشیدنس	0		swkšydns > swkšydns
+سوی	/ˈsoːj/	2	False	False	pal	swk'	swk'	سوک'	0		swk' > swk'
+سپاه	/si.ˈpaːh/	2	False	False	iir-pro	ćwáHdʰaH	spāyā	سپایا	6	deaspirate_dh,c_from_palatal,laryngeal_lengthening,cw_to_sp,d_to_y,stress_not_written	ćwáHdʰaH > cwˈaHdaH > spˈādā > spˈāyā > spāyā
+سپردن	[sepʰoɾˈd̪æn]	2	False	False	ine-pro	sper	spar	سپر	1	vowel_merger_a	sper > spar > spar > spar > spar > spar
+سپند	/si.ˈpand/	2	False	False	ira-pro	cwantaH	spantā	سپنتا	2	laryngeal_lengthening,cw_to_sp	cwantaH > spantā > spantā > spantā
+سکوبا	/su.koː.ˈbaː/	2	False	False	pal	uskōpā	oskūpā	اسکوپا	2	u_to_o,long_o_to_long_u	uskōpā > oskūpā
+شاد	/ˈʃaːd/	2	False	False	iir-pro	čyaHtas	čyād	چیاد	5	final_s_to_h,laryngeal_lengthening,t_to_d,final_h_loss,final_vowel_loss	čyaHtas > čyaHtah > čyātah > čyād > čyād
+شار	/ˈʃaːr/	2	False	False	iir-pro	kšatrám	šah	شه	6	t_to_theta_before_sonorant,k_to_x_initial,theta_r_to_cedilla,cedilla_to_h,xsh_to_sh,final_am_loss	kšatrám > xšaθrˈam > xšaçˈam > šah > šah
+شب‌کور	/ʃab.ˈkoːr/	2	False	False	ira-pro	xšapkawráh	šapkūr	شپکور	6	aw_to_au,xsh_to_sh,au_to_o,final_h_loss,final_vowel_loss,long_o_to_long_u	xšapkawráh > xšapkaurˈah > šapkōr > šapkūr
+شب‌کور	/ʃab.ˈkoːr/	2	False	False	ira-pro	xšapkawráh	šapkūr	شپکور	6	aw_to_au,xsh_to_sh,au_to_o,final_h_loss,final_vowel_loss,long_o_to_long_u	xšapkawráh > xšapkaurˈah > šapkōr > šapkūr
+شش	/ˈʃuʃ/	2	False	False	ira-pro	cušíH	sošī	سشی	5	laryngeal_lengthening,c_to_theta,theta_to_s,u_to_o,stress_not_written	cušíH > θušˈī > sušˈī > sošī
+شمردن	/ʃu.mur.ˈdan/	2	False	False	iir-pro	smárati	hmarad	همرد	4	s_to_h,t_to_d,final_vowel_loss,stress_not_written	smárati > hmˈarati > hmˈarati > hmˈarad > hmarad
+شکار	/ʃi.ˈkaːr/	2	False	False	ira-pro	skar	skar	سکر	0		skar > skar > skar > skar
+صد	/ˈsad/	2	False	False	pal	𐭰𐭲	𐭰𐭲	𐭰𐭲	0		𐭰𐭲 > 𐭰𐭲
+طاس	/ˈtaːs/	2	False	True	ine-pro	tetḱ	tats	تتس	5	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,theta_to_s	tetḱ > tatć > tatc > tatθ > tats > tats
+طهماسب	/tah.ˈmaːsb/	2	False	False	peo	Tahmāspah	Tahmāsp	Tهماسپ	2	final_h_loss,final_vowel_loss	Tahmāspah > Tahmāsp > Tahmāsp
+غوره	/ɣoː.ˈra/	2	False	False	ira-pro	gōra	gūr	گور	2	final_vowel_loss,long_o_to_long_u	gōra > gōra > gōr > gūr
+غوره	/ɣoː.ˈra/	2	False	False	ira-pro	gōra	gūr	گور	2	final_vowel_loss,long_o_to_long_u	gōra > gōra > gōr > gūr
+غوز	[ɢuːz]	2	False	False	ine-pro	ḱewb	sūb	سوب	8	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,aw_to_au,theta_to_s,au_to_o,long_o_to_long_u	ḱewb > ćawb > cawb > θaub > sōb > sūb
+ـستان	/‿is.ˈtaːn/	2	False	False	ine-pro	steh₂	stā	ستا	3	h2_colours_e,laryngeal_to_H,laryngeal_lengthening	steh₂ > staH > staH > stā > stā > stā
+ـش	/ˈ‿iʃ/	2	False	False	pal	𐭱𐭭	𐭱𐭭	𐭱𐭭	0		𐭱𐭭 > 𐭱𐭭
+ـم	/ˈ‿am/	2	False	True	ira-pro	mai	mī	می	2	ai_to_e,long_e_to_long_i	mai > mai > mē > mī
+ـمند	/‿ˈmand/	2	False	False	ine-pro	ménts	mans	منس	5	vowel_merger_a,ts_to_c,c_to_theta,theta_to_s,stress_not_written	ménts > mˈants > mˈanc > mˈanθ > mˈans > mans
+ـن	/‿ˈan/	2	False	False	ira-pro	tanai	tanī	تنی	2	ai_to_e,long_e_to_long_i	tanai > tanai > tanē > tanī
+ـه	/ˈ‿a/	2	False	True	iir-pro	akas	e	ا	5	final_s_to_h,k_to_g,final_h_loss,final_vowel_loss,final_ag_to_e	akas > akah > akah > ag > e
+ـوار	/ˈwaːr/	2	False	False	ine-pro	bʰorós	bār	بار	6	brugmann_o_a,vowel_merger_a,deaspirate_bh,final_s_to_h,final_h_loss,final_vowel_loss	bʰorós > bʰārˈas > bārˈah > bārˈah > bār > bār
+ـویه	/uːje/	2	False	False	pal	ōē	ūī	اوی	2	long_e_to_long_i,long_o_to_long_u	ōē > ūī
+ـک		2	False	False	pal	𐭪	𐭪	𐭪	0		𐭪 > 𐭪
+ـگر		2	False	False	peo	kara	kar	کر	1	final_vowel_loss	kara > kar > kar
+ـگرد		2	False	False	ine-pro	kʷr̥tós	kard	کرد	7	vowel_merger_a,labiovelar_k,final_s_to_h,r_syllabic_to_ar,rt_to_rd,final_h_loss,final_vowel_loss	kʷr̥tós > kr̥tˈas > kr̥tˈah > kartˈah > kard > kard
+فراخ	/fa.ˈraːx/	2	False	False	ine-pro	pléth₂os	frad	فرد	10	laryngeal_to_H,vowel_merger_a,l_to_r,final_s_to_h,p_to_f_before_sonorant_initial,laryngeal_lengthening,t_to_d,final_h_loss,final_vowel_loss,stress_not_written	pléth₂os > prˈatHas > frˈatHah > frˈatah > frˈad > frad
+فروغ	/fu.ˈroːɣ/	2	False	False	ine-pro	lewk	rūk	روک	5	vowel_merger_a,l_to_r,aw_to_au,au_to_o,long_o_to_long_u	lewk > rawk > rawk > rauk > rōk > rūk
+فروغ	/fu.ˈroːɣ/	2	False	False	ine-pro	lewk	rūk	روک	5	vowel_merger_a,l_to_r,aw_to_au,au_to_o,long_o_to_long_u	lewk > rawk > rawk > rauk > rōk > rūk
+فروهر	/far.wa.ˈhar/	2	False	False	peo	fravarti	fravard	فرورد	2	rt_to_rd,final_vowel_loss	fravarti > fravard > fravard
+فریب	/fa.ˈreːb/	2	False	False	ine-pro	pro	fr	فر	3	vowel_merger_a,p_to_f_before_sonorant_initial,final_vowel_loss	pro > pra > fra > fra > fr > fr
+فریب	/fa.ˈreːb/	2	False	False	ine-pro	pro	fr	فر	3	vowel_merger_a,p_to_f_before_sonorant_initial,final_vowel_loss	pro > pra > fra > fra > fr > fr
+فغ	/ˈfaɣ/	2	False	False	iir-pro	bʰagás	bay	بی	5	deaspirate_bh,final_s_to_h,g_to_y,final_h_loss,final_vowel_loss	bʰagás > bagˈah > bagˈah > bay > bay
+فندک	[fæn̪.d̪ækʰʲ]	2	False	False	pal	wndk'	bndk'	بندک'	1	w_to_b_initial	wndk' > bndk'
+قرمز	/qir.ˈmiz/	2	False	False	iir-pro	kŕ̥miš	karmeš	کرمش	3	r_syllabic_to_ar,i_to_e,stress_not_written	kŕ̥miš > kˈr̥miš > kˈarmiš > kˈarmiš > karmeš
+لاک	/ˈlaːk/	2	False	False	ira-pro	náHuš	nāoš	ناش	3	laryngeal_lengthening,u_to_o,stress_not_written	náHuš > nˈāuš > nˈāuš > nāoš
+لشن		2	False	False	ira-pro	lagžnáh	lagžn	لگژن	2	final_h_loss,final_vowel_loss	lagžnáh > lagžnˈah > lagžn > lagžn
+لوله	/luː.ˈla/	2	False	False	pal	lwlk'	lwlk'	لولک'	0		lwlk' > lwlk'
+ما	/ˈmaː/	2	False	False	ine-pro	wéy	bay	بی	3	vowel_merger_a,w_to_b_initial,stress_not_written	wéy > wˈay > wˈay > wˈay > wˈay > bay
+مازن		2	False	False	ira-pro	máHtā	mādā	مادا	3	laryngeal_lengthening,t_to_d,stress_not_written	máHtā > mˈātā > mˈādā > mādā
+مردن	/mur.ˈdan/	2	False	False	ine-pro	mer	mar	مر	1	vowel_merger_a	mer > mar > mar > mar > mar > mar
+مرز	/ˈmarz/	2	False	False	ine-pro	mórǵs	mards	مردس	5	vowel_merger_a,satem_g,j_from_palatal,j_to_d,stress_not_written	mórǵs > mˈarȷ́s > mˈarjs > mˈards > mˈards > mards
+مزه	/ma.ˈza/	2	False	False	ine-pro	meh₂k	māk	ماک	3	h2_colours_e,laryngeal_to_H,laryngeal_lengthening	meh₂k > maHk > maHk > māk > māk > māk
+مست	/ˈmast/	2	False	False	ine-pro	meh₂d	mād	ماد	3	h2_colours_e,laryngeal_to_H,laryngeal_lengthening	meh₂d > maHd > maHd > mād > mād > mād
+مست	/ˈmast/	2	False	False	ine-pro	meh₂d	mād	ماد	3	h2_colours_e,laryngeal_to_H,laryngeal_lengthening	meh₂d > maHd > maHd > mād > mād > mād
+مسواک	/mis.ˈwaːk/	2	False	False	pal	sawāg	sawāg	سواگ	0		sawāg > sawāg
+مشک	/ˈmuʃk/	2	False	False	pal	mwšk'	mwšk'	موشک'	0		mwšk' > mwšk'
+مغاک	/ma.ˈɣaːk/	2	False	False	pal	mγ	mɣ	مغ	0		mγ > mɣ
+مغاک	/ma.ˈɣaːk/	2	False	False	pal	mγ	mɣ	مغ	0		mγ > mɣ
+مغز	/ˈmaɣz/	2	False	False	ine-pro	mosgʰos	masg	مسگ	5	vowel_merger_a,deaspirate_gh,final_s_to_h,final_h_loss,final_vowel_loss	mosgʰos > masgʰas > masgah > masgah > masg > masg
+مل	/mol/	2	False	False	ira-pro	mr̥ju	mard	مرد	3	j_to_d,r_syllabic_to_ar,final_vowel_loss	mr̥ju > mardu > mard > mard
+مو	/ˈmoː/	2	False	False	ine-pro	deh₃	dā	دا	4	h3_colours_e,laryngeal_to_H,vowel_merger_a,laryngeal_lengthening	deh₃ > daH > daH > dā > dā > dā
+مور	/ˈmoːr/	2	False	False	iir-pro	marwíš	marweš	مروش	2	i_to_e,stress_not_written	marwíš > marwˈiš > marwˈiš > marwˈiš > marweš
+مویز		2	False	False	ira-pro	madwī-ča	madwīč	مدویچ	1	final_vowel_loss	madwī-ča > madwīča > madwīč > madwīč
+مژده	/muʒ.ˈda/	2	False	False	ine-pro	misdʰós	mešd	مشد	7	vowel_merger_a,ruki_s,deaspirate_dh,final_s_to_h,final_h_loss,final_vowel_loss,i_to_e	misdʰós > mišdʰˈas > mišdˈah > mišdˈah > mišd > mešd
+مژده	/muʒ.ˈda/	2	False	False	ine-pro	misdʰós	mešd	مشد	7	vowel_merger_a,ruki_s,deaspirate_dh,final_s_to_h,final_h_loss,final_vowel_loss,i_to_e	misdʰós > mišdʰˈas > mišdˈah > mišdˈah > mišd > mešd
+مژه	/mu.ˈʒa ~ mi.ˈʒa/	2	False	False	iir-pro	mayš	mīš	میش	3	ay_to_ai,ai_to_e,long_e_to_long_i	mayš > mayš > maiš > mēš > mīš
+مگس	/ma.ˈɡas/	2	False	False	iir-pro	mákš	maš	مش	3	k_to_x_internal,xsh_to_sh,stress_not_written	mákš > mˈaxš > mˈaxš > mˈaš > maš
+می	/ˈmaj/	2	False	False	peo	𐎶𐎯	𐎶𐎯	𐎶𐎯	0		𐎶𐎯 > 𐎶𐎯 > 𐎶𐎯
+میان	/mi.ˈjaːn/	2	False	False	ine-pro	médʰyos	mayy	میی	7	vowel_merger_a,deaspirate_dh,final_s_to_h,d_to_y,final_h_loss,final_vowel_loss,stress_not_written	médʰyos > mˈadʰyas > mˈadyah > mˈadyah > mˈayy > mayy
+میان	/mi.ˈjaːn/	2	False	False	ine-pro	médʰyos	mayy	میی	7	vowel_merger_a,deaspirate_dh,final_s_to_h,d_to_y,final_h_loss,final_vowel_loss,stress_not_written	médʰyos > mˈadʰyas > mˈadyah > mˈadyah > mˈayy > mayy
+میوه	/meː.ˈwa/	2	False	False	ine-pro	médʰu	may	می	5	vowel_merger_a,deaspirate_dh,d_to_y,final_vowel_loss,stress_not_written	médʰu > mˈadʰu > mˈadu > mˈadu > mˈay > may
+ناـ	/ˈnaː./	2	False	False	iir-pro	ná	n	ن	1	final_vowel_loss	ná > nˈa > nˈa > n > n
+ناف	/ˈnaːf/	2	False	False	ine-pro	h₃nebʰ	nab	نب	4	laryngeal_to_H,vowel_merger_a,deaspirate_bh,laryngeal_loss_initial	h₃nebʰ > Hnabʰ > Hnab > nab > nab > nab
+نخست	/nu.ˈxust/	2	False	False	ira-pro	naxu	nax	نخ	1	final_vowel_loss	naxu > naxu > nax > nax
+نخست	/nu.ˈxust/	2	False	False	ira-pro	naxu	nax	نخ	1	final_vowel_loss	naxu > naxu > nax > nax
+نرم	/ˈnarm/	2	False	False	iir-pro	namrás	namr	نمر	3	final_s_to_h,final_h_loss,final_vowel_loss	namrás > namrˈah > namrˈah > namr > namr
+نزدیک	/naz.ˈdiːk/	2	False	False	ine-pro	nésdyos	nasdy	نسدی	5	vowel_merger_a,final_s_to_h,final_h_loss,final_vowel_loss,stress_not_written	nésdyos > nˈasdyas > nˈasdyah > nˈasdyah > nˈasdy > nasdy
+نزدیک	/naz.ˈdiːk/	2	False	False	ine-pro	nésdyos	nasdy	نسدی	5	vowel_merger_a,final_s_to_h,final_h_loss,final_vowel_loss,stress_not_written	nésdyos > nˈasdyas > nˈasdyah > nˈasdyah > nˈasdy > nasdy
+نفرین	/nif.ˈriːn/	2	False	False	ine-pro	preyH	fray	فری	3	vowel_merger_a,p_to_f_before_sonorant_initial,laryngeal_lengthening	preyH > prayH > frayH > fray > fray > fray
+نم	/ˈnam/	2	False	False	pal	𐭭𐭬	𐭭𐭬	𐭭𐭬	0		𐭭𐭬 > 𐭭𐭬
+نماز	/na.ˈmaːz/	2	False	False	ine-pro	némos	nam	نم	5	vowel_merger_a,final_s_to_h,final_h_loss,final_vowel_loss,stress_not_written	némos > nˈamas > nˈamah > nˈamah > nˈam > nam
+نه	/ˈnuh/	2	False	False	peo	𐎴𐎺	𐎴𐎺	𐎴𐎺	0		𐎴𐎺 > 𐎴𐎺 > 𐎴𐎺
+نوش	/ˈnoːʃ/	2	False	False	ine-pro	h₁ews	ūs	اوس	6	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,aw_to_au,au_to_o,long_o_to_long_u	h₁ews > Haws > Haws > aus > ōs > ūs
+نوش	/ˈnoːʃ/	2	False	False	ine-pro	h₁ews	ūs	اوس	6	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,aw_to_au,au_to_o,long_o_to_long_u	h₁ews > Haws > Haws > aus > ōs > ūs
+نوید	/na.ˈwiːd/	2	False	False	ira-pro	wayd	bīd	بید	4	ay_to_ai,ai_to_e,long_e_to_long_i,w_to_b_initial	wayd > waid > wēd > bīd
+نوید	/na.ˈwiːd/	2	False	False	ira-pro	wayd	bīd	بید	4	ay_to_ai,ai_to_e,long_e_to_long_i,w_to_b_initial	wayd > waid > wēd > bīd
+هامون	/haː.ˈmuːn/	2	False	False	pal	hʾmwn'	hʾmwn'	هʾمون'	0		hʾmwn' > hʾmwn'
+هامون	/haː.ˈmuːn/	2	False	False	pal	hʾmwn'	hʾmwn'	هʾمون'	0		hʾmwn' > hʾmwn'
+هرات	/ha.ˈraːt/	2	False	False	ine-pro	ser	har	هر	2	vowel_merger_a,s_to_h	ser > sar > har > har > har > har
+هرزه	/har.ˈza/	2	False	False	ine-pro	selǵ	hard	هرد	6	vowel_merger_a,satem_g,l_to_r,s_to_h,j_from_palatal,j_to_d	selǵ > sarȷ́ > harj > hard > hard > hard
+هزار	/ha.ˈzaːr/	2	False	False	ine-pro	sm̥-ǵʰéslom	hayahr	هیهر	11	vowel_merger_a,satem_gh,l_to_r,syllabic_m,deaspirate_palatal,s_to_h,j_from_palatal,j_to_d,d_to_y,final_am_loss,stress_not_written	sm̥-ǵʰéslom > saȷ́ʰˈasram > hajˈahram > hadˈahram > hayˈahr > hayahr
+هل	/ˈhul/	2	False	False	pal	ʾwl	ʾwl	ʾول	0		ʾwl > ʾwl
+همه	/ha.ˈma/	2	False	False	ira-pro	ham	h	ه	1	final_am_loss	ham > ham > h > h
+همه	/ha.ˈma.ji/	2	False	False	ira-pro	ham	h	ه	1	final_am_loss	ham > ham > h > h
+واش	/ˈwaːʃ/	2	False	False	pal	wʾš	bʾš	بʾش	1	w_to_b_initial	wʾš > bʾš
+واک		2	False	False	ine-pro	wekʷ	bak	بک	3	vowel_merger_a,labiovelar_k,w_to_b_initial	wekʷ > wak > wak > wak > wak > bak
+وای	/ˈwaːj/	2	False	False	ine-pro	wáy	bay	بی	2	w_to_b_initial,stress_not_written	wáy > wˈay > wˈay > wˈay > wˈay > bay
+ورز	/ˈwarz/	2	False	False	ira-pro	warj	gord	گرد	4	j_to_d,war_rounding,w_to_g_before_ur,u_to_o	warj > ward > gurd > gord
+ورز	/ˈwarz/	2	False	False	ira-pro	warj	gord	گرد	4	j_to_d,war_rounding,w_to_g_before_ur,u_to_o	warj > ward > gurd > gord
+پار	/ˈpaːr/	2	False	False	ine-pro	péruti	parod	پرد	5	vowel_merger_a,t_to_d,final_vowel_loss,u_to_o,stress_not_written	péruti > pˈaruti > pˈaruti > pˈaruti > pˈarud > parod
+پار	/ˈpaːr/	2	False	False	ine-pro	péruti	parod	پرد	5	vowel_merger_a,t_to_d,final_vowel_loss,u_to_o,stress_not_written	péruti > pˈaruti > pˈaruti > pˈaruti > pˈarud > parod
+پاک	/ˈpaːk/	2	False	False	ine-pro	pewH	paw	پو	2	vowel_merger_a,laryngeal_lengthening	pewH > pawH > pawH > paw > paw > paw
+پرده	/par.ˈda/	2	False	False	ine-pro	pel	par	پر	2	vowel_merger_a,l_to_r	pel > par > par > par > par > par
+پرسیدن	/pur.siː.ˈdan/	2	False	False	ira-pro	pr̥sáti	parsad	پرسد	4	r_syllabic_to_ar,t_to_d,final_vowel_loss,stress_not_written	pr̥sáti > parsˈati > parsˈad > parsad
+پروا	/par.ˈwaː/	2	False	False	ine-pro	peri	par	پر	2	vowel_merger_a,final_vowel_loss	peri > pari > pari > pari > par > par
+پری	/pa.ˈriː/	2	False	False	ine-pro	parīkā	parīgā	پریگا	1	k_to_g	parīkā > parīkā > parīkā > parīkā > parīgā > parīgā
+پری	/pa.ˈriː/	2	False	False	ine-pro	parīkā	parīgā	پریگا	1	k_to_g	parīkā > parīkā > parīkā > parīkā > parīgā > parīgā
+پشم	/ˈpaʃm/	2	False	False	ine-pro	peḱ	pas	پس	5	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,theta_to_s	peḱ > pać > pac > paθ > pas > pas
+پلم		2	False	False	ine-pro	pel	par	پر	2	vowel_merger_a,l_to_r	pel > par > par > par > par > par
+پله	/pil.ˈla/	2	False	False	ine-pro	ped	pad	پد	1	vowel_merger_a	ped > pad > pad > pad > pad > pad
+پلک	/ˈpalk/	2	False	False	ine-pro	pel	par	پر	2	vowel_merger_a,l_to_r	pel > par > par > par > par > par
+پهره	/pah.ˈra/	2	False	False	ine-pro	peh₂-tro	pāh	پاه	8	h2_colours_e,laryngeal_to_H,vowel_merger_a,t_to_theta_before_sonorant,laryngeal_lengthening,theta_r_to_cedilla,cedilla_to_h,final_vowel_loss	peh₂-tro > paHtra > paHθra > pāça > pāh > pāh
+پهن	/ˈpahn/	2	False	False	ine-pro	peth₂	pat	پت	3	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening	peth₂ > patH > patH > pat > pat > pat
+پور	/ˈpuːr/	2	False	False	ira-pro	puθráh	poh	په	5	theta_r_to_cedilla,cedilla_to_h,final_h_loss,final_vowel_loss,u_to_o	puθráh > puçˈah > puh > poh
+پور	/ˈpuːr/	2	False	False	ira-pro	puθráh	poh	په	5	theta_r_to_cedilla,cedilla_to_h,final_h_loss,final_vowel_loss,u_to_o	puθráh > puçˈah > puh > poh
+پیاز	/pi.ˈjaːz/	2	False	False	ine-pro	peyḱ	pīs	پیس	8	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,ay_to_ai,theta_to_s,ai_to_e,long_e_to_long_i	peyḱ > payć > payc > paiθ > pēs > pīs
+پیدا	/paj.ˈdaː/	2	False	False	ira-pro	pati	pad	پد	2	t_to_d,final_vowel_loss	pati > pati > pad > pad
+پیش	/ˈpeːʃ/	2	False	False	ine-pro	per	par	پر	1	vowel_merger_a	per > par > par > par > par > par
+پیش	/ˈpeːʃ/	2	False	False	ine-pro	per	par	پر	1	vowel_merger_a	per > par > par > par > par > par
+پیش	/ˈpeːʃ/	2	False	False	ine-pro	per	par	پر	1	vowel_merger_a	per > par > par > par > par > par
+پیش	/ˈpeːʃ/	2	False	False	ine-pro	per	par	پر	1	vowel_merger_a	per > par > par > par > par > par
+پیشه	/peː.ˈʃa/	2	False	False	ine-pro	peyḱ	pīs	پیس	8	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,ay_to_ai,theta_to_s,ai_to_e,long_e_to_long_i	peyḱ > payć > payc > paiθ > pēs > pīs
+چرخه	/t͡ʃar.ˈxa/	2	False	False	iir-pro	čakrám	čaxr	چخر	2	k_to_x_internal,final_am_loss	čakrám > čaxrˈam > čaxrˈam > čaxr > čaxr
+چرخه	/t͡ʃar.ˈxa/	2	False	False	iir-pro	čakrám	čaxr	چخر	2	k_to_x_internal,final_am_loss	čakrám > čaxrˈam > čaxrˈam > čaxr > čaxr
+چهره	/t͡ʃih.ˈra/	2	False	False	iir-pro	čitrám	čeh	چه	5	t_to_theta_before_sonorant,theta_r_to_cedilla,cedilla_to_h,final_am_loss,i_to_e	čitrám > čiθrˈam > čiçˈam > čih > čeh
+چپ	/ˈt͡ʃap/	2	False	False	ine-pro	kh₂em	k	ک	4	syllabic_laryngeals,vowel_merger_a,final_am_loss,final_vowel_loss	kh₂em > kaam > kaam > kaam > k > k
+چکش	/t͡ʃa.ˈkuʃ/	2	False	False	ine-pro	keku	ke	که	4	vowel_merger_a,k_to_g,final_vowel_loss,final_ag_to_e	keku > kaku > kaku > kaku > kag > ke
+چی	/ˈt͡ʃiː/	2	False	False	pal	𐭬𐭤	𐭬𐭤	𐭬𐭤	0		𐭬𐭤 > 𐭬𐭤
+کاش		2	False	False	pal	kʾc	kʾc	کʾc	0		kʾc > kʾc
+کان	/ˈkaːn/	2	False	False	ira-pro	kánHati	kanad	کند	4	laryngeal_lengthening,t_to_d,final_vowel_loss,stress_not_written	kánHati > kˈanati > kˈanad > kanad
+کانم	/kaː.ˈnum/	2	False	False	ine-pro	gʷḗn	gān	گان	3	long_vowel_merger,labiovelar_g,stress_not_written	gʷḗn > gˈān > gˈān > gˈān > gˈān > gān
+کبوتر	/ka.boː.ˈtar/	2	False	False	iir-pro	kapáwtas	kabūd	کبود	9	final_s_to_h,aw_to_au,p_to_b,t_to_d,au_to_o,final_h_loss,final_vowel_loss,long_o_to_long_u,stress_not_written	kapáwtas > kapˈawtah > kapˈautah > kabˈōd > kabūd
+کته	[kʰu.ʈá]	2	False	False	ira-pro	kútah	kod	کد	5	t_to_d,final_h_loss,final_vowel_loss,u_to_o,stress_not_written	kútah > kˈutah > kˈud > kod
+کران	/ka.ˈraːn/	2	False	False	ine-pro	kʷel	kar	کر	3	vowel_merger_a,labiovelar_k,l_to_r	kʷel > kar > kar > kar > kar > kar
+کردن	/kar.ˈdan/	2	False	False	ine-pro	kʷer	kar	کر	2	vowel_merger_a,labiovelar_k	kʷer > kar > kar > kar > kar > kar
+کشتی	/kuʃ.ˈtiː/	2	False	False	ira-pro	kuši	koš	کش	2	final_vowel_loss,u_to_o	kuši > kuši > kuš > koš
+کل	/ˈkal/	2	False	False	ine-pro	gelH	gar	گر	3	vowel_merger_a,l_to_r,laryngeal_lengthening	gelH > garH > garH > gar > gar > gar
+کمر	[kʲæmæɾ]	2	False	False	iir-pro	kmárati	xmarad	خمرد	4	k_to_x_initial,t_to_d,final_vowel_loss,stress_not_written	kmárati > xmˈarati > xmˈarati > xmˈarad > xmarad
+کمر	[kʲæmæɾ]	2	False	False	iir-pro	kmárati	xmarad	خمرد	4	k_to_x_initial,t_to_d,final_vowel_loss,stress_not_written	kmárati > xmˈarati > xmˈarati > xmˈarad > xmarad
+کنجد	/kun.ˈd͡ʒud/	2	False	False	ira-pro	kunčit	končet	کنچت	2	i_to_e,u_to_o	kunčit > kunčit > kunčit > končet
+کهر	/ka.ˈhar/	2	False	False	iir-pro	kádruš	kadroš	کدرش	2	u_to_o,stress_not_written	kádruš > kˈadruš > kˈadruš > kˈadruš > kadroš
+کوچک	/koː.ˈt͡ʃak/	2	False	False	iir-pro	kaw	kaw	کو	0		kaw > kaw > kaw > kaw > kaw
+ککه	[kʲækʲæ]	2	False	False	ine-pro	kakka	kaxk	کخک	2	k_to_x_internal,final_vowel_loss	kakka > kakka > kaxka > kaxka > kaxk > kaxk
+کی	/ˈkeː/	2	False	False	pal	𐫐𐫏	𐫐𐫏	𐫐𐫏	0		𐫐𐫏 > 𐫐𐫏
+کی	/ˈkaj/	2	False	False	ine-pro	skewh₁	skaw	سکو	3	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening	skewh₁ > skawH > skawH > skaw > skaw > skaw
+گاه	/ˈɡaːh/	2	False	False	ine-pro	gʷem	g	گ	3	vowel_merger_a,labiovelar_g,final_am_loss	gʷem > gam > gam > gam > g > g
+گاه	/ˈɡaːh/	2	False	False	ine-pro	gʷem	g	گ	3	vowel_merger_a,labiovelar_g,final_am_loss	gʷem > gam > gam > gam > g > g
+گبر		2	False	False	ine-pro	webʰ	bab	بب	3	vowel_merger_a,deaspirate_bh,w_to_b_initial	webʰ > wabʰ > wab > wab > wab > bab
+گرده		2	False	False	iir-pro	wr̥tkás	gortk	گرتک	7	final_s_to_h,r_syllabic_to_ar,war_rounding,w_to_g_before_ur,final_h_loss,final_vowel_loss,u_to_o	wr̥tkás > wr̥tkˈah > wartkˈah > gurtk > gortk
+گرودمان	/ɡa.roːd.ˈmaːn/	2	False	False	pal	grdmʾn	grdmʾn	گردمʾن	0		grdmʾn > grdmʾn
+گروه	/ɡu.ˈroːh/	2	False	False	ine-pro	ger	gar	گر	1	vowel_merger_a	ger > gar > gar > gar > gar > gar
+گریبان	/ɡi.reː.ˈbaːn/	2	False	False	ine-pro	gʷriHwéh₂	grīwā	گریوا	5	h2_colours_e,laryngeal_to_H,labiovelar_g,laryngeal_lengthening,stress_not_written	gʷriHwéh₂ > griHwˈaH > griHwˈaH > grīwˈā > grīwˈā > grīwā
+گز	/ˈɡaz/	2	False	False	iir-pro	gadaH	gayā	گیا	2	laryngeal_lengthening,d_to_y	gadaH > gadaH > gadā > gayā > gayā
+گشتن	/ɡaʃ.ˈtan/	2	False	False	ine-pro	wert	gort	گرت	4	vowel_merger_a,war_rounding,w_to_g_before_ur,u_to_o	wert > wart > wart > wart > gurt > gort
+گل	/ˈɡul/	2	False	False	ine-pro	Hwerdʰ	gord	گرد	6	vowel_merger_a,deaspirate_dh,laryngeal_loss_initial,war_rounding,w_to_g_before_ur,u_to_o	Hwerdʰ > Hwardʰ > Hward > ward > gurd > gord
+گلو	/ɡu.ˈloː/	2	False	False	ine-pro	gʷel	gar	گر	3	vowel_merger_a,labiovelar_g,l_to_r	gʷel > gar > gar > gar > gar > gar
+گم	/ˈɡum/	2	False	False	ine-pro	wí	b	ب	2	final_vowel_loss,w_to_b_initial	wí > wˈi > wˈi > wˈi > w > b
+گنجه	/ɡan.ˈd͡ʒa/	2	False	False	pal	gncg	gncg	گنcگ	0		gncg > gncg
+گودر	/ɡoː.ˈdar/	2	False	False	pal	gwtl	gwtl	گوتل	0		gwtl > gwtl
+یخ	/ˈjax/	2	False	False	ine-pro	h₁eyH	ay	ای	4	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,laryngeal_lengthening	h₁eyH > HayH > HayH > ay > ay > ay
+یخ	/ˈjax/	2	False	False	ine-pro	h₁eyH	ay	ای	4	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,laryngeal_lengthening	h₁eyH > HayH > HayH > ay > ay > ay
+یوغ	/ˈjuːɣ/	2	False	False	ine-pro	yugóm	yoy	یی	4	vowel_merger_a,g_to_y,final_am_loss,u_to_o	yugóm > yugˈam > yugˈam > yugˈam > yuy > yoy
+یک	/ˈjak/	2	False	False	ine-pro	óywos	īw	ایو	8	vowel_merger_a,final_s_to_h,ayw_to_aiv,ai_to_e,final_h_loss,final_vowel_loss,long_e_to_long_i,stress_not_written	óywos > ˈaywas > ˈaywah > ˈaiwah > ˈēw > īw
+یک	/ˈjak/	2	False	False	ine-pro	óywos	īw	ایو	8	vowel_merger_a,final_s_to_h,ayw_to_aiv,ai_to_e,final_h_loss,final_vowel_loss,long_e_to_long_i,stress_not_written	óywos > ˈaywas > ˈaywah > ˈaiwah > ˈēw > īw
+آبشخور	/ʔaː.biʃ.ˈxʷar/	3	False	False	pal	abišxʷar	abešxʷar	ابشxʷر	1	i_to_e	abišxʷar > abešxʷar
+آرام	/ʔaː.ˈraːm/	3	False	False	ine-pro	h₂éd	ad	اد	4	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,stress_not_written	h₂éd > Hˈad > Hˈad > ˈad > ˈad > ad
+آرام	/ʔaː.ˈraːm/	3	False	False	ine-pro	h₂éd	ad	اد	4	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,stress_not_written	h₂éd > Hˈad > Hˈad > ˈad > ˈad > ad
+آرام	/ʔaː.ˈraːm/	3	False	False	ine-pro	h₂éd	ad	اد	4	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,stress_not_written	h₂éd > Hˈad > Hˈad > ˈad > ˈad > ad
+آرزو	/ʔaː.ri.ˈzoː/	3	False	False	ine-pro	lewk	rūk	روک	5	vowel_merger_a,l_to_r,aw_to_au,au_to_o,long_o_to_long_u	lewk > rawk > rawk > rauk > rōk > rūk
+آرزو	/ʔaː.ri.ˈzoː/	3	False	False	ine-pro	lewk	rūk	روک	5	vowel_merger_a,l_to_r,aw_to_au,au_to_o,long_o_to_long_u	lewk > rawk > rawk > rauk > rōk > rūk
+آرنج	/ʔaː.ˈrand͡ʒ/	3	False	False	iir-pro	Haratníš	arasneš	ارسنش	5	t_to_theta_before_sonorant,laryngeal_loss_initial,theta_to_s,i_to_e,stress_not_written	Haratníš > Haraθnˈiš > araθnˈiš > arasnˈiš > arasneš
+آریان	/ʔaːr.ˈjaːn/	3	False	False	iir-pro	Áryas	Áry	Áری	3	final_s_to_h,final_h_loss,final_vowel_loss	Áryas > Áryah > Áryah > Áry > Áry
+آریان	/ʔaːr.ˈjaːn/	3	False	False	iir-pro	Áryas	Áry	Áری	3	final_s_to_h,final_h_loss,final_vowel_loss	Áryas > Áryah > Áryah > Áry > Áry
+آزار	/ʔaː.ˈzaːr/	3	False	False	ira-pro	aHjāráyati	āyārayad	آیارید	6	laryngeal_lengthening,j_to_d,d_to_y,t_to_d,final_vowel_loss,stress_not_written	aHjāráyati > ādārˈayati > āyārˈayad > āyārayad
+آزار	/ʔaː.ˈzaːr/	3	False	False	ira-pro	aHjāráyati	āyārayad	آیارید	6	laryngeal_lengthening,j_to_d,d_to_y,t_to_d,final_vowel_loss,stress_not_written	aHjāráyati > ādārˈayati > āyārˈayad > āyārayad
+آسان	/ʔaː.ˈsaːn/	3	False	False	ine-pro	seh₂	hā	ها	4	h2_colours_e,laryngeal_to_H,s_to_h,laryngeal_lengthening	seh₂ > saH > haH > hā > hā > hā
+آسیب	/ʔaː.ˈseːb/	3	False	False	ine-pro	skeh₂i	skā	سکا	4	h2_colours_e,laryngeal_to_H,laryngeal_lengthening,final_vowel_loss	skeh₂i > skaHi > skaHi > skāi > skā > skā
+آغاز	/ʔaː.ˈɣaːz/	3	False	False	ine-pro	h₂ed	ad	اد	3	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial	h₂ed > Had > Had > ad > ad > ad
+آل	/ˈʔaːl/	3	False	False	ine-pro	h₁rewdʰ	rūd	رود	7	laryngeal_to_H,vowel_merger_a,deaspirate_dh,laryngeal_loss_initial,aw_to_au,au_to_o,long_o_to_long_u	h₁rewdʰ > Hrawdʰ > Hrawd > raud > rōd > rūd
+آله	/ʔaː.ˈluh/	3	False	False	ine-pro	h₂erǵ	ard	ارد	6	laryngeal_to_H,vowel_merger_a,satem_g,j_from_palatal,laryngeal_loss_initial,j_to_d	h₂erǵ > Harȷ́ > Harj > ard > ard > ard
+آمادن	/ʔaː.maː.ˈdan/	3	False	False	ine-pro	h₂éd	ad	اد	4	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,stress_not_written	h₂éd > Hˈad > Hˈad > ˈad > ˈad > ad
+آماده	/ʔaː.maː.ˈda/	3	False	False	ine-pro	meh₁	mā	ما	3	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening	meh₁ > maH > maH > mā > mā > mā
+آمدن	/ʔaː.ma.ˈdan/	3	False	False	ine-pro	h₂éd	ad	اد	4	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,stress_not_written	h₂éd > Hˈad > Hˈad > ˈad > ˈad > ad
+آموسنی	/ʔaː.muːs.ˈniː/	3	False	False	ira-pro	hapáθniH	habasnī	هبسنی	4	laryngeal_lengthening,p_to_b,theta_to_s,stress_not_written	hapáθniH > hapˈaθnī > habˈasnī > habasnī
+آهو	/ʔaː.ˈhuː/	3	False	False	ine-pro	h₂eḱ	as	اس	7	laryngeal_to_H,vowel_merger_a,satem_k,c_from_palatal,laryngeal_loss_initial,c_to_theta,theta_to_s	h₂eḱ > Hać > Hac > aθ > as > as
+آهو	/ʔaː.ˈhuː/	3	False	False	ine-pro	h₂eḱ	as	اس	7	laryngeal_to_H,vowel_merger_a,satem_k,c_from_palatal,laryngeal_loss_initial,c_to_theta,theta_to_s	h₂eḱ > Hać > Hac > aθ > as > as
+آواز	/ʔaː.ˈwaːz/	3	False	False	ine-pro	wōkʷs	bāš	باش	6	long_vowel_merger,labiovelar_k,ruki_s,k_to_x_internal,xsh_to_sh,w_to_b_initial	wōkʷs > wākš > wāxš > wāxš > wāš > bāš
+آوام	/ʔaː.ˈwaːm/	3	False	False	pal	ʾwbʾm	ʾwbʾm	ʾوبʾم	0		ʾwbʾm > ʾwbʾm
+آچار	/ʔaː.ˈt͡ʃaːr/	3	False	False	ine-pro	h₂m̥bʰí	aw	او	6	laryngeal_to_H,syllabic_m,deaspirate_bh,laryngeal_loss_initial,b_to_w,final_vowel_loss	h₂m̥bʰí > Habʰˈi > Habˈi > abˈi > aw > aw
+آکج	/ʔaː.ˈkid͡ʒ/	3	False	False	ine-pro	ang	ang	انگ	0		ang > ang > ang > ang > ang > ang
+اخگر	/ʔax.ˈɡar/	3	False	False	ine-pro	h₂eh₁ter	ādar	آدر	5	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,laryngeal_lengthening,t_to_d	h₂eh₁ter > HaHtar > HaHtar > ātar > ādar > ādar
+ارزان	/ʔar.ˈzaːn/	3	False	False	iir-pro	Hárǰʰ	arǰ	ارج	3	deaspirate_palatal,laryngeal_loss_initial,stress_not_written	Hárǰʰ > Hˈarǰ > ˈarǰ > ˈarǰ > arǰ
+ارزه	/ʔar.ˈzah/	3	False	False	pal	’lz’	’lz’	’لز’	0		’lz’ > ’lz’
+ارزیز	/ʔar.ˈziːz/	3	False	False	ine-pro	h₂erǵ	ard	ارد	6	laryngeal_to_H,vowel_merger_a,satem_g,j_from_palatal,laryngeal_loss_initial,j_to_d	h₂erǵ > Harȷ́ > Harj > ard > ard > ard
+ارس	/ʔa.ˈras/	3	False	False	ira-pro	Raxsā	Raxsā	Rخسا	0		Raxsā > Raxsā > Raxsā > Raxsā
+ازل	/ʔa.ˈzal/	3	False	False	pal	𐭫𐭠𐭮	𐭫𐭠𐭮	𐭫𐭠𐭮	0		𐭫𐭠𐭮 > 𐭫𐭠𐭮
+اسبه	/ʔis.ˈba/	3	False	False	ine-pro	ḱwṓ	spā	سپا	5	long_vowel_merger,satem_k,c_from_palatal,cw_to_sp,stress_not_written	ḱwṓ > ćwˈā > cwˈā > spˈā > spˈā > spā
+استوانه	/ʔus.tu.waː.ˈna/	3	False	False	pal	stwn'	stwn'	ستون'	0		stwn' > stwn'
+اسپ	/ˈʔasp/	3	False	False	peo	𐎠𐎿𐎱	𐎠𐎿𐎱	𐎠𐎿𐎱	0		𐎠𐎿𐎱 > 𐎠𐎿𐎱 > 𐎠𐎿𐎱
+اشنان	/ʔuʃ.ˈnaːn/	3	False	False	ine-pro	sneh₂	hnā	هنا	4	h2_colours_e,laryngeal_to_H,s_to_h,laryngeal_lengthening	sneh₂ > snaH > hnaH > hnā > hnā > hnā
+اشکفت		3	False	False	pal	škpt'	škpt'	شکپت'	0		škpt' > škpt'
+الوس	/ʔa.ˈluːs/	3	False	False	iir-pro	Harušás	aroš	ارش	5	final_s_to_h,laryngeal_loss_initial,final_h_loss,final_vowel_loss,u_to_o	Harušás > Harušˈah > arušˈah > aruš > aroš
+الیف		3	False	False	ine-pro	h₁reyp	rīp	ریپ	6	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,ay_to_ai,ai_to_e,long_e_to_long_i	h₁reyp > Hrayp > Hrayp > raip > rēp > rīp
+انجیر	/ʔan.ˈd͡ʒiːr/	3	False	False	pal	ʾncyl	ʾncyl	ʾنcیل	0		ʾncyl > ʾncyl
+اندروا	/ʔan.dar.ˈwaː/	3	False	False	ira-pro	HantárHwaHyúš	antarwāyoš	انتروایش	4	laryngeal_loss_initial,laryngeal_lengthening,u_to_o,stress_not_written	HantárHwaHyúš > antˈarwāyˈuš > antˈarwāyˈuš > antarwāyoš
+اندروا	/ʔan.dar.ˈwaː/	3	False	False	ira-pro	HantárHwaHyúš	antarwāyoš	انتروایش	4	laryngeal_loss_initial,laryngeal_lengthening,u_to_o,stress_not_written	HantárHwaHyúš > antˈarwāyˈuš > antˈarwāyˈuš > antarwāyoš
+اهواز	/ʔah.ˈwaːz/	3	False	False	pal	hwc	hwc	هوc	0		hwc > hwc
+اوان	[æˈvɒn]	3	False	False	pal	ʾwʾm	ʾwʾm	ʾوʾم	0		ʾwʾm > ʾwʾm
+اگر	/ˈa.ɡar/	3	False	False	pal	𐭧𐭲	𐭧𐭲	𐭧𐭲	0		𐭧𐭲 > 𐭧𐭲
+ایدون	/ʔeː.ˈdoːn/	3	False	False	pal	ʾytwn'	ʾytwn'	ʾیتون'	0		ʾytwn' > ʾytwn'
+ایرا		3	False	False	ine-pro	Hreh₁dʰ	rād	راد	5	laryngeal_to_H,vowel_merger_a,deaspirate_dh,laryngeal_loss_initial,laryngeal_lengthening	Hreh₁dʰ > HraHdʰ > HraHd > rād > rād > rād
+ایرمان	/ʔeːr.ˈmaːn/	3	False	False	ira-pro	aryamā́	aryamā	اریما	1	stress_not_written	aryamā́ > aryamˈā > aryamˈā > aryamā
+ایرمان	/ʔeːr.ˈmaːn/	3	False	False	ira-pro	aryamā́	aryamā	اریما	1	stress_not_written	aryamā́ > aryamˈā > aryamˈā > aryamā
+این	/ˈʔeːn/	3	False	False	pal	𐭦𐭭𐭤	𐭦𐭭𐭤	𐭦𐭭𐭤	0		𐭦𐭭𐭤 > 𐭦𐭭𐭤
+باختن	/baːx.ˈtan/	3	False	False	ine-pro	wenh₁	ban	بن	4	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening,w_to_b_initial	wenh₁ > wanH > wanH > wan > wan > ban
+باز	/ˈbaːz/	3	False	False	pal	𐭡𐭠𐭰	𐭡𐭠𐭰	𐭡𐭠𐭰	0		𐭡𐭠𐭰 > 𐭡𐭠𐭰
+بال	/ˈbaːl/	3	False	False	pal	b’lk’	b’lk’	ب’لک’	0		b’lk’ > b’lk’
+بالا	/baː.ˈlaː/	3	False	False	ine-pro	bʰerǵʰ	bard	برد	6	vowel_merger_a,satem_gh,deaspirate_bh,deaspirate_palatal,j_from_palatal,j_to_d	bʰerǵʰ > bʰarȷ́ʰ > barj > bard > bard > bard
+بالا	/baː.ˈlaː/	3	False	False	ine-pro	bʰerǵʰ	bard	برد	6	vowel_merger_a,satem_gh,deaspirate_bh,deaspirate_palatal,j_from_palatal,j_to_d	bʰerǵʰ > bʰarȷ́ʰ > barj > bard > bard > bard
+بالا	/baː.ˈlaː/	3	False	False	ine-pro	bʰerǵʰ	bard	برد	6	vowel_merger_a,satem_gh,deaspirate_bh,deaspirate_palatal,j_from_palatal,j_to_d	bʰerǵʰ > bʰarȷ́ʰ > barj > bard > bard > bard
+بالش	/baː.ˈliʃ/	3	False	False	ine-pro	bʰelǵʰ	bard	برد	7	vowel_merger_a,satem_gh,l_to_r,deaspirate_bh,deaspirate_palatal,j_from_palatal,j_to_d	bʰelǵʰ > bʰarȷ́ʰ > barj > bard > bard > bard
+باور	/baː.ˈwar/	3	False	False	ine-pro	upó	ob	اب	4	vowel_merger_a,p_to_b,final_vowel_loss,u_to_o	upó > upˈa > upˈa > upˈa > ub > ob
+بد	/ˈbad/	3	False	False	pal	𐭯𐭥𐭭	𐭯𐭥𐭭	𐭯𐭥𐭭	0		𐭯𐭥𐭭 > 𐭯𐭥𐭭
+برازیدن	/ba.raː.ziː.ˈdan/	3	False	False	ine-pro	bʰreh₁ǵ	brād	براد	7	laryngeal_to_H,vowel_merger_a,satem_g,deaspirate_bh,j_from_palatal,laryngeal_lengthening,j_to_d	bʰreh₁ǵ > bʰraHȷ́ > braHj > brād > brād > brād
+برشتن	/bi.riʃ.ˈtan/	3	False	False	iir-pro	bʰr̥ȷ́yáti	bardyad	بردید	7	deaspirate_bh,j_from_palatal,j_to_d,r_syllabic_to_ar,t_to_d,final_vowel_loss,stress_not_written	bʰr̥ȷ́yáti > br̥jyˈati > bardyˈati > bardyˈad > bardyad
+برغست	/bar.ˈɣast/	3	False	False	pal	وراشت	وراشت	وراشت	0		وراشت > وراشت
+برف	/ˈbarf/	3	False	False	pal	𐭥𐭯𐭫	𐭥𐭯𐭫	𐭥𐭯𐭫	0		𐭥𐭯𐭫 > 𐭥𐭯𐭫
+بره	/bar.ˈra/	3	False	False	ine-pro	wr̥h₁ḗn	gorān	گران	8	laryngeal_to_H,long_vowel_merger,laryngeal_lengthening,r_syllabic_to_ar,war_rounding,w_to_g_before_ur,u_to_o,stress_not_written	wr̥h₁ḗn > wr̥Hˈān > wr̥Hˈān > warˈān > gurˈān > gorān
+بره	/bar.ˈra/	3	False	False	ine-pro	wr̥h₁ḗn	gorān	گران	8	laryngeal_to_H,long_vowel_merger,laryngeal_lengthening,r_syllabic_to_ar,war_rounding,w_to_g_before_ur,u_to_o,stress_not_written	wr̥h₁ḗn > wr̥Hˈān > wr̥Hˈān > warˈān > gurˈān > gorān
+برهنه	/ba.rah.ˈna/	3	False	False	ine-pro	negʷ	ne	نه	3	vowel_merger_a,labiovelar_g,final_ag_to_e	negʷ > nag > nag > nag > nag > ne
+بستن	/bas.ˈtan/	3	False	False	ine-pro	bʰendʰ	band	بند	3	vowel_merger_a,grassmann,deaspirate_dh	bʰendʰ > bandʰ > band > band > band > band
+بغل	/ba.ˈɣal/	3	False	False	ine-pro	bʰeh₂ǵʰús	bāyoš	بایش	12	h2_colours_e,laryngeal_to_H,satem_gh,ruki_s,deaspirate_bh,deaspirate_palatal,j_from_palatal,laryngeal_lengthening,j_to_d,d_to_y,u_to_o,stress_not_written	bʰeh₂ǵʰús > bʰaHȷ́ʰˈuš > baHjˈuš > bādˈuš > bāyˈuš > bāyoš
+بغل	/ba.ˈɣal/	3	False	False	ine-pro	bʰeh₂ǵʰús	bāyoš	بایش	12	h2_colours_e,laryngeal_to_H,satem_gh,ruki_s,deaspirate_bh,deaspirate_palatal,j_from_palatal,laryngeal_lengthening,j_to_d,d_to_y,u_to_o,stress_not_written	bʰeh₂ǵʰús > bʰaHȷ́ʰˈuš > baHjˈuš > bādˈuš > bāyˈuš > bāyoš
+بنفشه	/bu.naf.ˈʃa/	3	False	False	pal	wnpšk'	bnpšk'	بنپشک'	1	w_to_b_initial	wnpšk' > bnpšk'
+بنفشه	/bu.naf.ˈʃa/	3	False	False	pal	wnpšk'	bnpšk'	بنپشک'	1	w_to_b_initial	wnpšk' > bnpšk'
+بنگ	/ˈbaŋɡ/	3	False	False	pal	𐭡𐭭𐭢	𐭡𐭭𐭢	𐭡𐭭𐭢	0		𐭡𐭭𐭢 > 𐭡𐭭𐭢
+بهست		3	False	False	ira-pro	išt	ešt	اشت	1	i_to_e	išt > išt > išt > ešt
+بهمن	/bah.ˈman/	3	False	False	peo	Vahumanāh	Vahomanāh	Vهمناه	1	u_to_o	Vahumanāh > Vahumanāh > Vahomanāh
+بهمن	/bah.ˈman/	3	False	False	peo	Vahumanāh	Vahomanāh	Vهمناه	1	u_to_o	Vahumanāh > Vahumanāh > Vahomanāh
+بوف		3	False	False	pal	𐭡𐭥𐭯	𐭡𐭥𐭯	𐭡𐭥𐭯	0		𐭡𐭥𐭯 > 𐭡𐭥𐭯
+بیختن	/beːx.ˈtan/	3	False	False	ine-pro	weyk	bīk	بیک	5	vowel_merger_a,ay_to_ai,ai_to_e,long_e_to_long_i,w_to_b_initial	weyk > wayk > wayk > waik > wēk > bīk
+بیده	[biː.d̪á]	3	False	False	ine-pro	weh₁y	bāy	بای	4	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening,w_to_b_initial	weh₁y > waHy > waHy > wāy > wāy > bāy
+بیرون	/beː.ˈruːn/	3	False	False	ine-pro	srew	hraw	هرو	2	vowel_merger_a,s_to_h	srew > sraw > hraw > hraw > hraw > hraw
+بیرون	/beː.ˈruːn/	3	False	False	ine-pro	srew	hraw	هرو	2	vowel_merger_a,s_to_h	srew > sraw > hraw > hraw > hraw > hraw
+بیشه	/beː.ˈʃa/	3	False	False	ine-pro	médʰyos	mayy	میی	7	vowel_merger_a,deaspirate_dh,final_s_to_h,d_to_y,final_h_loss,final_vowel_loss,stress_not_written	médʰyos > mˈadʰyas > mˈadyah > mˈadyah > mˈayy > mayy
+بیـ		3	False	False	ine-pro	h₂epó	ab	اب	5	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,p_to_b,final_vowel_loss	h₂epó > Hapˈa > Hapˈa > apˈa > ab > ab
+بینی	/biː.ˈniː/	3	False	False	ine-pro	wí	b	ب	2	final_vowel_loss,w_to_b_initial	wí > wˈi > wˈi > wˈi > w > b
+بیگار	/beː.ˈɡaːr/	3	False	False	pal	byk'l	byk'l	بیک'ل	0		byk'l > byk'l
+تازیک	/taː.ˈziːk/	3	False	False	pal	tʾcyk'	tʾcyk'	تʾcیک'	0		tʾcyk' > tʾcyk'
+تازیک	/taː.ˈziːk/	3	False	False	pal	tʾcyk'	tʾcyk'	تʾcیک'	0		tʾcyk' > tʾcyk'
+تباه	/ta.ˈbaːh/	3	False	False	ine-pro	tep	tap	تپ	1	vowel_merger_a	tep > tap > tap > tap > tap > tap
+ترانه	/ta.raː.ˈna/	3	False	False	ine-pro	terh₂	tar	تر	3	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening	terh₂ > tarH > tarH > tar > tar > tar
+ترانه	/ta.raː.ˈna/	3	False	False	ine-pro	terh₂	tar	تر	3	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening	terh₂ > tarH > tarH > tar > tar > tar
+ترس	/ˈtars/	3	False	False	iir-pro	trāsás	hāh	هاه	7	s_to_h,final_s_to_h,t_to_theta_before_sonorant_initial,theta_r_to_cedilla,cedilla_to_h,final_h_loss,final_vowel_loss	trāsás > θrāhˈah > çāhˈah > hāh > hāh
+ترگمان	/tar.ɡu.ˈmaːn/	3	False	False	pal	tlgmʾn'	tlgmʾn'	تلگمʾن'	0		tlgmʾn' > tlgmʾn'
+تشنه	/tiʃ.ˈna/	3	False	False	ine-pro	ters	tarš	ترش	2	vowel_merger_a,ruki_s	ters > tarš > tarš > tarš > tarš > tarš
+تندر	/tun.ˈdar/	3	False	False	ine-pro	stenh₂	stan	ستن	3	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening	stenh₂ > stanH > stanH > stan > stan > stan
+تنها	/tan.ˈhaː/	3	False	False	pal	tn'yhʾ	tn'yhʾ	تن'یهʾ	0		tn'yhʾ > tn'yhʾ
+تکیدن	/ta.kiː.ˈdan/	3	False	False	ine-pro	tekʷ	tak	تک	2	vowel_merger_a,labiovelar_k	tekʷ > tak > tak > tak > tak > tak
+تیرداد	/tiːr.ˈdaːd/	3	False	False	peo	Tīrīdātah	Tīrīyād	Tیرییاد	4	d_to_y,t_to_d,final_h_loss,final_vowel_loss	Tīrīdātah > Tīrīyād > Tīrīyād
+جامه	/d͡ʒaː.ˈma/	3	False	False	ine-pro	yém-o-s	yam	یم	5	vowel_merger_a,final_s_to_h,final_h_loss,final_vowel_loss,stress_not_written	yém-o-s > yˈamas > yˈamah > yˈamah > yˈam > yam
+جاوید	/d͡ʒaː.ˈweːd/	3	False	False	ine-pro	h₂óyu	ay	ای	5	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,final_vowel_loss,stress_not_written	h₂óyu > Hˈayu > Hˈayu > ˈayu > ˈay > ay
+جاوید	/d͡ʒaː.ˈweːd/	3	False	False	ine-pro	h₂óyu	ay	ای	5	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,final_vowel_loss,stress_not_written	h₂óyu > Hˈayu > Hˈayu > ˈayu > ˈay > ay
+جدا	/d͡ʒu.ˈdaː/	3	False	False	iir-pro	yaw	yaw	یو	0		yaw > yaw > yaw > yaw > yaw
+جدا	/d͡ʒu.ˈdaː/	3	False	False	iir-pro	yaw	yaw	یو	0		yaw > yaw > yaw > yaw > yaw
+جشن	/ˈd͡ʒaʃn/	3	False	False	ine-pro	h₁yaǵ	yad	ید	5	laryngeal_to_H,satem_g,j_from_palatal,laryngeal_loss_initial,j_to_d	h₁yaǵ > Hyaȷ́ > Hyaj > yad > yad > yad
+جفت	/ˈd͡ʒuft/	3	False	False	ine-pro	yewg	yūg	یوگ	4	vowel_merger_a,aw_to_au,au_to_o,long_o_to_long_u	yewg > yawg > yawg > yaug > yōg > yūg
+جفت	/ˈd͡ʒuft/	3	False	False	ine-pro	yewg	yūg	یوگ	4	vowel_merger_a,aw_to_au,au_to_o,long_o_to_long_u	yewg > yawg > yawg > yaug > yōg > yūg
+جلد		3	False	False	ine-pro	yeh₂	yā	یا	3	h2_colours_e,laryngeal_to_H,laryngeal_lengthening	yeh₂ > yaH > yaH > yā > yā > yā
+جور	/ˈd͡ʒoːr/	3	False	False	ine-pro	h₂óyu	ay	ای	5	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,final_vowel_loss,stress_not_written	h₂óyu > Hˈayu > Hˈayu > ˈayu > ˈay > ay
+جوز	/ˈd͡ʒawz/	3	False	False	pal	𐭢𐭥𐭦	𐭢𐭥𐭦	𐭢𐭥𐭦	0		𐭢𐭥𐭦 > 𐭢𐭥𐭦
+جوش	/ˈd͡ʒoːʃ/	3	False	False	ine-pro	yes	y	ی	4	vowel_merger_a,final_s_to_h,final_h_loss,final_vowel_loss	yes > yas > yah > yah > y > y
+جوش	/ˈd͡ʒoːʃ/	3	False	False	ine-pro	yes	y	ی	4	vowel_merger_a,final_s_to_h,final_h_loss,final_vowel_loss	yes > yas > yah > yah > y > y
+خاموش	/xaː.ˈmoːʃ/	3	False	False	ine-pro	mers	marš	مرش	2	vowel_merger_a,ruki_s	mers > marš > marš > marš > marš > marš
+خاک	/ˈxaːk/	3	False	False	ine-pro	h₂eHs	ās	آس	4	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,laryngeal_lengthening	h₂eHs > HaHs > HaHs > ās > ās > ās
+خایه	/xaː.ˈja/	3	False	False	ine-pro	h₂ōwyóm	āwy	آوی	5	laryngeal_to_H,vowel_merger_a,long_vowel_merger,laryngeal_loss_initial,final_am_loss	h₂ōwyóm > Hāwyˈam > Hāwyˈam > āwyˈam > āwy > āwy
+خب		3	False	False	pal	𐭧𐭥𐭡	𐭧𐭥𐭡	𐭧𐭥𐭡	0		𐭧𐭥𐭡 > 𐭧𐭥𐭡
+خب		3	False	False	pal	𐭧𐭥𐭡	𐭧𐭥𐭡	𐭧𐭥𐭡	0		𐭧𐭥𐭡 > 𐭧𐭥𐭡
+خب		3	False	False	pal	𐭧𐭥𐭡	𐭧𐭥𐭡	𐭧𐭥𐭡	0		𐭧𐭥𐭡 > 𐭧𐭥𐭡
+خراشیدن	/xa.raː.ʃiː.ˈdan/	3	False	False	ira-pro	xrā́š	xrāš	خراش	1	stress_not_written	xrā́š > xrˈāš > xrˈāš > xrāš
+خربزه	/xar.bu.ˈza/	3	False	False	iir-pro	kʰáras	xar	خر	5	final_s_to_h,kh_to_x,final_h_loss,final_vowel_loss,stress_not_written	kʰáras > xˈarah > xˈarah > xˈar > xar
+خریدن	/xa.riː.ˈdan/	3	False	False	ine-pro	kʷrinéh₂ti	xrenād	خرناد	9	h2_colours_e,laryngeal_to_H,labiovelar_k,k_to_x_initial,laryngeal_lengthening,t_to_d,final_vowel_loss,i_to_e,stress_not_written	kʷrinéh₂ti > krinˈaHti > xrinˈaHti > xrinˈāti > xrinˈād > xrenād
+خستن	[xæsˈtæn]	3	False	False	ira-pro	xad	xad	خد	0		xad > xad > xad > xad
+خشو	[xʊ.ʃuː]	3	False	False	ine-pro	sweḱrúh₂	hwahū	هوهو	10	laryngeal_to_H,vowel_merger_a,satem_k,s_to_h,c_from_palatal,laryngeal_lengthening,c_to_theta,theta_r_to_cedilla,cedilla_to_h,stress_not_written	sweḱrúh₂ > swaćrˈuH > hwacrˈuH > hwaçˈū > hwahˈū > hwahū
+خفته	/xuf.ˈta/	3	False	False	iir-pro	suptás	hopt	هپت	5	s_to_h,final_s_to_h,final_h_loss,final_vowel_loss,u_to_o	suptás > huptˈah > huptˈah > hupt > hopt
+خم	/ˈxam/	3	False	False	ira-pro	čámpati	čampad	چمپد	3	t_to_d,final_vowel_loss,stress_not_written	čámpati > čˈampati > čˈampad > čampad
+خم	/ˈxam/	3	False	False	ira-pro	čámpati	čampad	چمپد	3	t_to_d,final_vowel_loss,stress_not_written	čámpati > čˈampati > čˈampad > čampad
+خندیدن	/xan.diː.ˈdan/	3	False	False	ira-pro	xand	xand	خند	0		xand > xand > xand > xand
+خواب	/ˈxʷaːb/	3	False	False	ine-pro	swep	hwap	هوپ	2	vowel_merger_a,s_to_h	swep > swap > hwap > hwap > hwap > hwap
+خواب	/ˈxʷaːb/	3	False	False	ine-pro	swep	hwap	هوپ	2	vowel_merger_a,s_to_h	swep > swap > hwap > hwap > hwap > hwap
+خوار	/ˈxʷaːr/	3	False	False	ira-pro	ātra	ātr	آتر	1	final_vowel_loss	ātra > ātra > ātr > ātr
+خواستن	/xʷaːs.ˈtan/	3	False	False	pal	hwʾstn'	hwʾstn'	هوʾستن'	0		hwʾstn' > hwʾstn'
+خوال	/ˈxʷaːl/	3	False	False	ira-pro	hwarda	hword	هورد	3	war_rounding,final_vowel_loss,u_to_o	hwarda > hwarda > hwurd > hword
+خوب	/ˈxuːb/	3	False	False	pal	𐭧𐭥𐭡	𐭧𐭥𐭡	𐭧𐭥𐭡	0		𐭧𐭥𐭡 > 𐭧𐭥𐭡
+خوب	/ˈxuːb/	3	False	False	pal	𐭧𐭥𐭡	𐭧𐭥𐭡	𐭧𐭥𐭡	0		𐭧𐭥𐭡 > 𐭧𐭥𐭡
+خوش	/ˈxʷaʃ/	3	False	False	pal	𐭧𐭥𐭱	𐭧𐭥𐭱	𐭧𐭥𐭱	0		𐭧𐭥𐭱 > 𐭧𐭥𐭱
+خوشه	/xoː.ˈʃa/	3	False	False	ine-pro	h₂ṓws	āws	آوس	4	laryngeal_to_H,long_vowel_merger,laryngeal_loss_initial,stress_not_written	h₂ṓws > Hˈāws > Hˈāws > ˈāws > ˈāws > āws
+خویش	/ˈxʷeːʃ/	3	False	False	ine-pro	swós	hw	هو	5	vowel_merger_a,s_to_h,final_s_to_h,final_h_loss,final_vowel_loss	swós > swˈas > hwˈah > hwˈah > hw > hw
+خویش	/ˈxʷeːʃ/	3	False	False	ine-pro	swós	hw	هو	5	vowel_merger_a,s_to_h,final_s_to_h,final_h_loss,final_vowel_loss	swós > swˈas > hwˈah > hwˈah > hw > hw
+دبیرستان	/da.biː.ris.ˈtaːn/	3	False	False	pal	dpyrstʾn'	dpyrstʾn'	دپیرستʾن'	0		dpyrstʾn' > dpyrstʾn'
+دخت		3	False	False	ira-pro	dúgdā	dogdā	دگدا	2	u_to_o,stress_not_written	dúgdā > dˈugdā > dˈugdā > dogdā
+دختر	/dux.ˈtar/	3	False	False	ira-pro	dúgdā	dogdā	دگدا	2	u_to_o,stress_not_written	dúgdā > dˈugdā > dˈugdā > dogdā
+درب	/ˈdarb/	3	False	False	ine-pro	dʰwṓr	dwār	دوار	3	long_vowel_merger,deaspirate_dh,stress_not_written	dʰwṓr > dʰwˈār > dwˈār > dwˈār > dwˈār > dwār
+درمان	/dar.ˈmaːn/	3	False	False	ine-pro	dʰer	dar	در	2	vowel_merger_a,deaspirate_dh	dʰer > dʰar > dar > dar > dar > dar
+درود	/da.ˈruːd/	3	False	False	ine-pro	dóru	dār	دار	3	brugmann_o_a,final_vowel_loss,stress_not_written	dóru > dˈāru > dˈāru > dˈāru > dˈār > dār
+درویش	/dar.ˈweːʃ/	3	False	False	pal	dlgwš	dlgwš	دلگوش	0		dlgwš > dlgwš
+درویش	/dar.ˈweːʃ/	3	False	False	pal	dlgwš	dlgwš	دلگوش	0		dlgwš > dlgwš
+دری	/da.ˈriː/	3	False	False	ine-pro	dʰwṓr	dwār	دوار	3	long_vowel_merger,deaspirate_dh,stress_not_written	dʰwṓr > dʰwˈār > dwˈār > dwˈār > dwˈār > dwār
+دری	/da.ˈriː/	3	False	False	ine-pro	dʰwṓr	dwār	دوار	3	long_vowel_merger,deaspirate_dh,stress_not_written	dʰwṓr > dʰwˈār > dwˈār > dwˈār > dwˈār > dwār
+دریدن	/da.riː.ˈdan/	3	False	False	ine-pro	der	dar	در	1	vowel_merger_a	der > dar > dar > dar > dar > dar
+دس	/ˈdas/	3	False	False	peo	𐎭𐎿𐎫	𐎭𐎿𐎫	𐎭𐎿𐎫	0		𐎭𐎿𐎫 > 𐎭𐎿𐎫 > 𐎭𐎿𐎫
+دشنام	/duʃ.ˈnaːm/	3	False	False	ine-pro	dus	doš	دش	2	ruki_s,u_to_o	dus > duš > duš > duš > duš > doš
+دشوار	/duʃ.ˈwaːr/	3	False	False	ira-pro	duš	doš	دش	1	u_to_o	duš > duš > duš > doš
+دل	/ˈdil/	3	False	False	ine-pro	ḱḗr	sār	سار	6	long_vowel_merger,satem_k,c_from_palatal,c_to_theta,theta_to_s,stress_not_written	ḱḗr > ćˈār > cˈār > θˈār > sˈār > sār
+دنگل		3	False	False	ira-pro	jā́nu	dān	دان	3	j_to_d,final_vowel_loss,stress_not_written	jā́nu > dˈānu > dˈān > dān
+دنگل		3	False	False	ira-pro	jā́nu	dān	دان	3	j_to_d,final_vowel_loss,stress_not_written	jā́nu > dˈānu > dˈān > dān
+دنیدن	/dæniːˈdæn/	3	False	False	ine-pro	dʰenh₂	dan	دن	4	laryngeal_to_H,vowel_merger_a,deaspirate_dh,laryngeal_lengthening	dʰenh₂ > dʰanH > danH > dan > dan > dan
+ده	/ˈdih/	3	False	False	pal	𐭬𐭲𐭠	𐭬𐭲𐭠	𐭬𐭲𐭠	0		𐭬𐭲𐭠 > 𐭬𐭲𐭠
+دهان	/da.ˈhaːn/	3	False	False	ine-pro	ǵep	dap	دپ	4	vowel_merger_a,satem_g,j_from_palatal,j_to_d	ǵep > ȷ́ap > jap > dap > dap > dap
+دوک	/ˈduːk/	3	False	False	pal	𐭣𐭥𐭪	𐭣𐭥𐭪	𐭣𐭥𐭪	0		𐭣𐭥𐭪 > 𐭣𐭥𐭪
+دویدن	/da.wiː.ˈdan/	3	False	False	ine-pro	dʰew	daw	دو	2	vowel_merger_a,deaspirate_dh	dʰew > dʰaw > daw > daw > daw > daw
+دی	/ˈdaj/	3	False	False	pal	ddw’	ddw’	ددو’	0		ddw’ > ddw’
+دی	/ˈdaj/	3	False	False	pal	ddw’	ddw’	ددو’	0		ddw’ > ddw’
+دیر	/ˈdeːr/	3	False	False	peo	𐎭𐎼𐎥	𐎭𐎼𐎥	𐎭𐎼𐎥	0		𐎭𐎼𐎥 > 𐎭𐎼𐎥 > 𐎭𐎼𐎥
+دیر	/ˈdeːr/	3	False	False	peo	𐎭𐎼𐎥	𐎭𐎼𐎥	𐎭𐎼𐎥	0		𐎭𐎼𐎥 > 𐎭𐎼𐎥 > 𐎭𐎼𐎥
+دیم	/ˈdeːm/	3	False	False	pal	𐫅𐫏𐫖	𐫅𐫏𐫖	𐫅𐫏𐫖	0		𐫅𐫏𐫖 > 𐫅𐫏𐫖
+دیوانه	/deː.waː.ˈna/	3	False	False	ine-pro	deywós	dīw	دیو	7	vowel_merger_a,final_s_to_h,ayw_to_aiv,ai_to_e,final_h_loss,final_vowel_loss,long_e_to_long_i	deywós > daywˈas > daywˈah > daiwˈah > dēw > dīw
+دیگر	/diː.ˈɡar/	3	False	False	ira-pro	dwitī́yakarah	dwedīyagar	دودییگر	6	t_to_d,k_to_g,final_h_loss,final_vowel_loss,i_to_e,stress_not_written	dwitī́yakarah > dwitˈīyakarah > dwidˈīyagar > dwedīyagar
+رستن	/ras.ˈtan/	3	False	False	iir-pro	raȷ́ʰ	rad	رد	3	deaspirate_palatal,j_from_palatal,j_to_d	raȷ́ʰ > raj > rad > rad > rad
+رستن	/rus.ˈtan/	3	False	False	ine-pro	h₁lewdʰ	rūd	رود	8	laryngeal_to_H,vowel_merger_a,l_to_r,deaspirate_dh,laryngeal_loss_initial,aw_to_au,au_to_o,long_o_to_long_u	h₁lewdʰ > Hrawdʰ > Hrawd > raud > rōd > rūd
+رشتن	[ræʃˈtæn]	3	False	False	ira-pro	ranǰ	ranǰ	رنج	0		ranǰ > ranǰ > ranǰ > ranǰ
+رفتن	/raf.ˈtan/	3	False	False	ine-pro	h₁reh₁p	rāp	راپ	4	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,laryngeal_lengthening	h₁reh₁p > HraHp > HraHp > rāp > rāp > rāp
+رفتن	/ruf.ˈtan/	3	False	False	ira-pro	raup	rūp	روپ	2	au_to_o,long_o_to_long_u	raup > raup > rōp > rūp
+ری	/ˈraj/	3	False	False	peo	𐎼𐎥𐎠	𐎼𐎥𐎠	𐎼𐎥𐎠	0		𐎼𐎥𐎠 > 𐎼𐎥𐎠 > 𐎼𐎥𐎠
+ریختن	/reːx.ˈtan/	3	False	False	iir-pro	HriHyáti	rīyad	ریید	5	laryngeal_loss_initial,laryngeal_lengthening,t_to_d,final_vowel_loss,stress_not_written	HriHyáti > HriHyˈati > rīyˈati > rīyˈad > rīyad
+ریواس		3	False	False	ira-pro	hrabā́š	hrawāš	هرواش	2	b_to_w,stress_not_written	hrabā́š > hrabˈāš > hrawˈāš > hrawāš
+زار		3	False	False	ira-pro	jāráyati	dārayad	دارید	4	j_to_d,t_to_d,final_vowel_loss,stress_not_written	jāráyati > dārˈayati > dārˈayad > dārayad
+زال	/ˈzaːl/	3	False	False	ine-pro	ǵerh₂	dar	در	6	laryngeal_to_H,vowel_merger_a,satem_g,j_from_palatal,laryngeal_lengthening,j_to_d	ǵerh₂ > ȷ́arH > jarH > dar > dar > dar
+زال	/ˈzaːl/	3	False	False	ine-pro	ǵerh₂	dar	در	6	laryngeal_to_H,vowel_merger_a,satem_g,j_from_palatal,laryngeal_lengthening,j_to_d	ǵerh₂ > ȷ́arH > jarH > dar > dar > dar
+زال	/ˈzaːl/	3	False	False	ine-pro	ǵerh₂	dar	در	6	laryngeal_to_H,vowel_merger_a,satem_g,j_from_palatal,laryngeal_lengthening,j_to_d	ǵerh₂ > ȷ́arH > jarH > dar > dar > dar
+زاوش	/zaː.ˈwuʃ/	3	False	False	ine-pro	dyew	dyaw	دیو	1	vowel_merger_a	dyew > dyaw > dyaw > dyaw > dyaw > dyaw
+زاوش	/zaː.ˈwuʃ/	3	False	False	ine-pro	dyew	dyaw	دیو	1	vowel_merger_a	dyew > dyaw > dyaw > dyaw > dyaw > dyaw
+زدن	/za.ˈdan/	3	False	False	iir-pro	ǰʰánti	ǰant	جنت	3	deaspirate_palatal,final_vowel_loss,stress_not_written	ǰʰánti > ǰˈanti > ǰˈanti > ǰˈant > ǰant
+زراه	/zi.ˈraːh/	3	False	False	iir-pro	ȷ́ráyas	dray	دری	6	final_s_to_h,j_from_palatal,j_to_d,final_h_loss,final_vowel_loss,stress_not_written	ȷ́ráyas > jrˈayah > drˈayah > drˈay > dray
+زره	/zi.ˈrih/	3	False	False	ine-pro	ǵʰreh₁d	drād	دراد	7	laryngeal_to_H,vowel_merger_a,satem_gh,deaspirate_palatal,j_from_palatal,laryngeal_lengthening,j_to_d	ǵʰreh₁d > ȷ́ʰraHd > jraHd > drād > drād > drād
+زروک		3	False	False	ine-pro	ǵelu	dar	در	6	vowel_merger_a,satem_g,l_to_r,j_from_palatal,j_to_d,final_vowel_loss	ǵelu > ȷ́aru > jaru > daru > dar > dar
+زشت	/ˈziʃt/	3	False	False	pal	𐭦𐭱𐭲	𐭦𐭱𐭲	𐭦𐭱𐭲	0		𐭦𐭱𐭲 > 𐭦𐭱𐭲
+زنهار	/zin.ˈhaːr/	3	False	False	ine-pro	ser	har	هر	2	vowel_merger_a,s_to_h	ser > sar > har > har > har > har
+زنهار	/zin.ˈhaːr/	3	False	False	ine-pro	ser	har	هر	2	vowel_merger_a,s_to_h	ser > sar > har > har > har > har
+زه	/ˈzih/	3	False	False	pal	𐭦𐭩𐭧	𐭦𐭩𐭧	𐭦𐭩𐭧	0		𐭦𐭩𐭧 > 𐭦𐭩𐭧
+زهره	/zah.ˈra/	3	False	False	ine-pro	ǵʰelh₃	dar	در	8	laryngeal_to_H,vowel_merger_a,satem_gh,l_to_r,deaspirate_palatal,j_from_palatal,laryngeal_lengthening,j_to_d	ǵʰelh₃ > ȷ́ʰarH > jarH > dar > dar > dar
+زیر	/ˈzeːr/	3	False	False	ine-pro	sekʷ	hak	هک	3	vowel_merger_a,labiovelar_k,s_to_h	sekʷ > sak > hak > hak > hak > hak
+زیر	/ˈzeːr/	3	False	False	ine-pro	sekʷ	hak	هک	3	vowel_merger_a,labiovelar_k,s_to_h	sekʷ > sak > hak > hak > hak > hak
+زیر	/ˈzeːr/	3	False	False	ine-pro	sekʷ	hak	هک	3	vowel_merger_a,labiovelar_k,s_to_h	sekʷ > sak > hak > hak > hak > hak
+ساختن	/saːx.ˈtan/	3	False	False	pal	s’htn'	s’htn'	س’هتن'	0		s’htn' > s’htn'
+سال	/ˈsaːl/	3	False	False	peo	𐎰𐎼𐎭	𐎰𐎼𐎭	𐎰𐎼𐎭	0		𐎰𐎼𐎭 > 𐎰𐎼𐎭 > 𐎰𐎼𐎭
+سامان	/saː.ˈmaːn/	3	False	False	pal	sʾmʾn'	sʾmʾn'	سʾمʾن'	0		sʾmʾn' > sʾmʾn'
+سامان	/saː.ˈmaːn/	3	False	False	pal	sʾmʾn'	sʾmʾn'	سʾمʾن'	0		sʾmʾn' > sʾmʾn'
+سایه	/saː.ˈja/	3	False	False	ine-pro	sḱeh₃	ssā	سسا	8	h3_colours_e,laryngeal_to_H,vowel_merger_a,satem_k,c_from_palatal,laryngeal_lengthening,c_to_theta,theta_to_s	sḱeh₃ > sćaH > scaH > sθā > ssā > ssā
+سبک	/sa.ˈbuk/	3	False	False	ine-pro	trep	hap	هپ	4	vowel_merger_a,t_to_theta_before_sonorant_initial,theta_r_to_cedilla,cedilla_to_h	trep > trap > θrap > çap > hap > hap
+ستودن	/si.tuː.ˈdan/	3	False	False	ira-pro	stā́wti	stāwt	ستاوت	2	final_vowel_loss,stress_not_written	stā́wti > stˈāwti > stˈāwt > stāwt
+سخن	/su.ˈxan/	3	False	False	ira-pro	cánhati	sanhad	سنهد	5	c_to_theta,t_to_d,theta_to_s,final_vowel_loss,stress_not_written	cánhati > θˈanhati > sˈanhad > sanhad
+سرد	/ˈsard/	3	False	False	pal	slt'	slt'	سلت'	0		slt' > slt'
+سرو	/ˈsarw/	3	False	False	pal	𐫘𐫡𐫇	𐫘𐫡𐫇	𐫘𐫡𐫇	0		𐫘𐫡𐫇 > 𐫘𐫡𐫇
+سروب	/sa.ˈroːb/	3	False	False	ine-pro	ḱléwos	haw	هو	11	vowel_merger_a,satem_k,l_to_r,final_s_to_h,c_from_palatal,c_to_theta,theta_r_to_cedilla,cedilla_to_h,final_h_loss,final_vowel_loss,stress_not_written	ḱléwos > ćrˈawas > crˈawah > çˈawah > hˈaw > haw
+سرود	/su.ˈroːd/	3	False	False	pal	slwt'	slwt'	سلوت'	0		slwt' > slwt'
+سرودن	/su.ruː.ˈdan/	3	False	False	pal	slwtn'	slwtn'	سلوتن'	0		slwtn' > slwtn'
+سرگین	/sar.ˈɡeːn/	3	False	False	ine-pro	ḱókʷr̥	sāgar	ساگر	9	brugmann_o_a,satem_k,labiovelar_k,c_from_palatal,c_to_theta,r_syllabic_to_ar,k_to_g,theta_to_s,stress_not_written	ḱókʷr̥ > ćˈākr̥ > cˈākr̥ > θˈākar > sˈāgar > sāgar
+سست	/ˈsust/	3	False	False	ine-pro	trewd	hūd	هود	7	vowel_merger_a,t_to_theta_before_sonorant_initial,aw_to_au,theta_r_to_cedilla,cedilla_to_h,au_to_o,long_o_to_long_u	trewd > trawd > θrawd > çaud > hōd > hūd
+سفارش	/si.faː.ˈriʃ/	3	False	False	ira-pro	spar	spar	سپر	0		spar > spar > spar > spar
+سموت		3	False	False	ine-pro	ḱem	s	س	6	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,theta_to_s,final_am_loss	ḱem > ćam > cam > θam > s > s
+سنجد	/sin.ˈd͡ʒid/	3	False	False	ine-pro	spey	spay	سپی	1	vowel_merger_a	spey > spay > spay > spay > spay > spay
+سنگ	/ˈsanɡ/	3	False	False	ine-pro	h₂eḱ	as	اس	7	laryngeal_to_H,vowel_merger_a,satem_k,c_from_palatal,laryngeal_loss_initial,c_to_theta,theta_to_s	h₂eḱ > Hać > Hac > aθ > as > as
+سوختن	/soːx.ˈtan/	3	False	False	ine-pro	ḱewk	sūk	سوک	8	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,aw_to_au,theta_to_s,au_to_o,long_o_to_long_u	ḱewk > ćawk > cawk > θauk > sōk > sūk
+سوزن	/soː.ˈzan/	3	False	False	ine-pro	ḱeh₃	sā	سا	8	h3_colours_e,laryngeal_to_H,vowel_merger_a,satem_k,c_from_palatal,laryngeal_lengthening,c_to_theta,theta_to_s	ḱeh₃ > ćaH > caH > θā > sā > sā
+سوگند	/saw.ˈɡand/	3	False	False	ine-pro	ḱewk	sūk	سوک	8	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,aw_to_au,theta_to_s,au_to_o,long_o_to_long_u	ḱewk > ćawk > cawk > θauk > sōk > sūk
+سکا	/sa.ˈkaː/	3	False	False	peo	𐎿𐎣	𐎿𐎣	𐎿𐎣	0		𐎿𐎣 > 𐎿𐎣 > 𐎿𐎣
+سی	/ˈsiː/	3	False	False	iir-pro	triHćát	hīsat	هیست	8	t_to_theta_before_sonorant_initial,c_from_palatal,laryngeal_lengthening,c_to_theta,theta_r_to_cedilla,theta_to_s,cedilla_to_h,stress_not_written	triHćát > θriHcˈat > çīθˈat > hīsˈat > hīsat
+سیاوش	/si.jaː.ˈwaʃ/	3	False	False	peo	Θyāvaršā	Θyāvaršā	Θیاورشا	0		Θyāvaršā > Θyāvaršā > Θyāvaršā
+سیب	/ˈseːb/	3	False	False	pal	𐭠𐭩𐭰	𐭠𐭩𐭰	𐭠𐭩𐭰	0		𐭠𐭩𐭰 > 𐭠𐭩𐭰
+سینه	/siː.ˈna/	3	False	False	ine-pro	ḱlównis	hūneš	هونش	13	vowel_merger_a,satem_k,l_to_r,ruki_s,c_from_palatal,c_to_theta,aw_to_au,theta_r_to_cedilla,cedilla_to_h,au_to_o,i_to_e,long_o_to_long_u,stress_not_written	ḱlównis > ćrˈawniš > crˈawniš > çˈauniš > hˈōniš > hūneš
+شاه	/ˈʃaːh/	3	False	False	ine-pro	tek	tak	تک	1	vowel_merger_a	tek > tak > tak > tak > tak > tak
+شب	/ˈʃab/	3	False	False	peo	𐎧𐏁𐎱	𐎧𐏁𐎱	𐎧𐏁𐎱	0		𐎧𐏁𐎱 > 𐎧𐏁𐎱 > 𐎧𐏁𐎱
+شدن	/ʃu.ˈdan/	3	False	False	ine-pro	kyew	čyaw	چیو	2	vowel_merger_a,palatal_k	kyew > čyaw > čyaw > čyaw > čyaw > čyaw
+شرم	/ˈʃarm/	3	False	False	pal	𐭱𐭥𐭬	𐭱𐭥𐭬	𐭱𐭥𐭬	0		𐭱𐭥𐭬 > 𐭱𐭥𐭬
+شستن	/ʃus.ˈtan/	3	False	False	iir-pro	kšáwd	šūd	شود	6	k_to_x_initial,aw_to_au,xsh_to_sh,au_to_o,long_o_to_long_u,stress_not_written	kšáwd > xšˈawd > xšˈaud > šˈōd > šūd
+شل	/ʃol/	3	False	False	ine-pro	skelh₁	skar	سکر	4	laryngeal_to_H,vowel_merger_a,l_to_r,laryngeal_lengthening	skelh₁ > skarH > skarH > skar > skar > skar
+شل	/ˈʃal/	3	False	False	ine-pro	skel	skar	سکر	2	vowel_merger_a,l_to_r	skel > skar > skar > skar > skar > skar
+شما	/ʃu.ˈmaː/	3	False	False	ine-pro	yúHs	yūs	یوس	2	laryngeal_lengthening,stress_not_written	yúHs > yˈuHs > yˈuHs > yˈūs > yˈūs > yūs
+شهرزاد	/ʃahr.ˈzaːd/	3	False	False	pal	čihrāzād⁠	čehrāzād⁠	چهرازاد⁠	1	i_to_e	čihrāzād⁠ > čehrāzād⁠
+شکر	/ʃak.ˈkar/	3	False	False	pal	𐭱𐭪𐭥	𐭱𐭪𐭥	𐭱𐭪𐭥	0		𐭱𐭪𐭥 > 𐭱𐭪𐭥
+شیر	/ˈʃeːr/	3	False	False	pal	𐫢𐫃𐫡	𐫢𐫃𐫡	𐫢𐫃𐫡	0		𐫢𐫃𐫡 > 𐫢𐫃𐫡
+شیر	/ˈʃeːr/	3	False	False	pal	𐫢𐫃𐫡	𐫢𐫃𐫡	𐫢𐫃𐫡	0		𐫢𐫃𐫡 > 𐫢𐫃𐫡
+غرواس		3	False	False	ine-pro	gʰreh₁	grā	گرا	4	laryngeal_to_H,vowel_merger_a,deaspirate_gh,laryngeal_lengthening	gʰreh₁ > gʰraH > graH > grā > grā > grā
+غو	/ˈɣaw/	3	False	False	ira-pro	gáwbati	gūwad	گوود	7	aw_to_au,b_to_w,t_to_d,au_to_o,final_vowel_loss,long_o_to_long_u,stress_not_written	gáwbati > gˈaubati > gˈōwad > gūwad
+ـان	/ˈ‿aːn/	3	False	False	pal	𐭠𐭭	𐭠𐭭	𐭠𐭭	0		𐭠𐭭 > 𐭠𐭭
+ـبا	/‿ˈbaː/	3	False	False	pal	pʿk	pʿk	پʿک	0		pʿk > pʿk
+ـبد	/‿ˈbad/	3	False	False	pal	pt'	pt'	پت'	0		pt' > pt'
+ـدان		3	False	False	ine-pro	dʰer	dar	در	2	vowel_merger_a,deaspirate_dh	dʰer > dʰar > dar > dar > dar > dar
+ـنده	/‿in.ˈda/	3	False	False	ine-pro	onts	ans	انس	4	vowel_merger_a,ts_to_c,c_to_theta,theta_to_s	onts > ants > anc > anθ > ans > ans
+ـها	/‿ˈhaː/	3	False	False	pal	𐭩𐭧𐭠	𐭩𐭧𐭠	𐭩𐭧𐭠	0		𐭩𐭧𐭠 > 𐭩𐭧𐭠
+ـوند	/‿ˈwand/	3	False	False	ine-pro	wénts	bans	بنس	6	vowel_merger_a,ts_to_c,c_to_theta,theta_to_s,w_to_b_initial,stress_not_written	wénts > wˈants > wˈanc > wˈanθ > wˈans > bans
+فر	/ˈfarr/	3	False	False	pal	𐫛𐫡𐫍	𐫛𐫡𐫍	𐫛𐫡𐫍	0		𐫛𐫡𐫍 > 𐫛𐫡𐫍
+فرجام	/far.ˈd͡ʒaːm/	3	False	False	ine-pro	pro	fr	فر	3	vowel_merger_a,p_to_f_before_sonorant_initial,final_vowel_loss	pro > pra > fra > fra > fr > fr
+فرمان	/far.ˈmaːn/	3	False	False	ine-pro	meh₁	mā	ما	3	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening	meh₁ > maH > maH > mā > mā > mā
+فره	/fi.ˈrih/	3	False	False	peo	𐎱𐎽𐎺	𐎱𐎽𐎺	𐎱𐎽𐎺	0		𐎱𐎽𐎺 > 𐎱𐎽𐎺 > 𐎱𐎽𐎺
+فره	/fi.ˈrih/	3	False	False	peo	𐎱𐎽𐎺	𐎱𐎽𐎺	𐎱𐎽𐎺	0		𐎱𐎽𐎺 > 𐎱𐎽𐎺 > 𐎱𐎽𐎺
+فرهنگ	/far.ˈhanɡ/	3	False	False	pal	plʾhng	plʾhng	پلʾهنگ	0		plʾhng > plʾhng
+فرهنگ	/far.ˈhanɡ/	3	False	False	pal	plʾhng	plʾhng	پلʾهنگ	0		plʾhng > plʾhng
+قارچ	/ˈqaːrt͡ʃ/	3	False	False	ira-pro	garH	gar	گر	1	laryngeal_lengthening	garH > gar > gar > gar
+قبا	/qa.ˈbaː/	3	False	False	ine-pro	skep	skap	سکپ	1	vowel_merger_a	skep > skap > skap > skap > skap > skap
+لانه	/laː.ˈna/	3	False	False	ine-pro	dʰeh₁	dā	دا	4	laryngeal_to_H,vowel_merger_a,deaspirate_dh,laryngeal_lengthening	dʰeh₁ > dʰaH > daH > dā > dā > dā
+لنگ		3	False	False	ine-pro	sleh₁g	hrāg	هراگ	5	laryngeal_to_H,vowel_merger_a,l_to_r,s_to_h,laryngeal_lengthening	sleh₁g > sraHg > hraHg > hrāg > hrāg > hrāg
+لنگ		3	False	False	ine-pro	sleh₁g	hrāg	هراگ	5	laryngeal_to_H,vowel_merger_a,l_to_r,s_to_h,laryngeal_lengthening	sleh₁g > sraHg > hraHg > hrāg > hrāg > hrāg
+لگد	/la.ˈɡad/	3	False	False	ine-pro	lek	rak	رک	2	vowel_merger_a,l_to_r	lek > rak > rak > rak > rak > rak
+مار	/ˈmaːr/	3	False	False	pal	𐭬𐭠𐭥	𐭬𐭠𐭥	𐭬𐭠𐭥	0		𐭬𐭠𐭥 > 𐭬𐭠𐭥
+مام	/ˈmaːm/	3	False	False	pal	𐬨𐬁𐬨	𐬨𐬁𐬨	𐬨𐬁𐬨	0		𐬨𐬁𐬨 > 𐬨𐬁𐬨
+ماندن	/maːn.ˈdan/	3	False	False	ine-pro	men	man	من	1	vowel_merger_a	men > man > man > man > man > man
+ماه		3	False	False	peo	𐎶𐎠𐎭	𐎶𐎠𐎭	𐎶𐎠𐎭	0		𐎶𐎠𐎭 > 𐎶𐎠𐎭 > 𐎶𐎠𐎭
+ماهین	/maː.ˈheːn/	3	False	False	ine-pro	mḗh₁n̥s	mā	ما	8	laryngeal_to_H,long_vowel_merger,syllabic_n,final_s_to_h,laryngeal_lengthening,final_h_loss,final_vowel_loss,stress_not_written	mḗh₁n̥s > mˈāHas > mˈāHah > mˈāah > mˈā > mā
+ماهین	/maː.ˈheːn/	3	False	False	ine-pro	mḗh₁n̥s	mā	ما	8	laryngeal_to_H,long_vowel_merger,syllabic_n,final_s_to_h,laryngeal_lengthening,final_h_loss,final_vowel_loss,stress_not_written	mḗh₁n̥s > mˈāHas > mˈāHah > mˈāah > mˈā > mā
+مغ	/ˈmuɣ/	3	False	False	peo	𐎶𐎦𐏁	𐎶𐎦𐏁	𐎶𐎦𐏁	0		𐎶𐎦𐏁 > 𐎶𐎦𐏁 > 𐎶𐎦𐏁
+مه	/meh/	3	False	False	pal	𐫖𐫏𐫆	𐫖𐫏𐫆	𐫖𐫏𐫆	0		𐫖𐫏𐫆 > 𐫖𐫏𐫆
+مه	/meh/	3	False	False	pal	𐫖𐫏𐫆	𐫖𐫏𐫆	𐫖𐫏𐫆	0		𐫖𐫏𐫆 > 𐫖𐫏𐫆
+مهندس	/mu.han.ˈdis/	3	False	False	pal	handʾc	handʾc	هندʾc	0		handʾc > handʾc
+موبد	/moː.ˈbad/	3	False	False	peo	magupatiš⁠	mayobadeš⁠	میبدش⁠	5	g_to_y,p_to_b,t_to_d,i_to_e,u_to_o	magupatiš⁠ > mayubadiš⁠ > mayobadeš⁠
+مورچه	/moːr.ˈt͡ʃa/	3	False	False	ine-pro	morwi	marw	مرو	2	vowel_merger_a,final_vowel_loss	morwi > marwi > marwi > marwi > marw > marw
+موز	/ˈmoːz/	3	False	False	pal	𐭬 𐭅 𐭆	𐭬𐭅𐭆	𐭬𐭅𐭆	0		𐭬 𐭅 𐭆 > 𐭬𐭅𐭆
+موزه	/moː.ˈza/	3	False	False	pal	mwck'	mwck'	موcک'	0		mwck' > mwck'
+مچ	/ˈmut͡ʃ/	3	False	False	iir-pro	muštíš	mošteš	مشتش	3	i_to_e,u_to_o,stress_not_written	muštíš > muštˈiš > muštˈiš > muštˈiš > mošteš
+مکیدن	/ma.kiː.ˈdan/	3	False	False	ira-pro	maič	mīč	میچ	2	ai_to_e,long_e_to_long_i	maič > maič > mēč > mīč
+میانجی		3	False	False	ira-pro	madyānah	mayyān	مییان	3	d_to_y,final_h_loss,final_vowel_loss	madyānah > madyānah > mayyān > mayyān
+میختن		3	False	False	ine-pro	h₃meyǵʰ	mīd	مید	10	laryngeal_to_H,vowel_merger_a,satem_gh,deaspirate_palatal,j_from_palatal,laryngeal_loss_initial,ay_to_ai,j_to_d,ai_to_e,long_e_to_long_i	h₃meyǵʰ > Hmayȷ́ʰ > Hmayj > maid > mēd > mīd
+میش بهار	/meːʃ.ba.ˈhaːr/	3	False	False	pal	hamēšag-wahār	hamīšagwahār	همیشگوهار	1	long_e_to_long_i	hamēšag-wahār > hamīšagwahār
+ناو	/ˈnaːw/	3	False	False	peo	𐎴𐎠𐎺	𐎴𐎠𐎺	𐎴𐎠𐎺	0		𐎴𐎠𐎺 > 𐎴𐎠𐎺 > 𐎴𐎠𐎺
+نخستین	/nu.xus.ˈteːn/	3	False	False	pal	nxwst	nxwst	نخوست	0		nxwst > nxwst
+نهادن	/ni.haː.ˈdan/	3	False	False	ine-pro	dʰédʰeh₁ti	dayād	دیاد	9	laryngeal_to_H,vowel_merger_a,grassmann,deaspirate_dh,laryngeal_lengthening,d_to_y,t_to_d,final_vowel_loss,stress_not_written	dʰédʰeh₁ti > dˈadʰaHti > dˈadaHti > dˈadāti > dˈayād > dayād
+نهاز		3	False	False	ira-pro	Hajáh	ay	ای	5	laryngeal_loss_initial,j_to_d,d_to_y,final_h_loss,final_vowel_loss	Hajáh > adˈah > ay > ay
+نهاوند		3	False	False	peo	Niθāvanta	Nesāvant	Nساونت	3	theta_to_s,final_vowel_loss,i_to_e	Niθāvanta > Nisāvant > Nesāvant
+نهره	/nah.ˈra/	3	False	False	ine-pro	neyH	nay	نی	2	vowel_merger_a,laryngeal_lengthening	neyH > nayH > nayH > nay > nay > nay
+نوش‌دارو	/noːʃ.ˈdaː.ruː/	3	False	False	pal	anōš-dārūg	anūšdārūg	انوشداروگ	1	long_o_to_long_u	anōš-dārūg > anūšdārūg
+نوه	/na.ˈwa/	3	False	False	peo	𐎴𐎱𐎠	𐎴𐎱𐎠	𐎴𐎱𐎠	0		𐎴𐎱𐎠 > 𐎴𐎱𐎠 > 𐎴𐎱𐎠
+نویدن	/na.wiː.ˈdan/	3	False	False	ine-pro	newH	naw	نو	2	vowel_merger_a,laryngeal_lengthening	newH > nawH > nawH > naw > naw > naw
+نگاه	/ni.ˈɡaːh/	3	False	False	ine-pro	h₁én	an	ان	4	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,stress_not_written	h₁én > Hˈan > Hˈan > ˈan > ˈan > an
+نیرو	/neː.ˈroː/	3	False	False	iir-pro	Hnā́	nā	نا	2	laryngeal_loss_initial,stress_not_written	Hnā́ > Hnˈā > nˈā > nˈā > nā
+نیشتر	/niːʃ.ˈtar/	3	False	False	iir-pro	náyȷ́žʰam	nīdž	نیدژ	8	deaspirate_palatal,j_from_palatal,ay_to_ai,j_to_d,ai_to_e,final_am_loss,long_e_to_long_i,stress_not_written	náyȷ́žʰam > nˈayjžam > nˈaidžam > nˈēdž > nīdž
+نیل	/ˈniːl/	3	False	False	pal	𐭭𐭩𐭫	𐭭𐭩𐭫	𐭭𐭩𐭫	0		𐭭𐭩𐭫 > 𐭭𐭩𐭫
+هرول		3	False	False	ira-pro	Hr̥HwáraH	arworā	ارورا	6	laryngeal_loss_initial,laryngeal_lengthening,r_syllabic_to_ar,war_rounding,u_to_o,stress_not_written	Hr̥HwáraH > arwˈarā > arwˈurā > arworā
+هشتن	/hiʃ.ˈtan/	3	False	False	ine-pro	selǵ	hard	هرد	6	vowel_merger_a,satem_g,l_to_r,s_to_h,j_from_palatal,j_to_d	selǵ > sarȷ́ > harj > hard > hard > hard
+هلتاک		3	False	False	ine-pro	sḗh₂l	hār	هار	6	laryngeal_to_H,long_vowel_merger,l_to_r,s_to_h,laryngeal_lengthening,stress_not_written	sḗh₂l > sˈāHr > hˈāHr > hˈār > hˈār > hār
+هلونگ		3	False	False	ine-pro	solwo	harw	هرو	4	vowel_merger_a,l_to_r,s_to_h,final_vowel_loss	solwo > sarwa > harwa > harwa > harw > harw
+هما	/hu.ˈmaː/	3	False	False	pal	hwmʾy	hwmʾy	هومʾی	0		hwmʾy > hwmʾy
+هما	/hu.ˈmaː/	3	False	False	pal	hwmʾy	hwmʾy	هومʾی	0		hwmʾy > hwmʾy
+همایون	/hu.maː.ˈjuːn/	3	False	False	peo	Humāyah	Homāy	Hمای	3	final_h_loss,final_vowel_loss,u_to_o	Humāyah > Humāy > Homāy
+همایون	/hu.maː.ˈjuːn/	3	False	False	peo	Humāyah	Homāy	Hمای	3	final_h_loss,final_vowel_loss,u_to_o	Humāyah > Humāy > Homāy
+همیشه	/ha.meː.ˈʃa/	3	False	False	ine-pro	somHós	ham	هم	6	vowel_merger_a,s_to_h,final_s_to_h,laryngeal_lengthening,final_h_loss,final_vowel_loss	somHós > samHˈas > hamHˈah > hamˈah > ham > ham
+هندو	/hin.ˈduː/	3	False	False	ira-pro	sindʰu	sendʰ	سنdʰ	2	final_vowel_loss,i_to_e	sindʰu > sindʰu > sindʰ > sendʰ
+هندو	/hin.ˈduː/	3	False	False	ira-pro	sindʰu	sendʰ	سنdʰ	2	final_vowel_loss,i_to_e	sindʰu > sindʰu > sindʰ > sendʰ
+هیزم	/heː.ˈzum/	3	False	False	ine-pro	h₂eydʰ	īd	اید	7	laryngeal_to_H,vowel_merger_a,deaspirate_dh,laryngeal_loss_initial,ay_to_ai,ai_to_e,long_e_to_long_i	h₂eydʰ > Haydʰ > Hayd > aid > ēd > īd
+هیچ	/ˈheːt͡ʃ/	3	False	False	ine-pro	kʷís	keš	کش	4	labiovelar_k,ruki_s,i_to_e,stress_not_written	kʷís > kˈiš > kˈiš > kˈiš > kˈiš > keš
+هیچ	/ˈheːt͡ʃ/	3	False	False	ine-pro	kʷís	keš	کش	4	labiovelar_k,ruki_s,i_to_e,stress_not_written	kʷís > kˈiš > kˈiš > kˈiš > kˈiš > keš
+هیچ	/ˈheːt͡ʃ/	3	False	False	ine-pro	kʷís	keš	کش	4	labiovelar_k,ruki_s,i_to_e,stress_not_written	kʷís > kˈiš > kˈiš > kˈiš > kˈiš > keš
+هیچ	/ˈheːt͡ʃ/	3	False	False	ine-pro	kʷís	keš	کش	4	labiovelar_k,ruki_s,i_to_e,stress_not_written	kʷís > kˈiš > kˈiš > kˈiš > kˈiš > keš
+وال		3	False	False	ine-pro	skʷálos	skar	سکر	7	vowel_merger_a,labiovelar_k,l_to_r,final_s_to_h,final_h_loss,final_vowel_loss,stress_not_written	skʷálos > skˈaras > skˈarah > skˈarah > skˈar > skar
+ورزه		3	False	False	ira-pro	warj	gord	گرد	4	j_to_d,war_rounding,w_to_g_before_ur,u_to_o	warj > ward > gurd > gord
+ورکانه		3	False	False	ira-pro	wr̥kāna	gorgān	گرگان	6	r_syllabic_to_ar,war_rounding,w_to_g_before_ur,rk_to_rg,final_vowel_loss,u_to_o	wr̥kāna > warkāna > gurgān > gorgān
+ویژه	/weː.ˈʒa/	3	False	False	ine-pro	weyk	bīk	بیک	5	vowel_merger_a,ay_to_ai,ai_to_e,long_e_to_long_i,w_to_b_initial	weyk > wayk > wayk > waik > wēk > bīk
+پادزهر	/paːd.ˈzahr/	3	False	False	pal	pʾtzhl	pʾtzhl	پʾتزهل	0		pʾtzhl > pʾtzhl
+پارچ	/ˈpaːrt͡ʃ/	3	False	False	ine-pro	pleh₁	frā	فرا	5	laryngeal_to_H,vowel_merger_a,l_to_r,p_to_f_before_sonorant_initial,laryngeal_lengthening	pleh₁ > praH > fraH > frā > frā > frā
+پاسخ	/paː.ˈsux/	3	False	False	ine-pro	ḱens	sans	سنس	5	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,theta_to_s	ḱens > ćans > cans > θans > sans > sans
+پاشنه	/paːʃ.ˈna/	3	False	False	ine-pro	tpḗrsneh₂	tpāršnā	تپارشنا	6	h2_colours_e,laryngeal_to_H,long_vowel_merger,ruki_s,laryngeal_lengthening,stress_not_written	tpḗrsneh₂ > tpˈāršnaH > tpˈāršnaH > tpˈāršnā > tpˈāršnā > tpāršnā
+پالیز	/paː.ˈleːz/	3	False	False	ira-pro	paridayjah	pareyīy	پرییی	8	ay_to_ai,j_to_d,d_to_y,ai_to_e,final_h_loss,final_vowel_loss,i_to_e,long_e_to_long_i	paridayjah > paridaidah > pariyēy > pareyīy
+پته	/pa.ˈta/	3	False	False	pal	pštk'	pštk'	پشتک'	0		pštk' > pštk'
+پختن	/pux.ˈtan/	3	False	False	ine-pro	pekʷ	pak	پک	2	vowel_merger_a,labiovelar_k	pekʷ > pak > pak > pak > pak > pak
+پخته	/pax.ˈta/	3	False	False	ine-pro	bʰeg	be	به	3	vowel_merger_a,deaspirate_bh,final_ag_to_e	bʰeg > bʰag > bag > bag > bag > be
+پخته	/pax.ˈta/	3	False	False	ine-pro	bʰeg	be	به	3	vowel_merger_a,deaspirate_bh,final_ag_to_e	bʰeg > bʰag > bag > bag > bag > be
+پدر	/pa.ˈdar/	3	False	False	pal	𐭓𐭐𐭃	𐭓𐭐𐭃	𐭓𐭐𐭃	0		𐭓𐭐𐭃 > 𐭓𐭐𐭃
+پدرام	/pad.ˈraːm/	3	False	False	ine-pro	per	par	پر	1	vowel_merger_a	per > par > par > par > par > par
+پدرام	/pad.ˈraːm/	3	False	False	ine-pro	per	par	پر	1	vowel_merger_a	per > par > par > par > par > par
+پرتو	/par.ˈtaw/	3	False	False	ine-pro	tep	tap	تپ	1	vowel_merger_a	tep > tap > tap > tap > tap > tap
+پرتو	/par.ˈtaw/	3	False	False	ine-pro	tep	tap	تپ	1	vowel_merger_a	tep > tap > tap > tap > tap > tap
+پرخاش	/par.ˈxaːʃ/	3	False	False	ira-pro	xāz	xāz	خاز	0		xāz > xāz > xāz > xāz
+پرسون		3	False	False	ira-pro	pari	par	پر	1	final_vowel_loss	pari > pari > par > par
+پروانه	/par.waː.ˈna/	3	False	False	iir-pro	parnám	parn	پرن	1	final_am_loss	parnám > parnˈam > parnˈam > parn > parn
+پروانه	/par.waː.ˈna/	3	False	False	iir-pro	parnám	parn	پرن	1	final_am_loss	parnám > parnˈam > parnˈam > parn > parn
+پرگار	/par.ˈɡaːr/	3	False	False	ine-pro	per	par	پر	1	vowel_merger_a	per > par > par > par > par > par
+پری		3	False	False	ine-pro	h₂eyer	ayar	ایر	3	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial	h₂eyer > Hayar > Hayar > ayar > ayar > ayar
+پری		3	False	False	ine-pro	h₂eyer	ayar	ایر	3	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial	h₂eyer > Hayar > Hayar > ayar > ayar > ayar
+پزشک	/pi.ˈziʃk/	3	False	False	ira-pro	bišajkah	bešadk	بشدک	4	j_to_d,final_h_loss,final_vowel_loss,i_to_e	bišajkah > bišadkah > bišadk > bešadk
+پسر	/pi.ˈsar/	3	False	False	peo	𐎱𐎢𐏂	𐎱𐎢𐏂	𐎱𐎢𐏂	0		𐎱𐎢𐏂 > 𐎱𐎢𐏂 > 𐎱𐎢𐏂
+پسند	/pa.ˈsand/	3	False	False	ine-pro	préti	frad	فرد	5	vowel_merger_a,p_to_f_before_sonorant_initial,t_to_d,final_vowel_loss,stress_not_written	préti > prˈati > frˈati > frˈati > frˈad > frad
+پنجاه	/pan.ˈd͡ʒaːh/	3	False	False	iir-pro	pančaHćát	pančāsat	پنچاست	5	c_from_palatal,laryngeal_lengthening,c_to_theta,theta_to_s,stress_not_written	pančaHćát > pančaHcˈat > pančāθˈat > pančāsˈat > pančāsat
+پنجه		3	False	False	ine-pro	bʰenǵʰ	band	بند	6	vowel_merger_a,satem_gh,deaspirate_bh,deaspirate_palatal,j_from_palatal,j_to_d	bʰenǵʰ > bʰanȷ́ʰ > banj > band > band > band
+پنیس	[pʰe.níːs]	3	False	False	ine-pro	pes	p	پ	4	vowel_merger_a,final_s_to_h,final_h_loss,final_vowel_loss	pes > pas > pah > pah > p > p
+پهلو	/pah.ˈluː/	3	False	False	ira-pro	párcuš	parsoš	پرسش	4	c_to_theta,theta_to_s,u_to_o,stress_not_written	párcuš > pˈarθuš > pˈarsuš > parsoš
+چاره	/t͡ʃaː.ˈra/	3	False	False	ine-pro	kʷer	kar	کر	2	vowel_merger_a,labiovelar_k	kʷer > kar > kar > kar > kar > kar
+چاشنی	/t͡ʃaːʃ.ˈniː/	3	False	False	ira-pro	čaš	čaš	چش	0		čaš > čaš > čaš > čaš
+چانه	/t͡ʃaː.ˈna/	3	False	False	ine-pro	ǵénus	danoš	دنش	7	vowel_merger_a,satem_g,ruki_s,j_from_palatal,j_to_d,u_to_o,stress_not_written	ǵénus > ȷ́ˈanuš > jˈanuš > dˈanuš > dˈanuš > danoš
+چرا	/ˈt͡ʃi.raː/	3	False	False	ine-pro	kʷís	keš	کش	4	labiovelar_k,ruki_s,i_to_e,stress_not_written	kʷís > kˈiš > kˈiš > kˈiš > kˈiš > keš
+چراغ	/t͡ʃi.ˈraːɣ/	3	False	False	iir-pro	čitrás	čeh	چه	7	final_s_to_h,t_to_theta_before_sonorant,theta_r_to_cedilla,cedilla_to_h,final_h_loss,final_vowel_loss,i_to_e	čitrás > čiθrˈah > čiçˈah > čih > čeh
+چرب	/ˈt͡ʃarb/	3	False	False	pal	clp	clp	cلپ	0		clp > clp
+چرخ	/ˈt͡ʃarx/	3	False	False	pal	𐫝𐫍𐫡	𐫝𐫍𐫡	𐫝𐫍𐫡	0		𐫝𐫍𐫡 > 𐫝𐫍𐫡
+چشیدن	/t͡ʃa.ʃiː.ˈdan/	3	False	False	ira-pro	čaš	čaš	چش	0		čaš > čaš > čaš > čaš
+چند	/ˈt͡ʃand/	3	False	False	pal	𐭰𐭭𐭣	𐭰𐭭𐭣	𐭰𐭭𐭣	0		𐭰𐭭𐭣 > 𐭰𐭭𐭣
+چند	/ˈt͡ʃand/	3	False	False	pal	𐭰𐭭𐭣	𐭰𐭭𐭣	𐭰𐭭𐭣	0		𐭰𐭭𐭣 > 𐭰𐭭𐭣
+چنگ	/ˈt͡ʃanɡ/	3	False	False	ine-pro	kog	ke	که	2	vowel_merger_a,final_ag_to_e	kog > kag > kag > kag > kag > ke
+چهار	/t͡ʃa.ˈhaːr/	3	False	False	ine-pro	kʷetwóres	kaswār	کسوار	9	brugmann_o_a,vowel_merger_a,labiovelar_k,final_s_to_h,t_to_theta_before_sonorant,theta_to_s,final_h_loss,final_vowel_loss,stress_not_written	kʷetwóres > katwˈāras > kaθwˈārah > kaθwˈārah > kaswˈār > kaswār
+چیدن	/t͡ʃiː.ˈdan/	3	False	False	ine-pro	kʷey	kay	کی	2	vowel_merger_a,labiovelar_k	kʷey > kay > kay > kay > kay > kay
+چیز	/ˈt͡ʃiːz/	3	False	False	ine-pro	kʷís	keš	کش	4	labiovelar_k,ruki_s,i_to_e,stress_not_written	kʷís > kˈiš > kˈiš > kˈiš > kˈiš > keš
+چین	/ˈt͡ʃiːn/	3	False	False	pal	𐭰𐭩𐭭	𐭰𐭩𐭭	𐭰𐭩𐭭	0		𐭰𐭩𐭭 > 𐭰𐭩𐭭
+ژرف	/ˈʒarf/	3	False	False	ira-pro	ǰafráh	ǰafr	جفر	2	final_h_loss,final_vowel_loss	ǰafráh > ǰafrˈah > ǰafr > ǰafr
+کارد	/ˈkaːrd/	3	False	False	ine-pro	sker	skar	سکر	1	vowel_merger_a	sker > skar > skar > skar > skar > skar
+کاستن	/kaːs.ˈtan/	3	False	False	ira-pro	kas	kas	کس	0		kas > kas > kas > kas
+کالا	/kaː.ˈlaː/	3	False	False	ine-pro	kʷer	kar	کر	2	vowel_merger_a,labiovelar_k	kʷer > kar > kar > kar > kar > kar
+کدام	/ku.ˈdaːm/	3	False	False	ine-pro	kʷís	keš	کش	4	labiovelar_k,ruki_s,i_to_e,stress_not_written	kʷís > kˈiš > kˈiš > kˈiš > kˈiš > keš
+کرته	/kur.ˈta/	3	False	False	ine-pro	sker	skar	سکر	1	vowel_merger_a	sker > skar > skar > skar > skar > skar
+کشتن	/kuʃ.ˈtan/	3	False	False	ine-pro	kewh₂	kaw	کو	3	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening	kewh₂ > kawH > kawH > kaw > kaw > kaw
+کشتن	/kiʃ.ˈtan/	3	False	False	ine-pro	kʷerH	kar	کر	3	vowel_merger_a,labiovelar_k,laryngeal_lengthening	kʷerH > karH > karH > kar > kar > kar
+کشف	/ka.ˈʃaf/	3	False	False	ira-pro	kacyápah	kasyab	کسیب	6	c_to_theta,p_to_b,theta_to_s,final_h_loss,final_vowel_loss,stress_not_written	kacyápah > kaθyˈapah > kasyˈab > kasyab
+کلنگ	/ku.ˈlanɡ/	3	False	False	ine-pro	kelh₂	kar	کر	4	laryngeal_to_H,vowel_merger_a,l_to_r,laryngeal_lengthening	kelh₂ > karH > karH > kar > kar > kar
+کمان	/ka.ˈmaːn/	3	False	False	ine-pro	kh₂em	k	ک	4	syllabic_laryngeals,vowel_merger_a,final_am_loss,final_vowel_loss	kh₂em > kaam > kaam > kaam > k > k
+کهن	/ku.ˈhan/	3	False	False	pal	khwbn'	khwbn'	کهوبن'	0		khwbn' > khwbn'
+کودک	/koː.ˈdak/	3	False	False	ine-pro	skaw	skaw	سکو	0		skaw > skaw > skaw > skaw > skaw > skaw
+کوفتن	/koːf.ˈtan/	3	False	False	ira-pro	kaup	kūp	کوپ	2	au_to_o,long_o_to_long_u	kaup > kaup > kōp > kūp
+کول	/ˈkoːl/	3	False	False	pal	𐫐𐫇𐫓	𐫐𐫇𐫓	𐫐𐫇𐫓	0		𐫐𐫇𐫓 > 𐫐𐫇𐫓
+کپیدن	/ka.piː.ˈdan/	3	False	False	ine-pro	kap	kap	کپ	0		kap > kap > kap > kap > kap > kap
+کیش	/ˈkeːʃ/	3	False	False	pal	𐭪𐭩𐭱	𐭪𐭩𐭱	𐭪𐭩𐭱	0		𐭪𐭩𐭱 > 𐭪𐭩𐭱
+کیک	/ˈkajk/	3	False	False	ira-pro	kā́ykiH	kāygī	کایگی	3	laryngeal_lengthening,k_to_g,stress_not_written	kā́ykiH > kˈāykī > kˈāygī > kāygī
+گرد	/ˈɡird/	3	False	False	peo	𐎺𐎼𐎫	𐎺𐎼𐎫	𐎺𐎼𐎫	0		𐎺𐎼𐎫 > 𐎺𐎼𐎫 > 𐎺𐎼𐎫
+گرد	/ˈɡird/	3	False	False	peo	𐎺𐎼𐎫	𐎺𐎼𐎫	𐎺𐎼𐎫	0		𐎺𐎼𐎫 > 𐎺𐎼𐎫 > 𐎺𐎼𐎫
+گریچه		3	False	False	pal	gryhcg	gryhcg	گریهcگ	0		gryhcg > gryhcg
+گزند	/ɡa.ˈzand/	3	False	False	ira-pro	ǰánti	ǰant	جنت	2	final_vowel_loss,stress_not_written	ǰánti > ǰˈanti > ǰˈant > ǰant
+گستردن	/ɡus.tar.ˈdan/	3	False	False	ine-pro	sterh₃	star	ستر	3	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening	sterh₃ > starH > starH > star > star > star
+گسی	/ɡu.ˈsiː/	3	False	False	pal	wsydy	bsydy	بسیدی	1	w_to_b_initial	wsydy > bsydy
+گشت	/ˈɡiʃt/	3	False	False	ine-pro	h₁wiḱ	bes	بس	8	laryngeal_to_H,satem_k,c_from_palatal,laryngeal_loss_initial,c_to_theta,theta_to_s,i_to_e,w_to_b_initial	h₁wiḱ > Hwić > Hwic > wiθ > wis > bes
+گشنه	/ɡuʃ.ˈna/	3	False	False	ira-pro	warš	gorš	گرش	3	war_rounding,w_to_g_before_ur,u_to_o	warš > warš > gurš > gorš
+گلوله	/ɡu.luː.ˈla/	3	False	False	ine-pro	glew	graw	گرو	2	vowel_merger_a,l_to_r	glew > graw > graw > graw > graw > graw
+گنجشک	/ɡun.ˈd͡ʒiʃk/	3	False	False	pal	wncšk'	bncšk'	بنcشک'	1	w_to_b_initial	wncšk' > bncšk'
+گوازه	[ɡʲævɒːˈze]	3	False	False	ine-pro	gʷṓws	gāws	گاوس	3	long_vowel_merger,labiovelar_g,stress_not_written	gʷṓws > gˈāws > gˈāws > gˈāws > gˈāws > gāws
+یزدان	/jaz.ˈdaːn/	3	False	False	ine-pro	h₁yaǵ	yad	ید	5	laryngeal_to_H,satem_g,j_from_palatal,laryngeal_loss_initial,j_to_d	h₁yaǵ > Hyaȷ́ > Hyaj > yad > yad > yad
+یشتن	/jaʃ.ˈtan/	3	False	False	ine-pro	h₁yaǵ	yad	ید	5	laryngeal_to_H,satem_g,j_from_palatal,laryngeal_loss_initial,j_to_d	h₁yaǵ > Hyaȷ́ > Hyaj > yad > yad > yad
+یل	/ˈjal/	3	False	False	ira-pro	Áryah	Áry	Áری	2	final_h_loss,final_vowel_loss	Áryah > Áryah > Áry > Áry
+آبان	/ʔaː.ˈbaːn/	4	False	False	pal	𐭠𐭡𐭠𐭭	𐭠𐭡𐭠𐭭	𐭠𐭡𐭠𐭭	0		𐭠𐭡𐭠𐭭 > 𐭠𐭡𐭠𐭭
+آتش	/ʔaː.ˈtaʃ/	4	False	False	pal	𐫀𐫤𐫍𐫢	𐫀𐫤𐫍𐫢	𐫀𐫤𐫍𐫢	0		𐫀𐫤𐫍𐫢 > 𐫀𐫤𐫍𐫢
+آذین	/ʔaː.ˈðiːn/	4	False	False	ira-pro	HabidáyHanaH	aweyayanā	اویینا	6	laryngeal_loss_initial,laryngeal_lengthening,b_to_w,d_to_y,i_to_e,stress_not_written	HabidáyHanaH > abidˈayanā > awiyˈayanā > aweyayanā
+آشفتن	/ʔaː.ʃuf.ˈtan/	4	False	False	ira-pro	xšawb	šūb	شوب	4	aw_to_au,xsh_to_sh,au_to_o,long_o_to_long_u	xšawb > xšaub > šōb > šūb
+آغوش	/ʔaː.ˈɣoːʃ/	4	False	False	pal	𐫀𐫀𐫇𐫢	𐫀𐫀𐫇𐫢	𐫀𐫀𐫇𐫢	0		𐫀𐫀𐫇𐫢 > 𐫀𐫀𐫇𐫢
+آلودن	/ʔaː.luː.ˈdan/	4	False	False	ine-pro	h₂éd	ad	اد	4	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,stress_not_written	h₂éd > Hˈad > Hˈad > ˈad > ˈad > ad
+آمرزیدن	/ʔaː.mur.ziː.ˈdan/	4	False	False	iir-pro	mr̥žd	maržd	مرژد	1	r_syllabic_to_ar	mr̥žd > mr̥žd > maržd > maržd > maržd
+آمیختن	/ʔaː.meːx.ˈtan/	4	False	False	ine-pro	meyḱ	mīs	میس	8	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,ay_to_ai,theta_to_s,ai_to_e,long_e_to_long_i	meyḱ > mayć > mayc > maiθ > mēs > mīs
+آهن	/ʔaː.ˈhan/	4	False	False	ira-pro	Hácwā	aspā	اسپا	3	laryngeal_loss_initial,cw_to_sp,stress_not_written	Hácwā > ˈaspā > ˈaspā > aspā
+آوردن	/ʔaː.war.ˈdan/	4	False	False	ine-pro	h₂éd	ad	اد	4	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,stress_not_written	h₂éd > Hˈad > Hˈad > ˈad > ˈad > ad
+آکندن	/ʔaː.kan.ˈdan/	4	False	False	ine-pro	h₂éd	ad	اد	4	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,stress_not_written	h₂éd > Hˈad > Hˈad > ˈad > ˈad > ad
+آگاه	/ʔaː.ˈɡaːh/	4	False	False	ine-pro	kʷeḱ	kas	کس	6	vowel_merger_a,satem_k,labiovelar_k,c_from_palatal,c_to_theta,theta_to_s	kʷeḱ > kać > kac > kaθ > kas > kas
+آیینه	/ʔaː.jiː.ˈna/	4	False	False	ira-pro	daiH	daī	دی	1	laryngeal_lengthening	daiH > daī > daī > daī
+اختر	/ʔax.ˈtar/	4	False	False	pal	𐭠𐭧𐭲𐭫	𐭠𐭧𐭲𐭫	𐭠𐭧𐭲𐭫	0		𐭠𐭧𐭲𐭫 > 𐭠𐭧𐭲𐭫
+اختر	/ʔax.ˈtar/	4	False	False	pal	𐭠𐭧𐭲𐭫	𐭠𐭧𐭲𐭫	𐭠𐭧𐭲𐭫	0		𐭠𐭧𐭲𐭫 > 𐭠𐭧𐭲𐭫
+ارجمند	/ʔar.d͡ʒu.ˈmand/	4	False	False	ine-pro	h₂elgʷʰ	arg	ارگ	6	laryngeal_to_H,vowel_merger_a,labiovelar_gh,l_to_r,deaspirate_gh,laryngeal_loss_initial	h₂elgʷʰ > Hargʰ > Harg > arg > arg > arg
+ارزیدن	/ʔar.ziː.ˈdan/	4	False	False	ine-pro	h₂elgʷʰ	arg	ارگ	6	laryngeal_to_H,vowel_merger_a,labiovelar_gh,l_to_r,deaspirate_gh,laryngeal_loss_initial	h₂elgʷʰ > Hargʰ > Harg > arg > arg > arg
+ارس	/ˈʔurs/	4	False	False	ira-pro	hampr̥sā	hamparsā	همپرسا	1	r_syllabic_to_ar	hampr̥sā > hamparsā > hamparsā > hamparsā
+ارشک	/ʔar.ˈʃak/	4	False	False	peo	𐎠𐎼𐏁𐎣	𐎠𐎼𐏁𐎣	𐎠𐎼𐏁𐎣	0		𐎠𐎼𐏁𐎣 > 𐎠𐎼𐏁𐎣 > 𐎠𐎼𐏁𐎣
+استخوان	/ʔus.tu.ˈxʷaːn/	4	False	False	ine-pro	h₃ésth₁	ast	است	6	syllabic_laryngeals,laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,final_vowel_loss,stress_not_written	h₃ésth₁ > Hˈasti > Hˈasti > ˈasti > ˈast > ast
+اسفند		4	False	False	ira-pro	cwantaH	spantā	سپنتا	2	laryngeal_lengthening,cw_to_sp	cwantaH > spantā > spantā > spantā
+اسکدار	/ʔas.ku.ˈdaːr/	4	False	False	peo	asaka	ase	اسه	3	k_to_g,final_vowel_loss,final_ag_to_e	asaka > asag > ase
+افرنگ	/ʔaf.ˈranɡ/	4	False	False	ine-pro	sreg	hre	هره	3	vowel_merger_a,s_to_h,final_ag_to_e	sreg > srag > hrag > hrag > hrag > hre
+افزای	/ʔaf.ˈzaːj/	4	False	False	pal	ʾpzʾd	ʾpzʾd	ʾپزʾد	0		ʾpzʾd > ʾpzʾd
+افزودن	/ʔaf.zuː.ˈdan/	4	False	False	iir-pro	Habʰí	aw	او	4	deaspirate_bh,laryngeal_loss_initial,b_to_w,final_vowel_loss	Habʰí > Habˈi > abˈi > aw > aw
+افسانه	/ʔaf.saː.ˈna/	4	False	False	ine-pro	ḱens	sans	سنس	5	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,theta_to_s	ḱens > ćans > cans > θans > sans > sans
+افسانه	/ʔaf.saː.ˈna/	4	False	False	ine-pro	ḱens	sans	سنس	5	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,theta_to_s	ḱens > ćans > cans > θans > sans > sans
+البرز	/ʔal.ˈburz/	4	False	False	pal	hlbwlc	hlbwlc	هلبولc	0		hlbwlc > hlbwlc
+امشب	/ʔim.ˈʃab/	4	False	False	pal	𐭫𐭣𐭭𐭤	𐭫𐭣𐭭𐭤	𐭫𐭣𐭭𐭤	0		𐭫𐭣𐭭𐭤 > 𐭫𐭣𐭭𐭤
+امـ	/ˈʔim./	4	False	False	pal	𐭫𐭣𐭭𐭤	𐭫𐭣𐭭𐭤	𐭫𐭣𐭭𐭤	0		𐭫𐭣𐭭𐭤 > 𐭫𐭣𐭭𐭤
+امید	/ʔu.ˈmeːd/	4	False	False	ine-pro	sem	h	ه	3	vowel_merger_a,s_to_h,final_am_loss	sem > sam > ham > ham > h > h
+امید	/ʔu.ˈmeːd/	4	False	False	ine-pro	sem	h	ه	3	vowel_merger_a,s_to_h,final_am_loss	sem > sam > ham > ham > h > h
+انار	/ʔa.ˈnaːr/	4	False	False	pal	𐭠𐭭𐭠𐭥	𐭠𐭭𐭠𐭥	𐭠𐭭𐭠𐭥	0		𐭠𐭭𐭠𐭥 > 𐭠𐭭𐭠𐭥
+انفست	/ʔan.ˈfast/	4	False	False	ine-pro	weh₂t	bāt	بات	4	h2_colours_e,laryngeal_to_H,laryngeal_lengthening,w_to_b_initial	weh₂t > waHt > waHt > wāt > wāt > bāt
+اهریمن	/ʔah.riː.ˈman/	4	False	False	pal	ʾhlmn'	ʾhlmn'	ʾهلمن'	0		ʾhlmn' > ʾhlmn'
+اهریمن	/ʔah.riː.ˈman/	4	False	False	pal	ʾhlmn'	ʾhlmn'	ʾهلمن'	0		ʾhlmn' > ʾhlmn'
+اوستا	/ʔa.wis.ˈtaː/	4	False	False	ine-pro	upó	ob	اب	4	vowel_merger_a,p_to_b,final_vowel_loss,u_to_o	upó > upˈa > upˈa > upˈa > ub > ob
+اکنون	/ʔak.ˈnoːn/	4	False	False	ine-pro	nu	n	ن	1	final_vowel_loss	nu > nu > nu > nu > n > n
+ایستادن	/ʔeːs.taː.ˈdan/	4	False	False	ine-pro	steh₂	stā	ستا	3	h2_colours_e,laryngeal_to_H,laryngeal_lengthening	steh₂ > staH > staH > stā > stā > stā
+باختر	/baːχˈtar/	4	False	False	ine-pro	h₂epo-tm̥mo	abādam	ابادم	8	laryngeal_to_H,brugmann_o_a,vowel_merger_a,syllabic_m,laryngeal_loss_initial,p_to_b,t_to_d,final_vowel_loss	h₂epo-tm̥mo > Hapātama > Hapātama > apātama > abādam > abādam
+باختر	/baːχˈtar/	4	False	False	ine-pro	h₂epo-tm̥mo	abādam	ابادم	8	laryngeal_to_H,brugmann_o_a,vowel_merger_a,syllabic_m,laryngeal_loss_initial,p_to_b,t_to_d,final_vowel_loss	h₂epo-tm̥mo > Hapātama > Hapātama > apātama > abādam > abādam
+باره	/baː.ˈra/	4	False	False	pal	bʾlk'	bʾlk'	بʾلک'	0		bʾlk' > bʾlk'
+بازار	/baː.ˈzaːr/	4	False	False	pal	wʾčʾl	bʾčʾl	بʾچʾل	1	w_to_b_initial	wʾčʾl > bʾčʾl
+بازو	/baː.ˈzuː/	4	False	False	peo	𐎲𐎠𐏀𐎢	𐎲𐎠𐏀𐎢	𐎲𐎠𐏀𐎢	0		𐎲𐎠𐏀𐎢 > 𐎲𐎠𐏀𐎢 > 𐎲𐎠𐏀𐎢
+بافتن	/baːf.ˈtan/	4	False	False	ine-pro	webʰ	bab	بب	3	vowel_merger_a,deaspirate_bh,w_to_b_initial	webʰ > wabʰ > wab > wab > wab > bab
+ببر	/ba.ˈbar/	4	False	False	pal	bplk'	bplk'	بپلک'	0		bplk' > bplk'
+بدان	/ba.ˈdaːn/	4	False	False	pal	𐭯𐭥𐭭	𐭯𐭥𐭭	𐭯𐭥𐭭	0		𐭯𐭥𐭭 > 𐭯𐭥𐭭
+بدرام		4	False	False	ine-pro	per	par	پر	1	vowel_merger_a	per > par > par > par > par > par
+برده	/bar.ˈda/	4	False	False	pal	𐫇𐫡𐫅𐫃	𐫇𐫡𐫅𐫃	𐫇𐫡𐫅𐫃	0		𐫇𐫡𐫅𐫃 > 𐫇𐫡𐫅𐫃
+بزرگ	/bu.ˈzurɡ/	4	False	False	peo	𐎺𐏀𐎼𐎣	𐎺𐏀𐎼𐎣	𐎺𐏀𐎼𐎣	0		𐎺𐏀𐎼𐎣 > 𐎺𐏀𐎼𐎣 > 𐎺𐏀𐎼𐎣
+بساک	/ba.ˈsaːk/	4	False	False	pal	𐫛𐫇𐫘𐫃	𐫛𐫇𐫘𐫃	𐫛𐫇𐫘𐫃	0		𐫛𐫇𐫘𐫃 > 𐫛𐫇𐫘𐫃
+بنده	/ban.ˈda/	4	False	False	peo	𐎲𐎭𐎣	𐎲𐎭𐎣	𐎲𐎭𐎣	0		𐎲𐎭𐎣 > 𐎲𐎭𐎣 > 𐎲𐎭𐎣
+بنده	/ban.ˈda/	4	False	False	peo	𐎲𐎭𐎣	𐎲𐎭𐎣	𐎲𐎭𐎣	0		𐎲𐎭𐎣 > 𐎲𐎭𐎣 > 𐎲𐎭𐎣
+بیدار	/beː.ˈdaːr/	4	False	False	ine-pro	wí	b	ب	2	final_vowel_loss,w_to_b_initial	wí > wˈi > wˈi > wˈi > w > b
+بیدستر		4	False	False	ine-pro	widʰu	bey	بی	5	deaspirate_dh,d_to_y,final_vowel_loss,i_to_e,w_to_b_initial	widʰu > widʰu > widu > widu > wiy > bey
+بیست	/ˈbiːst/	4	False	False	peo	𐎻𐎡𐎰𐎫	𐎻𐎡𐎰𐎫	𐎻𐎡𐎰𐎫	0		𐎻𐎡𐎰𐎫 > 𐎻𐎡𐎰𐎫 > 𐎻𐎡𐎰𐎫
+بیمار	/beː.ˈmaːr/	4	False	False	ine-pro	wemh₁	b	ب	5	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening,final_am_loss,w_to_b_initial	wemh₁ > wamH > wamH > wam > w > b
+بیمار	/beː.ˈmaːr/	4	False	False	ine-pro	wemh₁	b	ب	5	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening,final_am_loss,w_to_b_initial	wemh₁ > wamH > wamH > wam > w > b
+بیگانه	/beː.ɡaː.ˈna/	4	False	False	pal	byk'nk'	byk'nk'	بیک'نک'	0		byk'nk' > byk'nk'
+بیگانه	/beː.ɡaː.ˈna/	4	False	False	pal	byk'nk'	byk'nk'	بیک'نک'	0		byk'nk' > byk'nk'
+تا	/ˈtaː/	4	False	False	peo	𐎹𐎠𐎫𐎠	𐎹𐎠𐎫𐎠	𐎹𐎠𐎫𐎠	0		𐎹𐎠𐎫𐎠 > 𐎹𐎠𐎫𐎠 > 𐎹𐎠𐎫𐎠
+تا	/ˈtaː/	4	False	False	peo	𐎹𐎠𐎫𐎠	𐎹𐎠𐎫𐎠	𐎹𐎠𐎫𐎠	0		𐎹𐎠𐎫𐎠 > 𐎹𐎠𐎫𐎠 > 𐎹𐎠𐎫𐎠
+تاختن	/taːx.ˈtan/	4	False	False	ine-pro	tekʷ	tak	تک	2	vowel_merger_a,labiovelar_k	tekʷ > tak > tak > tak > tak > tak
+تاریک	/ˈtaː.riːk/	4	False	False	ine-pro	témHos	tam	تم	6	vowel_merger_a,final_s_to_h,laryngeal_lengthening,final_h_loss,final_vowel_loss,stress_not_written	témHos > tˈamHas > tˈamHah > tˈamah > tˈam > tam
+تازی	/taː.ˈziː/	4	False	False	pal	tʾcyk'	tʾcyk'	تʾcیک'	0		tʾcyk' > tʾcyk'
+تازی	/taː.ˈziː/	4	False	False	pal	tʾcyk'	tʾcyk'	تʾcیک'	0		tʾcyk' > tʾcyk'
+تازی	/taː.ˈziː/	4	False	False	pal	tʾcyk'	tʾcyk'	تʾcیک'	0		tʾcyk' > tʾcyk'
+تافتن	/taːf.ˈtan/	4	False	False	ine-pro	temp	tamp	تمپ	1	vowel_merger_a	temp > tamp > tamp > tamp > tamp > tamp
+تخته	/tax.ˈta/	4	False	False	pal	tʾhtk'	tʾhtk'	تʾهتک'	0		tʾhtk' > tʾhtk'
+تخته	/tax.ˈta/	4	False	False	pal	tʾhtk'	tʾhtk'	تʾهتک'	0		tʾhtk' > tʾhtk'
+تنبسه	/tan.ba.ˈsa/	4	False	False	ine-pro	temp	tamp	تمپ	1	vowel_merger_a	temp > tamp > tamp > tamp > tamp > tamp
+تنجیدن	/tan.d͡ʒiː.ˈdan/	4	False	False	ine-pro	tenk	tank	تنک	1	vowel_merger_a	tenk > tank > tank > tank > tank > tank
+تیر	/ˈtiːr/	4	False	False	pal	𐭧𐭲𐭩𐭠	𐭧𐭲𐭩𐭠	𐭧𐭲𐭩𐭠	0		𐭧𐭲𐭩𐭠 > 𐭧𐭲𐭩𐭠
+جابیز		4	False	False	pal	wyhyc	byhyc	بیهیc	1	w_to_b_initial	wyhyc > byhyc
+جریب		4	False	False	pal	glyw'	glyw'	گلیو'	0		glyw' > glyw'
+جستن	/d͡ʒas.ˈtan/	4	False	False	ira-pro	zgad	zgad	زگد	0		zgad > zgad > zgad > zgad
+جستن	/d͡ʒus.ˈtan/	4	False	False	iir-pro	Hyawdʰ	yūd	یود	5	deaspirate_dh,laryngeal_loss_initial,aw_to_au,au_to_o,long_o_to_long_u	Hyawdʰ > Hyawd > yaud > yōd > yūd
+جمشید	/d͡ʒam.ˈʃeːd/	4	False	False	ine-pro	yemHós	yam	یم	5	vowel_merger_a,final_s_to_h,laryngeal_lengthening,final_h_loss,final_vowel_loss	yemHós > yamHˈas > yamHˈah > yamˈah > yam > yam
+جهان	/d͡ʒa.ˈhaːn/	4	False	False	ine-pro	gʷeyh₃-e	gay	گی	5	laryngeal_to_H,vowel_merger_a,labiovelar_g,laryngeal_lengthening,final_vowel_loss	gʷeyh₃-e > gayHa > gayHa > gaya > gay > gay
+جهان	/d͡ʒa.ˈhaːn/	4	False	False	ine-pro	gʷeyh₃-e	gay	گی	5	laryngeal_to_H,vowel_merger_a,labiovelar_g,laryngeal_lengthening,final_vowel_loss	gʷeyh₃-e > gayHa > gayHa > gaya > gay > gay
+جویدن	/d͡ʒa.wiː.ˈdan/	4	False	False	ine-pro	ǵyewh₁	dyaw	دیو	6	laryngeal_to_H,vowel_merger_a,satem_g,j_from_palatal,laryngeal_lengthening,j_to_d	ǵyewh₁ > ȷ́yawH > jyawH > dyaw > dyaw > dyaw
+خجیر	/xu.ˈd͡ʒiːr/	4	False	False	iir-pro	Hsučitrás	hočeh	هچه	10	s_to_h,final_s_to_h,t_to_theta_before_sonorant,laryngeal_loss_initial,theta_r_to_cedilla,cedilla_to_h,final_h_loss,final_vowel_loss,i_to_e,u_to_o	Hsučitrás > Hhučiθrˈah > hučiçˈah > hučih > hočeh
+خداداد	/xu.daː.ˈdaːd/	4	False	False	ira-pro	BágadaHtah	Bayayād	Bییاد	7	laryngeal_lengthening,d_to_y,g_to_y,t_to_d,final_h_loss,final_vowel_loss,stress_not_written	BágadaHtah > Bˈagadātah > Bˈayayād > Bayayād
+خداداد	/xu.daː.ˈdaːd/	4	False	False	ira-pro	BágadaHtah	Bayayād	Bییاد	7	laryngeal_lengthening,d_to_y,g_to_y,t_to_d,final_h_loss,final_vowel_loss,stress_not_written	BágadaHtah > Bˈagadātah > Bˈayayād > Bayayād
+خدیو	/xa.ˈdeːw/	4	False	False	pal	𐭤𐭲𐭩𐭥	𐭤𐭲𐭩𐭥	𐭤𐭲𐭩𐭥	0		𐭤𐭲𐭩𐭥 > 𐭤𐭲𐭩𐭥
+خشت	/ˈxiʃt/	4	False	False	peo	𐎡𐏁𐎫𐎡	𐎡𐏁𐎫𐎡	𐎡𐏁𐎫𐎡	0		𐎡𐏁𐎫𐎡 > 𐎡𐏁𐎫𐎡 > 𐎡𐏁𐎫𐎡
+خفتن	/xuf.ˈtan/	4	False	False	ine-pro	swep	hwap	هوپ	2	vowel_merger_a,s_to_h	swep > swap > hwap > hwap > hwap > hwap
+خنگ	/ˈxinɡ/	4	False	False	ine-pro	ḱanḱest	sansast	سنسست	5	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,theta_to_s	ḱanḱest > ćanćast > cancast > θanθast > sansast > sansast
+خنیا	/xun.ˈjaː/	4	False	False	ine-pro	swenh₂	hwan	هون	4	laryngeal_to_H,vowel_merger_a,s_to_h,laryngeal_lengthening	swenh₂ > swanH > hwanH > hwan > hwan > hwan
+خواردن	/xʷaːr.ˈdan/	4	False	False	ira-pro	hwar	hwor	هور	2	war_rounding,u_to_o	hwar > hwar > hwur > hwor
+خوال	/ˈxʷaːl/	4	False	False	ira-pro	hṷar	hṷar	هṷر	0		hṷar > hṷar > hṷar > hṷar
+خواندن	/xʷaːn.ˈdan/	4	False	False	ine-pro	swenh₂	hwan	هون	4	laryngeal_to_H,vowel_merger_a,s_to_h,laryngeal_lengthening	swenh₂ > swanH > hwanH > hwan > hwan > hwan
+خوراک	/xʷa.ˈraːk/	4	False	False	pal	hwlʾk'	hwlʾk'	هولʾک'	0		hwlʾk' > hwlʾk'
+خوردن	/xʷar.ˈdan/	4	False	False	iir-pro	suar	hoar	هر	2	s_to_h,u_to_o	suar > huar > huar > huar > hoar
+خون	/ˈxuːn/	4	False	False	pal	𐭣𐭬𐭩𐭠	𐭣𐭬𐭩𐭠	𐭣𐭬𐭩𐭠	0		𐭣𐭬𐭩𐭠 > 𐭣𐭬𐭩𐭠
+خیار	/xi.ˈjaːr/	4	False	False	pal	𐭧𐭩𐭠𐭥	𐭧𐭩𐭠𐭥	𐭧𐭩𐭠𐭥	0		𐭧𐭩𐭠𐭥 > 𐭧𐭩𐭠𐭥
+داستان	/daːs.ˈtaːn/	4	False	False	ine-pro	dʰeh₁	dā	دا	4	laryngeal_to_H,vowel_merger_a,deaspirate_dh,laryngeal_lengthening	dʰeh₁ > dʰaH > daH > dā > dā > dā
+داشتن	/daːʃ.ˈtan/	4	False	False	ine-pro	dʰer	dar	در	2	vowel_merger_a,deaspirate_dh	dʰer > dʰar > dar > dar > dar > dar
+داماد	/daː.ˈmaːd/	4	False	False	ine-pro	ǵem	d	د	5	vowel_merger_a,satem_g,j_from_palatal,j_to_d,final_am_loss	ǵem > ȷ́am > jam > dam > d > d
+دانا		4	False	False	pal	d’n’k'	d’n’k'	د’ن’ک'	0		d’n’k' > d’n’k'
+دانا		4	False	False	pal	d’n’k'	d’n’k'	د’ن’ک'	0		d’n’k' > d’n’k'
+دانا		4	False	False	pal	d’n’k'	d’n’k'	د’ن’ک'	0		d’n’k' > d’n’k'
+دانستن	/daː.nis.ˈtan/	4	False	False	ine-pro	ǵn̥néh₃ti	danād	دناد	11	h3_colours_e,laryngeal_to_H,vowel_merger_a,satem_g,syllabic_n,j_from_palatal,laryngeal_lengthening,j_to_d,t_to_d,final_vowel_loss,stress_not_written	ǵn̥néh₃ti > ȷ́anˈaHti > janˈaHti > danˈāti > danˈād > danād
+دریچه	/da.riː.ˈt͡ʃa/	4	False	False	ine-pro	dʰwer	dwor	دور	4	vowel_merger_a,deaspirate_dh,war_rounding,u_to_o	dʰwer > dʰwar > dwar > dwar > dwur > dwor
+دستور	/das.ˈtuːr/	4	False	False	ine-pro	bʰer	bar	بر	2	vowel_merger_a,deaspirate_bh	bʰer > bʰar > bar > bar > bar > bar
+دمیدن	/da.miː.ˈdan/	4	False	False	ine-pro	dʰemH	d	د	4	vowel_merger_a,deaspirate_dh,laryngeal_lengthening,final_am_loss	dʰemH > dʰamH > damH > dam > d > d
+دوزخ	/doː.ˈzax/	4	False	False	iir-pro	Hásuš	ahoš	اهش	4	s_to_h,laryngeal_loss_initial,u_to_o,stress_not_written	Hásuš > Hˈahuš > ˈahuš > ˈahuš > ahoš
+راندن	/raːn.ˈdan/	4	False	False	ine-pro	h₃er	ar	ار	3	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial	h₃er > Har > Har > ar > ar > ar
+رخ		4	False	False	pal	lhw'	lhw'	لهو'	0		lhw' > lhw'
+رزمگاه	/razm.ˈɡaːh/	4	False	False	pal	lcmgʾs	lcmgʾs	لcمگʾس	0		lcmgʾs > lcmgʾs
+رستم	/rus.ˈtam/	4	False	False	pal	lwd	lwd	لود	0		lwd > lwd
+رستم	/rus.ˈtam/	4	False	False	pal	lwd	lwd	لود	0		lwd > lwd
+رشتن	[reʃˈtæn]	4	False	False	ine-pro	wreyḱ	brīs	بریس	9	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,ay_to_ai,theta_to_s,ai_to_e,long_e_to_long_i,w_to_b_initial	wreyḱ > wrayć > wrayc > wraiθ > wrēs > brīs
+رشته	/riʃ.ˈta/	4	False	False	ine-pro	wreyḱ	brīs	بریس	9	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,ay_to_ai,theta_to_s,ai_to_e,long_e_to_long_i,w_to_b_initial	wreyḱ > wrayć > wrayc > wraiθ > wrēs > brīs
+رودبار	/roːd.ˈbaːr/	4	False	False	pal	lwtbʾl	lwtbʾl	لوتبʾل	0		lwtbʾl > lwtbʾl
+روزگار	/roːz.ˈɡaːr/	4	False	False	ine-pro	lewk	rūk	روک	5	vowel_merger_a,l_to_r,aw_to_au,au_to_o,long_o_to_long_u	lewk > rawk > rawk > rauk > rōk > rūk
+روزی	/roː.ˈziː/	4	False	False	pal	lwcyk'	lwcyk'	لوcیک'	0		lwcyk' > lwcyk'
+روم	/ˈruːm/	4	False	False	pal	𐭧𐭫𐭥𐭬	𐭧𐭫𐭥𐭬	𐭧𐭫𐭥𐭬	0		𐭧𐭫𐭥𐭬 > 𐭧𐭫𐭥𐭬
+رومی	/roː.ˈmiː/	4	False	False	pal	𐭧𐭫𐭥𐭬	𐭧𐭫𐭥𐭬	𐭧𐭫𐭥𐭬	0		𐭧𐭫𐭥𐭬 > 𐭧𐭫𐭥𐭬
+رومی	/roː.ˈmiː/	4	False	False	pal	𐭧𐭫𐭥𐭬	𐭧𐭫𐭥𐭬	𐭧𐭫𐭥𐭬	0		𐭧𐭫𐭥𐭬 > 𐭧𐭫𐭥𐭬
+ریشه	/reː.ˈʃa/	4	False	False	ine-pro	wréh₂ds	brāds	برادس	5	h2_colours_e,laryngeal_to_H,laryngeal_lengthening,w_to_b_initial,stress_not_written	wréh₂ds > wrˈaHds > wrˈaHds > wrˈāds > wrˈāds > brāds
+زالو		4	False	False	ine-pro	ǵelu	dar	در	6	vowel_merger_a,satem_g,l_to_r,j_from_palatal,j_to_d,final_vowel_loss	ǵelu > ȷ́aru > jaru > daru > dar > dar
+زاییدن	/zaː.jiː.ˈdan/	4	False	False	ine-pro	ǵenh₁	dan	دن	6	laryngeal_to_H,vowel_merger_a,satem_g,j_from_palatal,laryngeal_lengthening,j_to_d	ǵenh₁ > ȷ́anH > janH > dan > dan > dan
+زبان	/za.ˈbaːn/	4	False	False	iir-pro	ȷ́iȷ́ʰwáH	dedwā	ددوا	6	deaspirate_palatal,j_from_palatal,laryngeal_lengthening,j_to_d,i_to_e,stress_not_written	ȷ́iȷ́ʰwáH > jijwˈaH > didwˈā > didwˈā > dedwā
+زرمان		4	False	False	ine-pro	ǵerh₂	dar	در	6	laryngeal_to_H,vowel_merger_a,satem_g,j_from_palatal,laryngeal_lengthening,j_to_d	ǵerh₂ > ȷ́arH > jarH > dar > dar > dar
+زریون	/zar.ˈjuːn/	4	False	False	iir-pro	ȷ́ʰárHiš	dareš	درش	6	deaspirate_palatal,j_from_palatal,laryngeal_lengthening,j_to_d,i_to_e,stress_not_written	ȷ́ʰárHiš > jˈarHiš > dˈariš > dˈariš > dareš
+زغال	/zu.ˈɣaːl/	4	False	False	ine-pro	ǵwelH	dwor	دور	8	vowel_merger_a,satem_g,l_to_r,j_from_palatal,laryngeal_lengthening,j_to_d,war_rounding,u_to_o	ǵwelH > ȷ́warH > jwarH > dwar > dwur > dwor
+زمان	/za.ˈmaːn/	4	False	False	pal	𐭥𐭣𐭭𐭠	𐭥𐭣𐭭𐭠	𐭥𐭣𐭭𐭠	0		𐭥𐭣𐭭𐭠 > 𐭥𐭣𐭭𐭠
+زمانه	/za.maː.ˈna/	4	False	False	pal	ẕmʾnk'	ẕmʾnk'	ẕمʾنک'	0		ẕmʾnk' > ẕmʾnk'
+زمخت	/zu.ˈmuxt/	4	False	False	ira-pro	uc	os	اس	3	c_to_theta,theta_to_s,u_to_o	uc > uθ > us > os
+زمین	/za.ˈmiːn/	4	False	False	iir-pro	ȷ́ʰžʰā́s	džāh	دژاه	5	deaspirate_palatal,final_s_to_h,j_from_palatal,j_to_d,stress_not_written	ȷ́ʰžʰā́s > jžˈāh > džˈāh > džˈāh > džāh
+زمین	/za.ˈmiːn/	4	False	False	iir-pro	ȷ́ʰžʰā́s	džāh	دژاه	5	deaspirate_palatal,final_s_to_h,j_from_palatal,j_to_d,stress_not_written	ȷ́ʰžʰā́s > jžˈāh > džˈāh > džˈāh > džāh
+زوش	/ˈzuːʃ/	4	False	False	iir-pro	ȷ́ʰáyždas	dīžd	دیژد	10	deaspirate_palatal,final_s_to_h,j_from_palatal,ay_to_ai,j_to_d,ai_to_e,final_h_loss,final_vowel_loss,long_e_to_long_i,stress_not_written	ȷ́ʰáyždas > jˈayždah > dˈaiždah > dˈēžd > dīžd
+زیبیدن	/zeː.biː.ˈdan/	4	False	False	ira-pro	zay	zay	زی	0		zay > zay > zay > zay
+زیستن	/ziːs.ˈtan/	4	False	False	ine-pro	gʷéyh₃eti	gayad	گید	7	laryngeal_to_H,vowel_merger_a,labiovelar_g,laryngeal_lengthening,t_to_d,final_vowel_loss,stress_not_written	gʷéyh₃eti > gˈayHati > gˈayHati > gˈayati > gˈayad > gayad
+زیگ	/ˈziːɡ/	4	False	False	pal	𐫉𐫏𐫏𐫃	𐫉𐫏𐫏𐫃	𐫉𐫏𐫏𐫃	0		𐫉𐫏𐫏𐫃 > 𐫉𐫏𐫏𐫃
+ساییدن	/saː.jiː.ˈdan/	4	False	False	ine-pro	ḱeh₃i	sā	سا	9	h3_colours_e,laryngeal_to_H,brugmann_o_a,satem_k,c_from_palatal,laryngeal_lengthening,c_to_theta,theta_to_s,final_vowel_loss	ḱeh₃i > ćāHi > cāHi > θāi > sā > sā
+سبشت		4	False	False	ine-pro	peyḱ	pīs	پیس	8	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,ay_to_ai,theta_to_s,ai_to_e,long_e_to_long_i	peyḱ > payć > payc > paiθ > pēs > pīs
+سرکه	/sir.ˈka/	4	False	False	pal	HLYA	HLYA	HLYA	0		HLYA > HLYA
+سرین	/su.ˈreːn/	4	False	False	ine-pro	ḱlównis	hūneš	هونش	13	vowel_merger_a,satem_k,l_to_r,ruki_s,c_from_palatal,c_to_theta,aw_to_au,theta_r_to_cedilla,cedilla_to_h,au_to_o,i_to_e,long_o_to_long_u,stress_not_written	ḱlównis > ćrˈawniš > crˈawniš > çˈauniš > hˈōniš > hūneš
+سوس		4	False	False	peo	𐏂𐎢𐏁𐎠	𐏂𐎢𐏁𐎠	𐏂𐎢𐏁𐎠	0		𐏂𐎢𐏁𐎠 > 𐏂𐎢𐏁𐎠 > 𐏂𐎢𐏁𐎠
+سپرخی		4	False	False	ine-pro	aspharag	asphare	اسپهره	1	final_ag_to_e	aspharag > aspharag > aspharag > aspharag > aspharag > asphare
+سپری	/si.pa.ˈriː/	4	False	False	ira-pro	uc	os	اس	3	c_to_theta,theta_to_s,u_to_o	uc > uθ > us > os
+شاخه	/ʃaː.ˈxa/	4	False	False	ine-pro	ḱókh₂eh₂	sagā	سگا	10	h2_colours_e,laryngeal_to_H,vowel_merger_a,satem_k,c_from_palatal,laryngeal_lengthening,c_to_theta,k_to_g,theta_to_s,stress_not_written	ḱókh₂eh₂ > ćˈakHaH > cˈakHaH > θˈakā > sˈagā > sagā
+شاریدن	/ʃaː.riː.ˈdan/	4	False	False	ine-pro	dʰgʷʰéreti	dgarad	دگرد	7	vowel_merger_a,labiovelar_gh,grassmann,deaspirate_gh,t_to_d,final_vowel_loss,stress_not_written	dʰgʷʰéreti > dgʰˈarati > dgˈarati > dgˈarati > dgˈarad > dgarad
+شانه	/ʃaː.ˈna/	4	False	False	ine-pro	peḱ	pas	پس	5	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,theta_to_s	peḱ > pać > pac > paθ > pas > pas
+شاید	/ˈʃaː.jad/	4	False	False	ine-pro	tek	tak	تک	1	vowel_merger_a	tek > tak > tak > tak > tak > tak
+شاید	/ˈʃaː.jad/	4	False	False	ine-pro	tek	tak	تک	1	vowel_merger_a	tek > tak > tak > tak > tak > tak
+شترگاوپلنگ	/ʃu.tur.ɡaːw.pa.ˈlanɡ/	4	False	False	pal	ʾwštlgʾwplng	ʾwštlgʾwplng	ʾوشتلگʾوپلنگ	0		ʾwštlgʾwplng > ʾwštlgʾwplng
+ششتن	[ʃɪʃ.t̪ʰán]	4	False	False	ine-pro	sed	had	هد	2	vowel_merger_a,s_to_h	sed > sad > had > had > had > had
+شمر		4	False	False	ine-pro	swembh	hwambh	هومبه	2	vowel_merger_a,s_to_h	swembh > swambh > hwambh > hwambh > hwambh > hwambh
+شنار	/ʃa.ˈnaːr/	4	False	False	ine-pro	trom	h	ه	5	vowel_merger_a,t_to_theta_before_sonorant_initial,theta_r_to_cedilla,cedilla_to_h,final_am_loss	trom > tram > θram > çam > h > h
+شنیدن	/ʃu.niː.ˈdan/	4	False	False	ine-pro	h₂éd	ad	اد	4	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,stress_not_written	h₂éd > Hˈad > Hˈad > ˈad > ˈad > ad
+شوش	/ˈʃuːʃ/	4	False	False	peo	𐏂𐎢𐏁𐎠	𐏂𐎢𐏁𐎠	𐏂𐎢𐏁𐎠	0		𐏂𐎢𐏁𐎠 > 𐏂𐎢𐏁𐎠 > 𐏂𐎢𐏁𐎠
+شوهر	/ʃaw.ˈhar/	4	False	False	ine-pro	peh₂	pā	پا	3	h2_colours_e,laryngeal_to_H,laryngeal_lengthening	peh₂ > paH > paH > pā > pā > pā
+شکستن	/ʃi.kas.ˈtan/	4	False	False	ine-pro	skendh₂	skand	سکند	3	syllabic_laryngeals,vowel_merger_a,final_vowel_loss	skendh₂ > skanda > skanda > skanda > skand > skand
+شگفت	/ʃi.ˈɡift/	4	False	False	ine-pro	skep	skap	سکپ	1	vowel_merger_a	skep > skap > skap > skap > skap > skap
+ـآباد	/‿aː.ˈbaːd/	4	False	False	ine-pro	peh₂	pā	پا	3	h2_colours_e,laryngeal_to_H,laryngeal_lengthening	peh₂ > paH > paH > pā > pā > pā
+ـدیس	/‿ˈdeːs/	4	False	False	pal	𐭣𐭩𐭮	𐭣𐭩𐭮	𐭣𐭩𐭮	0		𐭣𐭩𐭮 > 𐭣𐭩𐭮
+فارس	/ˈfaːrs/	4	False	False	peo	𐎱𐎠𐎼𐎿	𐎱𐎠𐎼𐎿	𐎱𐎠𐎼𐎿	0		𐎱𐎠𐎼𐎿 > 𐎱𐎠𐎼𐎿 > 𐎱𐎠𐎼𐎿
+فارس	/ˈfaːrs/	4	False	False	peo	𐎱𐎠𐎼𐎿	𐎱𐎠𐎼𐎿	𐎱𐎠𐎼𐎿	0		𐎱𐎠𐎼𐎿 > 𐎱𐎠𐎼𐎿 > 𐎱𐎠𐎼𐎿
+فردوس	/fir.ˈdaws/	4	False	False	ira-pro	paridayjah	pareyīy	پرییی	8	ay_to_ai,j_to_d,d_to_y,ai_to_e,final_h_loss,final_vowel_loss,i_to_e,long_e_to_long_i	paridayjah > paridaidah > pariyēy > pareyīy
+فرزند	/far.ˈzand/	4	False	False	ine-pro	ǵenh₁	dan	دن	6	laryngeal_to_H,vowel_merger_a,satem_g,j_from_palatal,laryngeal_lengthening,j_to_d	ǵenh₁ > ȷ́anH > janH > dan > dan > dan
+فرود	/fu.ˈruːd/	4	False	False	ine-pro	wénts	bans	بنس	6	vowel_merger_a,ts_to_c,c_to_theta,theta_to_s,w_to_b_initial,stress_not_written	wénts > wˈants > wˈanc > wˈanθ > wˈans > bans
+فرود	/fu.ˈruːd/	4	False	False	ine-pro	wénts	bans	بنس	6	vowel_merger_a,ts_to_c,c_to_theta,theta_to_s,w_to_b_initial,stress_not_written	wénts > wˈants > wˈanc > wˈanθ > wˈans > bans
+فریاد	/far.ˈjaːd/	4	False	False	ine-pro	yet	yat	یت	1	vowel_merger_a	yet > yat > yat > yat > yat > yat
+فشردن	/fi.ʃur.ˈdan/	4	False	False	ine-pro	sperH	spar	سپر	2	vowel_merger_a,laryngeal_lengthening	sperH > sparH > sparH > spar > spar > spar
+فینک	/fiː.ˈnak/	4	False	False	ine-pro	spoHy	spāy	سپای	2	brugmann_o_a,laryngeal_lengthening	spoHy > spāHy > spāHy > spāy > spāy > spāy
+قاقم	/qaː.ˈqum/	4	False	False	pal	kʾkwm	kʾkwm	کʾکوم	0		kʾkwm > kʾkwm
+قشنگ	/qa.ˈʃanɡ/	4	False	False	ira-pro	gr̥šáti	garšad	گرشد	4	r_syllabic_to_ar,t_to_d,final_vowel_loss,stress_not_written	gr̥šáti > garšˈati > garšˈad > garšad
+قفقاز	/qaf.ˈqaːz/	4	False	False	pal	Kaf kōf	Kafkūf	Kفکوف	1	long_o_to_long_u	Kaf kōf > Kafkūf
+لایه	/laː.ˈja/	4	False	False	ira-pro	dauH	daū	دو	1	laryngeal_lengthening	dauH > daū > daū > daū
+لرزیدن	/lar.ziː.ˈdan/	4	False	False	ira-pro	rarz	rarz	ررز	0		rarz > rarz > rarz > rarz
+لوخن	/loː.ˈxan/	4	False	False	iir-pro	lukšás	roš	رش	7	final_s_to_h,k_to_x_internal,l_to_r,xsh_to_sh,final_h_loss,final_vowel_loss,u_to_o	lukšás > ruxšˈah > ruxšˈah > ruš > roš
+لوغیدن		4	False	False	ira-pro	dáwgdi	dūgd	دوگد	5	aw_to_au,au_to_o,final_vowel_loss,long_o_to_long_u,stress_not_written	dáwgdi > dˈaugdi > dˈōgd > dūgd
+لیسیدن	/leː.siː.ˈdan/	4	False	False	ine-pro	leyǵʰ	rīd	رید	9	vowel_merger_a,satem_gh,l_to_r,deaspirate_palatal,j_from_palatal,ay_to_ai,j_to_d,ai_to_e,long_e_to_long_i	leyǵʰ > rayȷ́ʰ > rayj > raid > rēd > rīd
+مانستن	/maː.nis.ˈtan/	4	False	False	ine-pro	meh₁	mā	ما	3	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening	meh₁ > maH > maH > mā > mā > mā
+مانی	/maː.ˈniː/	4	False	False	pal	𐫖𐫀𐫗𐫏	𐫖𐫀𐫗𐫏	𐫖𐫀𐫗𐫏	0		𐫖𐫀𐫗𐫏 > 𐫖𐫀𐫗𐫏
+مانی	/maː.ˈniː/	4	False	False	pal	𐫖𐫀𐫗𐫏	𐫖𐫀𐫗𐫏	𐫖𐫀𐫗𐫏	0		𐫖𐫀𐫗𐫏 > 𐫖𐫀𐫗𐫏
+مجوس	/ma.ˈd͡ʒuːs/	4	False	False	peo	𐎶𐎦𐏁	𐎶𐎦𐏁	𐎶𐎦𐏁	0		𐎶𐎦𐏁 > 𐎶𐎦𐏁 > 𐎶𐎦𐏁
+مرو	/ˈmarw/	4	False	False	pal	𐭰𐭠𐭫𐭥	𐭰𐭠𐭫𐭥	𐭰𐭠𐭫𐭥	0		𐭰𐭠𐭫𐭥 > 𐭰𐭠𐭫𐭥
+مشک	/ˈmaʃk/	4	False	False	peo	𐎶𐏁𐎣𐎠	𐎶𐏁𐎣𐎠	𐎶𐏁𐎣𐎠	0		𐎶𐏁𐎣𐎠 > 𐎶𐏁𐎣𐎠 > 𐎶𐏁𐎣𐎠
+مهمان	/mih.ˈmaːn/	4	False	False	ine-pro	meyth₂	mīt	میت	6	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening,ay_to_ai,ai_to_e,long_e_to_long_i	meyth₂ > maytH > maytH > mait > mēt > mīt
+مگر	/ˈma.ɡar/	4	False	False	pal	𐭠𐭫 𐭧𐭲	𐭠𐭫𐭧𐭲	𐭠𐭫𐭧𐭲	0		𐭠𐭫 𐭧𐭲 > 𐭠𐭫𐭧𐭲
+مگر	/ˈma.ɡar/	4	False	False	pal	𐭠𐭫 𐭧𐭲	𐭠𐭫𐭧𐭲	𐭠𐭫𐭧𐭲	0		𐭠𐭫 𐭧𐭲 > 𐭠𐭫𐭧𐭲
+مگر	/ˈma.ɡar/	4	False	False	pal	𐭠𐭫 𐭧𐭲	𐭠𐭫𐭧𐭲	𐭠𐭫𐭧𐭲	0		𐭠𐭫 𐭧𐭲 > 𐭠𐭫𐭧𐭲
+میترا	/miːt.ˈraː/	4	False	False	iir-pro	mitra	meh	مه	5	t_to_theta_before_sonorant,theta_r_to_cedilla,cedilla_to_h,final_vowel_loss,i_to_e	mitra > miθra > miça > mih > meh
+میخ	/ˈmeːx/	4	False	False	peo	𐎶𐎹𐎢𐎧	𐎶𐎹𐎢𐎧	𐎶𐎹𐎢𐎧	0		𐎶𐎹𐎢𐎧 > 𐎶𐎹𐎢𐎧 > 𐎶𐎹𐎢𐎧
+ناشتا	/naːʃ.ˈtaː/	4	False	False	ine-pro	h₁ed	ad	اد	3	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial	h₁ed > Had > Had > ad > ad > ad
+نبید	/na.ˈbiːd/	4	False	False	ine-pro	peh₃	pā	پا	4	h3_colours_e,laryngeal_to_H,vowel_merger_a,laryngeal_lengthening	peh₃ > paH > paH > pā > pā > pā
+نشستن	/ni.ʃas.ˈtan/	4	False	False	ine-pro	h₁én	an	ان	4	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,stress_not_written	h₁én > Hˈan > Hˈan > ˈan > ˈan > an
+نمودن	/na.muː.ˈdan/	4	False	False	ine-pro	meh₁	mā	ما	3	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening	meh₁ > maH > maH > mā > mā > mā
+نهنگ	/na.ˈhanɡ/	4	False	False	pal	𐫗𐫍𐫗𐫃	𐫗𐫍𐫗𐫃	𐫗𐫍𐫗𐫃	0		𐫗𐫍𐫗𐫃 > 𐫗𐫍𐫗𐫃
+نگاشتن	/ni.ɡaːʃ.ˈtan/	4	False	False	ine-pro	h₂en	an	ان	3	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial	h₂en > Han > Han > an > an > an
+نیایش	/ni.jaː.ˈjiʃ/	4	False	False	ine-pro	h₁én	an	ان	4	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,stress_not_written	h₁én > Hˈan > Hˈan > ˈan > ˈan > an
+نیست	/ˈneːst/	4	False	False	pal	𐭫𐭥𐭩𐭲	𐭫𐭥𐭩𐭲	𐭫𐭥𐭩𐭲	0		𐭫𐭥𐭩𐭲 > 𐭫𐭥𐭩𐭲
+نیوشیدن	/ni.joː.ʃiː.ˈdan/	4	False	False	iir-pro	gʰáwšati	gūšad	گوشد	7	deaspirate_gh,aw_to_au,t_to_d,au_to_o,final_vowel_loss,long_o_to_long_u,stress_not_written	gʰáwšati > gˈawšati > gˈaušati > gˈōšad > gūšad
+هرگز	/har.ˈɡiz/	4	False	False	pal	𐭧𐭪𐭫𐭰	𐭧𐭪𐭫𐭰	𐭧𐭪𐭫𐭰	0		𐭧𐭪𐭫𐭰 > 𐭧𐭪𐭫𐭰
+هلمند		4	False	False	iir-pro	sHáytuš	hīdoš	هیدش	8	s_to_h,laryngeal_lengthening,ay_to_ai,t_to_d,ai_to_e,u_to_o,long_e_to_long_i,stress_not_written	sHáytuš > hHˈaytuš > hˈaituš > hˈēduš > hīdoš
+هنر	/hu.ˈnar/	4	False	False	peo	𐎢𐎺𐎴𐎼	𐎢𐎺𐎴𐎼	𐎢𐎺𐎴𐎼	0		𐎢𐎺𐎴𐎼 > 𐎢𐎺𐎴𐎼 > 𐎢𐎺𐎴𐎼
+هوو	/ha.ˈwoː/	4	False	False	ine-pro	sm̥pótnih₂	habasnī	هبسنی	9	laryngeal_to_H,vowel_merger_a,syllabic_m,s_to_h,t_to_theta_before_sonorant,laryngeal_lengthening,p_to_b,theta_to_s,stress_not_written	sm̥pótnih₂ > sapˈatniH > hapˈaθniH > hapˈaθnī > habˈasnī > habasnī
+ورزیدن	/war.ziː.ˈdan/	4	False	False	ira-pro	warj	gord	گرد	4	j_to_d,war_rounding,w_to_g_before_ur,u_to_o	warj > ward > gurd > gord
+وزیدن	/wa.ziː.ˈdan/	4	False	False	ine-pro	weǵʰ	bad	بد	6	vowel_merger_a,satem_gh,deaspirate_palatal,j_from_palatal,j_to_d,w_to_b_initial	weǵʰ > waȷ́ʰ > waj > wad > wad > bad
+وشتن	/waʃ.ˈtan/	4	False	False	ine-pro	weyg	bīg	بیگ	5	vowel_merger_a,ay_to_ai,ai_to_e,long_e_to_long_i,w_to_b_initial	weyg > wayg > wayg > waig > wēg > bīg
+پارت	/ˈpaːrt/	4	False	False	peo	𐎱𐎼𐎰𐎺	𐎱𐎼𐎰𐎺	𐎱𐎼𐎰𐎺	0		𐎱𐎼𐎰𐎺 > 𐎱𐎼𐎰𐎺 > 𐎱𐎼𐎰𐎺
+پارسال	/paːr.ˈsaːl/	4	False	False	ine-pro	per	par	پر	1	vowel_merger_a	per > par > par > par > par > par
+پاشیدن	/paː.ʃiː.ˈdan/	4	False	False	ine-pro	pers	parš	پرش	2	vowel_merger_a,ruki_s	pers > parš > parš > parš > parš > parš
+پاییدن	/paː.jiː.ˈdan/	4	False	False	ine-pro	peh₂	pā	پا	3	h2_colours_e,laryngeal_to_H,laryngeal_lengthening	peh₂ > paH > paH > pā > pā > pā
+پاییز	/paː.ˈjiːz/	4	False	False	ira-pro	pati	pad	پد	2	t_to_d,final_vowel_loss	pati > pati > pad > pad
+پرواس	/par.ˈwaːs/	4	False	False	pal	plwst'	plwst'	پلوست'	0		plwst' > plwst'
+پروردن	/par.war.ˈdan/	4	False	False	pal	plwl-tn'	plwltn'	پلولتن'	0		plwl-tn' > plwltn'
+پریدن	/pa.riː.ˈdan/	4	False	False	ine-pro	prew	fraw	فرو	2	vowel_merger_a,p_to_f_before_sonorant_initial	prew > praw > fraw > fraw > fraw > fraw
+پشمین	/pæʃˈmiːn/	4	False	False	ine-pro	peḱ	pas	پس	5	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,theta_to_s	peḱ > pać > pac > paθ > pas > pas
+پهلو	/pah.ˈlaw/	4	False	False	peo	𐎱𐎼𐎰𐎺	𐎱𐎼𐎰𐎺	𐎱𐎼𐎰𐎺	0		𐎱𐎼𐎰𐎺 > 𐎱𐎼𐎰𐎺 > 𐎱𐎼𐎰𐎺
+پوسیدن	/poː.siː.ˈdan/	4	False	False	ine-pro	puH	pū	پو	1	laryngeal_lengthening	puH > puH > puH > pū > pū > pū
+پوشیدن	/poː.ʃiː.ˈdan/	4	False	False	ira-pro	paus	pūs	پوس	2	au_to_o,long_o_to_long_u	paus > paus > pōs > pūs
+پیارسال	/pi.jaːr.ˈsaːl/	4	False	False	ine-pro	yóh₁r̥	yāar	یار	5	laryngeal_to_H,brugmann_o_a,laryngeal_lengthening,r_syllabic_to_ar,stress_not_written	yóh₁r̥ > yˈāHr̥ > yˈāHr̥ > yˈāar > yˈāar > yāar
+پیامبر	/pa.jaːm.ˈbar/	4	False	False	pal	pgtʾmbl	pgtʾmbl	پگتʾمبل	0		pgtʾmbl > pgtʾmbl
+پیراهن	/peː.raː.ˈhan/	4	False	False	ine-pro	per	par	پر	1	vowel_merger_a	per > par > par > par > par > par
+پیغمبر	/paj.ɣam.ˈbar/	4	False	False	pal	pgtʾmbl	pgtʾmbl	پگتʾمبل	0		pgtʾmbl > pgtʾmbl
+پیکار	/paj.ˈkaːr/	4	False	False	ine-pro	próti	frād	فراد	5	brugmann_o_a,p_to_f_before_sonorant_initial,t_to_d,final_vowel_loss,stress_not_written	próti > prˈāti > frˈāti > frˈāti > frˈād > frād
+پیکر	/paj.ˈkar/	4	False	False	pal	𐭯𐭲𐭪𐭫	𐭯𐭲𐭪𐭫	𐭯𐭲𐭪𐭫	0		𐭯𐭲𐭪𐭫 > 𐭯𐭲𐭪𐭫
+چاقو	/t͡ʃaː.ˈquː/	4	False	False	ine-pro	keku	ke	که	4	vowel_merger_a,k_to_g,final_vowel_loss,final_ag_to_e	keku > kaku > kaku > kaku > kag > ke
+چریدن	/t͡ʃa.riː.ˈdan/	4	False	False	ine-pro	kʷel	kar	کر	3	vowel_merger_a,labiovelar_k,l_to_r	kʷel > kar > kar > kar > kar > kar
+کارزار	/kaːr.ˈzaːr/	4	False	False	ine-pro	ker	kar	کر	1	vowel_merger_a	ker > kar > kar > kar > kar > kar
+کاسه	/kaː.ˈsa/	4	False	False	peo	𐎣𐎠𐎿𐎣	𐎣𐎠𐎿𐎣	𐎣𐎠𐎿𐎣	0		𐎣𐎠𐎿𐎣 > 𐎣𐎠𐎿𐎣 > 𐎣𐎠𐎿𐎣
+کاشتن	/kaːʃ.ˈtan/	4	False	False	ira-pro	karH	kar	کر	1	laryngeal_lengthening	karH > kar > kar > kar
+کاشغر	/kaːʃ.ˈɣar/	4	False	False	ira-pro	gr̥Híš	gareš	گرش	4	laryngeal_lengthening,r_syllabic_to_ar,i_to_e,stress_not_written	gr̥Híš > garˈiš > garˈiš > gareš
+کرکس	/kar.ˈkas/	4	False	False	ine-pro	h₁ed	ad	اد	3	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial	h₁ed > Had > Had > ad > ad > ad
+کشور	/kiʃ.ˈwar/	4	False	False	pal	𐭪𐭱𐭥𐭥	𐭪𐭱𐭥𐭥	𐭪𐭱𐭥𐭥	0		𐭪𐭱𐭥𐭥 > 𐭪𐭱𐭥𐭥
+کشیدن	/ka.ʃiː.ˈdan/	4	False	False	ine-pro	kʷéls-ti	karšt	کرشت	6	vowel_merger_a,labiovelar_k,l_to_r,ruki_s,final_vowel_loss,stress_not_written	kʷéls-ti > kˈaršti > kˈaršti > kˈaršti > kˈaršt > karšt
+کلاغ	/ka.ˈlaːɣ/	4	False	False	ine-pro	ḱer	sar	سر	5	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,theta_to_s	ḱer > ćar > car > θar > sar > sar
+کلبه	/kul.ˈba/	4	False	False	ine-pro	krep	xrap	خرپ	2	vowel_merger_a,k_to_x_initial	krep > krap > xrap > xrap > xrap > xrap
+کمرا		4	False	False	pal	𐭪𐭬𐭫𐭩	𐭪𐭬𐭫𐭩	𐭪𐭬𐭫𐭩	0		𐭪𐭬𐭫𐭩 > 𐭪𐭬𐭫𐭩
+کمند	/ka.ˈmand/	4	False	False	pal	𐭪𐭬𐭭𐭣	𐭪𐭬𐭭𐭣	𐭪𐭬𐭭𐭣	0		𐭪𐭬𐭭𐭣 > 𐭪𐭬𐭭𐭣
+کهربا	/kah.ru.ˈbaː/	4	False	False	pal	khlpʾd	khlpʾd	کهلپʾد	0		khlpʾd > khlpʾd
+کوبیدن	/koː.biː.ˈdan/	4	False	False	ira-pro	kaup	kūp	کوپ	2	au_to_o,long_o_to_long_u	kaup > kaup > kōp > kūp
+کوشیدن	/koː.ʃiː.ˈdan/	4	False	False	ine-pro	kewh₂	kaw	کو	3	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening	kewh₂ > kawH > kawH > kaw > kaw > kaw
+گردیدن	/ɡar.diː.ˈdan/	4	False	False	ine-pro	wert	gort	گرت	4	vowel_merger_a,war_rounding,w_to_g_before_ur,u_to_o	wert > wart > wart > wart > gurt > gort
+گریختن	/ɡu.reːx.ˈtan/	4	False	False	pal	wlyhtn'	blyhtn'	بلیهتن'	1	w_to_b_initial	wlyhtn' > blyhtn'
+گزیدن	/ɡu.ziː.ˈdan/	4	False	False	ine-pro	kʷey	kay	کی	2	vowel_merger_a,labiovelar_k	kʷey > kay > kay > kay > kay > kay
+گسستن	/ɡu.sis.ˈtan/	4	False	False	ine-pro	skeyd	skīd	سکید	4	vowel_merger_a,ay_to_ai,ai_to_e,long_e_to_long_i	skeyd > skayd > skayd > skaid > skēd > skīd
+گل	/ˈɡil/	4	False	False	pal	TYNA	TYNA	TYNA	0		TYNA > TYNA
+گناه	/ɡu.ˈnaːh/	4	False	False	ine-pro	wí	b	ب	2	final_vowel_loss,w_to_b_initial	wí > wˈi > wˈi > wˈi > w > b
+گندم	/ɡan.ˈdum/	4	False	False	pal	𐫃𐫗𐫇𐫖	𐫃𐫗𐫇𐫖	𐫃𐫗𐫇𐫖	0		𐫃𐫗𐫇𐫖 > 𐫃𐫗𐫇𐫖
+گواه	/ɡu.ˈwaːh/	4	False	False	ine-pro	wí	b	ب	2	final_vowel_loss,w_to_b_initial	wí > wˈi > wˈi > wˈi > w > b
+یا	/ˈjaː/	4	False	False	pal	𐭠𐭩𐭥𐭯	𐭠𐭩𐭥𐭯	𐭠𐭩𐭥𐭯	0		𐭠𐭩𐭥𐭯 > 𐭠𐭩𐭥𐭯
+یافتن	/jaːf.ˈtan/	4	False	False	ine-pro	h₁ep	ap	اپ	3	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial	h₁ep > Hap > Hap > ap > ap > ap
+آبستن	/ʔaː.bis.ˈtan/	5	False	False	ine-pro	putlós	poh	په	9	vowel_merger_a,l_to_r,final_s_to_h,t_to_theta_before_sonorant,theta_r_to_cedilla,cedilla_to_h,final_h_loss,final_vowel_loss,u_to_o	putlós > putrˈas > puθrˈah > puçˈah > puh > poh
+آبشار	/ʔaːb.ˈʃaːr/	5	False	False	pal	𐭠𐭡𐭱𐭠𐭥	𐭠𐭡𐭱𐭠𐭥	𐭠𐭡𐭱𐭠𐭥	0		𐭠𐭡𐭱𐭠𐭥 > 𐭠𐭡𐭱𐭠𐭥
+آبشینه		5	False	False	ira-pro	āp	āp	آپ	0		āp > āp > āp > āp
+آبنوس	/ʔaːb.ˈnuːs/	5	False	False	pal	𐫀𐫛𐫗𐫇𐫘	𐫀𐫛𐫗𐫇𐫘	𐫀𐫛𐫗𐫇𐫘	0		𐫀𐫛𐫗𐫇𐫘 > 𐫀𐫛𐫗𐫇𐫘
+آراستن	/ʔaː.raːs.ˈtan/	5	False	False	ine-pro	h₃reǵ	rad	رد	6	laryngeal_to_H,vowel_merger_a,satem_g,j_from_palatal,laryngeal_loss_initial,j_to_d	h₃reǵ > Hraȷ́ > Hraj > rad > rad > rad
+آفتاب	/ʔaːf.ˈtaːb/	5	False	False	pal	𐭠𐭯𐭲𐭠𐭡	𐭠𐭯𐭲𐭠𐭡	𐭠𐭯𐭲𐭠𐭡	0		𐭠𐭯𐭲𐭠𐭡 > 𐭠𐭯𐭲𐭠𐭡
+آفریدن	/ʔaː.fa.riː.ˈdan/	5	False	False	ine-pro	h₂éd	ad	اد	4	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,stress_not_written	h₂éd > Hˈad > Hˈad > ˈad > ˈad > ad
+آفرین	/ʔaː.fa.ˈriːn/	5	False	False	ine-pro	h₂éd	ad	اد	4	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,stress_not_written	h₂éd > Hˈad > Hˈad > ˈad > ˈad > ad
+آفرین	/ʔaː.fa.ˈriːn/	5	False	False	ine-pro	h₂éd	ad	اد	4	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,stress_not_written	h₂éd > Hˈad > Hˈad > ˈad > ˈad > ad
+آفرین	/ʔaː.fa.ˈriːn/	5	False	False	ine-pro	h₂éd	ad	اد	4	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,stress_not_written	h₂éd > Hˈad > Hˈad > ˈad > ˈad > ad
+آلفتن	/ʔaː.luf.ˈtan/	5	False	False	ine-pro	lewbʰ	rūb	روب	6	vowel_merger_a,l_to_r,deaspirate_bh,aw_to_au,au_to_o,long_o_to_long_u	lewbʰ > rawbʰ > rawb > raub > rōb > rūb
+آلفته	/ʔaː.luf.ˈta/	5	False	False	ine-pro	lewbʰ	rūb	روب	6	vowel_merger_a,l_to_r,deaspirate_bh,aw_to_au,au_to_o,long_o_to_long_u	lewbʰ > rawbʰ > rawb > raub > rōb > rūb
+آلیختن	/ʔaː.leːx.ˈtan/	5	False	False	ine-pro	leyg	rīg	ریگ	5	vowel_merger_a,l_to_r,ay_to_ai,ai_to_e,long_e_to_long_i	leyg > rayg > rayg > raig > rēg > rīg
+آموختن	/ʔaː.moːx.ˈtan/	5	False	False	ine-pro	h₁ewk	ūk	اوک	6	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,aw_to_au,au_to_o,long_o_to_long_u	h₁ewk > Hawk > Hawk > auk > ōk > ūk
+آنغوزه	/ʔaːn.ɣuː.ˈza/	5	False	False	ira-pro	Hanguǰatu	angoǰad	انگجد	4	laryngeal_loss_initial,t_to_d,final_vowel_loss,u_to_o	Hanguǰatu > anguǰatu > anguǰad > angoǰad
+آویختن	/ʔaː.weːx.ˈtan/	5	False	False	ine-pro	weyg	bīg	بیگ	5	vowel_merger_a,ay_to_ai,ai_to_e,long_e_to_long_i,w_to_b_initial	weyg > wayg > wayg > waig > wēg > bīg
+ابرنجن	/ʔab.ran.ˈd͡ʒan/	5	False	False	ine-pro	sreg	hre	هره	3	vowel_merger_a,s_to_h,final_ag_to_e	sreg > srag > hrag > hrag > hrag > hre
+ارش	/ʔa.ˈraʃ/	5	False	False	peo	𐎠𐎼𐏁𐎴𐎡	𐎠𐎼𐏁𐎴𐎡	𐎠𐎼𐏁𐎴𐎡	0		𐎠𐎼𐏁𐎴𐎡 > 𐎠𐎼𐏁𐎴𐎡 > 𐎠𐎼𐏁𐎴𐎡
+استویهاد		5	False	False	ine-pro	h₃ésth₁	ast	است	6	syllabic_laryngeals,laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,final_vowel_loss,stress_not_written	h₃ésth₁ > Hˈasti > Hˈasti > ˈasti > ˈast > ast
+استینه		5	False	False	ine-pro	h₁ed	ad	اد	3	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial	h₁ed > Had > Had > ad > ad > ad
+اسفناج	/ʔis.fi.ˈnaːd͡ʒ/	5	False	False	ine-pro	spey	spay	سپی	1	vowel_merger_a	spey > spay > spay > spay > spay > spay
+اصفهان	/ʔis.fa.ˈhaːn/	5	False	False	ira-pro	cwáHdah	spāy	سپای	6	laryngeal_lengthening,cw_to_sp,d_to_y,final_h_loss,final_vowel_loss,stress_not_written	cwáHdah > spˈādah > spˈāy > spāy
+افتادن	/ʔuf.taː.ˈdan/	5	False	False	ine-pro	peth₂	pat	پت	3	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening	peth₂ > patH > patH > pat > pat > pat
+افسون	/ʔaf.ˈsuːn/	5	False	False	pal	𐭠𐭯𐭮𐭥𐭭	𐭠𐭯𐭮𐭥𐭭	𐭠𐭯𐭮𐭥𐭭	0		𐭠𐭯𐭮𐭥𐭭 > 𐭠𐭯𐭮𐭥𐭭
+افکندن	/ʔaf.kan.ˈdan/	5	False	False	ine-pro	upó	ob	اب	4	vowel_merger_a,p_to_b,final_vowel_loss,u_to_o	upó > upˈa > upˈa > upˈa > ub > ob
+امروز	/ʔim.ˈroːz/	5	False	False	pal	𐭫𐭣𐭭𐭤	𐭫𐭣𐭭𐭤	𐭫𐭣𐭭𐭤	0		𐭫𐭣𐭭𐭤 > 𐭫𐭣𐭭𐭤
+امسال	/ʔim.ˈsaːl/	5	False	False	pal	𐭫𐭣𐭭𐭤	𐭫𐭣𐭭𐭤	𐭫𐭣𐭭𐭤	0		𐭫𐭣𐭭𐭤 > 𐭫𐭣𐭭𐭤
+انجام	/ʔan.ˈd͡ʒaːm/	5	False	False	ine-pro	gʷem	g	گ	3	vowel_merger_a,labiovelar_g,final_am_loss	gʷem > gam > gam > gam > g > g
+انجام	/ʔan.ˈd͡ʒaːm/	5	False	False	ine-pro	gʷem	g	گ	3	vowel_merger_a,labiovelar_g,final_am_loss	gʷem > gam > gam > gam > g > g
+انجمن	/ʔan.d͡ʒu.ˈman/	5	False	False	pal	𐭧𐭭𐭰𐭬𐭭	𐭧𐭭𐭰𐭬𐭭	𐭧𐭭𐭰𐭬𐭭	0		𐭧𐭭𐭰𐭬𐭭 > 𐭧𐭭𐭰𐭬𐭭
+اژدها	/ʔaʒ.da.ˈhaː/	5	False	False	ine-pro	h₁ógʷʰis	āǰeš	آجش	9	laryngeal_to_H,brugmann_o_a,labiovelar_gh,palatal_gh,ruki_s,deaspirate_palatal,laryngeal_loss_initial,i_to_e,stress_not_written	h₁ógʷʰis > Hˈāǰʰiš > Hˈāǰiš > ˈāǰiš > ˈāǰiš > āǰeš
+ایران	/ʔeː.ˈraːn/	5	False	False	pal	𐭠𐭩𐭥𐭠𐭭	𐭠𐭩𐭥𐭠𐭭	𐭠𐭩𐭥𐭠𐭭	0		𐭠𐭩𐭥𐭠𐭭 > 𐭠𐭩𐭥𐭠𐭭
+ایوان	/ʔaj.ˈwaːn/	5	False	False	peo	𐎠𐎱𐎭𐎠𐎴	𐎠𐎱𐎭𐎠𐎴	𐎠𐎱𐎭𐎠𐎴	0		𐎠𐎱𐎭𐎠𐎴 > 𐎠𐎱𐎭𐎠𐎴 > 𐎠𐎱𐎭𐎠𐎴
+بادبان	[bɒːd̪ˈbɒn]	5	False	False	pal	wʾtpʾn'	bʾtpʾn'	بʾتپʾن'	1	w_to_b_initial	wʾtpʾn' > bʾtpʾn'
+بایستن	/baː.jis.ˈtan/	5	False	False	ine-pro	upó	ob	اب	4	vowel_merger_a,p_to_b,final_vowel_loss,u_to_o	upó > upˈa > upˈa > upˈa > ub > ob
+بخشیدن	/bax.ʃiː.ˈdan/	5	False	False	ine-pro	bʰeh₂g	bāg	باگ	4	h2_colours_e,laryngeal_to_H,deaspirate_bh,laryngeal_lengthening	bʰeh₂g > bʰaHg > baHg > bāg > bāg > bāg
+برزگر	/barz.ˈɡar/	5	False	False	pal	wlcykl	blcykl	بلcیکل	1	w_to_b_initial	wlcykl > blcykl
+بغداد	/baɣ.ˈdaːd/	5	False	False	pal	𐭡𐭢𐭣𐭲	𐭡𐭢𐭣𐭲	𐭡𐭢𐭣𐭲	0		𐭡𐭢𐭣𐭲 > 𐭡𐭢𐭣𐭲
+بهشت	/bi.ˈhiʃt/	5	False	False	pal	𐭥𐭧𐭱𐭲𐭩	𐭥𐭧𐭱𐭲𐭩	𐭥𐭧𐭱𐭲𐭩	0		𐭥𐭧𐭱𐭲𐭩 > 𐭥𐭧𐭱𐭲𐭩
+بوسیدن	/boː.siː.ˈdan/	5	False	False	ine-pro	bu	b	ب	1	final_vowel_loss	bu > bu > bu > bu > b > b
+بیسراک		5	False	False	ira-pro	bi-sāradiyakah	besārayeye	بسارییه	6	d_to_y,k_to_g,final_h_loss,final_vowel_loss,i_to_e,final_ag_to_e	bi-sāradiyakah > bisāradiyakah > bisārayiyag > besārayeye
+تالار	/taː.ˈlaːr/	5	False	False	ine-pro	trab	hab	هب	3	t_to_theta_before_sonorant_initial,theta_r_to_cedilla,cedilla_to_h	trab > trab > θrab > çab > hab > hab
+تاوه	/taː.ˈwa/	5	False	False	pal	tʾp̄k'	tʾp̄k'	تʾp̄ک'	0		tʾp̄k' > tʾp̄k'
+تفسیدن	/taf.siː.ˈdan/	5	False	False	ine-pro	tep	tap	تپ	1	vowel_merger_a	tep > tap > tap > tap > tap > tap
+تیهو	/tiː.ˈhuː/	5	False	False	pal	𐭲𐭩𐭧𐭥𐭪	𐭲𐭩𐭧𐭥𐭪	𐭲𐭩𐭧𐭥𐭪	0		𐭲𐭩𐭧𐭥𐭪 > 𐭲𐭩𐭧𐭥𐭪
+جنبیدن	/d͡ʒum.biː.ˈdan/	5	False	False	ine-pro	h₃yebʰ	yab	یب	4	laryngeal_to_H,vowel_merger_a,deaspirate_bh,laryngeal_loss_initial	h₃yebʰ > Hyabʰ > Hyab > yab > yab > yab
+جو	/ˈd͡ʒoː/	5	False	False	peo	𐎹𐎢𐎻𐎹𐎠	𐎹𐎢𐎻𐎹𐎠	𐎹𐎢𐎻𐎹𐎠	0		𐎹𐎢𐎻𐎹𐎠 > 𐎹𐎢𐎻𐎹𐎠 > 𐎹𐎢𐎻𐎹𐎠
+حاخشوک		5	False	False	ine-pro	sek	hak	هک	2	vowel_merger_a,s_to_h	sek > sak > hak > hak > hak > hak
+خاتون	/xaː.ˈtuːn/	5	False	False	ira-pro	hwatā́wHā	hwadāwā	هوداوا	3	laryngeal_lengthening,t_to_d,stress_not_written	hwatā́wHā > hwatˈāwā > hwadˈāwā > hwadāwā
+خاییدن	/xaː.jiː.ˈdan/	5	False	False	ine-pro	kʷend	kand	کند	2	vowel_merger_a,labiovelar_k	kʷend > kand > kand > kand > kand > kand
+خباره	/xa.baː.ˈra/	5	False	False	ine-pro	sep	hap	هپ	2	vowel_merger_a,s_to_h	sep > sap > hap > hap > hap > hap
+خدا	/xu.ˈdaː/	5	False	False	pal	𐭤𐭥𐭲𐭠𐭩	𐭤𐭥𐭲𐭠𐭩	𐭤𐭥𐭲𐭠𐭩	0		𐭤𐭥𐭲𐭠𐭩 > 𐭤𐭥𐭲𐭠𐭩
+خرچنگ	/xar.ˈt͡ʃanɡ/	5	False	False	ine-pro	sker	skar	سکر	1	vowel_merger_a	sker > skar > skar > skar > skar > skar
+خرگوش	/xar.ˈɡoːʃ/	5	False	False	pal	𐭤𐭫𐭢𐭥𐭱	𐭤𐭫𐭢𐭥𐭱	𐭤𐭫𐭢𐭥𐭱	0		𐭤𐭫𐭢𐭥𐭱 > 𐭤𐭫𐭢𐭥𐭱
+خسرو	/xus.ˈraw/	5	False	False	iir-pro	Hsućráwās	hohawāh	ههواه	9	s_to_h,final_s_to_h,c_from_palatal,laryngeal_loss_initial,c_to_theta,theta_r_to_cedilla,cedilla_to_h,u_to_o,stress_not_written	Hsućráwās > Hhucrˈawāh > huçˈawāh > huhˈawāh > hohawāh
+خسرو	/xus.ˈraw/	5	False	False	iir-pro	Hsućráwās	hohawāh	ههواه	9	s_to_h,final_s_to_h,c_from_palatal,laryngeal_loss_initial,c_to_theta,theta_r_to_cedilla,cedilla_to_h,u_to_o,stress_not_written	Hsućráwās > Hhucrˈawāh > huçˈawāh > huhˈawāh > hohawāh
+خنده	/xan.ˈda/	5	False	False	pal	𐮄𐮌𐮃𐮉𐮈	𐮄𐮌𐮃𐮉𐮈	𐮄𐮌𐮃𐮉𐮈	0		𐮄𐮌𐮃𐮉𐮈 > 𐮄𐮌𐮃𐮉𐮈
+دارا	/daː.ˈraː/	5	False	False	pal	𐭣𐭠𐭫𐭠𐭡	𐭣𐭠𐭫𐭠𐭡	𐭣𐭠𐭫𐭠𐭡	0		𐭣𐭠𐭫𐭠𐭡 > 𐭣𐭠𐭫𐭠𐭡
+داراب	/daː.ˈraːb/	5	False	False	pal	𐭣𐭠𐭫𐭠𐭡	𐭣𐭠𐭫𐭠𐭡	𐭣𐭠𐭫𐭠𐭡	0		𐭣𐭠𐭫𐭠𐭡 > 𐭣𐭠𐭫𐭠𐭡
+دبیر	/da.ˈbiːr/	5	False	False	pal	𐭣𐭯𐭩𐭥𐭥	𐭣𐭯𐭩𐭥𐭥	𐭣𐭯𐭩𐭥𐭥	0		𐭣𐭯𐭩𐭥𐭥 > 𐭣𐭯𐭩𐭥𐭥
+دبیره	/da.biː.ˈra/	5	False	False	pal	𐭣𐭯𐭩𐭥𐭥	𐭣𐭯𐭩𐭥𐭥	𐭣𐭯𐭩𐭥𐭥	0		𐭣𐭯𐭩𐭥𐭥 > 𐭣𐭯𐭩𐭥𐭥
+دراییدن	/da.raː.jiː.ˈdan/	5	False	False	pal	dl'-ytn'	dl'ytn'	دل'یتن'	0		dl'-ytn' > dl'ytn'
+دردمند	/dard.ˈmand/	5	False	False	pal	dltʾwmnd'	dltʾwmnd'	دلتʾومند'	0		dltʾwmnd' > dltʾwmnd'
+دردمند	/dard.ˈmand/	5	False	False	pal	dltʾwmnd'	dltʾwmnd'	دلتʾومند'	0		dltʾwmnd' > dltʾwmnd'
+دروند	/dur.ˈwand/	5	False	False	ira-pro	dráwgah-wánts	drūyahwants	درویهونتس	5	aw_to_au,g_to_y,au_to_o,long_o_to_long_u,stress_not_written	dráwgah-wánts > drˈaugahwˈants > drˈōyahwˈants > drūyahwants
+دروند	/dur.ˈwand/	5	False	False	ira-pro	dráwgah-wánts	drūyahwants	درویهونتس	5	aw_to_au,g_to_y,au_to_o,long_o_to_long_u,stress_not_written	dráwgah-wánts > drˈaugahwˈants > drˈōyahwˈants > drūyahwants
+دماوند	/da.maː.ˈwand/	5	False	False	ine-pro	bʰewg	būg	بوگ	5	vowel_merger_a,deaspirate_bh,aw_to_au,au_to_o,long_o_to_long_u	bʰewg > bʰawg > bawg > baug > bōg > būg
+دژ	/ˈdiʒ/	5	False	False	pal	KLYTA	KLYTA	KLYTA	0		KLYTA > KLYTA
+دینار	[deːnɑːɾ]	5	False	False	pal	𐫅𐫏𐫗𐫀𐫓	𐫅𐫏𐫗𐫀𐫓	𐫅𐫏𐫗𐫀𐫓	0		𐫅𐫏𐫗𐫀𐫓 > 𐫅𐫏𐫗𐫀𐫓
+رسیدن	/ra.siː.ˈdan/	5	False	False	ine-pro	h₁er	ar	ار	3	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial	h₁er > Har > Har > ar > ar > ar
+رمبیدن	/rum.biː.ˈdan/	5	False	False	ine-pro	h₃rew	raw	رو	3	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial	h₃rew > Hraw > Hraw > raw > raw > raw
+زاستر	/zaːs.ˈtar/	5	False	False	iir-pro	ȷ́ʰyás	dy	دی	6	deaspirate_palatal,final_s_to_h,j_from_palatal,j_to_d,final_h_loss,final_vowel_loss	ȷ́ʰyás > jyˈah > dyˈah > dy > dy
+زرافه	/za.raː.ˈfa/	5	False	False	ine-pro	ped	pad	پد	1	vowel_merger_a	ped > pad > pad > pad > pad > pad
+ساسان	/saː.ˈsaːn/	5	False	False	pal	𐭮𐭠𐭮𐭠𐭭	𐭮𐭠𐭮𐭠𐭭	𐭮𐭠𐭮𐭠𐭭	0		𐭮𐭠𐭮𐭠𐭭 > 𐭮𐭠𐭮𐭠𐭭
+سرهنگ	/sar.ˈhanɡ/	5	False	False	pal	𐫘𐫡𐫍𐫗𐫃	𐫘𐫡𐫍𐫗𐫃	𐫘𐫡𐫍𐫗𐫃	0		𐫘𐫡𐫍𐫗𐫃 > 𐫘𐫡𐫍𐫗𐫃
+سوار	/sa.ˈwaːr/	5	False	False	peo	𐎠𐎿𐎲𐎠𐎼	𐎠𐎿𐎲𐎠𐎼	𐎠𐎿𐎲𐎠𐎼	0		𐎠𐎿𐎲𐎠𐎼 > 𐎠𐎿𐎲𐎠𐎼 > 𐎠𐎿𐎲𐎠𐎼
+سکرفیدن	[sekʲæɾfiːˈd̪æn]	5	False	False	ine-pro	sgʷʰh₂el	sgaar	سگر	5	syllabic_laryngeals,vowel_merger_a,labiovelar_gh,l_to_r,deaspirate_gh	sgʷʰh₂el > sgʰaar > sgaar > sgaar > sgaar > sgaar
+سیم	/ˈsiːm/	5	False	False	peo	𐎿𐎡𐎹𐎶𐎶	𐎿𐎡𐎹𐎶𐎶	𐎿𐎡𐎹𐎶𐎶	0		𐎿𐎡𐎹𐎶𐎶 > 𐎿𐎡𐎹𐎶𐎶 > 𐎿𐎡𐎹𐎶𐎶
+شاه‌دانه	/ʃaːh.daː.ˈna/	5	False	False	pal	šhdʾnk'	šhdʾnk'	شهدʾنک'	0		šhdʾnk' > šhdʾnk'
+شاگرد	/ʃaː.ˈɡird̪/	5	False	False	ine-pro	sekʷ	hak	هک	3	vowel_merger_a,labiovelar_k,s_to_h	sekʷ > sak > hak > hak > hak > hak
+شفتالو	/ʃaf.taː.ˈluː/	5	False	False	ira-pro	xšwiptah	šwept	شوپت	4	xsh_to_sh,final_h_loss,final_vowel_loss,i_to_e	xšwiptah > xšwiptah > šwipt > šwept
+شناختن	/ʃi.naːx.ˈtan/	5	False	False	ine-pro	ǵn̥h₃sḱéti	dāssad	داسسد	14	laryngeal_to_H,vowel_merger_a,satem_k,satem_g,syllabic_n,c_from_palatal,j_from_palatal,laryngeal_lengthening,c_to_theta,j_to_d,t_to_d,theta_to_s,final_vowel_loss,stress_not_written	ǵn̥h₃sḱéti > ȷ́aHsćˈati > jaHscˈati > dāsθˈati > dāssˈad > dāssad
+شکافتن	/ʃi.kaːf.ˈtan/	5	False	False	ine-pro	skep	skap	سکپ	1	vowel_merger_a	skep > skap > skap > skap > skap > skap
+شکم	/ʃi.ˈkam/	5	False	False	pal	𐭠𐭱𐭪𐭬𐭡	𐭠𐭱𐭪𐭬𐭡	𐭠𐭱𐭪𐭬𐭡	0		𐭠𐭱𐭪𐭬𐭡 > 𐭠𐭱𐭪𐭬𐭡
+فخر	/ˈfaxr/	5	False	False	ira-pro	huHarnā́h	hūarnāh	هورناه	2	laryngeal_lengthening,stress_not_written	huHarnā́h > hūarnˈāh > hūarnˈāh > hūarnāh
+فراموش	/fa.raː.ˈmoːʃ/	5	False	False	ine-pro	h₂éd	ad	اد	4	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,stress_not_written	h₂éd > Hˈad > Hˈad > ˈad > ˈad > ad
+فرانک	/fa.raː.ˈnak/	5	False	False	pal	plwʾnk'	plwʾnk'	پلوʾنک'	0		plwʾnk' > plwʾnk'
+فرانک	/fa.raː.ˈnak/	5	False	False	pal	plwʾnk'	plwʾnk'	پلوʾنک'	0		plwʾnk' > plwʾnk'
+فرمودن	/far.muː.ˈdan/	5	False	False	ine-pro	meh₁	mā	ما	3	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening	meh₁ > maH > maH > mā > mā > mā
+فهرست	/fih.ˈrist/	5	False	False	pal	𐭯𐭤𐭥𐭮𐭲	𐭯𐭤𐭥𐭮𐭲	𐭯𐭤𐭥𐭮𐭲	0		𐭯𐭤𐭥𐭮𐭲 > 𐭯𐭤𐭥𐭮𐭲
+قیروان	/qaj.ra.ˈwaːn/	5	False	False	pal	kʾlwʾn'	kʾlwʾn'	کʾلوʾن'	0		kʾlwʾn' > kʾlwʾn'
+قیروان	/qaj.ra.ˈwaːn/	5	False	False	pal	kʾlwʾn'	kʾlwʾn'	کʾلوʾن'	0		kʾlwʾn' > kʾlwʾn'
+لاجورد	/laːd͡ʒ.ˈward/	5	False	False	ine-pro	ǵʰelh₃	dar	در	8	laryngeal_to_H,vowel_merger_a,satem_gh,l_to_r,deaspirate_palatal,j_from_palatal,laryngeal_lengthening,j_to_d	ǵʰelh₃ > ȷ́ʰarH > jarH > dar > dar > dar
+مریانج		5	False	False	peo	‫‪margā	‫‪margā	‫‪مرگا	0		‫‪margā > ‫‪margā > ‫‪margā
+مهندسی	/mu.han.di.ˈsiː/	5	False	False	pal	handʾck'	handʾck'	هندʾcک'	0		handʾck' > handʾck'
+موریانه		5	False	False	iir-pro	marwíš	marweš	مروش	2	i_to_e,stress_not_written	marwíš > marwˈiš > marwˈiš > marwˈiš > marweš
+مینو	/miː.ˈnoː/	5	False	False	pal	𐫖𐫏𐫗𐫇𐫃	𐫖𐫏𐫗𐫇𐫃	𐫖𐫏𐫗𐫇𐫃	0		𐫖𐫏𐫗𐫇𐫃 > 𐫖𐫏𐫗𐫇𐫃
+ناگاه		5	False	False	pal	ʾnʾkʾs	ʾnʾkʾs	ʾنʾکʾس	0		ʾnʾkʾs > ʾnʾkʾs
+ناگه	[nɒːˈɡʲæh]	5	False	False	pal	ʾnʾkʾs	ʾnʾkʾs	ʾنʾکʾس	0		ʾnʾkʾs > ʾnʾkʾs
+نخچیر	/nax.ˈt͡ʃiːr/	5	False	False	pal	𐭭𐭧𐭰𐭩𐭫	𐭭𐭧𐭰𐭩𐭫	𐭭𐭧𐭰𐭩𐭫	0		𐭭𐭧𐭰𐭩𐭫 > 𐭭𐭧𐭰𐭩𐭫
+نمک	/na.ˈmak/	5	False	False	pal	𐫗𐫖𐫏𐫍𐫐	𐫗𐫖𐫏𐫍𐫐	𐫗𐫖𐫏𐫍𐫐	0		𐫗𐫖𐫏𐫍𐫐 > 𐫗𐫖𐫏𐫍𐫐
+نوشتن	/na.wiʃ.ˈtan/	5	False	False	ine-pro	peyḱ	pīs	پیس	8	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,ay_to_ai,theta_to_s,ai_to_e,long_e_to_long_i	peyḱ > payć > payc > paiθ > pēs > pīs
+نیام	/ni.ˈjaːm/	5	False	False	pal	𐫗𐫏𐫏𐫀𐫖	𐫗𐫏𐫏𐫀𐫖	𐫗𐫏𐫏𐫀𐫖	0		𐫗𐫏𐫏𐫀𐫖 > 𐫗𐫏𐫏𐫀𐫖
+هناییدن		5	False	False	ine-pro	sent	hant	هنت	2	vowel_merger_a,s_to_h	sent > sant > hant > hant > hant > hant
+هنجار	/han.ˈd͡ʒaːr/	5	False	False	pal	𐭤𐭭𐭰𐭠𐭥	𐭤𐭭𐭰𐭠𐭥	𐭤𐭭𐭰𐭠𐭥	0		𐭤𐭭𐭰𐭠𐭥 > 𐭤𐭭𐭰𐭠𐭥
+هند	/ˈhind/	5	False	False	peo	𐏃𐎡𐎯𐎢𐏁	𐏃𐎡𐎯𐎢𐏁	𐏃𐎡𐎯𐎢𐏁	0		𐏃𐎡𐎯𐎢𐏁 > 𐏃𐎡𐎯𐎢𐏁 > 𐏃𐎡𐎯𐎢𐏁
+هوشیار	/hoːʃ.ˈjaːr/	5	False	False	ine-pro	h₂ṓws	āws	آوس	4	laryngeal_to_H,long_vowel_merger,laryngeal_loss_initial,stress_not_written	h₂ṓws > Hˈāws > Hˈāws > ˈāws > ˈāws > āws
+هوشیار	/hoːʃ.ˈjaːr/	5	False	False	ine-pro	h₂ṓws	āws	آوس	4	laryngeal_to_H,long_vowel_merger,laryngeal_loss_initial,stress_not_written	h₂ṓws > Hˈāws > Hˈāws > ˈāws > ˈāws > āws
+هپل هپو		5	False	False	pal	ʾpl	ʾpl	ʾپل	0		ʾpl > ʾpl
+هیور	/heː.ˈwar/	5	False	False	ira-pro	θai̯u̯ar	sai̯u̯ar	سi̯u̯ر	1	theta_to_s	θai̯u̯ar > θai̯u̯ar > sai̯u̯ar > sai̯u̯ar
+وانستن	/waː.nis.ˈtan/	5	False	False	ine-pro	wenh₁	ban	بن	4	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening,w_to_b_initial	wenh₁ > wanH > wanH > wan > wan > ban
+وخشیدن	[væxʃiːˈd̪æn]	5	False	False	ine-pro	h₂weks	baš	بش	7	laryngeal_to_H,vowel_merger_a,ruki_s,k_to_x_internal,laryngeal_loss_initial,xsh_to_sh,w_to_b_initial	h₂weks > Hwakš > Hwaxš > waxš > waš > baš
+پائین	/paː.ˈʔiːn/	5	False	False	pal	𐭯𐭠𐭩𐭩𐭭	𐭯𐭠𐭩𐭩𐭭	𐭯𐭠𐭩𐭩𐭭	0		𐭯𐭠𐭩𐭩𐭭 > 𐭯𐭠𐭩𐭩𐭭
+پائین	/paː.ˈʔiːn/	5	False	False	pal	𐭯𐭠𐭩𐭩𐭭	𐭯𐭠𐭩𐭩𐭭	𐭯𐭠𐭩𐭩𐭭	0		𐭯𐭠𐭩𐭩𐭭 > 𐭯𐭠𐭩𐭩𐭭
+پائین	/paː.ˈʔiːn/	5	False	False	pal	𐭯𐭠𐭩𐭩𐭭	𐭯𐭠𐭩𐭩𐭭	𐭯𐭠𐭩𐭩𐭭	0		𐭯𐭠𐭩𐭩𐭭 > 𐭯𐭠𐭩𐭩𐭭
+پاداش	/paː.ˈdaːʃ/	5	False	False	pal	pʾtdʾšn'	pʾtdʾšn'	پʾتدʾشن'	0		pʾtdʾšn' > pʾtdʾšn'
+پارسه	/pɒːɾˈse/	5	False	False	peo	𐎱𐎠𐎼𐎿	𐎱𐎠𐎼𐎿	𐎱𐎠𐎼𐎿	0		𐎱𐎠𐎼𐎿 > 𐎱𐎠𐎼𐎿 > 𐎱𐎠𐎼𐎿
+پارگین	/paːr.ˈɡeːn/	5	False	False	ira-pro	kan	kan	کن	0		kan > kan > kan > kan
+پالودن	/paː.luː.ˈdan/	5	False	False	ine-pro	dʰew	daw	دو	2	vowel_merger_a,deaspirate_dh	dʰew > dʰaw > daw > daw > daw > daw
+پرداختن	/par.daːx.ˈtan/	5	False	False	ine-pro	per	par	پر	1	vowel_merger_a	per > par > par > par > par > par
+پرستیدن	/pa.ras.tiː.ˈdan/	5	False	False	ine-pro	per	par	پر	1	vowel_merger_a	per > par > par > par > par > par
+پرواز	/par.ˈwaːz/	5	False	False	ine-pro	weǵʰ	bad	بد	6	vowel_merger_a,satem_gh,deaspirate_palatal,j_from_palatal,j_to_d,w_to_b_initial	weǵʰ > waȷ́ʰ > waj > wad > wad > bad
+پنداشتن		5	False	False	pal	pd	pd	پد	0		pd > pd
+پهلوی	/pah.la.ˈwiː/	5	False	False	peo	𐎱𐎼𐎰𐎺	𐎱𐎼𐎰𐎺	𐎱𐎼𐎰𐎺	0		𐎱𐎼𐎰𐎺 > 𐎱𐎼𐎰𐎺 > 𐎱𐎼𐎰𐎺
+پهلوی	/pah.la.ˈwiː/	5	False	False	peo	𐎱𐎼𐎰𐎺	𐎱𐎼𐎰𐎺	𐎱𐎼𐎰𐎺	0		𐎱𐎼𐎰𐎺 > 𐎱𐎼𐎰𐎺 > 𐎱𐎼𐎰𐎺
+پوست	/ˈpoːst/	5	False	False	peo	𐎱𐎺𐎿𐎫𐎠	𐎱𐎺𐎿𐎫𐎠	𐎱𐎺𐎿𐎫𐎠	0		𐎱𐎺𐎿𐎫𐎠 > 𐎱𐎺𐎿𐎫𐎠 > 𐎱𐎺𐎿𐎫𐎠
+پژوهیدن	/pi.ʒoː.hiː.ˈdan/	5	False	False	pal	wcwstn	bcwstn	بcوستن	1	w_to_b_initial	wcwstn > bcwstn
+پیاده	/pi.jaː.ˈda/	5	False	False	ine-pro	tekʷ	tak	تک	2	vowel_merger_a,labiovelar_k	tekʷ > tak > tak > tak > tak > tak
+پیاده	/pi.jaː.ˈda/	5	False	False	ine-pro	tekʷ	tak	تک	2	vowel_merger_a,labiovelar_k	tekʷ > tak > tak > tak > tak > tak
+پیاله	/pi.jaː.ˈla/	5	False	False	ine-pro	gʷerh₃	gar	گر	4	laryngeal_to_H,vowel_merger_a,labiovelar_g,laryngeal_lengthening	gʷerh₃ > garH > garH > gar > gar > gar
+پیروز	/piː.ˈroːz/	5	False	False	pal	𐭯𐭩𐭫𐭥𐭰	𐭯𐭩𐭫𐭥𐭰	𐭯𐭩𐭫𐭥𐭰	0		𐭯𐭩𐭫𐭥𐭰 > 𐭯𐭩𐭫𐭥𐭰
+پیروز	/piː.ˈroːz/	5	False	False	pal	𐭯𐭩𐭫𐭥𐭰	𐭯𐭩𐭫𐭥𐭰	𐭯𐭩𐭫𐭥𐭰	0		𐭯𐭩𐭫𐭥𐭰 > 𐭯𐭩𐭫𐭥𐭰
+پیروز	/piː.ˈroːz/	5	False	False	pal	𐭯𐭩𐭫𐭥𐭰	𐭯𐭩𐭫𐭥𐭰	𐭯𐭩𐭫𐭥𐭰	0		𐭯𐭩𐭫𐭥𐭰 > 𐭯𐭩𐭫𐭥𐭰
+پیغام	/paj.ˈɣaːm/	5	False	False	ine-pro	gʷem	g	گ	3	vowel_merger_a,labiovelar_g,final_am_loss	gʷem > gam > gam > gam > g > g
+پیمودن	/paj.muː.ˈdan/	5	False	False	ine-pro	meh₁	mā	ما	3	laryngeal_to_H,vowel_merger_a,laryngeal_lengthening	meh₁ > maH > maH > mā > mā > mā
+پیوستن	/paj.was.ˈtan/	5	False	False	ira-pro	pati	pad	پد	2	t_to_d,final_vowel_loss	pati > pati > pad > pad
+چالاک	/t͡ʃaː.ˈlaːk/	5	False	False	ine-pro	kʷel	kar	کر	3	vowel_merger_a,labiovelar_k,l_to_r	kʷel > kar > kar > kar > kar > kar
+چالاک	/t͡ʃaː.ˈlaːk/	5	False	False	ine-pro	kʷel	kar	کر	3	vowel_merger_a,labiovelar_k,l_to_r	kʷel > kar > kar > kar > kar > kar
+چسپیدن	/t͡ʃas.piː.ˈdan/	5	False	False	ine-pro	kap	kap	کپ	0		kap > kap > kap > kap > kap > kap
+چغندر	/t͡ʃu.ɣun.ˈdur/	5	False	False	ine-pro	kek	kak	کک	1	vowel_merger_a	kek > kak > kak > kak > kak > kak
+چلیدن	/t͡ʃa.liː.ˈdan/	5	False	False	ine-pro	kʷel	kar	کر	3	vowel_merger_a,labiovelar_k,l_to_r	kʷel > kar > kar > kar > kar > kar
+چمیدن	/t͡ʃa.miː.ˈdan/	5	False	False	ine-pro	gʷem	g	گ	3	vowel_merger_a,labiovelar_g,final_am_loss	gʷem > gam > gam > gam > g > g
+چوپان	/t͡ʃoː.ˈpaːn/	5	False	False	pal	𐫢𐫇𐫁𐫀𐫗	𐫢𐫇𐫁𐫀𐫗	𐫢𐫇𐫁𐫀𐫗	0		𐫢𐫇𐫁𐫀𐫗 > 𐫢𐫇𐫁𐫀𐫗
+چوگان	/t͡ʃaw.ˈɡaːn/	5	False	False	pal	cwpkʾn'	cwpkʾn'	cوپکʾن'	0		cwpkʾn' > cwpkʾn'
+ژدوار	/ʒad.ˈwaːr/	5	False	False	ine-pro	gʷet	gat	گت	2	vowel_merger_a,labiovelar_g	gʷet > gat > gat > gat > gat > gat
+کابل	/kaː.ˈbul/	5	False	False	pal	𐫐𐫀𐫛𐫇𐫓	𐫐𐫀𐫛𐫇𐫓	𐫐𐫀𐫛𐫇𐫓	0		𐫐𐫀𐫛𐫇𐫓 > 𐫐𐫀𐫛𐫇𐫓
+کالوج		5	False	False	pal	𐫞𐫀𐫡𐫇𐫝	𐫞𐫀𐫡𐫇𐫝	𐫞𐫀𐫡𐫇𐫝	0		𐫞𐫀𐫡𐫇𐫝 > 𐫞𐫀𐫡𐫇𐫝
+کاواک	/kaː.ˈwaːk/	5	False	False	pal	ʾk'	ʾk'	ʾک'	0		ʾk' > ʾk'
+کبود	/ka.ˈboːd/	5	False	False	peo	𐎣𐎱𐎢𐎫𐎣	𐎣𐎱𐎢𐎫𐎣	𐎣𐎱𐎢𐎫𐎣	0		𐎣𐎱𐎢𐎫𐎣 > 𐎣𐎱𐎢𐎫𐎣 > 𐎣𐎱𐎢𐎫𐎣
+گداختن	/ɡu.daːx.ˈtan/	5	False	False	ine-pro	teh₂	tā	تا	3	h2_colours_e,laryngeal_to_H,laryngeal_lengthening	teh₂ > taH > taH > tā > tā > tā
+گذشتن	/ɡu.ðaʃ.ˈtan/	5	False	False	ine-pro	wí	b	ب	2	final_vowel_loss,w_to_b_initial	wí > wˈi > wˈi > wˈi > w > b
+گراییدن	/ɡa.raː.jiː.ˈdan/	5	False	False	ira-pro	war	gor	گر	3	war_rounding,w_to_g_before_ur,u_to_o	war > war > gur > gor
+گرمابه	/ɡar.maː.ˈba/	5	False	False	pal	glmpʾk'	glmpʾk'	گلمپʾک'	0		glmpʾk' > glmpʾk'
+گستاخ	/ɡus.ˈtaːx/	5	False	False	pal	wstʾhw'	bstʾhw'	بستʾهو'	1	w_to_b_initial	wstʾhw' > bstʾhw'
+گشودن	/ɡu.ʃuː.ˈdan/	5	False	False	ine-pro	sh₂ey	haay	هی	3	syllabic_laryngeals,vowel_merger_a,s_to_h	sh₂ey > saay > haay > haay > haay > haay
+گماشتن	/ɡu.maːʃ.ˈtan/	5	False	False	ine-pro	mere	mar	مر	2	vowel_merger_a,final_vowel_loss	mere > mara > mara > mara > mar > mar
+گوزن	/ɡa.ˈwazn/	5	False	False	pal	𐭢𐭥𐭠𐭦𐭭	𐭢𐭥𐭠𐭦𐭭	𐭢𐭥𐭠𐭦𐭭	0		𐭢𐭥𐭠𐭦𐭭 > 𐭢𐭥𐭠𐭦𐭭
+گیس	/ˈɡeːs/	5	False	False	iir-pro	káyćas ~ *gáyćas	kīsah~gīs	کیسه~گیس	11	s_to_h,final_s_to_h,c_from_palatal,c_to_theta,ay_to_ai,theta_to_s,ai_to_e,final_h_loss,final_vowel_loss,long_e_to_long_i,stress_not_written	káyćas ~ *gáyćas > kˈaycah~gˈaycah > kˈaiθah~gˈaiθah > kˈēsah~gˈēs > kīsah~gīs
+یازده	/jaːz.ˈdah/	5	False	False	pal	𐫏𐫀𐫉𐫅𐫍	𐫏𐫀𐫉𐫅𐫍	𐫏𐫀𐫉𐫅𐫍	0		𐫏𐫀𐫉𐫅𐫍 > 𐫏𐫀𐫉𐫅𐫍
+یونان	/juː.ˈnaːn/	5	False	False	peo	𐎹𐎢𐎴	𐎹𐎢𐎴	𐎹𐎢𐎴	0		𐎹𐎢𐎴 > 𐎹𐎢𐎴 > 𐎹𐎢𐎴
+آهیختن	/ʔaː.heːx.ˈtan/	6	False	False	ine-pro	h₂éd	ad	اد	4	laryngeal_to_H,vowel_merger_a,laryngeal_loss_initial,stress_not_written	h₂éd > Hˈad > Hˈad > ˈad > ˈad > ad
+ارتیشدار	/ʔar.teːʃ.ˈdaːr/	6	False	False	ine-pro	steh₂	stā	ستا	3	h2_colours_e,laryngeal_to_H,laryngeal_lengthening	steh₂ > staH > staH > stā > stā > stā
+اسفند	/ʔis.ˈfand/	6	False	False	pal	spndrmt’	spndrmt’	سپندرمت’	0		spndrmt’ > spndrmt’
+افراشتن	/ʔaf.raːʃ.ˈtan/	6	False	False	ine-pro	upó	ob	اب	4	vowel_merger_a,p_to_b,final_vowel_loss,u_to_o	upó > upˈa > upˈa > upˈa > ub > ob
+افروختن	/ʔaf.roːx.ˈtan/	6	False	False	ine-pro	upó	ob	اب	4	vowel_merger_a,p_to_b,final_vowel_loss,u_to_o	upó > upˈa > upˈa > upˈa > ub > ob
+انداختن	/ʔan.daːx.ˈtan/	6	False	False	ine-pro	tek	tak	تک	1	vowel_merger_a	tek > tak > tak > tak > tak > tak
+ایشان	/ʔeː.ˈʃaːn/	6	False	False	pal	𐭥𐭫𐭤𐭱𐭠𐭭	𐭥𐭫𐭤𐭱𐭠𐭭	𐭥𐭫𐭤𐭱𐭠𐭭	0		𐭥𐭫𐭤𐭱𐭠𐭭 > 𐭥𐭫𐭤𐭱𐭠𐭭
+ایشان	/ʔeː.ˈʃaːn/	6	False	False	pal	𐭥𐭫𐭤𐭱𐭠𐭭	𐭥𐭫𐭤𐭱𐭠𐭭	𐭥𐭫𐭤𐭱𐭠𐭭	0		𐭥𐭫𐭤𐭱𐭠𐭭 > 𐭥𐭫𐭤𐭱𐭠𐭭
+باستان	/baːs.ˈtaːn/	6	False	False	pal	𐭡𐭠𐭮𐭲𐭠𐭭	𐭡𐭠𐭮𐭲𐭠𐭭	𐭡𐭠𐭮𐭲𐭠𐭭	0		𐭡𐭠𐭮𐭲𐭠𐭭 > 𐭡𐭠𐭮𐭲𐭠𐭭
+باستان	/baːs.ˈtaːn/	6	False	False	pal	𐭡𐭠𐭮𐭲𐭠𐭭	𐭡𐭠𐭮𐭲𐭠𐭭	𐭡𐭠𐭮𐭲𐭠𐭭	0		𐭡𐭠𐭮𐭲𐭠𐭭 > 𐭡𐭠𐭮𐭲𐭠𐭭
+باش	/ˈbaːʃ/	6	False	False	pal	𐭩𐭤𐭥𐭥𐭭𐭱	𐭩𐭤𐭥𐭥𐭭𐭱	𐭩𐭤𐭥𐭥𐭭𐭱	0		𐭩𐭤𐭥𐭥𐭭𐭱 > 𐭩𐭤𐭥𐭥𐭭𐭱
+بامداد	/baːm.ˈdaːd/	6	False	False	pal	𐭡𐭠𐭬𐭣𐭠𐭲	𐭡𐭠𐭬𐭣𐭠𐭲	𐭡𐭠𐭬𐭣𐭠𐭲	0		𐭡𐭠𐭬𐭣𐭠𐭲 > 𐭡𐭠𐭬𐭣𐭠𐭲
+بامداد	/baːm.ˈdaːd/	6	False	False	pal	𐭡𐭠𐭬𐭣𐭠𐭲	𐭡𐭠𐭬𐭣𐭠𐭲	𐭡𐭠𐭬𐭣𐭠𐭲	0		𐭡𐭠𐭬𐭣𐭠𐭲 > 𐭡𐭠𐭬𐭣𐭠𐭲
+بدخشان	/ba.dax.ˈʃaːn/	6	False	False	pal	𐭡𐭲𐭧𐭱𐭩	𐭡𐭲𐭧𐭱𐭩	𐭡𐭲𐭧𐭱𐭩	0		𐭡𐭲𐭧𐭱𐭩 > 𐭡𐭲𐭧𐭱𐭩
+بهرام	/bah.ˈraːm/	6	False	False	pal	𐭥𐭫𐭧𐭫𐭠𐭭	𐭥𐭫𐭧𐭫𐭠𐭭	𐭥𐭫𐭧𐭫𐭠𐭭	0		𐭥𐭫𐭧𐭫𐭠𐭭 > 𐭥𐭫𐭧𐭫𐭠𐭭
+تاتارستان	/taː.taː.ris.ˈtaːn/	6	False	False	ine-pro	steh₂	stā	ستا	3	h2_colours_e,laryngeal_to_H,laryngeal_lengthening	steh₂ > staH > staH > stā > stā > stā
+تراشیدن	/ta.raː.ʃiː.ˈdan/	6	False	False	ine-pro	tetḱ	tats	تتس	5	vowel_merger_a,satem_k,c_from_palatal,c_to_theta,theta_to_s	tetḱ > tatć > tatc > tatθ > tats > tats
+ترسیدن	/tar.siː.ˈdan/	6	False	False	ine-pro	tres	h	ه	7	vowel_merger_a,final_s_to_h,t_to_theta_before_sonorant_initial,theta_r_to_cedilla,cedilla_to_h,final_h_loss,final_vowel_loss	tres > tras > θrah > çah > h > h
+جانور	/d͡ʒaːn.ˈwar/	6	False	False	pal	𐫃𐫏𐫀𐫗𐫇𐫓	𐫃𐫏𐫀𐫗𐫇𐫓	𐫃𐫏𐫀𐫗𐫇𐫓	0		𐫃𐫏𐫀𐫗𐫇𐫓 > 𐫃𐫏𐫀𐫗𐫇𐫓
+جزیه	/d͡ʒiz.ˈja/	6	False	False	pal	𐭢𐭦𐭩𐭲𐭪𐭩	𐭢𐭦𐭩𐭲𐭪𐭩	𐭢𐭦𐭩𐭲𐭪𐭩	0		𐭢𐭦𐭩𐭲𐭪𐭩 > 𐭢𐭦𐭩𐭲𐭪𐭩
+جوجه‌تیغی		6	False	False	ira-pro	ǰúǰakah	ǰoǰe	ججه	6	k_to_g,final_h_loss,final_vowel_loss,u_to_o,final_ag_to_e,stress_not_written	ǰúǰakah > ǰˈuǰakah > ǰˈuǰag > ǰoǰe
+خراسان	/xʷa.raː.ˈsaːn/	6	False	False	pal	hwlʾsʾn'	hwlʾsʾn'	هولʾسʾن'	0		hwlʾsʾn' > hwlʾsʾn'
+خرداد	/xur.ˈdaːd/	6	False	False	pal	𐭧𐭥𐭥𐭣𐭠𐭲	𐭧𐭥𐭥𐭣𐭠𐭲	𐭧𐭥𐭥𐭣𐭠𐭲	0		𐭧𐭥𐭥𐭣𐭠𐭲 > 𐭧𐭥𐭥𐭣𐭠𐭲
+خوارزم	/xʷaː.ˈrazm/	6	False	False	pal	𐭧𐭥𐭥𐭦𐭬	𐭧𐭥𐭥𐭦𐭬	𐭧𐭥𐭥𐭦𐭬	0		𐭧𐭥𐭥𐭦𐭬 > 𐭧𐭥𐭥𐭦𐭬
+دارچین	/daːr.ˈt͡ʃiːn/	6	False	False	iir-pro	kas	k	ک	3	final_s_to_h,final_h_loss,final_vowel_loss	kas > kah > kah > k > k
+دایناسور	[d̪ɒːj.nɒː.soɹ]	6	False	False	ine-pro	dwey	dway	دوی	1	vowel_merger_a	dwey > dway > dway > dway > dway > dway
+دروازه	/dar.waː.ˈza/	6	False	False	pal	𐫀𐫁𐫀𐫝	𐫀𐫁𐫀𐫝	𐫀𐫁𐫀𐫝	0		𐫀𐫁𐫀𐫝 > 𐫀𐫁𐫀𐫝
+دوشیزه	/doː.ʃiː.ˈza/	6	False	False	pal	𐭣𐭱𐭰𐭪	𐭣𐭱𐭰𐭪	𐭣𐭱𐭰𐭪	0		𐭣𐭱𐭰𐭪 > 𐭣𐭱𐭰𐭪
+دیهیم	/daj.ˈhiːm/	6	False	False	pal	𐭣𐭩𐭣𐭩𐭬𐭩	𐭣𐭩𐭣𐭩𐭬𐭩	𐭣𐭩𐭣𐭩𐭬𐭩	0		𐭣𐭩𐭣𐭩𐭬𐭩 > 𐭣𐭩𐭣𐭩𐭬𐭩
+سجستان	/sa.d͡ʒis.ˈtaːn/	6	False	False	pal	𐭮𐭪𐭮𐭲𐭠𐭭	𐭮𐭪𐭮𐭲𐭠𐭭	𐭮𐭪𐭮𐭲𐭠𐭭	0		𐭮𐭪𐭮𐭲𐭠𐭭 > 𐭮𐭪𐭮𐭲𐭠𐭭
+سمرقند	/sa.mar.ˈqand/	6	False	False	pal	𐮐𐮋𐮊𐮉𐮌𐮃	𐮐𐮋𐮊𐮉𐮌𐮃	𐮐𐮋𐮊𐮉𐮌𐮃	0		𐮐𐮋𐮊𐮉𐮌𐮃 > 𐮐𐮋𐮊𐮉𐮌𐮃
+سیستان	/siːs.ˈtaːn/	6	False	False	pal	𐭮𐭪𐭮𐭲𐭠𐭭	𐭮𐭪𐭮𐭲𐭠𐭭	𐭮𐭪𐭮𐭲𐭠𐭭	0		𐭮𐭪𐭮𐭲𐭠𐭭 > 𐭮𐭪𐭮𐭲𐭠𐭭
+شخشیدن	/ʃax.ʃiː.ˈdan/	6	False	False	ira-pro	fra	fr	فر	1	final_vowel_loss	fra > fra > fr > fr
+شماره	/ʃu.maː.ˈra/	6	False	False	pal	ʾwšmʾlk'	ʾwšmʾlk'	ʾوشمʾلک'	0		ʾwšmʾlk' > ʾwšmʾlk'
+شهریور	/ʃah.reː.ˈwar/	6	False	False	pal	𐭱𐭲𐭥𐭩𐭥𐭥	𐭱𐭲𐭥𐭩𐭥𐭥	𐭱𐭲𐭥𐭩𐭥𐭥	0		𐭱𐭲𐭥𐭩𐭥𐭥 > 𐭱𐭲𐭥𐭩𐭥𐭥
+شکمبه		6	False	False	pal	𐭠𐭱𐭪𐭬𐭡𐭪	𐭠𐭱𐭪𐭬𐭡𐭪	𐭠𐭱𐭪𐭬𐭡𐭪	0		𐭠𐭱𐭪𐭬𐭡𐭪 > 𐭠𐭱𐭪𐭬𐭡𐭪
+طبق	/ta.ˈbaq/	6	False	False	pal	tʾp̄k'	tʾp̄k'	تʾp̄ک'	0		tʾp̄k' > tʾp̄k'
+فرشته	/fa.riʃ.ˈta/	6	False	False	pal	plystk'	plystk'	پلیستک'	0		plystk' > plystk'
+فرشته	/fa.riʃ.ˈta/	6	False	False	pal	plystk'	plystk'	پلیستک'	0		plystk' > plystk'
+فرهیختن	/far.heːx.ˈtan/	6	False	False	ira-pro	θanǰáyati	sanǰayad	سنجید	4	t_to_d,theta_to_s,final_vowel_loss,stress_not_written	θanǰáyati > θanǰˈayati > sanǰˈayad > sanǰayad
+فروختن	/fu.roːx.ˈtan/	6	False	False	iir-pro	wā́kš	bāš	باش	4	k_to_x_internal,xsh_to_sh,w_to_b_initial,stress_not_written	wā́kš > wˈāxš > wˈāxš > wˈāš > bāš
+فرگرد	/far.ˈɡard/	6	False	False	pal	𐭯𐭫𐭪𐭫𐭲𐭩	𐭯𐭫𐭪𐭫𐭲𐭩	𐭯𐭫𐭪𐭫𐭲𐭩	0		𐭯𐭫𐭪𐭫𐭲𐭩 > 𐭯𐭫𐭪𐭫𐭲𐭩
+فریفتن	/fa.reːf.ˈtan/	6	False	False	ine-pro	dʰebʰ	dab	دب	3	vowel_merger_a,grassmann,deaspirate_bh	dʰebʰ > dabʰ > dab > dab > dab > dab
+لوزینه	/law.ziː.ˈna/	6	False	False	peo	𐎴𐎢𐎨𐎡𐎴	𐎴𐎢𐎨𐎡𐎴	𐎴𐎢𐎨𐎡𐎴	0		𐎴𐎢𐎨𐎡𐎴 > 𐎴𐎢𐎨𐎡𐎴 > 𐎴𐎢𐎨𐎡𐎴
+مازیار	/maː.zi.ˈjaːr/	6	False	False	pal	m'tgd'l	m'tgd'l	م'تگد'ل	0		m'tgd'l > m'tgd'l
+مهرداد	/mihr.ˈdaːd/	6	False	False	pal	𐭬𐭲𐭥𐭣𐭠𐭲	𐭬𐭲𐭥𐭣𐭠𐭲	𐭬𐭲𐭥𐭣𐭠𐭲	0		𐭬𐭲𐭥𐭣𐭠𐭲 > 𐭬𐭲𐭥𐭣𐭠𐭲
+نانوا	/naːn.ˈwaː/	6	False	False	pal	𐭭𐭠𐭭𐭯𐭠𐭪	𐭭𐭠𐭭𐭯𐭠𐭪	𐭭𐭠𐭭𐭯𐭠𐭪	0		𐭭𐭠𐭭𐭯𐭠𐭪 > 𐭭𐭠𐭭𐭯𐭠𐭪
+ناگهان	[nɒːɡʲæˈhɒn]	6	False	False	pal	ʾnʾkʾs	ʾnʾkʾs	ʾنʾکʾس	0		ʾnʾkʾs > ʾnʾkʾs
+نواختن	/na.waːx.ˈtan/	6	False	False	ine-pro	wekʷ	bak	بک	3	vowel_merger_a,labiovelar_k,w_to_b_initial	wekʷ > wak > wak > wak > wak > bak
+نیستی	/neːs.ˈtiː/	6	False	False	pal	LOYT-yh’	LOYTyh’	LOYTیه’	0		LOYT-yh’ > LOYTyh’
+هذر		6	False	False	pal	ʾwdlk'	ʾwdlk'	ʾودلک'	0		ʾwdlk' > ʾwdlk'
+پذیرفتن	/pa.ðiː.ruf.ˈtan/	6	False	False	ine-pro	gʰrebʰ	grab	گرب	3	vowel_merger_a,grassmann,deaspirate_bh	gʰrebʰ > grabʰ > grab > grab > grab > grab
+پرستار	/pa.ras.ˈtaːr/	6	False	False	pal	𐭯𐭫𐭮𐭲𐭠𐭫	𐭯𐭫𐭮𐭲𐭠𐭫	𐭯𐭫𐭮𐭲𐭠𐭫	0		𐭯𐭫𐭮𐭲𐭠𐭫 > 𐭯𐭫𐭮𐭲𐭠𐭫
+پسندیدن	/pa.san.diː.ˈdan/	6	False	False	ine-pro	préti	frad	فرد	5	vowel_merger_a,p_to_f_before_sonorant_initial,t_to_d,final_vowel_loss,stress_not_written	préti > prˈati > frˈati > frˈati > frˈad > frad
+کشتی	/kaʃ.ˈtiː/	6	False	False	pal	𐭪𐭱𐭲𐭩𐭪𐭩	𐭪𐭱𐭲𐭩𐭪𐭩	𐭪𐭱𐭲𐭩𐭪𐭩	0		𐭪𐭱𐭲𐭩𐭪𐭩 > 𐭪𐭱𐭲𐭩𐭪𐭩
+کیهان	/kaj.ˈhaːn/	6	False	False	pal	𐭢𐭩𐭧𐭠𐭭𐭩	𐭢𐭩𐭧𐭠𐭭𐭩	𐭢𐭩𐭧𐭠𐭭𐭩	0		𐭢𐭩𐭧𐭠𐭭𐭩 > 𐭢𐭩𐭧𐭠𐭭𐭩
+کیهان	/kaj.ˈhaːn/	6	False	False	pal	𐭢𐭩𐭧𐭠𐭭𐭩	𐭢𐭩𐭧𐭠𐭭𐭩	𐭢𐭩𐭧𐭠𐭭𐭩	0		𐭢𐭩𐭧𐭠𐭭𐭩 > 𐭢𐭩𐭧𐭠𐭭𐭩
+گرج	/ˈɡurd͡ʒ/	6	False	False	pal	𐭥𐭫𐭥𐭰𐭠𐭭	𐭥𐭫𐭥𐭰𐭠𐭭	𐭥𐭫𐭥𐭰𐭠𐭭	0		𐭥𐭫𐭥𐭰𐭠𐭭 > 𐭥𐭫𐭥𐭰𐭠𐭭
+گزاردن	/ɡu.zaːr.ˈdan/	6	False	False	ine-pro	wí	b	ب	2	final_vowel_loss,w_to_b_initial	wí > wˈi > wˈi > wˈi > w > b
+گشتاسپ	/ɡuʃ.ˈtaːsp/	6	False	False	peo	𐎻𐏁𐎫𐎠𐎿𐎱	𐎻𐏁𐎫𐎠𐎿𐎱	𐎻𐏁𐎫𐎠𐎿𐎱	0		𐎻𐏁𐎫𐎠𐎿𐎱 > 𐎻𐏁𐎫𐎠𐎿𐎱 > 𐎻𐏁𐎫𐎠𐎿𐎱
+گنجور	/ɡan.ˈd͡ʒuːr/	6	False	False	pal	𐭢𐭭𐭦𐭥𐭡𐭥	𐭢𐭭𐭦𐭥𐭡𐭥	𐭢𐭭𐭦𐭥𐭡𐭥	0		𐭢𐭭𐭦𐭥𐭡𐭥 > 𐭢𐭭𐭦𐭥𐭡𐭥
+گهواره	/ɡah.waː.ˈra/	6	False	False	pal	gʾswʾlk'	gʾswʾlk'	گʾسوʾلک'	0		gʾswʾlk' > gʾswʾlk'
+گواشتن	/ɡu.waːʃ.ˈtan/	6	False	False	ine-pro	wí	b	ب	2	final_vowel_loss,w_to_b_initial	wí > wˈi > wˈi > wˈi > w > b
+گوسفند	/ɡoːs.ˈfand/	6	False	False	pal	KYNA	KYNA	KYNA	0		KYNA > KYNA
+یاسمن	/jaː.sa.ˈman/	6	False	False	pal	𐭩𐭠𐭮𐭬𐭭𐭠	𐭩𐭠𐭮𐭬𐭭𐭠	𐭩𐭠𐭮𐭬𐭭𐭠	0		𐭩𐭠𐭮𐭬𐭭𐭠 > 𐭩𐭠𐭮𐭬𐭭𐭠
+یاسمن	/jaː.sa.ˈman/	6	False	False	pal	𐭩𐭠𐭮𐭬𐭭𐭠	𐭩𐭠𐭮𐭬𐭭𐭠	𐭩𐭠𐭮𐭬𐭭𐭠	0		𐭩𐭠𐭮𐭬𐭭𐭠 > 𐭩𐭠𐭮𐭬𐭭𐭠
+آمارگر	/ʔaː.maːr.ˈɡar/	7	False	False	pal	𐭠𐭬𐭠𐭫𐭪𐭫𐭩	𐭠𐭬𐭠𐭫𐭪𐭫𐭩	𐭠𐭬𐭠𐭫𐭪𐭫𐭩	0		𐭠𐭬𐭠𐭫𐭪𐭫𐭩 > 𐭠𐭬𐭠𐭫𐭪𐭫𐭩
+اخترمار	/ʔax.tar.ˈmaːr/	7	False	False	pal	𐭠𐭧𐭲𐭥𐭬𐭠𐭥	𐭠𐭧𐭲𐭥𐭬𐭠𐭥	𐭠𐭧𐭲𐭥𐭬𐭠𐭥	0		𐭠𐭧𐭲𐭥𐭬𐭠𐭥 > 𐭠𐭧𐭲𐭥𐭬𐭠𐭥
+اردشیر	/ʔar.da.ˈʃeːr/	7	False	False	peo	𐎠𐎼𐎫𐎧𐏁𐏂𐎠	𐎠𐎼𐎫𐎧𐏁𐏂𐎠	𐎠𐎼𐎫𐎧𐏁𐏂𐎠	0		𐎠𐎼𐎫𐎧𐏁𐏂𐎠 > 𐎠𐎼𐎫𐎧𐏁𐏂𐎠 > 𐎠𐎼𐎫𐎧𐏁𐏂𐎠
+انگاشتن	/ʔan.ɡaːʃ.ˈtan/	7	False	False	ine-pro	kʷer	kar	کر	2	vowel_merger_a,labiovelar_k	kʷer > kar > kar > kar > kar > kar
+بازرگان	/baː.zar.ˈɡaːn/	7	False	False	pal	wʾčʾlkʾn'	bʾčʾlkʾn'	بʾچʾلکʾن'	1	w_to_b_initial	wʾčʾlkʾn' > bʾčʾlkʾn'
+بازرگان	/baː.zar.ˈɡaːn/	7	False	False	pal	wʾčʾlkʾn'	bʾčʾlkʾn'	بʾچʾلکʾن'	1	w_to_b_initial	wʾčʾlkʾn' > bʾčʾlkʾn'
+بهمان	/bah.ˈmaːn/	7	False	False	pal	𐭥𐭠𐭧𐭬𐭠𐭭𐭩	𐭥𐭠𐭧𐭬𐭠𐭭𐭩	𐭥𐭠𐭧𐭬𐭠𐭭𐭩	0		𐭥𐭠𐭧𐭬𐭠𐭭𐭩 > 𐭥𐭠𐭧𐭬𐭠𐭭𐭩
+تابستان	/taː.bis.ˈtaːn/	7	False	False	pal	𐭲𐭠𐭯𐭮𐭲𐭠𐭭	𐭲𐭠𐭯𐭮𐭲𐭠𐭭	𐭲𐭠𐭯𐭮𐭲𐭠𐭭	0		𐭲𐭠𐭯𐭮𐭲𐭠𐭭 > 𐭲𐭠𐭯𐭮𐭲𐭠𐭭
+خوزستان	/xoː.zis.ˈtaːn/	7	False	False	peo	𐎢𐎺𐎩	𐎢𐎺𐎩	𐎢𐎺𐎩	0		𐎢𐎺𐎩 > 𐎢𐎺𐎩 > 𐎢𐎺𐎩
+سپهبد	/si.pah.ˈbud/	7	False	False	pal	𐭮𐭯𐭠𐭧𐭯𐭲𐭩	𐭮𐭯𐭠𐭧𐭯𐭲𐭩	𐭮𐭯𐭠𐭧𐭯𐭲𐭩	0		𐭮𐭯𐭠𐭧𐭯𐭲𐭩 > 𐭮𐭯𐭠𐭧𐭯𐭲𐭩
+سگالیدن	/si.ɡaː.liː.ˈdan/	7	False	False	ine-pro	kʷer	kar	کر	2	vowel_merger_a,labiovelar_k	kʷer > kar > kar > kar > kar > kar
+سیمرغ	/siː.ˈmurɣ/	7	False	False	pal	𐭮𐭩𐭭𐭬𐭥𐭫𐭥	𐭮𐭩𐭭𐭬𐭥𐭫𐭥	𐭮𐭩𐭭𐭬𐭥𐭫𐭥	0		𐭮𐭩𐭭𐭬𐭥𐭫𐭥 > 𐭮𐭩𐭭𐭬𐭥𐭫𐭥
+شادروان	/ʃaː.dur.ˈwaːn/	7	False	False	pal	šʾtʾwlwʾn'	šʾtʾwlwʾn'	شʾتʾولوʾن'	0		šʾtʾwlwʾn' > šʾtʾwlwʾn'
+شترنگ		7	False	False	pal	𐭰𐭠𐭲𐭫𐭠𐭭𐭢	𐭰𐭠𐭲𐭫𐭠𐭭𐭢	𐭰𐭠𐭲𐭫𐭠𐭭𐭢	0		𐭰𐭠𐭲𐭫𐭠𐭭𐭢 > 𐭰𐭠𐭲𐭫𐭠𐭭𐭢
+شنگرف	/ʃan.ˈɡarf/	7	False	False	peo	𐎿𐎡𐎣𐎲𐎽𐎢𐏁	𐎿𐎡𐎣𐎲𐎽𐎢𐏁	𐎿𐎡𐎣𐎲𐎽𐎢𐏁	0		𐎿𐎡𐎣𐎲𐎽𐎢𐏁 > 𐎿𐎡𐎣𐎲𐎽𐎢𐏁 > 𐎿𐎡𐎣𐎲𐎽𐎢𐏁
+فرخ	/far.ˈrux/	7	False	False	ira-pro	húHarnahwāh	hūarnahwāh	هورنهواه	2	laryngeal_lengthening,stress_not_written	húHarnahwāh > hˈūarnahwāh > hˈūarnahwāh > hūarnahwāh
+قبراق	/qib.ˈraːq/	7	False	False	pal	gwplʾk'	gwplʾk'	گوپلʾک'	0		gwplʾk' > gwplʾk'
+پهلویسم	[pʰæɦ.læ.víːsm]	7	False	False	peo	𐎱𐎼𐎰𐎺	𐎱𐎼𐎰𐎺	𐎱𐎼𐎰𐎺	0		𐎱𐎼𐎰𐎺 > 𐎱𐎼𐎰𐎺 > 𐎱𐎼𐎰𐎺
+پوستین	/poːs.ˈteːn/	7	False	False	pal	𐭯𐭥𐭮𐭲𐭩𐭭⁠	𐭯𐭥𐭮𐭲𐭩𐭭⁠	𐭯𐭥𐭮𐭲𐭩𐭭⁠	0		𐭯𐭥𐭮𐭲𐭩𐭭⁠ > 𐭯𐭥𐭮𐭲𐭩𐭭⁠
+پوستین	/poːs.ˈteːn/	7	False	False	pal	𐭯𐭥𐭮𐭲𐭩𐭭⁠	𐭯𐭥𐭮𐭲𐭩𐭭⁠	𐭯𐭥𐭮𐭲𐭩𐭭⁠	0		𐭯𐭥𐭮𐭲𐭩𐭭⁠ > 𐭯𐭥𐭮𐭲𐭩𐭭⁠
+پیروزی	/peː.roː.ˈziː/	7	False	False	pal	𐭯𐭩𐭫𐭥𐭰𐭩𐭧	𐭯𐭩𐭫𐭥𐭰𐭩𐭧	𐭯𐭩𐭫𐭥𐭰𐭩𐭧	0		𐭯𐭩𐭫𐭥𐭰𐭩𐭧 > 𐭯𐭩𐭫𐭥𐭰𐭩𐭧
+کماندار		7	False	False	pal	𐭪𐭬𐭠𐭭𐭣𐭠𐭫	𐭪𐭬𐭠𐭭𐭣𐭠𐭫	𐭪𐭬𐭠𐭭𐭣𐭠𐭫	0		𐭪𐭬𐭠𐭭𐭣𐭠𐭫 > 𐭪𐭬𐭠𐭭𐭣𐭠𐭫
+آذربایجان	/ʔaː.ðar.baːj.ˈd͡ʒaːn/	8	False	False	peo	Ātr̥pātah	Ātr̥bād	Āتr̥باد	4	p_to_b,t_to_d,final_h_loss,final_vowel_loss	Ātr̥pātah > Ātr̥bād > Ātr̥bād
+اردیبهشت	/ʔar.diː.bi.ˈhiʃt/	8	False	False	pal	𐭠𐭥𐭲𐭥𐭧𐭱𐭲𐭩	𐭠𐭥𐭲𐭥𐭧𐭱𐭲𐭩	𐭠𐭥𐭲𐭥𐭧𐭱𐭲𐭩	0		𐭠𐭥𐭲𐭥𐭧𐭱𐭲𐭩 > 𐭠𐭥𐭲𐭥𐭧𐭱𐭲𐭩
+انجامیدن	/ʔan.d͡ʒaː.miː.ˈdan/	8	False	False	ine-pro	gʷem	g	گ	3	vowel_merger_a,labiovelar_g,final_am_loss	gʷem > gam > gam > gam > g > g
+اندیشیدن	/ʔan.deː.ʃiː.ˈdan/	8	False	False	pal	𐭧𐭭𐭣𐭩𐭱𐭩𐭲𐭭	𐭧𐭭𐭣𐭩𐭱𐭩𐭲𐭭	𐭧𐭭𐭣𐭩𐭱𐭩𐭲𐭭	0		𐭧𐭭𐭣𐭩𐭱𐭩𐭲𐭭 > 𐭧𐭭𐭣𐭩𐭱𐭩𐭲𐭭
+اورمزد	/ʔoːr.ˈmazd/	8	False	False	pal	𐭠𐭥𐭧𐭥𐭬𐭦𐭣𐭩	𐭠𐭥𐭧𐭥𐭬𐭦𐭣𐭩	𐭠𐭥𐭧𐭥𐭬𐭦𐭣𐭩	0		𐭠𐭥𐭧𐭥𐭬𐭦𐭣𐭩 > 𐭠𐭥𐭧𐭥𐭬𐭦𐭣𐭩
+بربری	/bar.ba.ˈriː/	8	False	False	pal	𐬠𐬀𐬭𐬠𐬀𐬭𐬍𐬔	𐬠𐬀𐬭𐬠𐬀𐬭𐬍𐬔	𐬠𐬀𐬭𐬠𐬀𐬭𐬍𐬔	0		𐬠𐬀𐬭𐬠𐬀𐬭𐬍𐬔 > 𐬠𐬀𐬭𐬠𐬀𐬭𐬍𐬔
+بربری	/bar.ba.ˈriː/	8	False	False	pal	𐬠𐬀𐬭𐬠𐬀𐬭𐬍𐬔	𐬠𐬀𐬭𐬠𐬀𐬭𐬍𐬔	𐬠𐬀𐬭𐬠𐬀𐬭𐬍𐬔	0		𐬠𐬀𐬭𐬠𐬀𐬭𐬍𐬔 > 𐬠𐬀𐬭𐬠𐬀𐬭𐬍𐬔
+سیر	/ˈsiːr/	8	False	False	peo	𐎰𐎠𐎡𐎥𐎼𐎨𐎡𐏁	𐎰𐎠𐎡𐎥𐎼𐎨𐎡𐏁	𐎰𐎠𐎡𐎥𐎼𐎨𐎡𐏁	0		𐎰𐎠𐎡𐎥𐎼𐎨𐎡𐏁 > 𐎰𐎠𐎡𐎥𐎼𐎨𐎡𐏁 > 𐎰𐎠𐎡𐎥𐎼𐎨𐎡𐏁
+قبادوقیه	/qa.baː.du.qij.ˈja/	8	False	False	peo	𐎣𐎫𐎱𐎬𐎢𐎣	𐎣𐎫𐎱𐎬𐎢𐎣	𐎣𐎫𐎱𐎬𐎢𐎣	0		𐎣𐎫𐎱𐎬𐎢𐎣 > 𐎣𐎫𐎱𐎬𐎢𐎣 > 𐎣𐎫𐎱𐎬𐎢𐎣
+کدخدا	/kad.xu.ˈdaː/	8	False	False	pal	𐭪𐭲𐭪𐭧𐭥𐭲𐭠𐭩	𐭪𐭲𐭪𐭧𐭥𐭲𐭠𐭩	𐭪𐭲𐭪𐭧𐭥𐭲𐭠𐭩	0		𐭪𐭲𐭪𐭧𐭥𐭲𐭠𐭩 > 𐭪𐭲𐭪𐭧𐭥𐭲𐭠𐭩
+ایرانشهر	/ʔeː.raːn.ˈʃahr/	9	False	False	pal	𐭠𐭩𐭥𐭠𐭭𐭱𐭲𐭥𐭩	𐭠𐭩𐭥𐭠𐭭𐭱𐭲𐭥𐭩	𐭠𐭩𐭥𐭠𐭭𐭱𐭲𐭥𐭩	0		𐭠𐭩𐭥𐭠𐭭𐭱𐭲𐭥𐭩 > 𐭠𐭩𐭥𐭠𐭭𐭱𐭲𐭥𐭩
+بیمارستان	/beː.maː.ris.ˈtaːn/	9	False	False	pal	𐭥𐭩𐭬𐭠𐭫𐭮𐭲𐭠𐭭	𐭥𐭩𐭬𐭠𐭫𐭮𐭲𐭠𐭭	𐭥𐭩𐭬𐭠𐭫𐭮𐭲𐭠𐭭	0		𐭥𐭩𐭬𐭠𐭫𐭮𐭲𐭠𐭭 > 𐭥𐭩𐭬𐭠𐭫𐭮𐭲𐭠𐭭
+شاهنشاه	/ʃaː.han.ˈʃaːh/	9	False	False	pal	𐭬𐭫𐭪𐭠𐭭 𐭬𐭫𐭪𐭠	𐭬𐭫𐭪𐭠𐭭𐭬𐭫𐭪𐭠	𐭬𐭫𐭪𐭠𐭭𐭬𐭫𐭪𐭠	0		𐭬𐭫𐭪𐭠𐭭 𐭬𐭫𐭪𐭠 > 𐭬𐭫𐭪𐭠𐭭𐭬𐭫𐭪𐭠
+نرد	/ˈnard/	9	False	False	pal	nywʾlthšyl	nywʾlthšyl	نیوʾلتهشیل	0		nywʾlthšyl > nywʾlthšyl
+نرد	/ˈnard/	9	False	False	pal	nywʾlthšyl	nywʾlthšyl	نیوʾلتهشیل	0		nywʾlthšyl > nywʾlthšyl
+نشادر		9	False	False	pal	𐭠𐭭𐭥𐭱𐭠𐭲𐭥𐭥𐭩	𐭠𐭭𐭥𐭱𐭠𐭲𐭥𐭥𐭩	𐭠𐭭𐭥𐭱𐭠𐭲𐭥𐭥𐭩	0		𐭠𐭭𐭥𐭱𐭠𐭲𐭥𐭥𐭩 > 𐭠𐭭𐭥𐭱𐭠𐭲𐭥𐭥𐭩
+انوشیروان	/ʔa.noː.ʃeːr.ˈwaːn/	11	False	False	pal	𐭠𐭭𐭥𐭱𐭪𐭩 𐭫𐭥𐭡𐭠𐭭	𐭠𐭭𐭥𐭱𐭪𐭩𐭫𐭥𐭡𐭠𐭭	𐭠𐭭𐭥𐭱𐭪𐭩𐭫𐭥𐭡𐭠𐭭	0		𐭠𐭭𐭥𐭱𐭪𐭩 𐭫𐭥𐭡𐭠𐭭 > 𐭠𐭭𐭥𐭱𐭪𐭩𐭫𐭥𐭡𐭠𐭭
+افراسیاب	/ʔaf.raː.si.ˈjaːb/	12	False	False	pal	plʾsy̲d̲ʾp̄'	plʾsy̲d̲ʾp̄'	پلʾسy̲d̲ʾp̄'	0		plʾsy̲d̲ʾp̄' > plʾsy̲d̲ʾp̄'
+گندی‌شاپور	/ɡun.deː.ʃaː.ˈpuːr/	16	False	False	pal	𐭥𐭧𐭩𐭠𐭭𐭣𐭩𐭥𐭪𐭱𐭧𐭯𐭥𐭧𐭥𐭩	𐭥𐭧𐭩𐭠𐭭𐭣𐭩𐭥𐭪𐭱𐭧𐭯𐭥𐭧𐭥𐭩	𐭥𐭧𐭩𐭠𐭭𐭣𐭩𐭥𐭪𐭱𐭧𐭯𐭥𐭧𐭥𐭩	0		𐭥𐭧𐭩𐭠𐭭𐭣𐭩𐭥𐭪𐭱𐭧𐭯𐭥𐭧𐭥𐭩 > 𐭥𐭧𐭩𐭠𐭭𐭣𐭩𐭥𐭪𐭱𐭧𐭯𐭥𐭧𐭥𐭩

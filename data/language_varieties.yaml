@@ -1,0 +1,42 @@
+# Registers of a modelled stage, not nodes of their own.
+#
+# Wiktionary records an ancestor with the language code of a *variety*:
+# "inherited from Late Latin", "borrowed from Vulgar Latin", "from Classical
+# Persian".  The model holds one node for the language (la, fa) and no chain
+# step for the register, so such a row named nothing the rules could start
+# from and the word fell out of the count as "outside".
+#
+# A variety is the same language in another period or style, not a daughter of
+# it: a Late Latin form is a Latin form and the laws out of Latin apply to it
+# unchanged.  This file says which stage a variety is read at.  It is a
+# mapping of names, never of forms: the laws still have to produce the
+# attested word from the recorded form, and nothing here can match a word the
+# rules do not reach.
+#
+# Only registers of ONE language belong here.  A different language (Frankish,
+# Old Irish) is not a variety, however often a word is borrowed from it.
+varieties:
+  la-cla:
+    of: la
+    name: Classical Latin
+    note: The register the Latin stage is usually named for; a form recorded under it needs no step.
+  la-lat:
+    of: la
+    name: Late Latin
+    note: The Latin of the later empire and the church (Meiser 1998, Sihler 1995, Weiss 2009 read the same stage); its forms differ within the laws the transition already states.
+  la-vul:
+    of: la
+    name: Vulgar Latin
+    note: The spoken register Italian descends from; its recorded forms are the ones the Latin -> Italian laws were written for.
+  la-med:
+    of: la
+    name: Medieval Latin
+    note: Learned and administrative Latin after the classical period.
+  la-new:
+    of: la
+    name: New Latin
+    note: The Latin of the modern sciences; a form recorded here is still a Latin form.
+  la-eme:
+    of: la
+    name: Early Modern Latin
+    note: The Latin of the 16th-18th centuries, recorded under the same stage.

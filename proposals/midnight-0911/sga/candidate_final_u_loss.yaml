@@ -1,0 +1,38 @@
+stage:
+  name: Proto-Celtic → Old Irish
+  date_start: -800
+  date_end: 700
+  description: >
+    The last step of the Goidelic chain, from the Proto-Celtic reconstruction
+    to the normalized Old Irish headword of the dictionary.  The voiceless
+    bilabial *ɸ is lost, *w becomes f word-initially and is lost between
+    vowels, the labiovelars give up their rounding (*kʷ > k, *gʷ > b) and
+    intervocalic *s becomes h and falls.  Between vowels and word-finally the
+    voiceless stops are spirantised (*t > θ, *k > x) - the change the modern
+    spelling writes th and ch.  The vowels are refashioned by affection before
+    the endings go: *a, *e and *o are raised or diphthongised before a
+    following *i (i-affection), *i and *u are lowered before a following
+    non-high vowel (a-affection).  Last the inflectional endings are cut away:
+    *-os, *-om, *-us, *-is and *-ā are lost, so a Proto-Celtic nominative is
+    the bare stem in Old Irish.  The stage stops at the phonemes: long vowels
+    are still written with a macron and the spirants with their phonetic
+    letters, because the acute of the dictionary (á) and the digraphs th and
+    ch are writing conventions, and those live in data/spelling/sga.yaml.
+  references: [matasovic-2009, mccone-1996, fortson-2004]
+
+rules:
+  - id: final_u_loss
+    order: 105
+    name: "Final short *-u is lost"
+    match: u
+    replace: ""
+    env: {left: ., right: "#"}
+    tier: established
+    description: >
+      A short *u at the end of the word is cut away like the other short
+      final vowels: *loku 'lake' > loch, *beru 'spit' > bir, *mandu 'pony' > mind.  Long *ū is kept (it gives o, *dū > do).
+      Thurneysen 1946, §100.
+    references: [mccone-1996]
+    examples:
+      - {in: "*loku", out: "*lok", gloss: "lake (loch)"}
+

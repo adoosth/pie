@@ -1,0 +1,33 @@
+# Avestan dictionaries cite the stem, and the stem is not the nominative minus
+# a suffix: an a-stem cites aspa- where the nominative is aspō, so the ending
+# -ō stands in place of the stem vowel -a.  The laws end where the recorded
+# ancestor ends, and a recorded ancestor that is a nominative gives the
+# nominative; the lemma is the stem the whole paradigm is built on.  That is a
+# fact about the dictionary, not about the sound laws, so it is counted in its
+# own column ("same word, cited as the stem") and never folded into `exact`.
+#
+# Only the pairs below may be set aside, the rest of the form must spell the
+# recorded word exactly, and the record's own pronunciation (its IPA, or the
+# reading of its letters) must still confirm the stem.  A word whose lemma is
+# its nominative never reaches this column: it matches under the laws or not at
+# all.
+language: ave
+name: Avestan citation form
+note: >
+  The Avestan noun is cited by its stem: the a-stems end in -a and their
+  nominative singular in -ō (aspa- 'horse', nom. aspō; haoma-, nom. haomō),
+  the neuter a-stems end in -a with nominative-accusative -əm (xšaθra-,
+  xšaθrəm), the i-stems in -i with nominative -iš (čisti-, čistiš) and the
+  u-stems in -u with nominative -uš (ərəzu-, ərəzuš).  The endings below are
+  the ones the corpus's records actually carry; nothing else is stripped or
+  rewritten.
+references: [hoffmann-forssman-2004, skjaervo-2009]
+endings:
+  - {form: "ō", cited_as: "a",
+     gloss: "nominative singular of the a-stems: the stem (aspa-) is cited for the nominative (aspō)"}
+  - {form: "əm", cited_as: "a",
+     gloss: "nominative-accusative singular of the neuter a-stems (xšaθra- ~ xšaθrəm)"}
+  - {form: "iš", cited_as: "i",
+     gloss: "nominative singular of the i-stems (čisti- ~ čistiš)"}
+  - {form: "uš", cited_as: "u",
+     gloss: "nominative singular of the u-stems (ərəzu- ~ ərəzuš)"}

@@ -1,0 +1,11 @@
+rules:
+  - id: zt_to_st
+    order: 90
+    name: "*zt > st"
+    match: z t
+    replace: st
+    tier: established
+    description: "The cluster *zt loses its voicing before *t (PSl *vezti > OCS вести vesti, *lězti > лѣсти lěsti).  It runs after the liquid metathesis, whose *erz also gives rězt > rěst (otъverzti > отъврѣсти otъvrěsti)."
+    references: [vaillant-1950, shevelov-1964, meillet-1934]
+    examples:
+      - {in: "vezti", out: "vesti", gloss: "to carry (вести)"}

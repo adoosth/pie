@@ -1,0 +1,9 @@
+rules:
+  - id: probe_tt_to_t
+    order: 109
+    name: "PII *tt > PIr *t"
+    match: "t t"
+    replace: "t"
+    references: [hoffmann-forssman-2004]
+    examples:
+      - {in: "*kúttas", out: "*kútas", gloss: "short"}

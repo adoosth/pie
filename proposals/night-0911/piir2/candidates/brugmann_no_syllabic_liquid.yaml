@@ -1,0 +1,28 @@
+# REJECTED 2026-11-09: Brugmann's law does not lengthen *o before a syllabic liquid.
+# Measured (proposals/night-0911/piir2/measure.py --stage ine-pro --to iir-pro
+# --replace, layers exact,script): +3 iir-pro (yákr̥, wásr̥, ćákr̥) and nothing
+# lost in that layer set; but it shortens the *ā of the Old Persian water rung
+# (*wódr̥ > *wādar against *wˈādar pinned by tests/test_web.py).  The corpus keeps
+# both readings, so the wider environment stays and this narrowing is refused.
+# Original note:
+# (yákr̥ < *yókʷr̥, wásr̥ < *wósr̥, ćákr̥ < *ḱókʷr̥) while it still lengthens
+# before a syllabic nasal (Hnā́ma < *h₁nómn̥).  This is a *replacement* of the
+# shipped environment, not an added rule: the candidate repeats brugmann_o_a
+# with the narrower right context.
+rules:
+  - id: brugmann_o_a
+    order: 25
+    name: "Brugmann's law: *o > *ā in an open syllable before a non-high vowel"
+    match: o
+    replace: ā
+    env:
+      right: C (ˈ|ˌ)? (a|e|o|u|ā|ē|ō|m̥|n̥)
+    tier: established
+    references: [mayrhofer-1986, fortson-2004]
+    description: >
+      PIE *o lengthens before a following non-high vowel or a syllabic nasal,
+      but not before a syllabic liquid.
+    examples:
+      - {in: "*ǵónu", out: "*ǵā́nu", gloss: "knee"}
+      - {in: "*yókʷr̥", out: "*yókʷr̥", gloss: "liver — blocked before a syllabic liquid"}
+      - {in: "*h₁nómn̥", out: "*h₁nā́mn̥", gloss: "name — a syllabic nasal still lengthens"}

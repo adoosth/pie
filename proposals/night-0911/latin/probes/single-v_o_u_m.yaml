@@ -1,0 +1,20 @@
+stage:
+  name: x
+  references:
+  - sihler-1995
+rules:
+- id: v_o_u_m
+  order: 245
+  name: '*o > *u before *m'
+  match: o
+  replace: u
+  env:
+    right: m
+  tier: established
+  description: Short *o becomes *u before *m (*homos > *humus).
+  references:
+  - sihler-1995
+  examples:
+  - in: '*homos'
+    out: '*humus'
+    gloss: earth

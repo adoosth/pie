@@ -1,0 +1,9 @@
+rules:
+  - id: probe_dz_z_to_dz
+    order: 109
+    name: "PII *ȷ́ž > PIr *ȷ́"
+    match: "ȷ́ ž"
+    replace: "ȷ́"
+    references: [hoffmann-forssman-2004]
+    examples:
+      - {in: "*ȷ́žā́s", out: "*ȷ́ā́s", gloss: "?"}

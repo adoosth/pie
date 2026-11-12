@@ -1,0 +1,126 @@
+stage:
+  name: Proto-Indo-Iranian → Proto-Indo-Aryan
+  date_start: -2000
+  date_end: -1500
+  description: >
+    Only the handful of changes that separate Indo-Aryan from Iranian: the
+    affricates are fronted to the palatals ś and j, *ȷ́ʰ becomes h, the retracted
+    sibilant *š becomes the retroflex ṣ, *l merges with *r, and the laryngeal
+    vowel of 'father' surfaces as *i (PIA *pitā́-).
+  references: [mayrhofer-1986, fortson-2004, beekes-2011]
+
+rules:
+  - id: c_to_sh
+    order: 120
+    name: "PII *ć > PIA *ś"
+    match: ć
+    replace: ś
+    description: PII *ćatám > PIA *śatám 'hundred' (Skt śatám, Av. satəm).
+    references: [mayrhofer-1986, beekes-2011]
+    examples:
+      - {in: "*ćatám", out: "*śatám", gloss: "hundred"}
+
+  - id: palatal_aspirate_to_h
+    order: 130
+    name: "PII *ȷ́ʰ > PIA *h"
+    match: "ȷ́ ʰ"
+    replace: h
+    description: "The aspirated palatal yields h (Skt himá- 'winter', beside Av. z-)."
+    references: [mayrhofer-1986]
+    examples:
+      - {in: "*ȷ́ʰimáh", out: "*himáh", gloss: "winter"}
+
+  - id: palatal_voiced_to_j
+    order: 131
+    name: "PII *ȷ́ > PIA *j"
+    match: ȷ́
+    replace: j
+    references: [mayrhofer-1986]
+    examples:
+      - {in: "*ȷ́ā́nu", out: "*jā́nu", gloss: "knee"}
+
+  - id: ruki_sh_to_retroflex
+    order: 140
+    name: "PII *š > PIA *ṣ"
+    match: š
+    replace: ṣ
+    description: The sibilant retracted by the ruki law is a retroflex in Indo-Aryan (Skt níṣ- 'down').
+    references: [mayrhofer-1986, fortson-2004]
+    examples:
+      - {in: "*nišdás", out: "*niṣdás", gloss: "nest"}
+
+  - id: l_to_r
+    order: 150
+    name: "PII *l > PIA *r"
+    match: l
+    replace: r
+    tier: proposed
+    notes: >
+      The merger of *l and *r is an Indo-Iranian change and is applied at the
+      Proto-Indo-Iranian transition; this rule stays for a form that enters the
+      chain at Proto-Indo-Aryan still written with *l.  The merger has not been
+      independently verified in the literature used here.
+    references: [beekes-2011]
+    examples:
+      - {in: "*lawkáh", out: "*rawkáh", gloss: "light"}
+
+  - id: w_to_v
+    order: 155
+    name: "PII *w > PIA *v"
+    match: w
+    replace: v
+    description: Indo-Aryan writes the labial glide as v (Skt vṛ́ka- 'wolf', áśva- 'horse').
+    references: [mayrhofer-1986]
+    examples:
+      - {in: "*wŕ̥kas", out: "*vŕ̥kas", gloss: "wolf"}
+
+  - id: laryngeal_vowel_to_i
+    order: 160
+    name: "The laryngeal vowel of *patā- surfaces as *i"
+    match: a
+    replace: i
+    env: {left: p, right: "t ˈ? ā"}
+    tier: proposed
+    optional: true
+    notes: >
+      Indo-Aryan keeps the laryngeal vowel (Skt pitā́) where Iranian loses it
+      (Av. ptā).  The standard PII form is *pH̥tā́; data/rules/ine-pro__iir-pro.yaml
+      resolves that laryngeal as *a, so the rule is stated on the *patā- shape
+      and is inert if the upstream stage is corrected.
+    references: [mayrhofer-1986]
+    examples:
+      - {in: "*patā́", out: "*pitā́", gloss: "father"}
+
+  # The affricates of Proto-Indo-Iranian keep their caron spelling in some
+  # recorded ancestors.  Their Indo-Aryan outcomes are the palatals (Skt c, j)
+  # and, for the aspirate, h — the same outcomes the ȷ́/ȷ́ʰ rules above already
+  # give, stated for the spellings the corpus actually contains (2026-11-09).
+  - id: c_caron_to_c
+    order: 168
+    name: "PII *č > PIA *c"
+    match: "č"
+    replace: c
+    description: The palatal affricate is written c in Sanskrit (PII *číttas > Skt cittá- 'thought').
+    references: [mayrhofer-1986]
+    examples:
+      - {in: "*čˈittas", out: "*cˈittas", gloss: "thought (Skt cittá-)"}
+
+  - id: j_caron_aspirate_to_h
+    order: 169
+    name: "PII *ǰʰ > PIA *h"
+    match: "ǰ ʰ"
+    replace: h
+    description: The aspirated palatal yields h in Sanskrit (PIE *gʷʰen- > PII *ǰʰan- > Skt han- 'strike').
+    references: [mayrhofer-1986]
+    examples:
+      - {in: "*ǰʰˈanas", out: "*hˈanas", gloss: "slaying (Skt hána-)"}
+
+  - id: j_caron_to_j
+    order: 170
+    name: "PII *ǰ > PIA *j"
+    match: "ǰ"
+    replace: j
+    description: The voiced palatal affricate is written j in Sanskrit (PII *ǰánas > Skt jána- 'people').
+    references: [mayrhofer-1986]
+    examples:
+      - {in: "*ǰˈanas", out: "*jˈanas", gloss: "people (Skt jána-)"}

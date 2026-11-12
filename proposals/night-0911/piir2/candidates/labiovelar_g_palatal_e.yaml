@@ -1,0 +1,18 @@
+# REJECTED 2026-11-09: *gʷ > *ǰ before *e.  Measured +1 iir-pro (ǰátu), nothing
+# lost — but the corpus keeps *g in *gʷémtis > *gátiš, so the law contradicts a
+# word it cannot reach, and one etymon is below the three-etymon bar.
+# The corpus disagrees: *gʷémtis keeps *g (> gátiš).
+rules:
+  - id: labiovelar_g_palatal_e_cand
+    order: 44
+    name: "*gʷ > *ǰ before *e"
+    match: gʷ
+    replace: ǰ
+    env:
+      right: (ˈ|ˌ)? e
+    tier: proposed
+    references: [mayrhofer-1986]
+    description: "*gʷétu > *ǰátu, but *gʷémtis > *gátiš keeps the stop."
+    examples:
+      - {in: "*gʷétu", out: "*ǰétu", gloss: "gum"}
+      - {in: "*gʷémtis", out: "*gʷémtis", gloss: "going — the corpus keeps *g here"}

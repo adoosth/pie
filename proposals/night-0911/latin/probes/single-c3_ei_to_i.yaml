@@ -1,0 +1,23 @@
+stage:
+  name: Proto-Italic → Latin (candidate 3)
+  references:
+  - sihler-1995
+  - weiss-2009
+  - meiser-1998
+rules:
+- id: c3_ei_to_i
+  order: 212
+  name: Final *-ei > -ī
+  match: e i
+  replace: ī
+  env:
+    right: '#'
+  tier: established
+  description: Final *-ei becomes -ī (*nei > nī, *sei > sī).
+  references:
+  - sihler-1995
+  - weiss-2009
+  examples:
+  - in: '*nei'
+    out: '*nī'
+    gloss: not

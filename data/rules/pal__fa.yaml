@@ -1,0 +1,235 @@
+stage:
+  name: Middle Persian → Persian (New Persian)
+  date_start: 800
+  date_end: null
+  description: >
+    The passage from Middle to New Persian.  The long mid vowels are raised
+    (*ē > ī, *ō > ū), the short high vowels are lowered (*i > e, *u > o), and
+    word-initial *w- and *v- become b- (MP wād > NP bād, MP vīst > NP bīst).  A
+    word-final long *-ā is kept: NP dādār, kār, nām, māh, پا — it is not
+    shortened, and the -a of pedar/mādar is the short vowel of the Middle
+    Persian oblique stem, not a shortened *-ā (see the custom law
+    r_stem_oblique in peo__pal and ROADMAP §2).  Two changes that belong to this
+    stage are still missing and are not pretended: the loss of the final glide
+    of MP -āy (pāy > pā, xwadāy > xodā, but sarāy > sarāy keeps it — lexical,
+    measured under DECISIONS) and the rounding of short *a after *w (xwad >
+    xod).  Arabic loans and the later Tehrani vowel shifts are outside the
+    scope of this file.
+  references: [sadeghi-1978, windfuhr-2009, korn-2016]
+
+rules:
+  - id: final_ug_to_u
+    order: 14
+    name: "MP final *-ūg > NP -ū"
+    match: g
+    replace: ""
+    env: {left: ū, right: "#"}
+    tier: proposed
+    description: >
+      A word-final *-g after long *ū is lost: MP hindūg > NP hindū 'Hindu',
+      MP bānūg > NP bānū 'lady', MP anōš-dārūg > NP (a)nōš-dārū 'elixir'.  The
+      environment names the long back vowel; the same *-g is population-kept
+      after *ō in sōg > sūg and after *ē in dēg > dīg, so only the *-ūg class
+      is claimed.
+    notes: >
+      The vowel must still be *ū when the rule runs, so the order is before
+      final_ig_to_i (15) and long_o_to_long_u (21); a source *-ōg is not
+      touched.  Ablation (tools/whatif.py --to fa --from pal): +5 words, none
+      lost; the council (--stage pal --to fa --layers
+      exact,orthographic,script) accepts with +3 and nothing lost.
+    references: [mackenzie-1971, sadeghi-1978, windfuhr-2009]
+    examples:
+      - {in: "hindūg", out: "hindū", gloss: "Hindu (NP هندو)"}
+      - {in: "bānūg", out: "bānū", gloss: "lady (NP بانو)"}
+      - {in: "anōš-dārūg", out: "anōš-dārū", gloss: "elixir (NP نوش‌دارو)"}
+
+  - id: a_to_o_after_w
+    order: 13
+    name: "MP *a > NP o after *w"
+    match: a
+    replace: o
+    env: {left: w}
+    tier: proposed
+    description: >
+      Short *a rounds to o after *w: MP xwadāy > NP xodā (through xwodāy),
+      MP waxš 'growth' > NP xoš.  The change is fed by no rule and must run
+      before xw_to_x_initial, which deletes the conditioning *w.
+    notes: >
+      The conditioning is the immediately preceding segment, not the whole
+      cluster; *wa > wo is the regular outcome, and the rule is proposed
+      because a few learned words keep a (waxl 'kind').  Ablation
+      (tools/whatif.py): +2 words, none lost.
+    references: [sadeghi-1978, windfuhr-2009]
+    examples:
+      - {in: "xwadāy", out: "xwodāy", gloss: "lord (NP xodā)"}
+
+  - id: final_ig_to_i
+    order: 15
+    name: "MP final *-īg > NP -ī"
+    match: "ī g"
+    replace: ī
+    env: {right: "#"}
+    tier: proposed
+    description: >
+      The Middle Persian suffix -īg (attributive) loses its final stop: MP
+      pārsīg > NP pārsī, MP rōzīg > NP rūzī, MP zangīg > NP zangī.
+    notes: >
+      The rule must run before long_e_to_long_i (order 20): a source *-ēg
+      (dēg 'pot') is not *-īg, and with the later order it would be shortened
+      and the word lost (measured: -1).  Ablation: +7 words, none lost.
+    references: [sadeghi-1978, windfuhr-2009]
+    examples:
+      - {in: "pārsīg", out: "pārsī", gloss: "Persian"}
+
+  - id: i_to_e
+    order: 10
+    name: "MP *i > NP e"
+    match: i
+    replace: e
+    tier: proposed
+    notes: >
+      MP dil 'heart' > NP del shows the lowering of the short high vowels.  The
+      change has not been independently verified; the quality of the vowel
+      varies with the following consonant and in Arabic loans, so it is marked
+      proposed.
+    references: [sadeghi-1978, windfuhr-2009]
+    examples:
+      - {in: "*pidar", out: "*pedar", gloss: "father"}
+
+  - id: u_to_o
+    order: 11
+    name: "MP *u > NP o"
+    match: u
+    replace: o
+    tier: proposed
+    notes: >
+      MP duxtar 'daughter' > NP doxtar, MP gul > NP gol and MP šudan 'to go' >
+      NP šodan show the lowering.  The change has not been independently
+      verified; the conditioning depends on the following consonant, so the rule
+      is marked proposed.
+    references: [sadeghi-1978]
+    examples:
+      - {in: "*duxtar", out: "*doxtar", gloss: "daughter"}
+
+  - id: long_e_to_long_i
+    order: 20
+    name: "MP *ē > NP ī"
+    match: ē
+    replace: ī
+    description: MP šēr 'lion' > NP šīr.
+    references: [sadeghi-1978, windfuhr-2009]
+    examples:
+      - {in: "*šēr", out: "*šīr", gloss: "lion"}
+
+  - id: long_o_to_long_u
+    order: 21
+    name: "MP *ō > NP ū"
+    match: ō
+    replace: ū
+    description: MP rōz 'day' > NP rūz.
+    references: [sadeghi-1978, windfuhr-2009]
+    examples:
+      - {in: "*rōz", out: "*rūz", gloss: "day"}
+
+  - id: final_ag_to_e
+    order: 12
+    name: "MP final *-ag > NP -e"
+    match: "a g"
+    replace: e
+    env: {right: "#"}
+    description: >
+      The Middle Persian ending -ag, which marks nouns and past participles,
+      becomes -e in New Persian: MP murtag > NP murde ‘dead’, MP nāmag > NP
+      nāme ‘letter’, MP gurbag > NP gorbe ‘cat’.
+    references: [sadeghi-1978, windfuhr-2009]
+    examples:
+      - {in: "gurbag", out: "gurbe", gloss: "cat (NP gorbe)"}
+
+  - id: final_long_ag_to_a
+    order: 12.5
+    name: "MP final *-āg > NP -ā"
+    match: g
+    replace: ""
+    env: {left: ā, right: "#"}
+    tier: proposed
+    description: >
+      The other half of the *-ag ending: after a long *ā the velar is lost and
+      the vowel stays long, so the word ends in -ā where the short *-ag class
+      ends in -e.  MacKenzie enters the adjective dʾnʾk' dānāg 'wise,
+      knowing', whose New Persian continuation is dānā; his entry is the
+      witness, and the same -āg is the productive possessive suffix of Middle
+      Persian (Skjærvø, Middle Persian, in Windfuhr 2009, on the -āg/-ā
+      adjectives).  The environment is the long vowel, because *-ag with a
+      short a is a different suffix with a different outcome (MP murtag >
+      murde).  Where the long vowel cannot be shown — MP hmʾk' hamāg continues
+      as NP hame with a short final vowel — the form is left to the spelling
+      layer rather than folded into this law.
+    references: [mackenzie-1971, skjaervo-2009b, sadeghi-1978]
+    examples:
+      - {in: "dānāg", out: "dānā", gloss: "wise, knowing (NP dānā)"}
+      - {in: "hamāg", out: "hamā", gloss: "all (NP hame, final vowel not long)"}
+
+  - id: w_to_b_initial
+    order: 40
+    name: "Initial MP *w- > NP b-"
+    match: w
+    replace: b
+    env: {left: "#"}
+    description: MP wād 'wind' > NP bād, MP wāz 'falcon' > NP bāz.
+    references: [sadeghi-1978, windfuhr-2009]
+    examples:
+      - {in: "*wād", out: "*bād", gloss: "wind"}
+
+  - id: v_to_b_initial
+    order: 41
+    name: "Initial MP *v- > NP b-"
+    match: v
+    replace: b
+    env: {left: "#"}
+    description: MP vīst 'twenty' > NP bīst, MP varz 'seed' > NP barz.
+    references: [sadeghi-1978]
+    examples:
+      - {in: "*vīst", out: "*bīst", gloss: "twenty"}
+
+  - id: xw_to_x_initial
+    order: 50
+    name: "Initial MP *xw- > NP x-"
+    match: "x w"
+    replace: x
+    env: {left: "#"}
+    description: >
+      MP xwadāy 'lord' > NP xodā, MP xwēš 'own' > NP xīš: the initial cluster
+      becomes x-.  The rest of xodā is not this rule: the rounding of the short
+      *a and the loss of the final *-y are separate changes this file does not
+      model yet (see the stage description), so the engine gives xadāy, not
+      xodā.
+    references: [sadeghi-1978, korn-2016]
+    examples:
+      - {in: "*xwadāy", out: "*xadāy", gloss: "lord (NP xodā)"}
+
+  - id: final_ih_to_i
+    order: 63
+    name: "MP final *-īh > NP -ī"
+    match: "ī h"
+    replace: ī
+    env: {right: "#"}
+    tier: proposed
+    description: >
+      The abstract-noun suffix -īh loses its final *h: MP xwadāyīh > NP
+      xodāyī, MP pērōzīh > NP pīrūzī, MP garmīh > NP garmī.
+    notes: >
+      Ablation: +2 words (پیروزی, گرمی), none lost.
+    references: [sadeghi-1978]
+    examples:
+      - {in: "xwadāyīh", out: "xwadāyī", gloss: "lordship (NP xodāyi)"}
+
+  - id: stress_not_written
+    order: 90
+    name: "Stress is not written"
+    match: ˈ
+    replace: ""
+    notes: >
+      Notation only: the reconstructed stages carry an accent token, Persian
+      forms in this model are written without it.
+    examples:
+      - {in: "*pitˈā", out: "*pitā", gloss: "father"}

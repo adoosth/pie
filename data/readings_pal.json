@@ -1,0 +1,4972 @@
+{
+ "'n'p't'n'": {
+  "lang": "pal",
+  "reading": "an-abadan",
+  "source": "MacKenzie 1971 s.v. an-abadan",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "'ncyl": {
+  "lang": "pal",
+  "reading": "anjir",
+  "source": "MacKenzie 1971 s.v. anjir",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "-kʾn'": {
+  "lang": "pal",
+  "reading": "-gān",
+  "source": "en.wiktionary.org, Middle Persian \"-kʾn'\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "-𐫁𐫏𐫅": {
+  "lang": "pal",
+  "reading": "-bed",
+  "source": "en.wiktionary.org, Middle Persian \"-𐫁𐫏𐫅\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "-𐭮𐭲𐭭": {
+  "lang": "pal",
+  "reading": "-estān",
+  "source": "en.wiktionary.org, Middle Persian \"-𐭮𐭲𐭭\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "-𐭯𐭲": {
+  "lang": "pal",
+  "reading": "-bed",
+  "source": "en.wiktionary.org, Middle Persian \"-𐭯𐭲\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "-𐭯𐭲𐭩": {
+  "lang": "pal",
+  "reading": "-bed",
+  "source": "en.wiktionary.org, Middle Persian \"-𐭯𐭲𐭩\"",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "ADYN'": {
+  "lang": "pal",
+  "reading": "eg",
+  "source": "MacKenzie 1971 s.v. eg",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "AH": {
+  "lang": "pal",
+  "reading": "xwa",
+  "source": "MacKenzie 1971 s.v. xwa",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "AHRN": {
+  "lang": "pal",
+  "reading": "any",
+  "source": "MacKenzie 1971 s.v. any",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "AN": {
+  "lang": "pal",
+  "reading": "ardo",
+  "source": "MacKenzie 1971 s.v. ardo",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ANBE": {
+  "lang": "pal",
+  "reading": "angur",
+  "source": "MacKenzie 1971 s.v. angur",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "AYŠ": {
+  "lang": "pal",
+  "reading": "kas",
+  "source": "Wiktionary, fa entry \"کس\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "BNPSE": {
+  "lang": "pal",
+  "reading": "xwad",
+  "source": "MacKenzie 1971 s.v. xwad",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "CWLE": {
+  "lang": "pal",
+  "reading": "xgriw",
+  "source": "MacKenzie 1971 s.v. xgriw",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "DKYA": {
+  "lang": "pal",
+  "reading": "pak",
+  "source": "MacKenzie 1971 s.v. pak",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "DWBSYA": {
+  "lang": "pal",
+  "reading": "anguben",
+  "source": "MacKenzie 1971 s.v. anguben",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "GBRA": {
+  "lang": "pal",
+  "reading": "ard",
+  "source": "MacKenzie 1971 s.v. ard",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "HLYA": {
+  "lang": "pal",
+  "reading": "sik",
+  "source": "Wiktionary, fa entry \"سرکه\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "HYA": {
+  "lang": "pal",
+  "reading": "gyan",
+  "source": "MacKenzie 1971 s.v. gyan",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "KALA": {
+  "lang": "pal",
+  "reading": "wang",
+  "source": "MacKenzie 1971 s.v. wang",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "KYNA": {
+  "lang": "pal",
+  "reading": "gōspand",
+  "source": "Wiktionary, fa entry \"گوسفند\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "LHMA": {
+  "lang": "pal",
+  "reading": "nān",
+  "source": "Wiktionary, en entry \"naan\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "LTME": {
+  "lang": "pal",
+  "reading": "edar",
+  "source": "MacKenzie 1971 s.v. edar",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "LWTE": {
+  "lang": "pal",
+  "reading": "abag",
+  "source": "MacKenzie 1971 s.v. abag",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "MRYA": {
+  "lang": "pal",
+  "reading": "saxwan",
+  "source": "MacKenzie 1971 s.v. saxwan",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "QDM": {
+  "lang": "pal",
+  "reading": "Jabar",
+  "source": "MacKenzie 1971 s.v. Jabar",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "SNA": {
+  "lang": "pal",
+  "reading": "uzwan",
+  "source": "MacKenzie 1971 s.v. uzwan",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "SWSYA": {
+  "lang": "pal",
+  "reading": "asp",
+  "source": "MacKenzie 1971 s.v. asp",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "TB": {
+  "lang": "pal",
+  "reading": "new",
+  "source": "MacKenzie 1971 s.v. new",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "TBNA": {
+  "lang": "pal",
+  "reading": "kah",
+  "source": "MacKenzie 1971 s.v. kah",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "TLBA": {
+  "lang": "pal",
+  "reading": "pih",
+  "source": "MacKenzie 1971 s.v. pih",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "TSA": {
+  "lang": "pal",
+  "reading": "no",
+  "source": "MacKenzie 1971 s.v. no",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ZK": {
+  "lang": "pal",
+  "reading": "an",
+  "source": "MacKenzie 1971 s.v. an",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ZZLA": {
+  "lang": "pal",
+  "reading": "wahig",
+  "source": "MacKenzie 1971 s.v. wahig",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "blnc": {
+  "lang": "pal",
+  "reading": "birinj",
+  "source": "MacKenzie 1971 s.v. birinj",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "blwt'": {
+  "lang": "pal",
+  "reading": "balūt",
+  "source": "Wiktionary, fa entry \"بلوط\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "blyštn'": {
+  "lang": "pal",
+  "reading": "brištan",
+  "source": "Wiktionary, fa entry \"برشتن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "bpl": {
+  "lang": "pal",
+  "reading": "urbarra",
+  "source": "MacKenzie 1971 s.v. urbarra",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "bplk'": {
+  "lang": "pal",
+  "reading": "babrag",
+  "source": "MacKenzie 1971 s.v. babrag",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "brʾcytn'": {
+  "lang": "pal",
+  "reading": "brāzidan",
+  "source": "Wiktionary, fa entry \"برازیدن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "bwltn'": {
+  "lang": "pal",
+  "reading": "burtan",
+  "source": "MacKenzie 1971 s.v. burtan",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "bwm": {
+  "lang": "pal",
+  "reading": "bum",
+  "source": "MacKenzie 1971 s.v. bum",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "byk'l": {
+  "lang": "pal",
+  "reading": "bēgār",
+  "source": "Wiktionary, fa entry \"بیگار\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "byk'nk'": {
+  "lang": "pal",
+  "reading": "bēgānag",
+  "source": "Wiktionary, fa entry \"بیگانه\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "bylwn'": {
+  "lang": "pal",
+  "reading": "bērōn",
+  "source": "Wiktionary, fa entry \"بیرون\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "bywl": {
+  "lang": "pal",
+  "reading": "bēwar",
+  "source": "MacKenzie 1971 s.v. bēwar",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "byš": {
+  "lang": "pal",
+  "reading": "bēš",
+  "source": "Wiktionary, sa entry \"द्वेष\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "bʾl": {
+  "lang": "pal",
+  "reading": "bār",
+  "source": "Wiktionary, fa entry \"بار\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "bʾlk'": {
+  "lang": "pal",
+  "reading": "bārag",
+  "source": "MacKenzie 1971 s.v. bārag",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "bʾm": {
+  "lang": "pal",
+  "reading": "bām",
+  "source": "Wiktionary, fa entry \"بام\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "bʾtk'": {
+  "lang": "pal",
+  "reading": "bādag",
+  "source": "Wiktionary, fa entry \"باده\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "b’lk’": {
+  "lang": "pal",
+  "reading": "bālag",
+  "source": "Wiktionary, fa entry \"بال\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "c'twl": {
+  "lang": "pal",
+  "reading": "Cadur",
+  "source": "MacKenzie 1971 s.v. Cadur",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ckwc": {
+  "lang": "pal",
+  "reading": "čakuč",
+  "source": "Wiktionary, fa entry \"چکش\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "clp": {
+  "lang": "pal",
+  "reading": "čarb",
+  "source": "Wiktionary, fa entry \"چرب\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "cndl": {
+  "lang": "pal",
+  "reading": "čandal",
+  "source": "MacKenzie 1971 s.v. čandal",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "cwpkʾn'": {
+  "lang": "pal",
+  "reading": "čōb",
+  "source": "MacKenzie 1971 s.v. čōb",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "cyhl": {
+  "lang": "pal",
+  "reading": "čihr",
+  "source": "Wiktionary, fa entry \"چهر\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "cynʾl": {
+  "lang": "pal",
+  "reading": "inār",
+  "source": "MacKenzie 1971 s.v. inār",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "d'lmn": {
+  "lang": "pal",
+  "reading": "dālman",
+  "source": "Wiktionary, fa entry \"دال\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "dl'-ytn'": {
+  "lang": "pal",
+  "reading": "drāyīdan",
+  "source": "Wiktionary, fa entry \"دراییدن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "dlcyk'": {
+  "lang": "pal",
+  "reading": "darzīg",
+  "source": "Wiktionary, fa entry \"درزی\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "dlgwš": {
+  "lang": "pal",
+  "reading": "daryōš",
+  "source": "MacKenzie 1971 s.v. daryōš",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "dlng'": {
+  "lang": "pal",
+  "reading": "drang",
+  "source": "Wiktionary, fa entry \"درنگ\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "dlpʾs": {
+  "lang": "pal",
+  "reading": "darbās",
+  "source": "Wiktionary, fa entry \"درب\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "dlt'": {
+  "lang": "pal",
+  "reading": "dard",
+  "source": "Wiktionary, fa entry \"درد\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "dltʾwmnd'": {
+  "lang": "pal",
+  "reading": "dardōmand",
+  "source": "Wiktionary, fa entry \"دردمند\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "dlwc": {
+  "lang": "pal",
+  "reading": "druz",
+  "source": "MacKenzie 1971 s.v. druz",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "dlwnd": {
+  "lang": "pal",
+  "reading": "druwand",
+  "source": "MacKenzie 1971 s.v. druwand",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "dmbʾwnd": {
+  "lang": "pal",
+  "reading": "dumbāwand",
+  "source": "Wiktionary, fa entry \"دماوند\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "dpyrstʾn'": {
+  "lang": "pal",
+  "reading": "dibīrestān",
+  "source": "Wiktionary, fa entry \"دبیرستان\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "drwystpt'": {
+  "lang": "pal",
+  "reading": "drustabed",
+  "source": "MacKenzie 1971 s.v. drustabed",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "dwhtn'": {
+  "lang": "pal",
+  "reading": "dōxtan",
+  "source": "Wiktionary, fa entry \"دوختن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "dwlgl": {
+  "lang": "pal",
+  "reading": "durgar",
+  "source": "MacKenzie 1971 s.v. durgar",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "dwslw": {
+  "lang": "pal",
+  "reading": "dusraw",
+  "source": "MacKenzie 1971 s.v. dusraw",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "dwt": {
+  "lang": "pal",
+  "reading": "dud",
+  "source": "MacKenzie 1971 s.v. dud",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "dyk'": {
+  "lang": "pal",
+  "reading": "dēg",
+  "source": "Wiktionary, fa entry \"دیگ\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "dywʾl": {
+  "lang": "pal",
+  "reading": "dēwār",
+  "source": "MacKenzie 1971 s.v. dēwār",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "dywʾn'": {
+  "lang": "pal",
+  "reading": "dēwān",
+  "source": "Wiktionary, en entry \"dewan\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "dštʾn'": {
+  "lang": "pal",
+  "reading": "daštān",
+  "source": "MacKenzie 1971 s.v. daštān",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "dštʾnstʾn'": {
+  "lang": "pal",
+  "reading": "daštānestān",
+  "source": "MacKenzie 1971 s.v. daštānestān",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "dʾyk'": {
+  "lang": "pal",
+  "reading": "dāyag",
+  "source": "Wiktionary, xcl entry \"դայեակ\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "d’n’k'": {
+  "lang": "pal",
+  "reading": "dānāg",
+  "source": "Wiktionary, fa entry \"دانا\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "gc": {
+  "lang": "pal",
+  "reading": "gač",
+  "source": "Wiktionary, grc entry \"γύψος\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "glmpʾk'": {
+  "lang": "pal",
+  "reading": "garmābag",
+  "source": "Wiktionary, fa entry \"گرمابه\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "glptyl": {
+  "lang": "pal",
+  "reading": "griftar",
+  "source": "MacKenzie 1971 s.v. griftar",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "glyh": {
+  "lang": "pal",
+  "reading": "grih",
+  "source": "MacKenzie 1971 s.v. grih",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "glʾn'": {
+  "lang": "pal",
+  "reading": "garān",
+  "source": "Wiktionary, fa entry \"گران\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "gnc": {
+  "lang": "pal",
+  "reading": "ganj",
+  "source": "MacKenzie 1971 s.v. ganj",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "gncg": {
+  "lang": "pal",
+  "reading": "ganzag",
+  "source": "Wiktionary, en entry \"Ganja\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "gnd": {
+  "lang": "pal",
+  "reading": "gand",
+  "source": "MacKenzie 1971 s.v. gand",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "grdmʾn": {
+  "lang": "pal",
+  "reading": "garōdmān",
+  "source": "Wiktionary, fa entry \"گرودمان\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "gryhcg": {
+  "lang": "pal",
+  "reading": "grehčag",
+  "source": "Wiktionary, fa entry \"گریچه\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "gt'": {
+  "lang": "pal",
+  "reading": "gad",
+  "source": "Wiktionary, sa entry \"गदा\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "gtwl": {
+  "lang": "pal",
+  "reading": "gadwar",
+  "source": "MacKenzie 1971 s.v. gadwar",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "gwhl": {
+  "lang": "pal",
+  "reading": "gōhar",
+  "source": "Wiktionary, xcl entry \"գոհար\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "gwkl'-tn'": {
+  "lang": "pal",
+  "reading": "gugārīdan",
+  "source": "Wiktionary, fa entry \"گواشتن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "gwl": {
+  "lang": "pal",
+  "reading": "gul",
+  "source": "MacKenzie 1971 s.v. gul",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "gwlbk": {
+  "lang": "pal",
+  "reading": "gurbag",
+  "source": "MacKenzie 1971 s.v. gurbag",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "gwlg": {
+  "lang": "pal",
+  "reading": "gurg",
+  "source": "MacKenzie 1971 s.v. gurg",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "gwltk’": {
+  "lang": "pal",
+  "reading": "gurdag",
+  "source": "Wiktionary, fa entry \"گرده\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "gwnd": {
+  "lang": "pal",
+  "reading": "gund",
+  "source": "MacKenzie 1971 s.v. gund",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "gwplʾk'": {
+  "lang": "pal",
+  "reading": "gubrāg",
+  "source": "Wiktionary, fa entry \"قبراق\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "gwptn'": {
+  "lang": "pal",
+  "reading": "guftan",
+  "source": "MacKenzie 1971 s.v. guftan",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "gys": {
+  "lang": "pal",
+  "reading": "gēs",
+  "source": "Wiktionary, fa entry \"گیس\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "gyswg": {
+  "lang": "pal",
+  "reading": "gēsūg",
+  "source": "Wiktionary, fa entry \"گیس\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "gyʾg": {
+  "lang": "pal",
+  "reading": "gyāg",
+  "source": "Wiktionary, fa entry \"جا\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "handʾc": {
+  "lang": "pal",
+  "reading": "handāz-",
+  "source": "Wiktionary, fa entry \"مهندس\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "handʾck'": {
+  "lang": "pal",
+  "reading": "handāzag",
+  "source": "Wiktionary, fa entry \"مهندسی\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "hcʾl": {
+  "lang": "pal",
+  "reading": "hazār",
+  "source": "MacKenzie 1971 s.v. hazār",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "hlbwc": {
+  "lang": "pal",
+  "reading": "xarbuz",
+  "source": "MacKenzie 1971 s.v. xarbuz",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "hlbwlc": {
+  "lang": "pal",
+  "reading": "harborz",
+  "source": "Wiktionary, en entry \"Elbrus\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "hmʾk'": {
+  "lang": "pal",
+  "reading": "hamāg",
+  "source": "Wiktionary, fa entry \"همه\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "hndlc": {
+  "lang": "pal",
+  "reading": "handarz",
+  "source": "MacKenzie 1971 s.v. handarz",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "hndwk'": {
+  "lang": "pal",
+  "reading": "hindūg",
+  "source": "Wiktionary, en entry \"Hindu\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "hndwk'ʾn": {
+  "lang": "pal",
+  "reading": "Hindūg",
+  "source": "MacKenzie 1971 s.v. Hindūg",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "hndʾck'": {
+  "lang": "pal",
+  "reading": "handāzag",
+  "source": "Wiktionary, fa entry \"مهندس\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "hndʾhtn'": {
+  "lang": "pal",
+  "reading": "handāxtan",
+  "source": "Wiktionary, fa entry \"مهندس\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "hndʾm": {
+  "lang": "pal",
+  "reading": "handām",
+  "source": "Wiktionary, fa entry \"اندام\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "hp̄dh": {
+  "lang": "pal",
+  "reading": "hafdah",
+  "source": "Wiktionary, fa entry \"هفده\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "hp̄t'": {
+  "lang": "pal",
+  "reading": "haft",
+  "source": "Wiktionary, fa entry \"هفت\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "hwc": {
+  "lang": "pal",
+  "reading": "hūz",
+  "source": "Wiktionary, fa entry \"اهواز\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "hwgl": {
+  "lang": "pal",
+  "reading": "hugar",
+  "source": "MacKenzie 1971 s.v. hugar",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "hwlg": {
+  "lang": "pal",
+  "reading": "xwarg",
+  "source": "MacKenzie 1971 s.v. xwarg",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "hwltyl": {
+  "lang": "pal",
+  "reading": "xwardar",
+  "source": "MacKenzie 1971 s.v. xwardar",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "hwlʾsʾn'": {
+  "lang": "pal",
+  "reading": "xwarāsān",
+  "source": "Wiktionary, en entry \"Khorasan\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "hwm": {
+  "lang": "pal",
+  "reading": "hauma-",
+  "source": "MacKenzie 1971 s.v. hauma-",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "hwmʾy": {
+  "lang": "pal",
+  "reading": "humāy",
+  "source": "Wiktionary, fa entry \"هما\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "hwnl": {
+  "lang": "pal",
+  "reading": "hunar",
+  "source": "MacKenzie 1971 s.v. hunar",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "hwptk": {
+  "lang": "pal",
+  "reading": "xuftag",
+  "source": "Wiktionary, fa entry \"خفته\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "hwtyy": {
+  "lang": "pal",
+  "reading": "xwaday",
+  "source": "MacKenzie 1971 s.v. xwaday",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "hwtʾy": {
+  "lang": "pal",
+  "reading": "xwadāy",
+  "source": "Wiktionary, fa entry \"خدای\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "hwypl": {
+  "lang": "pal",
+  "reading": "xwabar",
+  "source": "MacKenzie 1971 s.v. xwabar",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "hwšng": {
+  "lang": "pal",
+  "reading": "hōšang",
+  "source": "Wiktionary, fa entry \"هوشنگ\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "hwʾb": {
+  "lang": "pal",
+  "reading": "xwāb",
+  "source": "MacKenzie 1971 s.v. xwāb",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "hwʾstn'": {
+  "lang": "pal",
+  "reading": "hāsen",
+  "source": "MacKenzie 1971 s.v. hāsen",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "hylpt'": {
+  "lang": "pal",
+  "reading": "harpat",
+  "source": "MacKenzie 1971 s.v. harpat",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "hštdh": {
+  "lang": "pal",
+  "reading": "haštdah",
+  "source": "Wiktionary, fa entry \"هجده\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "hʾmwn'": {
+  "lang": "pal",
+  "reading": "hāmōn",
+  "source": "Wiktionary, fa entry \"هامون\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "hʾmwš": {
+  "lang": "pal",
+  "reading": "xāmōš",
+  "source": "Wiktionary, fa entry \"خاموش\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "hʾn'": {
+  "lang": "pal",
+  "reading": "xānag",
+  "source": "MacKenzie 1971 s.v. xānag",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "k'": {
+  "lang": "pal",
+  "reading": "-ag",
+  "source": "Wiktionary, fa entry \"ـه\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "klmʾn": {
+  "lang": "pal",
+  "reading": "kermān",
+  "source": "Wiktionary, fa entry \"کرمان\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "klp": {
+  "lang": "pal",
+  "reading": "kirb",
+  "source": "Wiktionary, fa entry \"کلبه\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "kltk'": {
+  "lang": "pal",
+  "reading": "kard",
+  "source": "MacKenzie 1971 s.v. kard",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "kntn'": {
+  "lang": "pal",
+  "reading": "kantan",
+  "source": "Wiktionary, fa entry \"کندن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "kp": {
+  "lang": "pal",
+  "reading": "kaf",
+  "source": "MacKenzie 1971 s.v. kaf",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "kpwt'": {
+  "lang": "pal",
+  "reading": "kabōd",
+  "source": "Wiktionary, fa entry \"کبود\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "kpwtl": {
+  "lang": "pal",
+  "reading": "kabotar",
+  "source": "MacKenzie 1971 s.v. kabotar",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "kpyc": {
+  "lang": "pal",
+  "reading": "kabiz",
+  "source": "MacKenzie 1971 s.v. kabiz",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "kpš": {
+  "lang": "pal",
+  "reading": "kafš",
+  "source": "Wiktionary, fa entry \"کفش\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "kpʾh": {
+  "lang": "pal",
+  "reading": "kabāh",
+  "source": "Wiktionary, de entry \"Caban\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ktkhwtʿy": {
+  "lang": "pal",
+  "reading": "kadagxwadāy",
+  "source": "MacKenzie 1971 s.v. kadagxwadāy",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "kwlʾp̄k'": {
+  "lang": "pal",
+  "reading": "kulāfak",
+  "source": "Wiktionary, en entry \"calpack\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "kwšk'": {
+  "lang": "pal",
+  "reading": "guše",
+  "source": "MacKenzie 1971 s.v. guše",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "kwʾt": {
+  "lang": "pal",
+  "reading": "Kawād",
+  "source": "en.wiktionary.org, Middle Persian \"kwʾt\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "kywʾn'": {
+  "lang": "pal",
+  "reading": "kēwān",
+  "source": "MacKenzie 1971 s.v. kēwān",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "kš": {
+  "lang": "pal",
+  "reading": "kaš",
+  "source": "Wiktionary, fa entry \"اسپرم‌کش\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "kʾc": {
+  "lang": "pal",
+  "reading": "kāč",
+  "source": "Wiktionary, fa entry \"کاش\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "kʾkwm": {
+  "lang": "pal",
+  "reading": "kākom",
+  "source": "MacKenzie 1971 s.v. kākom",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "kʾlwʾn'": {
+  "lang": "pal",
+  "reading": "kārawān",
+  "source": "Wiktionary, en entry \"caravan\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "kʾlwʾnyk'": {
+  "lang": "pal",
+  "reading": "kārawānīg",
+  "source": "en.wiktionary.org, Middle Persian \"kʾlwʾnyk'\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "kʾlycʾl": {
+  "lang": "pal",
+  "reading": "kārzār",
+  "source": "Wiktionary, fa entry \"کارزار\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "kʾpwl": {
+  "lang": "pal",
+  "reading": "kābul",
+  "source": "en.wiktionary.org, Middle Persian \"kʾpwl\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "lcm": {
+  "lang": "pal",
+  "reading": "razm",
+  "source": "Wiktionary, fa entry \"رزم\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "lk'": {
+  "lang": "pal",
+  "reading": "rag",
+  "source": "Wiktionary, fa entry \"رگ\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "lmk'": {
+  "lang": "pal",
+  "reading": "ramag",
+  "source": "Wiktionary, fa entry \"رمه\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "lng": {
+  "lang": "pal",
+  "reading": "rang",
+  "source": "MacKenzie 1971 s.v. rang",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "lsn'": {
+  "lang": "pal",
+  "reading": "rasan",
+  "source": "Wiktionary, sa entry \"रश्मि\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ltg'": {
+  "lang": "pal",
+  "reading": "radag",
+  "source": "Wiktionary, fa entry \"رده\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "lwc": {
+  "lang": "pal",
+  "reading": "rōz",
+  "source": "MacKenzie 1971 s.v. rōz",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "lwcyk'": {
+  "lang": "pal",
+  "reading": "rōzīg",
+  "source": "MacKenzie 1971 s.v. rōzīg",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "lwd": {
+  "lang": "pal",
+  "reading": "rōd",
+  "source": "Wiktionary, fa entry \"رود\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "lwlk'": {
+  "lang": "pal",
+  "reading": "rūrag",
+  "source": "Wiktionary, fa entry \"لوله\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "lwpʾh": {
+  "lang": "pal",
+  "reading": "rōbāh",
+  "source": "MacKenzie 1971 s.v. rōbāh",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "lwtbʾl": {
+  "lang": "pal",
+  "reading": "rōd-bār",
+  "source": "Wiktionary, fa entry \"رودبار\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "lwtsthm": {
+  "lang": "pal",
+  "reading": "rōdstahm",
+  "source": "Wiktionary, fa entry \"رستم\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "lwšn'": {
+  "lang": "pal",
+  "reading": "rōšn",
+  "source": "MacKenzie 1971 s.v. rōšn",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "lytk'": {
+  "lang": "pal",
+  "reading": "rēdak",
+  "source": "Wiktionary, fa entry \"ریدک\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "lyš": {
+  "lang": "pal",
+  "reading": "rēš",
+  "source": "Wiktionary, fa entry \"ریش\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "lškl": {
+  "lang": "pal",
+  "reading": "laškar",
+  "source": "MacKenzie 1971 s.v. laškar",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "lšn": {
+  "lang": "pal",
+  "reading": "rašn",
+  "source": "Wiktionary, fa entry \"رشن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "lʾc": {
+  "lang": "pal",
+  "reading": "rāz",
+  "source": "Wiktionary, fa entry \"راز\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "m'rspnd": {
+  "lang": "pal",
+  "reading": "Maraspand",
+  "source": "MacKenzie 1971 s.v. Maraspand",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "mlgʾlcʾn'": {
+  "lang": "pal",
+  "reading": "margarzān",
+  "source": "en.wiktionary.org, Middle Persian \"mlgʾlcʾn'\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "mstgr": {
+  "lang": "pal",
+  "reading": "mastgar",
+  "source": "Wiktionary, fa entry \"سکر\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "mstlg": {
+  "lang": "pal",
+  "reading": "mastarg",
+  "source": "MacKenzie 1971 s.v. mastarg",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "mwck'": {
+  "lang": "pal",
+  "reading": "mōzag",
+  "source": "Wiktionary, fa entry \"موزه\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "mwšk'": {
+  "lang": "pal",
+  "reading": "mušk",
+  "source": "Wiktionary, fa entry \"مشک\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "mwšt'": {
+  "lang": "pal",
+  "reading": "mušt",
+  "source": "Wiktionary, sa entry \"मुष्टि\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "myh": {
+  "lang": "pal",
+  "reading": "mēx",
+  "source": "MacKenzie 1971 s.v. mēx",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "myhn'": {
+  "lang": "pal",
+  "reading": "mēhan",
+  "source": "MacKenzie 1971 s.v. mēhan",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "mšk'": {
+  "lang": "pal",
+  "reading": "mašk",
+  "source": "Wiktionary, fa entry \"مشک\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "nh'l": {
+  "lang": "pal",
+  "reading": "nihal",
+  "source": "MacKenzie 1971 s.v. nihal",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "nkyc": {
+  "lang": "pal",
+  "reading": "nigez",
+  "source": "MacKenzie 1971 s.v. nigez",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "nmk'": {
+  "lang": "pal",
+  "reading": "namak",
+  "source": "MacKenzie 1971 s.v. namak",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "npštn'": {
+  "lang": "pal",
+  "reading": "nibištan",
+  "source": "Wiktionary, fa entry \"نوشتن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "nrymʾn": {
+  "lang": "pal",
+  "reading": "narēmān",
+  "source": "Wiktionary, fa entry \"نریمان\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "nyck": {
+  "lang": "pal",
+  "reading": "nezag",
+  "source": "MacKenzie 1971 s.v. nezag",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "nyh’dg": {
+  "lang": "pal",
+  "reading": "nihādag",
+  "source": "Wiktionary, fa entry \"نهاد\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "nyl": {
+  "lang": "pal",
+  "reading": "nil",
+  "source": "MacKenzie 1971 s.v. nil",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "nylng": {
+  "lang": "pal",
+  "reading": "nerang",
+  "source": "MacKenzie 1971 s.v. nerang",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "nymrwc": {
+  "lang": "pal",
+  "reading": "nēmrōz",
+  "source": "Wiktionary, fa entry \"نیمروز\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "nywʾlthšyl": {
+  "lang": "pal",
+  "reading": "nēw",
+  "source": "MacKenzie 1971 s.v. nēw",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "nyšʾn'": {
+  "lang": "pal",
+  "reading": "nīšān",
+  "source": "MacKenzie 1971 s.v. nīšān",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "nyʾg": {
+  "lang": "pal",
+  "reading": "niyāg",
+  "source": "Wiktionary, fa entry \"نیا\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "nz'l": {
+  "lang": "pal",
+  "reading": "nizar",
+  "source": "MacKenzie 1971 s.v. nizar",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "nzd": {
+  "lang": "pal",
+  "reading": "nazd",
+  "source": "MacKenzie 1971 s.v. nazd",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "nzʾl": {
+  "lang": "pal",
+  "reading": "nizār",
+  "source": "Wiktionary, xcl entry \"նիհար\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "nšstn'": {
+  "lang": "pal",
+  "reading": "nišastan",
+  "source": "Wiktionary, fa entry \"نشستن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "nʾn": {
+  "lang": "pal",
+  "reading": "nān",
+  "source": "en.wiktionary.org, Middle Persian \"nʾn\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "nʾn'": {
+  "lang": "pal",
+  "reading": "nān",
+  "source": "en.wiktionary.org, Middle Persian \"nʾn'\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "nʾw": {
+  "lang": "pal",
+  "reading": "nāw",
+  "source": "Wiktionary, fa entry \"ناو\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "p'hlyc": {
+  "lang": "pal",
+  "reading": "pahrez",
+  "source": "MacKenzie 1971 s.v. pahrez",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "p'ncdh": {
+  "lang": "pal",
+  "reading": "panzdah",
+  "source": "MacKenzie 1971 s.v. panzdah",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "p'tzhl": {
+  "lang": "pal",
+  "reading": "padzahr",
+  "source": "MacKenzie 1971 s.v. padzahr",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "pcyn'": {
+  "lang": "pal",
+  "reading": "pačīn",
+  "source": "MacKenzie 1971 s.v. pačīn",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "pd": {
+  "lang": "pal",
+  "reading": "pad",
+  "source": "Wiktionary, fa entry \"پنداشتن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "pkynk'": {
+  "lang": "pal",
+  "reading": "abgenag",
+  "source": "MacKenzie 1971 s.v. abgenag",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "plstytn'": {
+  "lang": "pal",
+  "reading": "paristīdan",
+  "source": "Wiktionary, fa entry \"پرستیدن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "pltk'": {
+  "lang": "pal",
+  "reading": "pardag",
+  "source": "Wiktionary, fa entry \"پرده\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "plwhtn'": {
+  "lang": "pal",
+  "reading": "frōxtan",
+  "source": "Wiktionary, fa entry \"فروختن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "plwl-tn'": {
+  "lang": "pal",
+  "reading": "parwardan",
+  "source": "Wiktionary, fa entry \"پروردن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "plwst'": {
+  "lang": "pal",
+  "reading": "parwast",
+  "source": "Wiktionary, fa entry \"پرواس\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "plwyhl": {
+  "lang": "pal",
+  "reading": "frawahr",
+  "source": "MacKenzie 1971 s.v. frawahr",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "plwʾnk'": {
+  "lang": "pal",
+  "reading": "parwānqā",
+  "source": "MacKenzie 1971 s.v. parwānqā",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "plyp": {
+  "lang": "pal",
+  "reading": "freb",
+  "source": "MacKenzie 1971 s.v. freb",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "plystk'": {
+  "lang": "pal",
+  "reading": "frēstag",
+  "source": "Wiktionary, fa entry \"فرشته\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "plytwn'": {
+  "lang": "pal",
+  "reading": "frēdōn",
+  "source": "Wiktionary, fa entry \"فریدون\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "plʾhng": {
+  "lang": "pal",
+  "reading": "frahang",
+  "source": "Wiktionary, fa entry \"فرهنگ\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "plʾhngstʾn'": {
+  "lang": "pal",
+  "reading": "frahangestān",
+  "source": "Wiktionary, fa entry \"فرهنگستان\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "pnd": {
+  "lang": "pal",
+  "reading": "pand",
+  "source": "MacKenzie 1971 s.v. pand",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "pndk'": {
+  "lang": "pal",
+  "reading": "pondik",
+  "source": "Wiktionary, fa entry \"پندک\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "pnyl": {
+  "lang": "pal",
+  "reading": "panīr",
+  "source": "MacKenzie 1971 s.v. panīr",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "pnʾh": {
+  "lang": "pal",
+  "reading": "panāh",
+  "source": "MacKenzie 1971 s.v. panāh",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "pr'c": {
+  "lang": "pal",
+  "reading": "fraz",
+  "source": "MacKenzie 1971 s.v. fraz",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "pstk'": {
+  "lang": "pal",
+  "reading": "pistag",
+  "source": "Wiktionary, el entry \"φιστίκι\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "pt'": {
+  "lang": "pal",
+  "reading": "-bed",
+  "source": "Wiktionary, fa entry \"ـبد\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "pwst'": {
+  "lang": "pal",
+  "reading": "pōst",
+  "source": "Wiktionary, fa entry \"پوست\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "pwtk'": {
+  "lang": "pal",
+  "reading": "pūdag",
+  "source": "Wiktionary, fa entry \"پوده\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "pwšytn'": {
+  "lang": "pal",
+  "reading": "pōšīdan",
+  "source": "Wiktionary, fa entry \"پوشیدن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "pyk": {
+  "lang": "pal",
+  "reading": "abig",
+  "source": "MacKenzie 1971 s.v. abig",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "pyl": {
+  "lang": "pal",
+  "reading": "pil",
+  "source": "MacKenzie 1971 s.v. pil",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "pyws": {
+  "lang": "pal",
+  "reading": "payōs-",
+  "source": "Wiktionary, fa entry \"پیوسیدن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "pyšk'": {
+  "lang": "pal",
+  "reading": "pēšag",
+  "source": "Wiktionary, fa entry \"پیشه\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "pšmyn'": {
+  "lang": "pal",
+  "reading": "pašmēn",
+  "source": "Wiktionary, fa entry \"پشمین\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "pštk'": {
+  "lang": "pal",
+  "reading": "paštag",
+  "source": "Wiktionary, fa entry \"پته\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "pʾcnd": {
+  "lang": "pal",
+  "reading": "pāzand",
+  "source": "Wiktionary, en entry \"Pazend\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "pʾcyn": {
+  "lang": "pal",
+  "reading": "pāzen",
+  "source": "Wiktionary, fa entry \"پازن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "pʾcyšn": {
+  "lang": "pal",
+  "reading": "pāzišn",
+  "source": "Wiktionary, fa entry \"پازش\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "pʾls": {
+  "lang": "pal",
+  "reading": "pārs",
+  "source": "Wiktionary, en entry \"Farsi\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "pʾlsyk'": {
+  "lang": "pal",
+  "reading": "pārsīg",
+  "source": "Wiktionary, en entry \"Farsi\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "pʾlwtn'": {
+  "lang": "pal",
+  "reading": "pālūdan",
+  "source": "Wiktionary, fa entry \"پالودن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "pʾtzhl": {
+  "lang": "pal",
+  "reading": "pādzahr",
+  "source": "MacKenzie 1971 s.v. pādzahr",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "scʾk": {
+  "lang": "pal",
+  "reading": "sazāg",
+  "source": "Wiktionary, fa entry \"سزا\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "slt'": {
+  "lang": "pal",
+  "reading": "sard",
+  "source": "Wiktionary, fa entry \"سرد\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "sltsyl": {
+  "lang": "pal",
+  "reading": "sardser",
+  "source": "MacKenzie 1971 s.v. sardser",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "slw": {
+  "lang": "pal",
+  "reading": "sarw",
+  "source": "MacKenzie 1971 s.v. sarw",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "slwt'": {
+  "lang": "pal",
+  "reading": "srōd",
+  "source": "Wiktionary, fa entry \"سرود\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "slwtn'": {
+  "lang": "pal",
+  "reading": "srūdan",
+  "source": "Wiktionary, fa entry \"سرودن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "slwš": {
+  "lang": "pal",
+  "reading": "srōš",
+  "source": "Wiktionary, fa entry \"سروش\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "smwl": {
+  "lang": "pal",
+  "reading": "simore",
+  "source": "MacKenzie 1971 s.v. simore",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "sng": {
+  "lang": "pal",
+  "reading": "sang",
+  "source": "MacKenzie 1971 s.v. sang",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "sp'hl": {
+  "lang": "pal",
+  "reading": "spaxr",
+  "source": "MacKenzie 1971 s.v. spaxr",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "sp'sd'l": {
+  "lang": "pal",
+  "reading": "spas-dar",
+  "source": "MacKenzie 1971 s.v. spas-dar",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "spl": {
+  "lang": "pal",
+  "reading": "spar",
+  "source": "Wiktionary, fa entry \"سپر\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "splz": {
+  "lang": "pal",
+  "reading": "spurz",
+  "source": "MacKenzie 1971 s.v. spurz",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "spnc'nkyh": {
+  "lang": "pal",
+  "reading": "spinjanagih",
+  "source": "MacKenzie 1971 s.v. spinjanagih",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "spndrmt’": {
+  "lang": "pal",
+  "reading": "spandarmad",
+  "source": "Wiktionary, fa entry \"اسفند\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "spwc": {
+  "lang": "pal",
+  "reading": "spoz",
+  "source": "MacKenzie 1971 s.v. spoz",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "spwl": {
+  "lang": "pal",
+  "reading": "spul",
+  "source": "MacKenzie 1971 s.v. spul",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "spyt": {
+  "lang": "pal",
+  "reading": "sped",
+  "source": "MacKenzie 1971 s.v. sped",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "spzg": {
+  "lang": "pal",
+  "reading": "spazg",
+  "source": "MacKenzie 1971 s.v. spazg",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "srg": {
+  "lang": "pal",
+  "reading": "sarag",
+  "source": "Wiktionary, fa entry \"سره\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "stpl": {
+  "lang": "pal",
+  "reading": "stabr",
+  "source": "MacKenzie 1971 s.v. stabr",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "stwl": {
+  "lang": "pal",
+  "reading": "stōr",
+  "source": "Wiktionary, fa entry \"ستور\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "stwn'": {
+  "lang": "pal",
+  "reading": "stūn",
+  "source": "Wiktionary, fa entry \"استوانه\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "stwtn'": {
+  "lang": "pal",
+  "reading": "stūdan",
+  "source": "Wiktionary, fa entry \"ستودن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "styl": {
+  "lang": "pal",
+  "reading": "ster",
+  "source": "MacKenzie 1971 s.v. ster",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "stʾn'": {
+  "lang": "pal",
+  "reading": "-estān",
+  "source": "Wiktionary, en entry \"-stan\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "swk'": {
+  "lang": "pal",
+  "reading": "sōg",
+  "source": "Wiktionary, fa entry \"سو\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "swknd": {
+  "lang": "pal",
+  "reading": "sōgand",
+  "source": "Wiktionary, fa entry \"سوگند\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "swl": {
+  "lang": "pal",
+  "reading": "sūr",
+  "source": "Wiktionary, sa entry \"शूर\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "syc": {
+  "lang": "pal",
+  "reading": "sej",
+  "source": "MacKenzie 1971 s.v. sej",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "syn-mwlw": {
+  "lang": "pal",
+  "reading": "sēn-murw",
+  "source": "Wiktionary, sa entry \"श्येन\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "systyl": {
+  "lang": "pal",
+  "reading": "sastar",
+  "source": "MacKenzie 1971 s.v. sastar",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "sʾk": {
+  "lang": "pal",
+  "reading": "sāg",
+  "source": "Wiktionary, fa entry \"ساو\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "sʾmʾn'": {
+  "lang": "pal",
+  "reading": "sāmān",
+  "source": "Wiktionary, fa entry \"سامان\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "s’htn'": {
+  "lang": "pal",
+  "reading": "sāxtan",
+  "source": "Wiktionary, fa entry \"ساختن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "tgrg": {
+  "lang": "pal",
+  "reading": "tagarg",
+  "source": "Wiktionary, fa entry \"تگرگ\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "tk'": {
+  "lang": "pal",
+  "reading": "tag",
+  "source": "Wiktionary, fa entry \"تک\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "tklg": {
+  "lang": "pal",
+  "reading": "tagarg",
+  "source": "Wiktionary, fa entry \"تگرگ\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "tlgmʾn'": {
+  "lang": "pal",
+  "reading": "targumān",
+  "source": "Wiktionary, fa entry \"ترگمان\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "tlwʾr": {
+  "lang": "pal",
+  "reading": "talawār",
+  "source": "Wiktionary, fa entry \"تالار\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "tn'": {
+  "lang": "pal",
+  "reading": "tanū-",
+  "source": "MacKenzie 1971 s.v. tanū-",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "tn'yhʾ": {
+  "lang": "pal",
+  "reading": "tanīhā",
+  "source": "Wiktionary, fa entry \"تنها\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "tn'ʾwmnd": {
+  "lang": "pal",
+  "reading": "tanōmand",
+  "source": "Wiktionary, fa entry \"تنومند\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "trkwmʾn": {
+  "lang": "pal",
+  "reading": "tarkumān",
+  "source": "Wiktionary, fa entry \"ترگمان\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "twhyg": {
+  "lang": "pal",
+  "reading": "tuhīg",
+  "source": "Wiktionary, fa entry \"تهی\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "twlk'": {
+  "lang": "pal",
+  "reading": "turk",
+  "source": "Wiktionary, la entry \"Turcus\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "twnd": {
+  "lang": "pal",
+  "reading": "tund",
+  "source": "MacKenzie 1971 s.v. tund",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "tšt'": {
+  "lang": "pal",
+  "reading": "tašt",
+  "source": "MacKenzie 1971 s.v. tašt",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "tʾc-": {
+  "lang": "pal",
+  "reading": "tāz-",
+  "source": "en.wiktionary.org, Middle Persian \"tʾc-\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "tʾht'": {
+  "lang": "pal",
+  "reading": "taxt",
+  "source": "MacKenzie 1971 s.v. taxt",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "tʾhtk'": {
+  "lang": "pal",
+  "reading": "taxtag",
+  "source": "Wiktionary, fa entry \"تخته\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "tʾhtn'": {
+  "lang": "pal",
+  "reading": "tāxtan",
+  "source": "Wiktionary, pal entry \"ʾsplys\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "tʾk": {
+  "lang": "pal",
+  "reading": "tāg",
+  "source": "Wiktionary, fa entry \"تک\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "tʾp̄k'": {
+  "lang": "pal",
+  "reading": "tābag",
+  "source": "Wiktionary, fa entry \"تاوه\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "tʾšytn'": {
+  "lang": "pal",
+  "reading": "tāšīdan",
+  "source": "Wiktionary, xcl entry \"տաշեմ\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "t’hl’": {
+  "lang": "pal",
+  "reading": "taxl",
+  "source": "Wiktionary, fa entry \"تلخ\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "w'spwhl": {
+  "lang": "pal",
+  "reading": "waspuhr",
+  "source": "MacKenzie 1971 s.v. waspuhr",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "w'stlyws": {
+  "lang": "pal",
+  "reading": "wastaryoS",
+  "source": "MacKenzie 1971 s.v. wastaryoS",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "wc'l": {
+  "lang": "pal",
+  "reading": "wizar",
+  "source": "MacKenzie 1971 s.v. wizar",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "whswl": {
+  "lang": "pal",
+  "reading": "waxSwar",
+  "source": "MacKenzie 1971 s.v. waxSwar",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "whʾl": {
+  "lang": "pal",
+  "reading": "wahār",
+  "source": "Wiktionary, fa entry \"بهار\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "wlc": {
+  "lang": "pal",
+  "reading": "warz",
+  "source": "Wiktionary, fa entry \"برز\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "wlc'wnd": {
+  "lang": "pal",
+  "reading": "warzawand",
+  "source": "MacKenzie 1971 s.v. warzawand",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "wlcykl": {
+  "lang": "pal",
+  "reading": "warzīgar",
+  "source": "Wiktionary, fa entry \"برزگر\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "wlg": {
+  "lang": "pal",
+  "reading": "burg",
+  "source": "MacKenzie 1971 s.v. burg",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "wlm": {
+  "lang": "pal",
+  "reading": "warm",
+  "source": "Wiktionary, fa entry \"برم\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "wlnd": {
+  "lang": "pal",
+  "reading": "buland",
+  "source": "MacKenzie 1971 s.v. buland",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "wn'": {
+  "lang": "pal",
+  "reading": "bīna",
+  "source": "MacKenzie 1971 s.v. bīna",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "wncšk'": {
+  "lang": "pal",
+  "reading": "winjišk",
+  "source": "Wiktionary, fa entry \"گنجشک\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "wndk'": {
+  "lang": "pal",
+  "reading": "wandag",
+  "source": "Wiktionary, fa entry \"فندک\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "wndʾtn'": {
+  "lang": "pal",
+  "reading": "windādan",
+  "source": "MacKenzie 1971 s.v. windādan",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "wnnd": {
+  "lang": "pal",
+  "reading": "Wanand",
+  "source": "MacKenzie 1971 s.v. Wanand",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "wnpšk'": {
+  "lang": "pal",
+  "reading": "banāte",
+  "source": "MacKenzie 1971 s.v. banāte",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "wp": {
+  "lang": "pal",
+  "reading": "buf",
+  "source": "MacKenzie 1971 s.v. buf",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "wpl": {
+  "lang": "pal",
+  "reading": "wafr",
+  "source": "MacKenzie 1971 s.v. wafr",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ws": {
+  "lang": "pal",
+  "reading": "was",
+  "source": "Wiktionary, fa entry \"بس\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "wstltn'": {
+  "lang": "pal",
+  "reading": "wistardan",
+  "source": "Wiktionary, fa entry \"گستردن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "wyc": {
+  "lang": "pal",
+  "reading": "wēz-",
+  "source": "Wiktionary, fa entry \"جابیز\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "wycyl": {
+  "lang": "pal",
+  "reading": "wazar",
+  "source": "MacKenzie 1971 s.v. wazar",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "wyhyc": {
+  "lang": "pal",
+  "reading": "wihēz-",
+  "source": "Wiktionary, fa entry \"جابیز\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "wym": {
+  "lang": "pal",
+  "reading": "wēm",
+  "source": "Wiktionary, fa entry \"ویم\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "wymʾl": {
+  "lang": "pal",
+  "reading": "wēmār",
+  "source": "MacKenzie 1971 s.v. wēmār",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "wymʾlstʾn": {
+  "lang": "pal",
+  "reading": "wēmārestān",
+  "source": "MacKenzie 1971 s.v. wēmārestān",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "wypl": {
+  "lang": "pal",
+  "reading": "wabar",
+  "source": "MacKenzie 1971 s.v. wabar",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "wystl": {
+  "lang": "pal",
+  "reading": "wiistar",
+  "source": "MacKenzie 1971 s.v. wiistar",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "wytlng": {
+  "lang": "pal",
+  "reading": "wadrang",
+  "source": "MacKenzie 1971 s.v. wadrang",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "wʾcʾlpt": {
+  "lang": "pal",
+  "reading": "wāzārbed",
+  "source": "en.wiktionary.org, Middle Persian \"wʾcʾlpt\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "wʾnytn'": {
+  "lang": "pal",
+  "reading": "wānīdan",
+  "source": "Wiktionary, xcl entry \"գուն\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "wʾtpʾn'": {
+  "lang": "pal",
+  "reading": "wādbān",
+  "source": "Wiktionary, fa entry \"بادبان\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "wʾtʾm": {
+  "lang": "pal",
+  "reading": "wādām",
+  "source": "Wiktionary, en entry \"badam\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "wʾčʾl": {
+  "lang": "pal",
+  "reading": "wāzār",
+  "source": "Wiktionary, fa entry \"بازار\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "wʾčʾlkʾn'": {
+  "lang": "pal",
+  "reading": "wāzāragān",
+  "source": "Wiktionary, fa entry \"بازرگان\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "wʾčʾlpt": {
+  "lang": "pal",
+  "reading": "wāzārbed",
+  "source": "en.wiktionary.org, Middle Persian \"wʾčʾlpt\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "wʾš": {
+  "lang": "pal",
+  "reading": "wāš",
+  "source": "Wiktionary, fa entry \"واش\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "yhlw": {
+  "lang": "pal",
+  "reading": "ahlaw",
+  "source": "MacKenzie 1971 s.v. ahlaw",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "yhng": {
+  "lang": "pal",
+  "reading": "ahang",
+  "source": "MacKenzie 1971 s.v. ahang",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "yk'": {
+  "lang": "pal",
+  "reading": "-īg",
+  "source": "Wiktionary, en entry \"Farsi\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ylcyc": {
+  "lang": "pal",
+  "reading": "arziz",
+  "source": "MacKenzie 1971 s.v. arziz",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ylcyn": {
+  "lang": "pal",
+  "reading": "arzan",
+  "source": "MacKenzie 1971 s.v. arzan",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "yltyy": {
+  "lang": "pal",
+  "reading": "arda",
+  "source": "MacKenzie 1971 s.v. arda",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ylwnd": {
+  "lang": "pal",
+  "reading": "arwand",
+  "source": "MacKenzie 1971 s.v. arwand",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ylzwl": {
+  "lang": "pal",
+  "reading": "Arzur",
+  "source": "MacKenzie 1971 s.v. Arzur",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ynd": {
+  "lang": "pal",
+  "reading": "and",
+  "source": "MacKenzie 1971 s.v. and",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "yndk'": {
+  "lang": "pal",
+  "reading": "andak",
+  "source": "MacKenzie 1971 s.v. andak",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "yndlg": {
+  "lang": "pal",
+  "reading": "andarag",
+  "source": "MacKenzie 1971 s.v. andarag",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "yngl": {
+  "lang": "pal",
+  "reading": "anagr",
+  "source": "MacKenzie 1971 s.v. anagr",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ynyl": {
+  "lang": "pal",
+  "reading": "anar",
+  "source": "MacKenzie 1971 s.v. anar",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ynyy": {
+  "lang": "pal",
+  "reading": "enya",
+  "source": "MacKenzie 1971 s.v. enya",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ynyylng": {
+  "lang": "pal",
+  "reading": "an-erang",
+  "source": "MacKenzie 1971 s.v. an-erang",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "yplng": {
+  "lang": "pal",
+  "reading": "abrang",
+  "source": "MacKenzie 1971 s.v. abrang",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "yplyc": {
+  "lang": "pal",
+  "reading": "abraz",
+  "source": "MacKenzie 1971 s.v. abraz",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ypnws": {
+  "lang": "pal",
+  "reading": "abnus",
+  "source": "MacKenzie 1971 s.v. abnus",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ypws": {
+  "lang": "pal",
+  "reading": "abus",
+  "source": "MacKenzie 1971 s.v. abus",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ysplys": {
+  "lang": "pal",
+  "reading": "aspres",
+  "source": "MacKenzie 1971 s.v. aspres",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "yspnc": {
+  "lang": "pal",
+  "reading": "aspinj",
+  "source": "MacKenzie 1971 s.v. aspinj",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "yspynwl": {
+  "lang": "pal",
+  "reading": "aspanur",
+  "source": "MacKenzie 1971 s.v. aspanur",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ystyl": {
+  "lang": "pal",
+  "reading": "astar",
+  "source": "MacKenzie 1971 s.v. astar",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ywc": {
+  "lang": "pal",
+  "reading": "yuxtan",
+  "source": "MacKenzie 1971 s.v. yuxtan",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ywkyl": {
+  "lang": "pal",
+  "reading": "ogar",
+  "source": "MacKenzie 1971 s.v. ogar",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "yylng": {
+  "lang": "pal",
+  "reading": "erang",
+  "source": "MacKenzie 1971 s.v. erang",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "yšt'": {
+  "lang": "pal",
+  "reading": "yašt",
+  "source": "Wiktionary, en entry \"yasht\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "yʾknd": {
+  "lang": "pal",
+  "reading": "yākand",
+  "source": "MacKenzie 1971 s.v. yākand",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "yʾsmn'": {
+  "lang": "pal",
+  "reading": "yāsaman",
+  "source": "Wiktionary, en entry \"Jasmine\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "yḥ": {
+  "lang": "pal",
+  "reading": "īh",
+  "source": "Wiktionary, en entry \"-i\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "yẕdʾn'": {
+  "lang": "pal",
+  "reading": "yazdān",
+  "source": "MacKenzie 1971 s.v. yazdān",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "zlgwn'": {
+  "lang": "pal",
+  "reading": "zargōn",
+  "source": "Wiktionary, en entry \"zircon\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "zlyh": {
+  "lang": "pal",
+  "reading": "zrēh",
+  "source": "Wiktionary, fa entry \"زراه\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "zmyk'": {
+  "lang": "pal",
+  "reading": "zamīg",
+  "source": "Wiktionary, fa entry \"زمین\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "znd": {
+  "lang": "pal",
+  "reading": "zand",
+  "source": "Wiktionary, en entry \"Zend\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "zndyk'": {
+  "lang": "pal",
+  "reading": "zandīk",
+  "source": "MacKenzie 1971 s.v. zandīk",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "zngyk'": {
+  "lang": "pal",
+  "reading": "zangīg",
+  "source": "Wiktionary, fa entry \"زنگی\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "zwl": {
+  "lang": "pal",
+  "reading": "zōr",
+  "source": "Wiktionary, xcl entry \"զօր\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "zwzk'": {
+  "lang": "pal",
+  "reading": "zūzag",
+  "source": "Wiktionary, sa entry \"जहका\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "zyh": {
+  "lang": "pal",
+  "reading": "zīh",
+  "source": "MacKenzie 1971 s.v. zīh",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "zynʾp̄cʾl": {
+  "lang": "pal",
+  "reading": "zēn-abzār",
+  "source": "MacKenzie 1971 s.v. zēn-abzār",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "zʾhl": {
+  "lang": "pal",
+  "reading": "zahr",
+  "source": "Wiktionary, fa entry \"زهر\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "zʾtk'": {
+  "lang": "pal",
+  "reading": "zādag",
+  "source": "Wiktionary, fa entry \"زاده\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ŠM": {
+  "lang": "pal",
+  "reading": "nām",
+  "source": "Wiktionary, fa entry \"نام\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ŠNT": {
+  "lang": "pal",
+  "reading": "sāl",
+  "source": "Wiktionary, fa entry \"پارسال\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "šhdʾnk'": {
+  "lang": "pal",
+  "reading": "šahdānag",
+  "source": "MacKenzie 1971 s.v. šahdānag",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "škpt'": {
+  "lang": "pal",
+  "reading": "škaft",
+  "source": "Wiktionary, fa entry \"اشکفت\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "škstn'": {
+  "lang": "pal",
+  "reading": "škastan",
+  "source": "Wiktionary, fa entry \"شکستن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "šmn": {
+  "lang": "pal",
+  "reading": "šaman",
+  "source": "Wiktionary, fa entry \"شمن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "šnwhl": {
+  "lang": "pal",
+  "reading": "šenidan",
+  "source": "MacKenzie 1971 s.v. šenidan",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "šʾnk'": {
+  "lang": "pal",
+  "reading": "šānag",
+  "source": "Wiktionary, fa entry \"شانه\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "šʾtʾwlwʾn'": {
+  "lang": "pal",
+  "reading": "šādurwān",
+  "source": "Wiktionary, en entry \"shadirvan\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾ-": {
+  "lang": "pal",
+  "reading": "a-",
+  "source": "MacKenzie 1971 s.v. a-",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ʾcʾt'": {
+  "lang": "pal",
+  "reading": "āzād",
+  "source": "Wiktionary, fa entry \"آزاد\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾhlmn'": {
+  "lang": "pal",
+  "reading": "ahreman",
+  "source": "Wiktionary, fa entry \"اهریمن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾk'": {
+  "lang": "pal",
+  "reading": "-āg",
+  "source": "Wiktionary, fa entry \"کاواک\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾlcwk": {
+  "lang": "pal",
+  "reading": "ārzōg",
+  "source": "Wiktionary, fa entry \"آرزو\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾlcyc": {
+  "lang": "pal",
+  "reading": "arzīz",
+  "source": "Wiktionary, fa entry \"ارزیز\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾlmʾs": {
+  "lang": "pal",
+  "reading": "almāst",
+  "source": "MacKenzie 1971 s.v. almāst",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ʾlwh": {
+  "lang": "pal",
+  "reading": "āluh",
+  "source": "Wiktionary, fa entry \"الموت\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾmbl": {
+  "lang": "pal",
+  "reading": "ambar",
+  "source": "MacKenzie 1971 s.v. ambar",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ʾmwlc-ytn'": {
+  "lang": "pal",
+  "reading": "āmurzīdan",
+  "source": "Wiktionary, fa entry \"آمرزیدن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾmyc": {
+  "lang": "pal",
+  "reading": "āmiz",
+  "source": "MacKenzie 1971 s.v. āmiz",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ʾmyhtn": {
+  "lang": "pal",
+  "reading": "āmēxtan",
+  "source": "Wiktionary, fa entry \"آمیختن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾncyl": {
+  "lang": "pal",
+  "reading": "anjīr",
+  "source": "Wiktionary, fa entry \"انجیر\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾngwst'": {
+  "lang": "pal",
+  "reading": "angust",
+  "source": "Wiktionary, sa entry \"अङ्गुष्ठ\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾnyr": {
+  "lang": "pal",
+  "reading": "anēr-",
+  "source": "en.wiktionary.org, Middle Persian \"ʾnyr\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾnyrʾn": {
+  "lang": "pal",
+  "reading": "anērān",
+  "source": "en.wiktionary.org, Middle Persian \"ʾnyrʾn\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾnʾhyt'": {
+  "lang": "pal",
+  "reading": "Anahita",
+  "source": "MacKenzie 1971 s.v. Anahita",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ʾpkntn'": {
+  "lang": "pal",
+  "reading": "abgandan",
+  "source": "Wiktionary, fa entry \"افکندن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾplwhtn'": {
+  "lang": "pal",
+  "reading": "abrōxtan",
+  "source": "Wiktionary, fa entry \"افروختن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾpsltn'": {
+  "lang": "pal",
+  "reading": "absardan",
+  "source": "Wiktionary, fa entry \"افسردن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾpwš": {
+  "lang": "pal",
+  "reading": "apōš",
+  "source": "Wiktionary, fa entry \"اپوش\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾp̄": {
+  "lang": "pal",
+  "reading": "ap-",
+  "source": "MacKenzie 1971 s.v. ap-",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ʾp̄spwltn'": {
+  "lang": "pal",
+  "reading": "awaspāram",
+  "source": "MacKenzie 1971 s.v. awaspāram",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ʾp̄ʾt'": {
+  "lang": "pal",
+  "reading": "ābād",
+  "source": "MacKenzie 1971 s.v. ābād",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ʾslwn'": {
+  "lang": "pal",
+  "reading": "āsrōn",
+  "source": "MacKenzie 1971 s.v. āsrōn",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ʾsplys": {
+  "lang": "pal",
+  "reading": "tāxtan",
+  "source": "MacKenzie 1971 s.v. tāxtan",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ʾstwhʾt'": {
+  "lang": "pal",
+  "reading": "astwihād",
+  "source": "Wiktionary, fa entry \"استویهاد\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾswbʾl": {
+  "lang": "pal",
+  "reading": "aswār",
+  "source": "MacKenzie 1971 s.v. aswār",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ʾtwrgʾs": {
+  "lang": "pal",
+  "reading": "ādurgāh",
+  "source": "MacKenzie 1971 s.v. ādurgāh",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ʾwd": {
+  "lang": "pal",
+  "reading": "ud",
+  "source": "en.wiktionary.org, Middle Persian \"ʾwd\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾwdlk'": {
+  "lang": "pal",
+  "reading": "udrag",
+  "source": "Wiktionary, fa entry \"هذر\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾwl": {
+  "lang": "pal",
+  "reading": "ul",
+  "source": "Wiktionary, fa entry \"هل\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾwlyšlym": {
+  "lang": "pal",
+  "reading": "urišlīm",
+  "source": "Wiktionary, fa entry \"اورشلیم\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾwstykʾn'": {
+  "lang": "pal",
+  "reading": "ōstīgān",
+  "source": "MacKenzie 1971 s.v. ōstīgān",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ʾwzn": {
+  "lang": "pal",
+  "reading": "ōzan-",
+  "source": "Wiktionary, fa entry \"اوژنیدن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾwšmʾlk'": {
+  "lang": "pal",
+  "reading": "ōšmārag",
+  "source": "Wiktionary, fa entry \"شماره\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾwštlgʾwplng": {
+  "lang": "pal",
+  "reading": "uštar-gāw-palang",
+  "source": "Wiktionary, fa entry \"شترگاوپلنگ\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾy": {
+  "lang": "pal",
+  "reading": "ay",
+  "source": "Wiktionary, fa entry \"ای\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾyd": {
+  "lang": "pal",
+  "reading": "ēd",
+  "source": "Wiktionary, fa entry \"ای\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾylmʾn'": {
+  "lang": "pal",
+  "reading": "ērmān",
+  "source": "Wiktionary, fa entry \"ایرمان\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾyrʾn": {
+  "lang": "pal",
+  "reading": "ērān",
+  "source": "en.wiktionary.org, Middle Persian \"ʾyrʾn\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾytwn'": {
+  "lang": "pal",
+  "reading": "ēdōn",
+  "source": "Wiktionary, fa entry \"ایدون\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾznʾwl": {
+  "lang": "pal",
+  "reading": "āznāwar",
+  "source": "MacKenzie 1971 s.v. āznāwar",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ʾškʾn": {
+  "lang": "pal",
+  "reading": "aškān",
+  "source": "Wiktionary, fa entry \"اشکان\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ʾštyh": {
+  "lang": "pal",
+  "reading": "āštīh",
+  "source": "MacKenzie 1971 s.v. āštīh",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "ʾʾhng": {
+  "lang": "pal",
+  "reading": "āhang",
+  "source": "Wiktionary, fa entry \"آهنگ\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "ḥlʿmʾdyk'": {
+  "lang": "pal",
+  "reading": "Hrōm",
+  "source": "MacKenzie 1971 s.v. Hrōm",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "‘wsk’l-tn'": {
+  "lang": "pal",
+  "reading": "uskārdan",
+  "source": "Wiktionary, fa entry \"سگالیدن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫀𐫉𐫅𐫍𐫀𐫃": {
+  "lang": "pal",
+  "reading": "azdahāg",
+  "source": "Wiktionary, fa entry \"اژدها\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫀𐫉𐫗": {
+  "lang": "pal",
+  "reading": "āzn",
+  "source": "MacKenzie 1971 s.v. āzn",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "𐫀𐫍𐫡𐫖𐫗": {
+  "lang": "pal",
+  "reading": "Ahreman",
+  "source": "en.wiktionary.org, Middle Persian \"𐫀𐫍𐫡𐫖𐫗\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫀𐫖𐫀𐫅𐫃": {
+  "lang": "pal",
+  "reading": "āmādag",
+  "source": "Wiktionary, fa entry \"آماده\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫀𐫘𐫤": {
+  "lang": "pal",
+  "reading": "ast",
+  "source": "Wiktionary, fa entry \"است\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫀𐫡𐫉𐫀𐫗": {
+  "lang": "pal",
+  "reading": "arzān",
+  "source": "Wiktionary, xcl entry \"արժան\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫀𐫡𐫘": {
+  "lang": "pal",
+  "reading": "ars",
+  "source": "MacKenzie 1971 s.v. ars",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "𐫀𐫤𐫍𐫢": {
+  "lang": "pal",
+  "reading": "ātaxš",
+  "source": "Wiktionary, fa entry \"آتش\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫁𐫇𐫏": {
+  "lang": "pal",
+  "reading": "bōy",
+  "source": "Wiktionary, fa entry \"بوی\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫁𐫇𐫟𐫘𐫏𐫅": {
+  "lang": "pal",
+  "reading": "bōxsēd",
+  "source": "Wiktionary, peo entry \"𐎲𐎥𐎲𐎢𐎧𐏁\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫁𐫏𐫇𐫡": {
+  "lang": "pal",
+  "reading": "bēwar",
+  "source": "Wiktionary, fa entry \"بیور\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫁𐫡𐫏𐫗𐫉": {
+  "lang": "pal",
+  "reading": "brynz",
+  "source": "en.wiktionary.org, Middle Persian \"𐫁𐫡𐫏𐫗𐫉\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫃𐫏𐫀𐫗𐫇𐫓": {
+  "lang": "pal",
+  "reading": "gyānwar",
+  "source": "Wiktionary, fa entry \"جانور\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫃𐫗𐫉𐫇𐫡": {
+  "lang": "pal",
+  "reading": "ganzwar",
+  "source": "Wiktionary, fa entry \"گنجور\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫅𐫇𐫢𐫖𐫏𐫗": {
+  "lang": "pal",
+  "reading": "dušmen",
+  "source": "Wiktionary, grc entry \"δυσμενής\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫅𐫏𐫁": {
+  "lang": "pal",
+  "reading": "dēb",
+  "source": "Wiktionary, xcl entry \"դէպ\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫅𐫏𐫇": {
+  "lang": "pal",
+  "reading": "dēw",
+  "source": "MacKenzie 1971 s.v. dēw",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "𐫅𐫏𐫖": {
+  "lang": "pal",
+  "reading": "dēm",
+  "source": "Wiktionary, fa entry \"دیم\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫅𐫏𐫗𐫀𐫓": {
+  "lang": "pal",
+  "reading": "dēnār",
+  "source": "Wiktionary, fa entry \"دینار\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫅𐫡": {
+  "lang": "pal",
+  "reading": "dar",
+  "source": "MacKenzie 1971 s.v. dar",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "𐫅𐫡𐫖𐫀𐫗": {
+  "lang": "pal",
+  "reading": "darmān",
+  "source": "Wiktionary, fa entry \"درمان\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫇𐫡𐫅𐫃": {
+  "lang": "pal",
+  "reading": "wardag",
+  "source": "Wiktionary, fa entry \"برده\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫇𐫡𐫝": {
+  "lang": "pal",
+  "reading": "warz",
+  "source": "Wiktionary, sa entry \"वर्चस्\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫇𐫢𐫤": {
+  "lang": "pal",
+  "reading": "wašt",
+  "source": "Wiktionary, xcl entry \"վաշտ\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫉𐫍𐫡": {
+  "lang": "pal",
+  "reading": "zahr",
+  "source": "en.wiktionary.org, Middle Persian \"𐫉𐫍𐫡\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫉𐫗𐫃": {
+  "lang": "pal",
+  "reading": "zanag",
+  "source": "Wiktionary, xcl entry \"-զան\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫉𐫡𐫅𐫇𐫢𐫤": {
+  "lang": "pal",
+  "reading": "Zardušt",
+  "source": "en.wiktionary.org, Middle Persian \"𐫉𐫡𐫅𐫇𐫢𐫤\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫍𐫀𐫇𐫗𐫅": {
+  "lang": "pal",
+  "reading": "hāwend",
+  "source": "Wiktionary, xpr entry \"𐫍𐫀𐫇𐫘𐫀𐫡\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫍𐫏𐫗𐫅𐫇𐫐": {
+  "lang": "pal",
+  "reading": "hindūg",
+  "source": "en.wiktionary.org, Middle Persian \"𐫍𐫏𐫗𐫅𐫇𐫐\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫍𐫏𐫢𐫤𐫗": {
+  "lang": "pal",
+  "reading": "hištan",
+  "source": "Wiktionary, xcl entry \"հեշտ\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫐𐫀𐫓𐫁𐫏𐫅": {
+  "lang": "pal",
+  "reading": "kālbid",
+  "source": "Wiktionary, fa entry \"کالبد\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫐𐫇𐫓": {
+  "lang": "pal",
+  "reading": "kōl",
+  "source": "Wiktionary, fa entry \"کول\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫐𐫇𐫡𐫁𐫃": {
+  "lang": "pal",
+  "reading": "kurbag",
+  "source": "Wiktionary, fa entry \"کلبه\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫐𐫏": {
+  "lang": "pal",
+  "reading": "kē",
+  "source": "Wiktionary, fa entry \"کی\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫐𐫗𐫅𐫇𐫃": {
+  "lang": "pal",
+  "reading": "kandūg",
+  "source": "Wiktionary, fa entry \"کندو\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫖𐫀": {
+  "lang": "pal",
+  "reading": "ma",
+  "source": "Wiktionary, fa entry \"مه\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫖𐫀𐫗𐫏": {
+  "lang": "pal",
+  "reading": "mānī",
+  "source": "Wiktionary, fa entry \"مانی\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫖𐫇𐫍𐫡": {
+  "lang": "pal",
+  "reading": "muhr",
+  "source": "MacKenzie 1971 s.v. muhr",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "𐫖𐫇𐫡𐫇": {
+  "lang": "pal",
+  "reading": "murw",
+  "source": "MacKenzie 1971 s.v. murw",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "𐫖𐫏𐫆": {
+  "lang": "pal",
+  "reading": "meh",
+  "source": "Wiktionary, fa entry \"مه\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫖𐫏𐫇": {
+  "lang": "pal",
+  "reading": "mēw",
+  "source": "Wiktionary, fa entry \"میوه\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫖𐫏𐫍𐫡": {
+  "lang": "pal",
+  "reading": "mihr",
+  "source": "en.wiktionary.org, Middle Persian \"𐫖𐫏𐫍𐫡\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫖𐫏𐫗𐫇𐫃": {
+  "lang": "pal",
+  "reading": "mēnōg",
+  "source": "Wiktionary, fa entry \"مینو\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫖𐫗": {
+  "lang": "pal",
+  "reading": "man",
+  "source": "Wiktionary, fa entry \"من\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫗𐫀𐫉𐫇𐫃": {
+  "lang": "pal",
+  "reading": "nāzōg",
+  "source": "Wiktionary, fa entry \"نازک\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫗𐫀𐫖": {
+  "lang": "pal",
+  "reading": "nām",
+  "source": "en.wiktionary.org, Middle Persian \"𐫗𐫀𐫖\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫗𐫀𐫗": {
+  "lang": "pal",
+  "reading": "nān",
+  "source": "en.wiktionary.org, Middle Persian \"𐫗𐫀𐫗\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫗𐫇𐫃": {
+  "lang": "pal",
+  "reading": "nōg",
+  "source": "en.wiktionary.org, Middle Persian \"𐫗𐫇𐫃\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫗𐫍𐫗𐫃": {
+  "lang": "pal",
+  "reading": "nihang",
+  "source": "Wiktionary, fa entry \"نهنگ\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫗𐫏𐫢𐫀𐫗": {
+  "lang": "pal",
+  "reading": "nīšān",
+  "source": "en.wiktionary.org, Middle Persian \"𐫗𐫏𐫢𐫀𐫗\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫗𐫖𐫏𐫍𐫐": {
+  "lang": "pal",
+  "reading": "namehk",
+  "source": "MacKenzie 1971 s.v. namehk",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "𐫘𐫇𐫍𐫡": {
+  "lang": "pal",
+  "reading": "suhr",
+  "source": "Wiktionary, fa entry \"سرخ\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫘𐫇𐫘𐫤": {
+  "lang": "pal",
+  "reading": "sust",
+  "source": "Wiktionary, fa entry \"سست\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫘𐫡𐫇": {
+  "lang": "pal",
+  "reading": "sarw",
+  "source": "Wiktionary, fa entry \"سرو\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫘𐫡𐫍𐫗𐫃": {
+  "lang": "pal",
+  "reading": "sarhang",
+  "source": "Wiktionary, fa entry \"سرهنگ\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫙𐫏𐫇": {
+  "lang": "pal",
+  "reading": "ēw",
+  "source": "MacKenzie 1971 s.v. ēw",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐫙𐫢𐫗𐫇𐫍𐫡": {
+  "lang": "pal",
+  "reading": "išnōhr",
+  "source": "MacKenzie 1971 s.v. išnōhr",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐫛𐫀𐫍𐫡": {
+  "lang": "pal",
+  "reading": "pāhr",
+  "source": "Wiktionary, xcl entry \"պահ\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫛𐫀𐫡𐫃𐫏𐫗": {
+  "lang": "pal",
+  "reading": "pārgēn",
+  "source": "Wiktionary, fa entry \"پارگین\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫛𐫍𐫓𐫇𐫀𐫗𐫏𐫃": {
+  "lang": "pal",
+  "reading": "pahlawānīg",
+  "source": "Wiktionary, fa entry \"پهلوی\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫛𐫏𐫘𐫤𐫀𐫗": {
+  "lang": "pal",
+  "reading": "pestān",
+  "source": "Wiktionary, fa entry \"پستان\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫝𐫍𐫡": {
+  "lang": "pal",
+  "reading": "čahr",
+  "source": "Wiktionary, en entry \"charkha\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫟𐫀𐫗𐫃": {
+  "lang": "pal",
+  "reading": "xānag",
+  "source": "en.wiktionary.org, Middle Persian \"𐫟𐫀𐫗𐫃\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫟𐫇𐫏": {
+  "lang": "pal",
+  "reading": "xōy",
+  "source": "Wiktionary, fa entry \"خوی\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫡𐫀𐫖": {
+  "lang": "pal",
+  "reading": "rām",
+  "source": "Wiktionary, fa entry \"رام\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫡𐫃": {
+  "lang": "pal",
+  "reading": "rag",
+  "source": "Wiktionary, fa entry \"رگ\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫡𐫇𐫀𐫗": {
+  "lang": "pal",
+  "reading": "ruwān",
+  "source": "Wiktionary, fa entry \"روان\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫢𐫃𐫡": {
+  "lang": "pal",
+  "reading": "šagr",
+  "source": "MacKenzie 1971 s.v. šagr",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "𐫢𐫇𐫁𐫀𐫗": {
+  "lang": "pal",
+  "reading": "šubān",
+  "source": "Wiktionary, fa entry \"چوپان\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫢𐫖𐫁𐫅": {
+  "lang": "pal",
+  "reading": "šambad",
+  "source": "Wiktionary, fa entry \"شنبه\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫤𐫖𐫁𐫇𐫡": {
+  "lang": "pal",
+  "reading": "tambūr",
+  "source": "Wiktionary, fa entry \"تنبور\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫤𐫗𐫉": {
+  "lang": "pal",
+  "reading": "tanz-",
+  "source": "Wiktionary, fa entry \"تنجیدن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫤𐫡": {
+  "lang": "pal",
+  "reading": "tar",
+  "source": "Wiktionary, fa entry \"تراـ\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐫤𐫢𐫐": {
+  "lang": "pal",
+  "reading": "tašk",
+  "source": "Wiktionary, xcl entry \"տատասկ\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐬱𐬖𐬀𐬮": {
+  "lang": "pal",
+  "reading": "šaγāl",
+  "source": "MacKenzie 1971 s.v. šaγāl",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭠": {
+  "lang": "pal",
+  "reading": "ā",
+  "source": "MacKenzie 1971 s.v. ā",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "𐭠𐭡𐭠𐭭": {
+  "lang": "pal",
+  "reading": "ābān",
+  "source": "Wiktionary, fa entry \"آبان\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭠𐭡𐭱𐭠𐭥": {
+  "lang": "pal",
+  "reading": "ābšār",
+  "source": "Wiktionary, fa entry \"آبشار\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭠𐭥𐭬𐭩𐭲": {
+  "lang": "pal",
+  "reading": "ummēd",
+  "source": "MacKenzie 1971 s.v. ummēd",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭠𐭧𐭫𐭬𐭭𐭩": {
+  "lang": "pal",
+  "reading": "Ahreman",
+  "source": "en.wiktionary.org, Middle Persian \"𐭠𐭧𐭫𐭬𐭭𐭩\"",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭠𐭧𐭬𐭲𐭠𐭭": {
+  "lang": "pal",
+  "reading": "ahmadān",
+  "source": "Wiktionary, en entry \"Hamadan\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭠𐭧𐭲𐭥𐭬𐭠𐭥": {
+  "lang": "pal",
+  "reading": "axtarmār",
+  "source": "Wiktionary, fa entry \"اخترمار\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭠𐭧𐭲𐭫": {
+  "lang": "pal",
+  "reading": "axtar",
+  "source": "Wiktionary, en entry \"Akhtar\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭠𐭩𐭥𐭠𐭭": {
+  "lang": "pal",
+  "reading": "ērān",
+  "source": "MacKenzie 1971 s.v. ērān",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭠𐭩𐭥𐭠𐭭𐭱𐭲𐭥𐭩": {
+  "lang": "pal",
+  "reading": "ērānšahr",
+  "source": "en.wiktionary.org, Middle Persian \"𐭠𐭩𐭥𐭠𐭭𐭱𐭲𐭥𐭩\"",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭠𐭩𐭫": {
+  "lang": "pal",
+  "reading": "ēr",
+  "source": "MacKenzie 1971 s.v. ēr",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭠𐭩𐭫𐭩": {
+  "lang": "pal",
+  "reading": "ēr",
+  "source": "en.wiktionary.org, Middle Persian \"𐭠𐭩𐭫𐭩\"",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭠𐭬𐭠𐭫𐭪𐭫𐭩": {
+  "lang": "pal",
+  "reading": "āmārgar",
+  "source": "MacKenzie 1971 s.v. āmārgar",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭠𐭬𐭥𐭥𐭣𐭠𐭣": {
+  "lang": "pal",
+  "reading": "amurdād",
+  "source": "Wiktionary, fa entry \"مرداد\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭠𐭭𐭠𐭥": {
+  "lang": "pal",
+  "reading": "anār",
+  "source": "Wiktionary, fa entry \"انار\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭠𐭭𐭩": {
+  "lang": "pal",
+  "reading": "any",
+  "source": "Wiktionary, fa entry \"نیز\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭠𐭭𐭩𐭥": {
+  "lang": "pal",
+  "reading": "anēr-",
+  "source": "en.wiktionary.org, Middle Persian \"𐭠𐭭𐭩𐭥\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭠𐭭𐭩𐭥𐭠𐭭": {
+  "lang": "pal",
+  "reading": "anērān",
+  "source": "Wiktionary, xcl entry \"անարի\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭠𐭭𐭩𐭥𐭠𐭭𐭱𐭲𐭥𐭩": {
+  "lang": "pal",
+  "reading": "Anērānšahr",
+  "source": "en.wiktionary.org, Middle Persian \"𐭠𐭭𐭩𐭥𐭠𐭭𐭱𐭲𐭥𐭩\"",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭠𐭮𐭠𐭭": {
+  "lang": "pal",
+  "reading": "āsān",
+  "source": "Wiktionary, fa entry \"آسان\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭠𐭮𐭥𐭥𐭮𐭲𐭭": {
+  "lang": "pal",
+  "reading": "Asōrestān",
+  "source": "MacKenzie 1971 s.v. Asōrestān",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "𐭠𐭮𐭬𐭠𐭭": {
+  "lang": "pal",
+  "reading": "āsmān",
+  "source": "Wiktionary, fa entry \"آسمان\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭠𐭮𐭯𐭥𐭥𐭪": {
+  "lang": "pal",
+  "reading": "Aspōrag",
+  "source": "MacKenzie 1971 s.v. Aspōrag",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "𐭠𐭯𐭥𐭩𐭭": {
+  "lang": "pal",
+  "reading": "āfrīn",
+  "source": "Wiktionary, fa entry \"آفرین\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭠𐭯𐭫": {
+  "lang": "pal",
+  "reading": "abar",
+  "source": "Wiktionary, fa entry \"ابر\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭠𐭯𐭮𐭥𐭭": {
+  "lang": "pal",
+  "reading": "afsōn",
+  "source": "Wiktionary, fa entry \"افسون\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭠𐭯𐭲𐭠𐭡": {
+  "lang": "pal",
+  "reading": "āftāb",
+  "source": "Wiktionary, fa entry \"آفتاب\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭠𐭱𐭪𐭬𐭡": {
+  "lang": "pal",
+  "reading": "aškamb",
+  "source": "Wiktionary, fa entry \"شکم\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭠𐭱𐭪𐭬𐭡𐭪": {
+  "lang": "pal",
+  "reading": "aškombak",
+  "source": "Wiktionary, fa entry \"شکمبه\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭠𐭲𐭥𐭥𐭩": {
+  "lang": "pal",
+  "reading": "ādur",
+  "source": "MacKenzie 1971 s.v. ādur",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭡𐭠𐭫𐭱𐭭": {
+  "lang": "pal",
+  "reading": "bālišn",
+  "source": "Wiktionary, fa entry \"بالش\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭡𐭠𐭬𐭣𐭠𐭲": {
+  "lang": "pal",
+  "reading": "bāmdād",
+  "source": "Wiktionary, fa entry \"بامداد\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭡𐭠𐭮𐭲𐭠𐭭": {
+  "lang": "pal",
+  "reading": "bāstān",
+  "source": "Wiktionary, fa entry \"باستان\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭡𐭠𐭰": {
+  "lang": "pal",
+  "reading": "bāz",
+  "source": "Wiktionary, fa entry \"باز\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭡𐭥𐭫𐭭𐭣": {
+  "lang": "pal",
+  "reading": "buland",
+  "source": "Wiktionary, fa entry \"بلند\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭡𐭥𐭬": {
+  "lang": "pal",
+  "reading": "būm",
+  "source": "Wiktionary, fa entry \"بوم\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭡𐭥𐭯": {
+  "lang": "pal",
+  "reading": "būf",
+  "source": "Wiktionary, fa entry \"بوف\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭡𐭧𐭱": {
+  "lang": "pal",
+  "reading": "baxš",
+  "source": "Wiktionary, fa entry \"بخش\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭡𐭩𐭥𐭧": {
+  "lang": "pal",
+  "reading": "māh",
+  "source": "MacKenzie 1971 s.v. māh",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭡𐭩𐭭": {
+  "lang": "pal",
+  "reading": "andar",
+  "source": "en.wiktionary.org, Middle Persian \"𐭡𐭩𐭭\"",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭡𐭭𐭢": {
+  "lang": "pal",
+  "reading": "bang",
+  "source": "Wiktionary, fa entry \"بنگ\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭡𐭲𐭧𐭱𐭩": {
+  "lang": "pal",
+  "reading": "badaxš",
+  "source": "MacKenzie 1971 s.v. badaxš",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭢𐭥𐭠𐭦𐭭": {
+  "lang": "pal",
+  "reading": "gawazn",
+  "source": "Wiktionary, fa entry \"گوزن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭢𐭥𐭥𐭤": {
+  "lang": "pal",
+  "reading": "grōh",
+  "source": "Wiktionary, fa entry \"گروه\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭢𐭥𐭦": {
+  "lang": "pal",
+  "reading": "gawz",
+  "source": "MacKenzie 1971 s.v. gawz",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "𐭢𐭥𐭫𐭢": {
+  "lang": "pal",
+  "reading": "gurg",
+  "source": "Wiktionary, fa entry \"گرگ\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭢𐭥𐭫𐭢𐭠𐭭": {
+  "lang": "pal",
+  "reading": "Gurgān",
+  "source": "MacKenzie 1971 s.v. Gurgān",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "𐭢𐭥𐭬𐭩𐭧": {
+  "lang": "pal",
+  "reading": "garmīh",
+  "source": "Wiktionary, fa entry \"گرمی\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭢𐭥𐭱": {
+  "lang": "pal",
+  "reading": "gōš",
+  "source": "Wiktionary, fa entry \"گوش\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭢𐭥𐭱𐭲𐭮𐭯": {
+  "lang": "pal",
+  "reading": "guštāsp",
+  "source": "Wiktionary, fa entry \"گشتاسپ\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭢𐭦𐭩𐭲": {
+  "lang": "pal",
+  "reading": "gazīd",
+  "source": "Wiktionary, en entry \"jizya\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭣𐭠𐭭𐭪": {
+  "lang": "pal",
+  "reading": "dānag",
+  "source": "Wiktionary, fa entry \"دانه\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭣𐭥𐭪": {
+  "lang": "pal",
+  "reading": "dōk",
+  "source": "Wiktionary, fa entry \"دوک\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭣𐭥𐭮𐭲𐭩": {
+  "lang": "pal",
+  "reading": "dōst",
+  "source": "MacKenzie 1971 s.v. dōst",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭣𐭥𐭱𐭧𐭥𐭩": {
+  "lang": "pal",
+  "reading": "dušox",
+  "source": "MacKenzie 1971 s.v. dušox",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭣𐭧𐭩𐭰": {
+  "lang": "pal",
+  "reading": "dahīč",
+  "source": "Wiktionary, xcl entry \"դահիճ\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭣𐭩𐭫": {
+  "lang": "pal",
+  "reading": "dil",
+  "source": "Wiktionary, fa entry \"دل\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭣𐭩𐭮": {
+  "lang": "pal",
+  "reading": "-dēs",
+  "source": "Wiktionary, fa entry \"ـدیس\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭣𐭯𐭩𐭥𐭥": {
+  "lang": "pal",
+  "reading": "dibīr",
+  "source": "MacKenzie 1971 s.v. dibīr",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭣𐭱𐭰𐭪": {
+  "lang": "pal",
+  "reading": "dōšīzag",
+  "source": "Wiktionary, fa entry \"دوشیزه\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭤𐭭𐭰𐭠𐭥": {
+  "lang": "pal",
+  "reading": "hanjār",
+  "source": "Wiktionary, fa entry \"هنجار\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭥": {
+  "lang": "pal",
+  "reading": "ud",
+  "source": "MacKenzie 1971 s.v. ud",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭥𐭠𐭣𐭠𐭬": {
+  "lang": "pal",
+  "reading": "wādām",
+  "source": "Wiktionary, fa entry \"بادام\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭥𐭠𐭯𐭫": {
+  "lang": "pal",
+  "reading": "wābar",
+  "source": "Wiktionary, fa entry \"باور\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭥𐭠𐭰𐭠𐭫𐭯𐭲": {
+  "lang": "pal",
+  "reading": "wāzārbed",
+  "source": "MacKenzie 1971 s.v. wāzārbed",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "𐭥𐭧𐭱𐭲𐭩": {
+  "lang": "pal",
+  "reading": "wahišt",
+  "source": "MacKenzie 1971 s.v. wahišt",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭥𐭩𐭬𐭠𐭫": {
+  "lang": "pal",
+  "reading": "wēmār",
+  "source": "Wiktionary, fa entry \"بیمار\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭥𐭩𐭬𐭠𐭫𐭩𐭧": {
+  "lang": "pal",
+  "reading": "wēmārīh",
+  "source": "MacKenzie 1971 s.v. wēmārīh",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "𐭥𐭩𐭬𐭠𐭫𐭮𐭲𐭠𐭭": {
+  "lang": "pal",
+  "reading": "wēmārestān",
+  "source": "Wiktionary, fa entry \"بیمارستان\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭥𐭩𐭭𐭩𐭪": {
+  "lang": "pal",
+  "reading": "wēnīg",
+  "source": "Wiktionary, fa entry \"بینی\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭥𐭫𐭤𐭱𐭠𐭭": {
+  "lang": "pal",
+  "reading": "awēšān",
+  "source": "MacKenzie 1971 s.v. awēšān",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭥𐭫𐭥𐭰𐭠𐭭": {
+  "lang": "pal",
+  "reading": "wiruzān",
+  "source": "MacKenzie 1971 s.v. wiruzān",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "𐭥𐭫𐭧𐭫𐭠𐭭": {
+  "lang": "pal",
+  "reading": "Warahrān",
+  "source": "MacKenzie 1971 s.v. Warahrān",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "𐭥𐭯𐭫": {
+  "lang": "pal",
+  "reading": "wafr",
+  "source": "Wiktionary, fa entry \"برف\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭥𐭱𐭲𐭢": {
+  "lang": "pal",
+  "reading": "rištag",
+  "source": "Wiktionary, fa entry \"رشته\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭦𐭥𐭦𐭭": {
+  "lang": "pal",
+  "reading": "drahm",
+  "source": "MacKenzie 1971 s.v. drahm",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭦𐭩𐭧": {
+  "lang": "pal",
+  "reading": "zīh",
+  "source": "Wiktionary, fa entry \"زه\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭦𐭫𐭢𐭥𐭭": {
+  "lang": "pal",
+  "reading": "zargōn",
+  "source": "Wiktionary, el entry \"ζιρκόνιο\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭦𐭭𐭤": {
+  "lang": "pal",
+  "reading": "ēn",
+  "source": "en.wiktionary.org, Middle Persian \"𐭦𐭭𐭤\"",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭦𐭱𐭲": {
+  "lang": "pal",
+  "reading": "zišt",
+  "source": "Wiktionary, fa entry \"زشت\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭧𐭥𐭠𐭡": {
+  "lang": "pal",
+  "reading": "xwāb",
+  "source": "Wiktionary, fa entry \"خواب\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭧𐭥𐭡": {
+  "lang": "pal",
+  "reading": "xūb",
+  "source": "Wiktionary, fa entry \"خوب\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭧𐭥𐭥𐭣𐭠𐭲": {
+  "lang": "pal",
+  "reading": "hordād",
+  "source": "Wiktionary, fa entry \"خرداد\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭧𐭥𐭥𐭦𐭬": {
+  "lang": "pal",
+  "reading": "xwārazm",
+  "source": "Wiktionary, fa entry \"خوارزم\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭧𐭥𐭬𐭠𐭩": {
+  "lang": "pal",
+  "reading": "humāy",
+  "source": "Wiktionary, fa entry \"همایون\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭧𐭥𐭰𐭮𐭲𐭭": {
+  "lang": "pal",
+  "reading": "Hūzestān",
+  "source": "MacKenzie 1971 s.v. Hūzestān",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "𐭧𐭩𐭠𐭥": {
+  "lang": "pal",
+  "reading": "xyār",
+  "source": "Wiktionary, en entry \"kheera\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭧𐭪𐭫𐭰": {
+  "lang": "pal",
+  "reading": "hagriz",
+  "source": "Wiktionary, fa entry \"هرگز\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭧𐭫𐭥𐭬𐭠𐭣𐭩𐭪": {
+  "lang": "pal",
+  "reading": "Hrōmāyīg",
+  "source": "en.wiktionary.org, Middle Persian \"𐭧𐭫𐭥𐭬𐭠𐭣𐭩𐭪\"",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭧𐭭𐭣𐭩𐭣𐭭": {
+  "lang": "pal",
+  "reading": "xandīdan",
+  "source": "Wiktionary, fa entry \"خندیدن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭧𐭭𐭣𐭩𐭱𐭩𐭲𐭭": {
+  "lang": "pal",
+  "reading": "handēšīdan",
+  "source": "Wiktionary, fa entry \"اندیشیدن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭧𐭭𐭰𐭬𐭭": {
+  "lang": "pal",
+  "reading": "hanjaman",
+  "source": "Wiktionary, fa entry \"انجمن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭧𐭱𐭲": {
+  "lang": "pal",
+  "reading": "hašt",
+  "source": "Wiktionary, fa entry \"هشت\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭧𐭲": {
+  "lang": "pal",
+  "reading": "agar",
+  "source": "en.wiktionary.org, Middle Persian \"𐭧𐭲\"",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭩𐭣𐭤": {
+  "lang": "pal",
+  "reading": "dast",
+  "source": "MacKenzie 1971 s.v. dast",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭩𐭧": {
+  "lang": "pal",
+  "reading": "-īh",
+  "source": "Wiktionary, en entry \"sepoy\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭩𐭧𐭠": {
+  "lang": "pal",
+  "reading": "-īhā",
+  "source": "Wiktionary, fa entry \"ـها\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭩𐭪": {
+  "lang": "pal",
+  "reading": "-ig",
+  "source": "Wiktionary, fa entry \"رومی\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭪": {
+  "lang": "pal",
+  "reading": "-ak",
+  "source": "Wiktionary, en entry \"lilac\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭪𐭠𐭬": {
+  "lang": "pal",
+  "reading": "kām",
+  "source": "MacKenzie 1971 s.v. kām",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "𐭪𐭥𐭠𐭲": {
+  "lang": "pal",
+  "reading": "Kawād",
+  "source": "MacKenzie 1971 s.v. Kawād",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "𐭪𐭥𐭯": {
+  "lang": "pal",
+  "reading": "kōf",
+  "source": "Wiktionary, fa entry \"کوه\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭪𐭩𐭮𐭫𐭩": {
+  "lang": "pal",
+  "reading": "kēsar",
+  "source": "MacKenzie 1971 s.v. kēsar",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭪𐭩𐭱": {
+  "lang": "pal",
+  "reading": "kēš",
+  "source": "Wiktionary, fa entry \"کیش\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭪𐭫𐭲": {
+  "lang": "pal",
+  "reading": "-kirt",
+  "source": "MacKenzie 1971 s.v. -kirt",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "𐭪𐭬": {
+  "lang": "pal",
+  "reading": "kam",
+  "source": "Wiktionary, fa entry \"کمزور\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭪𐭬𐭠𐭭𐭣𐭠𐭫": {
+  "lang": "pal",
+  "reading": "kamāndār",
+  "source": "Wiktionary, fa entry \"کماندار\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭪𐭬𐭭𐭣": {
+  "lang": "pal",
+  "reading": "kamand",
+  "source": "Wiktionary, fa entry \"کمند\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭪𐭱𐭥𐭥": {
+  "lang": "pal",
+  "reading": "kišwar",
+  "source": "Wiktionary, fa entry \"کشور\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭪𐭲𐭠𐭬": {
+  "lang": "pal",
+  "reading": "kadām",
+  "source": "Wiktionary, fa entry \"کدام\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭪𐭲𐭪𐭧𐭥𐭲𐭠𐭩": {
+  "lang": "pal",
+  "reading": "kadag-xwadāy",
+  "source": "Wiktionary, fa entry \"کدخدا\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭫𐭠": {
+  "lang": "pal",
+  "reading": "nē",
+  "source": "MacKenzie 1971 s.v. nē",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭫𐭥𐭦𐭩𐭣𐭭": {
+  "lang": "pal",
+  "reading": "larzīdan",
+  "source": "Wiktionary, fa entry \"لرزیدن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭫𐭥𐭩𐭱𐭤": {
+  "lang": "pal",
+  "reading": "sar",
+  "source": "MacKenzie 1971 s.v. sar",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭫𐭥𐭰𐭩𐭪": {
+  "lang": "pal",
+  "reading": "rōzīg",
+  "source": "Wiktionary, fa entry \"رزق\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭫𐭧𐭬𐭠": {
+  "lang": "pal",
+  "reading": "nān",
+  "source": "en.wiktionary.org, Middle Persian \"𐭫𐭧𐭬𐭠\"",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭫𐭭𐭤": {
+  "lang": "pal",
+  "reading": "amāh",
+  "source": "MacKenzie 1971 s.v. amāh",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭫𐭮𐭩𐭲𐭭": {
+  "lang": "pal",
+  "reading": "rasīdan",
+  "source": "Wiktionary, fa entry \"رسیدن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭬𐭅𐭆": {
+  "lang": "pal",
+  "reading": "mōč",
+  "source": "MacKenzie 1971 s.v. mōč",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭬𐭠𐭥": {
+  "lang": "pal",
+  "reading": "mār",
+  "source": "Wiktionary, fa entry \"مار\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭬𐭠𐭲𐭥": {
+  "lang": "pal",
+  "reading": "mādar",
+  "source": "Wiktionary, fa entry \"مادر\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭬𐭢𐭮𐭲𐭩𐭪": {
+  "lang": "pal",
+  "reading": "magestīg",
+  "source": "Wiktionary, en entry \"Almagest\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭬𐭣𐭬": {
+  "lang": "pal",
+  "reading": "abar",
+  "source": "MacKenzie 1971 s.v. abar",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭬𐭤": {
+  "lang": "pal",
+  "reading": "čē",
+  "source": "MacKenzie 1971 s.v. čē",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭬𐭦𐭣𐭩𐭮𐭭": {
+  "lang": "pal",
+  "reading": "mazdēsn",
+  "source": "Wiktionary, xpr entry \"𐭌𐭆𐭃𐭉𐭆𐭍\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭬𐭩𐭥𐭪": {
+  "lang": "pal",
+  "reading": "mēwag",
+  "source": "Wiktionary, fa entry \"میوه\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭬𐭩𐭱": {
+  "lang": "pal",
+  "reading": "mēš",
+  "source": "Wiktionary, fa entry \"میش\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭬𐭩𐭱𐭠𐭭": {
+  "lang": "pal",
+  "reading": "Mēšān",
+  "source": "MacKenzie 1971 s.v. Mēšān",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "𐭬𐭫𐭪𐭠": {
+  "lang": "pal",
+  "reading": "šāh",
+  "source": "MacKenzie 1971 s.v. šāh",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭬𐭫𐭪𐭠𐭭": {
+  "lang": "pal",
+  "reading": "šāhān",
+  "source": "en.wiktionary.org, Middle Persian \"𐭬𐭫𐭪𐭠𐭭\"",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭬𐭫𐭪𐭠𐭭 𐭬𐭫𐭪𐭠": {
+  "lang": "pal",
+  "reading": "šāhān",
+  "source": "MacKenzie 1971 s.v. šāhān",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭬𐭫𐭪𐭲𐭠": {
+  "lang": "pal",
+  "reading": "bānbišn",
+  "source": "MacKenzie 1971 s.v. bānbišn",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭬𐭫𐭪𐭲𐭠𐭭 𐭬𐭫𐭪𐭲𐭠": {
+  "lang": "pal",
+  "reading": "bānbišnān",
+  "source": "MacKenzie 1971 s.v. bānbišnān",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭬𐭭": {
+  "lang": "pal",
+  "reading": "az",
+  "source": "en.wiktionary.org, Middle Persian \"𐭬𐭭\"",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭬𐭭𐭥": {
+  "lang": "pal",
+  "reading": "kē",
+  "source": "MacKenzie 1971 s.v. kē",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭬𐭮𐭲": {
+  "lang": "pal",
+  "reading": "mast",
+  "source": "Wiktionary, fa entry \"مست\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭭𐭠𐭭𐭯𐭠𐭪": {
+  "lang": "pal",
+  "reading": "nānbāg",
+  "source": "MacKenzie 1971 s.v. nānbāg",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "𐭭𐭥𐭥𐭠": {
+  "lang": "pal",
+  "reading": "ādur",
+  "source": "MacKenzie 1971 s.v. ādur",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭭𐭥𐭪𐭩": {
+  "lang": "pal",
+  "reading": "nōg",
+  "source": "en.wiktionary.org, Middle Persian \"𐭭𐭥𐭪𐭩\"",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭭𐭧𐭰𐭩𐭫": {
+  "lang": "pal",
+  "reading": "naxčīr",
+  "source": "Wiktionary, fa entry \"نخچیر\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭭𐭩𐭥": {
+  "lang": "pal",
+  "reading": "nēw",
+  "source": "Wiktionary, fa entry \"نیو\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭭𐭩𐭫": {
+  "lang": "pal",
+  "reading": "nīl",
+  "source": "Wiktionary, en entry \"lilac\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭭𐭬": {
+  "lang": "pal",
+  "reading": "nam",
+  "source": "Wiktionary, fa entry \"شبنم\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭭𐭯𐭱𐭤": {
+  "lang": "pal",
+  "reading": "xwēš",
+  "source": "MacKenzie 1971 s.v. xwēš",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭮𐭠𐭮𐭠𐭭": {
+  "lang": "pal",
+  "reading": "sāsān",
+  "source": "Wiktionary, en entry \"Sasan\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭮𐭥𐭫𐭩𐭭": {
+  "lang": "pal",
+  "reading": "Surēn",
+  "source": "MacKenzie 1971 s.v. Surēn",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "𐭮𐭩𐭭𐭬𐭥𐭫𐭥": {
+  "lang": "pal",
+  "reading": "sēn-murw",
+  "source": "Wiktionary, fa entry \"سیمرغ\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭮𐭪𐭮𐭲𐭠𐭭": {
+  "lang": "pal",
+  "reading": "sagestān",
+  "source": "Wiktionary, fa entry \"سجستان\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭮𐭯𐭠𐭧𐭯𐭲": {
+  "lang": "pal",
+  "reading": "spāhbed",
+  "source": "en.wiktionary.org, Middle Persian \"𐭮𐭯𐭠𐭧𐭯𐭲\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭮𐭯𐭠𐭧𐭯𐭲𐭩": {
+  "lang": "pal",
+  "reading": "spāhbed",
+  "source": "MacKenzie 1971 s.v. spāhbed",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭮𐭯𐭩𐭱": {
+  "lang": "pal",
+  "reading": "spiš",
+  "source": "Wiktionary, fa entry \"شپش\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭮𐭲𐭫": {
+  "lang": "pal",
+  "reading": "star",
+  "source": "Wiktionary, en entry \"Esther\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭮𐭲𐭮𐭲𐭥𐭭𐭩": {
+  "lang": "pal",
+  "reading": "sadestun",
+  "source": "MacKenzie 1971 s.v. sadestun",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭯𐭠𐭥𐭮𐭩": {
+  "lang": "pal",
+  "reading": "Pārs",
+  "source": "en.wiktionary.org, Middle Persian \"𐭯𐭠𐭥𐭮𐭩\"",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭯𐭠𐭩𐭩𐭭": {
+  "lang": "pal",
+  "reading": "pāyēn",
+  "source": "Wiktionary, fa entry \"پائین\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭯𐭠𐭫𐭮𐭩": {
+  "lang": "pal",
+  "reading": "pārs",
+  "source": "MacKenzie 1971 s.v. pārs",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭯𐭠𐭯𐭪𐭠𐭭": {
+  "lang": "pal",
+  "reading": "Pābagān",
+  "source": "en.wiktionary.org, Middle Persian \"𐭯𐭠𐭯𐭪𐭠𐭭\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭯𐭤𐭥𐭮𐭲": {
+  "lang": "pal",
+  "reading": "pahrist",
+  "source": "Wiktionary, fa entry \"فهرست\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭯𐭥𐭥𐭮𐭩𐭲𐭭": {
+  "lang": "pal",
+  "reading": "pursīdan",
+  "source": "Wiktionary, fa entry \"پرسیدن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭯𐭥𐭧𐭫𐭩": {
+  "lang": "pal",
+  "reading": "puhl",
+  "source": "MacKenzie 1971 s.v. puhl",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭯𐭥𐭭": {
+  "lang": "pal",
+  "reading": "pad",
+  "source": "MacKenzie 1971 s.v. pad",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭯𐭥𐭮𐭲𐭩𐭭⁠": {
+  "lang": "pal",
+  "reading": "pōstēn",
+  "source": "Wiktionary, fa entry \"پوستین\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭯𐭩𐭫𐭥𐭰": {
+  "lang": "pal",
+  "reading": "pērōz",
+  "source": "MacKenzie 1971 s.v. pērōz",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "𐭯𐭩𐭫𐭥𐭰𐭩𐭧": {
+  "lang": "pal",
+  "reading": "pērōzīh",
+  "source": "MacKenzie 1971 s.v. pērōzīh",
+  "tier": "recorded",
+  "translit": ""
+ },
+ "𐭯𐭪𐭥𐭥𐭩": {
+  "lang": "pal",
+  "reading": "pakur",
+  "source": "en.wiktionary.org, Middle Persian \"𐭯𐭪𐭥𐭥𐭩\"",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭯𐭪𐭥𐭫": {
+  "lang": "pal",
+  "reading": "pakur",
+  "source": "en.wiktionary.org, Middle Persian \"𐭯𐭪𐭥𐭫\"",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭯𐭫𐭥𐭫𐭲𐭩𐭭": {
+  "lang": "pal",
+  "reading": "frawardīn",
+  "source": "Wiktionary, fa entry \"فروردین\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭯𐭫𐭮𐭲𐭠𐭫": {
+  "lang": "pal",
+  "reading": "paristār",
+  "source": "Wiktionary, fa entry \"پرستار\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭯𐭭𐭠𐭧": {
+  "lang": "pal",
+  "reading": "panāh",
+  "source": "Wiktionary, fa entry \"پناه\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭯𐭭𐭣𐭪": {
+  "lang": "pal",
+  "reading": "pondik",
+  "source": "Wiktionary, en entry \"bundook\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭯𐭮": {
+  "lang": "pal",
+  "reading": "pas",
+  "source": "Wiktionary, fa entry \"پس\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭰𐭠𐭲𐭫𐭠𐭭𐭢": {
+  "lang": "pal",
+  "reading": "čatrang",
+  "source": "Wiktionary, en entry \"shatranj\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭰𐭡𐭥": {
+  "lang": "pal",
+  "reading": "xīr",
+  "source": "MacKenzie 1971 s.v. xīr",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭰𐭩𐭭": {
+  "lang": "pal",
+  "reading": "čīn",
+  "source": "Wiktionary, de entry \"China\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭰𐭭𐭣": {
+  "lang": "pal",
+  "reading": "čand",
+  "source": "Wiktionary, fa entry \"چند\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭰𐭲": {
+  "lang": "pal",
+  "reading": "čat",
+  "source": "Wiktionary, fa entry \"صد\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭱𐭥𐭬": {
+  "lang": "pal",
+  "reading": "šarm",
+  "source": "Wiktionary, fa entry \"شرم\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭱𐭪𐭥": {
+  "lang": "pal",
+  "reading": "šakar",
+  "source": "Wiktionary, de entry \"Zucker\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭱𐭭": {
+  "lang": "pal",
+  "reading": "-išn",
+  "source": "Wiktionary, fa entry \"ـش\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭱𐭭𐭠𐭧𐭲𐭭": {
+  "lang": "pal",
+  "reading": "šnāxtan",
+  "source": "Wiktionary, fa entry \"شناختن\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭱𐭭𐭲": {
+  "lang": "pal",
+  "reading": "sāl",
+  "source": "en.wiktionary.org, Middle Persian \"𐭱𐭭𐭲\"",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭱𐭲𐭥𐭩": {
+  "lang": "pal",
+  "reading": "šahr",
+  "source": "MacKenzie 1971 s.v. šahr",
+  "tier": "script-quoted",
+  "translit": ""
+ },
+ "𐭲𐭠𐭥": {
+  "lang": "pal",
+  "reading": "tār",
+  "source": "Wiktionary, fa entry \"تار\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭲𐭠𐭯𐭮𐭲𐭠𐭭": {
+  "lang": "pal",
+  "reading": "tābestān",
+  "source": "Wiktionary, fa entry \"تابستان\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐭲𐭩𐭧𐭥𐭪": {
+  "lang": "pal",
+  "reading": "tīhōg",
+  "source": "Wiktionary, fa entry \"تیهو\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ },
+ "𐮐𐮋𐮊𐮉𐮌𐮃": {
+  "lang": "pal",
+  "reading": "samarkand",
+  "source": "Wiktionary, fa entry \"سمرقند\", etymology",
+  "tier": "quoted",
+  "translit": ""
+ }
+}

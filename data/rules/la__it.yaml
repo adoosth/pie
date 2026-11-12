@@ -1,0 +1,215 @@
+stage:
+  name: Latin → Italian
+  date_start: 600
+  date_end: 1300
+  description: >
+    The Vulgar Latin vowel mergers and loss of vowel length, the Italian
+    diphthongisation of open *ɛ and *ɔ, palatalisation of *k and *g before
+    front vowels, loss of *h, and loss of final *-s and *-t.  The modern noun
+    often continues the Latin accusative rather than the nominative, so the
+    inherited stem, not the dictionary form, is what the chain follows.
+  references: [maiden-1995, weiss-2009, devaan-2008]
+
+rules:
+  # ---- Vulgar Latin vowel system -----------------------------------------
+  - id: e_to_open_e
+    order: 100
+    name: "Short *e > *ɛ"
+    match: e
+    replace: ɛ
+    tier: established
+    description: "Latin short *e lowers to open *ɛ, the vowel that later diphthongises (*pede > *pɛde)."
+    references: [maiden-1995]
+    examples:
+      - {in: "*pede", out: "*pɛdɛ", gloss: "foot"}
+
+  - id: o_to_open_o
+    order: 101
+    name: "Short *o > *ɔ"
+    match: o
+    replace: ɔ
+    tier: established
+    description: "Latin short *o lowers to open *ɔ (*foko > *fɔko)."
+    references: [maiden-1995]
+    examples:
+      - {in: "*foko", out: "*fɔkɔ", gloss: "fire"}
+
+  - id: u_to_o
+    order: 103
+    name: "Short *u > *o"
+    match: u
+    replace: o
+    tier: established
+    description: "Latin short *u merges with *o (*gula > *gola)."
+    references: [maiden-1995]
+    examples:
+      - {in: "*gula", out: "*gola", gloss: "throat"}
+
+  - id: long_a_to_a
+    order: 110
+    name: "Long *ā > *a"
+    match: ā
+    replace: a
+    tier: established
+    description: "Length is lost in long *ā (*kantāre > *kantare)."
+    references: [maiden-1995]
+    examples:
+      - {in: "*kantāre", out: "*kantare", gloss: "to sing"}
+
+  - id: long_e_to_e
+    order: 111
+    name: "Long *ē > *e"
+    match: ē
+    replace: e
+    tier: established
+    description: "Long *ē becomes close *e (*sēra > *sera)."
+    references: [maiden-1995]
+    examples:
+      - {in: "*sēra", out: "*sera", gloss: "evening"}
+
+  - id: long_i_to_i
+    order: 112
+    name: "Long *ī > *i"
+    match: ī
+    replace: i
+    tier: established
+    description: "Long *ī loses its length (*fīlia > *filia)."
+    references: [maiden-1995]
+    examples:
+      - {in: "*fīlia", out: "*filia", gloss: "daughter"}
+
+  - id: long_o_to_o
+    order: 113
+    name: "Long *ō > *o"
+    match: ō
+    replace: o
+    tier: established
+    description: "Long *ō becomes close *o (*sōle > *sole)."
+    references: [maiden-1995]
+    examples:
+      - {in: "*sōle", out: "*sole", gloss: "sun"}
+
+  - id: long_u_to_u
+    order: 114
+    name: "Long *ū > *u"
+    match: ū
+    replace: u
+    tier: established
+    description: "Long *ū loses its length (*lūna > *luna)."
+    references: [maiden-1995]
+    examples:
+      - {in: "*lūna", out: "*luna", gloss: "moon"}
+
+  # ---- Italian diphthongisation ------------------------------------------
+  - id: open_e_diphthong
+    order: 200
+    name: "Open *ɛ > *ie in an open syllable"
+    match: ɛ
+    replace: ie
+    env: {left: "C", right: "C V"}
+    tier: established
+    description: "Stressed open *ɛ diphthongises to *ie before a single consonant and a vowel (*pɛde > *piede)."
+    notes: "Diphthongisation is limited to stressed open syllables; stress is not marked in the Latin input, so the rule is stated phonologically."
+    references: [maiden-1995]
+    examples:
+      - {in: "*pɛdɛ", out: "*piedɛ", gloss: "foot"}
+
+  - id: open_o_diphthong
+    order: 201
+    name: "Open *ɔ > *uo in an open syllable"
+    match: ɔ
+    replace: uo
+    env: {left: "C", right: "C V"}
+    tier: established
+    description: "Stressed open *ɔ diphthongises to *uo (*fɔko > *fuoko)."
+    notes: "Diphthongisation is limited to stressed open syllables; stress is not marked in the Latin input, so the rule is stated phonologically."
+    references: [maiden-1995]
+    examples:
+      - {in: "*fɔkɔ", out: "*fuokɔ", gloss: "fire"}
+
+  # ---- palatalisation -----------------------------------------------------
+  - id: k_to_ch
+    order: 300
+    name: "*k > *tʃ before a front vowel"
+    match: k
+    replace: "tʃ"
+    env: {right: "(e|i|ɛ)"}
+    tier: established
+    description: "Latin *k palatalises to *tʃ before *e or *i (*kɛntu > *tʃɛntu)."
+    references: [maiden-1995]
+    examples:
+      - {in: "*kɛntu", out: "*tʃɛntu", gloss: "hundred"}
+
+  - id: g_to_j
+    order: 301
+    name: "*g > *dʒ before a front vowel"
+    match: g
+    replace: "dʒ"
+    env: {right: "(e|i|ɛ)"}
+    tier: established
+    description: "Latin *g palatalises to *dʒ before *e or *i (*gɛnte > *dʒɛnte)."
+    references: [maiden-1995]
+    examples:
+      - {in: "*gɛnte", out: "*dʒɛnte", gloss: "people"}
+
+  # ---- consonants and final syllables ------------------------------------
+  - id: h_loss
+    order: 400
+    name: "Latin *h is lost"
+    match: h
+    replace: ""
+    tier: established
+    description: "Latin *h is no longer pronounced in Italian (*homo > *omo)."
+    references: [maiden-1995]
+    examples:
+      - {in: "*homo", out: "*omo", gloss: "man"}
+
+  - id: final_is_to_e
+    order: 238
+    name: "Final *-is becomes *-e"
+    match: i
+    replace: e
+    env: {right: "s #"}
+    tier: established
+    description: "The Latin ending *-is gives Italian -e (*canis > *canes > cane)."
+    notes: "Stated for the ending only; the *-s that follows is removed by the later final-consonant law."
+    references: [maiden-1995]
+    examples:
+      - {in: "*canis", out: "*canes", gloss: "dog"}
+
+  - id: final_m_loss
+    order: 240
+    name: "Final *-m is lost"
+    match: m
+    replace: ""
+    env: {right: "#"}
+    tier: established
+    description: "The Latin accusative ending *-m is not pronounced from the early imperial period on and is gone in the Romance languages (*vīnum > *vīno)."
+    notes: "Only the word-final position is modelled; -m- between vowels stays (*lūma > luma)."
+    references: [maiden-1995, weiss-2009]
+    examples:
+      - {in: "*vīnum", out: "*vīnu", gloss: "wine"}
+
+  - id: final_s_loss
+    order: 410
+    name: "Final *-s is lost"
+    match: s
+    replace: ""
+    env: {right: "#"}
+    tier: established
+    description: "Word-final *-s is lost in Italian (*tempos > *tempo)."
+    references: [maiden-1995]
+    examples:
+      - {in: "*tempos", out: "*tempo", gloss: "time"}
+
+  - id: final_t_loss
+    order: 411
+    name: "Final *-t is lost"
+    match: t
+    replace: ""
+    env: {right: "#"}
+    tier: established
+    description: "Word-final *-t is lost (*amat > *ama)."
+    references: [maiden-1995]
+    examples:
+      - {in: "*amat", out: "*ama", gloss: "he loves"}

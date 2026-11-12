@@ -1,0 +1,31 @@
+language: iir-pro
+
+note: >
+  Derivational suffixes a Proto-Indo-Iranian word may take. Unlike the PIE
+  panel these are not composed by hand: each one names the registered
+  formation law that *is* its formation, so choosing a suffix here runs the
+  same law the ladder runs, off by default like every other formation, and the
+  result is carried down the chain by the ordinary sound laws. A word wears a
+  suffix only when its own record says so; the word page's suffix line lets a
+  reader try the alternative and see what the laws would give.
+
+suffixes:
+  - id: nah
+    form: "-nás"
+    surface: "-nah"
+    ending: ""
+    attach: drop
+    gloss: "possessive / adjective-forming *-nós"
+    note: >
+      Proto-Indo-Iranian *-nás, from Proto-Indo-European *-nós, is the suffix
+      behind Proto-Iranian *-nah (Wiktionary, Reconstruction:Proto-Iranian/-nah:
+      "Inherited from Proto-Indo-Iranian *-nás, from Proto-Indo-European
+      *-nós."). The PIr adjective *daywánah 'demon-possessed' is analysed on
+      Wiktionary as *daywá- 'demon' plus *-nah, and its Middle Persian
+      descendant is dyw'nk' /dēwānag/; Persian دیوانه 'mad' is that word. The
+      law adds the PII morpheme and lets *-Vs > *-Vh turn the final *s into
+      *h, so the surface form is *-nah rather than a suffix spelled twice.
+    outcomes: "PIr *-nah; Avestan -na-; Sanskrit -ná-"
+    sources: [wiktionary, hoffmann-forssman-2004]
+    rule: "iir-pro~ira-pro:suffix_nah"
+    example: "*daywás 'demon' → *daywánah 'demon-possessed' (Persian دیوانه)"

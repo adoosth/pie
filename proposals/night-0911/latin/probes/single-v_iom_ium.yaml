@@ -1,0 +1,20 @@
+stage:
+  name: x
+  references:
+  - sihler-1995
+rules:
+- id: v_iom_ium
+  order: 356
+  name: -iom > -ium
+  match: i o
+  replace: i u
+  env:
+    right: 'm #'
+  tier: established
+  description: The ending -iom becomes -ium (*labiom > *labium).
+  references:
+  - sihler-1995
+  examples:
+  - in: '*labiom'
+    out: '*labium'
+    gloss: lip

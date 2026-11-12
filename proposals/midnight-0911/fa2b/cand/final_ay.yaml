@@ -1,0 +1,16 @@
+stage: {source: pal, target: fa}
+rules:
+  - id: final_ay_to_a
+    order: 16
+    name: "MP final *-āy > NP -ā"
+    match: y
+    replace: ""
+    env: {left: ā, right: "#"}
+    tier: proposed
+    description: >
+      The final glide of MP *-āy is lost: pāy > pā 'foot', xwadāy > xodā
+      'lord', humāy > homā.  The change is lexical in part (sarāy, dāy keep
+      the glide), so the law is proposed and measured.
+    references: [sadeghi-1978, windfuhr-2009]
+    examples:
+      - {in: "humāy", out: "humā", gloss: "(NP homā)"}

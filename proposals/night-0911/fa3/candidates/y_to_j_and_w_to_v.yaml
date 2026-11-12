@@ -1,0 +1,32 @@
+# Rejected — between them they fire nowhere the corpus can see.
+#   python tools/whatif.py --from pal --to fa --rules <this file> --layers exact,orthographic,script
+#   explained 352 -> 352, gained 0, lost 0
+# The two changes are real in New Persian (جوان < MP yuwān, گوهر < MP gōhar)
+# but neither has a word in the corpus whose Middle Persian ancestor is a
+# reaching form: جوان's ancestor is recorded as a Persian-internal entry, and
+# گوهر's Middle Persian source has no reading.  They stay here until the data
+# reaches them; registering them would be a dead rule.
+rules:
+  - id: y_to_j_before_u
+    order: 12
+    name: "MP *y- > NP j- before *u"
+    match: y
+    replace: j
+    env: {left: "#", right: u}
+    tier: proposed
+    references: [sadeghi-1978, windfuhr-2009]
+    examples:
+      - {in: "*yuwān", out: "*juwān", gloss: "young (NP جوان)"}
+  - id: w_to_v_between_vowels
+    order: 25
+    name: "MP intervocalic *w > NP v"
+    match: w
+    replace: v
+    env: {left: V, right: "ˈ? V"}
+    tier: proposed
+    references: [sadeghi-1978, windfuhr-2009]
+    examples:
+      - {in: "*gōwahr", out: "*gōvahr", gloss: "jewel (NP گوهر)"}
+gain: {fa: {explained: 0, gained: [], lost: []}}
+verdict: rejected
+reason: "dead rules on this corpus (0 gained, 0 lost)"

@@ -1,0 +1,22 @@
+stage:
+  name: Proto-Italic → Latin (candidate 4)
+  references:
+  - sihler-1995
+  - weiss-2009
+  - meiser-1998
+rules:
+- id: v_en_to_in
+  order: 243
+  name: '*e > i before final n'
+  match: e
+  replace: i
+  env:
+    right: 'n #'
+  tier: proposed
+  description: Short *e is raised to *i before final *n (*en > in).
+  references:
+  - sihler-1995
+  examples:
+  - in: '*en'
+    out: '*in'
+    gloss: in

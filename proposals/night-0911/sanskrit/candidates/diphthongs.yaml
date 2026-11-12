@@ -1,0 +1,19 @@
+rules:
+  - id: ay_to_e
+    order: 10
+    name: "PIA *ai, written ay, > Skt e"
+    match: "a y"
+    replace: e
+    env: {right: "(C|#)"}
+    references: [mayrhofer-1986, whitney-1889]
+    examples:
+      - {in: "*daywás", out: "*dewás", gloss: "god (Skt devá-)"}
+  - id: aw_to_o
+    order: 11
+    name: "PIA *au, written aw/av, > Skt o"
+    match: "a (w|v)"
+    replace: o
+    env: {right: "(C|#)"}
+    references: [mayrhofer-1986, whitney-1889]
+    examples:
+      - {in: "*kapáwtas", out: "*kapótas", gloss: "pigeon (Skt kapóta-)"}

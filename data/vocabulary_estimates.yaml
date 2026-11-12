@@ -1,0 +1,191 @@
+# How many words a language is estimated to have, so the coverage page can
+# show what our glossary does not hold yet.
+#
+# `unidentified` is never a counted word.  The counter reports how many stored
+# words fall in each band; this file lets it add "and N more are estimated to
+# exist but are not in the glossary", which is the only way a reader can see
+# whether 60% of 5,580 Persian words means 60% of Persian or 5% of it.
+#
+# One row per language, with the figure's source and what it counts.  The
+# definitions differ by a factor of ten — a dictionary's headwords, the words
+# of a language, every inflected form — so `counts` says which one is meant and
+# `basis` says how to read it:
+#
+#   dictionary  the headword count of one dictionary (what it collected)
+#   floor       a dictionary that says outright it covers only a core
+#   upper       includes phrases or inflected forms, so it overstates lemmas
+#
+# NO FIGURE IS INVENTED HERE.  Each number below was read on the page named in
+# `url` (2026-11-09), and `quote` is that page's own sentence.  A language
+# without a cited estimate reports no unidentified band, which is the honest
+# answer: 12 of our 35 stages have no published vocabulary size at all, and the
+# `rejected` block at the end records the ones that were looked for and not
+# found (or found but not fit to be a denominator).
+schema: 2
+estimates:
+  - lang: en
+    total: 500000
+    source: "Oxford English Dictionary (OED online), front page"
+    url: "https://www.oed.com/"
+    year: 2026
+    counts: "words and phrases, current and historical — not lemmas only, and phrases count"
+    basis: upper
+    quote: "An unsurpassed guide for researchers in any discipline to the meaning, history, and usage of over 500,000 words and phrases across the English-speaking world."
+
+  - lang: de
+    total: 151000
+    source: "Duden — Die deutsche Rechtschreibung, 29th edition (2024), edition history"
+    url: "https://www.duden.de/ueber_duden/auflagengeschichte"
+    year: 2024
+    counts: "Stichwörter (headwords) of contemporary standard German"
+    basis: dictionary
+    quote: "Der neue Rechtschreibduden ist mit 3000 Neuaufnahmen und insgesamt 151 000 Stichwörtern so umfangreich wie noch nie."
+
+  - lang: fa
+    total: 343466
+    source: "Dehkhoda Dictionary (Loghatnāmeh), digital edition, as described by the Association for Iranian Studies"
+    url: "https://associationforiranianstudies.org/resources"
+    year: 1931
+    counts: "dictionary entries of the Dehkhoda dictionary; it is the largest Persian dictionary, and its entries include compounds and phrases"
+    basis: dictionary
+    quote: "Dehkhoda Dictionary. Originally printed in 1931, the Dihkhuda Dictionary (لغت‌نامه دهخدا) is a comprehensive Persian dictionary consisting of approximately 343,466 entries."
+    # Dehkhoda's 343,466 entries are not 343,466 words.  Its own index
+    # (`tools/dehkhoda_index.py`, 35 sitemaps, 343,420 headwords) decomposes
+    # exactly: 77,459 headwords contain a space (the index writes it as a
+    # hyphen: آب-آسیا is آب آسیا), 103,033 are numbered homograph pages (آب-2,
+    # آب-3 — the same word again, and every such base also has a plain page),
+    # and 2,126 are not in Persian script.  That leaves 160,802 single Persian
+    # words (160,802 + 77,459 + 103,033 + 2,126 = 343,420).  The figure is read
+    # from the index, not estimated by us, and the grey band is measured against
+    # it so the page stops calling half the dictionary "missing" when what is
+    # missing is phrases (2026-11-10; a first pass subtracted the numbered
+    # homographs as if they were phrases and printed 160,769 — corrected
+    # 2026-11-10 04:35).
+    words: 160802
+    words_note: >-
+      single words of the same digital edition, from its own index: of 343,420
+      headwords, 77,459 are phrases (the index writes the space as a hyphen),
+      103,033 are numbered homograph pages of a word already counted, and 2,126
+      are not in Persian script, leaving 160,802 single Persian words.  A phrase
+      is not a word of the language and is not stored here, so it is not counted
+      missing either.
+
+  - lang: it
+    total: 145000
+    source: "Lo Zingarelli 2024, Vocabolario della lingua italiana (Zanichelli)"
+    url: "https://www.zanichelli.it/ricerca/prodotti/lo-zingarelli-2024"
+    year: 2024
+    counts: "voci (headwords); the same volume carries 380,000 senses"
+    basis: dictionary
+    quote: "145 000 voci, oltre 380 000 significati fra cui circa 1000 nuove parole e locuzioni o nuovi significati"
+
+  - lang: el
+    total: 140000
+    source: "Χρηστικό Λεξικό της Νεοελληνικής Γλώσσας (Academy of Athens, electronic edition)"
+    url: "https://christikolexiko.academyofathens.gr"
+    year: 2023
+    counts: "λήμματα (lemmas) in the electronic database; the printed volume develops 75,500 of them"
+    basis: dictionary
+    quote: "Αναπτύσσονται με ακρίβεια και πληρότητα περίπου 75.500 λήμματα, σύμπλοκα και στερεότυπες εκφράσεις από τα 140.000 που υπάρχουν στην ηλεκτρονική βάση"
+
+  - lang: la
+    total: 40000
+    source: "Oxford Latin Dictionary, 2nd edition (OUP 2012), as summarised in its Wikipedia article"
+    url: "https://en.wikipedia.org/wiki/Oxford_Latin_Dictionary"
+    year: 2012
+    counts: "headword entries of Classical Latin (to AD 200), covering 100,000 senses"
+    basis: dictionary
+    quote: "The complete dictionary contains c. 40,000 entries (covering 100,000 senses)."
+
+  - lang: grc
+    total: 116502
+    source: "Liddell–Scott–Jones, A Greek–English Lexicon, 9th edition (1940), as summarised in its Wikipedia article"
+    url: "https://en.wikipedia.org/wiki/A_Greek%E2%80%93English_Lexicon"
+    year: 1940
+    counts: "entries (headwords) of literary and documentary Ancient Greek"
+    basis: dictionary
+    quote: "The LSJ main edition has 116,502 entries."
+
+  - lang: sa
+    total: 180000
+    source: "M. Monier-Williams, A Sanskrit–English Dictionary (1899), publisher's description"
+    url: "https://books.google.com/books/about/Sanskrit_English_Dictionary.html?id=rhRhAQAACAAJ"
+    year: 1899
+    counts: "words (the dictionary's own headword count)"
+    basis: dictionary
+    quote: "The present work contains more than 180,000 words."
+
+  - lang: lt
+    total: 500000
+    source: "Lietuvių kalbos žodynas (LKŽ, 20 volumes), described on Lithuanian Wikipedia"
+    url: "https://lt.wikipedia.org/wiki/Lietuvi%C5%B3_kalbos_%C5%BEodynas"
+    year: 2002
+    counts: "leksikografiniai straipsniai (lexicographic articles), dialect vocabulary included, quoted 1547–2001"
+    basis: upper
+    quote: "Žodyno apimtis: apie 22 000 puslapių, 0,5 mln. leksikografinių straipsnių."
+
+  - lang: sq
+    total: 120000
+    source: "Fjalori i madh i gjuhës shqipe (2024), reported by fjala.info"
+    url: "https://fjala.info/ne-nentor-2024-publikohet-fjalori-me-i-madh-i-gjuhes-shqipe-fillimisht-ne-internet/"
+    year: 2024
+    counts: "words the dictionary will hold; the figure was announced before the print edition"
+    basis: dictionary
+    quote: "Fjalori, i cili do të përmbajë rreth 120 mijë fjalë, do të vijë fillimisht në formatin virtual nga interneti, ndërsa në vitin 2025 do të vijohet edhe me procesin e printimit."
+
+  - lang: pal
+    total: 4000
+    source: "D. N. MacKenzie, A Concise Pahlavi Dictionary (OUP 1971), preface"
+    url: "https://www.parsianjoman.org/wp-content/uploads/2015/09/A-Concise-Pahlavi-Dictionary.pdf"
+    year: 1971
+    counts: "the commonest simple words a concise dictionary sets out to cover — a curated core, not the attested vocabulary"
+    basis: floor
+    quote: "The present dictionary ... is intended first to relieve the stranger to Pahlavi of the necessity of covering what is now well-travelled ground-the commonest 4,000 simple words"
+
+  - lang: ave
+    total: 7959
+    source: "Chr. Bartholomae, Altiranisches Wörterbuch (1904), digitised as the CAB edition (FU Berlin)"
+    url: "https://cab.geschkult.fu-berlin.de/dictionaries/Bartholomae_Dictionary.html"
+    year: 1904
+    counts: "dictionary entries (lemmas) of the standard Avestan dictionary"
+    basis: dictionary
+    quote: "Loading 7,959 dictionary entries … 7,959 AIW entries"
+
+# Figures that were looked for and are deliberately NOT used.  Kept next to
+# the ones that are, so the next reader does not have to search again.
+rejected:
+  - lang: ang
+    total: 58000
+    source: "Old English Translator, about page, describing Bosworth–Toller"
+    url: "https://oetranslator.com/about"
+    why: "counts inflected forms, not lemmas — it would overstate Old English vocabulary several times over"
+  - lang: non
+    total: 35000
+    source: "Cleasby–Vigfússon dictionary mirror"
+    url: "https://cleasby-vigfusson-dictionary.vercel.app"
+    why: "an unofficial mirror quoting its own figure; no bibliographic statement behind the number"
+  - lang: hy
+    total: 150000
+    why: "the figure appears in a search snippet for bararan.am but is not on any page that could be loaded"
+  - lang: peo
+    why: "no published total.  Descriptions are qualitative ('a few hundred distinct terms'), and a run of running words is not a vocabulary"
+  - lang: hit
+    why: "the Chicago Hittite Dictionary documents 'the full vocabulary known from published texts' but publishes no count"
+  - lang: got
+    why: "only a dictionary blurb ('over 2500 English entries'); no scholarly total"
+  - lang: enm
+    why: "the Middle English Dictionary gives pages and quotations, never a headword count"
+  - lang: goh
+    why: "no reachable count for the Althochdeutsches Wörterbuch"
+  - lang: gmh
+    why: "the Mittelhochdeutsches Wörterbuch site gives no entry count"
+  - lang: sga
+    why: "the Dictionary of the Irish Language gives pages only, and its site refuses connections from this host"
+  - lang: chu
+    why: "no reachable count"
+  - lang: txb
+    why: "Adams, A Dictionary of Tocharian B (preface) gives no entry count"
+  - lang: osc
+    why: "nothing numeric published"
+  - lang: xcl
+    why: "nothing numeric published"

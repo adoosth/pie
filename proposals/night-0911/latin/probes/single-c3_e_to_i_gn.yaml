@@ -1,0 +1,22 @@
+stage:
+  name: Proto-Italic → Latin (candidate 3)
+  references:
+  - sihler-1995
+  - weiss-2009
+  - meiser-1998
+rules:
+- id: c3_e_to_i_gn
+  order: 241
+  name: '*e > *i before *gn'
+  match: e
+  replace: i
+  env:
+    right: g n
+  tier: established
+  description: Short *e is raised to *i before *gn (*segnom > *signom, *legnom > *lignom).
+  references:
+  - sihler-1995
+  examples:
+  - in: '*segnom'
+    out: '*signom'
+    gloss: sign

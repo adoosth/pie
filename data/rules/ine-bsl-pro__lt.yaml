@@ -1,0 +1,351 @@
+stage:
+  name: Proto-Balto-Slavic → Lithuanian
+  date_start: -500
+  date_end: 1600
+  description: >
+    The last step of the Lithuanian chain: the stress and acute-register marks of
+    the reconstructions are notation and are not written in the headword; the
+    East Baltic vowel shift turns *ā into o, *ō into uo, *ē into ė and *ī into y;
+    the sibilants *ś and *ź become š and ž, *w becomes v, the infinitive
+    ending *-tei becomes -ti, and a nasal before a sibilant or word-finally
+    becomes a nasal vowel (ą, į or ų).
+  references: [fortson-2004, sihler-1995, meillet-1934, ringe-2006]
+rules:
+  - id: stress_token_dropped
+    order: 28
+    name: "Stress is notation and is not written in the Lithuanian headword"
+    match: ˈ
+    replace: ""
+    tier: orthographic
+    description: >
+      The PBS reconstructions mark the accent with an acute on the vowel, which
+      the engine stores as a separate token (*wilkás).  The Lithuanian headword
+      of this glossary writes no accent at all, so the token is dropped as
+      transcription; the entry keeps its IPA, where the stress is recorded.  It
+      runs after the vowel laws because none of them is accent-conditioned; a
+      word whose only step is one of the two notation rules is counted apart in
+      the report.
+    references: [fortson-2004, sihler-1995]
+    examples:
+      - {in: "wilkás", out: "wilkas", gloss: "wolf"}
+  - id: register_mark_dropped
+    order: 4
+    name: "The acute register mark *ˀ is notation, not a Lithuanian segment"
+    match: (ˀ|ʔ)
+    replace: ""
+    tier: orthographic
+    description: >
+      Wiktionary writes the Proto-Balto-Slavic acute register with a raised
+      glottal stop (*galˀwāˀ), and a few records use the glottal-stop letter ʔ
+      for the same mark (*voʔka).  Lithuanian neither writes nor contrasts it,
+      and the PBS stage description already calls it a notation, not a sound
+      law, so the mark is dropped as transcription.
+    references: [fortson-2004, ringe-2006]
+    examples:
+      - {in: "galˀwā", out: "galwā", gloss: "head"}
+
+  - id: eu_to_au
+    order: 6
+    name: "*eu > au"
+    match: e w
+    replace: a u
+    tier: established
+    description: >
+      The PBS diphthong *eu becomes au in Lithuanian (*newdā- > naud- "gain",
+      *lewk- > lauk- "wait", *h₂ewg- > aug- "grow"); the rule runs before *w > v
+      so the diphthong is still visible.  (Those ancestors are roots, so the
+      words themselves are reported as misses for want of an ending, not for
+      want of the diphthong.)
+    references: [fortson-2004, sihler-1995, meillet-1934]
+    examples:
+      - {in: "newdā", out: "naudā", gloss: "gain"}
+      - {in: "lewk", out: "lauk", gloss: "to wait (root)"}
+  - id: t_l_to_k_l
+    order: 8
+    name: "*tl > kl after a consonant"
+    match: t l
+    replace: k l
+    env: {left: "!V"}
+    tier: established
+    description: >
+      The cluster *tl that arose inside a stem is dissimilated to kl in
+      Lithuanian (PBS *tintlas > tinklas, *artlan > arklas).  The environment
+      says "after a consonant" because a *t that follows a vowel belongs to two
+      morphemes (PBS *at-laikas > atlaikas) and is not affected.
+    references: [fortson-2004, sihler-1995]
+    examples:
+      - {in: "tintlas", out: "tinklas", gloss: "net"}
+      - {in: "artlan", out: "arklan", gloss: "plough"}
+  - id: w_to_v
+    order: 10
+    name: "*w > v"
+    match: w
+    replace: v
+    tier: established
+    description: >
+      The PBS labiovelar glide *w becomes the labiodental fricative v in
+      Lithuanian (PBS *wilkás > vilkas, *áwis > avis, *warnāˀ > varna).
+    references: [fortson-2004, sihler-1995, meillet-1934]
+    examples:
+      - {in: "warnā", out: "varnā", gloss: "crow"}
+      - {in: "áwis", out: "ávis", gloss: "sheep"}
+  - id: s_caron_to_s
+    order: 12
+    name: "*ś > š"
+    match: ś
+    replace: š
+    tier: established
+    description: >
+      The PBS palatalised sibilant *ś merges with *š in Lithuanian (PBS *śeima >
+      šeima, *aśutas > ašutas, *śis > šis).
+    references: [fortson-2004, meillet-1934]
+    examples:
+      - {in: "śeima", out: "šeima", gloss: "family"}
+      - {in: "aśutas", out: "ašutas", gloss: "horsehair"}
+  - id: z_caron_to_z
+    order: 14
+    name: "*ź > ž"
+    match: ź
+    replace: ž
+    tier: established
+    description: >
+      The PBS palatalised sibilant *ź becomes the voiced š, written ž (PBS
+      *maźas > mažas, *źeimāˀ > žiema, *berźas > beržas).
+    references: [fortson-2004, meillet-1934]
+    examples:
+      - {in: "maźas", out: "mažas", gloss: "little"}
+      - {in: "berźas", out: "beržas", gloss: "birch"}
+
+  - id: long_a_to_o
+    order: 20
+    name: "*ā > o except word-finally"
+    match: ā
+    replace: o
+    env: {right: "."}
+    tier: established
+    description: >
+      The PBS long *ā becomes o in Lithuanian (*bā́ˀbāˀ > boba, *rājus > rojus,
+      *dā́ˀbtei > dobti); word-finally the length is simply lost (*dainā >
+      daina), which the next law states.
+    references: [fortson-2004, sihler-1995, meillet-1934]
+    examples:
+      - {in: "bābā", out: "bobā", gloss: "old woman"}
+      - {in: "rājus", out: "rojus", gloss: "heaven"}
+  - id: long_a_to_a_final
+    order: 22
+    name: "Final *-ā > -a"
+    match: ā
+    replace: a
+    env: {right: "#"}
+    tier: established
+    description: >
+      A word-final long *-ā loses its length and is written a (*dainā > daina,
+      *algā́ˀ > alga, *rasā́ˀ > rasa).  The stressed internal *ā is o; the final
+      one is never o.
+    references: [fortson-2004, meillet-1934]
+    examples:
+      - {in: "dainā", out: "daina", gloss: "song"}
+      - {in: "algā", out: "alga", gloss: "pay"}
+  - id: long_o_to_uo
+    order: 24
+    name: "*ō > uo"
+    match: ō
+    replace: uo
+    tier: established
+    description: >
+      The PBS long *ō (from PIE *ō) becomes the diphthong uo in Lithuanian (*nō >
+      nuo, *dṓˀnāˀ > duona, *swésō > sesuo, *ákmō > akmuo), which is what keeps
+      it apart from *ā > o.
+    references: [fortson-2004, sihler-1995, meillet-1934]
+    examples:
+      - {in: "nō", out: "nuo", gloss: "from"}
+      - {in: "swesō", out: "swesuo", gloss: "sister"}
+  - id: long_e_to_e_dot
+    order: 26
+    name: "*ē > ė"
+    match: ē
+    replace: ė
+    tier: established
+    description: >
+      The PBS long *ē becomes the narrow e written ė in Lithuanian (*bḗˀgtei >
+      bėgti, *sēdḗˀtei > sėdėti, *wēˀtrāˀ > vėtra).
+    references: [fortson-2004, sihler-1995, meillet-1934]
+    examples:
+      - {in: "bēgtei", out: "bėgtei", gloss: "to run"}
+      - {in: "wētrā", out: "wėtrā", gloss: "storm"}
+  - id: final_long_i_to_i
+    order: 27
+    name: "Final *-ī > -i"
+    match: ī
+    replace: i
+    env: {right: "#"}
+    tier: established
+    description: >
+      A word-final long *-ī loses its length and is written i (PBS *patī >
+      pati); the same vowel stays y inside the word (*wīˀras > vyras).
+    references: [fortson-2004, sihler-1995]
+    examples:
+      - {in: "patī", out: "pati", gloss: "wife"}
+  - id: long_i_to_y
+    order: 28
+    name: "*ī > y"
+    match: ī
+    replace: y
+    tier: established
+    description: >
+      The PBS long *ī becomes the high central vowel written y (*pīˀsdāˀ >
+      pyzda, *wīˀras > vyras, *slīˀwāˀ > slyva).
+    references: [fortson-2004, sihler-1995, meillet-1934]
+    examples:
+      - {in: "pīsdā", out: "pysdā", gloss: "cunt"}
+      - {in: "wīras", out: "wyras", gloss: "man"}
+
+  - id: final_ei_to_i_after_t
+    order: 30
+    name: "The infinitive ending *-tei > -ti"
+    match: e i
+    replace: i
+    env: {left: t, right: "#"}
+    tier: established
+    description: >
+      The PBS infinitive ending *-tei becomes -ti in Lithuanian (*bértei > berti,
+      *bū́ˀtei > būti, *degtéi > degti, *eitei > eiti).  It is stated as a
+      segmental change of the final syllable and applies only after *t, so it
+      does not touch *prei > prie or *deiwás > dievas.
+    references: [fortson-2004, sihler-1995]
+    examples:
+      - {in: "bertei", out: "berti", gloss: "to strew"}
+      - {in: "būtei", out: "būti", gloss: "to be"}
+  - id: s_w_to_s
+    order: 7
+    name: "*sw- > s-"
+    match: s w
+    replace: s
+    tier: proposed
+    description: >
+      Word-initial *sw- loses its glide in Lithuanian (PBS *swapnas > sapnas,
+      *swesō > sesuo).  The change is not exceptionless in the corpus (*swaias >
+      savo keeps the glide as v), so it is stated as a hypothesis, not as an
+      established law.
+    references: [fortson-2004, meillet-1934]
+    examples:
+      - {in: "swapnas", out: "sapnas", gloss: "dream"}
+      - {in: "swesō", out: "sesō", gloss: "sister"}
+  - id: lj_to_li
+    order: 33
+    name: "*lj > li"
+    match: l j
+    replace: l i
+    tier: established
+    description: >
+      The glide of the cluster *lj is vocalised to i (PBS *dáljāˀ > dalia,
+      *wáljāˀ > valia, *ljáudis > liaudis).
+    references: [fortson-2004, sihler-1995]
+    examples:
+      - {in: "dáljā", out: "dáliā", gloss: "fate"}
+      - {in: "wáljā", out: "wáliā", gloss: "will"}
+  - id: s_j_to_s_i
+    order: 35
+    name: "*sj > si"
+    match: s j
+    replace: s i
+    tier: established
+    description: >
+      The glide of *sj is vocalised to i (PBS *sjūˀtei > siūti, *sjúnsti >
+      siųsti), as in *lj > li.
+    references: [fortson-2004, sihler-1995]
+    examples:
+      - {in: "sjūtei", out: "siūtei", gloss: "to sew"}
+      - {in: "sjunsti", out: "siunsti", gloss: "to send"}
+  - id: s_to_z_before_voiced
+    order: 36
+    name: "*s > z before a voiced obstruent"
+    match: s
+    replace: z
+    env: {right: (b|d|g)}
+    tier: established
+    description: >
+      The sibilant *s voices to z before a voiced stop, and Lithuanian writes the
+      voiced sound (PBS *pīˀsdāˀ > pyzda, *nisdan > lizdas, *bliskas > blizgas),
+      while it stays s elsewhere.
+    references: [fortson-2004, sihler-1995]
+    examples:
+      - {in: "pīsdā", out: "pīzdā", gloss: "cunt"}
+      - {in: "nisdan", out: "nizdan", gloss: "nest"}
+  - id: a_nasal_before_s
+    order: 40
+    name: "*aN > ą before *s"
+    match: a (n|m) s
+    replace: ą s
+    tier: established
+    description: >
+      A nasal after *a becomes the nasal vowel ą before *s (PBS *źansís >
+      žąsis, *kanstei > kąsti, *ans- > ąsa); elsewhere the nasal stays a
+      consonant (PBS *mandras > mandras).
+    references: [fortson-2004, sihler-1995]
+    examples:
+      - {in: "źansis", out: "źąsis", gloss: "goose"}
+      - {in: "kanstei", out: "kąstei", gloss: "to bite"}
+  - id: u_nasal_before_s
+    order: 42
+    name: "*uN > ų before *s"
+    match: u (n|m) s
+    replace: ų s
+    tier: established
+    description: "A nasal after *u becomes ų before *s (PBS *sjúnsti > siųsti, *-uns > -us with ų)."
+    references: [fortson-2004, sihler-1995]
+    examples:
+      - {in: "sjunsti", out: "sjųsti", gloss: "to send"}
+  - id: a_nasal_final
+    order: 44
+    name: "Final *-am > ą"
+    match: a m
+    env: {right: "#"}
+    replace: ą
+    tier: established
+    description: >
+      A word-final nasal after *a gives the nasal vowel ą (PBS *sam- > są-, the
+      prefix); it is the same change as before *s, in the word-final variant.
+    references: [fortson-2004, sihler-1995]
+    examples:
+      - {in: "sam", out: "są", gloss: "together (prefix)"}
+  - id: i_nasal_final
+    order: 46
+    name: "Final *-iN > į"
+    match: i (n|m)
+    env: {right: "#"}
+    replace: į
+    tier: established
+    description: "A word-final nasal after *i gives į (PBS *in > į, the preposition)."
+    references: [fortson-2004, sihler-1995]
+    examples:
+      - {in: "in", out: "į", gloss: "into"}
+  - id: final_an_to_as
+    order: 62
+    name: "Final *-an > -as in the masculine o-stems"
+    match: a n
+    replace: a s
+    env: {right: "#"}
+    tier: proposed
+    description: >
+      The record cites an o-stem in its PBS neuter form in *-an (PBS *eźeran,
+      *stálan, *pírštan), while the Lithuanian word is the masculine nominative
+      in -as (ežeras, stalas, pirštas).  The rule is a citation convention for
+      that declension, not a phonetic change, and is therefore only proposed.
+    references: [fortson-2004, olander-2015]
+    examples:
+      - {in: "ezeran", out: "ezeras", gloss: "lake"}
+      - {in: "stalan", out: "stalas", gloss: "table"}
+  - id: u_nasal_final
+    order: 48
+    name: "Final *-uN > ų"
+    match: u (n|m)
+    env: {right: "#"}
+    replace: ų
+    tier: established
+    description: >
+      A word-final nasal after *u gives ų (PBS *-um > -ų, the accusative
+      singular of the u-stems).
+    references: [fortson-2004, sihler-1995]
+    examples:
+      - {in: "tum", out: "tų", gloss: "that (accusative, bound)"}

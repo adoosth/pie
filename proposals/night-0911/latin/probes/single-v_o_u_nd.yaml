@@ -1,0 +1,20 @@
+stage:
+  name: x
+  references:
+  - sihler-1995
+rules:
+- id: v_o_u_nd
+  order: 246
+  name: '*o > *u before *nd'
+  match: o
+  replace: u
+  env:
+    right: n d
+  tier: established
+  description: Short *o becomes *u before *nd (*ɣrondā > *grundā).
+  references:
+  - sihler-1995
+  examples:
+  - in: '*ɣrondā'
+    out: '*grundā'
+    gloss: '?'

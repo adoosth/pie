@@ -1,0 +1,12 @@
+rules:
+  - id: soft_jer_to_hard_after_liquid
+    order: 80
+    name: "*ь > *ъ after a liquid before a consonant"
+    match: "ь"
+    replace: "ъ"
+    env: {left: (r|l), right: "(b|v|g|d|ž|z|k|l|m|n|p|r|s|t|f|x|c|č|š|j|ť|ď|ľ|ň|ř)"}
+    tier: proposed
+    description: "PSl trьnъ, drьžava, vrьtъ, vьrtъ appear in OCS with the hard jer (трънъ trŭnŭ, дръжава drŭžava, врътъ vrŭtŭ), as if the jer were assimilated to the back vowel of the next syllable."
+    references: [vaillant-1950, shevelov-1964]
+    examples:
+      - {in: "trьnъ", out: "trъnъ", gloss: "thorn (трънъ)"}

@@ -1,0 +1,673 @@
+stage:
+  name: Proto-Indo-European → Proto-Indo-Iranian
+  date_start: -2500
+  date_end: -2000
+  description: 'The Indo-Iranian branch: laryngeal colouring and loss, Brugmann''s law, the satem
+    shift and the *tḱ > *ćš cluster, the first palatalisation of the velars (which is fed by *e and
+    therefore has to precede the merger of *e/*o with *a, although only its *i/*y half is shipped
+    so far), the vowel merger, the preservation of the surviving laryngeals as *H, the ruki
+    retraction of *s with the voicing that precedes and follows it, and Bartholomae''s law.
+    Grassmann''s law and the loss of final *-r after *ā are not part of this transition: the corpus
+    keeps both aspirates (*bʰábʰruš, dʰádʰaHti, dʰráwgʰas) and keeps the *-r that the Persian
+    kinship words need, so deaspiration belongs to the transition into Indo-Aryan and the *-r to a
+    word''s own pathway (proposals/night-0911/pii/report.md).'
+  references:
+  - mayrhofer-1986
+  - fortson-2004
+  - bartholomae-1882
+rules:
+- id: animal_ka
+  order: 5
+  name: 'The animal suffix *-ka-: *h₂wl̥pís > *h₂wl̥paka'
+  match: 'i|í s'
+  replace: a k a
+  env:
+    right: '#'
+  tier: formation
+  off_by_default: true
+  description: >
+    A formation is not a sound change: it adds a cited morpheme. de Vaan (2000)
+    shows that the words for the marten and the small predator are built on the
+    root *(H)ulp- with the Indo-Iranian animal suffix *-ka-, the same suffix the
+    fox shows in Balochi ropāsk; Persian گربه continues *ul̥.paka-, root plus
+    suffix. The rule therefore replaces the etymon's stem-forming *-ís with
+    *-aka- (*h₂wl̥pís + *-ka- > *h₂wl̥paka), which is what the dictionaries'
+    formation amounts to. It is registered *switched off*: it adds a syllable,
+    so it may only apply to a word whose record says it is formed this way,
+    through that word's own pathway (Persian گربه).
+  references:
+  - de-vaan-2000
+  - wiktionary
+  examples:
+  - in: '*h₂wl̥pís'
+    out: h₂wl̥pˈaka
+    gloss: marten — the base of Persian گربه
+- id: h2_colours_e
+  order: 10
+  name: '*h₂ colours *e to *a'
+  match: e
+  replace: a
+  env:
+    right: h₂
+  tier: established
+  description: '*h₂ lowers a following *e to *a (*ph₂tḗr); the rule writes only the colouring, the laryngeal itself stays for the next law and the syllabic *h₂ is resolved later. It does not touch *e before *h₁ or *h₃.'
+  references:
+  - mayrhofer-1986
+  examples:
+  - in: '*ph₂tḗr'
+    out: ph₂tˈēr
+    gloss: father
+- id: h3_colours_e
+  order: 11
+  name: '*h₃ colours *e to *o'
+  match: e
+  replace: o
+  env:
+    right: h₃
+  tier: established
+  description: '*h₃ rounds a following *e to *o (*déh₃tōr > *dóh₃tōr); the *o then takes part in Brugmann''s law and in the vowel merger like any other *o.'
+  references:
+  - mayrhofer-1986
+  examples:
+  - in: '*déh₃tōr'
+    out: dˈoh₃tōr
+    gloss: giver
+- id: syllabic_laryngeals
+  order: 13
+  name: Syllabic laryngeals become vowels
+  transform: syllabic_laryngeals
+  params:
+    h₁: i
+    h₂: a
+    h₃: i
+  tier: established
+  description: >-
+    A laryngeal carrying a syllable surfaces as *a after *h₂ and as *i otherwise. The rule only fires between consonants (the transform's own condition); a laryngeal with a vowel next to it is left to the preservation law.
+  references:
+  - mayrhofer-1986
+  examples:
+  - in: '*ph₂tḗr'
+    out: '*patḗr'
+    gloss: father
+  - in: '*dʰh₁tós'
+    out: dʰitˈos
+    gloss: placed
+- id: laryngeal_to_H
+  order: 20
+  name: Laryngeals are preserved as *H
+  match: h₁|h₂|h₃
+  replace: H
+  tier: established
+  description: >-
+    In Proto-Indo-Iranian the laryngeals that survive colouring are kept as *H (*stéh₂-no-m
+    > *stáHnam); the law does not delete them and does not decide their colour.
+  references:
+  - mayrhofer-1986
+  examples:
+  - in: '*steh₂-no-m'
+    out: '*steH-no-m'
+    gloss: standing
+- id: brugmann_o_a
+  order: 25
+  name: 'Brugmann''s law: *o > *ā in an open syllable before a non-high vowel'
+  match: o
+  replace: ā
+  env:
+    right: C (ˈ|ˌ)? (a|e|o|u|ā|ē|ō|r̥|l̥|m̥|n̥)
+  tier: established
+  description: >-
+    PIE *o lengthens to *ā in an open syllable before a vowel that is not *i (*wór-o-s
+    > *wā́r-o-s, *ǵónu > *ǵā́nu, *dóru > *dā́ru). It does not fire before a following *i: the record
+    keeps short *a in *h₂ówis > *Háwiš, *pótis > *pátiš, *kʷóti > *káti and *h₁ógʷʰis > *Háǰʰiš,
+    and each of those is a word the narrower rule wins (2026-11-09). It also does not fire in a
+    closed syllable (its environment needs the vowel after the single consonant).  A narrowing of the
+    environment to the syllabic nasals alone was measured and refused: it gains *yákr̥, *wásr̥ and
+    *ćákr̥, but it shortens the *ā of the Old Persian water rung (*wódr̥ > *wādar, pinned by
+    tests/test_web.py), so the corpus keeps both readings and the wider environment stays
+    (proposals/night-0911/piir2/report.md).
+  references:
+  - mayrhofer-1986
+  - fortson-2004
+  notes: 'Mayrhofer 1986, Lautlehre, the IIr. treatment of PIE *o (Brugmann''s law); Fortson 2004,
+    the Indo-Iranian chapter. The restriction before *i is measured on this corpus: the wide
+    environment gained 0 words and cost 4 (Háwiš, Háǰʰiš, káti, pátiš). The restriction before a
+    syllabic liquid is measured and refused (proposals/night-0911/piir2/measure.py --replace): it
+    gains yákr̥, wásr̥, ćákr̥ and costs the Old Persian water rung (test_web pins *wˈādar).'
+  examples:
+  - in: '*ǵónu'
+    out: '*ǵā́nu'
+    gloss: knee
+  - in: '*dóru'
+    out: '*dā́ru'
+    gloss: wood
+  - in: '*kʷóti'
+    out: '*kʷóti'
+    gloss: how many — blocked before *i
+  - in: '*wósr̥'
+    out: '*wā́sr̥'
+    gloss: spring — the lengthening before a syllabic liquid that the record keeps
+- id: tk_to_cs
+  order: 36
+  name: '*tḱ > *ćš'
+  match: t ḱ
+  replace: ć š
+  tier: established
+  description: >-
+    A dental followed by the palatal velar gives the affricate plus the retracted
+    sibilant, the sequence the Indo-Aryan languages continue as kṣ (*h₂ŕ̥tḱos > *h₂ŕ̥ćšas, Skt. ṛ́kṣa-;
+    *tḱéyti > *ćšáyti, Skt. kṣáyati). It runs before the satem law, while the palatal velar is still
+    *ḱ; it does not touch *tk with a plain velar or *tḱ where the two belong to different morphemes
+    and the record keeps them apart.
+  references:
+  - mayrhofer-1986
+  - beekes-2011
+  notes: 'Mayrhofer 1986, Lautlehre, the IIr. reflexes of the palatovelar + dental clusters;
+    Beekes 2011, the Indo-Iranian consonant system. Skt. ṛ́kṣa-, kṣáyati, cákṣus are the evidence.'
+  examples:
+  - in: '*h₂ŕ̥tḱos'
+    out: '*h₂ŕ̥ćšos'
+    gloss: bear
+  - in: '*tḱéyti'
+    out: '*ćšéyti'
+    gloss: settles
+  - in: '*tétḱō'
+    out: '*téćšō'
+    gloss: I fashion
+- id: satem_k
+  order: 40
+  name: 'Satem: *ḱ > *ć [tɕ], the first affricate'
+  match: ḱ
+  replace: ć
+  tier: established
+  description: 'The satem shift fronts the palatovelars to affricates. *ḱ becomes the voiceless *ć, kept as a
+    real affricate in the Nuristani languages (*ḱm̥tóm > *ćatám, Skt śatám, Av. satəm). It touches
+    only *ḱ: the plain velar *k is palatalised later, before a front vowel, and is not part of this law.'
+  references:
+  - fortson-2004
+  - mayrhofer-1986
+  examples:
+  - in: '*ḱm̥tóm'
+    out: ćm̥tˈom
+    gloss: hundred
+- id: satem_g
+  order: 41
+  name: 'Satem: *ǵ > *ȷ́ [dź], the voiced affricate'
+  match: ǵ
+  replace: ȷ́
+  tier: established
+  description: '*ǵ becomes the voiced affricate *ȷ́ [dź] (*ǵónu > *ȷ́ā́nu, Skt jā́nu, Av. zānu, OP dānu); written
+    *dź in the sources that spell the affricates out.'
+  references:
+  - fortson-2004
+  examples:
+  - in: '*ǵónu'
+    out: ȷ́ˈonu
+    gloss: knee
+- id: satem_gh
+  order: 42
+  name: 'Satem: *ǵʰ > *ȷ́ʰ [dźʰ], the aspirated affricate'
+  match: ǵʰ
+  replace: ȷ́ʰ
+  tier: established
+  description: 'The voiced aspirated palatovelar gives the aspirated affricate *ȷ́ʰ [dźʰ] (*ǵʰimós > *ȷ́ʰimás,
+    Skt himá-, Av. ziiā̊). The affricate stage itself survives only in Nuristani; Indo-Aryan turns it into h and
+    Iranian loses the aspiration.'
+  references:
+  - fortson-2004
+  - mayrhofer-1986
+  examples:
+  - in: '*ǵʰimós'
+    out: ȷ́ʰimˈos
+    gloss: winter
+- id: ct_to_st
+  order: 44
+  name: '*ćt > *št'
+  match: ć t
+  replace: š t
+  tier: established
+  description: >-
+    The satem affricate loses its stop before a dental and becomes the plain sibilant,
+    the change that gives Skt. ṣṭ (*oḱtóm > *oćtóm > *oštóm, Skt. aṣṭā́(u); *dr̥ḱtós > *dr̥štós,
+    Skt. dr̥ṣṭá-). It runs after the satem law (its input is *ć, not *ḱ) and does not touch *ć before
+    any other consonant.
+  references:
+  - mayrhofer-1986
+  - beekes-2011
+  notes: 'Mayrhofer 1986, Lautlehre, the IIr. clusters with a palatal affricate; the Skt. ṣṭ of
+    aṣṭā́(u), dr̥ṣṭá-, mr̥ṣṭá- is the evidence.'
+  examples:
+  - in: '*dr̥ćtós'
+    out: '*dr̥štós'
+    gloss: seen
+  - in: '*oćtṓw'
+    out: '*oštṓw'
+    gloss: eight
+  - in: '*ućtós'
+    out: '*uštós'
+    gloss: spoken
+# The first palatalisation of the labiovelars before *e.  It runs before the
+# labiovelar merger (order 45-47) because it names the labiovelar itself: the
+# merged *k of *ker "make" must not be in the environment (Old Persian kāra-),
+# and neither must the *k of the wide *gʷ,*gʷʰ series' plain voiced member,
+# which the corpus keeps in *gʷémtis > *gátiš (proposals/night-0911/piir2).
+- id: labiovelar_k_palatal_e
+  order: 44
+  name: 'First palatalisation: *kʷ > *č before *e + obstruent, nasal or *l'
+  match: kʷ
+  replace: č
+  env:
+    right: '(ˈ|ˌ)? e (STOP|SIB|FRIC|NAS|l)'
+  tier: proposed
+  references: [mayrhofer-1986]
+  description: >
+    The labiovelar palatalises before the front vowel *e: *kʷetwóres > *čatwā́ras,
+    *pékʷeti > *páčati, *kʷélh₁eti > *čárHati, *kʷékʷlos > *čakrám. The rule names the
+    labiovelar and runs before the merger, so a plain *k before *e is outside its
+    environment: *ker "make" keeps its stop (Old Persian kāra-, Skt. karóti), and
+    so is every *k that came from anywhere but a labiovelar. Two environments
+    block the change although their vowel is *e, and the record says so: *r
+    (PIE *kʷer- "make" keeps its *k in Avestan kar- and Old Persian kāra-, the
+    same exception that keeps *e out of palatal_k) and *y (PIE *kʷeys- keeps its
+    *k: PII *kayšás, Middle Persian kēš, Avestan kaēša-, Skt. keśa-). The
+    environment is therefore the segments the corpus shows the *e standing
+    before — an obstruent, a nasal or *l — and word end, which the next rule
+    states. It does not fire before *a, *o or *u (*kʷós > *kás).
+  notes: 'Mayrhofer 1986, Lautlehre, the first palatalisation of the IIr. velars and labiovelars
+    before *e. Measured with tools/council.py (--drop, layers exact,orthographic,cited,script,
+    identity,bound): this rule carries páčati, čatwā́ras, čárHati in iir-pro and चक्र, चम् in
+    Sanskrit, and loses nothing in iir-pro, ira-pro, ave, peo, pal, fa or sa. The wider claims are
+    kept in proposals/night-0911/piir2/candidates/: before any *e it costs Middle Persian kyš and
+    Avestan 𐬐𐬀𐬭 (PIE *kʷer- "make"), which is why *r and *y are outside the environment.'
+  examples:
+  - in: '*kʷetwóres'
+    out: '*četwóres'
+    gloss: four
+  - in: '*kʷékʷlos'
+    out: '*čékʷlos'
+    gloss: wheel — the second *kʷ stands before *o and is untouched
+  - in: '*kʷeys'
+    out: '*kʷeys'
+    gloss: hair — the *ey diphthong blocks the change (Skt. keśa-)
+
+- id: labiovelar_k_palatal_e_final
+  order: 44
+  name: 'First palatalisation: *kʷ > *č before word-final *e'
+  match: kʷ
+  replace: č
+  env:
+    right: '(ˈ|ˌ)? e #'
+  tier: proposed
+  references: [mayrhofer-1986]
+  description: >
+    Word-final *-e is a front vowel like any other, and the labiovelar before it
+    palatalises: *pénkʷe > *pánča (Skt. páñca), and the conjunction *-kʷe is
+    *-ča (Skt. -ca, Avestan -ča, Old Persian -𐎨𐎠). The separate rule exists only
+    because the pattern language cannot name word end inside a group; the claim
+    is the one above.
+  notes: 'Mayrhofer 1986, Lautlehre. Measured with the rule above: the pair gains pánča, páčati,
+    čatwā́ras, čárHati in iir-pro and the clitic -ča in Old Persian script, and loses nothing.'
+  examples:
+  - in: '*pénkʷe'
+    out: '*pénče'
+    gloss: five
+  - in: '*nékʷe'
+    out: '*néče'
+    gloss: and not — the conjunctive clitic
+
+- id: labiovelar_gh_palatal_e
+  order: 44
+  name: 'First palatalisation: *gʷʰ > *ǰʰ before *e'
+  match: gʷʰ
+  replace: ǰʰ
+  env:
+    right: (ˈ|ˌ)? e
+  tier: proposed
+  references: [mayrhofer-1986]
+  description: >
+    The aspirated labiovelar palatalises before the front vowel *e exactly as the
+    voiceless member does: *gʷʰénti > *ǰʰánti (Skt. hánti), *dʰégʷʰeti >
+    *dʰáǰʰati. It does not fire before a back vowel or before a consonant
+    (*gʷʰórdʰos is untouched). The plain voiced labiovelar is a different
+    question and is not claimed here: the corpus palatalises *gʷ before *e in
+    *gʷétu > *ǰátu but keeps it in *gʷémtis > *gátiš (candidates/labiovelar_g_palatal_e.yaml).
+  notes: 'Mayrhofer 1986, Lautlehre. Measured with the *kʷ rules above (measure.py --add,
+    layers exact,script): +2 words in iir-pro (ǰʰánti, dʰáǰʰati), nothing lost anywhere below.'
+  examples:
+  - in: '*gʷʰénti'
+    out: '*ǰʰénti'
+    gloss: slays
+  - in: '*dʰégʷʰeti'
+    out: '*dʰéǰʰeti'
+    gloss: burns
+  - in: '*gʷʰórdʰos'
+    out: '*gʷʰórdʰos'
+    gloss: enclosure — no front vowel
+
+- id: labiovelar_k
+  order: 45
+  name: '*kʷ merges with *k'
+  match: kʷ
+  replace: k
+  tier: established
+  description: >-
+    The labiovelars lose their labial component and merge with the plain velars (*kʷód
+    > *kód). The merger runs before the first palatalisation, so the *k it produces is palatalised
+    before a front vowel like any other (*kʷe > *ke > *če).
+  references:
+  - mayrhofer-1986
+  examples:
+  - in: '*kʷód'
+    out: '*kód'
+    gloss: what
+- id: labiovelar_g
+  order: 46
+  name: '*gʷ merges with *g'
+  match: gʷ
+  replace: g
+  tier: established
+  description: '*gʷ merges with *g (*gʷétu > *gétu); like the voiceless merger it precedes the
+    first palatalisation.'
+  references:
+  - mayrhofer-1986
+  examples:
+  - in: '*gʷétu'
+    out: gˈetu
+    gloss: cattle
+- id: labiovelar_gh
+  order: 47
+  name: '*gʷʰ merges with *gʰ'
+  match: gʷʰ
+  replace: gʰ
+  tier: established
+  description: '*gʷʰ merges with *gʰ (*gʷʰénti > *gʰénti) and then shares the palatalisation of
+    the plain aspirate.'
+  references:
+  - mayrhofer-1986
+  examples:
+  - in: '*gʷʰénti'
+    out: gʰˈenti
+    gloss: strikes
+- id: palatal_k
+  order: 50
+  name: 'First palatalisation: *k > *č before an unstressed *i or *y'
+  match: k
+  replace: č
+  env:
+    right: (i|y)
+  tier: established
+  description: '*k becomes *č before *i or *y (*kʷi-néw-ti > *ki-néw-ti > *či-néw-ti). The
+    environment allows the stress mark: the engine writes stress as its own token before the vowel,
+    so without it every stressed syllable blocked the law and the words could not be reached
+    (2026-11-09). It does not fire before a back vowel. Two environments the handbooks have and this
+    law does not: *e, because the corpus keeps *k before *e in the word for "make" (PIE *ker > OP
+    𐎣𐎠𐎼 kāra-, Skt. karóti), a lexical exception no sound law can state; and a stressed *i,
+    because the one such record, *wl̥kʷíh₂s > *wr̥kíHs, keeps its *k (the same *-íH- that the
+    palatalisation of *g has to palatalise in ǰíHwati). Both are reported in
+    proposals/night-0911/pii/report.md; the narrower environment is the one this corpus supports.'
+  references:
+  - mayrhofer-1986
+  - fortson-2004
+  notes: 'Mayrhofer 1986, Lautlehre, the first palatalisation of the IIr. velars; Fortson 2004, the
+    Indo-Iranian chapter. Must run before vowel_merger_a (of nothing now: *e is not in its
+    environment, but the order is kept for the day the *e half is registered through a pathway). The
+    *e environment was measured: +7 words and one lost, but it also strips *ker "make" of its Old
+    Persian script match; the stress allowance was measured too: 196 words against 197, i.e. it cost
+    wr̥kíHs and gained none.'
+  examples:
+  - in: '*ki-néw-ti'
+    out: '*či-néw-ti'
+    gloss: gathers
+  - in: '*kis'
+    out: '*čis'
+    gloss: who — after the labiovelar merger
+  - in: '*kód'
+    out: '*kód'
+    gloss: what — no front vowel, nothing happens
+- id: palatal_g
+  order: 51
+  name: 'First palatalisation: *g > *ǰ before *i and *y'
+  match: g
+  replace: ǰ
+  env:
+    right: (ˈ|ˌ)? (i|y)
+  tier: established
+  description: '*g becomes *ǰ before *i or *y (*gʷi-tós > *gitós > *ǰitás, *gíHwos > *ǰíHwas).
+    The stress mark is allowed in the environment for the same reason as in palatal_k, and *e is
+    outside it for the same reason too: the *e half of the palatalisation is a proposal that
+    needs the pathway layer.'
+  references:
+  - mayrhofer-1986
+  examples:
+  - in: '*gíHwos'
+    out: '*ǰíHwos'
+    gloss: alive
+  - in: '*gi-tó-s'
+    out: '*ǰi-tó-s'
+    gloss: lived
+  - in: '*gódʰas'
+    out: '*gódʰas'
+    gloss: no front vowel, nothing happens
+- id: palatal_gh
+  order: 52
+  name: 'First palatalisation: *gʰ > *ǰʰ before *i and *y'
+  match: gʰ
+  replace: ǰʰ
+  env:
+    right: (ˈ|ˌ)? (i|y)
+  tier: established
+  description: '*gʰ becomes *ǰʰ before *i or *y (*gʷʰi- > *gʰi- > *ǰʰi-); the stress mark is
+    allowed in the environment as in the other two palatalisations, and *e is outside it for the
+    same reason: Skt. hánti < *gʷʰénti cannot be had by a sound law once *ker "make" keeps its *k.'
+  references:
+  - mayrhofer-1986
+  examples:
+  - in: '*gʰi-'
+    out: '*ǰʰi-'
+    gloss: for
+  - in: '*gʰiyós'
+    out: '*ǰʰiyós'
+    gloss: of the cow — after the labiovelar merger
+  - in: '*gʰórdʰos'
+    out: '*gʰórdʰos'
+    gloss: enclosure — no front vowel
+- id: l_to_r
+  order: 55
+  name: '*l > *r'
+  match: l
+  replace: r
+  tier: established
+  description: 'Indo-Iranian has no *l: every PIE *l becomes *r (*luk-mó-s > *rukmás). It runs
+    before the vowel merger and does not touch the syllabic *l̥, which has its own law.'
+  references:
+  - mayrhofer-1986
+  - fortson-2004
+  examples:
+  - in: '*luk-mó-s'
+    out: '*ruk-mó-s'
+    gloss: light
+- id: syllabic_l_to_r
+  order: 56
+  name: '*l̥ > *r̥'
+  match: l̥
+  replace: r̥
+  tier: proposed
+  description: 'The merger of *l and *r also takes the syllabic *l̥ to *r̥ (*wĺ̥kʷos > *wŕ̥kas). The merger is Proto-Indo-Iranian, so it is applied here, where both children inherit it, instead of once in each child transition.'
+  references:
+  - mayrhofer-1986
+  examples:
+  - in: '*wĺ̥kas'
+    out: '*wŕ̥kas'
+    gloss: wolf
+- id: vowel_merger_a
+  order: 60
+  name: '*e, *o and *a merge as *a'
+  match: e|o
+  replace: a
+  tier: established
+  description: >-
+    The three short non-high vowels fall together as *a (*bʰréh₂tēr > *bʰráh₂tār,
+    *pékʷeti > *pákʷati). It runs after the first palatalisation, which is fed by *e: put before
+    it, the merger destroys the environment of every *k/*g/*gʰ that a front vowel should have
+    palatalised.
+  references:
+  - mayrhofer-1986
+  - fortson-2004
+  notes: 'Mayrhofer 1986, Lautlehre, the IIr. vowel merger; Fortson 2004, the Indo-Iranian chapter.
+    Order matters: moving this law after palatal_k/g/gh (2026-11-09) gained 7 words
+    (pánča, čatwā́ras, ǰátu, ǰʰánti, dʰáǰʰati, páčati, čárHati) and cost one (wr̥kíHs, an
+    inner-Indo-Iranian feminine built on *wŕ̥ka-, whose *k is analogical).'
+  examples:
+  - in: '*bʰréh₂tēr'
+    out: bʰrˈah₂tēr
+    gloss: brother
+  - in: '*pékʷeti'
+    out: '*pákʷati'
+    gloss: cooks
+- id: long_vowel_merger
+  order: 61
+  name: '*ē and *ō merge as *ā'
+  match: ē|ō
+  replace: ā
+  tier: established
+  description: 'The long mid vowels fall together as *ā (*bʰráh₂tēr > *bʰráh₂tār); the law only
+    merges *ē and *ō, it does not touch *ī or *ū.'
+  references:
+  - mayrhofer-1986
+  examples:
+  - in: '*bʰráh₂tēr'
+    out: '*bʰráh₂tār'
+    gloss: brother
+- id: syllabic_m
+  order: 62
+  name: Syllabic *m̥ becomes *a'
+  match: m̥
+  replace: a
+  tier: established
+  description: 'A syllabic nasal surfaces as *a (*ḱm̥tóm > *ćatám); the law is the same for *n̥ in the
+    next rule and does not touch a nasal that is not a syllable.'
+  references:
+  - mayrhofer-1986
+  examples:
+  - in: '*ćm̥tám'
+    out: '*ćatám'
+    gloss: hundred
+- id: syllabic_n
+  order: 63
+  name: Syllabic *n̥ becomes *a'
+  match: n̥
+  replace: a
+  tier: established
+  description: 'A syllabic *n̥ surfaces as *a (*n̥mr̥tós > *amr̥tós, Skt. amŕ̥ta-); a nasal with a
+    vowel next to it is left alone.'
+  references:
+  - mayrhofer-1986
+  examples:
+  - in: '*n̥mr̥tós'
+    out: '*amr̥tós'
+    gloss: immortal
+  - in: '*h₁nómn̥'
+    out: '*h₁nóma'
+    gloss: name
+- id: s_voice
+  order: 66
+  name: '*s > *z before a voiced obstruent'
+  match: s
+  replace: z
+  env:
+    right: (ˈ|ˌ)? (b|d|g|bʰ|dʰ|gʰ|ȷ́|ȷ́ʰ|ǰ|ǰʰ|ž)
+  tier: established
+  description: 'An *s that stands directly before a voiced stop or aspirate takes the voicing of its
+    neighbour (*nisdós > *nizdás, Skt. nīḍá-; *mosgʰós > *mozgʰás, Av. mazga-; *sísdeti > *sízdeti).
+    It runs before the ruki law so that the voiced *z is retracted by that law as *ž; it does not
+    touch *s before a voiceless stop, a nasal or a vowel.'
+  references:
+  - mayrhofer-1986
+  - fortson-2004
+  notes: 'Mayrhofer 1986, Lautlehre, the IIr. voicing of *s before voiced obstruents; Fortson 2004,
+    the Indo-Iranian chapter. Skt. nīḍá- / Av. mazga- are the evidence.'
+  examples:
+  - in: '*nisdós'
+    out: '*nizdós'
+    gloss: nest
+  - in: '*mosgʰós'
+    out: '*mozgʰós'
+    gloss: marrow
+  - in: '*sísdeti'
+    out: '*sízdeti'
+    gloss: sits down
+  - in: '*h₁ésmi'
+    out: '*h₁ésmi'
+    gloss: I am — a nasal is not an obstruent
+- id: ruki_s
+  order: 70
+  name: 'RUKI: *s > *š after r, u, k, i (and the glides and satem affricates)'
+  match: s
+  replace: š
+  env:
+    left: (r|r̥|u|ū|k|i|ī|y|ć|ȷ́|w)
+  tier: established
+  description: 'The sibilant is retracted when the preceding segment is a high vowel, a liquid, or a
+    velar — the ruki environment of the handbooks, which includes the glide counterparts of *i and
+    *u and the satem affricates that continue *ḱ and *ǵ (*wĺ̥kos > *wŕ̥kaš, *gʷṓws > *gā́wš, *kr̥snós
+    > *kr̥šnás, *moysós > *mayšás, *pr̥sḱéti > *pr̥šćáti, *spéḱs > *spáćš). It looks left only: an *s
+    after a plain *a or *o is not retracted by this law.'
+  references:
+  - mayrhofer-1986
+  - fortson-2004
+  notes: 'Mayrhofer 1986, Lautlehre, the ruki retraction of *s; Fortson 2004, the Indo-Iranian
+    chapter (with Skt. ṣ / Av. š as the evidence). Extended 2026-11-09 from (r|u|k|i) to the full
+    set: +4 words for *w alone (gā́wš, dyā́wš, dáwš, ȷ́áwšati) and +3 more for *r̥, *y and *ć
+    (kr̥šnás, mayšás, pr̥šćáti, spáćš), with no word lost.'
+  examples:
+  - in: '*gʷṓws'
+    out: '*gʷṓwš'
+    gloss: cow
+  - in: '*kr̥snós'
+    out: '*kr̥šnós'
+    gloss: black
+  - in: '*moysós'
+    out: '*moyšós'
+    gloss: ram
+  - in: '*h₁ésmi'
+    out: '*h₁ésmi'
+    gloss: I am — *e is not a ruki segment
+- id: z_ruki
+  order: 72
+  name: '*z > *ž after ruki'
+  match: z
+  replace: ž
+  env:
+    left: (r|r̥|u|ū|k|i|ī|y|ć|ȷ́|w)
+  tier: proposed
+  description: 'An *s that the voicing law has turned into *z is retracted to *ž when it stands in the
+    ruki environment, the stage that Skt. ḍ and Av. ž continue (*nizdás > *niždás, Skt. nīḍá-;
+    *sízdeti > *siždeti, Skt. sī́dati). It needs the ruki environment on the left: a *z outside it
+    stays a plain *z (*mozgʰás, Av. mazga-).'
+  references:
+  - mayrhofer-1986
+  notes: 'Mayrhofer 1986, Lautlehre, the ruki sibilant and its voiced counterpart. The *ž stage is a
+    reconstruction from the Indic and Iranian outcomes, hence the proposed tier.'
+  examples:
+  - in: '*nizdós'
+    out: '*niždós'
+    gloss: nest
+  - in: '*sízdeti'
+    out: '*síždeti'
+    gloss: sits down
+  - in: '*mozgʰós'
+    out: '*mozgʰós'
+    gloss: marrow — no ruki segment before the *z
+- id: bartholomae
+  order: 80
+  name: 'Bartholomae''s law: voiced aspirate + voiceless stop'
+  transform: bartholomae
+  tier: established
+  description: 'In a cluster of a voiced aspirate and a following voiceless stop the whole cluster becomes
+    voiced, and the aspiration moves to the last member: *bʰudʰtós > *bʰuddʰás. It only works inside
+    such a cluster; a voiced aspirate before a vowel or a nasal is untouched.'
+  references:
+  - bartholomae-1882
+  examples:
+  - in: '*bʰudʰtós'
+    out: bʰuddʰˈos
+    gloss: awake

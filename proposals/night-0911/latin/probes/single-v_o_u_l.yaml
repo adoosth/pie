@@ -1,0 +1,20 @@
+stage:
+  name: x
+  references:
+  - sihler-1995
+rules:
+- id: v_o_u_l
+  order: 244
+  name: '*o > *u before dark *l'
+  match: o
+  replace: u
+  env:
+    right: l (C|#)
+  tier: established
+  description: Short *o becomes *u before *l in a closed syllable (*moltos > *multus).
+  references:
+  - sihler-1995
+  examples:
+  - in: '*moltos'
+    out: '*multus'
+    gloss: much

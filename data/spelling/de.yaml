@@ -1,0 +1,147 @@
+stage:
+  name: German orthography
+  date_start: 1500
+  date_end: null
+  description: >
+    The writing conventions of New High German.  German spelling is phonemic in
+    intention — it writes the vowel letters of Middle High German and marks
+    length with a digraph or a lengthening h, not with a diacritic — so most of
+    the passage from the phonemic output to the written word is a letter choice.
+    Two conventions are deliberately absent because the phonemic notation cannot
+    decide them: noun capitalisation (a property of the sentence, counted
+    separately by coverage) and ⟨v⟩ vs ⟨w⟩ (the Middle High German symbol *v
+    covers both the /f/ of ver- and the /w/ of Wein).
+  references: [duden-2017, paul-2007]
+
+rules:
+  - id: drop_stress
+    order: 10
+    name: "Stress marks are not written"
+    match: "ˈ"
+    replace: ""
+    tier: orthographic
+    references: [duden-2017]
+    examples:
+      - {in: "ˈhunt", out: "hunt"}
+  - id: ach_laut
+    order: 23
+    name: "/x/ is written ⟨ch⟩"
+    match: x
+    replace: ch
+    tier: orthographic
+    references: [duden-2017]
+    examples:
+      - {in: "bax", out: "bach"}
+  - id: ts_to_z
+    order: 24
+    name: "/ts/ is written ⟨z⟩"
+    match: t s
+    replace: z
+    tier: orthographic
+    notes: "The tokeniser has no affricate unit, so this cannot tell /ts/ from a t+s cluster; only the corpus keeps it honest."
+    references: [duden-2017]
+    examples:
+      - {in: "tsait", out: "zeit"}
+  - id: ai_diphthong
+    order: 99
+    name: "/ai/ is written ⟨ei⟩"
+    match: a i
+    replace: ei
+    tier: orthographic
+    description: "The Middle High German long î became the diphthong /ai/, written ei (MHG wîn > Wein); the spelling keeps the older letter order."
+    references: [paul-2007, duden-2017]
+    examples:
+      - {in: "tsain", out: "zein"}
+  - id: long_a
+    order: 111
+    name: "Long /ā/ is written ⟨a⟩"
+    match: "ā"
+    replace: a
+    tier: orthographic
+    description: "The macron marks length in the phonological notation; German writes the plain letter and marks length elsewhere (⟨ie⟩, ⟨h⟩, doubling)."
+    references: [duden-2017]
+    examples:
+      - {in: "dār", out: "dar"}
+  - id: long_e
+    order: 110
+    name: "Long /ē/ is written ⟨e⟩"
+    match: "ē"
+    replace: e
+    tier: orthographic
+    references: [duden-2017]
+    examples:
+      - {in: "klēben", out: "kleben"}
+  - id: long_i
+    order: 112
+    name: "Long /ī/ is written ⟨ie⟩"
+    match: "ī"
+    replace: ie
+    tier: orthographic
+    description: "The New High German long /iː/ is written ie in the inherited vocabulary (Liebe, viel, Tier, Wien); the plain letter belongs to loans (Kino)."
+    references: [paul-2007, duden-2017]
+    examples:
+      - {in: "dī", out: "die"}
+  - id: long_o
+    order: 113
+    name: "Long /ō/ is written ⟨o⟩"
+    match: "ō"
+    replace: o
+    tier: orthographic
+    references: [duden-2017]
+    examples:
+      - {in: "brōt", out: "brot"}
+  - id: long_u
+    order: 114
+    name: "Long /ū/ is written ⟨u⟩"
+    match: "ū"
+    replace: u
+    tier: orthographic
+    references: [duden-2017]
+    examples:
+      - {in: "hūs", out: "hus"}
+  - id: e_umlaut
+    order: 115
+    name: "The umlaut vowel /ë/ is written ⟨e⟩"
+    match: "ë"
+    replace: e
+    tier: orthographic
+    references: [duden-2017]
+    examples:
+      - {in: "hër", out: "her"}
+  - id: schwa
+    order: 127
+    name: "/ə/ is written ⟨e⟩"
+    match: ə
+    replace: e
+    tier: orthographic
+    references: [duden-2017]
+    examples:
+      - {in: "haben", out: "haben"}
+  - id: vocalic_r
+    order: 128
+    name: "The vocalised /ʀ/ is written ⟨r⟩"
+    match: ʀ
+    replace: r
+    tier: orthographic
+    description: "New High German vocalises the syllabic r (Vater, Uhr) but keeps the letter r in the spelling; the vowel quality is not recoverable from the letter, so the letter is all this rule writes."
+    references: [duden-2017]
+    examples:
+      - {in: "vatʀ", out: "vatr"}
+  - id: y_long
+    order: 126
+    name: "/ȳ/ is written ⟨ü⟩"
+    match: "ȳ"
+    replace: ü
+    tier: orthographic
+    references: [duden-2017]
+    examples:
+      - {in: "hȳs", out: "hüs"}
+  - id: o_umlaut
+    order: 125
+    name: "/œ/ is written ⟨ö⟩"
+    match: œ
+    replace: ö
+    tier: orthographic
+    references: [duden-2017]
+    examples:
+      - {in: "kœnen", out: "könen"}

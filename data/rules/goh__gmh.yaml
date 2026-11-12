@@ -1,0 +1,120 @@
+stage:
+  name: Old High German → Middle High German
+  date_start: 1050
+  date_end: 1350
+  description: >
+    The Middle High German umlaut of the back vowels and the weakening of
+    unstressed vowels to *e.
+  references: [paul-2007, braune-2004, wells-1985]
+
+rules:
+  # ---- umlaut -------------------------------------------------------------
+  - id: umlaut_a
+    order: 100
+    name: "MHG umlaut: *a > *e"
+    match: a
+    replace: e
+    env: {right: "C? C? (i|j)"}
+    tier: established
+    description: "*a is fronted to *e before an *i or *j in the following syllable (*gasti > *gesti)."
+    notes: "Umlaut is often not marked in Middle High German manuscripts; the change is phonological, not orthographic."
+    references: [paul-2007, wells-1985]
+    examples:
+      - {in: "*gasti", out: "*gesti", gloss: "guests"}
+
+  - id: umlaut_a_long
+    order: 101
+    name: "MHG umlaut: *ā > *ǣ"
+    match: ā
+    replace: ǣ
+    env: {right: "C? C? (i|j)"}
+    tier: established
+    description: "Long *ā is fronted to *ǣ (*jāri > *jǣri)."
+    references: [paul-2007]
+    examples:
+      - {in: "*jāri", out: "*jǣri", gloss: "year"}
+
+  - id: umlaut_o
+    order: 102
+    name: "MHG umlaut: *o > *ö"
+    match: o
+    replace: ö
+    env: {right: "C? C? (i|j)"}
+    tier: established
+    description: "*o is fronted to *ö (*hofi > *höfi)."
+    references: [paul-2007, wells-1985]
+    examples:
+      - {in: "*hofi", out: "*höfi", gloss: "courts"}
+
+  - id: umlaut_o_long
+    order: 103
+    name: "MHG umlaut: *ō > *œ"
+    match: ō
+    replace: œ
+    env: {right: "C? C? (i|j)"}
+    tier: established
+    description: "Long *ō is fronted to *œ (*hōhi > *hœhi)."
+    references: [paul-2007]
+    examples:
+      - {in: "*hōhi", out: "*hœhi", gloss: "high"}
+
+  - id: umlaut_u
+    order: 104
+    name: "MHG umlaut: *u > *ü"
+    match: u
+    replace: ü
+    env: {right: "C? C? (i|j)"}
+    tier: established
+    description: "*u is fronted to *ü (*suni > *süni)."
+    references: [paul-2007, wells-1985]
+    examples:
+      - {in: "*suni", out: "*süni", gloss: "sons"}
+
+  - id: umlaut_u_long
+    order: 105
+    name: "MHG umlaut: *ū > *ǖ"
+    match: ū
+    replace: ǖ
+    env: {right: "C? C? (i|j)"}
+    tier: established
+    description: "Long *ū is fronted to *ǖ (*lūti > *lüti)."
+    references: [paul-2007]
+    examples:
+      - {in: "*lūti", out: "*lǖti", gloss: "people"}
+
+  # ---- unstressed vowels --------------------------------------------------
+  - id: unstressed_a
+    order: 200
+    name: "Unstressed *a > *e"
+    match: a
+    replace: e
+    env: {left: "C", right: "C? #"}
+    tier: established
+    description: "Unstressed *a weakens to *e in final syllables (*geban > *geben)."
+    references: [paul-2007]
+    examples:
+      - {in: "*geban", out: "*geben", gloss: "to give"}
+
+  - id: unstressed_o
+    order: 201
+    name: "Unstressed *o > *e"
+    match: o
+    replace: e
+    env: {left: "C", right: "C? #"}
+    tier: established
+    description: "Unstressed *o weakens to *e in final syllables (*māno > *māne)."
+    references: [paul-2007]
+    examples:
+      - {in: "*māno", out: "*māne", gloss: "moon"}
+
+  - id: unstressed_u
+    order: 202
+    name: "Unstressed *u > *e"
+    match: u
+    replace: e
+    env: {left: "C", right: "C? #"}
+    tier: established
+    description: "Unstressed *u weakens to *e in final syllables (*sunu > *sune)."
+    references: [paul-2007]
+    examples:
+      - {in: "*sunu", out: "*sune", gloss: "son"}

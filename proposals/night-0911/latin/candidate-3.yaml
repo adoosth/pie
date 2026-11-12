@@ -1,0 +1,92 @@
+stage:
+  name: Proto-Italic → Latin (candidate 3)
+  references: [sihler-1995, weiss-2009, meiser-1998]
+rules:
+  - id: c3_final_o_u_no_left_s
+    order: 353
+    name: "Final *-os > -us also after a vowel"
+    match: o
+    replace: u
+    env: {right: "s #"}
+    tier: established
+    description: "The raising of final *-o before *-s applies after any segment (*aljos > *alius)."
+    references: [sihler-1995]
+    examples:
+      - {in: "*aljos", out: "*aljus", gloss: "other"}
+  - id: c3_final_o_u_no_left_m
+    order: 354
+    name: "Final *-om > -um also after a vowel"
+    match: o
+    replace: u
+    env: {right: "m #"}
+    tier: established
+    description: "The raising of final *-o before *-m applies after any segment (*labjom > *labium)."
+    references: [sihler-1995]
+    examples:
+      - {in: "*labjom", out: "*labjum", gloss: "lip"}
+  - id: c3_ei_to_i
+    order: 212
+    name: "Final *-ei > -ī"
+    match: e i
+    replace: ī
+    env: {right: "#"}
+    tier: established
+    description: "Final *-ei becomes -ī (*nei > nī, *sei > sī)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*nei", out: "*nī", gloss: "not"}
+  - id: c3_ao_to_o
+    order: 230
+    name: "Final *-āō > -ō"
+    match: ā ō
+    replace: ō
+    env: {right: "#"}
+    tier: established
+    description: "The sequence *-āō of the first-conjugation first person contracts to -ō (*portāō > *portō)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*portāō", out: "*portō", gloss: "I carry"}
+  - id: c3_final_i_to_e
+    order: 232
+    name: "Final *-i > -e"
+    match: i
+    replace: e
+    env: {left: "C", right: "#"}
+    tier: proposed
+    description: "Final short *-i becomes -e in a few inherited words (*mari > mare, *anti > ante); the rule is stated and measured, not assumed to be general."
+    references: [sihler-1995]
+    examples:
+      - {in: "*mari", out: "*mare", gloss: "sea"}
+  - id: c3_o_to_u_r
+    order: 240
+    name: "*o > *u before *r + consonant"
+    match: o
+    replace: u
+    env: {right: "r C"}
+    tier: established
+    description: "Short *o is raised to *u before *r followed by a consonant (*orsos > *ursus)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*orsos", out: "*ursos", gloss: "bear"}
+  - id: c3_s_loss_initial
+    order: 95
+    name: "Word-initial *s- is lost before a sonorant"
+    match: s
+    replace: ""
+    env: {left: "#", right: "(m|n|l|r|w)"}
+    tier: established
+    description: "An initial *s- before a nasal, liquid or glide is lost (*smerdā > *merdā)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*smerdā", out: "*merdā", gloss: "dung"}
+  - id: c3_e_to_i_gn
+    order: 241
+    name: "*e > *i before *gn"
+    match: e
+    replace: i
+    env: {right: "g n"}
+    tier: established
+    description: "Short *e is raised to *i before *gn (*segnom > *signom, *legnom > *lignom)."
+    references: [sihler-1995]
+    examples:
+      - {in: "*segnom", out: "*signom", gloss: "sign"}

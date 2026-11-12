@@ -1,0 +1,484 @@
+stage:
+  name: Proto-West Germanic → Old English
+  date_start: 450
+  date_end: 1100
+  description: >
+    Anglo-Frisian brightening, Old English breaking, fronting of long *ā,
+    monophthongisation and diphthongisation of the old diphthongs, i-umlaut,
+    loss of high vowels in final syllables, the loss of final *-a and *-ą, the
+    class-2 weak infinitive ending *-ōn > *-ian, the loss of *j after a
+    consonant, and the loss of initial *h in the clusters hl, hn, hr.
+  references: [campbell-1959, wright-1908, ringe-2017]
+
+rules:
+  # ---- Anglo-Frisian ------------------------------------------------------
+  - id: brightening
+    order: 100
+    name: "Anglo-Frisian brightening: *a > *æ"
+    match: a
+    replace: æ
+    env: {right: "!NAS"}
+    tier: established
+    description: "West Germanic *a fronts to *æ unless a nasal follows."
+    notes: "Before a nasal *a remains (*land, *mann); a later restoration returns *æ to *a in some contexts."
+    references: [campbell-1959, ringe-2017]
+    examples:
+      - {in: "*dag", out: "*dæg", gloss: "day"}
+
+  # ---- breaking -----------------------------------------------------------
+  - id: breaking_ae_h
+    order: 200
+    name: "Breaking: *æ > *ea before *h"
+    match: æ
+    replace: ea
+    env: {right: "h"}
+    tier: established
+    description: "*æ diphthongises to *ea before *h (*næht > *neaht)."
+    references: [campbell-1959, wright-1908]
+    examples:
+      - {in: "*næht", out: "*neaht", gloss: "night"}
+
+  - id: breaking_ae_rc
+    order: 201
+    name: "Breaking: *æ > *ea before *r or *l + consonant"
+    match: æ
+    replace: ea
+    env: {right: "(r|l) C"}
+    tier: established
+    description: "*æ diphthongises before *r or *l followed by a consonant (*æld > *eald)."
+    references: [campbell-1959, wright-1908]
+    examples:
+      - {in: "*æld", out: "*eald", gloss: "old"}
+
+  - id: breaking_e_h
+    order: 210
+    name: "Breaking: *e > *eo before *h"
+    match: e
+    replace: eo
+    env: {right: "h"}
+    tier: established
+    description: "*e diphthongises to *eo before *h (*fehtan > *feohtan)."
+    references: [campbell-1959, wright-1908]
+    examples:
+      - {in: "*fehtan", out: "*feohtan", gloss: "to fight"}
+
+  - id: breaking_e_rc
+    order: 211
+    name: "Breaking: *e > *eo before *r + consonant"
+    match: e
+    replace: eo
+    env: {right: "r C"}
+    tier: established
+    description: "*e diphthongises before *r followed by a consonant (*hertā > *heortā)."
+    references: [campbell-1959, wright-1908]
+    examples:
+      - {in: "*hertā", out: "*heortā", gloss: "heart"}
+
+  - id: breaking_e_lc
+    order: 212
+    name: "Breaking: *e > *eo before *l + consonant"
+    match: e
+    replace: eo
+    env: {right: "l (b|t|d|k|g|f|θ|s|m|n|r|w|h)"}
+    tier: established
+    description: "*e diphthongises before *l followed by a consonant (*melkan > *meolkan)."
+    notes: "Only partly regular: *e does not break before a geminate *ll (*fell stays *fell, not *feoll), and it fails before *lp (*helpan > helpan).  Those consonants are excluded from the environment."
+    references: [campbell-1959]
+    examples:
+      - {in: "*melkan", out: "*meolkan", gloss: "to milk"}
+
+  # ---- long vowels and old diphthongs ------------------------------------
+  - id: long_a_fronting
+    order: 220
+    name: "Anglo-Frisian fronting: *ā > *ǣ"
+    match: ā
+    replace: ǣ
+    tier: established
+    description: "Inherited long *ā fronts to *ǣ (*lātan > *lǣtan)."
+    references: [campbell-1959, ringe-2017]
+    examples:
+      - {in: "*lātan", out: "*lǣtan", gloss: "to let"}
+
+  - id: au_to_ea
+    order: 230
+    name: "*au > *ēa"
+    match: "(a|æ) u"
+    replace: ēa
+    tier: established
+    description: "The old diphthong *au becomes *ēa (*ausō > *ēasō)."
+    references: [campbell-1959]
+    examples:
+      - {in: "*ausō", out: "*ēasō", gloss: "ear"}
+
+  - id: ai_to_a
+    order: 231
+    name: "*ai > *ā"
+    match: "(a|æ) i"
+    replace: ā
+    tier: established
+    description: "The old diphthong *ai monophthongises to *ā (*stain > *stān)."
+    references: [campbell-1959, ringe-2017]
+    examples:
+      - {in: "*stain", out: "*stān", gloss: "stone"}
+
+  - id: eu_to_eo
+    order: 232
+    name: "*eu > *ēo"
+    match: "e u"
+    replace: ēo
+    tier: established
+    description: "The old diphthong *eu becomes *ēo (*deup > *dēop)."
+    references: [campbell-1959]
+    examples:
+      - {in: "*deup", out: "*dēop", gloss: "deep"}
+
+  - id: a_restoration
+    order: 300
+    name: "a-restoration: *æ > *a before a back vowel"
+    match: æ
+    replace: a
+    env: {right: "C a"}
+    tier: established
+    description: "Fronted *æ is retracted when the following syllable contains a back vowel (*færan > *faran)."
+    notes: "Only partly regular and sensitive to dialect."
+    references: [campbell-1959]
+    examples:
+      - {in: "*færan", out: "*faran", gloss: "to go"}
+
+  # ---- i-umlaut -----------------------------------------------------------
+  - id: umlaut_ea
+    order: 400
+    name: "i-umlaut: *ea > *ie"
+    match: "e a"
+    replace: ie
+    env: {right: "C? C? (i|j)"}
+    tier: established
+    description: "*ea is fronted to *ie by an *i or *j in the following syllable (*ealdira > *ieldira)."
+    references: [campbell-1959, wright-1908]
+    examples:
+      - {in: "*ealdira", out: "*ieldira", gloss: "older"}
+
+  - id: umlaut_eo
+    order: 401
+    name: "i-umlaut: *eo > *ie"
+    match: "e o"
+    replace: ie
+    env: {right: "C? C? (i|j)"}
+    tier: established
+    description: "*eo is fronted to *ie by an *i or *j in the following syllable (*feohtiz > *fiehtiz)."
+    references: [campbell-1959, wright-1908]
+    examples:
+      - {in: "*feohtiz", out: "*fiehtiz", gloss: "fights"}
+
+  - id: umlaut_ea_long
+    order: 402
+    name: "i-umlaut: *ēa > *īe"
+    match: "ē a"
+    replace: īe
+    env: {right: "C? C? (i|j)"}
+    tier: established
+    description: "Long *ēa is fronted to *īe (*hēarjan > *hīerjan)."
+    references: [campbell-1959]
+    examples:
+      - {in: "*hēarjan", out: "*hīerjan", gloss: "to hear"}
+
+  - id: umlaut_eo_long
+    order: 403
+    name: "i-umlaut: *ēo > *īe"
+    match: "ē o"
+    replace: īe
+    env: {right: "C? C? (i|j)"}
+    tier: established
+    description: "Long *ēo is fronted to *īe (*dēopiz > *dīepiz)."
+    references: [campbell-1959]
+    examples:
+      - {in: "*dēopiz", out: "*dīepiz", gloss: "deep (nom. pl.)"}
+
+  - id: umlaut_a_nasal
+    order: 409
+    name: "i-umlaut: *a > *e before a nasal"
+    match: a
+    replace: e
+    env: {right: "NAS C? (i|j)"}
+    tier: established
+    description: "*a is fronted to *e by a following *i or *j when a nasal intervenes (*manniz > *menniz)."
+    notes: "The nasal blocks the ordinary *a > *æ outcome; this is the exception the older umlaut_a rule left unmodelled."
+    references: [campbell-1959, wright-1908]
+    examples:
+      - {in: "*manniz", out: "*menniz", gloss: "men"}
+      - {in: "*bandiz", out: "*bendiz", gloss: "band"}
+
+  - id: umlaut_a
+    order: 410
+    name: "i-umlaut: *a > *æ"
+    match: a
+    replace: æ
+    env: {right: "C? C? (i|j)"}
+    tier: established
+    description: "*a is fronted to *æ by an *i or *j in the following syllable (*dagiz > *dægiz)."
+    notes: "Before a nasal the outcome is *e rather than *æ (*manniz > menn); this is not modelled."
+    references: [campbell-1959, wright-1908]
+    examples:
+      - {in: "*dagiz", out: "*dægiz", gloss: "day (gen. sg.)"}
+
+  - id: umlaut_a_long
+    order: 411
+    name: "i-umlaut: *ā > *ǣ"
+    match: ā
+    replace: ǣ
+    env: {right: "C? C? (i|j)"}
+    tier: established
+    description: "*ā is fronted to *ǣ (*dāliz > *dǣliz)."
+    references: [campbell-1959]
+    examples:
+      - {in: "*dāliz", out: "*dǣliz", gloss: "part (gen. sg.)"}
+
+  - id: umlaut_o
+    order: 412
+    name: "i-umlaut: *o > *e"
+    match: o
+    replace: e
+    env: {right: "C? C? (i|j)"}
+    tier: established
+    description: "*o is fronted to *e (*sorgiz > *sergiz)."
+    references: [campbell-1959]
+    examples:
+      - {in: "*sorgiz", out: "*sergiz", gloss: "sorrow (gen. sg.)"}
+
+  - id: umlaut_o_long
+    order: 413
+    name: "i-umlaut: *ō > *ē"
+    match: ō
+    replace: ē
+    env: {right: "C? C? (i|j)"}
+    tier: established
+    description: "*ō is fronted to *ē (*fōtiz > *fētiz)."
+    references: [campbell-1959, wright-1908]
+    examples:
+      - {in: "*fōtiz", out: "*fētiz", gloss: "feet"}
+
+  - id: umlaut_u
+    order: 414
+    name: "i-umlaut: *u > *y"
+    match: u
+    replace: y
+    env: {right: "C? C? (i|j)"}
+    tier: established
+    description: "*u is fronted to *y (*fulljan > *fylljan)."
+    references: [campbell-1959, wright-1908]
+    examples:
+      - {in: "*fulljan", out: "*fylljan", gloss: "to fill"}
+
+  - id: umlaut_u_long
+    order: 415
+    name: "i-umlaut: *ū > *ȳ"
+    match: ū
+    replace: ȳ
+    env: {right: "C? C? (i|j)"}
+    tier: established
+    description: "*ū is fronted to *ȳ (*mūsiz > *mȳsiz)."
+    references: [campbell-1959, wright-1908]
+    examples:
+      - {in: "*mūsiz", out: "*mȳsiz", gloss: "mice"}
+
+  # ---- final syllables ----------------------------------------------------
+  - id: final_ą_to_a
+    order: 490
+    name: "Final *-ą > *-a"
+    match: ą
+    replace: a
+    env: {right: "#"}
+    tier: established
+    description: "The nasal vowel written in the recorded Proto-West-Germanic form is denasalised to *-a before Old English final loss (*tiną > *tina)."
+    notes: "This is the denasalisation step; the loss itself is final_a_loss, which must follow it.  The recorded PWGmc headwords write a final ą, so a derivation that starts at that stage has to read it before the Old English apocope."
+    references: [ringe-2017]
+    examples:
+      - {in: "*tiną", out: "*tina", gloss: "tin"}
+
+  - id: final_a_loss
+    order: 495
+    name: "Final *-a is lost"
+    match: a
+    replace: ""
+    env: {left: "C", right: "#"}
+    tier: established
+    description: "Final short *-a is lost before Old English (*tina > *tin)."
+    notes: "The same final apocope is registered in gem-pro__gmw-pro.yaml; it is restated here because a derivation whose first recorded ancestor is Proto-West-Germanic never passes through that earlier stage.  Must run before final_ô_to_a: otherwise the *-a that comes from *-ô is deleted and the weak masculine nouns break."
+    references: [campbell-1959, ringe-2017]
+    examples:
+      - {in: "*tina", out: "*tin", gloss: "tin"}
+
+  - id: final_i_deletion
+    order: 500
+    name: "Final *-i is lost after a heavy syllable"
+    match: i
+    replace: ""
+    env: {left: "LONG C", right: "#"}
+    tier: established
+    description: "High *-i is lost after a heavy syllable (*fōti > *fōt)."
+    notes: "Only the type with a long vowel before the final consonant is modelled; after a short syllable *-i is lowered to *-e instead."
+    references: [campbell-1959]
+    examples:
+      - {in: "*fōti", out: "*fōt", gloss: "foot (dat. sg.)"}
+
+  - id: final_i_deletion_cluster
+    order: 500
+    name: "Final *-i is lost after a heavy consonant cluster"
+    match: i
+    replace: ""
+    env: {left: "SHORT C C", right: "#"}
+    tier: established
+    description: "High *-i is lost when the preceding syllable is heavy because of two consonants (*gasti > *gast)."
+    references: [campbell-1959]
+    examples:
+      - {in: "*gasti", out: "*gast", gloss: "guest"}
+
+  - id: final_i_lowering
+    order: 502
+    name: "Final *-i > *-e after a light syllable"
+    match: i
+    replace: e
+    env: {right: "#"}
+    tier: established
+    description: "Word-final *-i is lowered to *-e when it is not deleted (*wini > *wine)."
+    references: [campbell-1959]
+    examples:
+      - {in: "*wini", out: "*wine", gloss: "friend"}
+
+  - id: final_u_deletion
+    order: 501
+    name: "Final *-u is lost after a heavy syllable"
+    match: u
+    replace: ""
+    env: {left: "LONG C", right: "#"}
+    tier: established
+    description: "High *-u is lost after a long vowel and a consonant (*rūnu > *rūn)."
+    references: [campbell-1959]
+    examples:
+      - {in: "*rūnu", out: "*rūn", gloss: "rune"}
+
+  - id: final_u_deletion_cluster
+    order: 501
+    name: "Final *-u is lost after a heavy cluster"
+    match: u
+    replace: ""
+    env: {left: "SHORT C C", right: "#"}
+    tier: established
+    description: "High *-u is lost when a consonant cluster precedes it (*handu > *hand)."
+    references: [campbell-1959]
+    examples:
+      - {in: "*handu", out: "*hand", gloss: "hand"}
+
+  - id: final_ô_to_a
+    order: 520
+    name: "Final *-ô > *-a"
+    match: ô
+    replace: a
+    env: {right: "#"}
+    tier: established
+    description: "The West Germanic nasal vowel of the weak masculine nominative becomes *-a (*namô > *nama)."
+    notes: "Comes after final_a_loss: the *-a it creates is the one Old English keeps."
+    references: [campbell-1959, wright-1908]
+    examples:
+      - {in: "*namô", out: "*nama", gloss: "name"}
+
+  - id: final_ōn_to_ian
+    order: 521
+    name: "Final *-ōn > *-ian"
+    match: "ō n"
+    replace: "i a n"
+    env: {right: "#"}
+    tier: proposed
+    description: "The class-2 weak infinitive ending becomes *-ian (*manōn > *manian)."
+    notes: "The engine cannot see part of speech, and the environment is only the ending. The corpus supports the verb ending strongly, but 14 recorded weak feminine nouns in *-ōn (dōn, bōn, smittōn, kippōn, tūsōn, gailisōn, flōisōn, hlakarōn, ūfōn, hruzōn, tehwōn) would need the paradigm layer (W5) to be excluded. Hence proposed, not established: 86 of this file's exact words rest on it."
+    references: [campbell-1959, wright-1908]
+    examples:
+      - {in: "*manōn", out: "*manian", gloss: "to think"}
+      - {in: "*fundōn", out: "*fundian", gloss: "to try"}
+
+  - id: j_loss
+    order: 530
+    name: "*j is lost after a consonant"
+    match: j
+    replace: ""
+    env: {left: "C"}
+    tier: established
+    description: "The glide *j is lost after a consonant (*biddjan > *biddan)."
+    notes: "Runs after i-umlaut, because the *j must still be there to trigger it."
+    references: [campbell-1959, wright-1908]
+    examples:
+      - {in: "*biddjan", out: "*biddan", gloss: "to ask"}
+      - {in: "*willjan", out: "*willan", gloss: "to want"}
+
+  - id: r_epenthesis_o_cluster
+    order: 538
+    name: "Epenthetic *o before final *r after a rounded vowel and two consonants"
+    match: r
+    replace: "o r"
+    env: {left: "ROUND C C", right: "#"}
+    tier: established
+    description: "After a rounded vowel the inserted vowel is *o, not *e (*wuldr > *wuldor, *hungr > *hungor)."
+    notes: "Vowel harmony is stated as two environments, not as a choice of vowel: the rounded-vowel contexts take *o and the rest take *e."
+    references: [campbell-1959, wright-1908]
+    examples:
+      - {in: "*wuldr", out: "*wuldor", gloss: "glory"}
+
+  - id: r_epenthesis_o
+    order: 539
+    name: "Epenthetic *o before final *r after a rounded vowel and one consonant"
+    match: r
+    replace: "o r"
+    env: {left: "ROUND C", right: "#"}
+    tier: established
+    description: "After a rounded vowel and a single consonant the inserted vowel is *o (*fōdr > *fōdor)."
+    references: [campbell-1959, wright-1908]
+    examples:
+      - {in: "*fōdr", out: "*fōdor", gloss: "fodder"}
+
+  - id: r_epenthesis
+    order: 540
+    name: "Epenthetic *e before final *r"
+    match: r
+    replace: e r
+    env: {left: "(p|b|t|d|k|g|f|θ|s|m|n|l|w)", right: "#"}
+    tier: established
+    description: "A vowel is inserted before a final *r after another consonant (*fingr > *finger)."
+    notes: "The environment excludes *r: a geminate *rr (*ferr) does not take the vowel."
+    references: [campbell-1959, wright-1908]
+    examples:
+      - {in: "*fingr", out: "*finger", gloss: "finger"}
+      - {in: "*bitr", out: "*biter", gloss: "bitter"}
+
+  # ---- initial clusters ---------------------------------------------------
+  - id: hl_loss
+    order: 510
+    name: "Initial *hl- > l-"
+    match: "h l"
+    replace: l
+    tier: established
+    description: "The cluster *hl- loses its *h (*hlāf > *lāf)."
+    references: [campbell-1959, luick-1914]
+    examples:
+      - {in: "*hlāf", out: "*lāf", gloss: "loaf"}
+
+  - id: hn_loss
+    order: 511
+    name: "Initial *hn- > n-"
+    match: "h n"
+    replace: n
+    tier: established
+    description: "The cluster *hn- loses its *h (*hnutu > *nutu)."
+    references: [campbell-1959, luick-1914]
+    examples:
+      - {in: "*hnutu", out: "*nutu", gloss: "nut"}
+
+  - id: hr_loss
+    order: 512
+    name: "Initial *hr- > r-"
+    match: "h r"
+    replace: r
+    tier: established
+    description: "The cluster *hr- loses its *h (*hræfn > *ræfn)."
+    references: [campbell-1959, luick-1914]
+    examples:
+      - {in: "*hræfn", out: "*ræfn", gloss: "raven"}

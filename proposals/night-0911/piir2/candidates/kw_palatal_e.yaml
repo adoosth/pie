@@ -1,0 +1,27 @@
+# REJECTED 2026-11-09: *kʷ > *č before *e, one rule, no restriction.
+# Measured (council, layers exact,orthographic,cited,script,identity,bound):
+# +4 iir-pro (pánča, páčati, čatwā́ras, čárHati), +1 peo script (-𐎨𐎠),
+# -1 pal (kyš: PIE *kʷeys- > PII *kayšás > kēš), -1 ave (𐬐𐬀𐬭: *kʷer-).
+# The shipped law restricts the environment to *e before an obstruent, nasal
+# or *l; see kw_palatal_e_r_no.yaml for the *r half of the reason.
+# Measured with tools/whatif.py --from ine-pro --to iir-pro and tools/council.py.
+rules:
+  - id: labiovelar_k_palatal_e_wide
+    order: 44
+    name: "*kʷ > *č before *e (unrestricted)"
+    match: kʷ
+    replace: č
+    env:
+      right: (ˈ|ˌ)? e
+    tier: proposed
+    references: [mayrhofer-1986]
+    description: >
+      The labiovelar palatalises before the front vowel *e: *pénkʷe > *pánče,
+      *kʷetwóres > *čatwā́ras, *kʷélh₁eti > *čárHati.  Only the labiovelar is in
+      the environment; a plain *k before *e is not (PIE *ker > OP kāra-), which
+      is why the rule runs before the labiovelar merger and names *kʷ, not *k.
+      It must not fire before *a, *o or *u.
+    examples:
+      - {in: "*pénkʷe", out: "*pénče", gloss: "five"}
+      - {in: "*kʷetwóres", out: "*četwóres", gloss: "four"}
+      - {in: "*kʷód", out: "*kʷód", gloss: "what — no front vowel"}

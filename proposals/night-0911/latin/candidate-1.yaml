@@ -1,0 +1,166 @@
+stage:
+  name: Proto-Italic → Latin (candidate 1)
+  references: [sihler-1995, weiss-2009, meiser-1998, devaan-2008]
+rules:
+  - id: c1_final_o_to_u_s
+    order: 350
+    name: "Final *-os > -us"
+    match: o
+    replace: u
+    env: {left: C, right: "s #"}
+    tier: established
+    description: "Short *o is raised to *u in the final closed syllable before *-s (*serwos > serwus)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*serwos", out: "*serwus", gloss: "slave"}
+
+  - id: c1_final_o_to_u_m
+    order: 351
+    name: "Final *-om > -um"
+    match: o
+    replace: u
+    env: {left: C, right: "m #"}
+    tier: established
+    description: "Short *o is raised to *u in the final closed syllable before *-m (*argentom > argentum)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*argentom", out: "*argentum", gloss: "silver"}
+
+  - id: c1_final_long_a
+    order: 352
+    name: "Final *-ā > -a"
+    match: ā
+    replace: a
+    env: {right: "#"}
+    tier: established
+    description: "The long *ā of the first-declension nominative is shortened word-finally (*fugā > fuga)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*fugā", out: "*fuga", gloss: "flight"}
+
+  - id: c1_beta_to_b
+    order: 360
+    name: "Voiced bilabial fricative *β > b"
+    match: β
+    replace: b
+    tier: established
+    description: "The fricative *β that Proto-Italic inherited from medial *bʰ becomes the stop b in Latin (*luβros > luber)."
+    references: [weiss-2009, sihler-1995]
+    examples:
+      - {in: "*luβros", out: "*lubros", gloss: "free"}
+
+  - id: c1_eth_to_d
+    order: 361
+    name: "Voiced dental fricative *ð > d"
+    match: ð
+    replace: d
+    tier: established
+    description: "Medial *ð from *dʰ becomes the stop d (*sweðēō > swedēō)."
+    references: [weiss-2009, sihler-1995]
+    examples:
+      - {in: "*sweðēō", out: "*swedēō", gloss: "I am wont"}
+
+  - id: c1_gamma_to_g
+    order: 362
+    name: "Voiced velar fricative *ɣ > g"
+    match: ɣ
+    replace: g
+    tier: established
+    description: "Medial *ɣ from *gʰ becomes the stop g (*weɣō > wegō)."
+    references: [weiss-2009, sihler-1995]
+    examples:
+      - {in: "*weɣō", out: "*wegō", gloss: "I carry"}
+
+  - id: c1_gammaw_to_w
+    order: 363
+    name: "Voiced labiovelar fricative *ɣʷ > w"
+    match: ɣʷ
+    replace: w
+    tier: established
+    description: "The labiovelar fricative *ɣʷ from *gʷʰ becomes the glide *w (*kneyɣʷēō > knee?)."
+    references: [weiss-2009, sihler-1995]
+    examples:
+      - {in: "*kneyɣʷēō", out: "*kneywēō", gloss: "I blink"}
+
+  - id: c1_j_to_i
+    order: 370
+    name: "*j > i after a consonant"
+    match: j
+    replace: i
+    env: {left: C, right: V}
+    tier: established
+    description: "The glide *j vocalises to *i between a consonant and a vowel (*fakjō > fakiō)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*fakjō", out: "*fakiō", gloss: "I make"}
+
+  - id: c1_kw_to_labiovelar
+    order: 80
+    name: "*kw is the labiovelar /kʷ/"
+    match: k w
+    replace: kʷ
+    tier: custom
+    description: "Notation: the corpus writes the Proto-Italic labiovelar as two letters kw; it is one segment, the /kʷ/ that Latin writes qu."
+    references: [sihler-1995]
+    examples:
+      - {in: "*kwoi", out: "*kʷoi", gloss: "who"}
+
+  - id: c1_final_e_before_d
+    order: 340
+    name: "Vowel lengthens before final *-d"
+    match: e
+    replace: ē
+    env: {right: "d #"}
+    tier: established
+    description: "A short vowel lengthens before the final *-d of the ablative, which then falls (*ted > tēd > tē)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*ted", out: "*tēd", gloss: "you (abl.)"}
+
+  - id: c1_final_d_loss
+    order: 420
+    name: "Final *-d is lost"
+    match: d
+    replace: ""
+    env: {right: "#"}
+    tier: established
+    description: "Word-final *-d is lost after the preceding vowel has lengthened (*tēd > tē)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*tēd", out: "*tē", gloss: "you (abl.)"}
+
+  - id: c1_o_before_nts
+    order: 345
+    name: "*o lengthens before *-nts"
+    match: o
+    replace: ō
+    env: {right: "n t s #"}
+    tier: established
+    description: "The vowel of the stem syllable lengthens when *-nts loses its *t (*ponts > pōnts > pōns)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*ponts", out: "*pōnts", gloss: "bridge"}
+
+  - id: c1_e_before_nts
+    order: 346
+    name: "*e lengthens before *-nts"
+    match: e
+    replace: ē
+    env: {right: "n t s #"}
+    tier: established
+    description: "The vowel of the stem syllable lengthens when *-nts loses its *t (*dents > dēns)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*dents", out: "*dēnts", gloss: "tooth"}
+
+  - id: c1_t_loss_nts
+    order: 410
+    name: "*-t- is lost between *n and final *-s"
+    match: t
+    replace: ""
+    env: {left: n, right: "s #"}
+    tier: established
+    description: "The *t of *-nts is lost before the final *-s (*pōnts > pōns)."
+    references: [sihler-1995, weiss-2009]
+    examples:
+      - {in: "*pōnts", out: "*pōns", gloss: "bridge"}

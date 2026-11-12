@@ -1,0 +1,197 @@
+stage:
+  name: Proto-West Germanic → Old High German
+  date_start: 750
+  date_end: 1050
+  description: >
+    The High German consonant shift (second sound shift) in its Upper German
+    form, followed by the OHG diphthongisation of *ō, *au and *eu and by the
+    primary OHG umlaut of *a.
+  references: [braune-2004, wells-1985, kluge-2011]
+
+rules:
+  # ---- High German consonant shift: voiceless stops -----------------------
+  - id: p_to_pf_initial
+    order: 100
+    name: "HGCS: *p > *pf word-initially"
+    match: p
+    replace: pf
+    env: {left: "#"}
+    tier: established
+    description: "Word-initial *p becomes the affricate *pf (*pund > *pfund)."
+    notes: "Only the word-initial position is modelled; the shift is strongest in Upper German."
+    references: [braune-2004, wells-1985]
+    examples:
+      - {in: "*pund", out: "*pfund", gloss: "pound"}
+
+  - id: p_to_f_after_vowel
+    order: 110
+    name: "HGCS: *p > *f after a vowel"
+    match: p
+    replace: f
+    env: {left: "V"}
+    tier: established
+    description: "Postvocalic *p becomes the fricative *f (*slāpan > *slāfan)."
+    references: [braune-2004]
+    examples:
+      - {in: "*slāpan", out: "*slāfan", gloss: "to sleep"}
+
+  - id: p_to_f_after_liquid
+    order: 111
+    name: "HGCS: *p > *f after *l or *r"
+    match: p
+    replace: f
+    env: {left: "(l|r)"}
+    tier: established
+    description: "*p becomes *f after *l or *r (*helpan > *helfan)."
+    notes: "*p after other consonants (above all *m and *n) is not covered by this rule."
+    references: [braune-2004]
+    examples:
+      - {in: "*helpan", out: "*helfan", gloss: "to help"}
+
+  - id: t_to_z_initial
+    order: 120
+    name: "HGCS: *t > *z word-initially"
+    match: t
+    replace: z
+    env: {left: "#"}
+    tier: established
+    description: "Word-initial *t becomes the affricate written *z, i.e. [ts] (*tīd > *zīd)."
+    references: [braune-2004, wells-1985]
+    examples:
+      - {in: "*tīd", out: "*zīd", gloss: "time"}
+
+  - id: t_to_z_postconsonantal
+    order: 121
+    name: "HGCS: *t > *z after a resonant"
+    match: t
+    replace: z
+    env: {left: "(r|l|m|n)"}
+    tier: established
+    description: "*t becomes the affricate *z after *r, *l, *m or *n (*hertā > *herzā)."
+    references: [braune-2004]
+    examples:
+      - {in: "*hertā", out: "*herzā", gloss: "heart"}
+
+  - id: t_to_z_after_vowel
+    order: 122
+    name: "HGCS: *t > *z after a vowel"
+    match: t
+    replace: z
+    env: {left: "V"}
+    tier: established
+    description: "Postvocalic *t becomes the affricate *z (*etan > *ezan)."
+    notes: "In gemination the result is written zz; the single-affricate notation is a simplification."
+    references: [braune-2004, wells-1985]
+    examples:
+      - {in: "*etan", out: "*ezan", gloss: "to eat"}
+
+  - id: k_to_x_after_vowel
+    order: 130
+    name: "HGCS: *k > *x after a vowel"
+    match: k
+    replace: x
+    env: {left: "V"}
+    tier: established
+    description: "Postvocalic *k becomes the fricative *x (*brekan > *brexan)."
+    notes: "Word-initial *k is not shifted outside Bavarian, so no initial rule is given."
+    references: [braune-2004]
+    examples:
+      - {in: "*brekan", out: "*brexan", gloss: "to break"}
+
+  # ---- High German consonant shift: voiced stops --------------------------
+  - id: b_to_p_initial
+    order: 140
+    name: "HGCS: *b > *p word-initially"
+    match: b
+    replace: p
+    env: {left: "#"}
+    tier: established
+    description: "Word-initial *b becomes *p in Upper German (*beran > *peran)."
+    notes: "Upper German only; Central German keeps *b, and Standard German generalises the Central German *b (NHG Bruder, not *Pruder)."
+    references: [braune-2004, wells-1985]
+    examples:
+      - {in: "*beran", out: "*peran", gloss: "to bear"}
+
+  - id: d_to_t
+    order: 150
+    name: "HGCS: *d > *t"
+    match: d
+    replace: t
+    tier: established
+    description: "*d becomes *t in all positions (*dag > *tag)."
+    notes: "This is the Upper German outcome; Central German largely keeps *d."
+    references: [braune-2004, wells-1985]
+    examples:
+      - {in: "*dag", out: "*tag", gloss: "day"}
+
+  - id: g_to_k_initial
+    order: 151
+    name: "HGCS: *g > *k word-initially"
+    match: g
+    replace: k
+    env: {left: "#"}
+    tier: established
+    description: "Word-initial *g becomes *k in Upper German (*gast > *kast)."
+    notes: "Upper German only; Central German keeps *g, and Standard German generalises the Central German *g (NHG Gast, not *Kast)."
+    references: [braune-2004]
+    examples:
+      - {in: "*gast", out: "*kast", gloss: "guest"}
+
+  - id: thorn_to_d
+    order: 160
+    name: "*θ > *d"
+    match: θ
+    replace: d
+    tier: established
+    description: "Germanic *θ (þ) becomes the stop *d (*θank > *dank)."
+    references: [braune-2004, kluge-2011]
+    examples:
+      - {in: "*θank", out: "*dank", gloss: "thought"}
+
+  # ---- vowels -------------------------------------------------------------
+  - id: long_o_to_uo
+    order: 200
+    name: "*ō > *uo"
+    match: ō
+    replace: uo
+    tier: established
+    description: "Long *ō diphthongises to *uo (*fōt > *fuot)."
+    references: [braune-2004, wells-1985]
+    examples:
+      - {in: "*fōt", out: "*fuot", gloss: "foot"}
+
+  - id: au_to_ou
+    order: 210
+    name: "*au > *ou"
+    match: "a u"
+    replace: ou
+    tier: established
+    description: "The old diphthong *au becomes *ou (*augō > *ougō)."
+    references: [braune-2004]
+    examples:
+      - {in: "*augō", out: "*ougō", gloss: "eye"}
+
+  - id: eu_to_io
+    order: 211
+    name: "*eu > *io"
+    match: "e u"
+    replace: io
+    tier: established
+    description: "The old diphthong *eu becomes *io (*deup > *diop)."
+    references: [braune-2004]
+    examples:
+      - {in: "*deup", out: "*diop", gloss: "deep"}
+
+  # ---- umlaut -------------------------------------------------------------
+  - id: umlaut_a
+    order: 300
+    name: "OHG umlaut: *a > *e"
+    match: a
+    replace: e
+    env: {right: "C? C? (i|j)"}
+    tier: established
+    description: "Primary OHG umlaut fronts *a to *e before an *i or *j in the following syllable (*gasti > *gesti)."
+    notes: "In Old High German only *a is umlauted; the umlaut of the other back vowels belongs to Middle High German."
+    references: [braune-2004, wells-1985]
+    examples:
+      - {in: "*gasti", out: "*gesti", gloss: "guests"}

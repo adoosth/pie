@@ -1,0 +1,780 @@
+stage:
+  name: Proto-Germanic → Old Norse
+  date_start: 500
+  date_end: 800
+  description: >
+    The transition from Proto-Germanic to the Old Norse of the normalized
+    dictionary headword.  The vowel system is remade in three overlapping
+    stages: u-umlaut rounds *a to ǫ before a following *u, i-umlaut fronts *a,
+    *ā, *o, *ō, *u, *ū and *au before a following *i or *j, and breaking turns
+    *e into ja before *a and into jǫ before *u.  The old diphthongs are
+    rewritten (*ai > ei, *au > á before *h, *eu > jó/jú) and *ē becomes á.
+    The consonants are then remade: *z > r, medial and final *þ > ð, *w > v,
+    *hs > ks, *h lost after a vowel, *j lost after a consonant, *n assimilated
+    to a following *þ.  Last come the endings: *-az, *-iz and *-uz > -r,
+    *-ō > -u and then lost, *-ǭ > -a, *-ô > -i, *-ą > ∅, the short final
+    vowels lost, the infinitives *-aną > -a, *-janą > -ja, *-ijaną > -a, and
+    *-r assimilated to a preceding *n, *l or *s.  The stage stops at the
+    letters the record writes (móðr, hirðir, lǫgr); vowel length, which the
+    normalized spelling marks with an acute, is written here with the engine's
+    stress token and is therefore read as notation, never as a letter, by the
+    counter.
+  references: [gordon-1957, noreen-1923, haugen-1982, krause-1968, ringe-taylor-2014]
+
+rules:
+  # ---- consonants that feed the vowel rules -------------------------------
+  - id: w_loss_before_u
+    order: 5
+    name: "Initial *w- is lost before *u"
+    match: w
+    replace: ""
+    env: {left: "#", right: "u"}
+    tier: established
+    description: >
+      Word-initial *w is lost before a following *u: *wulfaz 'wolf' > ulfr,
+      *wundrą 'wound' > undr, *wurmiz 'serpent' > ormr, *wunjaną 'to dwell' >
+      una.  Before every other vowel it stays (*weraz > verr, *wīną > vín), so
+      the environment is stated.
+    references: [gordon-1957, noreen-1923, haugen-1982]
+    examples:
+      - {in: "*wulfaz", out: "*ulfaz", gloss: "wolf (ulfr)"}
+
+  - id: w_loss_before_r
+    order: 5
+    name: "Initial *w- is lost before *r"
+    match: w
+    replace: ""
+    env: {left: "#", right: "r"}
+    tier: established
+    description: >
+      Word-initial *w is lost before *r: *wrekaną 'to drive' > reka, *wraką
+      'wreck' > rak, *wristaną? > rista.  The cluster *wr- is not tolerated in
+      Old Norse, unlike *vr- in the spelling of loans.
+    references: [gordon-1957, noreen-1923]
+    examples:
+      - {in: "*wrekaną", out: "*rekaną", gloss: "to drive (reka)"}
+
+  - id: w_to_v
+    order: 6
+    name: "*w > v"
+    match: w
+    replace: v
+    tier: established
+    description: >
+      Germanic *w is a labiodental spirant in Old Norse and is written v:
+      *weraz 'man' > verr, *wīną 'wine' > vín, *hwelpaz 'whelp' > hvelpr,
+      *swefnaz 'sleep' > svefn.
+    references: [gordon-1957, noreen-1923]
+    examples:
+      - {in: "*weraz", out: "*veraz", gloss: "man (verr)"}
+      - {in: "*hwelpaz", out: "*hvelpaz", gloss: "whelp (hvelpr)"}
+
+  # ---- final vowels, which trigger the umlauts ----------------------------
+  - id: final_ō_to_u
+    order: 20
+    name: "Word-final *-ō > -u"
+    match: ō
+    replace: u
+    env: {right: "#"}
+    tier: established
+    description: >
+      The final long *ō of the ō-stems is shortened and raised to -u before it
+      is lost: *gebō 'gift' > *gebu (whence gjǫf), *banjō 'death' > *banju
+      (whence ben), *agjō 'edge' > *agju (whence egg).  This -u is what rounds
+      the stem vowel by u-umlaut and breaks *e to jǫ; it is then lost after a
+      heavy syllable (final_u_loss).
+    references: [noreen-1923, gordon-1957, haugen-1982]
+    examples:
+      - {in: "*gebō", out: "*gebu", gloss: "gift (gjǫf)"}
+
+  - id: final_ǭ_to_a
+    order: 21
+    name: "Word-final *-ǭ > -a"
+    match: ǭ
+    replace: a
+    env: {right: "#"}
+    tier: established
+    description: >
+      The nasalised long vowel of the ōn-stems ends in -a: *gatwǭ 'street' >
+      gata, *sagǭ 'saga' > saga, *tungǭ 'tongue' > tunga, *kwenǭ 'woman' >
+      kvinna.  It does not trigger u-umlaut, which is why the stem vowel stays
+      a.
+    references: [noreen-1923, gordon-1957, haugen-1982]
+    examples:
+      - {in: "*gatwǭ", out: "*gatwa", gloss: "street (gata)"}
+
+  - id: final_ô_to_i
+    order: 104
+    name: "Word-final *-ô > -i in the weak masculine"
+    match: ô
+    replace: i
+    env: {right: "#"}
+    tier: proposed
+    description: >
+      The weak masculine nominative ends in -i: *agô 'edge' > agi, *banô
+      'slayer' > bani, *makô 'match' > maki, *magô 'stomach' > magi.  The
+      neuter n-stem of the same shape ends in -a (*hertô > hjarta, *augô >
+      auga); the outcome depends on the paradigm, which this engine cannot see
+      from the form, so the rule states the masculine majority and the neuters
+      are counted as misses of this law, not bent to fit.
+    notes: >
+      Sits before the umlauts because that -i triggers i-umlaut in words such
+      as *-lausô > -leysi.
+    references: [noreen-1923, gordon-1957, haugen-1982]
+    examples:
+      - {in: "*agô", out: "*agi", gloss: "edge (agi)"}
+      - {in: "*banô", out: "*bani", gloss: "slayer (bani)"}
+
+  # ---- u-umlaut -----------------------------------------------------------
+  - id: u_umlaut_a
+    order: 30
+    name: "u-umlaut: *a > ǫ before *u"
+    match: a
+    replace: ǫ
+    env: {right: "C C? u"}
+    tier: established
+    description: >
+      A short *a is rounded to ǫ when the following syllable contains *u:
+      *laguz 'water' > lǫgr, *handuz 'hand' > hǫnd, *barnu 'children' > bǫrn,
+      *fagruz 'fair' > fǫgr.  The trigger may stand one or two consonants away,
+      which is the environment stated here; the *a of the diphthong *au is not
+      affected because no consonant separates it from its *u.
+    references: [noreen-1923, gordon-1957, haugen-1982]
+    examples:
+      - {in: "*laguz", out: "*lǫguz", gloss: "water (lǫgr)"}
+      - {in: "*handuz", out: "*hǫnduz", gloss: "hand (hǫnd)"}
+
+  # ---- the diphthongs, before the umlauts that would misread them ---------
+  - id: ai_to_ei
+    order: 40
+    name: "*ai > ei"
+    match: "a i"
+    replace: "e i"
+    tier: established
+    description: >
+      The inherited diphthong *ai becomes ei: *stainaz 'stone' > steinn,
+      *hailaz 'whole' > heill, *braidaz 'broad' > breiðr, *aiganą 'to own' >
+      eiga.  It runs before i-umlaut, so that the *i of the diphthong is never
+      read as the trigger of a fronting.
+    references: [gordon-1957, noreen-1923, haugen-1982]
+    examples:
+      - {in: "*stainaz", out: "*steinaz", gloss: "stone (steinn)"}
+      - {in: "*aiganą", out: "*eiganą", gloss: "to own (eiga)"}
+
+  - id: au_h_to_a
+    order: 41
+    name: "*au > á before *h"
+    match: "a u"
+    replace: a
+    env: {right: "h"}
+    tier: established
+    description: >
+      Before *h the diphthong *au loses its second element and the first is
+      lengthened: *hauhaz 'high' > hár, *laug? 'bath' stays laug.  The *h is
+      then lost (h_loss_after_vowel).
+    references: [noreen-1923, gordon-1957]
+    examples:
+      - {in: "*hauhaz", out: "*hahaz", gloss: "high (hár)"}
+
+  - id: ai_h_to_a
+    order: 42
+    name: "*ai > á before *h"
+    match: "a i"
+    replace: a
+    env: {right: "h"}
+    tier: established
+    description: >
+      Before *h the diphthong *ai is monophthongised and lengthened: *taihwǭ
+      'toe' > tá, *saihwaną 'to see' > sjá.  Like *au before *h, this is the
+      loss of the second element before the spirant.
+    references: [noreen-1923, gordon-1957]
+    examples:
+      - {in: "*taihwǭ", out: "*tahwǭ", gloss: "toe (tá)"}
+
+  - id: eu_to_jo
+    order: 43
+    name: "*eu > jó"
+    match: "e u"
+    replace: "j o"
+    tier: established
+    description: >
+      The inherited diphthong *eu becomes jó: *beudaną 'to offer' > bjóða,
+      *keulaz 'keel' > kjóll, *eutaz 'Jute' > jótar, *deuzą 'beast' > djór.
+      Before a following *u the second element is fronted and the result is jú
+      (eu_to_ju).
+    references: [gordon-1957, noreen-1923, haugen-1982]
+    examples:
+      - {in: "*beudaną", out: "*bjodaną", gloss: "to offer (bjóða)"}
+      - {in: "*keulaz", out: "*kjolaz", gloss: "keel (kjóll)"}
+
+  - id: eu_to_ju
+    order: 44
+    name: "*eu > jú before *u"
+    match: "e u"
+    replace: "j u"
+    env: {right: "(p|t|k)"}
+    tier: established
+    description: >
+      When the following syllable has *u the diphthong is written jú: *deupaz
+      'deep' > djúpr, *seukaz 'sick' > sjúkr.  The second element is fronted
+      exactly as *u is fronted to y by the same *u.
+    references: [noreen-1923, gordon-1957]
+    examples:
+      - {in: "*deupaz", out: "*djupaz", gloss: "deep (djúpr)"}
+      - {in: "*seukaz", out: "*sjukaz", gloss: "sick (sjúkr)"}
+
+  # ---- i-umlaut -----------------------------------------------------------
+  - id: i_umlaut_a
+    order: 50
+    name: "i-umlaut: *a > e before *i or *j"
+    match: a
+    replace: e
+    env: {right: "C? C? (i|j)"}
+    tier: established
+    description: >
+      A short *a is fronted to e when the following syllable contains *i or *j:
+      *satjaną 'to set' > setja, *harjaz 'army' > herr, *sandijaną 'to send' >
+      senda, *hirdijaz 'herdsman' > hirðir, *gastiz 'guest' > gestr.
+    references: [noreen-1923, gordon-1957, haugen-1982]
+    examples:
+      - {in: "*satjaną", out: "*setjaną", gloss: "to set (setja)"}
+      - {in: "*harjaz", out: "*herjaz", gloss: "army (herr)"}
+
+  - id: i_umlaut_a_long
+    order: 51
+    name: "i-umlaut: *ā > æ before *i or *j"
+    match: ā
+    replace: æ
+    env: {right: "C? C? (i|j)"}
+    tier: established
+    description: >
+      Long *ā is fronted to æ before *i or *j: *mārijaz 'famous' > mærr,
+      *hāwiją 'hay' > hey, *dālijaną 'to divide' > dæla.
+    references: [noreen-1923, gordon-1957]
+    examples:
+      - {in: "*mārijaz", out: "*mærijaz", gloss: "famous (mærr)"}
+
+  - id: i_umlaut_o
+    order: 52
+    name: "i-umlaut: *o > ø before *i or *j"
+    match: o
+    replace: ø
+    env: {right: "C? C? (i|j)"}
+    tier: established
+    description: >
+      Short *o is fronted and rounded to ø before *i or *j, wherever Germanic
+      *o survived (chiefly before a nasal): *sporjō 'spur' > *spørju.
+    references: [noreen-1923, gordon-1957]
+    examples:
+      - {in: "*sporjō", out: "*spørjō", gloss: "spur (spor)"}
+
+  - id: i_umlaut_o_long
+    order: 53
+    name: "i-umlaut: *ō > œ before *i or *j"
+    match: ō
+    replace: œ
+    env: {right: "C? C? (i|j)"}
+    tier: established
+    description: >
+      Long *ō is fronted to œ before *i or *j: *dōmijaną 'to judge' > dœma,
+      *sōkijaną 'to seek' > sœkja, *tōkijaz 'dear' > tœkr.
+    references: [noreen-1923, gordon-1957, haugen-1982]
+    examples:
+      - {in: "*dōmijaną", out: "*dœmijaną", gloss: "to judge (dœma)"}
+
+  - id: i_umlaut_u
+    order: 54
+    name: "i-umlaut: *u > y before *i or *j"
+    match: u
+    replace: y
+    env: {right: "C? C? (i|j)"}
+    tier: established
+    description: >
+      Short *u is fronted to y before *i or *j: *kunją 'kin' > kyn, *fullijaną
+      'to fill' > fylla, *fylgjan 'to follow' > fylgja, *huldiz 'fidelity' >
+      hyll.
+    references: [noreen-1923, gordon-1957, haugen-1982]
+    examples:
+      - {in: "*kunją", out: "*kynją", gloss: "kin (kyn)"}
+      - {in: "*fullijaną", out: "*fyllijaną", gloss: "to fill (fylla)"}
+
+  - id: i_umlaut_u_long
+    order: 55
+    name: "i-umlaut: *ū > ý before *i or *j"
+    match: ū
+    replace: y
+    env: {right: "C? C? (i|j)"}
+    tier: established
+    description: >
+      Long *ū is fronted to ý before *i or *j: *hūsiją 'house' > hýsi,
+      *brūdiz 'bride' > brýðr.
+    references: [noreen-1923, gordon-1957]
+    examples:
+      - {in: "*hūsiją", out: "*hysiją", gloss: "house (hýsi)"}
+
+  - id: i_umlaut_au
+    order: 56
+    name: "i-umlaut: *au > ey before *i or *j"
+    match: "a u"
+    replace: "e y"
+    env: {right: "C? C? (i|j)"}
+    tier: established
+    description: >
+      The diphthong *au is fronted to ey before *i or *j: *hauzijaną 'to hear'
+      > heyra, *daupijaną 'to baptise' > deypa, *laugiz 'bath' > leyg? Both
+      elements are fronted together, which is why this is one change and not
+      two.
+    references: [noreen-1923, gordon-1957, haugen-1982]
+    examples:
+      - {in: "*hauzijaną", out: "*heyzijaną", gloss: "to hear (heyra)"}
+
+  # ---- breaking -----------------------------------------------------------
+  - id: breaking_e_u
+    order: 86
+    name: "Breaking: *e > jǫ before *u"
+    match: e
+    replace: "j ǫ"
+    env: {right: "C? C? u"}
+    tier: established
+    description: >
+      A short *e is broken to jǫ when the following syllable has *u: *meluks
+      'milk' > mjǫlk, *gebu 'gift' > gjǫf, *eburaz 'boar' > jǫfurr, *felu
+      'much' > fjǫl.  Runs after the diphthongs, so that the *e of *eu is not
+      broken, and after i-umlaut, so that a fronted *a (< *a before *i) can
+      break as well.
+    references: [noreen-1923, gordon-1957, haugen-1982]
+    examples:
+      - {in: "*meluks", out: "*mjǫluks", gloss: "milk (mjǫlk)"}
+      - {in: "*gebu", out: "*gjǫbu", gloss: "gift (gjǫf)"}
+
+  - id: breaking_e_a
+    order: 87
+    name: "Breaking: *e > ja before *r or *l + consonant + *a"
+    match: e
+    replace: "j a"
+    env: {right: "(r|l) (p|b|t|d|k|g|f|v|θ|ð|s|m|n) a"}
+    tier: established
+    description: >
+      A short *e is broken to ja when the following syllable has *a: *hertô
+      'heart' > hjarta, *falisaz 'cliff' > fjall, *mekilaz 'big' > mikill (no
+      breaking before a front vowel), *eta 'to eat' stays eta.
+    references: [noreen-1923, gordon-1957, haugen-1982]
+    examples:
+      - {in: "*herta", out: "*hjarta", gloss: "heart (hjarta)"}
+      - {in: "*herþaz", out: "*hjarþaz", gloss: "hard (harðr)"}
+
+  # ---- long vowels --------------------------------------------------------
+  - id: e_long_to_a
+    order: 70
+    name: "*ē > á"
+    match: ē
+    replace: a
+    tier: established
+    description: >
+      Germanic *ē becomes the long open back vowel written á: *hērą 'here' >
+      hár, *lētaną 'to let' > láta, *blēwaz 'blue' > blár, *grētaz 'weeping' >
+      grátr.  This is the change that separates Old Norse from Gothic, which
+      keeps ē.
+    references: [gordon-1957, noreen-1923, haugen-1982, ringe-taylor-2014]
+    examples:
+      - {in: "*hērą", out: "*harą", gloss: "here (hár)"}
+      - {in: "*lētaną", out: "*lataną", gloss: "to let (láta)"}
+
+  # ---- consonants ---------------------------------------------------------
+  - id: th_to_d
+    order: 80
+    name: "*þ > ð between voiced sounds"
+    match: θ
+    replace: ð
+    env: {left: "(V|n|l|r)", right: "(V|#)"}
+    tier: established
+    description: >
+      The voiceless spirant *þ is voiced to ð between voiced sounds and in
+      final position after a vowel: *brōþēr 'brother' > bróðir, *aiþaz 'oath' >
+      eiðr, *smiþaz 'smith' > smiðr, *sanþaz 'true' > sannr (with n
+      assimilation).  After a voiceless consonant it stays (e.g. *-þu in
+      *-skapi? ), which is why the left environment is stated.
+    references: [gordon-1957, noreen-1923, haugen-1982]
+    examples:
+      - {in: "*brōθēr", out: "*brōðēr", gloss: "brother (bróðir)"}
+      - {in: "*aiθaz", out: "*aiðaz", gloss: "oath (eiðr)"}
+
+  - id: d_to_eth
+    order: 79
+    name: "*d > ð after a vowel"
+    match: d
+    replace: ð
+    env: {left: "V"}
+    tier: established
+    description: >
+      Germanic *d is a voiced spirant ð after a voiced sound: *laidō 'way' >
+      leið, *braudą 'bread' > brauð, *hirdijaz 'herdsman' > hirðir, *stadaz >
+      staðr, *faþ? Word-initially and after a voiceless consonant it stays a
+      stop (dagr, dauðr), which is why the left environment is stated.
+    references: [gordon-1957, noreen-1923, haugen-1982]
+    examples:
+      - {in: "*laidō", out: "*laiðō", gloss: "way (leið)"}
+      - {in: "*braudą", out: "*brauðą", gloss: "bread (brauð)"}
+
+  - id: hs_to_ks
+    order: 81
+    name: "*hs > ks"
+    match: "h s"
+    replace: "k s"
+    tier: established
+    description: >
+      The cluster *hs becomes ks: *lahsaz 'salmon' > lax, *uhsô 'ox' > oxi,
+      *wahsijaną 'to grow' > vaxa.  The *h is not lost here but becomes the
+      stop matching the following *s.
+    references: [gordon-1957, noreen-1923]
+    examples:
+      - {in: "*lahsaz", out: "*laksaz", gloss: "salmon (lax)"}
+
+  - id: h_loss_after_vowel
+    order: 82
+    name: "*h is lost after a vowel"
+    match: h
+    replace: ""
+    env: {left: "V"}
+    tier: established
+    description: >
+      Germanic *h is lost after a vowel, whether final or before a consonant:
+      *hauhaz 'high' > hár, *taihwǭ 'toe' > tá, *nēhwaz 'near' > ná, *saihwaną
+      'to see' > sjá, *hērą > hár.  It is kept word-initially (*hūs > hús) and
+      in the cluster *hv (*hwat > hvat), which is why the left environment is a
+      vowel.
+    references: [gordon-1957, noreen-1923, haugen-1982]
+    examples:
+      - {in: "*hahaz", out: "*haaz", gloss: "high (hár)"}
+      - {in: "*tahwǭ", out: "*tawǭ", gloss: "toe (tá)"}
+
+  - id: n_assimilation
+    order: 79
+    name: "*nþ > nn"
+    match: "n θ"
+    replace: "n n"
+    tier: established
+    description: >
+      Dental *þ is assimilated to a preceding *n, which doubles: *finþaną 'to
+      find' > finna, *sinþaz 'journey' > sinn, *anþiją 'forehead' > enni,
+      *minþiją 'mind' > minni.
+    references: [gordon-1957, noreen-1923, haugen-1982]
+    examples:
+      - {in: "*finθaną", out: "*finnaną", gloss: "to find (finna)"}
+      - {in: "*sinθaz", out: "*sinnaz", gloss: "journey (sinn)"}
+
+  - id: z_to_r
+    order: 84
+    name: "*z > r"
+    match: z
+    replace: r
+    tier: established
+    description: >
+      Germanic *z becomes the apical r, the change that gives Old Norse its
+      characteristic -r: *stainaz > steinn, *gastiz > gestr, *laguz > lǫgr.
+      The r it produces feeds the assimilation of the ending (r_assim_n, l, s)
+      and the loss of final *-r.
+    references: [gordon-1957, noreen-1923, haugen-1982, krause-1968]
+    examples:
+      - {in: "*stainaz", out: "*stainar", gloss: "stone (steinn)"}
+      - {in: "*laguz", out: "*lagur", gloss: "water (lǫgr)"}
+
+  - id: j_loss
+    order: 81
+    name: "*j is lost after a consonant"
+    match: j
+    replace: ""
+    env: {left: "C", right: "(a|e|i|u|y|ø|ǫ) C"}
+    tier: established
+    description: >
+      The glide *j is lost after a consonant, leaving the umlaut it caused:
+      *sandijaną 'to send' > senda, *harjaz 'army' > herr, *kunją 'kin' > kyn.
+      It is kept after a vowel (*-ijaną > -ja in the light ja-verbs, see
+      infinitive_janą).
+    references: [gordon-1957, noreen-1923, haugen-1982]
+    examples:
+      - {in: "*herjaz", out: "*heraz", gloss: "army (herr)"}
+
+  # ---- endings ------------------------------------------------------------
+  - id: infinitive_ijaną
+    order: 75
+    name: "Heavy class-1 infinitive *-ijaną > -a"
+    match: "i j a n ą"
+    replace: a
+    env: {right: "#"}
+    tier: established
+    description: >
+      The heavy class-1 weak infinitive loses its *i and *j and ends in -a:
+      *sandijaną 'to send' > senda, *dōmijaną 'to judge' > dœma, *hauzijaną 'to
+      hear' > heyra, *fullijaną 'to fill' > fylla.  Runs before j_loss, which
+      would otherwise leave the *i behind.
+    references: [noreen-1923, gordon-1957, haugen-1982]
+    examples:
+      - {in: "*sendijaną", out: "*senda", gloss: "to send (senda)"}
+
+  - id: infinitive_janą
+    order: 76
+    name: "Light class-1 infinitive *-janą > -ja"
+    match: "j a n ą"
+    replace: "j a"
+    env: {right: "#"}
+    tier: established
+    description: >
+      The light class-1 weak infinitive keeps its *j and ends in -ja: *satjaną
+      'to set' > setja, *būwijaną? > byggja, *fylgjan 'to follow' > fylgja,
+      *hlōgijaną 'to laugh' > hlœgja.
+    references: [noreen-1923, gordon-1957, haugen-1982]
+    examples:
+      - {in: "*setjaną", out: "*setja", gloss: "to set (setja)"}
+
+  - id: infinitive_ōną
+    order: 77
+    name: "Class-2 infinitive *-ōną > -a"
+    match: "ō n ą"
+    replace: a
+    env: {right: "#"}
+    tier: established
+    description: >
+      The class-2 weak infinitive ends in -a: *kallōną 'to call' > kalla,
+      *þankōną? > þanka, *sparōną 'to spare' > spara.  The long *ō is lost with
+      the nasal ending.
+    references: [noreen-1923, gordon-1957]
+    examples:
+      - {in: "*kallōną", out: "*kalla", gloss: "to call (kalla)"}
+
+  - id: infinitive_aną
+    order: 78
+    name: "Strong infinitive *-aną > -a"
+    match: "a n ą"
+    replace: a
+    env: {right: "#"}
+    tier: established
+    description: >
+      The strong infinitive ends in -a: *nemaną 'to take' > nema, *draganą 'to
+      draw' > draga, *sweltaną 'to die' > svelta, *kumaną 'to come' > koma.
+    references: [noreen-1923, gordon-1957, haugen-1982]
+    examples:
+      - {in: "*nemaną", out: "*nema", gloss: "to take (nema)"}
+      - {in: "*draganą", out: "*draga", gloss: "to draw (draga)"}
+
+  - id: r_stem_ēr_to_ir
+    order: 65
+    name: "The r-stem ending *-ēr > -ir"
+    match: "ē r"
+    replace: "i r"
+    env: {right: "#"}
+    tier: established
+    description: >
+      The kinship nouns in *-ēr end in -ir: *brōþēr 'brother' > bróðir,
+      *fadēr 'father' > faðir, *mōdēr 'mother' > móðir, *swestēr 'sister' >
+      systir, *duhtēr 'daughter' > dóttir.  Runs before e_long_to_a would turn
+      the *ē into á.
+    references: [gordon-1957, noreen-1923, haugen-1982]
+    examples:
+      - {in: "*brōþēr", out: "*brōþir", gloss: "brother (bróðir)"}
+
+  - id: final_ijaz_to_ir
+    order: 82
+    name: "*-ijaz > -ir"
+    match: "i j a z"
+    replace: "i r"
+    env: {right: "#"}
+    tier: established
+    description: >
+      The ja-stems with a light stem end in -ir: *hirdijaz 'herdsman' > hirðir,
+      *hilmijaz 'helmet-bearer' > hilmir, *lēkijaz 'leech' > læknir, *aurijaz
+      'earl'? > eyrir.  The *j is lost after the *i without shortening it,
+      which is why the ending is stated and not left to j_loss.
+    references: [gordon-1957, noreen-1923]
+    examples:
+      - {in: "*hirdijaz", out: "*hirdir", gloss: "herdsman (hirðir)"}
+
+  - id: final_az_to_r
+    order: 83
+    name: "*-az > -r"
+    match: "a z"
+    replace: r
+    env: {right: "#"}
+    tier: established
+    description: >
+      The a-stem nominative singular loses its vowel and keeps the r that *z
+      became: *dagaz 'day' > dagr, *fiskaz 'fish' > fiskr, *stainaz 'stone' >
+      steinn, *hundaz 'dog' > hundr.  After *n, *l and *s the r is then
+      assimilated or lost (r_assim_n, r_assim_l, r_assim_s).
+    references: [gordon-1957, noreen-1923, haugen-1982]
+    examples:
+      - {in: "*dagaz", out: "*dagr", gloss: "day (dagr)"}
+      - {in: "*fiskaz", out: "*fiskr", gloss: "fish (fiskr)"}
+
+  - id: final_iz_to_r
+    order: 83
+    name: "*-iz > -r"
+    match: "i z"
+    replace: r
+    env: {right: "#"}
+    tier: established
+    description: >
+      The i-stem nominative singular ends in -r: *staþiz 'place' > staðr,
+      *burdiz 'burden' > burðr, *fundiz 'finding' > fundr, *gastiz 'guest' >
+      gestr.
+    references: [gordon-1957, noreen-1923, haugen-1982]
+    examples:
+      - {in: "*gastiz", out: "*gastr", gloss: "guest (gestr)"}
+
+  - id: final_uz_to_r
+    order: 83
+    name: "*-uz > -r"
+    match: "u z"
+    replace: r
+    env: {right: "#"}
+    tier: established
+    description: >
+      The u-stem nominative singular loses its vowel and ends in -r: *laguz
+      'water' > lǫgr, *grēduz 'hunger' > gráðr, *skaduz? > skǫð, *sunuz 'son' >
+      sonr, *wintruz 'winter' > vetr.
+    references: [gordon-1957, noreen-1923, haugen-1982]
+    examples:
+      - {in: "*laguz", out: "*lagr", gloss: "water (lǫgr)"}
+      - {in: "*sunuz", out: "*sunr", gloss: "son (sonr)"}
+
+  - id: r_geminate_n
+    order: 97
+    name: "Final *-r becomes -nn after a vowel + *n"
+    match: r
+    replace: n
+    env: {left: "V n", right: "#"}
+    tier: established
+    description: >
+      The *-r of the ending is assimilated to a preceding *n after a vowel,
+      which doubles: *stainr 'stone' > steinn, *himinr 'heaven' > himinn,
+      *hreinr 'clean' > hreinn, *þegn? stays þegn (the *n follows a consonant,
+      see r_loss_after_consonant).
+    references: [gordon-1957, noreen-1923, haugen-1982]
+    examples:
+      - {in: "*stainr", out: "*stainn", gloss: "stone (steinn)"}
+      - {in: "*himinr", out: "*himinn", gloss: "heaven (himinn)"}
+
+  - id: r_geminate_l
+    order: 98
+    name: "Final *-r becomes -ll after a vowel + *l"
+    match: r
+    replace: l
+    env: {left: "V l", right: "#"}
+    tier: established
+    description: >
+      The *-r of the ending is assimilated to a preceding *l after a vowel,
+      which doubles: *stōlr 'stool' > stóll, *mikilr 'big' > mikill, *lukilr
+      'key' > lykill.
+    references: [gordon-1957, noreen-1923]
+    examples:
+      - {in: "*stōlr", out: "*stōll", gloss: "stool (stóll)"}
+      - {in: "*mikilr", out: "*mikill", gloss: "big (mikill)"}
+
+  - id: r_loss_after_s
+    order: 99
+    name: "Final *-r is lost after *s"
+    match: r
+    replace: ""
+    env: {left: "s", right: "#"}
+    tier: established
+    description: >
+      After *s the *-r of the ending is simply lost, the *s being long
+      already: *hwassr 'sharp' > hvass, *wissr 'certain' > viss, *-laussr >
+      -lauss.
+    references: [gordon-1957, noreen-1923]
+    examples:
+      - {in: "*hwassr", out: "*hwass", gloss: "sharp (hvass)"}
+
+  - id: r_loss_after_consonant
+    order: 100
+    name: "Final *-r is lost after a consonant + *n or *l"
+    match: r
+    replace: ""
+    env: {left: "(p|b|t|d|k|g|f|v|θ|ð|s|m|r) (n|l)", right: "#"}
+    tier: established
+    description: >
+      Where the *n or *l before the ending is itself preceded by a consonant,
+      the *-r is lost without doubling: *hrafnr 'raven' > hrafn, *jarlr 'earl'
+      > jarl, *þegnr 'thane' > þegn.  The doubling of r_geminate_n and
+      r_geminate_l needs a vowel before the liquid, which is why the two
+      environments are stated apart.
+    references: [gordon-1957, noreen-1923, haugen-1982]
+    examples:
+      - {in: "*hrafnr", out: "*hrafn", gloss: "raven (hrafn)"}
+      - {in: "*jarlr", out: "*jarl", gloss: "earl (jarl)"}
+
+  - id: final_b_to_f
+    order: 105
+    name: "Word-final *-b > -f"
+    match: b
+    replace: f
+    env: {right: "#"}
+    tier: established
+    description: >
+      A final *b is devoiced to f: *gebō > *gjǫbu > gjǫf, *raubō > rauf,
+      *-leub? > -leifr.  Medial *b stays (gefa, but the noun gjǫf), which is why
+      the environment is the word end.
+    references: [gordon-1957, noreen-1923]
+    examples:
+      - {in: "*gjǫb", out: "*gjǫf", gloss: "gift (gjǫf)"}
+
+  - id: final_ą_loss
+    order: 101
+    name: "Word-final *-ą is lost"
+    match: ą
+    replace: ""
+    env: {right: "#"}
+    tier: established
+    description: >
+      The neuter a-stem nominative-accusative ending *-ą is lost: *landą
+      'land' > land, *skipą 'ship' > skip, *barną 'child' > barn, *hūsą
+      'house' > hús.
+    references: [gordon-1957, noreen-1923, haugen-1982]
+    examples:
+      - {in: "*landą", out: "*land", gloss: "land (land)"}
+      - {in: "*skipą", out: "*skip", gloss: "ship (skip)"}
+
+  - id: final_u_loss_heavy
+    order: 102
+    name: "Final *-u is lost after a long syllable"
+    match: u
+    replace: ""
+    env: {left: "LONG C", right: "#"}
+    tier: established
+    description: >
+      The *-u that came from final *-ō is lost after a long vowel and a
+      consonant: *rūnō > *rūnu > rún, *sorgō? > sorg, *wullō > *wullu > ull.
+    references: [noreen-1923, gordon-1957]
+    examples:
+      - {in: "*rūnu", out: "*rūn", gloss: "rune (rún)"}
+
+  - id: final_u_loss_cluster
+    order: 102
+    name: "Final *-u is lost after a short vowel and two consonants"
+    match: u
+    replace: ""
+    env: {left: "C", right: "#"}
+    tier: established
+    description: >
+      The same loss takes place after a short vowel followed by two
+      consonants: *gebu 'gift' > gjǫf, *agju 'edge' > egg, *banju 'death' >
+      ben.  After a light syllable the *-u survives, which is why the
+      environment names the weight.
+    references: [noreen-1923, gordon-1957]
+    examples:
+      - {in: "*gebu", out: "*geb", gloss: "gift (gjǫf)"}
+
+  - id: final_i_loss
+    order: 103
+    name: "Final short *-i is lost"
+    match: i
+    replace: ""
+    env: {left: "C", right: "#"}
+    tier: established
+    description: >
+      A final short *-i is lost after a consonant: *gasti > gest (acc.),
+      *-lausi > -leysi keeps its i by analogy of the weak declension, *staþi >
+      stað.  The i-umlaut it caused stays.
+    references: [noreen-1923, gordon-1957]
+    examples:
+      - {in: "*gasti", out: "*gast", gloss: "guest (acc. gest)"}

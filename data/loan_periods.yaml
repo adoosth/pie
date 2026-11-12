@@ -1,0 +1,55 @@
+# When a donor language's words entered a target language.
+#
+# Wiktionary records THAT a word was borrowed, almost never WHEN: the entry
+# says "Borrowed from Arabic أَخِرَة" and stops.  A reader still wants the
+# century, so this file records the one thing the history of the two languages
+# does state — the window in which the contact happened — and the interface
+# draws it as a timeline.  It is a window, never a date for the word: the
+# page must say so wherever it prints one (2026-11-09).
+#
+# Read by `pie.loans.period(donor, target)`; a missing pair means no timeline,
+# not an error.
+
+loans:
+  - donor: ar
+    target: fa
+    label: Arabic into Persian
+    from: 633
+    to: 1100
+    window_note: >-
+      The dictionary does not date this word.  Arabic reached Persian over the
+      five centuries after the Islamic conquest: first the language of
+      administration and of the new faith, then — from the 9th century, when
+      New Persian was written again and in the Arabic script — the language of
+      chanceries, theology, philosophy and science.  The great majority of
+      Arabic loans in Persian belong to that window; religious and scholarly
+      borrowing continued afterwards.
+    landmarks:
+      - from: 633
+        to: 651
+        title: Islamic conquest of Iran
+        note: >-
+          Qādisiyya, Nihāwand and the death of Yazdegerd III (651): the
+          Sasanian state ends and Arabic becomes the language of government.
+      - from: 651
+        to: 750
+        title: Umayyad administration
+        note: >-
+          Tax, coinage and chancery vocabulary enters Persian from Arabic; the
+          words are everyday administrative loans, not yet literary ones.
+      - from: 750
+        to: 1100
+        title: Classical New Persian
+        note: >-
+          New Persian is written in the Arabic script, and the Samanid,
+          Ghaznavid and Seljuk courts carry Arabic scholarship — Qurʾānic,
+          legal, philosophical, scientific — into Persian in bulk.
+    sources:
+      - text: >-
+          Encyclopaedia Iranica, "Iran vi. Iranian Languages and Scripts" and
+          the entries on the Arab conquest and the Samanids (historical frame
+          of the contact, not a date for any single word).
+      - text: >-
+          J. R. Perry, A Tajik Persian Reference Grammar (Brill, 2005),
+          introduction: Arabic loans make up roughly two fifths of the Persian
+          lexicon, most of them in this window.

@@ -1,0 +1,25 @@
+stage:
+  name: Proto-Italic → Latin (candidate 4)
+  references:
+  - sihler-1995
+  - weiss-2009
+  - meiser-1998
+rules:
+- id: c4_s_loss_voiced
+  order: 150
+  name: '*s is lost before a voiced consonant'
+  match: s
+  replace: ''
+  env:
+    left: V
+    right: (b|d|g|m|n|l|r)
+  tier: established
+  description: Between a vowel and a voiced consonant *s is lost (*nisdos > *nidos,
+    *persnā > *pernā).
+  references:
+  - sihler-1995
+  - weiss-2009
+  examples:
+  - in: '*nisdos'
+    out: '*nidos'
+    gloss: nest

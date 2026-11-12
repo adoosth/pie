@@ -1,0 +1,21 @@
+# Rejected — fires nowhere the corpus can see.
+# Measured 2026-11-09:
+#   python tools/whatif.py --from peo --to pal --rules <this file> --layers exact,script
+#   explained 20 -> 20 (+0), gained 0, lost 0
+# The claim itself is good (OP Miθra- > MP mihr, OP θrayah- > MP hrē), but the
+# Middle Persian targets that would show it are written as spellings (mtr' for
+# mihr) and the script layer compares the signs, not the reading: a law that
+# passes θ > s > h changes no sign of the target.  A dead rule is a false claim,
+# so it stays here until a reading-level target exists.
+id: theta_to_h_before_r
+order: 29
+name: "OP θ > MP h before r"
+match: θ
+replace: h
+env: {right: r}
+tier: proposed
+claim: "Old Persian θ gives Middle Persian h before r (Miθra- > mihr)."
+references: [skjaervo-2009b, mackenzie-1971]
+gain: {pal: {explained: 0, gained: [], lost: []}, fa: {measured_via_council: false}}
+verdict: rejected
+reason: "dead rule on this corpus (0 gained, 0 lost)"

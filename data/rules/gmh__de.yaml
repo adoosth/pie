@@ -1,0 +1,169 @@
+stage:
+  name: Middle High German → New High German
+  date_start: 1350
+  date_end: 1700
+  description: >
+    Vowel lengthening in open syllables, the New High German diphthongisation
+    of the long high vowels and of *ou, the monophthongisation of *ie, *uo and
+    *üe, the change of *z to *s after a vowel, and final devoicing. The output
+    is a phonological form, not modern spelling.
+  references: [paul-2007, wells-1985, kluge-2011]
+
+rules:
+  # ---- lengthening --------------------------------------------------------
+  - id: lengthening_a
+    order: 100
+    name: "Short *a lengthens in an open syllable"
+    match: a
+    replace: ā
+    env: {left: "C ˈ?", right: "C ˈ? V"}
+    tier: established
+    description: "Short *a lengthens before a single consonant followed by a vowel (*fater > *fāter)."
+    notes: "Only a single intervocalic consonant is modelled; lengthening is lexically irregular in New High German."
+    references: [paul-2007, wells-1985]
+    examples:
+      - {in: "*fater", out: "*fāter", gloss: "father"}
+
+  - id: lengthening_e
+    order: 101
+    name: "Short *e lengthens in an open syllable"
+    match: e
+    replace: ē
+    env: {left: "C ˈ?", right: "C ˈ? V"}
+    tier: established
+    description: "Short *e lengthens before a single consonant followed by a vowel (*geben > *gēben)."
+    notes: "Only a single intervocalic consonant is modelled; lengthening is lexically irregular in New High German."
+    references: [paul-2007]
+    examples:
+      - {in: "*geben", out: "*gēben", gloss: "to give"}
+
+  # ---- diphthongisation ---------------------------------------------------
+  - id: diph_i
+    order: 200
+    name: "NHG diphthongisation: *ī > *ai"
+    match: ī
+    replace: ai
+    tier: established
+    description: "Long *ī diphthongises to *ai (*mīn > *main)."
+    references: [paul-2007, wells-1985]
+    examples:
+      - {in: "*mīn", out: "*main", gloss: "my"}
+
+  - id: diph_u
+    order: 201
+    name: "NHG diphthongisation: *ū > *au"
+    match: ū
+    replace: au
+    tier: established
+    description: "Long *ū diphthongises to *au (*hūs > *haus)."
+    references: [paul-2007, wells-1985]
+    examples:
+      - {in: "*hūs", out: "*haus", gloss: "house"}
+
+  - id: diph_iu
+    order: 202
+    name: "NHG diphthongisation: *iu > *eu"
+    match: "i u"
+    replace: eu
+    tier: established
+    description: "The diphthong *iu becomes *eu (*liut > *leut)."
+    references: [paul-2007]
+    examples:
+      - {in: "*liut", out: "*leut", gloss: "people"}
+
+  - id: diph_ou
+    order: 203
+    name: "NHG diphthongisation: *ou > *au"
+    match: "o u"
+    replace: au
+    tier: established
+    description: "The diphthong *ou becomes *au (*boum > *baum)."
+    references: [paul-2007]
+    examples:
+      - {in: "*boum", out: "*baum", gloss: "tree"}
+
+  # ---- monophthongisation -------------------------------------------------
+  - id: mono_ie
+    order: 300
+    name: "NHG monophthongisation: *ie > *ī"
+    match: "i e"
+    replace: ī
+    tier: established
+    description: "The falling diphthong *ie monophthongises to *ī (*liebe > *lībe)."
+    references: [paul-2007, wells-1985]
+    examples:
+      - {in: "*liebe", out: "*lībe", gloss: "love"}
+
+  - id: mono_uo
+    order: 301
+    name: "NHG monophthongisation: *uo > *ū"
+    match: "u o"
+    replace: ū
+    tier: established
+    description: "The falling diphthong *uo monophthongises to *ū (*fuoz > *fūz)."
+    notes: "This rule follows the diphthongisation of older *ū, so the new *ū is not affected by it."
+    references: [paul-2007, wells-1985]
+    examples:
+      - {in: "*fuoz", out: "*fūz", gloss: "foot"}
+
+  - id: mono_ue
+    order: 302
+    name: "NHG monophthongisation: *üe > *ȳ"
+    match: "ü e"
+    replace: ȳ
+    tier: established
+    description: "The falling diphthong *üe monophthongises to *ȳ (*müede > *mȳde)."
+    references: [paul-2007]
+    examples:
+      - {in: "*müede", out: "*mȳde", gloss: "tired"}
+
+  # ---- consonants ---------------------------------------------------------
+  - id: z_to_s
+    order: 400
+    name: "Postvocalic *z > *s"
+    match: z
+    replace: s
+    env: {left: "V"}
+    tier: established
+    description: "The affricate *z becomes *s after a vowel (*fuoz > *fuos)."
+    notes: "Word-initial *z remains the affricate [ts] (NHG Zeit), so the change is restricted to the postvocalic position."
+    references: [paul-2007, kluge-2011]
+    examples:
+      - {in: "*fuoz", out: "*fuos", gloss: "foot"}
+
+  - id: devoice_b
+    order: 500
+    name: "Final devoicing: *b > *p"
+    match: b
+    replace: p
+    env: {right: "#"}
+    tier: established
+    description: "Word-final *b devoices to *p (*grab > *grap)."
+    notes: "Devoicing also occurs before a following consonant in some forms; only the word-final position is modelled."
+    references: [paul-2007, wells-1985]
+    examples:
+      - {in: "*grab", out: "*grap", gloss: "grave"}
+
+  - id: devoice_d
+    order: 501
+    name: "Final devoicing: *d > *t"
+    match: d
+    replace: t
+    env: {right: "#"}
+    tier: established
+    description: "Word-final *d devoices to *t (*land > *lant)."
+    references: [paul-2007, wells-1985]
+    examples:
+      - {in: "*land", out: "*lant", gloss: "land"}
+
+  - id: devoice_g
+    order: 502
+    name: "Final devoicing: *g > *k"
+    match: g
+    replace: k
+    env: {right: "#"}
+    tier: established
+    description: "Word-final *g devoices to *k (*tag > *tak)."
+    references: [paul-2007, wells-1985]
+    examples:
+      - {in: "*tag", out: "*tak", gloss: "day"}
