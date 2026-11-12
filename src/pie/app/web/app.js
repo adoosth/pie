@@ -1618,25 +1618,28 @@ function constructStep(level, i, linkTo, opts) {
       ev: evOf(n).replace(/^ev-/, ""), tip,
     })}${n.known ? "</a>" : "</span>"}${
     n.reading ? `<span class="reading">${esc(n.reading)}</span>` : ""}</span>${extra}`;
-  /* One row of a piece's own timeline, inside its column: the word, what it
-     means, and the stage it belongs to beside it.  Every row of every column
-     is exactly one step high (`--crow`), so the ancestors of two pieces that
-     stand in the same language land on the same line — *h₂entó- and *swer-, a
-     PIE word above each piece of *andaswarō (admin, 2026-11-12).  The stage is
-     written beside the word instead of in a column of its own, so the column
-     is no wider than its words and the rail under an ancestor is the rail the
-     piece itself stands on. */
+  /* One row of a piece's own timeline, inside its column: the language and its
+     years against the rail on the left, the word on the right — the ladder's
+     own rung, at the ladder's own sizes, because the climb above a construction
+     has to read as the same timeline that continues below it (admin,
+     2026-11-12: "the language names should be shown to the left along with the
+     est. dates").  Every row of every column is exactly one step high
+     (`--crow`), so the ancestors of two pieces that stand in the same language
+     land on the same line — *h₂entó- and *swer-, a PIE word above each piece of
+     *andaswarō (admin, 2026-11-12). */
   const chainRow = (n) => n && n.unknown
     ? `<div class="cnode unknown">
+      <span class="cwhen"></span>
       <span class="crail" aria-hidden="true"><i></i></span>
       <span class="cstack"><span class="cwordrow"><span class="cform ev-weak" data-tip="No record says where this word came from — it may have come from somewhere, but where is not known."><span class="cunknown">???</span></span></span></span>
     </div>`
     : `<div class="cnode" data-tip="${esc(`${n.lang_name || n.lang || ""}${eraOf(n) ? ` · ${eraOf(n)}` : ""} — ${saidOf(n)}`)}">
+      <span class="cwhen"><span class="cwhen-name ${langKind(n)}">${esc(n.lang_name || n.lang || "")}</span><span class="cwhen-era">${esc(eraOf(n))}</span></span>
       <span class="crail" aria-hidden="true"><i></i></span>
       <span class="cstack"><span class="cwordrow"><span class="cform ${scriptClass(n.form)} ${evOf(n)}">${
         n.known ? `<a class="cword" href="${esc(link(n.lang, n.form, true))}">${esc(pf(starred(n.form, n.lang, n.kind, n.script)))}</a>`
           : `<span class="cword">${esc(pf(starred(n.form, n.lang, n.kind, n.script)))}</span>`}${
-        n.reading ? `<i class="cread">${esc(n.reading)}</i>` : ""}</span><span class="cstage ${langKind(n)}">${esc(n.short || n.lang_name || n.lang || "")}</span></span>${
+        n.reading ? `<i class="cread">${esc(n.reading)}</i>` : ""}</span></span>${
         meaningOf(n.pos, n.gloss, false)
           ? `<span class="cgloss">${meaningOf(n.pos, n.gloss, false)}</span>`
           : n.known === false
@@ -1678,7 +1681,15 @@ function constructStep(level, i, linkTo, opts) {
   };
   /* A word on the construction's line: word size, its reading below it.  The
      first word needs no mark of its own — the diamond beside it is its mark —
-     so it carries no rail, no dot and no label column. */
+     so its label is the step's own: *construction*, and the kind of formation
+     the record states, printed on the diamond's line instead of under the tree
+     (admin, 2026-11-12).  A later piece is not labelled: it is a word *of* the
+     step's own stage, and the line from the `+` runs on to its dot through the
+     empty label cell. */
+  const labelCell = (name, era, kind) => `<span class="cwhen"><span class="cwhen-name ${kind}">${esc(name)}</span>${
+    era ? `<span class="cwhen-era">${esc(era)}</span>` : ""}</span>`;
+  const constructionLabel = (b) => labelCell("construction",
+    `${kindOf(b)}${b.source === "ours" ? " · our reading" : ""}`, "cwhen-build");
   const termCell = (b, p, k, opts) => {
     const formText = String(p.form || "");
     /* A suffix carries its hyphen after the reconstruction's star: *-tós, not
@@ -1727,8 +1738,15 @@ function constructStep(level, i, linkTo, opts) {
     const rail = !opts.rail ? ""
       : `<span class="crail${mark}" aria-hidden="true">${
           opts.first ? '<i class="cdiamond"></i>' : p.bound ? "" : "<i></i>"}</span>`;
+    /* Only the first piece of the tree carries a label: it is the row the
+       step's diamond marks, so its label is the step's.  A later piece is met
+       by the `+` and its empty label cell is crossed by the line to its dot; a
+       piece inside a nested formation (`◇ *h₂ent- + *-s`) has no cell at all,
+       because its row's label is the `construction` it stands in. */
+    const label = !opts.rail ? "" : opts.first ? constructionLabel(b)
+      : `<span class="cwhen lead"></span>`;
     return `<div class="cterm${opts.rail ? "" : " instrip"}${p.bound ? " bound" : ""}${opts.first ? " first" : ""}" data-tip="${esc(tip)}">
-        ${rail}
+        ${label}${rail}
         <span class="cstack">
           <span class="cwordrow"><span class="cform term ${scriptClass(p.form)} ${ev}">${body}${reading}</span>${grade}</span>
           ${meaning ? `<span class="cgloss">${meaning}</span>` : ""}
@@ -1745,7 +1763,7 @@ function constructStep(level, i, linkTo, opts) {
     const bb = item.build;
     const rest = bb.pieces.slice(1).map((p, k) => `<span class="cplus" aria-hidden="true"><i>+</i></span>${
       termCell(bb, p, k + 1, { first: false, rail: false })}`).join("");
-    return `<div class="cbuild" data-tip="${esc(tipOf(bb))}"><span class="crail" aria-hidden="true"><i class="cdiamond mini"></i></span><div class="cstrip">${
+    return `<div class="cbuild" data-tip="${esc(tipOf(bb))}">${constructionLabel(bb)}<span class="crail" aria-hidden="true"><i class="cdiamond mini"></i></span><div class="cstrip">${
       termCell(bb, bb.pieces[0], 0, { first: true, rail: false })}${rest}</div></div>`;
   };
 
@@ -1779,6 +1797,7 @@ function constructStep(level, i, linkTo, opts) {
       const rows = climbOf(p);
       return `${k ? `<span class="cplus" aria-hidden="true"><i>+</i></span>` : ""}${
         `<div class="cpiece${rows.length ? " has-chain" : ""}${k === 0 ? " first" : ""}${k < b.pieces.length - 1 ? " continues" : ""}">${
+          k === 0 ? `<div class="clead" aria-hidden="true"><span class="cwhen"></span><span class="crail"></span></div>` : ""}${
           rows.length ? `<div class="cchain">${[...rows].reverse().map((item) => item.build ? buildRow(item) : chainRow(item)).join("")}</div>` : ""}${
           termCell(b, p, k, { first: k === 0, rail: true })}</div>`}`;
     }).join("")}</div></div>`;
@@ -1794,12 +1813,9 @@ function constructStep(level, i, linkTo, opts) {
      composition tools live on the rung's own `build…` control. */
   return `<li class="constructstep${ours ? " ours" : ""}${builds.length > 1 ? " multi" : ""}"
       data-tip="${esc(builds.length > 1 ? `${builds.length} constructions are recorded for this form; each tab is one of them, and none is preferred over another.` : tipOf(builds[0]))}">
-    <div class="when">
-      <span class="when-name">construction</span>
-      <span class="when-era">${builds.length > 1 ? `${builds.length} analyses` : esc(kindOf(builds[0]))}${ours ? " · our reading" : ""}</span>
-    </div>
-    <div class="rail" aria-hidden="true"></div>
-    <div class="buildbody">${radios}${tabs}${trees}</div>
+    <div class="rail top" aria-hidden="true"></div>
+    ${radios}${tabs}${trees}
+    <div class="rail foot" aria-hidden="true"></div>
   </li>`;
 }
 

@@ -738,7 +738,7 @@ assert.ok(singleWords.includes("combining form"),
 assert.ok(singleHtml.includes("*h₂énts"), "the word it was formed from stands on the step");
 assert.ok(singleHtml.includes("*h₂ent-"),
   "and that word's own construction is drawn above it");
-const singleTree = singleHtml.slice(singleHtml.indexOf('class="buildbody"'));
+const singleTree = singleHtml.slice(singleHtml.indexOf('class="btrees"'));
 assert.ok(singleTree.indexOf("*h₂ent-") < singleTree.indexOf("*h₂énts"),
   "oldest first: the pieces of the piece come before the formation that used it");
 
@@ -955,7 +955,8 @@ assert.ok(builtHtml.includes('class="constructstep"'), "the construction is a la
 assert.ok(!builtHtml.includes('<div class="rail" aria-hidden="true"><i class="cdiamond"></i></div>'),
   "the mark stands in the tree, not on a block of its own");
 assert.ok(!builtText.includes("CONSTRUCTION"), "no CONSTRUCTION line under the word any more");
-assert.ok(builtText.includes("construction"), "the step names itself in the margin");
+assert.ok(builtText.includes("construction"),
+  "the diamond's row says what it is — the word stands beside the diamond, not under the tree");
 /* One tree: the first word stands immediately right of the diamond — the
    diamond is its mark, so no wire and no second dot sit between them — and the
    line leaves the word's own right edge for `+` and the next piece (admin,
@@ -971,9 +972,11 @@ assert.ok(/class="cterm first"/.test(terms[0]),
   "the first piece is the one the diamond marks");
 assert.ok(terms[0].includes('class="crail mark"') && terms[0].includes('<i class="cdiamond"></i>'),
   "the first piece's own rail carries the step's diamond, on the pieces' line");
-assert.ok(/class="cterm[^"]*"[^>]*>\s*<span class="crail" aria-hidden="true"><i><\/i><\/span>/
+assert.ok(/class="cterm[^"]*"[^>]*>\s*<span class="cwhen lead"><\/span><span class="crail" aria-hidden="true"><i><\/i><\/span>/
   .test(terms[1]),
-  "the next piece is met by the rail and wears the dot of its own column");
+  "the next piece is met by an empty label cell, then the rail and the dot of its own column");
+assert.ok(!/class="cterm[^"]*"[^>]*>\s*<span class="cwhen"><span class="cwhen-name/.test(terms[1]),
+  "a later piece carries no language of its own: it is a word of the step's stage");
 assert.ok(builtHtml.indexOf('class="cterm first"') < builtHtml.indexOf(">+<"),
   "the + comes after the first word, from its right side");
 assert.ok(builtHtml.indexOf(">+<") < builtHtml.indexOf('class="cplus"', builtHtml.indexOf(">+<")) + 1
@@ -983,6 +986,15 @@ assert.ok(builtHtml.indexOf(">+<") < builtHtml.indexOf('class="cplus"', builtHtm
 assert.ok(terms[0].includes('class="cform term'), "a piece is written at word size");
 assert.ok(!terms[0].includes("Old Persian") && !terms[1].includes("Old Persian"),
   "a piece is not labelled with the language of the step: it is a word of it");
+/* The first word's row is the diamond's row, so its left column says what the
+   diamond marks — the formation — on the diamond's own line, not under the
+   tree (admin, 2026-11-12: "the word construction ... should be next to the
+   diamond not below it"). */
+assert.ok(/class="cwhen"><span class="cwhen-name cwhen-build">construction<\/span><span class="cwhen-era">affix<\/span>/
+  .test(terms[0]),
+  "the diamond's own row names the construction and the kind of formation, in its left column");
+assert.ok(!builtHtml.includes('class="when"'),
+  "the step prints no label of its own under the tree any more");
 assert.ok(terms[0].includes("čiçaʰ"), "the piece's reading is printed beside it");
 /* The meaning stands under the word, the way the headword's own line carries
    it — `name · “a male given name”` — and the hover still says where it opens
@@ -1014,12 +1026,16 @@ assert.equal(rowCount(cols[1]), 1, "the borrowed word's donor stands in its own 
 assert.ok(cols[0].indexOf("Proto-Indo-European") < cols[0].indexOf("Proto-Indo-Iranian")
   && cols[0].indexOf("Proto-Indo-Iranian") < cols[0].indexOf("Proto-Iranian"),
   "oldest first: a column is read from the top down to the piece");
-/* The stage stands beside the word, and it is what two rows on one line are
-   compared by — no separate label column any more (admin, 2026-11-12). */
-assert.ok(cols[0].includes('class="cstage kind-proto">PIE<'),
-  "an ancestor names the stage it belongs to beside its own word");
-assert.ok(cols[1].includes('class="cstage kind-attested">OMed.<'),
+/* The stage stands to the left of the word, with its years under it, exactly
+   as a rung of the timeline writes it (admin, 2026-11-12: "the language names
+   should be shown to the left along with the est. dates").  A short code
+   beside the word is not a label and does not replace the column. */
+assert.ok(cols[0].includes('<span class="cwhen"><span class="cwhen-name kind-proto">Proto-Indo-European</span><span class="cwhen-era">c. 4500–2500 BCE</span></span>'),
+  "an ancestor names its language in full and dates it, in the row's left column");
+assert.ok(cols[1].includes('class="cwhen-name kind-attested">Old Median<'),
   "and a donor stage keeps the attested colour the ladder gives it");
+assert.ok(!builtHtml.includes('class="cstage'),
+  "no stage code is written beside the word any more");
 assert.ok(cols[1].includes("Old Median *farnah — the record says the word was borrowed from here"),
   "a borrowed donor ends the other trunk and says so");
 assert.ok(cols[0].includes("c. 4500–2500 BCE"),
@@ -1029,8 +1045,8 @@ assert.ok(cols[0].includes("c. 4500–2500 BCE"),
 assert.ok(cols[0].includes("*kit-ró-s"), "the climb ends at a Proto-Indo-European word");
 assert.ok(cols[0].includes("the top of the family"), "and says that it is the end of the trail");
 assert.ok(!builtHtml.includes("cunknown"), "nothing in this tree is unexplained");
-assert.ok(!builtHtml.includes('class="cwhen"'),
-  "the language takes no column of its own: it stands beside the word");
+assert.ok(cols[0].includes('<span class="cwhen"><span class="cwhen-name kind-proto">Proto-Indo-European<\/span>'),
+  "the language stands in the left column, not beside the word");
 /* Every word of the timeline says what it means, ancestors included (admin,
    2026-11-12): the row above a construction carries its dictionary sense the
    way the headword's own line carries its own. */
@@ -1073,14 +1089,28 @@ assert.equal(chainRows(alignCols[0]).length, 3,
   "*anda-'s column climbs three rows: two formations, then *h₂entó-");
 assert.equal((alignCols[0].match(/class="cbuild"/g) || []).length, 2,
   "two of those rows are constructions of their own");
+/* Every diamond of the climb says what it is, on its own line: the label used
+   to be printed once, under the tree, so only the last construction carried it
+   (admin, 2026-11-12: "it should show it for all of the constructions, and it
+   should be next to the diamond not below it"). */
+const cbuildRows = alignCols[0].split('<div class="cbuild').slice(1);
+assert.equal(cbuildRows.length, 2, "two built rows to label");
+assert.ok(cbuildRows.every((row) => /^[^>]*>\s*<span class="cwhen"><span class="cwhen-name cwhen-build">construction<\/span>/.test(row)),
+  "each built row names its construction in the left column, before its diamond");
+assert.ok(cbuildRows.every((row) => row.indexOf("cwhen-build") < row.indexOf("cdiamond")),
+  "and the label stands beside the diamond, not under the tree");
+assert.ok(alignCols[0].includes('<span class="cwhen-name cwhen-build">construction</span><span class="cwhen-era">combining form</span>'),
+  "the kind of formation the record states is under the word construction");
+assert.ok(!/class="cwhen-name cwhen-build">construction<\/span><span class="cwhen-era">[^<]*Old Persian/.test(alignCols[0]),
+  "a construction is never labelled with the language of its pieces");
 assert.equal(chainRows(alignCols[1]).length, 1, "*swarō's column climbs one row");
 assert.ok(chainRows(alignCols[0]).slice(-1)[0].includes("*h₂entó-"),
   "*h₂entó- is the last row of its column, the one next to *anda-");
 assert.ok(chainRows(alignCols[1]).slice(-1)[0].includes("*swer-"),
   "*swer- is the last row of its column, the one next to *swarō");
-assert.ok(chainRows(alignCols[0]).slice(-1)[0].includes("PIE")
-  && chainRows(alignCols[1]).slice(-1)[0].includes("PIE"),
-  "both name Proto-Indo-European, and so they are read on one line");
+assert.ok(chainRows(alignCols[0]).slice(-1)[0].includes(">Proto-Indo-European<")
+  && chainRows(alignCols[1]).slice(-1)[0].includes(">Proto-Indo-European<"),
+  "both name Proto-Indo-European in the left column, and so they are read on one line");
 assert.ok(alignCols[0].indexOf("*h₂ent-") < alignCols[0].indexOf("*h₂énts")
   && alignCols[0].indexOf('class="cbuild"') < alignCols[0].indexOf("*h₂entó-"),
   "the climb above *anda- reads *h₂ent- + *-s, then *h₂énts, then *h₂entó-");
@@ -1095,37 +1125,98 @@ assert.ok(/\.bline \{[^}]*align-items: flex-end/.test(sheet),
 assert.ok(/\.cpiece \{[^}]*justify-content: flex-end/.test(sheet),
   "and a column hangs from its bottom, whatever stands above it");
 /* The spine is one unbroken line from the oldest form of the tree to the word
-   the step builds, and it is made of four pieces that have to meet: the rows
-   of the staircase, the first piece's mark, the band under the last row, and
-   — when there is a stage above — the step's own rail.  v0.17.10 blanked the
-   mark's track and hid the step rail outright on a step with nothing above
-   it, so *andaswarō lost the line from the diamond above *anda- down to its
-   own rung (admin, 2026-11-12: "the line on the left has disappeared"). */
+   the step builds.  It is drawn in segments that have to meet: the rail above
+   the tree, the first column's own lead and rows *inside* the tree's scroll
+   box (so the line scrolls with the word it belongs to), the first piece's
+   mark, and the rail under the tree that carries it over the meaning strip to
+   the rung below.  v0.17.10 blanked the mark's track and hid the step rail
+   outright on a step with nothing above it, so *andaswarō lost the line from
+   the diamond above *anda- down to its own rung (admin, 2026-11-12: "the line
+   on the left has disappeared"). */
 assert.ok(!/\.crail\.mark::before[^{]*\{[^}]*display: none/.test(sheet),
   "the mark keeps the line coming down from the row above: the diamond stands on the spine");
 assert.ok(/\.cterm > \.crail\.mark::after \{[^}]*display: none/.test(sheet),
   "only the sideways stub into the word is dropped — the word stands at the diamond");
 assert.ok(/\.cpiece\.first > \.cterm > \.crail::before \{[^}]*bottom: 0/.test(sheet),
   "the first piece's mark runs down to the bottom of its own row");
-assert.ok(/\.constructstep:first-child \.rail::before \{[^}]*top: calc\(100% - var\(--bpad\)\)/.test(sheet),
-  "a step with nothing above it still carries the line across the meaning strip to its rung");
-assert.ok(!/\.constructstep:first-child \.rail::before \{[^}]*display: none/.test(sheet),
-  "and it is never hidden: a step's spine is not only the part above it");
+assert.ok(/\.constructstep \.rail\.top::before \{[^}]*top: calc\(-1 \* var\(--gap, 0px\) - 12px\)/.test(sheet),
+  "the rail above the tree starts at the rung it comes from");
+assert.ok(/\.constructstep \.rail\.foot \{[^}]*height: calc\(var\(--bpad\) \+ var\(--sbar\)\)/.test(sheet)
+  && /\.constructstep \.rail\.foot::before \{[^}]*top: 0; bottom: 0/.test(sheet),
+  "the rail under the tree always carries the line across the meaning strip to its rung");
+assert.ok(/\.constructstep:first-child \.rail\.top::before \{[^}]*display: none/.test(sheet),
+  "with nothing above it only that upper segment goes: the lower one is never hidden");
+assert.ok(/\.clead > \.crail::before \{[^}]*top: 0; bottom: 0/.test(sheet),
+  "the first column brings the line down from the tree's top to its oldest row");
+assert.ok(/\.constructstep:first-child \.cpiece\.first:has\(> \.cchain > \.cnode\.unknown:first-child\) > \.clead > \.crail::before \{[^}]*display: none/
+    .test(sheet),
+  "and hangs no line over a ??? that has nothing above it");
+assert.ok(/\.clead \{[^}]*flex: 1 1 auto/.test(sheet),
+  "and what is left of the column above its rows is that lead");
+/* The left column of the climb is the ladder's own: 156px, a 14px gap, a 20px
+   rail track — so the first piece's rail is the step's rail and a word of the
+   climb begins where every rung's word begins (admin, 2026-11-12). */
+assert.ok(/\.cnode, \.cbuild, \.cterm \{[^}]*grid-template-columns: var\(--clabel\) var\(--crail\) auto/.test(sheet),
+  "every row of the climb is label | rail | word");
+assert.ok(/\.constructstep \{[^}]*--clabel: 156px; --crail: 20px/.test(sheet),
+  "the label column and the rail track are the ladder's own two widths");
+assert.ok(/\.constructstep \{[^}]*grid-template-columns: 156px 20px minmax\(0, 1fr\)/.test(sheet),
+  "the step keeps the ladder's own tracks, so the tab row and the word land where a rung's do");
+assert.ok(/\.bstep-tabs \{[^}]*grid-column: 3/.test(sheet),
+  "and the analyses' tabs stand in the word's column");
+assert.ok(/\.cwhen \{[^}]*align-items: flex-end[^}]*height: var\(--termh\)/.test(sheet),
+  "the label is right-aligned against the rail and centred on the word's own band");
+assert.ok(/\.cwhen-name \{[^}]*font-size: 13px/.test(sheet)
+  && /\.cwhen-era \{[^}]*font-size: 11\.5px/.test(sheet),
+  "and it is set at the ladder's own sizes, name over years");
+assert.ok(!/\.cstage/.test(sheet), "the short stage code beside a word is gone for good");
+assert.ok(/\.btrees \{[^}]*padding: var\(--treegap, 6px\) 2px var\(--bpad\) 0/.test(sheet),
+  "the tree starts at the page's own left edge, so its first column is the label column");
+assert.ok(/\.cterm > \.cwhen\.lead::before \{[^}]*top: calc\(var\(--termh\) \/ 2 - 1px\)/.test(sheet),
+  "an unlabelled row keeps the line from the + to its dot unbroken");
 /* The `+` is a row of the staircase like any other cell, but its content is
    the *term* band, the 46px a word stands in — otherwise centring it in a
    90px cell put it (and its two stubs) half a meaning-line under the words
    either side (admin, 2026-11-12: "the line around the + is shifted"). */
-assert.ok(/\.cplus \{[^}]*padding-bottom: calc\(var\(--crow\) - var\(--termh\)\)/.test(sheet),
+/* The timeline ends in a circle and the line to the picker leaves that circle:
+   the rail's centre, the circle's centre and the horizontal line are one
+   point, and the line starts at the circle's own right edge (admin,
+   2026-11-12: "the line isn't connected to the white circle"). */
+const circle = sheet.match(/\.nextrung \.rail i \{ top: (\d+)px; \}/);
+const junction = sheet.match(/\.nextrung \.rail::after \{[^}]*top: (\d+)px;[^}]*left: calc\(50% \+ (\d+)px\)/);
+assert.ok(circle && junction, "the end circle and the line to the picker are both in the sheet");
+assert.equal(Number(circle[1]) + 5, Number(junction[1]) + 1,
+  "the circle is centred on the line: its 10px box hangs 5px above the top of a 2px line");
+assert.equal(Number(junction[2]), 5,
+  "and the line starts at the circle's right edge, not inside it");
+/* The closing circle is also the ladder's last rung, so
+   `.rung:last-child .rail::before { height: 14px }` ties on specificity with a
+   plain `.nextrung .rail::before` — and wins on order, because it is written
+   earlier in the sheet.  The rail has to be written as `.rung.nextrung` (same
+   specificity, later) or the line stops at the top of the rail box, 7px above
+   the ring (measured on the page, 2026-11-12). */
+const endRail = sheet.match(/\.rung\.nextrung \.rail::before \{[^}]*height: calc\(var\(--gap, 14px\) \+ 12px\)/);
+assert.ok(endRail, "the end rail is written as .rung.nextrung, so last-child's 14px cannot cut it");
+assert.ok(sheet.indexOf(".rung.nextrung .rail::before") > sheet.indexOf(".rung:last-child .rail::before"),
+  "and it is written after the last-rung rule that used to win");
+assert.equal(Number(circle[1]) + 5, 12,
+  "the ring's centre is 12px below the rail's top, where the rail's line now ends");
+assert.ok(/\.cplus \{[^}]*padding-bottom: calc\(var\(--crow\) - var\(--clabelh\) - var\(--termh\)\)/.test(sheet),
   "the + and its stubs are centred on the words' own line, not on the meaning row");
 assert.ok(!/\.cplus \{[^}]*padding-bottom: var\(--foot\)/.test(sheet),
   "and not on the meaning strip under it");
 /* The tree is the step's last row: the horizontal line sits above the word it
    builds, so where the step ends is where its spine has to be measured from. */
-const bodyHtml = builtHtml.slice(builtHtml.indexOf('class="buildbody">'));
+const bodyHtml = builtHtml.slice(builtHtml.indexOf('class="btrees"'));
 assert.ok(!builtHtml.includes('class="steprow"'),
   "nothing but the tree stands in the step: the card that repeated its pieces is gone");
-assert.ok(bodyHtml.includes('class="btrees"'),
+assert.ok(bodyHtml.trim().endsWith('</li>'),
   "the tree closes the step, so the spine is the step's own bottom");
+assert.ok(builtHtml.indexOf('class="btrees"') < builtHtml.indexOf('rail foot'),
+  "and the rail under the tree comes after it, never through it");
+assert.ok(/class="bstep-radio"[\s\S]*class="btrees"/.test(builtHtml)
+  || !builtHtml.includes('class="bstep-radio"'),
+  "the tab radios stay the tree's own siblings: the CSS switches the tree without script");
 
 /* Every word of a reconstructed stage carries its stage's star, wherever the
    page prints it (admin, 2026-11-12).  The reader's example was *anda-
@@ -1180,6 +1271,8 @@ const unknownHtml = context.constructStep(Object.assign({}, causLevel,
   { built_as: unknownPiece, builds: [unknownPiece] }), 0, () => "#/x");
 assert.ok(unknownHtml.includes('<span class="cunknown">???</span>'),
   "an ancestor whose origin is not recorded ends in a ???");
+assert.ok(/<div class="cnode unknown">\s*<span class="cwhen"><\/span>\s*<span class="crail"/.test(unknownHtml),
+  "a ??? row keeps an empty label cell: nothing says which stage it is of");
 assert.equal((unknownHtml.match(/class="cunknown"/g) || []).length, 1,
   "and only a word gets one: a bound morpheme has no line above it");
 assert.ok(unknownHtml.includes("No record says where this word came from"),

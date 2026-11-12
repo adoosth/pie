@@ -3705,3 +3705,63 @@ same morphology table.
 **Numbers.** `tests/test_ui_render.js` passes (its root-page and `renderReconstruct`
 sections were rewritten to test the ladder); the Python suite runs 963 tests,
 all green.
+
+## 2026-11-12 · the climb above a construction is a timeline again
+
+v0.17.10 wrote each piece's language *beside* its word, to stop a 128px label
+column from widening the tree and to keep two ancestors of one stage on one
+line. The reader opened *andaswarō and rejected it on sight: "it doesn't show
+the language name on the left side of the words in the timeline — why are you
+writing PIE to the right of the word? The rest of the timeline above the
+construction should look exactly like a regular timeline." He is right, and the
+beside-the-word label was my invention, not his. **The climb above a
+construction is the same timeline as the ladder below it, and it is measured the
+same way**: `--clabel` 156px (right-aligned, the name and its years stacked),
+`--crail` 20px, `--cgap` 14px. The tree's first column therefore starts at the
+page's own left edge — no negative margin, no inset — so the first piece's rail
+*is* the step's rail: at a 1500px window the step rail, the tree's first rail
+and every `.rung .rail` sit at x = 360, every label's right edge is 336 and every
+word starts at 384, on every page and at every width, and no column can drift
+sideways from the spine it hangs on. `--clabel` collapses to 0 on a phone
+(`--clabelh: 28px`): the language and its years stand in a band above the word,
+exactly as a rung writes them there, and *every* row reserves the band whether
+it is labelled or not, so two rows of one depth still stand on one line.
+
+**Every diamond says "construction", on its own line, to its left.** v0.17.11
+printed the step's name once, under the whole tree (`.when`), and inside a
+nested formation not at all — so a page with two steps showed the word once and
+a reader could not tell what the lower diamond was. The name now travels with
+the mark: `constructionLabel` puts `construction` and the formation the record
+states (`affix`, `combining form`, … `· our reading` when the source is ours) in
+the label cell of the diamond's own row — the first piece's row, and every
+`.cbuild` row (a built ancestor such as `◇ *h₂ent- + *-s`). The step prints no
+label of its own, and a later piece's label cell stays empty with the line from
+the `+` running across it (`--cgap`) to its dot, so nothing is written twice.
+
+**Why the first piece wears the step's label, not its own.** The diamond is the
+step's mark and the first piece stands immediately at it (v0.17.11), so that row
+*is* the step: a language name there would name the step after its first piece —
+the confusion the reader had just rejected, one column to the left instead of
+one to the right. A piece that itself has ancestors climbs in its own column
+(`.cchain`) under its own language label, which is where a reader looks for a
+stage; and a one-piece formation (v0.17.9's `combining`/`derivation`) would
+otherwise print the same word twice and leave the step unnamed.
+
+**The spine is three segments, because the tree is a scroll box.** `.rail.top`
+brings the line down from the rung above; the line *through* the tree belongs to
+the tree's first column (`.clead` plus each row's own `.crail::before`), so it
+scrolls with the column it belongs to instead of hanging in the middle of
+another one; `.rail.foot` carries it across the meaning strip (`--bpad`) and the
+15px horizontal scrollbar band (`--sbar: 18px`) to the rung it builds — the
+scrollbar was the measured gap under `gmw-pro/aikīn` and `de/überhitzen`. A step
+with nothing above it draws no top segment, and a top `???` draws no line into
+it (`en/about`). The line from the top mark to the foot now measures a gap of
+0 on ten pages at three widths, with one rail x per column, a `+` error of 0
+and a label offset of 0.
+
+**The timeline's last circle owns the line to the picker.** The descendant
+selector was drawn with the circle at the top of its stub and the horizontal
+line 11px below it, so the two read as unconnected marks. The rail now comes
+down to the circle's centre, the circle is drawn on that centre, and the line
+leaves the circle's *right edge* (`left: calc(50% + 5px)`) and runs to the box.
+The picker itself is untouched.

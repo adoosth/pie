@@ -192,8 +192,8 @@ that keeps the `*` opens nothing).
 - **The construction is one tree of columns, and every column hangs from the
   pieces' line** (2026-11-12, admin): `constructStep` draws one column per piece
   (`.cpiece`), and every row of every column — an ancestor `.cnode`, a built
-  ancestor `.cbuild`, the piece itself `.cterm` — is one grid of `--crail | the
-  word`, exactly `--crow` high. A column is anchored at its **bottom**
+  ancestor `.cbuild`, the piece itself `.cterm` — is one grid of `--clabel |
+  --crail | the word`, exactly `--crow` high. A column is anchored at its **bottom**
   (`align-items: flex-end` on `.bline`, `justify-content: flex-end` on
   `.cpiece`), so a column's k-th ancestor is k rows above the pieces' line and
   **two pieces whose ancestors stand in the same stage land on one horizontal
@@ -205,35 +205,63 @@ that keeps the `*` opens nothing).
   the piece's own long gloss hangs into the tree's `--bpad` strip, so no meaning
   is cut. The tree scrolls sideways rather than folding: three pieces make three
   full columns.
-- **The stage stands beside the word** (2026-11-12, admin): a column row prints
-  the form and, next to it, the stage it belongs to — `.cstage`, `n.short ||
-  n.lang_name`, coloured by `langKind` (reconstructed / attested) — and the full
-  name, the years and the entry's own sentence are on the row's hover. There is
-  no label column any more: it made a column as wide as its longest language
-  name, and the row is what two words on one line are compared by.
+- **The stage stands in the ladder's own left column** (2026-11-12, admin;
+  reverses the beside-the-word rule of v0.17.10): above a construction the page
+  must read *exactly like the timeline it stands on*, so every row of a column
+  prints the language and then its years against the rail, at the ladder's own
+  sizes — `.cwhen` (name 13px/600 in the `langKind` colour, era 11.5px, right
+  aligned, the name's 17px line centred on the term band) in a `--clabel` track
+  of **156px, the ladder's own**, with a `--cgap` 14px gap and the `--crail` 20px
+  track. The tree therefore begins at the page's own left edge (`.btrees`
+  spans the step's tracks, no padding, no negative margin), which puts the
+  first piece's rail on the step's rail and a column's word where every rung's
+  word begins — measured, not eyeballed: `.ladder .rung .rail` and
+  `.constructstep .rail` share x=360, every `.cwhen` right edge is 336, and a
+  word starts at 384 on a 1500px window.
+  A **diamond** row says `construction` on the diamond's own line, with the kind
+  of formation under it (`.cwhen-build`), and **every** construction of the
+  climb carries one — not only the one under the tree (v0.17.12; the label used
+  to be printed once, at the bottom of the step).
+  The diamond is the step's mark and the first piece stands immediately at it,
+  so that row *is* the step: its label is the step's (`construction`, with the
+  kind of formation under it), because a language name there would name the step
+  after its first piece — and a one-word formation (v0.17.9's
+  `combining`/`derivation`) would print the same word twice and leave the step
+  unnamed. A later piece is a word *of* the step's own stage and carries an
+  empty cell (`.cwhen.lead`) that the line from the `+` runs through; a `???`
+  row carries an empty cell too, because nothing knows its stage.
 - **The diamond stands in the first piece's own row** (2026-11-12, admin):
   `.crail.mark` — the first column's rail track — carries the step's diamond
-  (`.cdiamond`), so the mark is on the pieces' line by construction. The step's
-  own rail is then one unbroken segment (`.constructstep .rail::before`, `top:
-  calc(-1 * var(--gap) - 12px); bottom: 0`): no `--spine`, no measurement from
-  the bottom of the step, because that measurement broke the moment the tree
-  gained a horizontal scrollbar (its 15px moved every mark up off its word).
+  (`.cdiamond`), so the mark is on the pieces' line by construction.
   The **diamond stands on the spine, it never cuts it**: the mark keeps the
   segment coming down from the row above (only its sideways stub into the word
   is dropped, `.cterm > .crail.mark::after`), and the first piece's track runs
   on to the bottom of its own row (`.cpiece.first > .cterm > .crail::before {
   bottom: 0 }`), where the step's rail takes over across the meaning strip.
-  A step with nothing above it is **not** blanked: `.constructstep:first-child
-  .rail::before` draws `top: calc(100% - var(--bpad))` — the half below the
-  word is as much of the spine as the half above it (v0.17.11; the reader lost
-  the line above *anda- and above *andaswarō to a `display: none` that only
-  meant "nothing above the mark").
+  **The spine is three segments, and each belongs to the thing that moves**
+  (v0.17.12): `.rail.top` brings the line down from the stage above to the
+  tree's top; inside the tree the line is the first column's own — `.clead`
+  (a flexible lead above the oldest row, `first: 1 1 auto`) and the rows'
+  `.crail::before`, which therefore scroll sideways *with* the column; and
+  `.rail.foot` carries it from the tree's bottom across the meaning strip to
+  the rung below. The two rails stand outside the scroll box, so a scrolled
+  tree never shows a stray line through someone else's column, and the line
+  that belongs to a word never leaves it. A step with nothing above it hides
+  only `.rail.top` (`:first-child`), never the foot — the half below the word
+  is as much of the spine as the half above it. `.rail.foot` is
+  `calc(var(--bpad) + var(--sbar))` tall because a wide tree draws a horizontal
+  scrollbar inside that band, and the spine has to cross it (measured: 15px of
+  missing line on `gmw-pro/aikīn` and `de/überhitzen` before the fix).
+  Where the climb's oldest row is a `???` and nothing stands above the step, no
+  line hangs over it (`:has(> .cchain > .cnode.unknown:first-child)`) — the
+  ladder's own rule for an origin the record does not give.
   A later piece wears the accent dot on its own track (`.crail > i`); a bound
   morpheme wears nothing and keeps the empty track (`.crail.blank`), because the
   line reaches it from the `+`.
 - **The pieces are joined on one line** (2026-11-12): `+` (`.cplus`) stands
   between two columns, and a piece whose column continues draws the line from
-  its word's right edge across the column (`.cpiece.continues > .cterm::after`);
+  its word's right edge across the column (`.cpiece.continues > .cterm::after`,
+  in the row's fourth track — the label, the rail and the word come first);
   a one-word formation has nothing to join and draws none. The pieces are written
   at **word size** (`cform term`, 21px mono italic) in the colour of their
   evidence, carry **no language label of their own** (they are words of the
@@ -241,9 +269,13 @@ that keeps the `*` opens nothing).
   meanings below). Cuneiform is set upright and spaced (`.cunei`), because a
   synthesised oblique smears its wedge signs into each other.
   The cell is one `--crow` so it hangs with the columns, but its content is the
-  **`--termh` term band**: `padding-bottom: calc(var(--crow) - var(--termh))`
-  keeps the sign and its two 2px stubs on the words' line — centring them in
-  the whole row with `--foot` put them 13px below it (v0.17.11).
+  **`--termh` term band**: `padding-top: var(--clabelh); padding-bottom:
+  calc(var(--crow) - var(--clabelh) - var(--termh))` keeps the sign and its two
+  2px stubs on the words' line — centring them in the whole row with `--foot`
+  put them 13px below it (v0.17.11), and a phone's label band above the word
+  would do the same if it were not subtracted. A later piece's empty label cell
+  runs the line on to its dot across the `--cgap` (`.cwhen.lead::before`,
+  `right: calc(-1 * var(--cgap))`), so the join has no seam.
 - **Every word of the timeline says what it means** (2026-11-12, admin): the
   sense stands **under the form**, in the wording the headword's own line uses —
   `adj · “bright, clear, shining”` — not on hover alone, and it applies to the
@@ -272,7 +304,29 @@ that keeps the `*` opens nothing).
   the rail: the tree's own strip hides its bar on the narrow layout
   (`scrollbar-width: none`, `::-webkit-scrollbar`, as the nav does) while
   staying scrollable by touch — at 420px the bar crossed the rail column at
-  exactly the height where the spine leaves the tree (v0.17.11).
+  exactly the height where the spine leaves the tree (v0.17.11); on a wide
+  screen the bar keeps its 15px and the foot rail is that much taller
+  (`--sbar`), so the line crosses it (v0.17.12).
+- **The timeline ends in a circle, and the line to the picker leaves that
+  circle** (2026-11-12, admin): `.nextrung` closes the ladder, and its rail ends
+  in the reader's white circle (`.nextrung .rail i`, 10px, `top: 7px`) with the
+  horizontal line to the language picker starting at the circle's own right edge
+  and on its own centre — `left: calc(50% + 5px)`, `top: 11px`, width
+  `calc(var(--stub) - 5px)`, i.e. the 2px line is centred on the circle's centre
+  and its first pixel is the circle's last. The line is vertical `-gap … +12px`,
+  so it ends *at* the centre it is continued from. v0.17.11 drew the circle at
+  the top of the step and the line 11px below it: two marks that never met
+  (measured on the pixels afterwards: at the junction row the ink runs from the
+  circle's ring into the box's border with no gap, at 1500 and at 420px, where
+  `--stub: 19px`).
+- **On a phone the label goes above the word** (2026-11-12, admin): a 156px
+  column cannot stand left of a rail that is 8px from the page's edge, so at
+  `max-width: 700px` a row is `crail | (label / word)` — two grid rows, the
+  language and its years in one line above the word, exactly as `.rung .when`
+  stacks there. **Every row reserves that band** (`--clabelh: 28px`, part of
+  `--crow`), labelled or not, or two rows of one depth would drift apart; the
+  `+` subtracts it, the dots add it, and `.cwhen.lead` hides its line because
+  the `+` now meets the rail directly.
 - **A word of the chain that was itself built keeps its construction**
   (2026-11-12, admin): *kit-ró-s is *keyt- + *-rós, and Wiktionary states it in
   its article on Proto-Indo-Iranian *čitrás — there is no article, and no
