@@ -1,3 +1,32 @@
+## 2026-11-12 · an icon is a page that was recorded
+
+The reader clicked the W on Persian **کبود** and on Middle Persian **kpwt'** and
+nothing happened, although `en.wiktionary.org/wiki/کبود` exists.
+
+- **A page or nothing.** The server now resolves each record to its `pages`
+  (`service._entry_pages`): the Wiktionary article when one exists, and the
+  dictionary's entry for the *word* when the entry recorded one. Dehkhoda's
+  rows carry `https://vajehyab.com/dehkhoda/<word>` (the page the entry was
+  imported from), never `https://vajehyab.com/dehkhoda/`. Only pages are drawn;
+  a form whose page is not recorded carries no icon at all, so `kpwt'` — named
+  in the Persian etymology but with no entry and no page — loses its dead W.
+- **One glyph per kind.** W for Wiktionary (the serif mark), an open book for a
+  dictionary, a page for anything else; the corner (`recordTag`) and the head
+  row (`sourceRow`) draw one `<a>` per page, so کبود now offers both.
+- **Ancestry does not lend its pages.** A rung with no entry of its own used to
+  borrow the headword's sources; it now gets `pages: []`, because the article
+  it was quoted from is another word's page.
+- **The index is the site's own title list.** `tools/en_wiktionary_index.py`
+  reads `enwiktionary-latest-all-titles.gz` (namespace 0 for attested words,
+  118 for `Reconstruction:` pages) and writes
+  `data/sources/en_wiktionary/<lang>.jsonl.gz` with the headwords that really
+  have a page — 428k headwords in fifteen seconds, where asking the API page by
+  page was rate-limited and hours long. Absence from the file means "no page
+  recorded", and the interface stays silent for it.
+- **A reconstruction is titled without its asterisk.** `Reconstruction:
+  Proto-Germanic/nahts` is the page; the link used to keep the `*` and opened
+  nothing (`service._wiktionary_title`).
+
 ## 2026-11-12 · the tree keeps going, and the diamond is the first word's mark
 
 Four things the reader found on one page (`peo/Ciçafarnāh`), all of them the

@@ -478,6 +478,10 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
 .rung-rec .unverifiednote { color: var(--unverified); font-style: italic; }
 /* Beside the W that opens the record, like the ✓, so neither covers the other. */
 .rung-forms .formblock:has(.recorddot) .form .unmatchdot { right: 10px; }
+/* A record with two pages carries two marks (a W and a book), so the warning
+   and the ✓ step aside by the second mark's width (admin, 2026-11-12). */
+.rung-forms .formblock:has(.recorddot + .recorddot) .form .unmatchdot,
+.rung-forms .formblock:has(.recorddot + .recorddot) .form.matched .matchdot { right: 28px; }
 .branchlaws { justify-self: end; white-space: nowrap; font-size: 12px; }
 
 /* the entry's own citation -------------------------------------------- */
@@ -576,12 +580,17 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
 /* The record mark is a corner glyph, not a word under the form: a page icon on
    the recorded word's top-right, where the ✓ of a match sits, and it opens
    where the word was read (2026-11-08). */
-.recorddot { position: absolute; top: -7px; right: -8px; width: 15px; height: 15px;
+.recordmarks { position: absolute; top: -7px; right: -8px; display: inline-flex;
+  gap: 3px; z-index: 2; }
+.recorddot { width: 15px; height: 15px;
   border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
-  color: var(--muted); background: var(--bg-2); text-decoration: none; z-index: 2;
+  color: var(--muted); background: var(--bg-2); text-decoration: none;
   border: 1px solid color-mix(in srgb, var(--line) 90%, transparent);
   box-shadow: 0 0 0 2px var(--bg); cursor: pointer;
   transition: color .15s ease, border-color .15s ease, background .15s ease; }
+.recorddot.wikt { color: var(--attested);
+  border-color: color-mix(in srgb, var(--attested) 40%, var(--line)); }
+.recorddot svg { width: 10px; height: 10px; }
 /* The W is drawn, not set in a font, so it keeps the same weight at both
    sizes the page uses: 15 px in a source row and 13 px on a word's corner. */
 /* Wiktionary's initial, in a serif face like Wikipedia's W (admin,

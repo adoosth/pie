@@ -87,7 +87,7 @@ Below the last stage the timeline continues into the **branch** — the language
 
 Every word says how it is known: **attested** when a text or a dictionary writes it in the language's own script, **recorded** when the literature reconstructs it (normally with an asterisk), **proposed** when this project guesses it, and *non-existent* when no entry is spelled that way. Beside that stands how far the model has got with it — *fully*, *partially* or not yet explained.
 
-A small serifed W on a recorded form opens the page it was read on: the word's entry in the Wiktionary that records it, or, for a Persian word, its page on the Persian Wiktionary — when one exists.
+A source icon on a recorded form opens the page it was read on, and there is one icon per page that is actually recorded: the serifed W for the word's Wiktionary article, the open book for its dictionary entry (Dehkhoda's own page for the word on vajehyab, never the site's front page). A word whose page was never recorded carries no icon at all.
 
 ### What the colours mean
 

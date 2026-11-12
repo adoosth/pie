@@ -160,7 +160,9 @@ const hierarchy = {
             era_mid: -250, kind: "proto", form: "nˈahwθs", baseline: "nˈahwt", changed: true,
             evidence: "weak",
             recorded: { w: "nahts", more: ["naht"], evidence: "literary", ipa: "", reading: "",
-                        show_reading: false, matches: false },
+                        show_reading: false, matches: false,
+                        pages: [{ id: "wiktionary", title: "Wiktionary", kind: "wiktionary",
+                                  url: "https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/nahts" }] },
             transition: { from: "ine-pro", to: "gem-pro", missing: false, fired: 1, silent: 40,
                           switched_off: 1 },
             rules: [
@@ -298,14 +300,15 @@ assert.ok(ladderWords.includes("nṓkʷθs → nṓkʷ"),
    because a record is a form written down somewhere — and the edit control is
    a pencil right after the form the laws produced, never after the record. */
 const pgsRung = ladder.slice(ladder.indexOf('data-stage="gem-pro"'));
-const TAG = 'class="recorddot"';
+const TAG = 'class="recorddot';
 assert.ok(pgsRung.includes(TAG), "the recorded form is marked as a record");
 assert.ok(!pgsRung.includes(">recorded</a>"), "the record is a glyph, not the word 'recorded'");
 assert.ok(pgsRung.includes('class="wmark"') && /class="wmark"[^>]*>W</.test(pgsRung),
   "the glyph is Wiktionary's W: a source's initial, not a quotation mark");
 assert.ok(!pgsRung.includes('stroke="currentColor"'),
   "the W is a serifed glyph now, not a monoline stroke (admin, 2026-11-12)");
-assert.ok(!pgsRung.includes("“"), "the old quotation mark is gone");
+assert.ok(!/class="recorddot[^>]*>“/.test(pgsRung),
+  "the old quotation mark glyph is gone from the mark");
 assert.ok(!pgsRung.includes("M12 6.6C10.4"), "the book glyph is gone");
 assert.ok(pgsRung.indexOf('class="recword"') < pgsRung.indexOf(">nahts<")
           && pgsRung.indexOf(">nahts<") < pgsRung.indexOf(TAG),
@@ -318,16 +321,14 @@ assert.ok(pgsRung.indexOf("náhwθs") < pgsRung.indexOf('data-edit="gem-pro"')
 assert.ok(!pgsRung.includes(">edit<"), "the edit control is an icon, not the word 'edit'");
 assert.ok(/class="editbtn icon"[^>]*aria-label="Edit the form for Proto-Germanic"/.test(pgsRung),
   "the pencil names the form it edits for a reader who cannot see it");
-assert.match(pgsRung, /<span class="recorddot"/,
-  "with no Wiktionary page the mark is a mark, not a link to anything else");
+const pgsStart = ladder.slice(ladder.indexOf('class="recword"', ladder.indexOf('data-stage="ine-pro"')),
+  ladder.indexOf('data-stage="gem-pro"'));
+assert.ok(!pgsStart.includes(TAG),
+  "a form with no recorded page carries no mark at all (admin, 2026-11-12)");
 assert.ok(!/recorddot[^>]*href="#\/word/.test(pgsRung),
   "the mark never opens an internal word page in place of a source");
-assert.ok(/class="recorddot"[^>]*data-tip="The Proto-Germanic record of this word/.test(pgsRung),
-  "hovering the mark says where the record comes from");
 assert.ok(!pgsRung.includes("Open where it was recorded"),
   "the tooltip names the source but never instructs the reader to click (2026-11-08)");
-assert.ok(pgsRung.indexOf(TAG) < pgsRung.indexOf('class="rung-rec"'),
-  "the record mark is on the form line, above the sense line");
 assert.ok(!ladderWords.includes("the laws differ") && !ladderWords.includes("the laws reproduce"),
   "no verdict sentence on the rung");
 assert.ok(!pgsRung.includes("ev-weak") || pgsRung.includes("nahts"),
@@ -340,18 +341,45 @@ assert.ok(ladderWords.includes("Middle English nighte"), "an exact chain further
    nothing about clicking — the mark is visibly a link. */
 const citedLevel = level(Object.assign({}, hierarchy.levels[1], {
   recorded: Object.assign({}, hierarchy.levels[1].recorded, {
-    sources: [{ id: "wiktionary", title: "Wiktionary", url: "https://en.wiktionary.org",
-                entry: "https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/nahts" }],
+    pages: [{ id: "wiktionary", title: "Wiktionary", kind: "wiktionary",
+              url: "https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/nahts" }],
   }),
 }));
 const citedHtml = context.renderHierarchy(Object.assign({}, hierarchy, {
   levels: [hierarchy.levels[0], citedLevel],
 }), { lang: "en", lang_name: "English" });
 assert.match(citedHtml,
-  /<a class="recorddot"[^>]*href="https:\/\/en\.wiktionary\.org\/wiki\/Reconstruction:Proto-Germanic\/nahts"[^>]*target="_blank" rel="noopener"/,
+  /<a class="recorddot wikt"[^>]*href="https:\/\/en\.wiktionary\.org\/wiki\/Reconstruction:Proto-Germanic\/nahts"[^>]*target="_blank" rel="noopener"/,
   "the record mark opens the page the record was read on");
+assert.ok(/class="recorddot wikt"[^>]*data-tip="The Proto-Germanic record of this word/.test(citedHtml),
+  "hovering the mark says where the record comes from");
 assert.ok(citedHtml.indexOf("Open where it was recorded") < 0,
   "a linked source adds no 'open where it was recorded' sentence to the tooltip");
+
+/* Two recorded pages are two doors on the same corner (admin, 2026-11-12):
+   the W for the Wiktionary article and the book for the dictionary's own entry
+   for the word, each opening its own page, and the site's front page is never
+   one of them. */
+const twoPages = context.renderHierarchy(Object.assign({}, hierarchy, {
+  levels: [hierarchy.levels[0], level(Object.assign({}, hierarchy.levels[1], {
+    recorded: Object.assign({}, hierarchy.levels[1].recorded, {
+      pages: [
+        { id: "dehkhoda", title: "Dehkhoda", kind: "dictionary",
+          url: "https://vajehyab.com/dehkhoda/%DA%A9%D8%A8%D9%88%D8%AF" },
+        { id: "wiktionary", title: "Wiktionary", kind: "wiktionary",
+          url: "https://en.wiktionary.org/wiki/%DA%A9%D8%A8%D9%88%D8%AF" },
+      ],
+    }),
+  }))],
+}), { lang: "en", lang_name: "English" });
+assert.equal((twoPages.match(/class="recorddot/g) || []).length, 2,
+  "one mark per recorded page");
+assert.match(twoPages, /class="recorddot wikt"[^>]*href="https:\/\/en\.wiktionary\.org\/wiki\//,
+  "the W opens the Wiktionary article");
+assert.match(twoPages, /class="recorddot"[^>]*href="https:\/\/vajehyab\.com\/dehkhoda\/%DA%A9/,
+  "the book opens the dictionary's entry for the word itself");
+assert.ok(twoPages.indexOf('class="recorddot wikt"') < twoPages.indexOf('href="https://vajehyab.com'),
+  "the W stands first, then the book");
 
 /* 2026-11-08: the law engine writes stress as ˈ, but the page prints it the
    way a dictionary does — an acute on whatever vowel carries it — and every
@@ -450,7 +478,9 @@ const book = {
             recorded: { w: "book", more: [], evidence: "attested", ipa: "", reading: "",
                         show_reading: false, matches: false, pos: "noun",
                         gloss: "A collection of sheets of paper bound together",
-                        origin: "word" } }),
+                        origin: "word",
+                        pages: [{ id: "wiktionary", title: "Wiktionary", kind: "wiktionary",
+                                  url: "https://en.wiktionary.org/wiki/book" }] } }),
   ],
 };
 const bookHtml = context.renderHierarchy(book, { lang: "en", lang_name: "English" });
@@ -822,7 +852,9 @@ const recon = context.renderReconstruct({
   form: "nˈæhwθ", steps: 2, tiers: ["established"], skipped: [],
   status: "differs", evidence: "weak", same: false,
   recorded: { w: "night", r: "", evidence: "attested", ipa: "naɪ̯t", show_reading: false,
-              pos: "noun", gloss: "the dark part of the day" },
+              pos: "noun", gloss: "the dark part of the day",
+              pages: [{ id: "wiktionary", title: "Wiktionary", kind: "wiktionary",
+                        url: "https://en.wiktionary.org/wiki/night" }] },
   levels: [
     { src: "ine-pro", dst: "gem-pro", src_name: "Proto-Indo-European", dst_name: "Proto-Germanic",
       form: "nˈahwθs", missing: false, registered: 41, fired: 1,
@@ -960,8 +992,8 @@ assert.ok(rbzSeg.indexOf("baHdoš") < rbzSeg.indexOf('data-edit="fa"')
   "the pencil follows the reconstructed form, not the recorded word");
 assert.match(rbzSeg, /<a class="formlink" href="#\/word\/fa\/[^"]*"[^>]*><span class="form rtl/,
   "the recorded word opens its own page");
-assert.match(rbzSeg, /<span class="formblock">.*بازو.*<span class="recorddot"/,
-  "the record mark is inside the word's own box, not the reading's");
+assert.ok(rbzSeg.includes("بازو") && !rbzSeg.includes('class="recorddot"'),
+  "a record with no page keeps the word and takes no mark");
 
 /* A missing rule file is a gap, not a silent no-op. */
 const reconGap = context.renderReconstruct({
@@ -1018,7 +1050,8 @@ const reconRecord = context.renderReconstruct({
              recorded: { w: "𐎭𐎡𐎺", evidence: "attested", in_script: true,
                          script: "Old Persian cuneiform", reading: "daivaʰ", show_reading: true,
                          notation: "v/w", known: true, ipa: "",
-                         sources: [{ title: "Wiktionary", url: "https://en.wiktionary.org" }] } },
+                         pages: [{ id: "wiktionary", title: "Wiktionary", kind: "wiktionary",
+                                   url: "https://en.wiktionary.org/wiki/%F0%90%8E%AD%F0%90%8E%A1%F0%90%8E%BA" }] } },
            { src: "peo", dst: "fa", src_name: "Old Persian", dst_name: "Persian",
              kind: "attested", era_label: "since c. 800", form: "dīw",
              form_known: false, status: "derived", evidence: "weak", recorded: null,
@@ -1565,21 +1598,23 @@ assert.ok(builtLadder.indexOf('class="constructstep"') <
   builtLadder.indexOf('data-stage="ira-pro"'),
   "the construction is drawn above the word it builds, never below it");
 
-/* One icon per source, under the headword: a W for a Wiktionary entry, a book
-   for a dictionary, and never a link to a site's front page (admin, 2026-11-12). */
+/* One icon per recorded page, under the headword: a W for a Wiktionary
+   article, a book for a dictionary's entry for the word, and nothing at all
+   for a word whose page is not recorded (admin, 2026-11-12). */
 const sourcesHtml = context.sourceRow({ word: "آب", lang: "fa", evidence: "attested",
-  sources: [
-    { id: "dehkhoda", kind: "dictionary", entry: null, url: "https://vajehyab.com/dehkhoda/" },
-    { id: "fa-wiktionary", kind: "lexicon", title: "Persian Wiktionary",
-      entry: "https://fa.wiktionary.org/wiki/%D8%A2%D8%A8", url: "https://fa.wiktionary.org" }] });
-assert.equal((sourcesHtml.match(/class="srcicon/g) || []).length, 2, "one icon per source");
-assert.ok(sourcesHtml.includes('class="srcicon wikt"'), "the Wiktionary entry keeps its mark");
+  pages: [
+    { id: "dehkhoda", kind: "dictionary", title: "Dehkhoda",
+      url: "https://vajehyab.com/dehkhoda/%D8%A2%D8%A8" },
+    { id: "wiktionary", kind: "wiktionary", title: "Wiktionary",
+      url: "https://en.wiktionary.org/wiki/%D8%A2%D8%A8" }] });
+assert.equal((sourcesHtml.match(/class="srcicon/g) || []).length, 2, "one icon per recorded page");
+assert.ok(sourcesHtml.includes('class="srcicon wikt"'), "the Wiktionary page keeps its mark");
 assert.ok(sourcesHtml.includes('class="wmark"') && !sourcesHtml.includes("“"),
   "the mark is the W, not a quotation mark");
-assert.ok(sourcesHtml.includes("vajehyab.com/dehkhoda/"), "a dictionary's own section is a link");
-assert.ok(!context.sourceRow({ word: "x", lang: "en", sources: [
-  { id: "w", title: "Wiktionary", url: "https://en.wiktionary.org" }] }),
-  "a front page with no entry is no link, so no icon");
+assert.ok(sourcesHtml.includes("vajehyab.com/dehkhoda/%D8%A2%D8%A8"),
+  "the book opens the word's own dictionary entry, not the site");
+assert.equal(context.sourceRow({ word: "x", lang: "en", evidence: "attested", pages: [] }), "",
+  "a word with no recorded page has no icons");
 
 /* A compound draws its pieces as a join (2026-11-09): the two origins meet
    only at the headword, and each piece's chain keeps its own language. */
@@ -1710,6 +1745,8 @@ const loanPage = {
   pos: "noun", gloss: ["hereafter"], evidence: "attested",
   sources: [{ id: "wiktionary", title: "Wiktionary, etymology sections (CC BY-SA 4.0)",
               url: "https://en.wiktionary.org", entry: "https://en.wiktionary.org/wiki/%D8%A2%D8%AE%D8%B1%D8%AA" }],
+  pages: [{ id: "wiktionary", title: "Wiktionary", kind: "wiktionary",
+            url: "https://en.wiktionary.org/wiki/%D8%A2%D8%AE%D8%B1%D8%AA" }],
   loan: { code: "ar", name: "Arabic", family: "Semitic", form: "آخِرة", relation: "borrow",
     period: { from: 633, to: 1100, window_note: "The dictionary does not date this word.",
               landmarks: [{ from: 633, to: 651, title: "Islamic conquest of Iran", note: "" }] } },
@@ -1722,7 +1759,8 @@ assert.ok(loanHtml.includes(">Timeline<"), "the loan is a timeline too, under th
 assert.ok(loanHtml.includes('data-stage="ar"'), "the donor language is a rung");
 assert.ok(loanHtml.includes("borrowed from Arabic into Persian"), "the borrowing is a step row");
 assert.ok(loanHtml.includes('class="rung here"'), "the word is the last rung");
-assert.ok(loanHtml.includes("class=\"recorddot\""), "the word keeps its record mark");
+assert.match(loanHtml, /<a class="recorddot[^"]*"[^>]*href="https:\/\/en\.wiktionary\.org/,
+  "the word keeps its record mark, opening its Wiktionary page");
 assert.ok(!loanHtml.includes("loantrack"), "no horizontal contact bar");
 assert.ok(!loanHtml.includes("loanbox"), "no separate loan panel");
 console.log("loan ladder ok");
@@ -1792,20 +1830,20 @@ assert.ok(backlogged.includes("#/backlog?lang=peo"), "it opens the backlog for t
 assert.ok(!backlogged.includes("badge"), "the review note is not a pill either");
 assert.strictEqual(evaluate('reviewNote({lang:"peo",backlog:[]})'), "", "nothing in the backlog, no note");
 
-/* The W is the word's Wiktionary page and nothing else. A Persian record used
-   to carry its Dehkhoda page as the "Wiktionary" address, so the mark opened
-   vajehyab (admin, 2026-11-11). */
-const dehkhodaOnly = evaluate(`recordSourceUrl({sources:[
-  {id:"dehkhoda",title:"Dehkhoda",url:"https://vajehyab.com/dehkhoda/x"}]})`);
-assert.strictEqual(dehkhodaOnly, "", "a Persian record with no Wiktionary page has no record link");
-const bothSources = evaluate(`recordSourceUrl({sources:[
-  {id:"dehkhoda",title:"Dehkhoda",url:"https://vajehyab.com/dehkhoda/x"},
-  {id:"fa-wiktionary",title:"ویکی‌واژه",entry:"https://fa.wiktionary.org/wiki/x"}]})`);
-assert.strictEqual(bothSources, "https://fa.wiktionary.org/wiki/x",
-  "the Wiktionary mark is the Wiktionary page, never the dictionary site");
-const english = evaluate(`recordSourceUrl({sources:[
-  {id:"wiktionary",title:"Wiktionary",entry:"https://en.wiktionary.org/wiki/foot"}]})`);
-assert.strictEqual(english, "https://en.wiktionary.org/wiki/foot");
+/* A page is what the server recorded, never a guess at a site (admin,
+   2026-11-12). A Persian word records Dehkhoda's entry and, when one was
+   found, its Wiktionary article; the corner and the source row open both. */
+const dehkhodaOnly = evaluate(`recordTag({pages:[
+  {id:"dehkhoda",title:"Dehkhoda",kind:"dictionary",url:"https://vajehyab.com/dehkhoda/%DA%A9%D8%A8%D9%88%D8%AF"}]},null,"Persian")`);
+assert.ok(dehkhodaOnly.includes('href="https://vajehyab.com/dehkhoda/%DA%A9%D8%A8%D9%88%D8%AF"'),
+  "the book opens the word's own entry");
+assert.ok(!dehkhodaOnly.includes('class="wmark"'),
+  "a dictionary page is not painted with the Wiktionary W");
+const noPage = evaluate(`recordTag({pages:[]},null,"Middle Persian")`);
+assert.strictEqual(noPage, "", "no recorded page, no mark");
+const english = evaluate(`recordTag({pages:[
+  {id:"wiktionary",title:"Wiktionary",kind:"wiktionary",url:"https://en.wiktionary.org/wiki/foot"}]},null,"English")`);
+assert.ok(english.includes('href="https://en.wiktionary.org/wiki/foot"') && english.includes('class="wmark"'));
 
 const rail = evaluate('langRail({lang_name:"Old Persian",era_label:"c. 525–300 BCE"})');
 assert.ok(rail.includes('class="raillang"') && rail.includes('class="railera"'), rail);

@@ -585,26 +585,25 @@ def _is_wiktionary_url(url: str) -> bool:
     return host == "wiktionary.org" or host.endswith(".wiktionary.org")
 
 
-def _wiktionary_entry_url(entry: dict) -> str:
-    """The page a Wiktionary-sourced record can actually be read on.
+def _wiktionary_title(entry: dict) -> str:
+    """The page title Wiktionary keeps this word under.
 
-    ``data/sources.yaml`` names the site, not a page, so the entry's own page
-    is built the way Wiktionary names it: a reconstructed word lives in the
-    ``Reconstruction:`` namespace with its language, and an attested headword
-    is the title itself. The link is where the record can be checked, not a
-    claim about the form (2026-11-08: the RECORDED badge opens where
-    the word was read).
+    A reconstructed word lives in the ``Reconstruction:`` namespace with its
+    language; an attested headword is the title itself. The address and the
+    record of which pages exist are both built from this one title.
     """
     word = (entry.get("word") or "").strip()
     if not word:
         return ""
     lang = entry.get("lang") or ""
-    base = ((data.sources().get("wiktionary") or {}).get("url")
-            or "https://en.wiktionary.org").rstrip("/")
     recon = bool(entry.get("recon")) or (bool(lang) and kind_of(lang) == "proto")
+    if recon and word.startswith("*"):
+        # The namespace already says "reconstruction": Wiktionary titles the
+        # page without the asterisk (Reconstruction:Proto-Germanic/nahts), and a
+        # link that keeps it opens nothing (2026-11-12).
+        word = word[1:]
     name = _lang(lang).get("name") or lang
-    title = f"Reconstruction:{name}/{word}" if recon else word
-    return f"{base}/wiki/{quote(title.replace(' ', '_'), safe=':/')}"
+    return f"Reconstruction:{name}/{word}" if recon else word
 
 
 def _wiktionary_page(entry: dict) -> dict | None:
@@ -658,6 +657,7 @@ def _entry_sources(entry: dict) -> list[dict]:
         }
         # A Wiktionary row points at the site; carry the entry's own page so a
         # citation is something a reader can open (2026-11-08).
+        stored = entry.get("url") or ""
         if sid == "wiktionary":
             # A root the dictionary never gave a page of its own was recorded
             # *inside* another entry's etymology, so the entry names that page
@@ -666,9 +666,24 @@ def _entry_sources(entry: dict) -> list[dict]:
             # Persian entry's `url` is its Dehkhoda page, and labelling that as
             # the Wiktionary link put a vajehyab address behind the quotation
             # mark (admin, 2026-11-11).
-            stored = entry.get("url") or ""
-            source["entry"] = (stored if _is_wiktionary_url(stored)
-                               else _wiktionary_entry_url(entry))
+            if _is_wiktionary_url(stored):
+                source["entry"] = stored
+            else:
+                # No address was recorded when the entry was read, so the page
+                # is only claimed when this repo's own pass found one
+                # (`tools/en_wiktionary_index.py`); otherwise the icon stays
+                # away instead of opening a title that may not exist (admin,
+                # 2026-11-12).
+                found = wiktionary_pages.en_page(entry.get("lang") or "",
+                                                 entry.get("word") or "")
+                if found:
+                    source["entry"] = found["url"]
+        elif stored and _same_site(stored, row.get("url") or ""):
+            # An entry imported from a dictionary records the page it was read
+            # on — Dehkhoda's own entry for کبود, not the dictionary's front
+            # page.  Only an address on the source's own site counts as that
+            # source's page (admin, 2026-11-12: the book must open the word).
+            source["entry"] = stored
         out.append(source)
     page = _wiktionary_page(entry)
     if page:
@@ -682,6 +697,45 @@ def _entry_sources(entry: dict) -> list[dict]:
             "entry": page["url"],
         })
     return out
+
+
+def _same_site(one: str, other: str) -> bool:
+    """Whether two addresses are pages of one site (``www.`` aside)."""
+    def host(url: str) -> str:
+        return re.sub(r"^www\.", "",
+                      re.sub(r"^https?://", "", (url or "").strip().lower()).split("/")[0])
+    return bool(one and other) and host(one) == host(other)
+
+
+def _entry_pages(entry: dict) -> list[dict]:
+    """The pages a reader can open for this word — one row per page.
+
+    A page is carried only when it is *recorded*: the address the entry was read
+    on (a Wiktionary article, Dehkhoda's entry on vajehyab), or a Wiktionary page
+    this pass found for the headword (`tools/en_wiktionary_index.py`).  A word
+    with no recorded page yields nothing, and the page then shows no icon at all
+    (admin, 2026-11-12) — an icon that opens nothing is worse than no icon.
+    """
+    pages: list[dict] = []
+    seen: set[str] = set()
+    for src in _entry_sources(entry):
+        url = src.get("entry") or ""
+        if not url or url in seen:
+            continue
+        seen.add(url)
+        pages.append({
+            "id": src.get("id") or "",
+            "title": src.get("title") or "",
+            "url": url,
+            "kind": "wiktionary" if _is_wiktionary_url(url) else (src.get("kind") or ""),
+        })
+    if not any(p["kind"] == "wiktionary" for p in pages):
+        found = wiktionary_pages.en_page(entry.get("lang") or "",
+                                         entry.get("word") or "")
+        if found and found["url"] not in seen:
+            pages.append({"id": "wiktionary", "title": "Wiktionary",
+                          "url": found["url"], "kind": "wiktionary"})
+    return pages
 
 
 def _cognate_payload(set_id: str) -> dict | None:
@@ -3182,6 +3236,10 @@ def _record_block(stage: str, here: dict | None, match_form: str | None,
         # own at this stage, so the word page it came from is the source.
         "sources": (_entry_sources(stage_entry) if stage_entry
                     else _entry_sources(word_entry or {})),
+        # Only a page of *this* form is a door: a record quoted from the word's
+        # own article has no entry of its own, and its corner shows no icon even
+        # though the article it was read in has one (admin, 2026-11-12).
+        "pages": (_entry_pages(stage_entry) if stage_entry else []),
         # Where the record comes from: the word's own ancestry rows, its
         # glossary entry, or the cognate set that supplied the etymon.
         "origin": here.get("origin", ""),
@@ -6511,9 +6569,10 @@ def _record_sources(lang: str, word: str, fallback: dict | None = None) -> list[
     if fallback:
         return _entry_sources(fallback)
     known = data.sources().get("wiktionary") or {}
+    found = wiktionary_pages.en_page(lang, word)
     return [{"id": "wiktionary", "title": known.get("title", "Wiktionary"),
              "url": known.get("url", ""), "kind": known.get("kind", ""), "ref": "",
-             "entry": _wiktionary_entry_url({"word": word, "lang": lang})}]
+             "entry": found["url"] if found else ""}]
 
 
 def _stage_record(lang: str, form: str) -> dict | None:
@@ -6899,6 +6958,7 @@ def _senses_page(lang: str, form: str, groups: list[dict], via: str | None) -> d
         # is the one the Persian Wiktionary has for that spelling.
         "wiktionary": _wiktionary_page({"lang": lang, "word": form}),
         "sources": _entry_sources(first),
+        "pages": _entry_pages(first),
     }
 
 
@@ -7114,6 +7174,10 @@ def word(lang: str, form: str, disabled: Iterable[str] = (),
         # `etymology`, which is the record this model derives from.
         "wiktionary": _wiktionary_page(entry),
         "sources": _entry_sources(entry),
+        # Where this word itself can be opened: its Wiktionary article and its
+        # dictionary entry, each only when the page is recorded (admin,
+        # 2026-11-12).  The header draws one icon per page and nothing else.
+        "pages": _entry_pages(entry),
         "ancestry": _ancestry_forms(entry),
         "cognates": cog,
         "rebuilds": rebuilt,

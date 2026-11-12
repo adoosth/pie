@@ -150,20 +150,31 @@ negative margin, gives it back below 1420 px, stacks above the word below
 colour; `reviewNote` is a smaller plain `.backlognote` link after them.
 `attestBadge` belongs to glossary rows and search, never to a title.
 
-**The W mark is a Wiktionary page, and nothing else** (admin, 2026-11-12;
-the mark was a quotation mark until then, then a monoline stroke W, and since
-the afternoon it is a serif W — a real glyph in `"Times New Roman", Times,
+**Every source icon is a page that was recorded, and nothing else** (admin,
+2026-11-12; the mark was a quotation mark until then, then a monoline stroke W,
+and since the afternoon a serif W — a real glyph in `"Times New Roman", Times,
 Liberation Serif, DejaVu Serif, Georgia, serif`, not an SVG path, because the
 serifs are what make it read as Wikipedia's W and they blur at 11 px when they
-are stroked; `.recorddot .wmark` is 9.5 px, `.srcicon .wmark` 13 px). Every recorded form wears the mark,
-and the mark is the address the form was read on — so `recordSourceUrl()` takes a source's own `entry` only when
-it is a Wiktionary page (`service._is_wiktionary_url`), never a dictionary site's
-address. A Persian entry's stored `url` is its Dehkhoda page on vajehyab, which
-used to sit behind the mark; it is not a Wiktionary address and the mark stays a
-mark without one. The other citations are not lost: they are named in the mark's
-tooltip, and the meanings tab links each Dehkhoda entry to its page. A word with
-no Wiktionary page shows no link, and that is the point — a dead link is worse
-than no link.
+are stroked; `.recorddot .wmark` is 9.5 px, `.srcicon .wmark` 13 px). The server
+resolves each record to its **pages** (`service._entry_pages` → the page payload,
+`recorded.pages` on a rung): the Wiktionary article when one exists
+(`data/sources/en_wiktionary/<lang>.jsonl.gz`, written by
+`tools/en_wiktionary_index.py` from the site's own title list), and the
+dictionary's entry **for the word** when the entry recorded one (Dehkhoda's
+`https://vajehyab.com/dehkhoda/<word>`, never the site's front page). Each page
+is drawn with its own glyph — the serif W for Wiktionary, the open book for a
+dictionary — and both the corner mark (`recordTag`, `.recordmarks`) and the head
+row (`sourceRow`, `.sourcerow`) render one `<a>` per page: an address with no
+page is never printed, and **a form whose page is not recorded carries no icon at
+all**, not a mark that goes nowhere (that dead W on کبود and on Middle Persian
+`kpwt'` is what the admin reported). The citation is still named in the mark's
+tooltip (`recordSourceText`), and `_entry_sources` keeps `entry` = the page the
+record was read on. A rung with no entry of its own gets no pages: the article it
+was quoted from is a different word's page. `service._wiktionary_title` builds
+the title once: an attested word is its headword, a reconstruction is
+`Reconstruction:<Language>/<word>` **without** its asterisk (`Reconstruction:
+Proto-Germanic/nahts`; the namespace already says "reconstruction", and a link
+that keeps the `*` opens nothing).
 
 ### The ladder
 

@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import sys
 import unittest
+from urllib.parse import quote
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
@@ -79,28 +80,62 @@ class TestThePageAWaCWordOpens(unittest.TestCase):
 
 
 class TestTheQuotationMark(unittest.TestCase):
-    """The record mark opens a Wiktionary page, never another dictionary's."""
+    """Every mark opens the page it is drawn for, and none opens a front page.
 
-    def test_a_persian_words_record_mark_is_a_wiktionary_page(self):
+    A record has one icon per *recorded* page (admin, 2026-11-12): the W is the
+    word's Wiktionary article, the book is its dictionary entry.  A word whose
+    page was never recorded has no icon at all, never a mark that goes nowhere.
+    """
+
+    def test_a_persian_words_pages_are_its_own_pages(self):
         for word in ("آب", "کتاب", "اتم"):
-            for row in service.word("fa", word)["sources"]:
-                if row.get("entry"):
-                    self.assertTrue(
-                        wiktionary_url(row["entry"]),
-                        f"{word}: {row['id']} points at {row['entry']}")
+            page = service.word("fa", word)
+            self.assertTrue(page["pages"], f"{word}: no recorded page")
+            for row in page["pages"]:
+                self.assertNotEqual(row["url"].rstrip("/"), "https://vajehyab.com/dehkhoda",
+                                    f"{word}: the book opens the site, not the word")
+                if row["kind"] == "dictionary":
+                    self.assertIn(quote(word, safe=""), row["url"])
 
-    def test_a_dehkhoda_page_is_never_called_a_wiktionary_page(self):
-        # The entry's own `url` is its vajehyab page; the record mark must not
-        # take it for a Wiktionary address (admin, 2026-11-11).
+    def test_a_dehkhoda_entry_is_its_own_page_and_not_a_wiktionary_one(self):
+        # The entry's own `url` is its vajehyab page, so the book opens the word
+        # itself; only a Wiktionary address is painted with the W (admin,
+        # 2026-11-12).
         page = service.word("fa", "کتاب")
-        for row in page["sources"]:
-            self.assertNotIn("vajehyab", row.get("entry") or "")
+        row = [r for r in page["sources"] if r["id"] == "dehkhoda"][0]
+        self.assertTrue(row["entry"].startswith("https://vajehyab.com/dehkhoda/"))
+        self.assertFalse(service._is_wiktionary_url(row["entry"]))
+        book = [p for p in page["pages"] if p["kind"] == "dictionary"][0]
+        self.assertIn("/dehkhoda/", book["url"])
+
+    def test_a_word_with_a_wiktionary_article_gets_the_w(self):
+        page = service.word("fa", "کبود")
+        wikt = [p for p in page["pages"] if p["kind"] == "wiktionary"]
+        self.assertTrue(wikt, "کبود has a Wiktionary article")
+        self.assertTrue(wikt[0]["url"].endswith("%DA%A9%D8%A8%D9%88%D8%AF"))
+
+    def test_a_form_whose_page_is_not_recorded_has_no_icon(self):
+        # The Middle Persian kpwt' is named in the Persian etymology; the
+        # glossary records no page of it, so its corner stays bare.
+        page = service.word("fa", "کبود")
+        rung = [r for r in page["path"] if r["stage"] == "pal"] if page.get("path") else []
+        for row in rung:
+            self.assertFalse((row.get("recorded") or {}).get("pages"))
 
     def test_an_english_word_still_points_at_its_own_page(self):
         page = service.word("en", "foot")
         rows = [r for r in page["sources"] if r.get("entry")]
         self.assertTrue(rows)
         self.assertTrue(all(wiktionary_url(r["entry"]) for r in rows))
+
+    def test_a_reconstruction_is_titled_without_its_asterisk(self):
+        # Wiktionary's namespace already says "reconstruction"; a link that
+        # keeps the asterisk opens nothing (2026-11-12).
+        self.assertEqual(
+            service._wiktionary_title({"lang": "gem-pro", "word": "*nahts"}),
+            "Reconstruction:Proto-Germanic/nahts")
+        self.assertEqual(service._wiktionary_title({"lang": "en", "word": "night"}),
+                         "night")
 
     def test_the_rule_reads_hosts_not_substrings(self):
         self.assertTrue(service._is_wiktionary_url("https://fa.wiktionary.org/wiki/x"))

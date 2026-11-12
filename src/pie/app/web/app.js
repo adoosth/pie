@@ -2075,32 +2075,27 @@ function renderRoot(d, into, opts) {
    door to the citation, never a claim about the form (2026-11-08). */
 const recordSources = (rec) => ((rec && rec.sources) || []).filter((s) => s && (s.title || s.url));
 const isWiktionary = (s) => /wiktionary/i.test(`${(s && s.id) || ""} ${(s && s.title) || ""} ${(s && s.url) || ""}`);
-/* The Wiktionary mark opens a Wiktionary page, never another dictionary's
-   (admin, 2026-11-11: on a Persian word the mark opened vajehyab).  The
-   server resolves each record to the page it was read on; the mark takes a
-   Wiktionary one and nothing else — if the word has no Wiktionary page the
-   mark stays a mark, and the tooltip still names where the record came from. */
-const recordSourceUrl = (rec) => {
-  const rows = recordSources(rec);
-  const wikt = rows.find((s) => isWiktionary(s) && s.entry);
-  if (wikt) return wikt.entry;
-  /* A supplement's own page (a dictionary, an article) is still the page the
-     form was read on; it is only the site's front page that never answers. */
-  const page = rows.find((s) => s.entry);
-  return page ? page.entry : "";
-};
+/* A link is a page, not a site (admin, 2026-11-12): the server hands over one
+   row per page that is *recorded* — a Wiktionary article, Dehkhoda's own entry
+   for the word — and a word with no recorded page has none, so no icon is
+   drawn.  An icon that opens nothing said nothing. */
+const recordPages = (rec) => ((rec && rec.pages) || []).filter((p) => p && p.url);
 /* The citation lives in the record's own tooltip, not on a printed line under
    every word (2026-11-08): hovering the RECORDED badge (or the
    record the laws reproduce) names where the word was read. */
 const recordSourceText = (rec) => {
-  const rows = recordSources(rec);
+  const rows = recordPages(rec);
   /* Name the page the word was read on, not the site: "Wiktionary" alone is a
-     link to a front page and says nothing about this word (2026-11-08). A supplement's own title is already specific. */
+     link to a front page and says nothing about this word (2026-11-08).  A
+     dictionary's own entry is named the same way — Dehkhoda's page for کبود,
+     not "vajehyab.com" (admin, 2026-11-12). */
   const named = (s) => {
-    if (!s.entry) return s.title || "";
     try {
-      const page = decodeURIComponent(new URL(s.entry).pathname.replace(/^\/wiki\//, ""));
-      return `Wiktionary entry “${page}”`;
+      const parts = decodeURIComponent(new URL(s.url).pathname).split("/").filter(Boolean);
+      const page = (parts[parts.length - 1] || "").replace(/_/g, " ");
+      if (!page) return s.title || "";
+      if (s.kind === "wiktionary") return `Wiktionary entry “${page}”`;
+      return `${(s.title || "the dictionary").split(",")[0]} entry “${page}”`;
     } catch (e) { return s.title || ""; }
   };
   const titles = [...new Set(rows.map(named).filter(Boolean))].join(" · ");
@@ -2126,17 +2121,32 @@ const recordSourceTip = (rec, langName) => {
    2026-11-12). A real glyph, not a drawing, so the serifs survive at 11 px,
    where a stroked path would blur into a zigzag. */
 const wiktionaryIcon = `<span class="wmark" aria-hidden="true">W</span>`;
+const bookGlyph = `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"
+  fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+  stroke-linejoin="round"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H19v14.5H6a2 2 0 0 0-2 2V4.5Z"/><path d="M19 17.5V21H6a2 2 0 0 1-2-2"/></svg>`;
+const pageGlyph = `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"
+  fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+  stroke-linejoin="round"><path d="M6 3h8l5 5v13H6V3Z"/><path d="M14 3v5h5"/></svg>`;
+const pageMark = (p) => (p.kind === "wiktionary" ? wiktionaryIcon
+  : p.kind === "dictionary" ? bookGlyph : pageGlyph);
+/* The corner mark is the door, and it is one per recorded page (admin,
+   2026-11-12): the W of the word's Wiktionary article and the book of its
+   Dehkhoda entry stand side by side on the recorded word's corner, each opening
+   its own page.  No page recorded, no mark. */
 const recordTag = (rec, stage, langName, label = "recorded", tipOverride = "") => {
   if (!rec) return "";
   const tip = esc(tipOverride || recordSourceTip(rec, langName));
-  /* Only a Wiktionary page, ever (admin, 2026-11-11): a mark with no page to
-     open stays a mark, and its tooltip still names where the record came from.
-     The word beside it is already a link to its own page. */
-  const href = recordSourceUrl(rec);
-  const attrs = `class="recorddot" data-tip="${tip}" aria-label="${esc(label)}"`;
-  if (!href) return `<span ${attrs} role="img">${wiktionaryIcon}</span>`;
-  const ext = /^https?:/i.test(href) ? ' target="_blank" rel="noopener"' : "";
-  return `<a ${attrs} href="${esc(href)}"${ext}>${wiktionaryIcon}</a>`;
+  const marks = recordPages(rec).sort((a, b) =>
+    (a.kind === "wiktionary" ? 0 : 1) - (b.kind === "wiktionary" ? 0 : 1));
+  if (!marks.length) return "";
+  const links = marks.map((p) => {
+    const ext = /^https?:/i.test(p.url) ? ' target="_blank" rel="noopener"' : "";
+    const name = p.kind === "wiktionary" ? "Wiktionary"
+      : (p.title || "the dictionary").split(",")[0];
+    return `<a class="recorddot${p.kind === "wiktionary" ? " wikt" : ""}" href="${esc(p.url)}"${ext}
+      data-tip="${tip}" aria-label="${esc(`${label} — open ${name}`)}">${pageMark(p)}</a>`;
+  }).join("");
+  return `<span class="recordmarks">${links}</span>`;
 };
 /* A recorded word is a form with its record mark on the word's own corner and
    its reading underneath. The mark opens where the word was read; the word
@@ -4145,28 +4155,19 @@ const bookIcon = `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"
 const pageIcon = `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"
   fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
   stroke-linejoin="round"><path d="M6 3h8l5 5v13H6V3Z"/><path d="M14 3v5h5"/></svg>`;
-const sourcePage = (s) => {
-  if (s.entry) return s.entry;
-  /* A site's front page is not where this word was read, so a bare origin is
-     no link; a deep address (a dictionary's own section) is. */
-  if (/^https?:/i.test(s.url || "") && !/^https?:\/\/[^/]+\/?$/.test(s.url)) return s.url;
-  return "";
-};
 function sourceRow(d) {
-  const rows = recordSources({ w: d.word, evidence: d.evidence, sources: d.sources || [] });
+  const rows = recordPages(d);
   const seen = new Set();
   const items = [];
   for (const s of rows) {
-    const href = sourcePage(s);
-    const key = `${s.id || s.title}|${href}`;
-    if (!href || seen.has(key)) continue;
-    seen.add(key);
-    const wikt = isWiktionary(s);
+    if (!s.url || seen.has(s.url)) continue;
+    seen.add(s.url);
+    const wikt = s.kind === "wiktionary";
     const name = wikt ? "Wiktionary" : (s.title || "the dictionary").split(",")[0];
-    const tip = wikt ? `Open the Wiktionary entry for this word` : `${name} — where this word was read`;
-    const glyph = wikt ? wiktionaryIcon : /dictionary/i.test(s.kind || "") ? bookIcon : pageIcon;
-    const ext = /^https?:/i.test(href) ? ' target="_blank" rel="noopener"' : "";
-    items.push(`<a class="srcicon${wikt ? " wikt" : ""}" href="${esc(href)}"${ext}
+    const tip = wikt ? `Open the Wiktionary entry for this word` : `${name} — the word's own entry`;
+    const glyph = wikt ? wiktionaryIcon : (s.kind === "dictionary" ? bookIcon : pageIcon);
+    const ext = /^https?:/i.test(s.url) ? ' target="_blank" rel="noopener"' : "";
+    items.push(`<a class="srcicon${wikt ? " wikt" : ""}" href="${esc(s.url)}"${ext}
       data-tip="${esc(tip)}" aria-label="${esc(tip)}">${glyph}</a>`);
   }
   if (!items.length) return "";
@@ -4313,6 +4314,7 @@ function renderLoanLadder(d) {
     return rung + step;
   }).join("");
   const rec = { w: d.word, evidence: d.evidence, sources: d.sources || [],
+                pages: d.pages || [],
                 ipa: d.ipa, reading: d.reading, show_reading: d.show_reading,
                 reading_auto: d.reading_auto, reading_note: d.reading_note };
   const opts = readOpts(rec);
@@ -4325,7 +4327,7 @@ function renderLoanLadder(d) {
       </div>
       <div class="rail" aria-hidden="true"><i></i></div>
       <div class="rung-body">
-        <div class="rung-forms">${recordSources(rec).length
+        <div class="rung-forms">${recordPages(rec).length
           ? recordWord(rec, d.lang, d.lang_name, opts)
           : form(d.word, d.lang, opts)}</div>
         <div class="rung-rec"><span class="sense">${d.pos ? `${esc(d.pos)} · ` : ""}“${esc((d.gloss || [])[0] || "")}”</span></div>

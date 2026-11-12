@@ -257,8 +257,10 @@ class TestFrontendAssets(unittest.TestCase):
         css = text("style.css")
         self.assertIn('class="recword"', js)
         self.assertIn(".rung-forms .recword", css, "the mark is pinned to the recorded word")
-        self.assertIn('class="recorddot"', js, "the record's own mark")
-        self.assertIn(".recorddot { position: absolute", css, "it sits on the corner")
+        self.assertIn('class="recorddot', js, "the record's own mark")
+        self.assertIn(".recordmarks { position: absolute", css, "it sits on the corner")
+        self.assertIn(".recorddot.wikt", css, "a Wiktionary page keeps its own colour")
+        self.assertIn("recordPages(", js, "only a recorded page is drawn as a mark")
         self.assertIn(".recorddot .wmark", css, "the mark is Wiktionary's W, not a quotation mark")
         self.assertIn("Times New Roman", css,
                       "the W is serifed like Wikipedia's (admin, 2026-11-12)")
@@ -2777,21 +2779,26 @@ class TestWhereARecordWasRead(unittest.TestCase):
 
     def test_an_attested_headword_is_its_own_title(self):
         self.assertEqual(
-            service._wiktionary_entry_url({"word": "𐎺𐎼𐎣", "lang": "peo"}),
-            "https://en.wiktionary.org/wiki/%F0%90%8E%BA%F0%90%8E%BC%F0%90%8E%A3")
+            service._wiktionary_title({"word": "𐎺𐎼𐎣", "lang": "peo"}), "𐎺𐎼𐎣")
 
-    def test_a_reconstruction_keeps_its_namespace(self):
+    def test_a_reconstruction_is_titled_without_its_asterisk(self):
+        # Wiktionary's Reconstruction namespace is the star; a title that keeps
+        # it opens nothing (2026-11-12).
         self.assertEqual(
-            service._wiktionary_entry_url({"word": "madu", "lang": "peo", "recon": True}),
-            "https://en.wiktionary.org/wiki/Reconstruction:Old_Persian/madu")
+            service._wiktionary_title({"word": "*madu", "lang": "peo", "recon": True}),
+            "Reconstruction:Old Persian/madu")
 
     def test_a_proto_language_is_always_a_reconstruction(self):
-        url = service._wiktionary_entry_url({"word": "bōks", "lang": "gem-pro"})
-        self.assertEqual(url, "https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/b%C5%8Dks")
+        self.assertEqual(
+            service._wiktionary_title({"word": "bōks", "lang": "gem-pro"}),
+            "Reconstruction:Proto-Germanic/bōks")
 
-    def test_a_multi_word_language_uses_wiktionarys_underscore(self):
-        url = service._wiktionary_entry_url({"word": "bōk", "lang": "gmw-pro"})
-        self.assertTrue(url.endswith("/Reconstruction:Proto-West_Germanic/b%C5%8Dk"), url)
+    def test_the_three_piece_record_matches_wiktionaries_own_title(self):
+        # The page the index looks for and the page the reader opens are one
+        # title, and its language name is the registry's (2026-11-12).
+        from pie import wiktionary
+        self.assertEqual(wiktionary.en_page("gem-pro", "nahts")["url"],
+                         "https://en.wiktionary.org/wiki/Reconstruction:Proto-Germanic/nahts")
 
     def test_the_ladder_carries_the_page_with_the_citation(self):
         row = service.hierarchy("peo", "𐎺𐎼𐎣")

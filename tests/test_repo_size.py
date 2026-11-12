@@ -18,7 +18,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 # Measured 2026-11-12 after the meanings cache was packed: 459 tracked files,
-# 55.9 MB, the largest being data/lexicon/en.jsonl.gz at 12.4 MB.
+# 55.9 MB, the largest being data/lexicon/en.jsonl.gz at 12.4 MB.  The
+# Wiktionary-page ledgers added 2.6 MB over 37 files (v0.17.1).
 TRACKED_MB = 70
 ONE_FILE_MB = 15
 LOOSE_FILES = 2000

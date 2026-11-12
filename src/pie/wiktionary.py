@@ -19,11 +19,17 @@ from __future__ import annotations
 import gzip
 import json
 import re
+import zlib
 from functools import lru_cache
 
 from . import data
 
 LEDGER = data.DATA / "sources" / "fa_wiktionary.jsonl.gz"
+#: The English Wiktionary's pages for glossary headwords, one file per language,
+#: written by ``tools/en_wiktionary_index.py``.  Only pages that answered are
+#: stored: a word absent from the file has no *recorded* page, and the word page
+#: shows no icon for it (admin, 2026-11-12).
+EN_DIR = data.DATA / "sources" / "en_wiktionary"
 
 #: The headings a Persian Wiktionary page uses for the history of the word.
 ETYM_HEADINGS = ("ریشه لغت", "ریشهشناسی", "ریشه شناسی", "ریشه‌شناسی",
@@ -74,6 +80,37 @@ def note(lang: str, word: str) -> dict | None:
         "checked": row.get("checked") or "",
         "site": row.get("site") or "fa.wiktionary.org",
     }
+
+
+@lru_cache(maxsize=16)
+def en_pages(lang: str) -> dict[str, str]:
+    """The recorded English-Wiktionary page of each headword of one language."""
+    path = EN_DIR / f"{lang}.jsonl.gz"
+    if not path.exists():
+        return {}
+    out: dict[str, str] = {}
+    with gzip.open(path, "rt", encoding="utf-8") as fh:
+        try:
+            for line in fh:
+                line = line.strip()
+                if not line:
+                    continue
+                row = json.loads(line)
+                if row.get("status") == "found" and row.get("url"):
+                    out[row["word"]] = row["url"]
+        except (EOFError, OSError, zlib.error):
+            # A pass still writing the file leaves its last member open; what
+            # it has finished is already an answer (2026-11-12).
+            pass
+    return out
+
+
+def en_page(lang: str, word: str) -> dict | None:
+    """This word's English Wiktionary page, when one was recorded."""
+    url = en_pages(lang).get(word)
+    if not url:
+        return None
+    return {"url": url, "site": "en.wiktionary.org", "title": "Wiktionary"}
 
 
 def tally() -> dict[str, int]:
