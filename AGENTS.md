@@ -302,6 +302,20 @@ that keeps the `*` opens nothing).
   and mass nouns, …"), so it wraps under the piece into the strip every step
   reserves (`--bpad`, counted in `--spine`), never widening the row and never
   lifting a word off the line.
+- **Ablaut is a grade, never a law** (2026-11-12, admin's question about
+  *ters-): PIE roots have e-, o- and zero grades, and the formation's accent
+  decides which one stands — an unaccented root reduces, so the oxytone types
+  (*-tó-, *-nó-, *-yé-, *-sḱé-, *-néw-) take a zero-grade root (*tr̥s-tó-s,
+  *tr̥s-nó-s) and the causative *-éye- takes the o-grade (*tors-éye-ti), while
+  the root-accented *térs-e-tor keeps its *e; for a root of the shape *CeR the
+  zero grade is *CR̥. A law rewrites sounds between two stages, and grading
+  happens inside one formation, so this lives in
+  `data/morphology/ine-pro.yaml` under `grades:` (type, grade, note, sources)
+  and never in `data/rules/`. `service.root_grade()` **observes** the grade off
+  the two forms and only then attaches the documented note, and only for a type
+  the handbooks fix: *-ró- and *-ti- are not recorded, and a formation in them
+  carries no note. The grade is printed beside the root on the construction step
+  (`.cgrade`) and in a root page's "words built on it" list.
 - **The ladder is the whole explanation, and its order is fixed** (2026-11-07):
   `service.hierarchy()` → `renderHierarchy`, then the branch below, then the
   cognates. No separate derivation section, and no counterfactual table

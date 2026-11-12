@@ -1792,6 +1792,12 @@ function constructStep(level, i, linkTo, opts, nest = 0) {
       ? `<a class="cword" href="${esc(href)}">${esc(pf(show))}</a>`
       : `<span class="cword">${esc(pf(show))}</span>`;
     const reading = p.reading ? `<i class="cread">${esc(p.reading)}</i>` : "";
+    /* A root that stands in another grade in this formation says so beside
+       itself — *ters- under *tr̥s-tó-s is e-grade beside the word's r̥ — and the
+       hover gives the reason the handbooks give (admin, 2026-11-12). */
+    const grade = p.grade_label
+      ? `<span class="cgrade" data-tip="${esc(p.grade_note || p.grade_label)}">${esc(p.grade_label)}</span>`
+      : "";
     /* Every word on the tree says what it means; the one that says nothing
        because no entry holds it says that instead (admin, 2026-11-12). */
     const meaning = meaningOf(p.pos, p.gloss, p.bound)
@@ -1812,7 +1818,7 @@ function constructStep(level, i, linkTo, opts, nest = 0) {
     return `<div class="cterm${p.bound ? " bound" : ""}${first ? " first" : ""}" data-tip="${esc(tip)}">
         ${rail}
         <span class="cstack">
-          <span class="cwordrow"><span class="cform term ${scriptClass(p.form)} ${ev}">${body}${reading}</span></span>
+          <span class="cwordrow"><span class="cform term ${scriptClass(p.form)} ${ev}">${body}${reading}</span>${grade}</span>
           ${meaning ? `<span class="cgloss">${meaning}</span>` : ""}
         </span>
       </div>`;
@@ -2003,8 +2009,14 @@ function renderBuiltFrom(d) {
     const suffixes = (r.suffixes || []).length
       ? `<span class="built-suffix">${r.suffixes.map((s) => `+ <span class="mono">${esc(s)}</span>`).join(" ")}</span>`
       : "";
+    /* A formation whose root grade the handbooks fix says so here too: the
+       root of *tr̥stós stands in zero grade because *-tó- carries the accent
+       (2026-11-12). */
+    const grade = r.grade && r.grade.label
+      ? `<span class="cgrade" data-tip="${esc(r.grade.note || r.grade.label)}">${esc(r.grade.label)}</span>`
+      : "";
     return `<li><a class="builtword" href="${wordHref(d.lang, r.word, true)}">${esc(pf(r.word))}</a>
-      ${suffixes}<span class="sub">${esc([r.pos, r.gloss ? `“${r.gloss}”` : ""].filter(Boolean).join(" · "))}</span>
+      ${suffixes}${grade}<span class="sub">${esc([r.pos, r.gloss ? `“${r.gloss}”` : ""].filter(Boolean).join(" · "))}</span>
       ${r.confidence && r.confidence !== "stated" ? `<span class="badge">${esc(r.confidence)}</span>` : ""}</li>`;
   });
   return `<section class="builtfrom reveal">

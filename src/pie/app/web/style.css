@@ -825,6 +825,15 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
   font-style: normal; font-size: 12px; line-height: 1.35; color: var(--muted);
   white-space: nowrap; }
 .cterm .cgloss { padding-top: 1px; }
+/* The root's ablaut grade in a formation — `zero grade` beside *ters- under
+   *tr̥s-tó-s.  Ablaut is morphology, not a sound law, so it is a quiet label
+   with the handbook's reason on its hover, never a law chip (2026-11-12). */
+.cgrade { font-family: var(--sans, system-ui, sans-serif); font-style: normal;
+  font-size: 11px; letter-spacing: .02em; color: var(--muted); white-space: nowrap;
+  padding: 0 0 0 7px; align-self: center;
+  border-bottom: 1px dotted color-mix(in srgb, currentColor 45%, transparent); }
+.cterm .cgrade { margin-left: 8px; }
+.builtlist .cgrade { margin-left: 8px; }
 /* A suffix's gloss says what the suffix does, and a sentence does not fit in a
    word's width: it wraps under the piece and runs down into the strip the tree
    keeps for it, while the term row itself keeps its height — so a long gloss

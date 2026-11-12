@@ -1644,6 +1644,134 @@ def _compound_pieces(entry: dict, lang: str) -> list[dict]:
     return []
 
 
+# ------------------------------------------------------------- ablaut (grade)
+#: The vowels that carry ablaut, and the sonorants that can lose it and become
+#: the syllable instead (*-er- > *-r̥-).  Gradation is morphology: a law changes
+#: sounds between two stages, a grade is the shape a morpheme takes inside one
+#: formation (2026-11-12).
+_ABLAUT_VOWELS = frozenset("aeiouāēīōáéíóúā́ḗṓǖ")
+_SONORANTS = frozenset(("r", "l", "m", "n", "w", "y"))
+_SYLLABIC = {c + "\u0325" for c in ("r", "l", "m", "n")}
+_RING = "\u0325"
+
+
+def _bare_vowel(token: str) -> str:
+    """A vowel without its accent: *é and *e are one grade, *ḗ is another."""
+    return "".join(ch for ch in unicodedata.normalize("NFD", token)
+                   if ch not in "\u0300\u0301\u0304\u0306\u0308")
+
+
+def _grade_tokens(form: str) -> list[str]:
+    """The segments of a morpheme, without the accent marks that sit between."""
+    text = normalise_etymon(str(form or ""))
+    return [t for t in tokenize(text) if t not in ("ˈ", "ˌ")]
+
+
+def _nucleus(tokens: list[str]) -> int:
+    """Index of the first syllable of a morpheme — a vowel, or a syllabic
+    sonorant, because *n̥bʰrós has no vowel in its root at all."""
+    for index, token in enumerate(tokens):
+        if token in _ABLAUT_VOWELS or token in _SYLLABIC:
+            return index
+    return -1
+
+
+@lru_cache(maxsize=None)
+def _grades(lang: str) -> tuple:
+    """The formation types whose root grade the handbooks fix."""
+    path = data.DATA / "morphology" / f"{lang}.yaml"
+    if not path.exists():
+        return ()
+    raw = data._load_yaml(path) or {}
+    return tuple(raw.get("grades") or ())
+
+
+def _suffix_pattern(suffix: str) -> list[str]:
+    return [_bare_vowel(t) if t in _ABLAUT_VOWELS else t
+            for t in _grade_tokens(suffix)]
+
+
+def _grade_of_suffix(suffix: str, lang: str = "ine-pro") -> dict | None:
+    """What the handbooks say about the root of a formation in this suffix.
+
+    The pattern is the suffix's own opening segments with its vowel stripped of
+    the accent (*-tó- and *-to- are one entry), so *-tós and *-tó- match the
+    same row while *-tis does not: the vowel of the type is part of the type.
+    """
+    pattern = _suffix_pattern(suffix)
+    if not pattern:
+        return None
+    for row in _grades(lang):
+        want = _suffix_pattern(row.get("suffix") or "")
+        if want and len(pattern) >= len(want) and pattern[:len(want)] == want:
+            return row
+    return None
+
+
+def root_grade(base: str, word: str, suffixes: Iterable[str] = "",
+               lang: str = "ine-pro") -> dict | None:
+    """How the root's vowel stands in the formation that builds *word*.
+
+    Observed from the two forms, and explained only when the suffix is one whose
+    grade the handbooks state: *ters- + *-tó- gives *tr̥s-tó-s in zero grade
+    (*mer- + *-tó- > *mr̥-tó-s, *kʷer- + *-tó- > *kʷr̥-tó-), while *-éye- is the
+    o-grade causative (*tors-éye-ti).  A root of the shape *CeR loses the vowel
+    and its sonorant becomes the syllable, which is why the *e* of *ters- is an
+    *r̥* in *tr̥s-nó-s and still an *e* in the root-accented *térs-e-tor: the
+    grade belongs to the formation, not to the suffix (2026-11-12).
+    """
+    base_tokens = _grade_tokens(base)
+    word_tokens = _grade_tokens(word)
+    if not base_tokens or not word_tokens:
+        return None
+    index = _nucleus(base_tokens)
+    if index < 0:
+        return None
+    before, after = base_tokens[:index], base_tokens[index + 1:]
+    seen = ""
+    # Zero grade: the root's vowel is gone and the sonorant beside it is the
+    # syllable.  The sonorant may stand before the vowel (*nebʰ- > *n̥bʰrós) or
+    # after it (*ters- > *tr̥s-), and either way it wears the ring below.
+    if before and before[-1] in _SONORANTS:
+        head = before[:-1]
+        if (word_tokens[:len(head)] == head
+                and word_tokens[len(head):len(head) + 1] == [before[-1] + _RING]):
+            seen = "zero"
+    if not seen and after and after[0] in _SONORANTS:
+        if (word_tokens[:len(before)] == before
+                and word_tokens[len(before):len(before) + 1] == [after[0] + _RING]):
+            seen = "zero"
+    if not seen:
+        word_index = _nucleus(word_tokens)
+        if word_index < 0:
+            return None
+        have, want = _bare_vowel(word_tokens[word_index]), _bare_vowel(base_tokens[index])
+        if have == want:
+            return None                      # full grade: nothing to explain
+        if have in ("ē", "ō", "ā") and want in "eoa":
+            seen = "lengthened"
+        elif have == "o":
+            seen = "o"
+        elif have == "e":
+            seen = "e"
+        else:
+            return None
+    if isinstance(suffixes, str):
+        suffixes = [suffixes] if suffixes else []
+    for suffix in suffixes or []:
+        row = _grade_of_suffix(str(suffix), lang)
+        if row is None:
+            continue
+        if str(row.get("grade") or "") != seen:
+            continue                         # the type does not claim this grade
+        return {"grade": seen, "suffix": str(suffix),
+                "label": {"zero": "zero grade", "o": "o-grade",
+                          "e": "full grade", "lengthened": "lengthened grade"}[seen],
+                "note": str(row.get("note") or "").strip(),
+                "sources": list(row.get("sources") or [])}
+    return None
+
+
 def _rung_gloss(glosses: Iterable[str], limit: int = 110) -> str:
     """The first dictionary sense, short enough to sit on a rung."""
     text = next((g.strip() for g in glosses if g and g.strip()), "")
@@ -1947,6 +2075,19 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
         })
         if len(pieces) < 2:
             continue
+        # The root's grade in this formation, when the handbooks fix it: the
+        # step then says why *ters- stands above *tr̥s-tó-s as *e over *r̥ —
+        # the accent is on *-tó-, so the root is in zero grade (2026-11-12).
+        # Only a root is graded; a compound member is a word of its own, and a
+        # bound morpheme has no root to grade.
+        lead = pieces[0]
+        if not lead["bound"] and lead["pos"] == "root":
+            info = root_grade(lead["form"], form,
+                              [p["form"] for p in pieces[1:] if p["bound"]])
+            if info:
+                lead["grade"] = info["grade"]
+                lead["grade_label"] = info["label"]
+                lead["grade_note"] = info["note"]
         # The same analysis may be stored twice (one template run twice); it is
         # one construction, not two tabs.
         key = (str(row.get("kind") or ""), tuple(p["form"] for p in pieces))
@@ -6210,8 +6351,9 @@ def _construction_scan(lang: str) -> tuple:
         return _scan_constructions(lang)
 
     # One pass over a whole glossary, so it is kept on disk between runs like
-    # the parsed glossary itself (2026-11-12).
-    return data.cached(f"constructions-{lang}", 1,
+    # the parsed glossary itself (2026-11-12).  The version rises when the row
+    # gains a field the index must recompute (2: the root's grade).
+    return data.cached(f"constructions-{lang}", 2,
                        [data.LEXICON_DIR / f"{lang}.jsonl.gz",
                         data.LEXICON_DIR / f"{lang}.jsonl",
                         data.DATA / "constructions" / f"{lang}.yaml"], build)
@@ -6228,12 +6370,14 @@ def _scan_constructions(lang: str) -> tuple:
             key = (entry["word"], tuple(suffixes))
             if key not in seen.setdefault(base, set()):
                 seen[base].add(key)
+                grade = root_grade(base, entry["word"], suffixes)
                 by_base.setdefault(base, []).append({
                     "word": entry["word"],
                     "pos": entry.get("pos", ""),
                     "gloss": _rung_gloss(entry.get("gloss") or [], 80),
                     "suffixes": suffixes,
                     "confidence": row.get("confidence") or "stated",
+                    "grade": grade or None,
                 })
             for piece in row["suffixes"]:
                 rec = by_piece.setdefault(piece["form"], {

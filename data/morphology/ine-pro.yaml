@@ -152,6 +152,71 @@ suffixes:
 # records the same letters as a suffix entry (`-ós` "Forms adjectives from
 # verbal roots"), and the picker shows that entry beside this row, so a reader
 # can see both readings without either being passed off as the other.
+# The root's ablaut grade in a formation ------------------------------------
+# This is morphology, not a sound law: a law changes sounds between two stages
+# of a language, while a grade is a property of the formation the suffix makes.
+# The handbooks state one correlation behind all of these — the accented
+# syllable of a formation takes the full grade and an unaccented one reduces to
+# zero grade (Fortson, *Indo-European Language and Culture*, the ablaut
+# chapter; Sihler, *New Comparative Grammar*, on ablaut; Beekes, *Comparative
+# Indo-European Linguistics*) — and then list which suffix types are accented.
+# Only those types are recorded here: a suffix whose grade the handbooks do not
+# fix (*-ó- thematic adjectives, *-ti- abstracts) is left out, and a formation
+# that matches no row here carries no note.  `-er-` shows as `-r̥-` for the same
+# reason it disappears: the vowel is the grade, and a resonantal that loses it
+# becomes the syllable.
+grades:
+  - suffix: "-tó-"
+    grade: zero
+    note: >
+      The *-tó- verbal adjective and participle is oxytone — the accent stands
+      on the suffix — so the root is unaccented and stands in zero grade:
+      *mer- → *mr̥-tó-s, *ters- → *tr̥s-tó-s, *kʷer- → *kʷr̥-tó-. Nothing about
+      the suffix changes the vowel; the root's own grade is what changes, and a
+      root in *-eR- loses its vowel to *-R̥- (Fortson; Sihler; Beekes).
+    sources: [fortson-2004, sihler-1995, beekes-2011, wiktionary]
+  - suffix: "-nó-"
+    grade: zero
+    note: >
+      *-nó- makes an oxytone adjective or a passive participle, so the root
+      stands in zero grade: *gʷʰer- → *gʷʰr̥-nó-s, *ters- → *tr̥s-nó-s. This is
+      the same accent–ablaut correlation as *-tó- (Fortson; Sihler; Beekes).
+    sources: [fortson-2004, sihler-1995, beekes-2011, wiktionary]
+  - suffix: "-yé-"
+    grade: zero
+    note: >
+      The *-yé- present is accented on the suffix, so the root is in zero
+      grade: *mer- → *mr̥-yé-ti, *ters- → *tr̥s-yé-ti (Fortson on the present
+      classes; Sihler).
+    sources: [fortson-2004, sihler-1995, wiktionary]
+  - suffix: "-sḱé-"
+    grade: zero
+    note: >
+      The *-sḱé- present (the type of Greek *gignṓskō*) carries the accent on
+      the suffix, and the root it is built on stands in zero grade:
+      *gʷʰen- → *gʷʰn̥-sḱé-ti (Fortson; Sihler).
+    sources: [fortson-2004, sihler-1995]
+  - suffix: "-néw-"
+    grade: zero
+    note: >
+      The *-néw-/*-n- presents are suffix-accented and take a zero-grade root:
+      *h₃er- → *h₃r̥-néw-ti, *telh₂- → *tl̥-né-h₂-ti (Fortson; Sihler).
+    sources: [fortson-2004, sihler-1995]
+  - suffix: "-éye-"
+    grade: o
+    note: >
+      The causative-iterative in *-éye- is the one type that is regularly built
+      on the o-grade: *ters- → *tors-éye-ti, *sed- → *sod-éye-ti, *mon- →
+      *mon-éye-ti (Fortson on the causative; Sihler; Beekes).
+    sources: [fortson-2004, sihler-1995, beekes-2011, wiktionary]
+  - suffix: "-mo-"
+    grade: o
+    note: >
+      The *-mo- action nouns of the type *dʰóh₁-mo-s, *sóh₂-mo-s are built on
+      the o-grade of the root, like the other thematic *-o- derivatives of the
+      Caland system (Fortson; Beekes).
+    sources: [fortson-2004, beekes-2011]
+
 endings:
   - form: "-os"
     name: "nominative/accusative singular in the o- and s-stems"

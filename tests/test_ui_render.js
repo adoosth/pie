@@ -1495,6 +1495,24 @@ const longHtml = context.constructStep(Object.assign({}, causLevel,
 assert.ok(longHtml.includes("accent on the suffix"), "the whole of a long gloss is in the markup");
 assert.ok(!longHtml.includes("…"), "and none of it is replaced by an ellipsis");
 
+/* A root that stands in another grade in this formation says so beside itself
+   and carries the handbook's reason on its hover — *ters- above *tr̥s-tó-s
+   (admin, 2026-11-12, on why the *-e- becomes *r̥). */
+const gradedPiece = buildOf([
+  { form: "*ters-", gloss: "dry", pos: "root", reading: "", known: true,
+    lang: "ine-pro", bound: false, branch: null, grade: "zero",
+    grade_label: "zero grade",
+    grade_note: "The *-tó- verbal adjective is oxytone, so the root stands in zero grade." },
+  { form: "*-tós", gloss: "verbal adjective", pos: "suffix", reading: "", known: true,
+    lang: "ine-pro", bound: true, branch: null },
+]);
+const gradedHtml = context.constructStep(Object.assign({}, causLevel,
+  { built_as: gradedPiece, builds: [gradedPiece] }), 0, () => "#/x");
+assert.ok(gradedHtml.includes('<span class="cgrade" data-tip="The *-tó- verbal adjective is oxytone, so the root stands in zero grade.">zero grade</span>'),
+  "the root's grade stands beside it, with the reason on hover");
+assert.equal((gradedHtml.match(/class="cgrade"/g) || []).length, 1,
+  "and only the root is graded, not the suffix that selects the grade");
+
 /* A word in the chain that was itself built keeps its construction above it —
    *kit-ró-s is *keyt- + *-rós — in the same grammar, one size down: the
    diamond, the first piece beside it, the line, the `+`, the rest (admin,

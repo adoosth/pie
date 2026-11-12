@@ -2339,6 +2339,51 @@ class TestAConstructionIsATree(unittest.TestCase):
         self.assertIn("Caland", suffix["gloss"])
         self.assertEqual(pie_node["builds"][0]["pieces"][0]["gloss"], "to shine, glow")
 
+    def test_a_root_says_which_grade_it_stands_in(self):
+        # The reader asked why *ters- keeps its *e in *térs-e-tor but loses it
+        # to *r̥ in *tr̥s-nó-s and *tr̥s-tó-s.  It is ablaut, and the grade is a
+        # property of the formation: *-tó- and *-nó- are oxytone, so the root is
+        # unaccented and stands in zero grade; *-éye- is the o-grade causative
+        # (admin, 2026-11-12).  A law cannot say this — a law changes sounds
+        # between two stages, a grade is morphology — so the step states it.
+        levels = service.hierarchy("ine-pro", "tr̥stós")["levels"]
+        lead = levels[0]["builds"][0]["pieces"][0]
+        self.assertEqual((lead["form"], lead["grade"]), ("*ters-", "zero"))
+        self.assertEqual(lead["grade_label"], "zero grade")
+        self.assertIn("accent", lead["grade_note"])
+        self.assertIn("zero grade", lead["grade_note"])
+
+    def test_the_grade_is_observed_in_the_forms_and_explained_by_the_type(self):
+        # The grade is read off the two forms; the note is only added when the
+        # suffix is a type whose grade the handbooks fix.  A formation nothing
+        # documents stays silent rather than guessing.
+        zero = service.root_grade("ters-", "tr̥stós", ["-tós"])
+        self.assertEqual(zero["grade"], "zero")
+        self.assertEqual(zero["suffix"], "-tós")
+        self.assertTrue(zero["sources"])
+        # An *eR root loses the vowel and its sonorant becomes the syllable.
+        self.assertEqual(service.root_grade("mer-", "mr̥tós", ["-tós"])["grade"], "zero")
+        self.assertEqual(service.root_grade("gʷʰer-", "gʷʰr̥nós", ["-nós"])["grade"], "zero")
+        # *-ró- is a type whose grade the handbooks do not fix (*ud-rós is
+        # zero grade, *n̥bʰrós is too, but the type is not regular), so
+        # *n̥bʰrós carries no note: the row stays silent rather than inventing
+        # a reason.  What is not documented is not recorded.
+        self.assertIsNone(service.root_grade("nebʰ-", "n̥bʰrós", ["-rós"]))
+        # The causative is the o-grade type.
+        self.assertEqual(service.root_grade("ters-", "torséyeti", ["-éyeti"])["grade"], "o")
+        # The root-accented thematic present keeps its full grade, so nothing
+        # is said: *térs-e-tor is the plain root.
+        self.assertIsNone(service.root_grade("ters-", "térs-e-tor", []))
+        # *-ti- is a type whose grade the handbooks do not fix, so a formation
+        # in it carries no note even when the forms differ.
+        self.assertIsNone(service.root_grade("gʰes-", "gʰóstis", ["-tis"]))
+
+    def test_the_root_page_names_the_grade_of_every_formation_it_builds(self):
+        rows = {r["word"]: r.get("grade") for r in service.word("ine-pro", "ters-")["built_from"]}
+        self.assertEqual(rows["torséyeti"]["grade"], "o")
+        self.assertEqual(rows["tr̥syéti"]["grade"], "zero")
+        self.assertEqual(rows["tr̥stós"]["grade"], "zero")
+
     def test_a_gloss_keeps_no_colon_from_the_source(self):
         # Some rows were extracted with the dictionary's own colon still on the
         # sense (": type, form, lineage"); it is punctuation of the source, not

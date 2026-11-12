@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pie"
-version = "0.17.2"
+version = "0.17.3"
 description = "A rule-driven model of the Proto-Indo-European language family"
 readme = "README.md"
 license = { text = "GPL-3.0-or-later" }

@@ -3387,3 +3387,46 @@ reserves below its terms (`--bpad`), which is part of `--spine` so the diamond
 still sits exactly on the line. The strip is out of the term's own height, so a
 three-line gloss never lifts a word off the shared line, and nothing is
 truncated.
+
+## 2026-11-12 · ablaut is a grade, not a law
+
+The reader asked why *ters- keeps its *e in *térs-e-tor but shows *r̥ in
+*tr̥s-nó-s and *tr̥s-tó-s, and whether the model knows why. It does now, and the
+answer is not a sound law.
+
+**What the phenomenon is.** Indo-European roots have three grades — full (e),
+o-grade and zero — and the handbooks tie the choice to the accent of the
+formation: an accented syllable takes the full grade, an unaccented one
+reduces. A suffix that carries the accent (*-tó-, *-nó-, *-yé-, *-sḱé-, *-néw-)
+therefore leaves the root unaccented and in zero grade, which is why *tr̥s-tó-
+and *tr̥s-nó- have no *e; the causative *-éye- is the type that is built on the
+o-grade (*tors-éye-ti). For a root of the shape *CeR the zero grade is *CR̥ —
+the vowel goes and the sonorant becomes the syllable — so the *e of *ters- is
+an *r̥ there, while the root-accented *térs-e-tor keeps it. The clearest
+internal evidence is inside one paradigm: *térs-ti-s ~ *tr̥s-téy-s, *térs-u-s ~
+*tr̥s-éw-s (Fortson, *Indo-European Language and Culture*, the ablaut chapter;
+Sihler, *New Comparative Grammar*; Beekes, *Comparative Indo-European
+Linguistics*; the Wiktionary entry for *ters- lists the grades side by side).
+
+**Why it cannot be a rule in a ruleset.** A law in this repo rewrites sounds on
+the way from one stage to the next and is cited from a grammar of the
+transition; ablaut does not change a word between stages, it selects the shape
+a morpheme takes inside one formation, in the stage where the formation
+happens. Recording it as `ine-pro~x` would have been a category mistake, and
+recording it as a sound change would have turned *térs-e-tor into *tr̥s-e-tor.
+
+**What is recorded.** `data/morphology/ine-pro.yaml` now carries a `grades:`
+table: one row per formation type whose grade the handbooks fix, with the note
+that explains it and the sources. `service.root_grade()` reads the grade off
+the two forms (it must *observe* the *r̥ / *o / *e before it says anything) and
+adds the note only when the suffix matches a documented type. The grade then
+appears in two places: beside the root on the construction step (*ters- `zero
+grade`, hover: the accent is on *-tó-) and in the "words built on it" list of a
+root page (*torséyeti* o-grade, *tr̥syéti* and *tr̥stós* zero grade).
+
+**What is deliberately not recorded.** *-ró- and *-ti- are left out: *ud-rós
+and *n̥bʰrós are zero grade and *gʰóstis is o-grade, but the handbooks do not
+fix a grade for those types, so a formation in them carries no note. The model
+says nothing rather than guessing, which is the same rule the rest of the repo
+follows for laws.
+
