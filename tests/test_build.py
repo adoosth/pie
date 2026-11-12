@@ -312,3 +312,121 @@ class AncestorHomonym(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ConstructionCarries(unittest.TestCase):
+    """A registered construction may carry a word to "fully explained".
+
+    The rule the admin set on 2026-11-13: a word is fully explained when every
+    segment starts from a PIE etymon (or from outside the family), the exact
+    form is produced — by cited laws *or* by the record's own registered
+    construction — and the result agrees with what the literature records.
+    *andaswarō is the case: it is *anda- + *swarō, the pieces spell it, and
+    each piece's own record names a PIE etymon (*h₂entó-, *swer-).  A
+    construction never overrides a law, never counts when its pieces do not
+    spell the word, and never counts when a piece has nowhere to stand.
+    """
+
+    def test_andaswarō_is_carried_by_its_construction(self):
+        entry = service._lemma_entry("gem-pro", "andaswarō")
+        path = service.construction_path(entry, "gem-pro")
+        self.assertEqual(path["note"], "*anda- + *swarō")
+        self.assertTrue(path["exact"])
+        self.assertTrue(path["explained"])
+        self.assertEqual([p["form"] for p in path["pieces"]], ["*anda-", "*swarō"])
+        # Each piece's origin is the PIE form its own entry records.
+        self.assertEqual([p["origin"] for p in path["pieces"]],
+                         ["PIE *h₂entó", "PIE *swer"])
+
+    def test_the_page_says_fully_explained(self):
+        page = service.word("gem-pro", "andaswarō")
+        self.assertEqual(page["category"]["category"], "full")
+        self.assertEqual(page["category"]["reason"], "construction of *anda- + *swarō")
+
+    def test_a_piece_with_no_pie_origin_is_not_green(self):
+        # *nonsense* is "non- + sense": sense reaches PIE, non- does not.
+        entry = service._lemma_entry("en", "nonsense")
+        path = service.construction_path(entry, "en")
+        self.assertTrue(path["exact"])
+        self.assertFalse(path["explained"])
+        self.assertEqual(path["unexplained"], ["non-"])
+        page = service.word("en", "nonsense")["category"]
+        self.assertEqual(page["category"], "partial")
+        # The worklist names the piece that has nowhere to stand.
+        self.assertEqual(page["reason"],
+                         "construction of non- + sense, but non- has no recorded origin")
+
+    def test_a_word_whose_history_is_inheritance_is_not_a_construction(self):
+        # blackbird is inherited from Middle English blakebird; "equivalent to
+        # black + bird" is a surface analysis, not the word's construction.
+        entry = service._lemma_entry("en", "blackbird")
+        self.assertIsNone(service.construction_path(entry, "en"))
+        self.assertEqual(service.word("en", "blackbird")["category"]["category"],
+                         "partial")
+
+    def test_pieces_that_do_not_spell_the_word_do_not_count(self):
+        # *aiganaz is a one-piece derivation from *aiganą: the construction
+        # states the base, not a spelling, so it cannot carry the form.
+        entry = service._lemma_entry("gem-pro", "aiganaz")
+        path = service.construction_path(entry, "gem-pro")
+        self.assertFalse(path["exact"])
+
+    def test_a_suffix_written_without_its_hyphen_still_finds_the_suffix(self):
+        # growth's row names the kind instead ("th", glossed "abstract nominal
+        # suffix"); the lookup must be -th, not the unrelated word th.
+        entry = service._lemma_entry("en", "growth")
+        path = service.construction_path(entry, "en")
+        self.assertEqual([p["form"] for p in path["pieces"]], ["grow", "-th"])
+        self.assertEqual(path["pieces"][1]["origin"], "PIE *iteh₂")
+
+    def test_verdict_never_greens_a_lawless_word_without_a_construction(self):
+        from pie import categories
+        self.assertEqual(
+            categories.verdict(recorded=True, matched_by=None,
+                               pie_linked=True)["category"], "partial")
+        self.assertEqual(
+            categories.verdict(recorded=True, matched_by="joined",
+                               pie_linked=True)["category"], "partial")
+
+    def test_verdict_makes_an_exact_construction_dark_green(self):
+        from pie import categories
+        row = categories.verdict(
+            recorded=True, matched_by="joined",
+            construction={"note": "*a + *b", "exact": True,
+                          "explained": True, "stated": True})
+        self.assertEqual(row["category"], "full")
+        self.assertEqual(row["reason"], "construction of *a + *b")
+
+    def test_a_recorded_step_that_disagrees_is_light_green(self):
+        from pie import categories
+        row = categories.verdict(
+            recorded=True, matched_by="joined",
+            mismatched_steps=["Proto-Germanic"],
+            construction={"note": "*a + *b", "exact": True,
+                          "explained": True, "stated": True})
+        self.assertEqual(row["category"], "adjusted")
+        self.assertIn("construction of *a + *b", row["reason"])
+        self.assertIn("Proto-Germanic", row["reason"])
+
+    def test_our_own_composition_needs_the_approval_rule(self):
+        from pie import categories
+        row = categories.verdict(
+            recorded=True, matched_by="joined", approved=False,
+            construction={"note": "*a + *b", "exact": True,
+                          "explained": True, "stated": False})
+        self.assertEqual(row["category"], "partial")
+        row = categories.verdict(
+            recorded=True, matched_by="joined", approved=True,
+            construction={"note": "*a + *b", "exact": True,
+                          "explained": True, "stated": False})
+        self.assertEqual(row["category"], "adjusted")
+
+    def test_a_construction_does_not_override_a_law(self):
+        from pie import categories
+        # matched_by == "laws" never reaches the construction branch.
+        row = categories.verdict(
+            recorded=True, matched_by="laws", pie_linked=True, from_pie=True,
+            construction={"note": "*a + *b", "exact": True,
+                          "explained": True, "stated": True})
+        self.assertEqual(row["category"], "full")
+        self.assertNotIn("construction", row["reason"])

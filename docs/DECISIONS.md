@@ -1,3 +1,85 @@
+## 2026-11-13 — a registered construction may carry a word to "fully explained"
+
+**What.** The reader looked at `gem-pro/andaswarō`, saw that nothing was
+inconsistent — *anda- "facing" and *swarō "oath" both climb to Proto-Indo-
+European, and the record says the word is their sum — and asked that its band
+say so (admin, 2026-11-13): *"andaswarō should be fully explained, because all
+its segments start from PIE or a non-PIE language, and the exact word is
+produced by sound laws in the engine, as well as valid registered constructions
+of each stage."* The only difference from the rule of 2026-11-09 is that a
+**registered construction** is allowed in a green path; everything else — a
+recorded origin, an exact form, every recorded step agreeing, nothing invented —
+stands unchanged.
+
+**The rule, in one place.** Every segment starts from a PIE etymon or from a
+non-PIE language; the exact recorded form is produced by the engine, by cited
+laws **or** by the record's own registered constructions of each stage; and the
+result matches what the literature records. Same conditions but the result is
+not exactly what the literature records → *fully explained, with adjustments*
+(light green). It is restated at the top of "Bands, colours and review" in
+`AGENTS.md`, and the paragraphs that said it in three places now point there.
+
+**How a construction is measured** (`service.construction_path`). The row is the
+one `_own_construction` reads — `built_as` from the record and the reduplication
+sentences — so a word the record does not state as a construction has none, and
+the surface analysis of a word whose history is an inheritance (English
+*blackbird*, "equivalent to black + bird") is still refused. Then:
+
+1. **the pieces spell the headword.** Their recorded spellings, in order, joined
+   by the stage's registered linker where its morphology has one, must equal the
+   word; the two ways of writing stress (a dictionary's acute, the engine's `ˈ`)
+   are one word, and nothing else is forgiven. A one-piece `derivation` names a
+   base, not a spelling, so it cannot carry a form — *aiganaz stays as it was.
+2. **every piece has somewhere to stand.** It is the PIE etymon itself, a word
+   whose own record *names* a PIE etymon (*anda- says "from pre-Germanic
+   *h₂entó- … from the PIE root noun *h₂énts"*; *swarō says *swer-*), a non-PIE
+   source, or a morpheme the stage's own morphology table registers (`*-s` is
+   the athematic nominative singular). A dictionary affix is a word with a
+   history of its own and is judged by that history: *astro-* names Greek and
+   nothing above it, so *astronaut* stays partial. A morpheme the table does not
+   register is not explained either: *growth* = *grow* + *-th* passes because
+   *-th* really is from PIE *-iteh₂, not because it ends in a hyphen.
+3. **the record's row is the one that counts.** A construction this model
+   composes itself never exists here; if one ever does, it is held to the
+   approval rule (`data/adjusted.yaml`), exactly like a law of our own.
+
+**Where it lands.** `categories.verdict` takes one new fact, `construction`,
+and reaches it only when nothing else did (`matched_by` is `None` or `joined`):
+a law always wins, and `identity`/`bound` never turn green this way. Exact
+against the record is dark green; a recorded intermediate that disagrees is
+light green, with the stage named (`step_row`). Both the page (`_category_of`)
+and the counter (`tools/coverage.py`) call the same helper, so a colour cannot
+differ between the glossary and the word's own page; the counter also reports
+how much of the green rests on a construction (`constructed`).
+
+**What moved.** Read over the whole corpus, 917 entries are carried by a
+construction that spells them from explained pieces — 270 Persian, 223 English,
+108 Proto-West-Germanic, 76 Sanskrit, 69 Proto-Germanic, 39 Proto-Celtic, 35
+Gothic, 29 Proto-Indo-European. Of those, **573 are attested words in the six
+bands**, and the bands rise from **full 518 to 1,091 and explained 665 to
+1,238** (English 181, Persian 256, Sanskrit 277, Gothic 39, German 4). The
+counter reports the figure beside them (`constructed`: 573 — every one of
+English's 181 full words). Nothing else moves: a word whose construction
+states a piece with no recorded origin, or which does not spell the headword,
+keeps its band and now says why (`construction of non- + sense, but non- has no
+recorded origin`; `construction of Ytterby + -ium does not spell the word`).
+`gem-pro/andaswarō` reads **fully explained — construction of *anda- +
+*swarō**. Two notation faults were found while reading those reasons and fixed
+in the same pass: a capital's place in a proper name and the Persian tatweel
+that writes a compound's seam.
+
+**Tests.** `tests/test_build.ConstructionCarries`: *andaswarō is carried by its
+construction and its page says so; *nonsense* is not (non- has no PIE origin);
+*blackbird* has no construction at all (its history is inheritance); *aiganaz's
+one-piece derivation cannot spell a form; the hyphen a row omits is restored
+before the lookup (*-th*); and the verdict never greens a lawless word without
+a construction, never lets one override a law, names the stage when a recorded
+step disagrees, and holds our own composition to approval.
+
+**Docs.** `AGENTS.md` now opens with what the project is, states "fully
+explained" once, and lists the two shapes of a green path; the repeated
+statements of the same rule in Ground rules and in the bands section are gone.
+
 ## 2026-11-12 — reduplication is a formation, and a line begins at its oldest mark
 
 **What.** `ine-pro/h₂eh₂óyḱe` carried the sentence "Reduplicated stative of the

@@ -3036,6 +3036,205 @@ def _reaches_ancestor(stage: str, form: str, wanted: tuple[str, str],
     return False
 
 
+# ------------------------------------------------- a construction that carries
+#: Parts of speech that name a morpheme, not a word: a piece of a construction
+#: with one of these is bound and needs no ancestry of its own — the stage's
+#: morphology is where it stands (*-s is a nominative ending, not a word that
+#: came from Proto-Indo-European).
+_BOUND_POS = frozenset({"prefix", "suffix", "infix", "interfix", "circumfix",
+                        "ending", "suffixoid", "prefixoid"})
+
+
+@lru_cache(maxsize=None)
+def _bound_forms(stage: str) -> frozenset[str]:
+    """The morphemes this stage's own morphology table registers.
+
+    ``-s`` is the athematic nominative singular in `data/morphology/ine-pro.yaml`
+    and ``-naut`` is only an English dictionary headword: the first is the
+    stage's grammar and the second is a word with a history of its own, so only
+    the first is a piece that needs no ancestry (admin, 2026-11-13).
+    """
+    table = morphology(stage) or {}
+    out = set()
+    for row in list(table.get("suffixes") or []) + list(table.get("endings") or []):
+        key = row.get("form") or row.get("id")
+        if key:
+            out.add(normalise_etymon(str(key)))
+    return frozenset(out)
+
+
+def _piece_text(kind: str, index: int, count: int, form: str, gloss: str) -> str:
+    """The piece as the record means it, hyphen and all.
+
+    An arithmetic writes a bound morpheme with its hyphen (``-th``), but the
+    older import dropped it for a row that names the kind instead
+    (``growth`` = ``grow`` + ``th``, glossed "abstract nominal suffix").  The
+    gloss and the row's kind say it is a morpheme, so the lookup has to be
+    ``-th`` and not ``th`` — the word that happens to be spelled *th* is a
+    different entry with a different history.
+    """
+    written = str(form or "").strip()
+    if not written or written[:1] == "-" or written[-1:] == "-":
+        return written
+    named = bool(re.search(r"\b(?:suffix|prefix|infix|ending)\b", str(gloss or ""), re.I))
+    if kind == "suffix" and index == count - 1:
+        named = True
+    if kind == "prefix" and index == 0:
+        named = True
+    return ("-" + written) if named else written
+
+
+def _piece_origin(stage: str, form: str, chain: list[str]) -> dict:
+    """Where one piece of a construction stands: a PIE etymon, a non-PIE
+    source, a registered morpheme — or nowhere this model can name.
+
+    The admin's test is that every segment *start from PIE or a non-PIE
+    language* (2026-11-13), so a piece is explained when:
+
+    * its own record names a Proto-Indo-European etymon — the form it descends
+      from, however many stages the sentence lists above it (*anda-, whose
+      entry says "from pre-Germanic *h₂entó- … from the PIE root noun
+      *h₂énts"); or
+    * it is the Proto-Indo-European etymon itself; or
+    * it comes from outside the family; or
+    * it is a morpheme the stage's own morphology table registers (*-s is the
+      athematic nominative singular), which is grammar rather than a word and
+      has no origin to trace.
+
+    An affix a dictionary merely heads (-naut, -th) is a word or a stem with a
+    history of its own, so it is judged by that history like any other piece,
+    and a morpheme the stage's table does not register is not explained.
+    """
+    raw = str(form or "").strip()
+    key = normalise_etymon(raw)
+    out = {"form": raw, "stage": stage, "origin": "", "why": "", "explained": False}
+    if not key:
+        out["why"] = "no form"
+        return out
+    bound = raw[:1] == "-" or raw[-1:] == "-"
+    record = _lemma_entry(stage, raw) if stage != chain[0] else None
+    if record is not None and bound:
+        # The lookup retries a bound spelling without its hyphen (a notation
+        # rule written for reconstructions), so it can land on a different
+        # word: ``-th`` must not become the pronoun *th*.  A bound piece is
+        # answered only by a bound headword.
+        head = str(record.get("word") or "")
+        if not (head[:1] == "-" or head[-1:] == "-"
+                or str(record.get("pos") or "").lower() in _BOUND_POS):
+            record = None
+    if record is not None:
+        pie = _pie_form(record)
+        if pie:
+            out.update(origin=f"PIE *{pie}", why="a recorded PIE etymon",
+                       explained=True)
+            return out
+        from . import loans
+        try:
+            if loans.classify(record, stage) == "non_ie":
+                out.update(origin="outside the family", why="a non-PIE source",
+                           explained=True)
+                return out
+        except Exception:
+            pass
+    if key in _bound_forms(stage) and (bound or stage == chain[0]):
+        out.update(origin="registered morpheme", why="a morpheme, not a word",
+                   explained=True)
+        return out
+    if stage == chain[0]:
+        out.update(origin=f"PIE *{key}", why="the Proto-Indo-European etymon",
+                   explained=True)
+        return out
+    if bound:
+        out["why"] = "a morpheme the stage does not register"
+    else:
+        out["why"] = ("no entry for this piece" if record is None
+                      else "no recorded PIE origin above it")
+    return out
+
+
+def _joined_form(stage: str, kind: str, pieces: list[str]) -> str:
+    """The form the pieces make when the stage joins them, as it writes them.
+
+    A join may take a linker the stage's morphology registers
+    (``morphology(stage).joining``); every other kind of row writes its pieces
+    in the order the word wears them, so the join is their concatenation.  A
+    one-piece formation names an ancestor form, not a spelling, and is not
+    reproduced this way — it returns the piece itself and never equals the
+    word unless the word *is* that form.
+    """
+    if len(pieces) <= 1:
+        return pieces[0] if pieces else ""
+    info = (morphology(stage) or {}).get("joining") or {}
+    linker = str(info.get("linker") or "")
+    out = pieces[0]
+    for piece in pieces[1:]:
+        out += linker + piece
+    return out
+
+
+def construction_path(entry: dict, lang: str, chain: list[str] | None = None) -> dict | None:
+    """Whether a registered construction carries this word to its recorded form.
+
+    A word may be made rather than inherited: ``andaswarō`` is ``*anda-`` +
+    ``*swarō``, and neither piece has to become the whole word by a sound law.
+    The construction is the record's own arithmetic, so it can stand in for the
+    laws in a green path — but only when it really produces the word and every
+    piece has somewhere to stand (admin, 2026-11-13):
+
+    * the pieces, written in order, spell the recorded headword exactly
+      (``exact``), and
+    * each piece is explained — the PIE etymon itself, a non-PIE source, or a
+      morpheme the stage's morphology registers (``explained``).
+
+    Nothing is invented: the row is the one ``_own_construction`` reads from the
+    record (``built_as`` and the reduplication sentences), a word the record
+    does not state as a construction gets ``None``, and a piece with no
+    recorded origin makes the whole construction fall short instead of being
+    papered over.  The verdict decides what a passing construction is worth;
+    this function only measures.
+    """
+    chain = list(chain or data.derivation_chain(lang))
+    if not chain:
+        return None
+    row = _own_construction(entry, chain)
+    if not row:
+        return None
+    kind = str(row.get("kind") or "formation")
+    raw = [piece or [""] for piece in row.get("pieces") or []]
+    pieces = [_piece_text(kind, index, len(raw), str(p[0] or ""),
+                          str(p[1] if len(p) > 1 else ""))
+              for index, p in enumerate(raw)]
+    if not pieces:
+        return None
+    # A dictionary writes a bound piece with its hyphen; Persian writes the
+    # seam of a compound with the tatweel (سامان + ـه), which is the same
+    # notation and has to come off before the pieces are joined.
+    written = [normalise_etymon(piece.replace("\u0640", "-")) or piece
+               for piece in pieces]
+    composed = _joined_form(row["stage"], kind, written)
+    origins = [_piece_origin(row["stage"], piece, chain) for piece in pieces]
+    word = normalise_etymon(str(entry.get("word") or ""))
+    return {
+        "kind": kind,
+        "stage": row["stage"],
+        "stage_name": _lang(row["stage"]).get("name", row["stage"]),
+        "note": " + ".join(pieces),
+        "form": composed,
+        # The pieces must spell the headword.  Two conventions are writing, not
+        # sound, and are set aside the way the rest of the model sets them
+        # aside: a capital's place in a proper name (ytterbium = Ytterby + -ium,
+        # Greenleigh = green + -leigh) and the two ways of writing stress (a
+        # dictionary's acute, the engine's ˈ).  Nothing else is forgiven.
+        "exact": bool(composed) and (
+            composed.casefold() == word.casefold()
+            or stress_only(composed.casefold(), word.casefold())),
+        "stated": True,
+        "pieces": origins,
+        "unexplained": [o["form"] for o in origins if not o["explained"]],
+        "explained": bool(origins) and all(o["explained"] for o in origins),
+    }
+
+
 def ancestor_starts(entry: dict, chain: list[str],
                     keep_formed: bool = False) -> list[tuple[str, str]]:
     """Every usable ancestor form recorded for this word, PIE first.
@@ -3352,10 +3551,20 @@ def _category_of(entry: dict, chain: list[str], exact: dict | None,
             if seam and seam.get("verdict") == "unique":
                 built_from = tuple(seam["parts"])
                 built_note = compounds.seam_note(entry)
+    # A word the record builds out of its own words is not a last mile from an
+    # ancestor: the construction is how it was made.  Measured here so the page
+    # and the counter read one set of facts (admin, 2026-11-13).
+    construction = None
+    if exact is None and not written_match and not cited_stem:
+        try:
+            construction = construction_path(entry, entry.get("lang") or "", chain)
+        except Exception:
+            construction = None
     verdict = cats.verdict(
         recorded=bool(entry.get("anc") or entry.get("etym")),
         built_from=built_from,
         built_note=built_note,
+        construction=construction,
         # `loans.classify` speaks of "non_ie"; the band is "non_pie".  Comparing
         # the two vocabularies directly made every Arabic loan a *partial* word
         # on its own page while the counter counted it non-PIE (fixed 2026-11-09).

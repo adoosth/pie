@@ -13,14 +13,15 @@ word, with the colours set on 2026-11-09:
 ======================  ==========  ==========================================
 category                colour      definition
 ======================  ==========  ==========================================
-``full``                dark green  a PIE etymon recorded in the literature,
-                                    derived by cited laws with no change of
-                                    ours, reproducing the attested form exactly,
-                                    from a chain the record itself states
-``adjusted``            light green  the same, but at least one applied rule is an
-                                    adjustment of ours that the project approved,
-                                    with a report file for the law and one for
-                                    the word
+``full``                dark green  a recorded origin reproduced exactly with no
+                                    change of ours: a PIE etymon carried down by
+                                    cited laws, or the record's own registered
+                                    construction of explained pieces, from a
+                                    chain the record itself states
+``adjusted``            light green  the same, but a recorded intermediate disagrees,
+                                    or at least one applied rule is an approved
+                                    adjustment of ours (a report for the law and
+                                    one for the word)
 ``partial``             yellow      a recorded chain from PIE that the engine
                                     does not reproduce exactly — the worklist
 ``unexplained``         red         no recorded etymology at all
@@ -57,15 +58,17 @@ CATEGORIES: dict[str, dict] = {
         "label": "fully explained",
         "colour": "#1b5e20",
         "short": "dark green",
-        "definition": ("A recorded PIE etymon carried by cited laws to the attested "
-                       "form, exactly, with every recorded intermediate matching."),
+        "definition": ("A recorded origin — a PIE etymon carried by cited laws, or "
+                       "the record's own registered construction of explained "
+                       "pieces — reproduced exactly, every recorded intermediate "
+                       "matching."),
     },
     "adjusted": {
         "label": "fully explained, with adjustments",
         "colour": "#8bc34a",
         "short": "light green",
-        "definition": ("The same, but a recorded intermediate disagrees, or one step is "
-                       "an approved adjustment of ours."),
+        "definition": ("The same path, but a recorded intermediate disagrees, or one "
+                       "step is an approved adjustment of ours."),
     },
     "partial": {
         "label": "partially explained",
@@ -166,7 +169,8 @@ def verdict(*, recorded: bool, non_ie: bool = False, ie_loan: bool = False,
             matched_by: str | None = None, tiers=(), approved: bool = False,
             pie_linked: bool = False, mismatched_steps=(),
             from_pie: bool = False, start_name: str = "",
-            built_from=(), built_note: str = "") -> dict:
+            built_from=(), built_note: str = "",
+            construction: dict | None = None) -> dict:
     """One word's category from the facts the counter measured.
 
     ``matched_by`` is the strongest thing that worked: ``laws`` (the derived form
@@ -187,6 +191,16 @@ def verdict(*, recorded: bool, non_ie: bool = False, ie_loan: bool = False,
 
     ``pie_linked`` says the *record* reaches a PIE etymon at all.  Both default
     to **False**: a caller that has not established them has not earned green.
+
+    ``construction`` is the word's own registered construction, measured by
+    ``service.construction_path``: the record states the word is built from
+    pieces, those pieces spell it, and each piece stands somewhere (the PIE
+    etymon, a non-PIE source, or a morpheme the stage registers).  A
+    construction is a derivation of a different shape — the record's arithmetic
+    in place of a sound law — so it may carry a word to green on the same
+    terms as the laws: exact against the record is dark green, a recorded step
+    that disagrees is light green, and both need the construction to be the
+    record's own (admin, 2026-11-13).
     """
     if non_ie:
         return {"category": "non_pie", "reason": "non-ie source"}
@@ -205,6 +219,45 @@ def verdict(*, recorded: bool, non_ie: bool = False, ie_loan: bool = False,
 
     used = set(tiers or ())
     ours = used & OUR_TIERS
+
+    # A word the record builds out of its own words is derived by that
+    # construction, not by a law: *andaswarō is *anda- + *swarō, and neither
+    # piece becomes the whole word.  The construction is allowed in a green
+    # path on the same terms as a law — the pieces spell the headword, each
+    # piece has a recorded origin, and the record states the row — so the only
+    # thing that changes here is *how* the word is produced (admin, 2026-11-13).
+    # A construction this model composed itself is not the record's, so it is
+    # held to the same approval rule as our own laws.
+    built_row = construction or {}
+    if (matched_by in (None, "joined") and built_row.get("exact")
+            and built_row.get("explained")):
+        note = built_row.get("note") or "its own words"
+        if not built_row.get("stated", True):
+            if approved:
+                return {"category": "adjusted",
+                        "reason": f"our composition, approved: {note}"}
+            return {"category": "partial",
+                    "reason": f"our composition, not the record's: {note}"}
+        if mismatched_steps:
+            row = step_row(mismatched_steps)
+            row["reason"] = f"construction of {note}; " + row["reason"]
+            return row
+        return {"category": "full", "reason": f"construction of {note}"}
+
+    # A construction that cannot carry the word still says why: the worklist is
+    # more useful when a row reads "construction of X does not spell the word"
+    # or names the piece with no recorded origin than when it says "no rule
+    # applied" about a word whose record states exactly how it was made.
+    if matched_by in (None, "joined") and built_row.get("pieces"):
+        note = built_row.get("note") or "its own words"
+        if not built_row.get("exact"):
+            return {"category": "partial",
+                    "reason": f"construction of {note} does not spell the word"}
+        short = [str(p) for p in built_row.get("unexplained") or []]
+        if short:
+            return {"category": "partial",
+                    "reason": (f"construction of {note}, but "
+                               f"{', '.join(short)} has no recorded origin")}
 
     if matched_by in (None, "identity", "joined", "bound"):
         reason = {"identity": "unchanged ancestor (no law applied)",

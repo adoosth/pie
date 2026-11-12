@@ -1,8 +1,8 @@
 {
  "schema": 2,
- "generated": "2026-11-12",
+ "generated": "2026-11-13",
  "inputs": {
-  "lexicon": "a5e2759b33e889106486df3e91b217d8042e5622",
+  "lexicon": "8ac5ad89350d62369f146e9ab2849890a9f28ed2",
   "rules": "f24361f84c2a89d83a7d64e581aa8a3a67ebdff3"
  },
  "tiers": "all",
@@ -33,22 +33,22 @@
    "pathway": 0,
    "categories": {
     "counts": {
-     "full": 0,
+     "full": 1,
      "adjusted": 0,
-     "partial": 286,
+     "partial": 285,
      "unexplained": 0,
      "non_pie": 3,
      "ie_loan": 0,
      "built": 0
     },
     "total": 289,
-    "explained": 0,
-    "explained_rate": 0.0,
-    "of_glossary": 0.0,
+    "explained": 1,
+    "explained_rate": 0.35,
+    "of_glossary": 0.35,
     "share": {
-     "full": 0.0,
+     "full": 0.35,
      "adjusted": 0.0,
-     "partial": 98.96,
+     "partial": 98.62,
      "unexplained": 0.0,
      "non_pie": 1.04,
      "ie_loan": 0.0,
@@ -57,12 +57,38 @@
    },
    "category_reasons": {
     "partial: reproduced only from a later recorded ancestor, not from the PIE etymon": 228,
-    "partial: no rule applied": 41,
     "partial: recorded outside the PIE chain": 17,
-    "non_pie: non-ie source": 3
+    "non_pie: non-ie source": 3,
+    "partial: no rule applied": 3,
+    "partial: construction of 𒂊𒌍𒍣 + -𒉡𒊻𒍣 does not spell the word": 1,
+    "full: construction of 𒂊𒌍𒄯 + -𒉡𒊻𒍣": 1,
+    "partial: construction of 𒅈𒀸𒍣 + -𒉡𒊻𒍣 does not spell the word": 1,
+    "partial: construction of 𒀀𒀸𒋗𒍑 + -𒅀𒊍𒍣 does not spell the word": 1,
+    "partial: construction of 𒆠𒅖𒍣 + -𒉡𒊻𒍣 does not spell the word": 1,
+    "partial: construction of 𒄯𒀝𒍣 + -𒀸 does not spell the word": 1,
+    "partial: construction of 𒇻𒊌𒅗𒊑 + -𒉡𒊻𒍣 does not spell the word": 1,
+    "partial: construction of 𒄯𒀊𒍣 + -𒀸 does not spell the word": 1,
+    "partial: construction of 𒄯𒆠𒅖 + -𒉡𒊻𒍣 does not spell the word": 1,
+    "partial: construction of 𒈥𒊭𒀭𒍝 + -𒌍𒍣 does not spell the word": 1,
+    "partial: construction of 𒄩𒌅𒊌𒍣 + -𒀸 does not spell the word": 1,
+    "partial: construction of 𒄩𒌅𒊌𒍣 + -𒀀𒀀𒋻 does not spell the word": 1,
+    "partial: construction of 𒄯𒆠𒅖 + -𒌍𒍣 does not spell the word": 1,
+    "partial: construction of 𒆪𒂊𒅕𒍣 + -𒊻𒍣𒅖 does not spell the word": 1,
+    "partial: construction of 𒆪𒂊𒅕𒍣 + -𒌍𒊬 does not spell the word": 1,
+    "partial: construction of 𒍝𒈠𒀭𒆳 + -𒉿𒀭𒍝 does not spell the word": 1,
+    "partial: construction of 𒆠𒅖𒍣 + -𒊑𒅖 does not spell the word": 1,
+    "partial: construction of 𒂊𒆪𒍣 + -𒋻𒊏𒀸 does not spell the word": 1,
+    "partial: construction of 𒄷𒅅𒍣 + -𒌍𒊬 does not spell the word": 1,
+    "partial: construction of 𒉿𒀠𒄴𒍣 + -𒌍𒊬 does not spell the word": 1
    },
    "category_examples": {
-    "full": [],
+    "full": [
+     {
+      "word": "𒂊𒌍𒄯𒉡𒊻𒍣",
+      "gloss": "to bloody, make bloody",
+      "reason": "construction of 𒂊𒌍𒄯 + -𒉡𒊻𒍣"
+     }
+    ],
     "adjusted": [],
     "partial": [
      {
@@ -140,6 +166,13 @@
    "identity": 0,
    "bound_form": 0,
    "joined": 6,
+   "constructed": 1,
+   "construction_examples": [
+    {
+     "word": "𒂊𒌍𒄯𒉡𒊻𒍣",
+     "reason": "construction of 𒂊𒌍𒄯 + -𒉡𒊻𒍣"
+    }
+   ],
    "gaps": [
     "ine-ana-pro → hit"
    ],
@@ -205,7 +238,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 3.98,
+   "seconds": 0.1,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [],
@@ -213,26 +246,26 @@
   },
   "gem-pro": {
    "name": "Proto-Germanic",
-   "glossary": 5762,
-   "attested": 5722,
+   "glossary": 5908,
+   "attested": 5868,
    "categorised": 0,
    "estimate": null,
-   "identified": 3317,
-   "pie_linked": 3317,
+   "identified": 3326,
+   "pie_linked": 3326,
    "reconstruction": 0,
    "reconstruction_exact": 0,
-   "eligible": 3317,
-   "tested": 3317,
-   "exact": 94,
+   "eligible": 3326,
+   "tested": 3326,
+   "exact": 95,
    "exact_strict": 21,
-   "exact_notation": 73,
-   "exact_pie": 94,
-   "explained": 117,
+   "exact_notation": 74,
+   "exact_pie": 95,
+   "explained": 118,
    "borrowed": 30,
    "outside": 7,
    "non_ie": 2,
-   "unlinked": 2179,
-   "no_etym": 215,
+   "unlinked": 2183,
+   "no_etym": 351,
    "pathway": 0,
    "categories": null,
    "category_reasons": {},
@@ -248,16 +281,18 @@
    },
    "categories_untested": 0,
    "case_only": 0,
-   "near": 157,
+   "near": 158,
    "errors": 0,
-   "exact_rate": 0.016314,
+   "exact_rate": 0.01608,
    "orthographic": 0,
    "orthographic_examples": [],
    "lemma": 0,
    "lemma_examples": [],
    "identity": 2,
    "bound_form": 21,
-   "joined": 382,
+   "joined": 384,
+   "constructed": 0,
+   "construction_examples": [],
    "gaps": [],
    "joined_examples": [
     {
@@ -379,29 +414,29 @@
      "stage": "ine-pro"
     }
    ],
-   "exact_orth": 94,
+   "exact_orth": 95,
    "script": 0,
    "script_examples": [],
-   "orth_rate": 0.016314,
-   "exact_of_tested": 0.028339,
-   "identified_rate": 0.575668,
-   "pie_rate": 0.575668,
-   "near_rate": 0.028339,
+   "orth_rate": 0.01608,
+   "exact_of_tested": 0.028563,
+   "identified_rate": 0.562965,
+   "pie_rate": 0.562965,
+   "near_rate": 0.028563,
    "from_stage": {
-    "ine-pro": 94
+    "ine-pro": 95
    },
    "top_rules": [
     [
      "gem-pro|o_to_a",
-     62
+     63
     ],
     [
      "gem-pro|verner_s",
-     46
+     47
     ],
     [
      "gem-pro|laryngeal_loss",
-     40
+     41
     ],
     [
      "gem-pro|long_a_to_o",
@@ -472,7 +507,7 @@
      5
     ]
    ],
-   "seconds": 5.28,
+   "seconds": 4.11,
    "examples": [
     {
      "stage": "ine-pro",
@@ -642,6 +677,8 @@
    "identity": 38,
    "bound_form": 29,
    "joined": 626,
+   "constructed": 0,
+   "construction_examples": [],
    "gaps": [],
    "joined_examples": [
     {
@@ -887,7 +924,7 @@
      1
     ]
    ],
-   "seconds": 4.25,
+   "seconds": 3.83,
    "examples": [
     {
      "stage": "gem-pro",
@@ -1035,22 +1072,22 @@
    "pathway": 0,
    "categories": {
     "counts": {
-     "full": 7,
+     "full": 8,
      "adjusted": 3,
-     "partial": 6045,
+     "partial": 6044,
      "unexplained": 7,
      "non_pie": 63,
      "ie_loan": 299,
      "built": 0
     },
     "total": 6424,
-    "explained": 10,
-    "explained_rate": 0.16,
-    "of_glossary": 0.16,
+    "explained": 11,
+    "explained_rate": 0.17,
+    "of_glossary": 0.17,
     "share": {
-     "full": 0.11,
+     "full": 0.12,
      "adjusted": 0.05,
-     "partial": 94.1,
+     "partial": 94.08,
      "unexplained": 0.11,
      "non_pie": 0.98,
      "ie_loan": 4.65,
@@ -1058,10 +1095,10 @@
     }
    },
    "category_reasons": {
-    "partial: no rule applied": 4563,
+    "partial: no rule applied": 4508,
     "partial: reproduced only from Proto-Germanic, not from the PIE etymon": 691,
     "partial: reproduced only from Proto-West Germanic, not from the PIE etymon": 340,
-    "partial: built from pieces, not derived": 322,
+    "partial: built from pieces, not derived": 313,
     "ie_loan: loan from an IE branch": 299,
     "partial: unchanged ancestor (no law applied)": 90,
     "non_pie: non-ie source": 63,
@@ -1069,9 +1106,19 @@
     "unexplained: no recorded etymology": 7,
     "full: cited laws, no change": 6,
     "adjusted: recorded step differs: gem-pro, gmw-pro": 1,
+    "partial: construction of Engle + -isċ does not spell the word": 1,
+    "partial: construction of -ġe + dwola does not spell the word": 1,
+    "partial: construction of dagian + -ung does not spell the word": 1,
     "adjusted: recorded step differs: gem-pro": 1,
     "full: orthographic layer": 1,
-    "adjusted: recorded step differs: gmw-pro": 1
+    "partial: construction of -ā + belgan does not spell the word": 1,
+    "partial: construction of -æt + beran, but -æt has no recorded origin": 1,
+    "adjusted: recorded step differs: gmw-pro": 1,
+    "partial: construction of -be + cweþan, but -be has no recorded origin": 1,
+    "partial: construction of be- + foran, but be-, foran has no recorded origin": 1,
+    "partial: construction of ā- + bufan does not spell the word": 1,
+    "partial: construction of on + ġemang does not spell the word": 1,
+    "partial: construction of prica + -ian does not spell the word": 1
    },
    "category_examples": {
     "full": [
@@ -1104,6 +1151,11 @@
       "word": "fearh",
       "gloss": "piglet",
       "reason": "cited laws, no change"
+     },
+     {
+      "word": "dafenian",
+      "gloss": "to be fitting, becoming or seemly, suit",
+      "reason": "construction of dafen + -ian"
      },
      {
       "word": "mieht",
@@ -1363,6 +1415,13 @@
    "identity": 97,
    "bound_form": 40,
    "joined": 343,
+   "constructed": 1,
+   "construction_examples": [
+    {
+     "word": "dafenian",
+     "reason": "construction of dafen + -ian"
+    }
+   ],
    "gaps": [],
    "joined_examples": [
     {
@@ -1609,7 +1668,7 @@
      8
     ]
    ],
-   "seconds": 19.55,
+   "seconds": 22.44,
    "examples": [
     {
      "stage": "gem-pro",
@@ -1731,7 +1790,7 @@
      "distance": 1
     }
    ],
-   "review": 3639
+   "review": 3633
   },
   "enm": {
    "name": "Middle English",
@@ -1758,22 +1817,22 @@
    "pathway": 0,
    "categories": {
     "counts": {
-     "full": 1,
+     "full": 6,
      "adjusted": 2,
-     "partial": 4428,
+     "partial": 4423,
      "unexplained": 11,
      "non_pie": 72,
      "ie_loan": 2992,
      "built": 0
     },
     "total": 7506,
-    "explained": 3,
-    "explained_rate": 0.04,
-    "of_glossary": 0.04,
+    "explained": 8,
+    "explained_rate": 0.11,
+    "of_glossary": 0.11,
     "share": {
-     "full": 0.01,
+     "full": 0.08,
      "adjusted": 0.03,
-     "partial": 58.99,
+     "partial": 58.93,
      "unexplained": 0.15,
      "non_pie": 0.96,
      "ie_loan": 39.86,
@@ -1782,8 +1841,8 @@
    },
    "category_reasons": {
     "ie_loan: loan from an IE branch": 2992,
-    "partial: no rule applied": 2744,
-    "partial: built from pieces, not derived": 774,
+    "partial: no rule applied": 2704,
+    "partial: built from pieces, not derived": 746,
     "partial: reproduced only from Old English, not from the PIE etymon": 443,
     "partial: reproduced only from Proto-Germanic, not from the PIE etymon": 242,
     "partial: unchanged ancestor (no law applied)": 102,
@@ -1792,8 +1851,18 @@
     "partial: bound form, not a word": 31,
     "unexplained: no recorded etymology": 11,
     "partial: needs approval of our modification": 1,
+    "partial: construction of babe + -y does not spell the word": 1,
+    "partial: construction of anger + -y does not spell the word": 1,
+    "partial: construction of hap + -y does not spell the word": 1,
+    "partial: construction of y- + fo does not spell the word": 1,
     "full: cited laws, no change": 1,
+    "partial: construction of game + -ere does not spell the word": 1,
+    "partial: construction of maken + -ere does not spell the word": 1,
+    "partial: construction of scorn + -ful, but scorn has no recorded origin": 1,
+    "partial: construction of -es + sone does not spell the word": 1,
+    "partial: construction of dwellen + -ere does not spell the word": 1,
     "adjusted: recorded step differs: gmw-pro, ang": 1,
+    "partial: construction of different + -ly, but different, -ly has no recorded origin": 1,
     "adjusted: recorded step differs: gmw-pro": 1
    },
    "category_examples": {
@@ -1802,6 +1871,31 @@
       "word": "ars",
       "gloss": "arse, anus · bottom, buttocks",
       "reason": "cited laws, no change"
+     },
+     {
+      "word": "fotbal",
+      "gloss": "football (game played with a ball; ancestor of soccer, Ameri",
+      "reason": "construction of fot + bal"
+     },
+     {
+      "word": "wrothy",
+      "gloss": "Wrathful, angry; feeling anger. · Irritable, prickly; easily",
+      "reason": "construction of wroth + -y"
+     },
+     {
+      "word": "gavelkynde",
+      "gloss": "A kind of land tenure practised in Kent, notably involving p",
+      "reason": "construction of gavel + kynde"
+     },
+     {
+      "word": "wrattheful",
+      "gloss": "Wrathful, angry; feeling anger: · Irritable, prickly; easily",
+      "reason": "construction of wratthe + -ful"
+     },
+     {
+      "word": "wrothen",
+      "gloss": "To rage; to become angry. · To anger or offend; to make angr",
+      "reason": "construction of wroth + -en"
      }
     ],
     "adjusted": [
@@ -2056,6 +2150,29 @@
    "identity": 119,
    "bound_form": 31,
    "joined": 1007,
+   "constructed": 5,
+   "construction_examples": [
+    {
+     "word": "fotbal",
+     "reason": "construction of fot + bal"
+    },
+    {
+     "word": "wrothy",
+     "reason": "construction of wroth + -y"
+    },
+    {
+     "word": "gavelkynde",
+     "reason": "construction of gavel + kynde"
+    },
+    {
+     "word": "wrattheful",
+     "reason": "construction of wratthe + -ful"
+    },
+    {
+     "word": "wrothen",
+     "reason": "construction of wroth + -en"
+    }
+   ],
    "gaps": [],
    "joined_examples": [
     {
@@ -2304,7 +2421,7 @@
      12
     ]
    ],
-   "seconds": 18.75,
+   "seconds": 23.26,
    "examples": [
     {
      "stage": "ang",
@@ -2426,7 +2543,7 @@
      "distance": 5
     }
    ],
-   "review": 3085
+   "review": 3084
   },
   "en": {
    "name": "English",
@@ -2463,9 +2580,9 @@
    "pathway": 2,
    "categories": {
     "counts": {
-     "full": 0,
+     "full": 181,
      "adjusted": 3,
-     "partial": 57182,
+     "partial": 57001,
      "unexplained": 104,
      "non_pie": 15924,
      "unidentified": 385767,
@@ -2473,13 +2590,13 @@
      "built": 3
     },
     "total": 114233,
-    "explained": 3,
-    "explained_rate": 0.0,
-    "of_glossary": 0.0,
+    "explained": 184,
+    "explained_rate": 0.16,
+    "of_glossary": 0.16,
     "share": {
-     "full": 0.0,
+     "full": 0.16,
      "adjusted": 0.0,
-     "partial": 50.06,
+     "partial": 49.9,
      "unexplained": 0.09,
      "non_pie": 13.94,
      "ie_loan": 35.91,
@@ -2487,10 +2604,10 @@
     }
    },
    "category_reasons": {
-    "partial: no rule applied": 51018,
+    "partial: no rule applied": 49846,
     "ie_loan: loan from an IE branch": 41017,
     "non_pie: non-ie source": 15924,
-    "partial: built from pieces, not derived": 4218,
+    "partial: built from pieces, not derived": 3638,
     "partial: reproduced only from Middle English, not from the PIE etymon": 973,
     "partial: unchanged ancestor (no law applied)": 686,
     "partial: reproduced only from Proto-Germanic, not from the PIE etymon": 114,
@@ -2498,14 +2615,63 @@
     "partial: reproduced only from Old English, not from the PIE etymon": 76,
     "partial: bound form, not a word": 74,
     "partial: reproduced only from Proto-West Germanic, not from the PIE etymon": 23,
+    "partial: construction of Ytterby + -ium does not spell the word": 3,
+    "partial: construction of cyclopropyl + -azepam does not spell the word": 3,
+    "partial: construction of nemat- + -o- does not spell the word": 3,
+    "partial: construction of broom + -leigh does not spell the word": 2,
+    "partial: construction of wheat + -leigh does not spell the word": 2,
     "built: built from Tom + Swift + electric + rifle (as the record states) — a formation, not a derivation": 2,
-    "adjusted: recorded step differs: gem-pro, gmw-pro, ang, enm": 1,
-    "adjusted: recorded step differs: gem-pro, gmw-pro, ang": 1,
-    "adjusted: recorded step differs: enm": 1,
-    "built: built from bury + -ing (as the record states) — a formation, not a derivation": 1
+    "partial: construction of smell + -o- + vision does not spell the word": 2,
+    "partial: construction of plain + sailing does not spell the word": 2,
+    "partial: construction of high + concept does not spell the word": 2,
+    "partial: construction of fern + -leigh does not spell the word": 2,
+    "partial: construction of conjugate + -able does not spell the word": 2,
+    "partial: construction of hawk + -ery, but -ery has no recorded origin": 2,
+    "partial: construction of green + -leigh does not spell the word": 2
    },
    "category_examples": {
-    "full": [],
+    "full": [
+     {
+      "word": "growth",
+      "gloss": "An increase in size, number, value, or strength. · Ellipsis ",
+      "reason": "construction of grow + -th"
+     },
+     {
+      "word": "monotheism",
+      "gloss": "Belief in the One True God, defined by More as personal, imm",
+      "reason": "construction of mono- + theism"
+     },
+     {
+      "word": "economics",
+      "gloss": "Now chiefly home economics: the art or science of household ",
+      "reason": "construction of economic + -s"
+     },
+     {
+      "word": "network",
+      "gloss": "Any interconnected group or system. · A set of people with s",
+      "reason": "construction of net + work"
+     },
+     {
+      "word": "bathroom",
+      "gloss": "A room containing a shower or bathtub, and (typically but no",
+      "reason": "construction of bath + room"
+     },
+     {
+      "word": "jellyfish",
+      "gloss": "An almost transparent aquatic animal; any one of the acaleph",
+      "reason": "construction of jelly + fish"
+     },
+     {
+      "word": "similarity",
+      "gloss": "Closeness of appearance to something else. · The relation of",
+      "reason": "construction of similar + -ity"
+     },
+     {
+      "word": "localize",
+      "gloss": "To make local; to fix in, or assign to, a definite place. · ",
+      "reason": "construction of local + -ize"
+     }
+    ],
     "adjusted": [
      {
       "word": "thin",
@@ -2779,6 +2945,41 @@
    "identity": 1059,
    "bound_form": 76,
    "joined": 5578,
+   "constructed": 181,
+   "construction_examples": [
+    {
+     "word": "growth",
+     "reason": "construction of grow + -th"
+    },
+    {
+     "word": "monotheism",
+     "reason": "construction of mono- + theism"
+    },
+    {
+     "word": "economics",
+     "reason": "construction of economic + -s"
+    },
+    {
+     "word": "network",
+     "reason": "construction of net + work"
+    },
+    {
+     "word": "bathroom",
+     "reason": "construction of bath + room"
+    },
+    {
+     "word": "jellyfish",
+     "reason": "construction of jelly + fish"
+    },
+    {
+     "word": "similarity",
+     "reason": "construction of similar + -ity"
+    },
+    {
+     "word": "localize",
+     "reason": "construction of local + -ize"
+    }
+   ],
    "gaps": [],
    "joined_examples": [
     {
@@ -3027,7 +3228,7 @@
      6
     ]
    ],
-   "seconds": 128.34,
+   "seconds": 134.26,
    "examples": [
     {
      "stage": "enm",
@@ -3172,7 +3373,7 @@
      "distance": 1
     }
    ],
-   "review": 31163
+   "review": 31153
   },
   "goh": {
    "name": "Old High German",
@@ -3222,15 +3423,20 @@
     }
    },
    "category_reasons": {
-    "partial: no rule applied": 1255,
+    "partial: no rule applied": 1252,
     "partial: reproduced only from Proto-West Germanic, not from the PIE etymon": 104,
     "partial: reproduced only from Proto-Germanic, not from the PIE etymon": 60,
     "partial: unchanged ancestor (no law applied)": 55,
-    "partial: built from pieces, not derived": 45,
+    "partial: built from pieces, not derived": 43,
     "ie_loan: loan from an IE branch": 41,
     "partial: bound form, not a word": 3,
     "non_pie: non-ie source": 2,
-    "full: cited laws, no change": 1
+    "full: cited laws, no change": 1,
+    "partial: construction of sunu (“son”) + fater (“father”) + -unga does not spell the word": 1,
+    "partial: construction of asc + -rīh does not spell the word": 1,
+    "partial: construction of uodil + skalk does not spell the word": 1,
+    "partial: construction of ans + -uni does not spell the word": 1,
+    "partial: construction of io + mēr does not spell the word": 1
    },
    "category_examples": {
     "full": [
@@ -3403,6 +3609,8 @@
    "identity": 58,
    "bound_form": 3,
    "joined": 49,
+   "constructed": 0,
+   "construction_examples": [],
    "gaps": [],
    "joined_examples": [
     {
@@ -3625,7 +3833,7 @@
      1
     ]
    ],
-   "seconds": 2.47,
+   "seconds": 2.92,
    "examples": [
     {
      "stage": "gem-pro",
@@ -3755,12 +3963,12 @@
    "attested": 574,
    "categorised": 574,
    "estimate": null,
-   "identified": 530,
-   "pie_linked": 41,
+   "identified": 533,
+   "pie_linked": 43,
    "reconstruction": 0,
    "reconstruction_exact": 0,
-   "eligible": 530,
-   "tested": 530,
+   "eligible": 533,
+   "tested": 533,
    "exact": 96,
    "exact_strict": 95,
    "exact_notation": 1,
@@ -3797,7 +4005,7 @@
     }
    },
    "category_reasons": {
-    "partial: no rule applied": 384,
+    "partial: no rule applied": 382,
     "partial: reproduced only from Old High German, not from the PIE etymon": 80,
     "partial: reproduced only from Proto-West Germanic, not from the PIE etymon": 33,
     "partial: unchanged ancestor (no law applied)": 33,
@@ -3805,6 +4013,8 @@
     "partial: reproduced only from Proto-Germanic, not from the PIE etymon": 9,
     "partial: needs approval of our modification": 1,
     "partial: bound form, not a word": 1,
+    "partial: construction of kranc + -heit, but kranc has no recorded origin": 1,
+    "partial: construction of diutsc + lant does not spell the word": 1,
     "partial: built from pieces, not derived": 1
    },
    "category_examples": {
@@ -3968,6 +4178,8 @@
    "identity": 33,
    "bound_form": 1,
    "joined": 1,
+   "constructed": 0,
+   "construction_examples": [],
    "gaps": [],
    "joined_examples": [
     {
@@ -4032,10 +4244,10 @@
    "script": 0,
    "script_examples": [],
    "orth_rate": 0.215517,
-   "exact_of_tested": 0.181132,
-   "identified_rate": 0.913793,
-   "pie_rate": 0.07069,
-   "near_rate": 0.181132,
+   "exact_of_tested": 0.180113,
+   "identified_rate": 0.918966,
+   "pie_rate": 0.074138,
+   "near_rate": 0.180113,
    "from_stage": {
     "goh": 64,
     "gmw-pro": 25,
@@ -4124,7 +4336,7 @@
      1
     ]
    ],
-   "seconds": 0.49,
+   "seconds": 0.46,
    "examples": [
     {
      "stage": "goh",
@@ -4246,7 +4458,7 @@
      "distance": 1
     }
    ],
-   "review": 184
+   "review": 185
   },
   "de": {
    "name": "German",
@@ -4283,9 +4495,9 @@
    "pathway": 0,
    "categories": {
     "counts": {
-     "full": 0,
+     "full": 4,
      "adjusted": 0,
-     "partial": 9740,
+     "partial": 9736,
      "unexplained": 3,
      "non_pie": 514,
      "unidentified": 134820,
@@ -4293,13 +4505,13 @@
      "built": 0
     },
     "total": 16180,
-    "explained": 0,
-    "explained_rate": 0.0,
-    "of_glossary": 0.0,
+    "explained": 4,
+    "explained_rate": 0.02,
+    "of_glossary": 0.02,
     "share": {
-     "full": 0.0,
+     "full": 0.02,
      "adjusted": 0.0,
-     "partial": 60.2,
+     "partial": 60.17,
      "unexplained": 0.02,
      "non_pie": 3.18,
      "ie_loan": 36.61,
@@ -4307,9 +4519,9 @@
     }
    },
    "category_reasons": {
-    "partial: no rule applied": 8112,
+    "partial: no rule applied": 8064,
     "ie_loan: loan from an IE branch": 5923,
-    "partial: built from pieces, not derived": 713,
+    "partial: built from pieces, not derived": 708,
     "partial: unchanged ancestor (no law applied)": 553,
     "non_pie: non-ie source": 514,
     "partial: reproduced only from Middle High German, not from the PIE etymon": 200,
@@ -4317,10 +4529,44 @@
     "partial: bound form, not a word": 37,
     "partial: reproduced only from Proto-West Germanic, not from the PIE etymon": 35,
     "partial: reproduced only from Proto-Germanic, not from the PIE etymon": 15,
-    "unexplained: no recorded etymology": 3
+    "unexplained: no recorded etymology": 3,
+    "partial: construction of Schupp + -s does not spell the word": 2,
+    "partial: construction of Aas + -en, but -en has no recorded origin": 1,
+    "partial: construction of Welt + Schmerz, but Welt, Schmerz has no recorded origin": 1,
+    "partial: construction of in + Weg does not spell the word": 1,
+    "partial: construction of ein + Stein, but ein has no recorded origin": 1,
+    "partial: construction of beamen + -er does not spell the word": 1,
+    "full: construction of Eisen + Bahn": 1,
+    "partial: construction of bauen + -er does not spell the word": 1,
+    "partial: construction of Eichhorn + -chen does not spell the word": 1,
+    "partial: construction of Jahr + hundert, but Jahr has no recorded origin": 1,
+    "partial: construction of Punk + -er, but Punk, -er has no recorded origin": 1,
+    "partial: construction of Benzoe + -in does not spell the word": 1,
+    "partial: construction of Prinzess + -in, but Prinzess, -in has no recorded origin": 1
    },
    "category_examples": {
-    "full": [],
+    "full": [
+     {
+      "word": "Eisenbahn",
+      "gloss": "railway, railroad (transporting system) · train",
+      "reason": "construction of Eisen + Bahn"
+     },
+     {
+      "word": "Neumünster",
+      "gloss": "Neumünster (an independent town in Schleswig-Holstein, Germa",
+      "reason": "construction of neu + Münster"
+     },
+     {
+      "word": "rostrot",
+      "gloss": "auburn",
+      "reason": "construction of Rost + rot"
+     },
+     {
+      "word": "rubinrot",
+      "gloss": "ruby-red",
+      "reason": "construction of Rubin + rot"
+     }
+    ],
     "adjusted": [],
     "partial": [
      {
@@ -4537,6 +4783,25 @@
    "identity": 601,
    "bound_form": 38,
    "joined": 928,
+   "constructed": 4,
+   "construction_examples": [
+    {
+     "word": "Eisenbahn",
+     "reason": "construction of Eisen + Bahn"
+    },
+    {
+     "word": "Neumünster",
+     "reason": "construction of neu + Münster"
+    },
+    {
+     "word": "rostrot",
+     "reason": "construction of Rost + rot"
+    },
+    {
+     "word": "rubinrot",
+     "reason": "construction of Rubin + rot"
+    }
+   ],
    "gaps": [],
    "joined_examples": [
     {
@@ -4780,7 +5045,7 @@
      1
     ]
    ],
-   "seconds": 26.04,
+   "seconds": 30.85,
    "examples": [
     {
      "stage": "gem-pro",
@@ -4902,7 +5167,7 @@
      "distance": 2
     }
    ],
-   "review": 6522
+   "review": 6519
   },
   "got": {
    "name": "Gothic",
@@ -4929,22 +5194,22 @@
    "pathway": 0,
    "categories": {
     "counts": {
-     "full": 4,
+     "full": 39,
      "adjusted": 2,
-     "partial": 1953,
+     "partial": 1918,
      "unexplained": 0,
      "non_pie": 54,
      "ie_loan": 139,
      "built": 0
     },
     "total": 2152,
-    "explained": 6,
-    "explained_rate": 0.28,
-    "of_glossary": 0.28,
+    "explained": 41,
+    "explained_rate": 1.91,
+    "of_glossary": 1.91,
     "share": {
-     "full": 0.19,
+     "full": 1.81,
      "adjusted": 0.09,
-     "partial": 90.75,
+     "partial": 89.13,
      "unexplained": 0.0,
      "non_pie": 2.51,
      "ie_loan": 6.46,
@@ -4952,15 +5217,30 @@
     }
    },
    "category_reasons": {
-    "partial: no rule applied": 1296,
-    "partial: built from pieces, not derived": 364,
+    "partial: no rule applied": 1261,
     "partial: reproduced only from Proto-Germanic, not from the PIE etymon": 265,
+    "partial: built from pieces, not derived": 212,
     "ie_loan: loan from an IE branch": 139,
     "non_pie: non-ie source": 54,
     "partial: unchanged ancestor (no law applied)": 27,
     "full: orthographic layer": 4,
     "adjusted: recorded step differs: gem-pro": 2,
-    "partial: needs approval of our modification": 1
+    "partial: needs approval of our modification": 1,
+    "partial: construction of -𐌰𐍆 + *𐌰𐌲𐌾𐌰𐌽, but -𐌰𐍆 has no recorded origin": 1,
+    "partial: construction of -𐌰𐍆 + 𐌳𐍉𐌼𐌾𐌰𐌽, but -𐌰𐍆 has no recorded origin": 1,
+    "partial: construction of -𐌰𐍆 + 𐍃𐌰𐍄𐌾𐌰𐌽, but -𐌰𐍆 has no recorded origin": 1,
+    "partial: construction of -𐌰𐌽𐌰 + 𐌰𐌿𐌺𐌰𐌽, but -𐌰𐌽𐌰 has no recorded origin": 1,
+    "partial: construction of -𐌰𐌽𐌰 + 𐌼𐌴𐌻𐌾𐌰𐌽, but -𐌰𐌽𐌰 has no recorded origin": 1,
+    "partial: construction of -𐌰𐌽𐌳 + 𐌽𐌹𐌼𐌰𐌽, but -𐌰𐌽𐌳 has no recorded origin": 1,
+    "partial: construction of -𐌰𐍄 + 𐌱𐌰𐌹𐍂𐌰𐌽, but -𐌰𐍄 has no recorded origin": 1,
+    "partial: construction of -𐌰𐍄 + 𐍃𐌰𐍄𐌾𐌰𐌽, but -𐌰𐍄 has no recorded origin": 1,
+    "partial: construction of -𐌱𐌹 + 𐌰𐌿𐌺𐌽𐌰𐌽, but -𐌱𐌹 has no recorded origin": 1,
+    "partial: construction of -𐌰𐍆 + 𐍃𐍄𐌰𐌽𐌳𐌰𐌽, but -𐌰𐍆 has no recorded origin": 1,
+    "partial: construction of 𐌰𐍆𐌳𐍉𐌼𐌾𐌰𐌽 + -𐌴𐌹𐌽𐍃 does not spell the word": 1,
+    "partial: construction of 𐌰𐍆- + *𐌷𐌰𐌼𐍉𐌽, but 𐌰𐍆-, *𐌷𐌰𐌼𐍉𐌽 has no recorded origin": 1,
+    "partial: construction of 𐌰𐍆- + 𐍃𐌻𐌰𐌷𐌰𐌽, but 𐌰𐍆- has no recorded origin": 1,
+    "partial: construction of 𐌰𐍆- + 𐍃𐍄𐌴𐌹𐌲𐌰𐌽, but 𐌰𐍆- has no recorded origin": 1,
+    "partial: construction of 𐌰𐍆- + *𐍃𐍅𐌰𐌹𐍂𐌱𐌰𐌽, but 𐌰𐍆-, *𐍃𐍅𐌰𐌹𐍂𐌱𐌰𐌽 has no recorded origin": 1
    },
    "category_examples": {
     "full": [
@@ -4983,6 +5263,26 @@
       "word": "𐌺𐌰𐌿𐍂𐌽",
       "gloss": "corn, grain (harvested seeds of the main cereal plant grown ",
       "reason": "orthographic layer"
+     },
+     {
+      "word": "𐍄𐍅𐌹𐍃𐍃𐍄𐌰𐌽𐌳𐌰𐌽",
+      "gloss": "to leave, depart or separate from",
+      "reason": "construction of -𐍄𐍅𐌹𐍃 + 𐍃𐍄𐌰𐌽𐌳𐌰𐌽"
+     },
+     {
+      "word": "𐌲𐌰𐍃𐍄𐌰𐌽𐌳𐌰𐌽",
+      "gloss": "to stop, halt, stand still · to abide, uphold",
+      "reason": "construction of -𐌲𐌰 + 𐍃𐍄𐌰𐌽𐌳𐌰𐌽"
+     },
+     {
+      "word": "𐌳𐌹𐍃𐍃𐌹𐍄𐌰𐌽",
+      "gloss": "to seize, take hold",
+      "reason": "construction of 𐌳𐌹𐍃- + 𐍃𐌹𐍄𐌰𐌽"
+     },
+     {
+      "word": "𐌲𐌿𐌼𐌰𐌺𐌿𐌽𐌳𐍃",
+      "gloss": "male",
+      "reason": "construction of 𐌲𐌿𐌼𐌰 + -𐌺𐌿𐌽𐌳𐍃"
      }
     ],
     "adjusted": [
@@ -5196,6 +5496,41 @@
    "identity": 30,
    "bound_form": 0,
    "joined": 399,
+   "constructed": 35,
+   "construction_examples": [
+    {
+     "word": "𐍄𐍅𐌹𐍃𐍃𐍄𐌰𐌽𐌳𐌰𐌽",
+     "reason": "construction of -𐍄𐍅𐌹𐍃 + 𐍃𐍄𐌰𐌽𐌳𐌰𐌽"
+    },
+    {
+     "word": "𐌲𐌰𐍃𐍄𐌰𐌽𐌳𐌰𐌽",
+     "reason": "construction of -𐌲𐌰 + 𐍃𐍄𐌰𐌽𐌳𐌰𐌽"
+    },
+    {
+     "word": "𐌳𐌹𐍃𐍃𐌹𐍄𐌰𐌽",
+     "reason": "construction of 𐌳𐌹𐍃- + 𐍃𐌹𐍄𐌰𐌽"
+    },
+    {
+     "word": "𐌲𐌿𐌼𐌰𐌺𐌿𐌽𐌳𐍃",
+     "reason": "construction of 𐌲𐌿𐌼𐌰 + -𐌺𐌿𐌽𐌳𐍃"
+    },
+    {
+     "word": "𐌲𐌰𐍄𐌰𐌿𐌾𐌰𐌽",
+     "reason": "construction of 𐌲𐌰- + 𐍄𐌰𐌿𐌾𐌰𐌽"
+    },
+    {
+     "word": "𐌳𐌹𐍃𐌽𐌹𐌼𐌰𐌽",
+     "reason": "construction of 𐌳𐌹𐍃- + 𐌽𐌹𐌼𐌰𐌽"
+    },
+    {
+     "word": "𐌳𐌹𐍃𐍃𐌹𐌲𐌵𐌰𐌽",
+     "reason": "construction of 𐌳𐌹𐍃- + 𐍃𐌹𐌲𐌵𐌰𐌽"
+    },
+    {
+     "word": "𐌳𐌹𐍃𐍃𐌺𐌰𐌹𐌳𐌰𐌽",
+     "reason": "construction of 𐌳𐌹𐍃- + 𐍃𐌺𐌰𐌹𐌳𐌰𐌽"
+    }
+   ],
    "gaps": [],
    "joined_examples": [
     {
@@ -5316,7 +5651,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 4.8,
+   "seconds": 5.88,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -5377,7 +5712,7 @@
      "distance": 3
     }
    ],
-   "review": 1034
+   "review": 1030
   },
   "non": {
    "name": "Old Norse",
@@ -5404,22 +5739,22 @@
    "pathway": 0,
    "categories": {
     "counts": {
-     "full": 10,
+     "full": 25,
      "adjusted": 2,
-     "partial": 2953,
+     "partial": 2938,
      "unexplained": 1,
      "non_pie": 4,
      "ie_loan": 85,
      "built": 0
     },
     "total": 3055,
-    "explained": 12,
-    "explained_rate": 0.39,
-    "of_glossary": 0.39,
+    "explained": 27,
+    "explained_rate": 0.88,
+    "of_glossary": 0.88,
     "share": {
-     "full": 0.33,
+     "full": 0.82,
      "adjusted": 0.07,
-     "partial": 96.66,
+     "partial": 96.17,
      "unexplained": 0.03,
      "non_pie": 0.13,
      "ie_loan": 2.78,
@@ -5427,16 +5762,30 @@
     }
    },
    "category_reasons": {
-    "partial: no rule applied": 2070,
+    "partial: no rule applied": 2027,
     "partial: reproduced only from Proto-Germanic, not from the PIE etymon": 649,
-    "partial: built from pieces, not derived": 212,
     "ie_loan: loan from an IE branch": 85,
+    "partial: built from pieces, not derived": 50,
     "partial: bound form, not a word": 15,
     "full: cited laws, no change": 10,
     "partial: unchanged ancestor (no law applied)": 7,
     "non_pie: non-ie source": 4,
     "adjusted: recorded step differs: gem-pro": 2,
-    "unexplained: no recorded etymology": 1
+    "partial: construction of dǿma + -andi does not spell the word": 2,
+    "partial: construction of sǫk + eyrir does not spell the word": 2,
+    "partial: construction of dómr + dagr does not spell the word": 2,
+    "partial: construction of arfr + taka does not spell the word": 2,
+    "partial: construction of athugi + samligr does not spell the word": 2,
+    "partial: construction of þrøngva + -ing does not spell the word": 2,
+    "partial: construction of beiða + -sla does not spell the word": 2,
+    "partial: construction of biti + -ill does not spell the word": 2,
+    "partial: construction of áss + garðr does not spell the word": 1,
+    "partial: construction of hár + degi does not spell the word": 1,
+    "partial: construction of hár + tíð does not spell the word": 1,
+    "partial: construction of sýna + -ing does not spell the word": 1,
+    "partial: construction of íss + land does not spell the word": 1,
+    "partial: construction of sofa + -na does not spell the word": 1,
+    "partial: construction of dómr + -ari does not spell the word": 1
    },
    "category_examples": {
     "full": [
@@ -5621,6 +5970,41 @@
    "identity": 9,
    "bound_form": 15,
    "joined": 216,
+   "constructed": 15,
+   "construction_examples": [
+    {
+     "word": "meginland",
+     "reason": "construction of megin + land"
+    },
+    {
+     "word": "félag",
+     "reason": "construction of fé + lag"
+    },
+    {
+     "word": "faxaðr",
+     "reason": "construction of fax + -aðr"
+    },
+    {
+     "word": "lǫgrétta",
+     "reason": "construction of lǫg + rétta"
+    },
+    {
+     "word": "lǫgeyrir",
+     "reason": "construction of lǫg + eyrir"
+    },
+    {
+     "word": "meginherr",
+     "reason": "construction of megin + herr"
+    },
+    {
+     "word": "andvitni",
+     "reason": "construction of -and + vitni"
+    },
+    {
+     "word": "þurftugr",
+     "reason": "construction of þurft + -ugr"
+    }
+   ],
    "gaps": [],
    "joined_examples": [
     {
@@ -5866,7 +6250,7 @@
      26
     ]
    ],
-   "seconds": 7.29,
+   "seconds": 9.72,
    "examples": [
     {
      "stage": "gem-pro",
@@ -6025,9 +6409,9 @@
    "pathway": 0,
    "categories": {
     "counts": {
-     "full": 76,
+     "full": 77,
      "adjusted": 12,
-     "partial": 5420,
+     "partial": 5419,
      "unexplained": 81,
      "non_pie": 328,
      "unidentified": 32511,
@@ -6035,13 +6419,13 @@
      "built": 0
     },
     "total": 7489,
-    "explained": 88,
-    "explained_rate": 1.18,
-    "of_glossary": 1.18,
+    "explained": 89,
+    "explained_rate": 1.19,
+    "of_glossary": 1.19,
     "share": {
-     "full": 1.01,
+     "full": 1.03,
      "adjusted": 0.16,
-     "partial": 72.37,
+     "partial": 72.36,
      "unexplained": 1.08,
      "non_pie": 4.38,
      "ie_loan": 20.99,
@@ -6049,18 +6433,30 @@
     }
    },
    "category_reasons": {
-    "partial: no rule applied": 5085,
+    "partial: no rule applied": 4898,
     "ie_loan: loan from an IE branch": 1572,
     "non_pie: non-ie source": 328,
     "partial: reproduced only from Proto-Italic, not from the PIE etymon": 227,
     "unexplained: no recorded etymology": 81,
     "full: orthographic layer": 46,
-    "partial: built from pieces, not derived": 46,
+    "partial: built from pieces, not derived": 37,
     "partial: unchanged ancestor (no law applied)": 32,
     "full: cited laws, no change": 30,
     "partial: bound form, not a word": 25,
     "adjusted: recorded step differs: itc-pro": 12,
-    "partial: needs approval of our modification": 5
+    "partial: needs approval of our modification": 5,
+    "partial: construction of ruber + -icō does not spell the word": 2,
+    "partial: construction of mīlle + annīs + annus does not spell the word": 1,
+    "partial: construction of speciō + -iēs does not spell the word": 1,
+    "partial: construction of āctus + -tor does not spell the word": 1,
+    "partial: construction of Āfer + -icus does not spell the word": 1,
+    "partial: construction of calx, calcis + -ium does not spell the word": 1,
+    "partial: construction of accūsō + -bilis does not spell the word": 1,
+    "partial: construction of acēscō + -tus does not spell the word": 1,
+    "partial: construction of apis + -culus does not spell the word": 1,
+    "partial: construction of medius + diēs does not spell the word": 1,
+    "partial: construction of administrō + -tor does not spell the word": 1,
+    "partial: construction of absēns + -ia does not spell the word": 1
    },
    "category_examples": {
     "full": [
@@ -6387,6 +6783,13 @@
    "identity": 39,
    "bound_form": 26,
    "joined": 55,
+   "constructed": 1,
+   "construction_examples": [
+    {
+     "word": "biscoctus",
+     "reason": "construction of bis + coctus"
+    }
+   ],
    "gaps": [],
    "joined_examples": [
     {
@@ -6632,7 +7035,7 @@
      3
     ]
    ],
-   "seconds": 10.9,
+   "seconds": 11.74,
    "examples": [
     {
      "stage": "ine-pro",
@@ -6754,7 +7157,7 @@
      "distance": 1
     }
    ],
-   "review": 5140
+   "review": 5131
   },
   "it": {
    "name": "Italian",
@@ -6815,11 +7218,11 @@
     }
    },
    "category_reasons": {
-    "partial: no rule applied": 9512,
+    "partial: no rule applied": 9476,
     "ie_loan: loan from an IE branch": 7550,
     "partial: reproduced only from Latin, not from the PIE etymon": 1302,
     "non_pie: non-ie source": 680,
-    "partial: built from pieces, not derived": 484,
+    "partial: built from pieces, not derived": 447,
     "partial: unchanged ancestor (no law applied)": 106,
     "partial: bound form, not a word": 56,
     "partial: reproduced only from Proto-Italic, not from the PIE etymon": 10,
@@ -6827,7 +7230,18 @@
     "adjusted: recorded step differs: la": 5,
     "full: orthographic layer": 3,
     "full: cited laws, no change": 3,
-    "adjusted: recorded step differs: itc-pro": 1
+    "partial: construction of casa + -ino does not spell the word": 1,
+    "partial: construction of corno + -etto does not spell the word": 1,
+    "partial: construction of amaro + -etto does not spell the word": 1,
+    "partial: construction of polpa + -etta does not spell the word": 1,
+    "partial: construction of brocco + -olo does not spell the word": 1,
+    "partial: construction of crescere + -ita does not spell the word": 1,
+    "partial: construction of fidanzare + -ato does not spell the word": 1,
+    "partial: construction of fisso + -are does not spell the word": 1,
+    "partial: construction of borgo + -ese does not spell the word": 1,
+    "partial: construction of fascio + -ismo does not spell the word": 1,
+    "partial: construction of fidanza + -are does not spell the word": 1,
+    "partial: construction of grotta + -esco does not spell the word": 1
    },
    "category_examples": {
     "full": [
@@ -7129,6 +7543,8 @@
    "identity": 123,
    "bound_form": 64,
    "joined": 652,
+   "constructed": 0,
+   "construction_examples": [],
    "gaps": [],
    "joined_examples": [
     {
@@ -7375,7 +7791,7 @@
      3
     ]
    ],
-   "seconds": 16.54,
+   "seconds": 16.06,
    "examples": [
     {
      "stage": "la",
@@ -7497,7 +7913,7 @@
      "distance": 1
     }
    ],
-   "review": 14503
+   "review": 14528
   },
   "osc": {
    "name": "Oscan",
@@ -7569,6 +7985,8 @@
    "identity": 0,
    "bound_form": 0,
    "joined": 0,
+   "constructed": 0,
+   "construction_examples": [],
    "gaps": [
     "itc-pro → osc"
    ],
@@ -7625,9 +8043,9 @@
    "pathway": 0,
    "categories": {
     "counts": {
-     "full": 108,
+     "full": 112,
      "adjusted": 16,
-     "partial": 3503,
+     "partial": 3499,
      "unexplained": 29,
      "non_pie": 539,
      "unidentified": 111455,
@@ -7635,13 +8053,13 @@
      "built": 0
     },
     "total": 5047,
-    "explained": 124,
-    "explained_rate": 2.46,
-    "of_glossary": 2.46,
+    "explained": 128,
+    "explained_rate": 2.54,
+    "of_glossary": 2.54,
     "share": {
-     "full": 2.14,
+     "full": 2.22,
      "adjusted": 0.32,
-     "partial": 69.41,
+     "partial": 69.33,
      "unexplained": 0.57,
      "non_pie": 10.68,
      "ie_loan": 16.88,
@@ -7649,15 +8067,30 @@
     }
    },
    "category_reasons": {
-    "partial: no rule applied": 3153,
+    "partial: no rule applied": 2892,
     "ie_loan: loan from an IE branch": 852,
     "non_pie: non-ie source": 539,
     "partial: reproduced only from Proto-Hellenic, not from the PIE etymon": 157,
-    "partial: built from pieces, not derived": 118,
     "full: orthographic layer": 108,
     "partial: unchanged ancestor (no law applied)": 75,
+    "partial: built from pieces, not derived": 73,
     "unexplained: no recorded etymology": 29,
-    "adjusted: recorded step differs: grk-pro": 16
+    "adjusted: recorded step differs: grk-pro": 16,
+    "partial: construction of γέννα + -ᾰ́ω does not spell the word": 3,
+    "partial: construction of μῆχος + -ανή-ανός (-anós)> does not spell the word": 1,
+    "partial: construction of δια- + βάλλω does not spell the word": 1,
+    "partial: construction of πλήθω + -ος does not spell the word": 1,
+    "partial: construction of ἔκκλητος + -ῐ́ᾱ does not spell the word": 1,
+    "partial: construction of ἀληθής + -ιᾰ does not spell the word": 1,
+    "partial: construction of συνάγω + -ή does not spell the word": 1,
+    "partial: construction of -εὐ + ἀγγέλλω does not spell the word": 1,
+    "partial: construction of πείθω + -σις does not spell the word": 1,
+    "partial: construction of σάνδαλον + -ιον does not spell the word": 1,
+    "partial: construction of βαθύς + -ος does not spell the word": 1,
+    "partial: construction of στρατός + ἄγω + -ος does not spell the word": 1,
+    "partial: construction of ψεύδω + -ής does not spell the word": 1,
+    "partial: construction of φῐλόσοφος + -ῐ́ᾱ does not spell the word": 1,
+    "partial: construction of πόλις + -της does not spell the word": 1
    },
    "category_examples": {
     "full": [
@@ -7983,7 +8416,26 @@
    "lemma_examples": [],
    "identity": 81,
    "bound_form": 0,
-   "joined": 144,
+   "joined": 145,
+   "constructed": 4,
+   "construction_examples": [
+    {
+     "word": "χειρουργός",
+     "reason": "construction of χείρ + -ουργός"
+    },
+    {
+     "word": "θηράω",
+     "reason": "construction of θήρ + -άω"
+    },
+    {
+     "word": "πελώριος",
+     "reason": "construction of πέλωρ + -ιος"
+    },
+    {
+     "word": "αὖτε",
+     "reason": "construction of αὖ + τε"
+    }
+   ],
    "gaps": [],
    "joined_examples": [
     {
@@ -8104,7 +8556,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 7.8,
+   "seconds": 7.82,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -8165,7 +8617,7 @@
      "distance": 4
     }
    ],
-   "review": 4133
+   "review": 4120
   },
   "el": {
    "name": "Greek",
@@ -8193,7 +8645,7 @@
    "exact_strict": 0,
    "exact_notation": 0,
    "exact_pie": 0,
-   "explained": 976,
+   "explained": 964,
    "borrowed": 2174,
    "outside": 1370,
    "non_ie": 240,
@@ -8226,17 +8678,23 @@
     }
    },
    "category_reasons": {
-    "partial: no rule applied": 5548,
+    "partial: no rule applied": 5552,
     "ie_loan: loan from an IE branch": 3147,
-    "partial: reproduced only from Ancient Greek, not from the PIE etymon": 572,
+    "partial: reproduced only from Ancient Greek, not from the PIE etymon": 573,
     "non_pie: non-ie source": 407,
-    "partial: unchanged ancestor (no law applied)": 304,
-    "partial: built from pieces, not derived": 142,
+    "partial: unchanged ancestor (no law applied)": 291,
+    "partial: built from pieces, not derived": 144,
     "partial: reproduced only from Proto-Hellenic, not from the PIE etymon": 10,
     "full: orthographic layer": 5,
     "adjusted: recorded step differs: grk-pro": 3,
+    "partial: construction of κεφάλι + μαντήλι does not spell the word": 1,
     "adjusted: recorded step differs: grk-pro, grc": 1,
-    "adjusted: recorded step differs: grc": 1
+    "partial: construction of μικρός + βίος does not spell the word": 1,
+    "adjusted: recorded step differs: grc": 1,
+    "partial: construction of παλαιό + Φάληρο does not spell the word": 1,
+    "partial: construction of γλωσσολογία + -ικός does not spell the word": 1,
+    "partial: construction of αρπακτικός + -ότητα does not spell the word": 1,
+    "partial: construction of άρχοντας + -ισσα does not spell the word": 1
    },
    "category_examples": {
     "full": [
@@ -8322,7 +8780,7 @@
      {
       "word": "Κύπρος",
       "gloss": "Cyprus (an island and country in the Mediterranean Sea, norm",
-      "reason": "unchanged ancestor (no law applied)"
+      "reason": "no rule applied"
      },
      {
       "word": "ένας",
@@ -8428,7 +8886,7 @@
    "near": 2,
    "errors": 0,
    "exact_rate": 0.0,
-   "orthographic": 645,
+   "orthographic": 646,
    "orthographic_examples": [
     {
      "stage": "grc",
@@ -8489,9 +8947,11 @@
    ],
    "lemma": 0,
    "lemma_examples": [],
-   "identity": 331,
+   "identity": 318,
    "bound_form": 0,
-   "joined": 190,
+   "joined": 194,
+   "constructed": 0,
+   "construction_examples": [],
    "gaps": [],
    "joined_examples": [
     {
@@ -8561,11 +9021,6 @@
    ],
    "identity_examples": [
     {
-     "word": "Κύπρος",
-     "output": "Kˈypros",
-     "stage": "grc"
-    },
-    {
      "word": "τρία",
      "output": "trˈia",
      "stage": "grc"
@@ -8599,20 +9054,25 @@
      "word": "έρανος",
      "output": "ˈeranos",
      "stage": "grc"
+    },
+    {
+     "word": "λαιμός",
+     "output": "laimˈos",
+     "stage": "grc"
     }
    ],
    "bound_examples": [],
-   "exact_orth": 645,
+   "exact_orth": 646,
    "script": 0,
    "script_examples": [],
-   "orth_rate": 0.061599,
+   "orth_rate": 0.061694,
    "exact_of_tested": 0.0,
    "identified_rate": 0.486104,
    "pie_rate": 0.029797,
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 16.85,
+   "seconds": 18.47,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -8645,10 +9105,10 @@
      "distance": 7
     },
     {
-     "pie": "Kˈypros",
+     "pie": "kˈŭpros",
      "stage": "grc",
      "word": "Κύπρος",
-     "output": "Kˈypros",
+     "output": "kˈupros",
      "distance": 7
     },
     {
@@ -8681,17 +9141,17 @@
    "attested": 767,
    "categorised": 0,
    "estimate": null,
-   "identified": 716,
-   "pie_linked": 716,
+   "identified": 720,
+   "pie_linked": 720,
    "reconstruction": 0,
    "reconstruction_exact": 0,
-   "eligible": 716,
-   "tested": 716,
-   "exact": 349,
+   "eligible": 720,
+   "tested": 720,
+   "exact": 350,
    "exact_strict": 3,
-   "exact_notation": 346,
-   "exact_pie": 349,
-   "explained": 390,
+   "exact_notation": 347,
+   "exact_pie": 350,
+   "explained": 392,
    "borrowed": 0,
    "outside": 0,
    "non_ie": 0,
@@ -8714,14 +9174,16 @@
    "case_only": 0,
    "near": 38,
    "errors": 0,
-   "exact_rate": 0.436796,
+   "exact_rate": 0.438048,
    "orthographic": 0,
    "orthographic_examples": [],
    "lemma": 0,
    "lemma_examples": [],
-   "identity": 1,
+   "identity": 2,
    "bound_form": 40,
    "joined": 3,
+   "constructed": 0,
+   "construction_examples": [],
    "gaps": [],
    "joined_examples": [
     {
@@ -8753,6 +9215,11 @@
     {
      "word": "múHs",
      "output": "mˈuHs",
+     "stage": "ine-pro"
+    },
+    {
+     "word": "wáy",
+     "output": "wˈay",
      "stage": "ine-pro"
     }
    ],
@@ -8798,21 +9265,21 @@
      "stage": "ine-pro"
     }
    ],
-   "exact_orth": 349,
+   "exact_orth": 350,
    "script": 0,
    "script_examples": [],
-   "orth_rate": 0.436796,
-   "exact_of_tested": 0.48743,
-   "identified_rate": 0.89612,
-   "pie_rate": 0.89612,
-   "near_rate": 0.48743,
+   "orth_rate": 0.438048,
+   "exact_of_tested": 0.486111,
+   "identified_rate": 0.901126,
+   "pie_rate": 0.901126,
+   "near_rate": 0.486111,
    "from_stage": {
-    "ine-pro": 349
+    "ine-pro": 350
    },
    "top_rules": [
     [
      "iir-pro|vowel_merger_a",
-     310
+     311
     ],
     [
      "iir-pro|laryngeal_to_H",
@@ -8824,7 +9291,7 @@
     ],
     [
      "iir-pro|satem_k",
-     46
+     47
     ],
     [
      "iir-pro|satem_gh",
@@ -8891,7 +9358,7 @@
      3
     ]
    ],
-   "seconds": 0.91,
+   "seconds": 1.48,
    "examples": [
     {
      "stage": "ine-pro",
@@ -8978,6 +9445,13 @@
      "distance": 1
     },
     {
+     "pie": "péruti",
+     "stage": "ine-pro",
+     "word": "parut",
+     "output": "pˈaruti",
+     "distance": 2
+    },
+    {
      "pie": "h₁én",
      "stage": "ine-pro",
      "word": "ní",
@@ -9004,13 +9478,6 @@
      "word": "sam-",
      "output": "sam",
      "distance": 1
-    },
-    {
-     "pie": "éti",
-     "stage": "ine-pro",
-     "word": "ati-",
-     "output": "ˈati",
-     "distance": 2
     }
    ]
   },
@@ -9061,6 +9528,8 @@
    "identity": 0,
    "bound_form": 0,
    "joined": 0,
+   "constructed": 0,
+   "construction_examples": [],
    "gaps": [],
    "joined_examples": [],
    "identity_examples": [],
@@ -9115,9 +9584,9 @@
    "pathway": 0,
    "categories": {
     "counts": {
-     "full": 214,
+     "full": 277,
      "adjusted": 53,
-     "partial": 3699,
+     "partial": 3636,
      "unexplained": 14,
      "non_pie": 90,
      "unidentified": 175848,
@@ -9125,13 +9594,13 @@
      "built": 0
     },
     "total": 4152,
-    "explained": 267,
-    "explained_rate": 6.43,
-    "of_glossary": 6.43,
+    "explained": 330,
+    "explained_rate": 7.95,
+    "of_glossary": 7.95,
     "share": {
-     "full": 5.15,
+     "full": 6.67,
      "adjusted": 1.28,
-     "partial": 89.09,
+     "partial": 87.57,
      "unexplained": 0.34,
      "non_pie": 2.17,
      "ie_loan": 1.97,
@@ -9139,11 +9608,11 @@
     }
    },
    "category_reasons": {
-    "partial: no rule applied": 2887,
+    "partial: no rule applied": 2611,
     "partial: cited as a stem, not derived": 355,
     "full: orthographic layer": 214,
-    "partial: built from pieces, not derived": 207,
     "partial: reproduced only from Proto-Indo-Iranian, not from the PIE etymon": 135,
+    "partial: built from pieces, not derived": 133,
     "non_pie: non-ie source": 90,
     "ie_loan: loan from an IE branch": 82,
     "partial: reproduced only from Proto-Indo-Aryan, not from the PIE etymon": 71,
@@ -9152,7 +9621,17 @@
     "unexplained: no recorded etymology": 14,
     "partial: needs approval of our modification": 8,
     "adjusted: recorded step differs: iir-pro, inc-pro": 8,
-    "adjusted: recorded step differs: iir-pro": 7
+    "adjusted: recorded step differs: iir-pro": 7,
+    "full: construction of घृ + -त": 2,
+    "partial: construction of प्रति + विश् does not spell the word": 2,
+    "partial: construction of आकाश् + -अ does not spell the word": 1,
+    "partial: construction of मुच् + -ति does not spell the word": 1,
+    "partial: construction of सू + -नु, but -नु has no recorded origin": 1,
+    "partial: construction of गण + पति, but गण has no recorded origin": 1,
+    "full: construction of अ- + हिंसा": 1,
+    "partial: construction of ज्ञा + -अन does not spell the word": 1,
+    "partial: construction of सु- + ख, but ख has no recorded origin": 1,
+    "partial: construction of अन्- + एक does not spell the word": 1
    },
    "category_examples": {
     "full": [
@@ -9172,6 +9651,11 @@
       "reason": "orthographic layer"
      },
      {
+      "word": "अहिंसा",
+      "gloss": "nonviolence · harmlessness · security, safety",
+      "reason": "construction of अ- + हिंसा"
+     },
+     {
       "word": "अपि",
       "gloss": "and, also, moreover, besides, assuredly, surely · suppose th",
       "reason": "orthographic layer"
@@ -9189,11 +9673,6 @@
      {
       "word": "पत्नी",
       "gloss": "wife · female possessor, mistress, Lady",
-      "reason": "orthographic layer"
-     },
-     {
-      "word": "मधु",
-      "gloss": "honey · mead; any sweet liquid · the juice or nectar of flow",
       "reason": "orthographic layer"
      }
     ],
@@ -9544,6 +10023,41 @@
    "identity": 36,
    "bound_form": 0,
    "joined": 319,
+   "constructed": 63,
+   "construction_examples": [
+    {
+     "word": "अहिंसा",
+     "reason": "construction of अ- + हिंसा"
+    },
+    {
+     "word": "शक्ति",
+     "reason": "construction of शक् + -ति"
+    },
+    {
+     "word": "आस्य",
+     "reason": "construction of आस् + -य"
+    },
+    {
+     "word": "भीति",
+     "reason": "construction of भी + -ति"
+    },
+    {
+     "word": "अकार",
+     "reason": "construction of अ + कार"
+    },
+    {
+     "word": "सुवर्ण",
+     "reason": "construction of सु- + वर्ण"
+    },
+    {
+     "word": "प्रदेश",
+     "reason": "construction of प्र- + देश"
+    },
+    {
+     "word": "अपभ्रंश",
+     "reason": "construction of अप- + भ्रंश"
+    }
+   ],
    "gaps": [],
    "joined_examples": [
     {
@@ -9664,7 +10178,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 9.84,
+   "seconds": 10.37,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -9725,7 +10239,7 @@
      "distance": 3
     }
    ],
-   "review": 4075
+   "review": 4078
   },
   "ira-pro": {
    "name": "Proto-Iranian",
@@ -9774,6 +10288,8 @@
    "identity": 21,
    "bound_form": 11,
    "joined": 2,
+   "constructed": 0,
+   "construction_examples": [],
    "gaps": [],
    "joined_examples": [
     {
@@ -9971,7 +10487,7 @@
      4
     ]
    ],
-   "seconds": 1.51,
+   "seconds": 1.0,
    "examples": [
     {
      "stage": "ine-pro",
@@ -10428,6 +10944,8 @@
    "identity": 1,
    "bound_form": 0,
    "joined": 0,
+   "constructed": 0,
+   "construction_examples": [],
    "gaps": [],
    "joined_examples": [],
    "identity_examples": [
@@ -10448,7 +10966,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.78,
+   "seconds": 0.29,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -10559,7 +11077,7 @@
     }
    },
    "category_reasons": {
-    "partial: no rule applied": 142,
+    "partial: no rule applied": 96,
     "unexplained: no recorded etymology": 89,
     "partial: reproduced only from Proto-Indo-Iranian, not from the PIE etymon": 24,
     "ie_loan: loan from an IE branch": 18,
@@ -10567,9 +11085,22 @@
     "partial: reproduced only from Proto-Iranian, not from the PIE etymon": 16,
     "non_pie: non-ie source": 13,
     "partial: needs approval of our modification": 4,
+    "partial: construction of *xšayah + *(w)r̥šā does not spell the word": 1,
+    "partial: construction of 𐎭𐎠𐎼𐎹𐎫𐎡𐎹 + *vahuš does not spell the word": 1,
     "partial: unchanged ancestor (no law applied)": 1,
     "adjusted: recorded step differs: iir-pro": 1,
-    "adjusted: recorded step differs: iir-pro, ira-pro": 1
+    "adjusted: recorded step differs: iir-pro, ira-pro": 1,
+    "partial: construction of 𐎠𐎼𐎷𐎡𐎴 + -𐎡𐎹 does not spell the word": 1,
+    "partial: construction of *Skuδi + -𐎼 does not spell the word": 1,
+    "partial: construction of *θatam + *gāuš does not spell the word": 1,
+    "partial: construction of 𐎢𐎺𐎠𐎼𐏀𐎷𐎡𐏁 + -𐎡𐎹 does not spell the word": 1,
+    "partial: construction of *Ākaufakah + -𐎡𐎹 does not spell the word": 1,
+    "partial: construction of 𐏃𐎧𐎠𐎶𐎴𐎡𐏁 + -𐎡𐎹, but 𐏃𐎧𐎠𐎶𐎴𐎡𐏁, -𐎡𐎹 has no recorded origin": 1,
+    "partial: construction of 𐎹𐎢𐎴𐎠 + 𐎫𐎣𐎲𐎼 does not spell the word": 1,
+    "partial: construction of 𐎭𐎼𐎴𐎡𐎹 + 𐎣𐎼, but 𐎣𐎼 has no recorded origin": 1,
+    "partial: construction of 𐎹𐎢𐎴 + -𐎠, but 𐎹𐎢𐎴, -𐎠 has no recorded origin": 1,
+    "partial: construction of 𐏃𐎶𐎼𐎴 + 𐎣𐎼, but 𐎣𐎼 has no recorded origin": 1,
+    "partial: construction of 𐎣𐎠𐎿𐎣 + -𐎠𐎡𐎴 does not spell the word": 1
    },
    "category_examples": {
     "full": [
@@ -10630,12 +11161,12 @@
      {
       "word": "𐎧𐏁𐎹𐎠𐎼𐏁𐎠",
       "gloss": "Xerxes",
-      "reason": "no rule applied"
+      "reason": "construction of *xšayah + *(w)r̥šā does not spell the word"
      },
      {
       "word": "𐎭𐎠𐎼𐎹𐎺𐎢𐏁",
       "gloss": "a male given name, equivalent to English Darius",
-      "reason": "no rule applied"
+      "reason": "construction of 𐎭𐎠𐎼𐎹𐎫𐎡𐎹 + *vahuš does not spell the word"
      },
      {
       "word": "𐎱𐎠𐎼𐎿",
@@ -10809,6 +11340,8 @@
    "identity": 1,
    "bound_form": 0,
    "joined": 0,
+   "constructed": 0,
+   "construction_examples": [],
    "gaps": [],
    "joined_examples": [],
    "identity_examples": [
@@ -10878,7 +11411,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.18,
+   "seconds": 0.17,
    "examples": [],
    "pathway_examples": [
     {
@@ -10975,7 +11508,7 @@
      "distance": 6
     }
    ],
-   "review": 153
+   "review": 157
   },
   "pal": {
    "name": "Middle Persian",
@@ -10993,12 +11526,12 @@
     "unidentified": 3306,
     "band_base": 4000
    },
-   "identified": 107,
-   "pie_linked": 33,
+   "identified": 112,
+   "pie_linked": 35,
    "reconstruction": 0,
    "reconstruction_exact": 0,
-   "eligible": 107,
-   "tested": 107,
+   "eligible": 112,
+   "tested": 112,
    "exact": 3,
    "exact_strict": 2,
    "exact_notation": 1,
@@ -11202,6 +11735,8 @@
    "identity": 0,
    "bound_form": 0,
    "joined": 0,
+   "constructed": 0,
+   "construction_examples": [],
    "gaps": [],
    "joined_examples": [],
    "identity_examples": [],
@@ -11259,10 +11794,10 @@
     }
    ],
    "orth_rate": 0.004323,
-   "exact_of_tested": 0.028037,
-   "identified_rate": 0.154179,
-   "pie_rate": 0.04755,
-   "near_rate": 0.028037,
+   "exact_of_tested": 0.026786,
+   "identified_rate": 0.161383,
+   "pie_rate": 0.050432,
+   "near_rate": 0.026786,
    "from_stage": {
     "peo": 2,
     "ine-pro": 1
@@ -11297,7 +11832,7 @@
      1
     ]
    ],
-   "seconds": 0.1,
+   "seconds": 0.72,
    "examples": [
     {
      "stage": "ine-pro",
@@ -11377,7 +11912,7 @@
      "distance": 6
     }
    ],
-   "review": 28
+   "review": 61
   },
   "fa": {
    "name": "Persian",
@@ -11407,7 +11942,7 @@
    "exact_strict": 0,
    "exact_notation": 0,
    "exact_pie": 0,
-   "explained": 794,
+   "explained": 793,
    "borrowed": 5497,
    "outside": 669,
    "non_ie": 4315,
@@ -11416,9 +11951,9 @@
    "pathway": 7,
    "categories": {
     "counts": {
-     "full": 12,
+     "full": 256,
      "adjusted": 10,
-     "partial": 5072,
+     "partial": 4828,
      "unexplained": 76750,
      "non_pie": 71691,
      "unidentified": 0,
@@ -11426,13 +11961,13 @@
      "built": 7321
     },
     "total": 163774,
-    "explained": 22,
-    "explained_rate": 0.01,
-    "of_glossary": 0.01,
+    "explained": 266,
+    "explained_rate": 0.16,
+    "of_glossary": 0.16,
     "share": {
-     "full": 0.01,
+     "full": 0.16,
      "adjusted": 0.01,
-     "partial": 3.1,
+     "partial": 2.95,
      "unexplained": 46.86,
      "non_pie": 43.77,
      "ie_loan": 1.78,
@@ -11444,13 +11979,13 @@
     "unexplained: no recorded etymology (the dictionary labels it a proper name)": 38253,
     "unexplained: no recorded etymology": 21981,
     "unexplained: no recorded etymology (a compound the model cannot cut)": 15287,
-    "partial: no rule applied": 4358,
     "ie_loan: loan from an IE branch": 2918,
+    "partial: no rule applied": 1650,
     "unexplained: no recorded etymology (a relative adjective whose stem is not stored)": 1034,
     "partial: reproduced only from Middle Persian, not from the PIE etymon": 370,
-    "partial: unchanged ancestor (no law applied)": 204,
+    "partial: unchanged ancestor (no law applied)": 203,
     "unexplained: no recorded etymology (the dictionary labels it a huzvarish)": 153,
-    "partial: built from pieces, not derived": 53,
+    "partial: built from pieces, not derived": 51,
     "unexplained: no recorded etymology (a bound morpheme, not a word)": 42,
     "partial: reproduced only from Proto-Indo-Iranian, not from the PIE etymon": 30,
     "partial: reproduced only from Proto-Iranian, not from the PIE etymon": 26,
@@ -11460,10 +11995,10 @@
     "partial: per-word law switch (unapproved)": 4,
     "adjusted: recorded step differs: pal": 4,
     "adjusted: recorded step differs: iir-pro, ira-pro": 3,
-    "built: built from بند + در (as the record states) — a formation, not a derivation": 1,
-    "adjusted: recorded step differs: peo": 1,
-    "adjusted: recorded step differs: iir-pro, pal": 1,
-    "adjusted: recorded step differs: ira-pro": 1
+    "partial: construction of تاج + محل does not spell the word": 2,
+    "partial: construction of گل + ـی, but ـی has no recorded origin": 2,
+    "partial: construction of آرام + ـی, but ـی has no recorded origin": 2,
+    "partial: construction of معمار + ـی, but ـی has no recorded origin": 2
    },
    "category_examples": {
     "full": [
@@ -11478,34 +12013,34 @@
       "reason": "script layer"
      },
      {
+      "word": "خوشی",
+      "gloss": "happiness · pleasure",
+      "reason": "construction of خوش + -ی"
+     },
+     {
+      "word": "چهارشنبه",
+      "gloss": "Wednesday",
+      "reason": "construction of چهار + شنبه"
+     },
+     {
+      "word": "افغانستان",
+      "gloss": "Afghanistan (a landlocked country between Central Asia and S",
+      "reason": "construction of افغان + ـستان"
+     },
+     {
+      "word": "لهستان",
+      "gloss": "Poland (a country in Central Europe) · land of the Lechites",
+      "reason": "construction of له + ـستان"
+     },
+     {
       "word": "کار",
       "gloss": "work · deed · occupation, job",
       "reason": "script layer"
      },
      {
-      "word": "دوش",
-      "gloss": "shoulder",
-      "reason": "script layer"
-     },
-     {
-      "word": "دام",
-      "gloss": "snare, trap",
-      "reason": "script layer"
-     },
-     {
-      "word": "میش",
-      "gloss": "sheep · ewe",
-      "reason": "script layer"
-     },
-     {
-      "word": "پشم",
-      "gloss": "wool · androgenic hair · pubic hair",
-      "reason": "script layer"
-     },
-     {
-      "word": "گام",
-      "gloss": "step",
-      "reason": "script layer"
+      "word": "گلدان",
+      "gloss": "flowerpot · vase",
+      "reason": "construction of گل + ـدان"
      }
     ],
     "adjusted": [
@@ -11574,7 +12109,7 @@
      {
       "word": "سامانه",
       "gloss": "system · alternative form of سامان (sāmān /sâmân)",
-      "reason": "no rule applied"
+      "reason": "construction of سامان + ـه, but سامان, ـه has no recorded origin"
      },
      {
       "word": "میوه",
@@ -11589,7 +12124,7 @@
      {
       "word": "کرنا",
       "gloss": "kerana, kernei, karnay (a long thin brass horn or trumpet) ·",
-      "reason": "no rule applied"
+      "reason": "construction of خر + نای does not spell the word"
      }
     ],
     "unexplained": [
@@ -11828,9 +12363,44 @@
    ],
    "lemma": 0,
    "lemma_examples": [],
-   "identity": 230,
+   "identity": 229,
    "bound_form": 0,
    "joined": 128,
+   "constructed": 244,
+   "construction_examples": [
+    {
+     "word": "خوشی",
+     "reason": "construction of خوش + -ی"
+    },
+    {
+     "word": "چهارشنبه",
+     "reason": "construction of چهار + شنبه"
+    },
+    {
+     "word": "افغانستان",
+     "reason": "construction of افغان + ـستان"
+    },
+    {
+     "word": "لهستان",
+     "reason": "construction of له + ـستان"
+    },
+    {
+     "word": "گلدان",
+     "reason": "construction of گل + ـدان"
+    },
+    {
+     "word": "همسر",
+     "reason": "construction of هم + سر"
+    },
+    {
+     "word": "پرنده",
+     "reason": "construction of پر + -ـنده"
+    },
+    {
+     "word": "زورمند",
+     "reason": "construction of زور + ـمند"
+    }
+   ],
    "gaps": [],
    "joined_examples": [
     {
@@ -11900,11 +12470,6 @@
    ],
    "identity_examples": [
     {
-     "word": "نان",
-     "output": "nān",
-     "stage": "pal"
-    },
-    {
      "word": "من",
      "output": "man",
      "stage": "pal"
@@ -11937,6 +12502,11 @@
     {
      "word": "کون",
      "output": "kūn",
+     "stage": "pal"
+    },
+    {
+     "word": "شهر",
+     "output": "šahr",
      "stage": "pal"
     }
    ],
@@ -12000,7 +12570,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 15.89,
+   "seconds": 16.78,
    "examples": [],
    "pathway_examples": [
     {
@@ -12143,7 +12713,7 @@
      "distance": 4
     }
    ],
-   "review": 2122
+   "review": 2091
   },
   "xpr": {
    "name": "Parthian",
@@ -12151,12 +12721,12 @@
    "attested": 34,
    "categorised": 34,
    "estimate": null,
-   "identified": 11,
+   "identified": 13,
    "pie_linked": 1,
    "reconstruction": 0,
    "reconstruction_exact": 0,
-   "eligible": 11,
-   "tested": 11,
+   "eligible": 13,
+   "tested": 13,
    "exact": 0,
    "exact_strict": 0,
    "exact_notation": 0,
@@ -12294,6 +12864,8 @@
    "identity": 0,
    "bound_form": 0,
    "joined": 0,
+   "constructed": 0,
+   "construction_examples": [],
    "gaps": [],
    "joined_examples": [],
    "identity_examples": [],
@@ -12303,12 +12875,12 @@
    "script_examples": [],
    "orth_rate": 0.0,
    "exact_of_tested": 0.0,
-   "identified_rate": 0.323529,
+   "identified_rate": 0.382353,
    "pie_rate": 0.029412,
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.01,
+   "seconds": 0.02,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -12348,6 +12920,13 @@
      "distance": 5
     },
     {
+     "pie": "sr̥ȷ́áti",
+     "stage": "iir-pro",
+     "word": "𐫍𐫀𐫖𐫍𐫏𐫡𐫉",
+     "output": "hr̥zˈati",
+     "distance": 8
+    },
+    {
      "pie": "cwáHdah",
      "stage": "ira-pro",
      "word": "𐫙𐫘𐫛𐫀𐫅",
@@ -12360,15 +12939,9 @@
      "word": "𐫛𐫀𐫅",
      "output": "pˈāds",
      "distance": 5
-    },
-    {
-     "pie": "patikárah",
-     "stage": "ira-pro",
-     "word": "𐫛𐫅𐫐𐫡",
-     "output": "patikˈarah",
-     "distance": 10
     }
-   ]
+   ],
+   "review": 1
   },
   "cel-pro": {
    "name": "Proto-Celtic",
@@ -12417,6 +12990,8 @@
    "identity": 37,
    "bound_form": 27,
    "joined": 38,
+   "constructed": 0,
+   "construction_examples": [],
    "gaps": [],
    "joined_examples": [
     {
@@ -12661,7 +13236,7 @@
      3
     ]
    ],
-   "seconds": 0.93,
+   "seconds": 0.51,
    "examples": [
     {
      "stage": "ine-pro",
@@ -12809,22 +13384,22 @@
    "pathway": 0,
    "categories": {
     "counts": {
-     "full": 13,
+     "full": 30,
      "adjusted": 4,
-     "partial": 1699,
+     "partial": 1682,
      "unexplained": 1,
      "non_pie": 35,
      "ie_loan": 167,
      "built": 0
     },
     "total": 1919,
-    "explained": 17,
-    "explained_rate": 0.89,
-    "of_glossary": 0.89,
+    "explained": 34,
+    "explained_rate": 1.77,
+    "of_glossary": 1.77,
     "share": {
-     "full": 0.68,
+     "full": 1.56,
      "adjusted": 0.21,
-     "partial": 88.54,
+     "partial": 87.65,
      "unexplained": 0.05,
      "non_pie": 1.82,
      "ie_loan": 8.7,
@@ -12832,17 +13407,30 @@
     }
    },
    "category_reasons": {
-    "partial: no rule applied": 1363,
-    "partial: built from pieces, not derived": 186,
+    "partial: no rule applied": 1319,
     "ie_loan: loan from an IE branch": 167,
     "partial: reproduced only from Proto-Celtic, not from the PIE etymon": 136,
+    "partial: built from pieces, not derived": 58,
     "non_pie: non-ie source": 35,
     "partial: bound form, not a word": 9,
     "full: cited laws, no change": 8,
     "partial: unchanged ancestor (no law applied)": 5,
     "full: orthographic layer": 5,
     "adjusted: recorded step differs: cel-pro": 4,
-    "unexplained: no recorded etymology": 1
+    "full: construction of an- + ís": 1,
+    "partial: construction of for- + dingid does not spell the word": 1,
+    "full: construction of bláth + -ach": 1,
+    "partial: construction of -com + fius does not spell the word": 1,
+    "partial: construction of anaid + -ad does not spell the word": 1,
+    "unexplained: no recorded etymology": 1,
+    "partial: construction of to- + uss- + ro- + gabál does not spell the word": 1,
+    "partial: construction of -dí + gníid does not spell the word": 1,
+    "partial: construction of mesc + -e does not spell the word": 1,
+    "partial: construction of brithem + -as does not spell the word": 1,
+    "full: construction of com- + airle": 1,
+    "partial: construction of tigern + -e does not spell the word": 1,
+    "partial: construction of flaith + -as does not spell the word": 1,
+    "partial: construction of il + -ar, but -ar has no recorded origin": 1
    },
    "category_examples": {
     "full": [
@@ -12882,9 +13470,9 @@
       "reason": "orthographic layer"
      },
      {
-      "word": "grán",
-      "gloss": "grain (harvested seeds of various grass-related food crops)",
-      "reason": "orthographic layer"
+      "word": "anís",
+      "gloss": "from below",
+      "reason": "construction of an- + ís"
      }
     ],
     "adjusted": [
@@ -13114,6 +13702,41 @@
    "identity": 5,
    "bound_form": 9,
    "joined": 192,
+   "constructed": 17,
+   "construction_examples": [
+    {
+     "word": "anís",
+     "reason": "construction of an- + ís"
+    },
+    {
+     "word": "bláthach",
+     "reason": "construction of bláth + -ach"
+    },
+    {
+     "word": "comairle",
+     "reason": "construction of com- + airle"
+    },
+    {
+     "word": "lánmar",
+     "reason": "construction of lán + -mar"
+    },
+    {
+     "word": "lógmar",
+     "reason": "construction of lóg + -mar"
+    },
+    {
+     "word": "étach",
+     "reason": "construction of ét + -ach"
+    },
+    {
+     "word": "gnáthach",
+     "reason": "construction of gnáth + -ach"
+    },
+    {
+     "word": "rímid",
+     "reason": "construction of rím + -id"
+    }
+   ],
    "gaps": [],
    "joined_examples": [
     {
@@ -13344,7 +13967,7 @@
      1
     ]
    ],
-   "seconds": 2.83,
+   "seconds": 3.92,
    "examples": [
     {
      "stage": "cel-pro",
@@ -13466,7 +14089,7 @@
      "distance": 4
     }
    ],
-   "review": 1535
+   "review": 1534
   },
   "ine-bsl-pro": {
    "name": "Proto-Balto-Slavic",
@@ -13515,6 +14138,8 @@
    "identity": 3,
    "bound_form": 3,
    "joined": 2,
+   "constructed": 0,
+   "construction_examples": [],
    "gaps": [],
    "joined_examples": [
     {
@@ -13641,7 +14266,7 @@
      1
     ]
    ],
-   "seconds": 1.14,
+   "seconds": 0.17,
    "examples": [
     {
      "stage": "ine-pro",
@@ -13770,17 +14395,17 @@
    "attested": 5335,
    "categorised": 0,
    "estimate": null,
-   "identified": 2105,
-   "pie_linked": 1941,
+   "identified": 2145,
+   "pie_linked": 1969,
    "reconstruction": 0,
    "reconstruction_exact": 0,
-   "eligible": 2105,
-   "tested": 2105,
-   "exact": 520,
-   "exact_strict": 519,
+   "eligible": 2145,
+   "tested": 2145,
+   "exact": 528,
+   "exact_strict": 527,
    "exact_notation": 1,
    "exact_pie": 111,
-   "explained": 568,
+   "explained": 577,
    "borrowed": 53,
    "outside": 43,
    "non_ie": 11,
@@ -13801,16 +14426,18 @@
    },
    "categories_untested": 0,
    "case_only": 0,
-   "near": 358,
+   "near": 362,
    "errors": 0,
-   "exact_rate": 0.096511,
+   "exact_rate": 0.097996,
    "orthographic": 0,
    "orthographic_examples": [],
    "lemma": 0,
    "lemma_examples": [],
    "identity": 0,
-   "bound_form": 48,
+   "bound_form": 49,
    "joined": 133,
+   "constructed": 0,
+   "construction_examples": [],
    "gaps": [],
    "joined_examples": [
     {
@@ -13922,46 +14549,46 @@
      "stage": "ine-pro"
     }
    ],
-   "exact_orth": 520,
+   "exact_orth": 528,
    "script": 0,
    "script_examples": [],
-   "orth_rate": 0.096511,
-   "exact_of_tested": 0.247031,
-   "identified_rate": 0.390683,
-   "pie_rate": 0.360245,
-   "near_rate": 0.247031,
+   "orth_rate": 0.097996,
+   "exact_of_tested": 0.246154,
+   "identified_rate": 0.398107,
+   "pie_rate": 0.365442,
+   "near_rate": 0.246154,
    "from_stage": {
-    "ine-bsl-pro": 409,
+    "ine-bsl-pro": 417,
     "ine-pro": 111
    },
    "top_rules": [
     [
      "sla-pro|stress_token_dropped",
-     272
+     278
     ],
     [
      "sla-pro|register_mark_dropped",
-     228
+     235
     ],
     [
      "sla-pro|final_as_to_yer",
-     170
-    ],
-    [
-     "sla-pro|short_a_to_o",
-     143
+     172
     ],
     [
      "sla-pro|ei_to_i",
-     143
+     148
+    ],
+    [
+     "sla-pro|short_a_to_o",
+     146
     ],
     [
      "sla-pro|long_a_to_a",
-     126
+     128
     ],
     [
      "sla-pro|w_to_v",
-     95
+     96
     ],
     [
      "ine-bsl-pro|o_to_a",
@@ -13973,7 +14600,7 @@
     ],
     [
      "sla-pro|long_i_to_i",
-     52
+     54
     ],
     [
      "ine-bsl-pro|laryngeal_loss",
@@ -13996,16 +14623,16 @@
      38
     ],
     [
+     "sla-pro|short_u_to_yer",
+     37
+    ],
+    [
      "sla-pro|palatal_s_to_s",
      36
     ],
     [
-     "sla-pro|short_u_to_yer",
-     36
-    ],
-    [
      "sla-pro|nasal_back",
-     33
+     34
     ],
     [
      "ine-bsl-pro|h2_colours_e",
@@ -14016,7 +14643,7 @@
      28
     ]
    ],
-   "seconds": 5.4,
+   "seconds": 7.4,
    "examples": [
     {
      "stage": "ine-bsl-pro",
@@ -14426,6 +15053,8 @@
    "identity": 400,
    "bound_form": 0,
    "joined": 76,
+   "constructed": 0,
+   "construction_examples": [],
    "gaps": [],
    "joined_examples": [
     {
@@ -14595,7 +15224,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 4.4,
+   "seconds": 5.88,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -14693,9 +15322,9 @@
    "pathway": 0,
    "categories": {
     "counts": {
-     "full": 17,
+     "full": 18,
      "adjusted": 15,
-     "partial": 1413,
+     "partial": 1412,
      "unexplained": 0,
      "non_pie": 83,
      "unidentified": 497619,
@@ -14703,13 +15332,13 @@
      "built": 0
     },
     "total": 2381,
-    "explained": 32,
-    "explained_rate": 1.34,
-    "of_glossary": 1.34,
+    "explained": 33,
+    "explained_rate": 1.39,
+    "of_glossary": 1.39,
     "share": {
-     "full": 0.71,
+     "full": 0.76,
      "adjusted": 0.63,
-     "partial": 59.34,
+     "partial": 59.3,
      "unexplained": 0.0,
      "non_pie": 3.49,
      "ie_loan": 35.83,
@@ -14717,7 +15346,7 @@
     }
    },
    "category_reasons": {
-    "partial: no rule applied": 1163,
+    "partial: no rule applied": 1161,
     "ie_loan: loan from an IE branch": 853,
     "partial: reproduced only from Proto-Balto-Slavic, not from the PIE etymon": 213,
     "non_pie: non-ie source": 83,
@@ -14725,7 +15354,9 @@
     "full: cited laws, no change": 17,
     "adjusted: recorded step differs: ine-bsl-pro": 15,
     "partial: bound form, not a word": 11,
-    "partial: built from pieces, not derived": 1
+    "full: construction of -pa + tikti": 1,
+    "partial: construction of girtas + -uoklis does not spell the word": 1,
+    "partial: construction of vežti + -imas does not spell the word": 1
    },
    "category_examples": {
     "full": [
@@ -14954,6 +15585,13 @@
    "identity": 28,
    "bound_form": 11,
    "joined": 1,
+   "constructed": 1,
+   "construction_examples": [
+    {
+     "word": "patikti",
+     "reason": "construction of -pa + tikti"
+    }
+   ],
    "gaps": [],
    "joined_examples": [
     {
@@ -15143,7 +15781,7 @@
      3
     ]
    ],
-   "seconds": 2.46,
+   "seconds": 2.0,
    "examples": [
     {
      "stage": "ine-pro",
@@ -15265,7 +15903,7 @@
      "distance": 3
     }
    ],
-   "review": 1207
+   "review": 1204
   },
   "ine-toc-pro": {
    "name": "Proto-Tocharian",
@@ -15314,6 +15952,8 @@
    "identity": 0,
    "bound_form": 0,
    "joined": 0,
+   "constructed": 0,
+   "construction_examples": [],
    "gaps": [
     "ine-pro → ine-toc-pro"
    ],
@@ -15504,6 +16144,8 @@
    "identity": 0,
    "bound_form": 0,
    "joined": 1,
+   "constructed": 0,
+   "construction_examples": [],
    "gaps": [
     "ine-pro → ine-toc-pro",
     "ine-toc-pro → txb"
@@ -15534,7 +16176,7 @@
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [],
-   "review": 508
+   "review": 507
   },
   "hy": {
    "name": "Armenian",
@@ -15585,9 +16227,12 @@
    },
    "category_reasons": {
     "ie_loan: loan from an IE branch": 2271,
-    "partial: no rule applied": 2200,
+    "partial: no rule applied": 2197,
     "non_pie: non-ie source": 514,
-    "partial: reproduced only from a later recorded ancestor, not from the PIE etymon": 52
+    "partial: reproduced only from a later recorded ancestor, not from the PIE etymon": 52,
+    "partial: construction of Հովհաննես + -յան does not spell the word": 1,
+    "partial: construction of շուն + -ա- + գայլ does not spell the word": 1,
+    "partial: construction of որբ + -ա- + հավաքել does not spell the word": 1
    },
    "category_examples": {
     "full": [],
@@ -15734,6 +16379,8 @@
    "identity": 0,
    "bound_form": 0,
    "joined": 0,
+   "constructed": 0,
+   "construction_examples": [],
    "gaps": [
     "ine-pro → hy"
    ],
@@ -15750,7 +16397,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.11,
+   "seconds": 0.17,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [],
@@ -15781,22 +16428,22 @@
    "pathway": 0,
    "categories": {
     "counts": {
-     "full": 0,
+     "full": 1,
      "adjusted": 0,
-     "partial": 1025,
+     "partial": 1024,
      "unexplained": 0,
      "non_pie": 133,
      "ie_loan": 261,
      "built": 0
     },
     "total": 1419,
-    "explained": 0,
-    "explained_rate": 0.0,
-    "of_glossary": 0.0,
+    "explained": 1,
+    "explained_rate": 0.07,
+    "of_glossary": 0.07,
     "share": {
-     "full": 0.0,
+     "full": 0.07,
      "adjusted": 0.0,
-     "partial": 72.23,
+     "partial": 72.16,
      "unexplained": 0.0,
      "non_pie": 9.37,
      "ie_loan": 18.39,
@@ -15806,11 +16453,21 @@
    "category_reasons": {
     "partial: reproduced only from a later recorded ancestor, not from the PIE etymon": 806,
     "ie_loan: loan from an IE branch": 261,
-    "partial: no rule applied": 219,
-    "non_pie: non-ie source": 133
+    "partial: no rule applied": 215,
+    "non_pie: non-ie source": 133,
+    "full: construction of ութ + ու + տասն": 1,
+    "partial: construction of ութ + հարիւր, but հարիւր has no recorded origin": 1,
+    "partial: construction of *աղծ + -եալ, but *աղծ, -եալ has no recorded origin": 1,
+    "partial: construction of վեր + -ա- + բերեմ, but -ա- has no recorded origin": 1
    },
    "category_examples": {
-    "full": [],
+    "full": [
+     {
+      "word": "ութուտասն",
+      "gloss": "alternative form of ութեւտասն (utʻewtasn)",
+      "reason": "construction of ութ + ու + տասն"
+     }
+    ],
     "adjusted": [],
     "partial": [
      {
@@ -15954,6 +16611,13 @@
    "identity": 0,
    "bound_form": 0,
    "joined": 15,
+   "constructed": 1,
+   "construction_examples": [
+    {
+     "word": "ութուտասն",
+     "reason": "construction of ութ + ու + տասն"
+    }
+   ],
    "gaps": [
     "ine-pro → xcl"
    ],
@@ -16037,11 +16701,11 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.07,
+   "seconds": 0.11,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [],
-   "review": 1159
+   "review": 1153
   },
   "sq": {
    "name": "Albanian",
@@ -16252,6 +16916,8 @@
    "identity": 0,
    "bound_form": 0,
    "joined": 17,
+   "constructed": 0,
+   "construction_examples": [],
    "gaps": [
     "ine-pro → sq"
    ],
@@ -16334,55 +17000,55 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.12,
+   "seconds": 0.18,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [],
-   "review": 1843
+   "review": 1842
   }
  },
  "totals": {
-  "glossary": 426247,
+  "glossary": 426393,
   "attested": 381109,
-  "identified": 114448,
-  "pie_linked": 47352,
-  "eligible": 114448,
-  "tested": 113881,
-  "exact": 6420,
-  "exact_strict": 5474,
-  "exact_notation": 946,
-  "exact_pie": 976,
+  "identified": 114511,
+  "pie_linked": 47397,
+  "eligible": 114511,
+  "tested": 113944,
+  "exact": 6430,
+  "exact_strict": 5482,
+  "exact_notation": 948,
+  "exact_pie": 978,
   "reconstruction": 567,
   "reconstruction_exact": 38,
   "pathway": 12,
-  "explained": 17424,
+  "explained": 17423,
   "borrowed": 88044,
   "outside": 38833,
   "non_ie": 11926,
-  "unlinked": 25942,
-  "no_etym": 154692,
+  "unlinked": 25946,
+  "no_etym": 154828,
   "case_only": 0,
-  "near": 22758,
-  "orthographic": 5102,
+  "near": 22763,
+  "orthographic": 5103,
   "lemma": 576,
-  "identity": 3383,
-  "bound_form": 493,
-  "joined": 11503,
+  "identity": 3370,
+  "bound_form": 494,
+  "joined": 11510,
   "script": 1438,
-  "exact_orth": 12098,
+  "exact_orth": 12109,
   "errors": 0,
-  "exact_rate": 0.015062,
-  "identified_rate": 0.268502,
-  "exact_of_identified": 0.056095,
-  "pie_rate": 0.111091,
-  "orth_rate": 0.028383,
-  "explained_of_identified": 0.152244
+  "exact_rate": 0.01508,
+  "identified_rate": 0.268557,
+  "exact_of_identified": 0.056152,
+  "pie_rate": 0.111158,
+  "orth_rate": 0.028399,
+  "explained_of_identified": 0.152151
  },
  "categories": {
   "counts": {
-   "full": 518,
+   "full": 1091,
    "adjusted": 147,
-   "partial": 131593,
+   "partial": 131020,
    "unexplained": 77633,
    "non_pie": 91918,
    "unidentified": 1720067,
@@ -16390,13 +17056,13 @@
    "built": 7324
   },
   "total": 381109,
-  "explained": 665,
-  "explained_rate": 0.17,
-  "of_glossary": 0.17,
+  "explained": 1238,
+  "explained_rate": 0.32,
+  "of_glossary": 0.32,
   "share": {
-   "full": 0.14,
+   "full": 0.29,
    "adjusted": 0.04,
-   "partial": 34.53,
+   "partial": 34.38,
    "unexplained": 20.37,
    "non_pie": 24.12,
    "ie_loan": 18.89,
@@ -16408,13 +17074,13 @@
    "label": "fully explained",
    "colour": "#1b5e20",
    "short": "dark green",
-   "definition": "A recorded PIE etymon carried by cited laws to the attested form, exactly, with every recorded intermediate matching."
+   "definition": "A recorded origin — a PIE etymon carried by cited laws, or the record's own registered construction of explained pieces — reproduced exactly, every recorded intermediate matching."
   },
   "adjusted": {
    "label": "fully explained, with adjustments",
    "colour": "#8bc34a",
    "short": "light green",
-   "definition": "The same, but a recorded intermediate disagrees, or one step is an approved adjustment of ours."
+   "definition": "The same path, but a recorded intermediate disagrees, or one step is an approved adjustment of ours."
   },
   "partial": {
    "label": "partially explained",
@@ -16508,7 +17174,7 @@
    "to": "iir-pro",
    "tier": "established",
    "key": "iir-pro|vowel_merger_a",
-   "count": 383
+   "count": 384
   },
   {
    "id": "long_a_to_a",
@@ -16526,7 +17192,7 @@
    "to": "sla-pro",
    "tier": "orthographic",
    "key": "sla-pro|stress_token_dropped",
-   "count": 272
+   "count": 278
   },
   {
    "id": "brightening",
@@ -16536,6 +17202,15 @@
    "tier": "established",
    "key": "ang|brightening",
    "count": 242
+  },
+  {
+   "id": "register_mark_dropped",
+   "name": "The acute register mark *ˀ is notation, not a PSl segment",
+   "from": "ine-bsl-pro",
+   "to": "sla-pro",
+   "tier": "orthographic",
+   "key": "sla-pro|register_mark_dropped",
+   "count": 235
   },
   {
    "id": "final_a_to_e",
@@ -16554,15 +17229,6 @@
    "tier": "established",
    "key": "it|long_i_to_i",
    "count": 233
-  },
-  {
-   "id": "register_mark_dropped",
-   "name": "The acute register mark *ˀ is notation, not a PSl segment",
-   "from": "ine-bsl-pro",
-   "to": "sla-pro",
-   "tier": "orthographic",
-   "key": "sla-pro|register_mark_dropped",
-   "count": 228
   },
   {
    "id": "final_ą_to_a",
@@ -16625,7 +17291,7 @@
    "to": "sla-pro",
    "tier": "established",
    "key": "sla-pro|final_as_to_yer",
-   "count": 170
+   "count": 172
   },
   {
    "id": "long_u_to_u",
@@ -16646,22 +17312,22 @@
    "count": 149
   },
   {
-   "id": "short_a_to_o",
-   "name": "Short *a > *o",
-   "from": "ine-bsl-pro",
-   "to": "sla-pro",
-   "tier": "established",
-   "key": "sla-pro|short_a_to_o",
-   "count": 143
-  },
-  {
    "id": "ei_to_i",
    "name": "*ei > *i",
    "from": "ine-bsl-pro",
    "to": "sla-pro",
    "tier": "established",
    "key": "sla-pro|ei_to_i",
-   "count": 143
+   "count": 148
+  },
+  {
+   "id": "short_a_to_o",
+   "name": "Short *a > *o",
+   "from": "ine-bsl-pro",
+   "to": "sla-pro",
+   "tier": "established",
+   "key": "sla-pro|short_a_to_o",
+   "count": 146
   },
   {
    "id": "final_is_to_e",
@@ -16706,7 +17372,7 @@
    "to": "sla-pro",
    "tier": "established",
    "key": "sla-pro|long_a_to_a",
-   "count": 126
+   "count": 128
   },
   {
    "id": "register_mark_dropped",
@@ -16751,7 +17417,7 @@
    "to": "sla-pro",
    "tier": "established",
    "key": "sla-pro|w_to_v",
-   "count": 95
+   "count": 96
   },
   {
    "id": "infinitive_aną",
@@ -16868,7 +17534,7 @@
    "to": "gem-pro",
    "tier": "established",
    "key": "gem-pro|o_to_a",
-   "count": 66
+   "count": 67
   },
   {
    "id": "d_to_t",
@@ -16886,7 +17552,7 @@
    "to": "iir-pro",
    "tier": "established",
    "key": "iir-pro|satem_k",
-   "count": 64
+   "count": 65
   },
   {
    "id": "h_loss",
@@ -17015,6 +17681,15 @@
    "count": 54
   },
   {
+   "id": "long_i_to_i",
+   "name": "*ī > *i",
+   "from": "ine-bsl-pro",
+   "to": "sla-pro",
+   "tier": "established",
+   "key": "sla-pro|long_i_to_i",
+   "count": 54
+  },
+  {
    "id": "eo_to_e",
    "name": "OE *eo > ME *e",
    "from": "ang",
@@ -17033,15 +17708,6 @@
    "count": 52
   },
   {
-   "id": "long_i_to_i",
-   "name": "*ī > *i",
-   "from": "ine-bsl-pro",
-   "to": "sla-pro",
-   "tier": "established",
-   "key": "sla-pro|long_i_to_i",
-   "count": 52
-  },
-  {
    "id": "final_i_lowering",
    "name": "Final *-i > *-e after a light syllable",
    "from": "gmw-pro",
@@ -17051,6 +17717,15 @@
    "count": 50
   },
   {
+   "id": "verner_s",
+   "name": "Verner: *s > *z (after unstressed syllable)",
+   "from": "ine-pro",
+   "to": "gem-pro",
+   "tier": "established",
+   "key": "gem-pro|verner_s",
+   "count": 49
+  },
+  {
    "id": "u_umlaut_a",
    "name": "u-umlaut: *a > ǫ before *u",
    "from": "gem-pro",
@@ -17058,15 +17733,6 @@
    "tier": "established",
    "key": "non|u_umlaut_a",
    "count": 49
-  },
-  {
-   "id": "verner_s",
-   "name": "Verner: *s > *z (after unstressed syllable)",
-   "from": "ine-pro",
-   "to": "gem-pro",
-   "tier": "established",
-   "key": "gem-pro|verner_s",
-   "count": 48
   },
   {
    "id": "au_to_u",
@@ -17114,6 +17780,15 @@
    "count": 43
   },
   {
+   "id": "laryngeal_loss",
+   "name": "Laryngeals are lost",
+   "from": "ine-pro",
+   "to": "gem-pro",
+   "tier": "established",
+   "key": "gem-pro|laryngeal_loss",
+   "count": 42
+  },
+  {
    "id": "infinitive_ijaną",
    "name": "Heavy class-1 infinitive *-ijaną > -a",
    "from": "gem-pro",
@@ -17130,15 +17805,6 @@
    "tier": "established",
    "key": "ira-pro|c_from_palatal",
    "count": 42
-  },
-  {
-   "id": "laryngeal_loss",
-   "name": "Laryngeals are lost",
-   "from": "ine-pro",
-   "to": "gem-pro",
-   "tier": "established",
-   "key": "gem-pro|laryngeal_loss",
-   "count": 41
   },
   {
    "id": "thorn_to_d",
@@ -17195,6 +17861,15 @@
    "count": 37
   },
   {
+   "id": "short_u_to_yer",
+   "name": "Short *u > *ъ",
+   "from": "ine-bsl-pro",
+   "to": "sla-pro",
+   "tier": "established",
+   "key": "sla-pro|short_u_to_yer",
+   "count": 37
+  },
+  {
    "id": "long_e2_to_a",
    "name": "*ē₂ > *ā",
    "from": "gem-pro",
@@ -17210,15 +17885,6 @@
    "to": "sla-pro",
    "tier": "established",
    "key": "sla-pro|palatal_s_to_s",
-   "count": 36
-  },
-  {
-   "id": "short_u_to_yer",
-   "name": "Short *u > *ъ",
-   "from": "ine-bsl-pro",
-   "to": "sla-pro",
-   "tier": "established",
-   "key": "sla-pro|short_u_to_yer",
    "count": 36
   },
   {
@@ -17276,21 +17942,21 @@
    "count": 34
   },
   {
-   "id": "i_umlaut_u",
-   "name": "i-umlaut: *u > y before *i or *j",
-   "from": "gem-pro",
-   "to": "non",
-   "tier": "established",
-   "key": "non|i_umlaut_u",
-   "count": 33
-  },
-  {
    "id": "nasal_back",
    "name": "*(a|u) + nasal > *ǫ before a consonant",
    "from": "ine-bsl-pro",
    "to": "sla-pro",
    "tier": "established",
    "key": "sla-pro|nasal_back",
+   "count": 34
+  },
+  {
+   "id": "i_umlaut_u",
+   "name": "i-umlaut: *u > y before *i or *j",
+   "from": "gem-pro",
+   "to": "non",
+   "tier": "established",
+   "key": "non|i_umlaut_u",
    "count": 33
   },
   {
@@ -18761,42 +19427,43 @@
    "count": 1
   }
  ],
- "rule_applications": 14010,
+ "rule_applications": 14045,
  "review": {
-  "generated": "2026-11-10 00:45",
-  "findings": 91244,
+  "generated": "2026-11-13 00:27",
+  "findings": 91222,
   "by_kind": {
-   "etymon_missing": 46654,
+   "etymon_missing": 46666,
    "cognate_conflict": 4880,
-   "hedged_ancestry": 13697,
-   "sense_mismatch": 26013
+   "hedged_ancestry": 13712,
+   "sense_mismatch": 25964
   },
   "by_language": {
-   "ang": 3639,
+   "ang": 3633,
    "ave": 103,
    "chu": 626,
-   "de": 6522,
+   "de": 6519,
    "el": 5241,
-   "en": 31163,
-   "enm": 3085,
-   "fa": 2122,
-   "gmh": 184,
+   "en": 31153,
+   "enm": 3084,
+   "fa": 2091,
+   "gmh": 185,
    "goh": 640,
-   "got": 1034,
-   "grc": 4133,
+   "got": 1030,
+   "grc": 4120,
    "hit": 288,
    "hy": 231,
-   "it": 14503,
-   "la": 5140,
-   "lt": 1207,
+   "it": 14528,
+   "la": 5131,
+   "lt": 1204,
    "non": 2082,
-   "pal": 28,
-   "peo": 153,
-   "sa": 4075,
-   "sga": 1535,
-   "sq": 1843,
-   "txb": 508,
-   "xcl": 1159
+   "pal": 61,
+   "peo": 157,
+   "sa": 4078,
+   "sga": 1534,
+   "sq": 1842,
+   "txb": 507,
+   "xcl": 1153,
+   "xpr": 1
   },
   "listed": 3900
  }

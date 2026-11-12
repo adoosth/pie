@@ -524,6 +524,8 @@ def measure(lang: str, meta: dict, chain: list[str], rulesets, tiers, limit: int
     pathway = 0
     orth = 0
     lemma = 0
+    constructed = 0
+    construct_examples: list[dict] = []
     identity = 0
     bound_form = 0
     joined = 0
@@ -772,6 +774,17 @@ def measure(lang: str, meta: dict, chain: list[str], rulesets, tiers, limit: int
             explained += 1
         if matched_by is None and pieces:
             matched_by = "joined"
+        # A word the record builds out of its own words is produced by that
+        # construction rather than by a law: *andaswarō is *anda- + *swarō.
+        # Measured with the same helper the word page uses, and only when no
+        # derivation reached the word — a construction never overrides a law
+        # (admin, 2026-11-13).
+        construction = None
+        if matched_by in (None, "joined"):
+            try:
+                construction = service.construction_path(entry, lang, chain)
+            except Exception:
+                construction = None
 
         kind_of_loan = loan_class(entry)
         # The recorded intermediate stages must agree too, not only the ends
@@ -796,6 +809,7 @@ def measure(lang: str, meta: dict, chain: list[str], rulesets, tiers, limit: int
             matched_by=matched_by,
             built_from=built,
             built_note=built_note,
+            construction=construction,
             mismatched_steps=differ,
             tiers=tiers_fired,
             approved=(lang, target) in approved,
@@ -820,7 +834,14 @@ def measure(lang: str, meta: dict, chain: list[str], rulesets, tiers, limit: int
     for entry in attested if categorical else ():
         if id(entry) in verdicts:
             continue
-        if ancestor_starts(entry, chain):
+        # A word the record builds out of its own words has no ancestor to
+        # start from, so it is measured here rather than skipped: the
+        # construction is what produces it, exactly as on its own page.
+        try:
+            construction = service.construction_path(entry, lang, chain)
+        except Exception:
+            construction = None
+        if construction is None and ancestor_starts(entry, chain):
             untested += 1
             continue
         kind_of_loan = loan_class(entry)
@@ -832,6 +853,7 @@ def measure(lang: str, meta: dict, chain: list[str], rulesets, tiers, limit: int
             matched_by=None,
             built_from=built,
             built_note=built_note,
+            construction=construction,
             pie_linked=inherited(entry),
         )
     for entry in attested if categorical else ():
@@ -847,6 +869,16 @@ def measure(lang: str, meta: dict, chain: list[str], rulesets, tiers, limit: int
                        "reason": cats.unexplained_reason(entry.get("structure"))}
             verdicts[id(entry)] = verdict
         counts[category] = counts.get(category, 0) + 1
+        if (category in ("full", "adjusted")
+                and str(verdict.get("reason", "")).startswith("construction of")):
+            # A word carried by its own registered construction instead of a
+            # law.  Counted apart so the report says how much of the green
+            # rests on a construction — never the partials that name one and
+            # fail to spell the word (admin, 2026-11-13).
+            constructed += 1
+            if len(construct_examples) < 8:
+                construct_examples.append({"word": entry["word"].strip(),
+                                           "reason": verdict["reason"]})
         # One band per headword, first entry wins: the word page is keyed by
         # spelling and shows the first entry, so the glossary must colour the
         # same entry.  A homograph whose other reading would fall in another
@@ -919,6 +951,10 @@ def measure(lang: str, meta: dict, chain: list[str], rulesets, tiers, limit: int
         "identity": identity,
         "bound_form": bound_form,
         "joined": joined,
+        # Of the words in the green bands, how many were produced by a
+        # registered construction rather than by a chain of sound laws.
+        "constructed": constructed,
+        "construction_examples": construct_examples,
         # A step with no rule file is a gap in the model, not a failure of the
         # words: no law can reach them however good the data is (2026-11-09).
         "gaps": [f"{a} → {b}" for a, b in data.missing_stages(chain)],
@@ -1030,11 +1066,13 @@ def write_markdown(report: dict, rows: list[tuple[str, dict]]) -> None:
         f"{cat.get('total', 0):,} attested words are fully explained "
         f"({pct(cat.get('explained_rate', 0) / 100)}), and "
         f"{cat['counts'].get('ie_loan', 0):,} more are recorded loans from a",
-        "sister branch. Light green is reached two ways: a recorded intermediate stage that",
-        "the laws do not reproduce (measured, no approval needed), or a change of ours —",
-        "which is never applied by the counter without a report for the law and one for the",
-        "word in `data/adjusted.yaml`, and approval. Both greens need the engine",
-        "to carry the PIE etymon all the way down: a word reproduced only from a later",
+        "sister branch. Both greens need a recorded origin carried all the way to the",
+        "word — by cited laws, or by the record's own registered construction (the",
+        "pieces spell it, each piece starts from a PIE etymon or from outside the",
+        "family, and no recorded step disagrees). Light green is reached when a recorded",
+        "intermediate stage disagrees, or when a change of ours is needed — never",
+        "applied by the counter without a report for the law and one for the word in",
+        "`data/adjusted.yaml`, and approval. A word reproduced only from a later",
         "ancestor (Old Persian 𐎣𐎠𐎶 from Proto-Iranian) is yellow.",
         "",
         "### By language",
