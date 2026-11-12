@@ -1311,14 +1311,47 @@ def _prose_ancestry(entry: dict) -> list[tuple[str, str, str]]:
     return []
 
 
+def _piece_ancestor_gloss(entry: dict, form: str) -> str:
+    """The meaning a construction's piece quotes for one of the word's ancestors.
+
+    *andaswarō states no gloss for its PIE root — its sentence is "From *anda-
+    + *swarō" — but the piece *swarō says the root it comes from means "to
+    say, speak, talk, swear, curse".  That is the sense the row must carry;
+    without it the page quoted the other PIE root spelled *swer- (2026-11-12).
+    """
+    stage = data.stage_of(str(entry.get("lang") or "")) or str(entry.get("lang") or "")
+    if not stage:
+        return ""
+    for row in entry.get("built_as") or []:
+        for piece in row.get("pieces") or []:
+            written = _formed_piece(piece)
+            other = _lemma_entry(stage, written) if written else None
+            hint = _ancestor_gloss(other or {}, form)
+            if hint:
+                return hint
+    return ""
+
+
 def _ancestry_forms(entry: dict) -> list[dict]:
+    """The word's recorded ancestors, oldest meaning in the right sense.
+
+    A construction's ancestor is named by the piece, not by the compound:
+    *andaswarō's PIE row is the root its second piece *swarō comes from, and
+    *swarō's own sentence is the one that quotes that root's meaning.
+    """
     out = []
     for lang, word, rel in _ancestry_triples(entry):
         row = _lang(lang)
         # What the word meant at that stage, so a rung of the loan ladder is a
         # word with a sense like every rung of a word's own ladder (admin,
         # 2026-11-12).
-        held = _lemma_entry(lang, normalise_etymon(word) or word)
+        # The sense the entry's own sentence gives this ancestor, when it names
+        # one: two roots spelled *swer- must not trade glosses (2026-11-12).  A
+        # compound reaches the ancestor through a piece, and the piece's own
+        # sentence may be the one that says which sense.
+        held = _sense_entry(lang, normalise_etymon(word) or word,
+                            _ancestor_gloss(entry, word)
+                            or _piece_ancestor_gloss(entry, word))
         out.append({
             "lang": lang,
             "lang_name": row.get("name", lang),
@@ -1670,6 +1703,60 @@ def _lemma_index(lang: str) -> dict[str, dict]:
     return out
 
 
+#: The meaning a record writes in brackets beside an ancestor it names:
+#: ``*swer- (“to say, speak, talk, swear, curse”)``.
+_QUOTED_MEANING_RE = re.compile(
+    r"\*\s*(?P<form>[^\s(“”\"',;:()\[\]]+)\s*\(\s*[“\"](?P<gloss>[^”\"]+)[”\"]")
+
+
+def _ancestor_gloss(entry: dict, form: str) -> str:
+    """The meaning an entry's own sentence gives an ancestor it names.
+
+    Wiktionary quotes it beside the form — "From Proto-Indo-European *swer-
+    (“to say, speak, talk, swear, curse”)" — and it is what tells two
+    homonyms apart (admin, 2026-11-12).
+    """
+    key = normalise_etymon(form)
+    if not key:
+        return ""
+    for seen in _QUOTED_MEANING_RE.finditer(str((entry or {}).get("etym") or "")):
+        if normalise_etymon(seen.group("form")) == key:
+            return seen.group("gloss").strip()
+    return ""
+
+
+def _sense_entry(lang: str, form: str, hint: str = "") -> dict | None:
+    """The glossary entry a form names, choosing the sense a hint points at.
+
+    One spelling can head two words: Proto-Indo-European heads *swer- "to
+    ache, fester" and *swer- "to resound; to speak loudly", and a lemma index
+    keeps the first.  A child whose sentence quotes a meaning — Proto-Germanic
+    *swarō "oath" is "from Proto-Indo-European *swer- (“to say, speak, talk,
+    swear, curse”)" — must be given that one; otherwise the timeline reads
+    "oath" over the root of aching (admin, 2026-11-12).
+
+    Nothing is guessed: with no hint, or no shared word in either sense, the
+    first entry stands exactly as before.
+    """
+    # The spelling as the glossary heads it: the record writes *swer-, the
+    # stage heads swer-, and only the headword reaches every sense of it.
+    rows = _notation_entries(lang, form)
+    head = str((_lemma_entry(lang, form) or {}).get("word") or "")
+    if head:
+        rows = word_index().get((lang, head)) or rows
+    if not rows:
+        return None
+    if len(rows) == 1 or not hint:
+        return rows[0]
+    wanted = senses.content_words(hint)
+    if not wanted:
+        return rows[0]
+    scored = [(len(wanted & senses.content_words(row.get("gloss") or ())), row)
+              for row in rows]
+    scored.sort(key=lambda pair: pair[0], reverse=True)
+    return scored[0][1] if scored[0][0] else rows[0]
+
+
 def _lemma_entry(lang: str, form: str) -> dict | None:
     """The glossary entry a form names, comparing lemmas without notation."""
     key = normalise_etymon(form)
@@ -1980,8 +2067,7 @@ def root_grade(base: str, word: str, suffixes: Iterable[str] = "",
         if str(row.get("grade") or "") != seen:
             continue                         # the type does not claim this grade
         return {"grade": seen, "suffix": str(suffix),
-                "label": {"zero": "zero grade", "o": "o-grade",
-                          "e": "full grade", "lengthened": "lengthened grade"}[seen],
+                "label": _GRADE_LABELS[seen],
                 "note": str(row.get("note") or "").strip(),
                 "sources": list(row.get("sources") or [])}
     return None
@@ -2130,7 +2216,8 @@ _BUILD_DEPTH = 3
 
 
 def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
-                 seen: frozenset = frozenset(), build_depth: int = 0) -> dict:
+                 seen: frozenset = frozenset(), build_depth: int = 0,
+                 hint: str = "") -> dict:
     """One word on a construction piece's own timeline (admin, 2026-11-12).
 
     A construction is not a line under the word: its pieces are words with
@@ -2158,7 +2245,9 @@ def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
     its construction replaces the parents it would otherwise climb to.
     """
     row = _lang(lang)
-    entry = _lemma_entry(lang, form)
+    # ``hint`` is the meaning the child's own sentence quotes for this form:
+    # the two PIE roots spelled *swer- are told apart by it (2026-11-12).
+    entry = _sense_entry(lang, form, hint)
     node = {
         "lang": lang,
         "lang_name": row.get("name", lang),
@@ -2235,7 +2324,8 @@ def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
         return node
     p_lang, p_form, p_rel = chosen
     parent = _origin_node(p_lang, p_form, p_rel, depth + 1,
-                          seen | {(p_lang, p_form)}, build_depth=build_depth + 1)
+                          seen | {(p_lang, p_form)}, build_depth=build_depth + 1,
+                          hint=_ancestor_gloss(entry, p_form))
     # A construction of the ancestor may be stated in *this* entry, not in the
     # ancestor's own: Wiktionary writes *kit-ró-s = *keyt- + *-rós in its
     # article on *čitrás, and that page has no article of its own.  The row is
@@ -2269,7 +2359,37 @@ _MALFORMED_PIECE = re.compile(r"^\s*[\[({]")
 #: combining form or allative formation from … *h₂énts" — and the step that
 #: made it *is* its history.  Every other kind is a join, and a one-piece row of
 #: another kind is an analysis cut short, not a construction (admin, 2026-11-12).
-_SINGLE_PIECE_KINDS = frozenset({"combining", "derivation"})
+_SINGLE_PIECE_KINDS = frozenset({"combining", "derivation", "reduplication"})
+
+#: The words the timeline uses for each ablaut grade, in one place: a
+#: formation states its grade and the step prints it beside the root.
+_GRADE_LABELS = {"zero": "zero grade", "o": "o-grade",
+                 "e": "full grade", "lengthened": "lengthened grade"}
+
+#: A record that states a reduplicated formation in words: the sentence names
+#: the type ("reduplicated stative of the root", "i-reduplicated present of …")
+#: and the root it repeats.  The type's syllable and grade come from the stage's
+#: morphology table (`reduplications:`), never from this regex.
+_REDUPLICATION_RE = re.compile(
+    r"\b(?P<what>"
+    r"root\s+or\s+reduplicated\s+root\s+perfect"
+    r"|(?:athematic|thematic)\s+(?:[ei]-)?reduplicated\s+"
+    r"(?:root\s+aorist|root\s+present|root|present|aorist)"
+    r"|reduplicated\s+(?:stative/perfect|stative|perfect|derivative|thematic\s+adjective)"
+    r")\s+(?:of|formed\s+to)\s+(?:the\s+root\s+)?"
+    r"(?P<root>\*[^\s(“”\",.;:)]+)"
+    r"(?:\s*\((?P<gloss>[^)]*)\))?", re.I)
+
+#: Which morphology row each sentence names, matched in this order: the
+#: aorist before the i-reduplicated root, because the aorist phrase contains
+#: the other's words.
+_REDUPLICATION_TYPES = (
+    ("stative", "perfect-stative"),
+    ("perfect", "perfect-stative"),
+    ("aorist", "aorist"),
+    ("i-reduplicated", "present-i"),
+    ("e-reduplicated", "present-e"),
+)
 
 
 def _formed_piece(form) -> str:
@@ -2297,6 +2417,108 @@ def _bound_piece(kind: str, form: str, index: int) -> bool:
     return form.startswith(("-", "ـ", "*-"))
 
 
+@lru_cache(maxsize=8)
+def _reduplication_types(lang: str = "ine-pro") -> tuple[dict, ...]:
+    """The reduplicated formations a stage's morphology table records."""
+    path = data.DATA / "morphology" / f"{lang}.yaml"
+    if not path.exists():
+        return ()
+    raw = data._load_yaml(path) or {}
+    return tuple(raw.get("reduplications") or [])
+
+
+def _reduplication_type(type_id: str, lang: str = "ine-pro") -> dict | None:
+    for row in _reduplication_types(lang):
+        if str(row.get("id") or "") == type_id:
+            return row
+    return None
+
+
+def _reduplication_read(entry: dict) -> dict | None:
+    """A reduplicated formation the entry states in words, if it states one.
+
+    Wiktionary writes these as one sentence — "Reduplicated stative of the root
+    *h₂eyḱ- (“to obtain, possess, own”)."  The first sentence only, no hedged
+    reading, no arithmetic (a ``+`` means the sentence is a join read
+    elsewhere), and the root must stand at the word's beginning.  A sentence
+    that offers two analyses ("Root or reduplicated root perfect of *megʰ-") is
+    the record's `argued` row, not a guess: it is one of the two the entry
+    prints.
+    """
+    if kind_of(entry.get("lang") or "") != "proto":
+        return None
+    sentences = _sentences(str(entry.get("etym") or ""))
+    if not sentences:
+        return None
+    sentence = sentences[0]
+    if "+" in sentence or _HEDGE_RE.search(sentence):
+        return None
+    seen = _REDUPLICATION_RE.search(sentence)
+    if not seen:
+        return None
+    # A sentence that opens by naming an ancestor — "From Proto-Indo-European
+    # *pe-póyh₂-e ~ *pe-pih₂-ḗr, reduplicated stative of *peyh₂-" — is
+    # describing *that ancestor's* formation, not this word's: the chain has
+    # crossed a stage boundary before the clause, the same test
+    # `_CHAIN_BOUNDARY_RE` makes for an arithmetic.  Proto-Indo-Iranian
+    # *pipáyHa descends from PIE *pepóyh₂e; it is not itself a reduplication
+    # of *peyh₂- (admin, 2026-11-12).  It climbs to the reduplicated word,
+    # whose own page states the construction.
+    if _PROSE_ANCESTRY_CUE.match(sentence) and "*" in sentence[:seen.start()]:
+        return None
+    root = seen.group("root").lstrip("*").strip()
+    if not root or not _construction_covers([root],
+                                            word=str(entry.get("word") or ""),
+                                            sentence=sentence):
+        return None
+    what = " ".join(seen.group("what").lower().split())
+    type_id = ""
+    for needle, candidate in _REDUPLICATION_TYPES:
+        if needle in what:
+            type_id = candidate
+            break
+    row = _reduplication_type(type_id, entry.get("lang") or ROOT_LANG)
+    label = str((row or {}).get("label") or "").strip()
+    if not label:
+        # No handbook row for this one (a reduplicated derivative or a
+        # reduplicated adjective): the entry's own words are the label, minus
+        # the "reduplicated" the kind already says.
+        label = re.sub(r"^reduplicated\s+", "", what).strip() or what
+    return {
+        "root": root,
+        "gloss": (seen.group("gloss") or "").strip().strip("“”\"'").strip(),
+        "type": type_id,
+        "formation": label,
+        "confidence": ("argued" if _ALTERNATIVE_CUE_RE.search(sentence)
+                       else "stated"),
+        "sentence": sentence.strip(),
+    }
+
+
+def _reduplication_rows(entry: dict, stage: str) -> list[dict]:
+    """The reduplication as a `built_as` row of the entry's own stage."""
+    read = _reduplication_read(entry)
+    if not read:
+        return []
+    return [{"lang": stage, "kind": "reduplication",
+             "of": str(entry.get("word") or ""),
+             "pieces": [[read["root"], read["gloss"]]],
+             "reduplication": read["type"],
+             "formation": read["formation"],
+             "confidence": read["confidence"],
+             "note": read["sentence"], "source": "record"}]
+
+
+def _built_row_names(row: dict, form: str, stage: str) -> bool:
+    """Whether a structured row already states this form at this stage."""
+    if (data.stage_of(str(row.get("lang") or "")) or "") != stage:
+        return False
+    of = str(row.get("of") or "")
+    return bool(of) and (_same_form(form, of)
+                         or _same_form(normalise_etymon(form),
+                                       normalise_etymon(of)))
+
+
 def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
                  build_depth: int = 0) -> list[dict]:
     """The constructions the record states for a form, at its own stage.
@@ -2321,7 +2543,16 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
     """
     found: list[dict] = []
     seen_rows: set[tuple] = set()
-    for row in entry.get("built_as") or []:
+    # A record may state a formation in words instead of as an arithmetic
+    # ("Reduplicated stative of the root *h₂eyḱ-"): the reducer below turns
+    # such a sentence into the same row shape, and it is read here because the
+    # step belongs to the timeline (admin, 2026-11-12: is the reduplicated
+    # stative part of the morphology?).  Only when no structured row of the
+    # entry already states this form, so one analysis is never drawn twice.
+    rows = list(entry.get("built_as") or [])
+    if not any(_built_row_names(row, form, stage) for row in rows):
+        rows.extend(_reduplication_rows(entry, stage))
+    for row in rows:
         lang = str(row.get("lang") or "")
         if data.stage_of(lang) != stage:
             continue
@@ -2400,6 +2631,17 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
                 lead["grade"] = info["grade"]
                 lead["grade_label"] = info["label"]
                 lead["grade_note"] = info["note"]
+        if kind == "reduplication":
+            # Reduplication asks the root for a grade the formation carries
+            # (the perfect/stative is o-grade, an i-reduplicated present is
+            # zero grade) and `root_grade` cannot observe it through the
+            # copied syllable: the morphology row states it instead.
+            info = _reduplication_type(str(row.get("reduplication") or ""), stage)
+            grade = str((info or {}).get("grade") or "")
+            if grade in _GRADE_LABELS:
+                lead["grade"] = grade
+                lead["grade_label"] = _GRADE_LABELS[grade]
+                lead["grade_note"] = str((info or {}).get("note") or "").strip()
         # The same analysis may be stored twice (one template run twice); it is
         # one construction, not two tabs.
         key = (str(row.get("kind") or ""), tuple(p["form"] for p in pieces))
@@ -2407,6 +2649,8 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
             continue
         seen_rows.add(key)
         found.append({"kind": str(row.get("kind") or "formation"),
+                      "formation": str(row.get("formation") or ""),
+                      "confidence": str(row.get("confidence") or "stated"),
                       "lang": lang, "lang_name": _lang(lang).get("name", lang),
                       "of": normalise_etymon(of) if of else "",
                       "pieces": pieces, "source": "record"})
@@ -2711,7 +2955,15 @@ def _own_construction(entry: dict, chain: list[str]) -> dict | None:
     if own_stage not in chain:
         return None
     word = normalise_etymon(str(entry.get("word") or ""))
-    for row in entry.get("built_as") or []:
+    # A record may state the formation in words rather than as a `built_as`
+    # row: "Reduplicated stative of the root *h₂eyḱ-" is the whole of how
+    # *h₂eh₂óyḱe was made, so the ladder starts at that word and not at the
+    # root it repeats (admin, 2026-11-12).
+    rows = list(entry.get("built_as") or [])
+    if not any(_built_row_names(row, entry.get("word") or "", own_stage)
+               for row in rows):
+        rows.extend(_reduplication_rows(entry, own_stage))
+    for row in rows:
         if (data.stage_of(row.get("lang") or "") or row.get("lang")) != own_stage:
             continue
         kind = str(row.get("kind") or "formation")
@@ -3377,7 +3629,18 @@ def _recorded_at(entry: dict, lang: str,
                 if reading:
                     bucket.setdefault("readings", {})[candidate] = reading
 
+    # A row at the word's own stage that names the base of the word's own
+    # construction is that construction's base, not another record of the
+    # stage: *h₂eh₂óyḱe lists its root *h₂eyḱ- among the ancestry rows, and
+    # the rung must not print the root's grammar and meaning beside the word
+    # (admin, 2026-11-12).
+    own = _own_construction(entry, [lang])
+    own_bases = {normalise_etymon(str((piece or [""])[0] or ""))
+                 for piece in (own or {}).get("pieces") or []}
     for stage, word, _rel in _ancestry_triples(entry):
+        if (stage == lang and own_bases
+                and normalise_etymon(word) in own_bases):
+            continue
         add(stage, word, "ancestry")
     add(lang, entry["word"], "word")
     if etymon:
@@ -3614,7 +3877,12 @@ def _record_block(stage: str, here: dict | None, match_form: str | None,
                 (not prefer and match_form and _same_form(match_form, candidate)):
             primary = candidate
             break
-    stage_entry = _own_stage_entry(stage, primary, word_entry) or _lemma_entry(stage, primary)
+    # The rung quotes the sense the child's sentence gives this ancestor, not
+    # whichever homonym the glossary lists first (2026-11-12: *swer- "to ache"
+    # stood under *swarō "oath", whose own sentence says "to speak").
+    stage_entry = (_own_stage_entry(stage, primary, word_entry)
+                   or _sense_entry(stage, primary,
+                                   _ancestor_gloss(word_entry or {}, primary)))
     if stage_entry is word_entry:
         pron = {**readings_for(word_entry), "documented": True}
     else:
@@ -4153,8 +4421,16 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
             # them, so each quotes what the stage's glossary holds of *it*.
             block_here = _record_block(stage, None, version, entry)
         else:
-            block_here = recorded_block(stage, match_form,
-                                        prefer=start_form if index == 0 else None)
+            prefer_here = start_form if index == 0 else None
+            if (index == 0 and stage == lang
+                    and _same_form(version, str(entry.get("word") or ""))):
+                # The top rung prints the word itself, so the record it quotes
+                # has to be the word's own entry.  A reduplicated stative lists
+                # the root it repeats among its ancestry rows (a relation, not a
+                # step), and preferring the ladder's start quoted the *root's*
+                # grammar and meaning beside the word (admin, 2026-11-12).
+                prefer_here = str(entry.get("word") or "")
+            block_here = recorded_block(stage, match_form, prefer=prefer_here)
         if index == 0:
             status = "start"
         elif block_here is not None and block_here.get("matches"):
@@ -6297,6 +6573,21 @@ def _raw_constructions(entry: dict, lang: str = ROOT_LANG) -> list[dict]:
     if text and kind_of(lang) == "proto":
         rows.extend(_stated_constructions(text, lang, word,
                                           str(entry.get("pos") or "")))
+        # A formation stated in words rather than as an arithmetic: the
+        # reduplicated stative/perfect ("Reduplicated stative of the root
+        # *h₂eyḱ-") is one root repeated with a vowel of its own, and the
+        # record names it as plainly as a suffix (admin, 2026-11-12).
+        read = _reduplication_read(entry)
+        if read:
+            rows.append({
+                "base": _base_row(lang, read["root"], read["gloss"]),
+                "members": [], "suffixes": [],
+                "etym": read["sentence"],
+                "kind": "reduplication",
+                "formation": read["formation"],
+                "confidence": read["confidence"],
+                "source": "the entry",
+            })
         if not rows:
             stem = (_stem_construction(text, lang, word, str(entry.get("pos") or ""))
                     or _from_stem_construction(entry, text, lang))

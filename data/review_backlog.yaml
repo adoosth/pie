@@ -1,4 +1,4 @@
-generated: 2026-11-12 21:23
+generated: 2026-11-12 23:54
 kinds:
   etymon_missing: the PIE (or oldest modelled) ancestor named in anc is not a headword in that stage's glossary
   cognate_conflict: the entry's cognate set names a different PIE form from the PIE ancestor in anc
@@ -9,13 +9,13 @@ counts:
     etymon_missing: 46666
     cognate_conflict: 4880
     hedged_ancestry: 13712
-    sense_mismatch: 26022
+    sense_mismatch: 25964
   by_language:
     ang:
       etymon_missing: 1850
       cognate_conflict: 212
       hedged_ancestry: 391
-      sense_mismatch: 1183
+      sense_mismatch: 1180
     ave:
       etymon_missing: 43
       hedged_ancestry: 6
@@ -39,7 +39,7 @@ counts:
       etymon_missing: 14614
       cognate_conflict: 1139
       hedged_ancestry: 5627
-      sense_mismatch: 9781
+      sense_mismatch: 9773
     enm:
       etymon_missing: 1781
       cognate_conflict: 72
@@ -49,7 +49,7 @@ counts:
       etymon_missing: 1081
       cognate_conflict: 121
       hedged_ancestry: 380
-      sense_mismatch: 512
+      sense_mismatch: 509
     gmh:
       etymon_missing: 106
       cognate_conflict: 9
@@ -64,12 +64,12 @@ counts:
       etymon_missing: 175
       cognate_conflict: 82
       hedged_ancestry: 106
-      sense_mismatch: 669
+      sense_mismatch: 667
     grc:
       etymon_missing: 1029
       cognate_conflict: 490
       hedged_ancestry: 903
-      sense_mismatch: 1711
+      sense_mismatch: 1698
     hit:
       etymon_missing: 106
       cognate_conflict: 53
@@ -84,17 +84,17 @@ counts:
       etymon_missing: 11609
       cognate_conflict: 209
       hedged_ancestry: 1031
-      sense_mismatch: 1682
+      sense_mismatch: 1679
     la:
       etymon_missing: 1215
       cognate_conflict: 586
       hedged_ancestry: 1388
-      sense_mismatch: 1952
+      sense_mismatch: 1942
     lt:
       etymon_missing: 388
       cognate_conflict: 112
       hedged_ancestry: 273
-      sense_mismatch: 434
+      sense_mismatch: 431
     non:
       etymon_missing: 488
       cognate_conflict: 217
@@ -113,34 +113,34 @@ counts:
       etymon_missing: 1389
       cognate_conflict: 680
       hedged_ancestry: 481
-      sense_mismatch: 1532
+      sense_mismatch: 1528
     sga:
       etymon_missing: 351
       cognate_conflict: 191
       hedged_ancestry: 151
-      sense_mismatch: 842
+      sense_mismatch: 841
     sq:
       etymon_missing: 576
       cognate_conflict: 235
       hedged_ancestry: 380
-      sense_mismatch: 652
+      sense_mismatch: 651
     txb:
       etymon_missing: 123
       cognate_conflict: 71
       hedged_ancestry: 132
-      sense_mismatch: 182
+      sense_mismatch: 181
     xcl:
       etymon_missing: 446
       cognate_conflict: 84
       hedged_ancestry: 312
-      sense_mismatch: 317
+      sense_mismatch: 311
     xpr:
       etymon_missing: 1
 truncated:
   etymon_missing: 45466
   cognate_conflict: 3380
   hedged_ancestry: 12912
-  sense_mismatch: 25622
+  sense_mismatch: 25564
 words:
 - {detail: ancestry names *-eh₂yési at ine-pro; the PIE glossary has no headword eh₂yési, etymon: '*-eh₂yési', evidence: 'anc row: ine-pro *-eh₂yési (inherit)', found: '2026-11-12', kind: etymon_missing, lang: ang, status: open, word: -ast}
 - {detail: ancestry names *Háwǰaswants at iir-pro; the iir-pro glossary has no headword háwǰaswants, etymon: '*Háwǰaswants', evidence: 'anc row: iir-pro *Háwǰaswants; no PIE ancestor is named', found: '2026-11-12', kind: etymon_missing, lang: ave, status: open, word: 𐬀𐬊𐬘𐬋𐬢𐬵𐬎𐬎𐬀𐬧𐬙}
@@ -3715,7 +3715,7 @@ words:
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*-om', evidence: 'gloss accusative, singular vs cognate set gloss emphatic, particle, postpositive, suffix', found: '2026-11-12', kind: sense_mismatch, lang: sa, status: open, word: -अम्}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*seh₂g-', evidence: 'gloss adjectives, nouns, suffix, verbs vs etymon gloss follow, trace', found: '2026-11-12', kind: sense_mismatch, lang: sga, status: open, word: -igidir}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*ís ~ sós', evidence: 'gloss article, definite, masculine, nominative vs etymon gloss pronoun', found: '2026-11-12', kind: sense_mismatch, lang: sq, status: open, word: -i}
-- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₂ey-', evidence: 'gloss give, money, out, pay vs etymon gloss age, eternity, force, life; cognate set gloss day, morning', found: '2026-11-12', kind: sense_mismatch, lang: txb, status: open, word: ai-}
+- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₂eyḱ-', evidence: 'gloss know, recognize vs etymon gloss appropriate, possess; cognate set gloss appropriate, possess', found: '2026-11-12', kind: sense_mismatch, lang: txb, status: open, word: aik-}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*bʰendʰ-', evidence: 'gloss high, place vs etymon gloss bind, bond; cognate set gloss bind, bond', found: '2026-11-12', kind: sense_mismatch, lang: xcl, status: open, word: -աւանդ}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*ǵn̥h₁tós', evidence: 'gloss denoting, derivation, likeness, origin vs etymon gloss begotten, produced; cognate set gloss begotten, produced', found: '2026-11-12', kind: sense_mismatch, lang: ang, status: open, word: -cund}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*oḱtṓw', evidence: gloss eighth vs etymon gloss eight, found: '2026-11-12', kind: sense_mismatch, lang: ave, status: open, word: 𐬀𐬱𐬙𐬆𐬨𐬀}
@@ -3740,7 +3740,7 @@ words:
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*-os', evidence: 'gloss synonym vs etymon gloss action, creates, nouns, result; cognate set gloss action, creates, feminine, masculine', found: '2026-11-12', kind: sense_mismatch, lang: sa, status: open, word: -अस्}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*leh₁-', evidence: 'gloss ending, nouns, verbal, verbs vs etymon gloss calm, lazy, slow, soft', found: '2026-11-12', kind: sense_mismatch, lang: sga, status: open, word: -l}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*-wes-', evidence: 'gloss secondary, suffix vs etymon gloss clothe, dress', found: '2026-11-12', kind: sense_mismatch, lang: sq, status: open, word: -sh}
-- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₂eyḱ-', evidence: 'gloss know, recognize vs etymon gloss appropriate, possess; cognate set gloss appropriate, possess', found: '2026-11-12', kind: sense_mismatch, lang: txb, status: open, word: aik-}
+- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₁eg-', evidence: gloss empty vs etymon gloss lack; cognate set gloss lack, found: '2026-11-12', kind: sense_mismatch, lang: txb, status: open, word: aikare}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*bʰendʰ-', evidence: 'gloss high, place vs etymon gloss bind, bond; cognate set gloss bind, bond', found: '2026-11-12', kind: sense_mismatch, lang: xcl, status: open, word: -աւանդակ}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*-tós', evidence: 'gloss class, participle, past, verbs vs etymon gloss adjectives, creates, roots, verb', found: '2026-11-12', kind: sense_mismatch, lang: ang, status: open, word: -ed}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*upéri', evidence: 'gloss above, over vs etymon gloss alternative, reconstruction, upér', found: '2026-11-12', kind: sense_mismatch, lang: ave, status: open, word: 𐬎𐬞𐬀𐬌𐬭𐬌}
@@ -3765,7 +3765,7 @@ words:
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*-éh₂', evidence: 'gloss feminine, nominative, singular vs etymon gloss accent, collective, corresponding, creates', found: '2026-11-12', kind: sense_mismatch, lang: sa, status: open, word: -आ}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: meh₂, evidence: 'gloss adjectives, generates, nouns vs etymon gloss good, great, opportune, timely; cognate set gloss damp, wet', found: '2026-11-12', kind: sense_mismatch, lang: sga, status: open, word: -mar}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*somHós', evidence: 'gloss able, adjectives, carries, common vs etymon gloss alike, alone; cognate set gloss alike, alone', found: '2026-11-12', kind: sense_mismatch, lang: sq, status: open, word: -shëm}
-- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₁eg-', evidence: gloss empty vs etymon gloss lack; cognate set gloss lack, found: '2026-11-12', kind: sense_mismatch, lang: txb, status: open, word: aikare}
+- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₁eg-', evidence: gloss emptiness vs etymon gloss lack, found: '2026-11-12', kind: sense_mismatch, lang: txb, status: open, word: aikaräññe}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*bʰoréh₂', evidence: 'gloss adjectives, forming, possessing, related vs etymon gloss act, bearing, bears, borne', found: '2026-11-12', kind: sense_mismatch, lang: xcl, status: open, word: -աւոր}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: tlom, evidence: 'gloss agent, creating, instrumental, nouns vs etymon gloss alternative, trom; cognate set gloss alternative, trom', found: '2026-11-12', kind: sense_mismatch, lang: ang, status: open, word: -el}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*(s)kewh₁-', evidence: 'gloss bard, poet vs etymon gloss observe, perceive', found: '2026-11-12', kind: sense_mismatch, lang: ave, status: open, word: 𐬐𐬀𐬎𐬎𐬌}
@@ -3790,7 +3790,7 @@ words:
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*-oes', evidence: 'gloss nominative, plural, vocative vs cognate set gloss action, creates, feminine, masculine', found: '2026-11-12', kind: sense_mismatch, lang: sa, status: open, word: -आः}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*Hret-', evidence: 'gloss adjectives, collective, nouns vs cognate set gloss flow, motion, move, pour', found: '2026-11-12', kind: sense_mismatch, lang: sga, status: open, word: -rad}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*-ḱos', evidence: 'gloss diminutive vs cognate set gloss adjectives, characteristic, creates, deadjectival', found: '2026-11-12', kind: sense_mismatch, lang: sq, status: open, word: -th}
-- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₁eg-', evidence: gloss emptiness vs etymon gloss lack, found: '2026-11-12', kind: sense_mismatch, lang: txb, status: open, word: aikaräññe}
+- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₁eg-', evidence: 'gloss emptiness, pertaining vs etymon gloss lack', found: '2026-11-12', kind: sense_mismatch, lang: txb, status: open, word: aikarñeṣṣe}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: ǵénh₁os, evidence: 'gloss kind, like, type vs etymon gloss lineage, race; cognate set gloss lineage, race', found: '2026-11-12', kind: sense_mismatch, lang: xcl, status: open, word: -զան}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: nós, evidence: 'gloss create, diminutive, neuter, nouns vs etymon gloss adjectives, creates, roots, verbal; cognate set gloss adjectives, creates, roots, verbal', found: '2026-11-12', kind: sense_mismatch, lang: ang, status: open, word: -en}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*ken-', evidence: 'gloss girl, maiden, unmarried vs etymon gloss arise, begin', found: '2026-11-12', kind: sense_mismatch, lang: ave, status: open, word: 𐬐𐬀𐬥𐬌𐬌𐬁}
@@ -3815,7 +3815,7 @@ words:
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*-lós', evidence: 'gloss adjectival, suffix vs etymon gloss adjectives, agent, alternative, diminutive', found: '2026-11-12', kind: sense_mismatch, lang: sa, status: open, word: -इल}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: kos, evidence: 'gloss diminutive, suffix vs etymon gloss adjectives, characteristic, creates, deadjectival; cognate set gloss adjectives, characteristic, creates, deadjectival', found: '2026-11-12', kind: sense_mismatch, lang: sga, status: open, word: -óc}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: bʰel, evidence: 'gloss albania, ancient, town vs etymon gloss bark, roar, sound, speak; cognate set gloss henbane', found: '2026-11-12', kind: sense_mismatch, lang: sq, status: open, word: Balec}
-- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₁eg-', evidence: 'gloss emptiness, pertaining vs etymon gloss lack', found: '2026-11-12', kind: sense_mismatch, lang: txb, status: open, word: aikarñeṣṣe}
+- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₂eys-', evidence: 'gloss cooking, pot vs etymon gloss request, search, wish', found: '2026-11-12', kind: sense_mismatch, lang: txb, status: open, word: aise}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*éti', evidence: 'gloss ablative, case, declension, marker vs etymon gloss beyond, over', found: '2026-11-12', kind: sense_mismatch, lang: xcl, status: open, word: -է}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: onts, evidence: 'gloss action, agent, denoting, suffix vs etymon gloss active, adjectives, caland, ending; cognate set gloss active, adjectives, caland, ending', found: '2026-11-12', kind: sense_mismatch, lang: ang, status: open, word: -end}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*tek-', evidence: 'gloss king vs etymon gloss hand, obtain, receive, take', found: '2026-11-12', kind: sense_mismatch, lang: ave, status: open, word: 𐬑𐬱𐬀𐬚𐬭𐬌𐬌𐬀}
@@ -3839,8 +3839,8 @@ words:
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: h₂elut, evidence: gloss white vs etymon gloss beer; cognate set gloss beer, found: '2026-11-12', kind: sense_mismatch, lang: peo, status: open, word: arušah}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*-iHnos', evidence: 'gloss belonging, relating vs etymon gloss adjectives, creates, materials; cognate set gloss adjectives, creates, materials', found: '2026-11-12', kind: sense_mismatch, lang: sa, status: open, word: -ईन}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: bʰedʰh₂, evidence: 'gloss appearing, battle, crow, death vs etymon gloss burrow, dig, pierce, stab; cognate set gloss burrow, dig, pierce, stab', found: '2026-11-12', kind: sense_mismatch, lang: sga, status: open, word: Badb}
-- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*bʰel-', evidence: 'gloss given, male vs etymon gloss bark, roar, sound, speak; cognate set gloss henbane', found: '2026-11-12', kind: sense_mismatch, lang: sq, status: open, word: Balë}
-- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₂eys-', evidence: 'gloss cooking, pot vs etymon gloss request, search, wish', found: '2026-11-12', kind: sense_mismatch, lang: txb, status: open, word: aise}
+- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*bʰel-', evidence: 'gloss given, male vs etymon gloss blaze, bright, brightly, burn; cognate set gloss henbane', found: '2026-11-12', kind: sense_mismatch, lang: sq, status: open, word: Balë}
+- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₃ew-', evidence: 'gloss sheath vs etymon gloss clothes, put, shoes', found: '2026-11-12', kind: sense_mismatch, lang: txb, status: open, word: aiyyer}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*-ti', evidence: 'gloss ending, present, singular, tense vs etymon gloss ablative, adverbial, instrumental, multiplicative', found: '2026-11-12', kind: sense_mismatch, lang: xcl, status: open, word: -յ}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*pel-', evidence: 'gloss consisting, denoting, fold, many vs etymon gloss cloth, cover, hide, skin', found: '2026-11-12', kind: sense_mismatch, lang: ang, status: open, word: -feald}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*swós', evidence: 'gloss oneself, self vs etymon gloss adjective, her, his, its', found: '2026-11-12', kind: sense_mismatch, lang: ave, status: open, word: 𐬓𐬀}
@@ -3865,7 +3865,7 @@ words:
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*-yōs', evidence: 'gloss adjectival, comparative, suffix vs etymon gloss adjectives, rather, roots; cognate set gloss adjectives, rather, roots', found: '2026-11-12', kind: sense_mismatch, lang: sa, status: open, word: -ईयस्}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: g⁽ʷ⁾ew, evidence: 'gloss given, male vs etymon gloss increase; cognate set gloss increase', found: '2026-11-12', kind: sense_mismatch, lang: sga, status: open, word: Boidmal}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*tewtéh₂', evidence: 'gloss deda, given, indefinite, male vs etymon gloss crowd, heap, pile', found: '2026-11-12', kind: sense_mismatch, lang: sq, status: open, word: Dedë}
-- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₃ew-', evidence: 'gloss sheath vs etymon gloss clothes, put, shoes', found: '2026-11-12', kind: sense_mismatch, lang: txb, status: open, word: aiyyer}
+- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₂eyḱ-', evidence: 'gloss care, notice vs etymon gloss appropriate, possess', found: '2026-11-12', kind: sense_mismatch, lang: txb, status: open, word: aiśai}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*-u', evidence: 'gloss aru, ełǰeru, few, found vs etymon gloss deictic, distal, particle, there', found: '2026-11-12', kind: sense_mismatch, lang: xcl, status: open, word: -ու}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: keyt, evidence: 'gloss adjectives, condition, forming, nouns vs etymon gloss glow, shine; cognate set gloss glow, shine', found: '2026-11-12', kind: sense_mismatch, lang: ang, status: open, word: -had}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*swépnos', evidence: 'gloss dream vs etymon gloss sleep, slumber', found: '2026-11-12', kind: sense_mismatch, lang: ave, status: open, word: 𐬓𐬀𐬟𐬆𐬥𐬀}
@@ -3890,7 +3890,7 @@ words:
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*-oh₁', evidence: 'gloss accusative, dual, nominative, vocative vs cognate set gloss adjectives, agent, called, derives', found: '2026-11-12', kind: sense_mismatch, lang: sa, status: open, word: -औ}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: wer, evidence: 'gloss given, male vs etymon gloss burn; cognate set gloss marten, squirrel', found: '2026-11-12', kind: sense_mismatch, lang: sga, status: open, word: Brangen}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*tewtéh₂', evidence: 'gloss doda, given, indefinite, male vs etymon gloss crowd, heap, pile', found: '2026-11-12', kind: sense_mismatch, lang: sq, status: open, word: Dodë}
-- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₂eyḱ-', evidence: 'gloss care, notice vs etymon gloss appropriate, possess', found: '2026-11-12', kind: sense_mismatch, lang: txb, status: open, word: aiśai}
+- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₂eyḱ-', evidence: 'gloss wise vs etymon gloss appropriate, possess; cognate set gloss appropriate, possess', found: '2026-11-12', kind: sense_mismatch, lang: txb, status: open, word: aiśaumye}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*-éh₁sḱeti', evidence: 'gloss certain, extension, found, intransitives vs etymon gloss athematic, inchoative, suffix, sḱéti; cognate set gloss athematic, inchoative, suffix, sḱéti', found: '2026-11-12', kind: sense_mismatch, lang: xcl, status: open, word: -չ-}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: ḱel, evidence: 'gloss bent, inclined, sloping, tending vs etymon gloss cover; cognate set gloss incline', found: '2026-11-12', kind: sense_mismatch, lang: ang, status: open, word: -heald}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*gʷerH-', evidence: 'gloss mountain vs etymon gloss approval, elevate, express, praise', found: '2026-11-12', kind: sense_mismatch, lang: ave, status: open, word: 𐬔𐬀𐬌𐬭𐬌}
@@ -3915,7 +3915,7 @@ words:
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*-kos', evidence: 'gloss diminutive, masculine, nominal, suffix vs etymon gloss adjectives, characteristic, creates, deadjectival; cognate set gloss adjectives, characteristic, creates, deadjectival', found: '2026-11-12', kind: sense_mismatch, lang: sa, status: open, word: -क}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*bʰérǵʰonts', evidence: 'gloss brythonic, given, male, proto vs etymon gloss high; cognate set gloss high', found: '2026-11-12', kind: sense_mismatch, lang: sga, status: open, word: Brénainn}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₁n̥gʷnis', evidence: gloss jupiter vs cognate set gloss fire, found: '2026-11-12', kind: sense_mismatch, lang: sq, status: open, word: Enjt}
-- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₂eyḱ-', evidence: 'gloss wise vs etymon gloss appropriate, possess; cognate set gloss appropriate, possess', found: '2026-11-12', kind: sense_mismatch, lang: txb, status: open, word: aiśaumye}
+- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*ǵneh₃-', evidence: 'gloss foolish, stupid vs etymon gloss know, recognise; cognate set gloss know, recognise', found: '2026-11-12', kind: sense_mismatch, lang: txb, status: open, word: aknātsa}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*-s', evidence: 'gloss case, countries, forming, marker vs etymon gloss accented, derives, feminine, mobile', found: '2026-11-12', kind: sense_mismatch, lang: xcl, status: open, word: -ք}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*leyg-', evidence: 'gloss act, action, activity, ation vs etymon gloss around, dance, frolic, jitter', found: '2026-11-12', kind: sense_mismatch, lang: ang, status: open, word: -lac}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*gʷṓws', evidence: 'gloss bull, cow, feminine, masculine vs etymon gloss cattle', found: '2026-11-12', kind: sense_mismatch, lang: ave, status: open, word: 𐬔𐬀𐬎𐬎}
@@ -3940,7 +3940,7 @@ words:
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*kʷer-', evidence: 'gloss doer vs etymon gloss build, carve, cut, make', found: '2026-11-12', kind: sense_mismatch, lang: sa, status: open, word: -कार}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₂welh₁-', evidence: 'gloss given, male vs etymon gloss powerful, rule, strong', found: '2026-11-12', kind: sense_mismatch, lang: sga, status: open, word: Conall}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: sker, evidence: 'gloss born, cancer, sign, under vs etymon gloss cut, divide, off, separate; cognate set gloss bend, turn', found: '2026-11-12', kind: sense_mismatch, lang: sq, status: open, word: Gaforrja}
-- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*ǵneh₃-', evidence: 'gloss foolish, stupid vs etymon gloss know, recognise; cognate set gloss know, recognise', found: '2026-11-12', kind: sense_mismatch, lang: txb, status: open, word: aknātsa}
+- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*ǵneh₃-', evidence: 'gloss having, ignorance vs etymon gloss know, recognise', found: '2026-11-12', kind: sense_mismatch, lang: txb, status: open, word: aknātsaññeṣṣe}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₁rem-', evidence: 'gloss aram, given, male vs etymon gloss rest', found: '2026-11-12', kind: sense_mismatch, lang: xcl, status: open, word: Արամ}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: leyp, evidence: 'gloss commander, heir, legacy, legate vs etymon gloss fat, stick, sticky, substance; cognate set gloss fat, stick, sticky, substance', found: '2026-11-12', kind: sense_mismatch, lang: ang, status: open, word: -laf}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*témHos', evidence: 'gloss dark, gloomy vs etymon gloss darkness', found: '2026-11-12', kind: sense_mismatch, lang: ave, status: open, word: 𐬙𐬆𐬨𐬀𐬢𐬵𐬀}
@@ -3965,7 +3965,7 @@ words:
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*-tm̥mos', evidence: 'gloss numbers, ordinal vs etymon gloss absolute, adjectival, suffix, superlative; cognate set gloss absolute, adjectival, suffix, superlative', found: '2026-11-12', kind: sense_mismatch, lang: sa, status: open, word: -तम}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: ḱwṓ, evidence: 'gloss given, unisex vs etymon gloss dog; cognate set gloss dog', found: '2026-11-12', kind: sense_mismatch, lang: sga, status: open, word: Conchenn}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: ḱlewH, evidence: 'gloss given, male vs etymon gloss clean, rinse, slide; cognate set gloss clean, rinse, slide', found: '2026-11-12', kind: sense_mismatch, lang: sq, status: open, word: Klajdi}
-- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*ǵneh₃-', evidence: 'gloss having, ignorance vs etymon gloss know, recognise', found: '2026-11-12', kind: sense_mismatch, lang: txb, status: open, word: aknātsaññeṣṣe}
+- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₂éḱru', evidence: 'gloss crying, drops, liquid, tears vs etymon gloss eyes, tear; cognate set gloss eyes, tear', found: '2026-11-12', kind: sense_mismatch, lang: txb, status: open, word: akrūna}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: h₂elut, evidence: 'gloss baptism, baptist, evening, john vs etymon gloss beer; cognate set gloss beer', found: '2026-11-12', kind: sense_mismatch, lang: xcl, status: open, word: Արուսեակ}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*leyg-', evidence: 'gloss adjective, denoting, fold, forming vs etymon gloss around, dance, frolic, jitter', found: '2026-11-12', kind: sense_mismatch, lang: ang, status: open, word: -lic}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*kʷetwr̥-', evidence: 'gloss fourth vs etymon gloss combining, four, fourfold, kʷetwóres', found: '2026-11-12', kind: sense_mismatch, lang: ave, status: open, word: 𐬙𐬏𐬌𐬭𐬌𐬌𐬀}
@@ -3990,7 +3990,7 @@ words:
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*-tus', evidence: 'gloss called, future, gerundive, participle vs etymon gloss action, derives, nouns, roots', found: '2026-11-12', kind: sense_mismatch, lang: sa, status: open, word: -तव्य}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*ǵenh₁-', evidence: 'gloss given, male vs etymon gloss beget, birth, give, produce', found: '2026-11-12', kind: sense_mismatch, lang: sga, status: open, word: Cóemgen}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*kres-', evidence: 'gloss albania, city, krujë vs etymon gloss agitated, move, spring, surge; cognate set gloss agitated, move, spring, surge', found: '2026-11-12', kind: sense_mismatch, lang: sq, status: open, word: Krujë}
-- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₂éḱru', evidence: 'gloss crying, drops, liquid, tears vs etymon gloss eyes, tear; cognate set gloss eyes, tear', found: '2026-11-12', kind: sense_mismatch, lang: txb, status: open, word: akrūna}
+- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₁eǵ-', evidence: 'gloss instructor, teacher vs etymon gloss say', found: '2026-11-12', kind: sense_mismatch, lang: txb, status: open, word: aksaṣṣuki}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: mey, evidence: 'gloss given, male vs etymon gloss attach, bind, strengthen; cognate set gloss little, small', found: '2026-11-12', kind: sense_mismatch, lang: xcl, status: open, word: Միհր}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: rós, evidence: 'gloss found, masculine, nouns, stem vs etymon gloss adjectives, caland, roots, system; cognate set gloss adjectives, caland, roots, system', found: '2026-11-12', kind: sense_mismatch, lang: ang, status: open, word: -or}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*deywós', evidence: 'gloss daeva, demon vs etymon gloss god', found: '2026-11-12', kind: sense_mismatch, lang: ave, status: open, word: 𐬛𐬀𐬉𐬎𐬎𐬀}
@@ -4015,7 +4015,7 @@ words:
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*-te-h₁', evidence: 'gloss adverbs, manner vs cognate set gloss action, agent, denoting, derives', found: '2026-11-12', kind: sense_mismatch, lang: sa, status: open, word: -ता}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₂welh₁-', evidence: 'gloss celtic, donald, english, equivalent vs etymon gloss powerful, rule, strong', found: '2026-11-12', kind: sense_mismatch, lang: sga, status: open, word: Domnall}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*lewk-', evidence: 'gloss given, male vs etymon gloss bright, shine', found: '2026-11-12', kind: sense_mismatch, lang: sq, status: open, word: Leka}
-- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₁eǵ-', evidence: 'gloss instructor, teacher vs etymon gloss say', found: '2026-11-12', kind: sense_mismatch, lang: txb, status: open, word: aksaṣṣuki}
+- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₂eḱ-', evidence: 'gloss sprout vs etymon gloss sharp; cognate set gloss aware, perceive', found: '2026-11-12', kind: sense_mismatch, lang: txb, status: open, word: akwam}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₂us-', evidence: 'gloss dwell, lodgings, night, pass vs cognate set gloss clothes, put, shoes', found: '2026-11-12', kind: sense_mismatch, lang: xcl, status: open, word: ագանիմ}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*steh₂w-', evidence: 'gloss area, denoting, found, jurisdiction vs cognate set gloss stand', found: '2026-11-12', kind: sense_mismatch, lang: ang, status: open, word: -stow}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*déywih₂', evidence: 'gloss daeva, demoness, female vs etymon gloss goddess', found: '2026-11-12', kind: sense_mismatch, lang: ave, status: open, word: 𐬛𐬀𐬉𐬎𐬎𐬍}
@@ -4040,5 +4040,5 @@ words:
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*-tḗr', evidence: 'gloss nominative, singular vs etymon gloss act, agent, denoting, derives; cognate set gloss action, agent, denoting, derives', found: '2026-11-12', kind: sense_mismatch, lang: sa, status: open, word: -ता}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: dʰewbʰ, evidence: 'gloss given, irish, male, primitive vs etymon gloss become, immersed, sink; cognate set gloss become, immersed, sink', found: '2026-11-12', kind: sense_mismatch, lang: sga, status: open, word: Dubthach}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*pértus', evidence: 'gloss capital, city, kosovo, largest vs etymon gloss crossing', found: '2026-11-12', kind: sense_mismatch, lang: sq, status: open, word: Prishtinë}
-- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₂eḱ-', evidence: 'gloss sprout vs etymon gloss sharp; cognate set gloss aware, perceive', found: '2026-11-12', kind: sense_mismatch, lang: txb, status: open, word: akwam}
+- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₂el-no-', evidence: 'gloss extra vs cognate set gloss all, each, entire, every', found: '2026-11-12', kind: sense_mismatch, lang: txb, status: open, word: allek}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*peh₂w-', evidence: 'gloss tail vs etymon gloss few, little, smallness', found: '2026-11-12', kind: sense_mismatch, lang: xcl, status: open, word: ագի}

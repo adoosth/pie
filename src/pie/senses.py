@@ -23,7 +23,39 @@ neither is its own word in its own part of speech.
 """
 from __future__ import annotations
 
+import re
 from typing import Iterable
+
+
+#: The content words of a gloss — the ones that carry meaning rather than
+#: grammar.  Short and deliberately plain: it is used to tell two homonyms
+#: apart, never to judge two meanings the same.
+_WORD = re.compile(r"[^\W\d_]+", re.UNICODE)
+_FUNCTION = frozenset("""
+a an the of to in and or with for from by on at as is are was were be been
+being this that these those it its he she they them his her their one ones
+someone something somebody person people who whom whose which what when where
+why how not no nor but if then than also such only just very more most some
+any all both each other another same use used using form forms word words
+""".split())
+
+
+def content_words(texts) -> set[str]:
+    """The meaning-bearing words of a gloss or a list of glosses.
+
+    Two roots may be spelled alike — Proto-Indo-European heads *swer- "to
+    ache" and *swer- "to speak loudly" — and a child that names one of them
+    must be given that one (admin, 2026-11-12).  The comparison is lexical and
+    nothing more: it can pick a sense a sentence already quotes, and it never
+    claims two meanings are the same.
+    """
+    rows = texts if isinstance(texts, (list, tuple)) else [texts]
+    out: set[str] = set()
+    for row in rows:
+        for word in _WORD.findall(str(row or "").lower()):
+            if len(word) > 2 and word not in _FUNCTION:
+                out.add(word)
+    return out
 
 
 def _prose(entry: dict, length: int = 90) -> str:

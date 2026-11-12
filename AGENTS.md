@@ -499,6 +499,39 @@ that keeps the `*` opens nothing).
   the handbooks fix: *-ró- and *-ti- are not recorded, and a formation in them
   carries no note. The grade is printed beside the root on the construction step
   (`.cgrade`) and in a root page's "words built on it" list.
+- **Reduplication is a formation, not a law** (2026-11-12, admin's question
+  about *h₂eh₂óyḱe): the root's onset is copied and the root takes the grade
+  the type carries, so the four documented types live in
+  `data/morphology/ine-pro.yaml` under `reduplications:` — `perfect-stative`
+  (`Ce-`, o-grade, `-e`), `present-i` (`Ci-`, zero grade), `present-e` (`Ce-`,
+  full grade) and `aorist` (`Ce-`, no grade fixed) — each with its syllable,
+  grade, ending, note, outcomes and sources. `service._reduplication_read`
+  reads a record's own sentence ("Reduplicated stative of the root *h₂eyḱ-
+  (“to obtain, possess, own”)"): first sentence only, no `+` (that is an
+  arithmetic), no hedge, the root at the start of the word, and **never a
+  clause behind an ancestry cue that has already named a starred form** — that
+  clause describes the ancestor — *bibāną* is from PIE *bʰe-bʰóyh₂-e, whose
+  sentence adds "reduplicated stative of *bʰeyh₂-" — not the word. The row is a one-piece
+  `reduplication`, so it is in `_SINGLE_PIECE_KINDS`, starts the ladder at the
+  word (`_own_construction`), is drawn by `_rung_builds` (the type supplies
+  the grade, printed beside the root) and is indexed by `_raw_constructions`.
+  A root or a type the handbooks do not fix states no grade; an entry that
+  offers two analyses ("Root **or** reduplicated root perfect of *megʰ-") is
+  `confidence: argued`. Read over the corpus: 33 entries, all in PIE.
+- **A homonym is chosen by the record, never by index order** (2026-11-12):
+  PIE heads `swer-` twice ("to ache, fester" and "to resound; to speak
+  loudly"), and a lemma index keeps the first. `service._ancestor_gloss` reads
+  the meaning the entry's own sentence quotes beside the form, and
+  `service._sense_entry` returns the entry whose gloss shares a content word
+  with it (`senses.content_words`); with no hint, or no shared word, the first
+  entry stands. It is used by the ladder (`_record_block`), a piece's climb
+  (`_origin_node`, which passes its own quoted gloss down), the ancestry rows
+  (`_ancestry_forms`, including a compound's piece via `_piece_ancestor_gloss`)
+  and the review's `sense_mismatch` check.
+- **A line begins at the oldest mark** (2026-11-12): a step at the top of the
+  ladder has no row above it, so `.constructstep:first-child` hides `.clead`'s
+  rail (the segment that brings the line *down* from above) and the first row's
+  1px join — otherwise *h₂ent- wears a stub of line that meets nothing.
 - **The ladder is the whole explanation, and its order is fixed** (2026-11-07):
   `service.hierarchy()` → `renderHierarchy`, then the branch below, then the
   cognates. No separate derivation section, and no counterfactual table

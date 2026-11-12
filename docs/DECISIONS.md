@@ -1,3 +1,66 @@
+## 2026-11-12 — reduplication is a formation, and a line begins at its oldest mark
+
+**What.** `ine-pro/h₂eh₂óyḱe` carried the sentence "Reduplicated stative of the
+root *h₂eyḱ-" and no step above the word: reduplication existed in the corpus
+only as prose. The reader asked whether it is part of the morphology and, if
+not, for it to be researched, added, and given its constructions (admin,
+2026-11-12). In the same pass two older faults surfaced — a rail that hung
+over the top word of a timeline, and a homonym chosen by index order.
+
+1. **Reduplication is a formation, not a sound law.** It copies the root's
+   onset and asks the root for a grade, exactly as an ablaut type does, so it
+   belongs in `data/morphology/ine-pro.yaml` beside `grades:` rather than in
+   the rules. Four types are stated there, each with its syllable, its grade,
+   its ending, its outcomes and its sources (Fortson, Sihler, Beekes, LIV):
+   the **perfect/stative** (`Ce-`, o-grade, `-e`: *h₂e-h₂óyḱ-e, *de-dórḱ-e),
+   the **i-reduplicated present** (`Ci-`, zero grade: *pí-ph₃-e-ti), the
+   **e-reduplicated present** (`Ce-`, full grade: *dé-deh₃-ti), and the
+   **thematic reduplicated aorist** (`Ce-`, no grade fixed: *wé-wk-e-t). A
+   type whose grade the handbooks do not fix states none, and the step prints
+   none.
+2. **The record's sentence is one step of the timeline.** `_reduplication_read`
+   reads the first sentence only, refuses a `+` (that is an arithmetic read
+   elsewhere) and a hedge, requires the root to stand at the start of the word,
+   and matches the type through `_REDUPLICATION_TYPES` — the table supplies
+   the syllable and the grade, never the sentence. The row is a one-piece
+   `reduplication`, so `_SINGLE_PIECE_KINDS` admits it, `_own_construction`
+   starts the ladder at the word, `_rung_builds` draws the step and
+   `_raw_constructions` indexes it for "words built on it".
+3. **A descendant is not a reduplication of the root.** Proto-Germanic
+   *bibāną's sentence is "From Proto-Indo-European *bʰe-bʰóyh₂-e …, reduplicated
+   stative of *bʰeyh₂-" — the clause describes the *ancestor's* formation, and
+   the chain has crossed a stage boundary before it (the test
+   `_CHAIN_BOUNDARY_RE` already makes for an arithmetic). The reader refuses a
+   sentence that opens with an ancestry cue and names a starred form before the
+   clause, so the word climbs to the reduplicated PIE word instead. Read over
+   the corpus, exactly 33 entries state a reduplication, all in PIE.
+4. **A line begins at the oldest mark.** A step at the top of the ladder drew
+   `.clead`'s rail — the segment that brings the line *down from the row above*
+   — with nothing above it, so *h₂ent- wore a stub of line that met nothing
+   (admin, 2026-11-12). `.constructstep:first-child` now hides that segment and
+   the first row's one-pixel join, so the spine starts at the diamond and runs
+   down. A step with something above keeps the segment.
+5. **A homonym is chosen by the record, not by index order.** PIE heads
+   `swer-` twice — "to ache, fester" and "to resound; to speak loudly" — and
+   `_lemma_entry` returns the first. *swarō's own sentence quotes which one it
+   continues ("from Proto-Indo-European *swer- (“to say, speak, talk, swear,
+   curse”)"), so `_ancestor_gloss` reads that parenthesis and `_sense_entry`
+   picks the entry whose gloss shares a content word with it, in the ladder, in
+   the ancestry rows and in the review's sense check. With no hint, or no
+   shared word, the first entry stands exactly as before. Measured: the rung
+   over *swarō now reads "to resound; ringing, whistling", not "to ache".
+
+**Not done.** No lemma was invented: all 33 reduplicated PIE words were already
+in the glossary, so the release adds their constructions, not their spellings.
+No grade was guessed for the aorist, and a sentence the reader cannot read
+stays silent rather than filling the timeline with a formation the record does
+not state.
+
+**Tests.** `tests/test_build.py` pins the perfect's o-grade, the i-present's
+zero grade, the e-present's full grade, the aorist's silence, the `argued`
+confidence of *(me)mógʰe, the refusal of a hedged sentence and of a
+descendant's clause, the ladder starting at the word, and the homonym choice.
+
 ## 2026-11-12 — a spine is not only the part above the word
 
 **What.** On `gem-pro/andaswarō` the vertical line vanished in the two places

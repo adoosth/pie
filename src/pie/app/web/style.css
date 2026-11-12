@@ -716,6 +716,19 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
    over it (the ladder's own rule for an unexplained origin). */
 .constructstep:first-child .cpiece.first:has(> .cchain > .cnode.unknown:first-child) > .clead > .crail::before {
   display: none; }
+/* A step at the top of the ladder has no row above it, so there is nothing for
+   its first column to bring *down*: the line begins at the oldest mark in the
+   tree (admin, 2026-11-12: *h₂ent- wore a stub of line that met nothing).  The
+   `.clead` track is that line from above, and the first row's one-pixel
+   extension is what joined it — both go. */
+.constructstep:first-child .clead > .crail::before { display: none; }
+.constructstep:first-child .cpiece.first > .cchain > :first-child .crail::before {
+  top: calc(var(--clabelh) + var(--termh) / 2); }
+/* …and when that first word has no climb of its own, its row's line starts at
+   its mark too, and runs down to the rung it builds.  A piece under a climb
+   keeps the band above its mark, because that is the join to the row above. */
+.constructstep:first-child .cpiece.first:not(.has-chain) > .cterm > .crail::before {
+  top: calc(var(--clabelh) + var(--termh) / 2); }
 /* A piece of a nested formation is met by the `+` beside it, so it keeps no
    label cell and no rail track: the row is the word and its meaning, and the
    label of that row is the `construction` beside the diamond (admin,
@@ -1191,6 +1204,11 @@ table tbody tr { transition: background .15s ease; }
   .clead { grid-template-columns: var(--crail) minmax(0, 1fr); }
   .clead > .crail { grid-column: 1; }
   .cpiece.continues > .cterm { grid-template-columns: var(--crail) auto minmax(0, 1fr); }
+  /* The three-track desktop template is written on a more specific selector
+     than `.cterm`, so a phone kept `0px 16px auto` while the narrow placement
+     put the rail in track 1 — the track collapsed and the word ran under the
+     diamond.  The same template as the continuing piece, two tracks. */
+  .cpiece:not(.continues) > .cterm { grid-template-columns: var(--crail) minmax(0, 1fr); }
   .cpiece.continues > .cterm::after { grid-column: 3; grid-row: 2;
     margin-top: calc(var(--termh) / 2 - 1px); }
   .cbuild .cstrip { height: auto; }

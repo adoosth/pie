@@ -59,8 +59,8 @@ from collections import defaultdict
 from functools import lru_cache
 
 from . import data
-from .service import (_ancestry_triples, _comparison_key, _pie_form,
-                      cognate_index, normalise_etymon)
+from .service import (_ancestor_gloss, _ancestry_triples, _comparison_key,
+                      _pie_form, _sense_entry, cognate_index, normalise_etymon)
 
 KINDS: dict[str, str] = {
     "etymon_missing": (
@@ -255,7 +255,11 @@ def flags(entry: dict, chain: list[str] | None = None) -> list[dict]:
     if pie:
         entry_tokens = _tokens(entry.get("gloss") or [])
         if entry_tokens:
-            etymon_row = _glossary("ine-pro").get(normalise_etymon(pie).lower())
+            # The sense the entry's own sentence quotes for this etymon: a
+            # spelling may head two roots, and comparing a word with the wrong
+            # homonym reports a conflict the record does not have (2026-11-12).
+            etymon_row = (_sense_entry("ine-pro", pie, _ancestor_gloss(entry, pie))
+                          or _glossary("ine-pro").get(normalise_etymon(pie).lower()))
             etymon_tokens = _tokens((etymon_row or {}).get("gloss") or [])
             set_tokens = _tokens(record.get("gloss") or "") if record else set()
             sides = [(name, toks) for name, toks in

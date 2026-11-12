@@ -1567,7 +1567,7 @@ function constructStep(level, i, linkTo, opts) {
   const link = (lang, form, known) => (linkTo ? linkTo(lang, form, known) : "");
   const kindOf = (b) => ({ suffix: "suffix", prefix: "prefix", compound: "compound",
     affix: "affix", infix: "infix", combining: "combining form",
-    derivation: "derivation" }[b.kind] || "formation");
+    derivation: "derivation", reduplication: "reduplication" }[b.kind] || "formation");
   /* The construction is one tree, not a set of inset pictures (admin,
      2026-11-12): the first word stands immediately right of the diamond (no
      line, no second mark — the diamond *is* its mark), the line then leaves
@@ -1688,8 +1688,17 @@ function constructStep(level, i, linkTo, opts) {
      empty label cell. */
   const labelCell = (name, era, kind) => `<span class="cwhen"><span class="cwhen-name ${kind}">${esc(name)}</span>${
     era ? `<span class="cwhen-era">${esc(era)}</span>` : ""}</span>`;
+  /* The kind says "reduplication"; which formation it is — the perfect/stative
+     (o-grade, *-e) or an i-reduplicated present (zero grade) — is what tells
+     the reader *why* the root's vowel changed, so it stands beside it
+     (admin, 2026-11-12: the reduplicated stative is a formation, name it). */
+  const formationOf = (b) => {
+    const kind = kindOf(b);
+    const type = String(b.formation || "").trim();
+    return type && type !== kind ? `${kind} · ${type}` : kind;
+  };
   const constructionLabel = (b) => labelCell("construction",
-    `${kindOf(b)}${b.source === "ours" ? " · our reading" : ""}`, "cwhen-build");
+    `${formationOf(b)}${b.source === "ours" ? " · our reading" : ""}`, "cwhen-build");
   const termCell = (b, p, k, opts) => {
     const formText = String(p.form || "");
     /* A suffix carries its hyphen after the reconstruction's star: *-tós, not
@@ -1774,7 +1783,7 @@ function constructStep(level, i, linkTo, opts) {
   const joinedOf = (b) => b.pieces.map((p) => p.form).join(" + ");
   const tipOf = (b) => (b.source === "ours"
     ? `The dictionary records no construction for this word; this model reads the seam ${joinedOf(b)} → ${b.of || level.form}. A formation is not a sound law.`
-    : `The record states this ${kindOf(b)}: ${joinedOf(b)} → ${b.of || level.form}. A formation is not a sound law.`);
+    : `The record states this ${formationOf(b)}: ${joinedOf(b)} → ${b.of || level.form}. A formation is not a sound law.`);
   /* A tab only exists when the record states two different formations.  Its
      label is the formation itself — `on + būtan` against `be + ūtan` — because
      `affix 1` / `affix 2` says nothing a reader can choose by (admin,

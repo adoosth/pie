@@ -281,3 +281,87 @@ endings:
       "athematic nominal ending of instrumental singular"). h₁réh₁ is the
       petrified instrumental of *h₁er-.
     sources: [fortson-2004]
+
+# Reduplication -------------------------------------------------------------
+# Reduplication is a formation, not a sound law — the same kind of claim as a
+# root's ablaut grade: it copies the beginning of the root and asks the root
+# for the grade the formation carries.  The rows below are the types the
+# handbooks name, with the syllable each one prefixes and the grade of the
+# root that follows it; a record that states the formation in words
+# ("Reduplicated stative of the root *h₂eyḱ-") is read into one step of the
+# timeline, and the step takes the type's words from here (2026-11-12).
+#
+# Only a type whose grade the handbooks fix carries one: the perfect/stative
+# is o-grade, an i-reduplicated present is zero grade, an e-reduplicated
+# present is full grade.  The reduplicated aorist is left without a grade
+# because the handbooks do not fix one for every root.
+reduplications:
+  - id: perfect-stative
+    name: "reduplicated perfect/stative"
+    label: "perfect/stative"
+    syllable: "Ce-"
+    grade: o
+    ending: "-e"
+    gloss: "the resulting state of the verb — the inherited perfect"
+    note: >
+      The perfect reduplicates the root's first consonant with *e, puts the
+      root in the o-grade and takes the 3sg ending *-e: *h₂eyḱ- ‘to obtain’ →
+      *h₂e-h₂óyḱ-e ‘has obtained, possesses’, *derḱ- ‘to see’ →
+      *de-dórḱ-e, *men- ‘to think’ → *me-món-e. A root that begins with a
+      laryngeal reduplicates the laryngeal (*h₂e-h₂óyḱ-e); a root in *CeR-
+      repeats only its consonant (*de-dórḱ-e). The accent stands on the
+      o-grade root, which is why the grade is o and not zero (Fortson on the
+      perfect; Sihler; Beekes; LIV).
+    outcomes: "Vedic dadárśa, Greek δέδορκεν, Latin meminī, Proto-Germanic *aiganą"
+    sources: [fortson-2004, sihler-1995, beekes-2011, liv, wiktionary]
+    example: "*h₂eyḱ- ‘to obtain’ → *h₂eh₂óyḱe ‘possesses’"
+
+  - id: present-i
+    name: "i-reduplicated present"
+    label: "present"
+    syllable: "Ci-"
+    grade: zero
+    ending: "-ti"
+    gloss: "a present with the root in zero grade and *i in the reduplicating syllable"
+    note: >
+      The *i*-reduplicated presents copy the root's onset with *i* and leave
+      the root in zero grade: *peh₃- ‘to drink’ → *pí-ph₃-e-ti, *sed- ‘to sit’
+      → *sí-sd-e-ti, *steh₂- ‘to stand’ → *stí-steh₂-ti. The reduplicating
+      syllable is accented in the singular (Fortson on the present classes;
+      Sihler).
+    outcomes: "Sanskrit píbati, sī́dati, tíṣṭhati; Greek πίπτω"
+    sources: [fortson-2004, sihler-1995, liv, wiktionary]
+    example: "*peh₃- ‘to drink’ → *píph₃eti ‘is drinking’"
+
+  - id: present-e
+    name: "e-reduplicated present"
+    label: "present"
+    syllable: "Ce-"
+    grade: e
+    ending: "-ti"
+    gloss: "a present that repeats the root's onset with *e and keeps the full grade"
+    note: >
+      The *e*-reduplicated presents repeat the onset with *e and keep the
+      root in the full grade: *dʰeh₁- ‘to put’ → *dʰé-dʰeh₁-ti, *deh₃- ‘to
+      give’ → *dé-deh₃-ti. Several of these are inherited presents of roots
+      that also make a reduplicated perfect, and the two are told apart by the
+      grade and the ending (Fortson; Sihler; LIV).
+    outcomes: "Sanskrit dádāti; Greek δίδωμι"
+    sources: [fortson-2004, sihler-1995, liv, wiktionary]
+    example: "*deh₃- ‘to give’ → *dédeh₃ti ‘is giving’"
+
+  - id: aorist
+    name: "reduplicated root aorist"
+    label: "aorist"
+    syllable: "Ce-"
+    grade: ""
+    ending: ""
+    gloss: "a thematic aorist that repeats the root's onset"
+    note: >
+      The thematic reduplicated aorist repeats the root's onset with *e* and
+      adds the thematic vowel: *wekʷ- ‘to speak’ → *wé-wk-e-t (Vedic ávocat).
+      The handbooks do not fix one grade for every root, so this row states
+      no grade and the timeline shows none (Fortson; Sihler; LIV).
+    outcomes: "Vedic ávocat, Greek εἶπον (the type)"
+    sources: [fortson-2004, sihler-1995, liv]
+    example: "*wekʷ- ‘to speak’ → *wéwket ‘said’"

@@ -215,5 +215,100 @@ class OneWordBuildsAnother(unittest.TestCase):
         self.assertIsNone(service._own_construction(entry, ["ine-pro", "gem-pro"]))
 
 
+class ReduplicationTest(unittest.TestCase):
+    """Reduplication is a formation, not a sound law (admin, 2026-11-12).
+
+    *h₂eh₂óyḱe's page said "Reduplicated stative of the root *h₂eyḱ-" and the
+    timeline showed nothing above the word, because only `built_as` rows were
+    read as constructions.  The sentence names the formation and the root it
+    repeats, so it is one step of the ladder; its type and grade come from the
+    stage's morphology table, never from the sentence.
+    """
+
+    def test_the_sentence_is_one_reduplication_step(self):
+        builds = service._rung_builds(
+            service._lemma_entry("ine-pro", "h₂eh₂óyḱe"), "ine-pro", "h₂eh₂óyḱe")
+        self.assertEqual(len(builds), 1)
+        build = builds[0]
+        self.assertEqual(build["kind"], "reduplication")
+        self.assertEqual(build["formation"], "perfect/stative")
+        self.assertEqual(build["confidence"], "stated")
+        # The star is the renderer's rule for a reconstructed stage, not part
+        # of the piece the record stores.
+        self.assertEqual([p["form"] for p in build["pieces"]], ["h₂eyḱ-"])
+        self.assertEqual(build["pieces"][0]["grade_label"], "o-grade")
+
+    def test_the_perfect_is_o_grade_and_the_presents_are_not(self):
+        cases = {"píph₃eti": ("present-i", "present", "zero grade"),
+                 "dédeh₃ti": ("present-e", "present", "full grade"),
+                 "memóne": ("perfect-stative", "perfect/stative", "o-grade")}
+        for word, (kind, formation, grade) in cases.items():
+            with self.subTest(word=word):
+                build = service._rung_builds(
+                    service._lemma_entry("ine-pro", word), "ine-pro", word)[0]
+                self.assertEqual(build["kind"], "reduplication")
+                self.assertEqual(build["formation"], formation)
+                self.assertEqual(build["pieces"][0]["grade_label"], grade)
+
+    def test_the_aorist_states_no_grade(self):
+        build = service._rung_builds(
+            service._lemma_entry("ine-pro", "wéwket"), "ine-pro", "wéwket")[0]
+        self.assertEqual(build["formation"], "aorist")
+        self.assertNotIn("grade", build["pieces"][0])
+
+    def test_two_analyses_are_marked_argued(self):
+        build = service._rung_builds(
+            service._lemma_entry("ine-pro", "(me)mógʰe"), "ine-pro", "(me)mógʰe")[0]
+        self.assertEqual(build["confidence"], "argued")
+
+    def test_a_hedged_or_arithmetic_sentence_is_not_read(self):
+        for word in ("bʰébʰrus", "h₁eh₁s-"):
+            with self.subTest(word=word):
+                entry = service._lemma_entry("ine-pro", word)
+                self.assertIsNone(service._reduplication_read(entry))
+
+    def test_a_descendant_is_not_a_reduplication_of_the_root(self):
+        # "From Proto-Indo-European *pe-póyh₂-e …, reduplicated stative of
+        # *peyh₂-" describes the ancestor's formation, not this word's.
+        entry = service._lemma_entry("gem-pro", "bibāną")
+        self.assertIsNone(service._reduplication_read(entry))
+
+    def test_the_ladder_starts_at_the_word_and_shows_the_step(self):
+        page = service.word("ine-pro", "h₂eh₂óyḱe")
+        level = page["hierarchy"]["levels"][-1]
+        self.assertEqual(level["form"], "h₂eh₂óyḱe")
+        self.assertFalse(level["changed"])
+        self.assertEqual(level["recorded"]["gloss"], "to possess, to own")
+        self.assertEqual(level["builds"][0]["kind"], "reduplication")
+
+
+class AncestorHomonym(unittest.TestCase):
+    """A spelling may head two words, and the record says which one it means.
+
+    Proto-Indo-European heads *swer- "to ache, fester" and *swer- "to resound;
+    to speak loudly".  Proto-Germanic *swarō "oath" is "from Proto-Indo-
+    European *swer- (“to say, speak, talk, swear, curse”)", but the ladder
+    quoted whichever entry the index listed first and printed "oath" over the
+    root of aching (admin, 2026-11-12).
+    """
+
+    def test_the_quoted_meaning_chooses_the_sense(self):
+        hint = service._ancestor_gloss(service._lemma_entry("gem-pro", "swarō"), "*swer-")
+        self.assertEqual(hint, "to say, speak, talk, swear, curse")
+        row = service._sense_entry("ine-pro", "*swer-", hint)
+        self.assertIn("to speak loudly, to proclaim", row["gloss"])
+
+    def test_the_tree_quotes_the_sense_the_child_names(self):
+        build = service._rung_builds(
+            service._lemma_entry("gem-pro", "andaswarō"), "gem-pro", "andaswarō")[0]
+        parent = build["pieces"][1]["branch"]["parents"][0]
+        self.assertEqual(parent["form"], "*swer-")
+        self.assertTrue(parent["gloss"].startswith("to resound"))
+
+    def test_without_a_hint_the_first_entry_stands(self):
+        self.assertEqual(service._sense_entry("ine-pro", "*swer-")["gloss"],
+                         ["to ache", "to fester", "wound; injury"])
+
+
 if __name__ == "__main__":
     unittest.main()

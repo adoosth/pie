@@ -145,6 +145,9 @@
 - id: sihler-1995
   title: Sihler, New Comparative Grammar of Greek and Latin (1995)
   kind: grammar
+- id: liv
+  title: Rix et al., Lexikon der indogermanischen Verben (2nd ed. 2001)
+  kind: lexicon
 - id: horrocks-2010
   title: 'Horrocks, Greek: A History of the Language and its Speakers (2nd ed. 2010)'
   kind: monograph
