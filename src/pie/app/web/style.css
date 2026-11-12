@@ -531,37 +531,37 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
    2026-11-12). */
 .constructstep { display: grid; grid-template-columns: 156px 20px minmax(0, 1fr);
   gap: 0 14px; padding-top: 12px;
-  /* Where the diamond sits, measured from the step's own bottom: the tree is
-     its last row, so the pieces' line is half a term-row plus the reserved
-     meaning line above the edge (2026-11-12). */
+  /* The term row a word stands in, and the meaning line it reserves under
+     itself (2026-11-12). */
   --termh: 46px; --foot: 17px;
   /* A suffix's gloss is a sentence about what it does and can run to three or
      four lines.  Those lines hang *below* the terms into this strip, so every
      word of the tree stays on one line and no gloss is ever cut (admin,
      2026-11-12: expand vertically, never horizontally). */
   --bpad: 56px;
-  --spine: calc(var(--termh) / 2 + var(--foot) + var(--bpad)); }
-/* The step stands above the form it builds: its rail comes down from the stage
-   above and stops at the diamond, where the pieces' line leaves it, and a short
-   tail carries on to the word below.  Nothing above the diamond when the step
-   is the first thing in the ladder (admin, 2026-11-12). */
-.constructstep .rail::before, .constructstep .rail::after { content: "";
+  /* One row of the tree's own staircase: a term row and the three lines of
+     meaning it reserves under the word (admin, 2026-11-12). */
+  --crow: calc(var(--termh) + 3 * 14px + 2px); }
+/* The step stands above the form it builds, and its rail is one unbroken line
+   through it: it comes down from the stage above, and the mark that stands on
+   it belongs to the first piece's own row (`.crail.mark`), so the diamond is
+   on the pieces' line by construction — no measurement from the bottom of the
+   step, which a scrollbar under the tree would silently break (admin,
+   2026-11-12).  Nothing above the mark when the step is the first thing in the
+   ladder (admin, 2026-11-12). */
+.constructstep .rail::before { content: "";
   position: absolute; left: 50%; margin-left: -1px; width: 2px;
-  background: var(--line); }
-/* `12px` is the step's own top padding: the line has to start at the rung
-   above it, not at the step's content box. */
-.constructstep .rail::before { top: calc(-1 * var(--gap, 0px) - 12px);
-  bottom: calc(var(--spine) + 5px); }
+  background: var(--line);
+  /* `12px` is the step's own top padding: the line has to start at the rung
+     above it, not at the step's content box. */
+  top: calc(-1 * var(--gap, 0px) - 12px); bottom: 0; }
 .constructstep:first-child .rail::before { display: none; }
-.constructstep .rail::after { top: calc(100% - var(--spine) + 5px); bottom: 0; }
-/* The diamond, drawn once: on the rail it is positioned absolutely, in a nested
-   strip it flows inline. */
+/* The diamond, drawn once: it is positioned on the rail track it marks — the
+   first piece's own (`.crail.mark`) or a built ancestor's (`.cbuild`). */
 .cdiamond { display: block; width: 10px; height: 10px; flex: none;
   transform: rotate(45deg); border-radius: 1px;
   background: var(--accent-fill); border: 1px solid var(--accent);
   box-shadow: 0 0 0 3px var(--bg); }
-.constructstep .rail .cdiamond { position: absolute; left: 50%; margin-left: -5px;
-  top: calc(100% - var(--spine) - 5px); }
 .cdiamond.mini { width: 8px; height: 8px; }
 .constructstep .when { grid-column: 1; display: flex; flex-direction: column;
   align-items: flex-end; justify-content: flex-end; gap: 1px; text-align: right;
@@ -598,83 +598,115 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
 .rung:has(+ .constructstep) .rung-body { border-bottom-color: transparent; padding-bottom: 2px; }
 .constructstep + .rung { padding-top: 2px; }
 .constructstep + .rung .rung-body { border-top: 1px solid color-mix(in srgb, var(--line) 45%, transparent); }
-/* The top of the tree is the oldest thing on the page, and the rows there were
-   packed as tightly as the ladder's: a rung that carries a construction above
-   it gets the same air as a rung below (admin, 2026-11-12: the top is tight). */
-.rung.croot .rung-body { padding-bottom: 22px; }
-/* The gap is written as a length because the rail segment above this row is
-   `calc(-1 * var(--gap))`: a bare `0` makes calc() invalid, the segment loses
-   its `top` and the whole column disappears between two stages (admin,
-   2026-11-12).  The row's own spacing and the segment come from one value. */
-.rung.croot { --gap: 6px; }
-/* the tree: the pieces, and each piece's own timeline above it ---------------- */
-.btrees { --clabel: 128px; --crail: 18px; --foot: 17px;
+/* the tree: the pieces, and each piece's own climb above it ---------------- */
+/* Every row of every column is one step high (`--crow`), and a column hangs
+   from its bottom: the pieces stand on the line the diamond marks, and a
+   column's k-th ancestor is exactly k rows above that line.  Two pieces whose
+   ancestors stand in the same language therefore land on one horizontal line —
+   *h₂entó- over *anda- beside *swer- over *swarō (admin, 2026-11-12).  The
+   rail is the first track of every row, so the line from the most distant form
+   down to the piece is unbroken. */
+.btrees { --crail: 18px; --termh: 46px; --foot: 17px;
+  /* the step's rail stands this far left of the tree's first word */
+  --railpad: 24px;
   /* The tree can be wider than the page (three pieces make three full
      timelines), so it scrolls sideways rather than wrapping.  The scroll box
      reaches left to the rail column, because that is where the first word
-     now starts. */
+     starts. */
   overflow-x: auto; overflow-y: hidden;
   padding: 6px 2px var(--bpad) 34px; margin-left: -34px; }
 .btree, .bline { display: block; width: max-content; max-width: none; }
-/* One line of pieces: the first word at the rail's right edge, then the line
-   out of its own right edge through `+` to the next piece. */
+/* One line of pieces, each column climbing from it: `flex-end` puts every
+   column's last row on that line, whatever stands above it. */
 .bline { display: flex; align-items: flex-end; gap: 0; }
 /* The `+` between two pieces: the same line, broken for the sign. */
-.cplus { flex: 0 0 54px; height: calc(var(--termh) + var(--foot));
+.cplus { flex: 0 0 54px; height: var(--crow); align-self: flex-end;
   padding-bottom: var(--foot); display: flex; align-items: center;
   gap: 7px; color: var(--dim); }
 .cplus::before, .cplus::after { content: ""; flex: 1 1 auto; height: 2px;
   background: var(--line); }
 .cplus i { font-style: normal; font-family: var(--mono); font-size: 16px; line-height: 1;
   color: var(--muted); }
-.cpiece { display: flex; flex-direction: column; align-items: stretch; flex: none; }
-/* Every row of a column shares one template, so the rail runs straight down
-   from the oldest form to the piece itself. */
-.cnode, .cterm { display: grid; grid-template-columns: var(--clabel) var(--crail) auto;
-  align-items: center; column-gap: 8px; }
-/* Air between the ancestors: the language name and its years are two lines, and
-   the row under them has to breathe (admin, 2026-11-12). */
-.cnode { min-height: 42px; padding: 2px 0; }
-/* The word sits in a band as tall as a term row and the meaning hangs under
-   it, so the line through every piece stays level whatever a word means
-   (admin, 2026-11-12). */
-.cterm { height: calc(var(--termh) + var(--foot)); align-items: start; }
-.cterm .cstack { display: flex; flex-direction: column; min-width: 0; }
-.cterm .cwordrow { display: flex; align-items: center; height: var(--termh); }
-/* The first word of a construction is not a column: no language label of its
-   own (it is the language of the step), no rail, no dot — the diamond beside it
-   is its mark.  It stands a breath to the right of the diamond, and the line
-   leaves its right edge. */
-.cterm.first { display: flex; align-items: flex-start;
-  height: calc(var(--termh) + var(--foot)); margin-left: -8px; padding: 0 2px; }
-/* The first word's meaning hangs under it without setting the width of its
-   cell: the `+` and the line have to start at the word's own right edge, and a
-   long sense would otherwise push them into the middle of the row, leaving the
-   line floating away from the word it leaves (admin, 2026-11-12).  The word row
-   still reserves the line for it, so nothing below moves. */
-.cterm.first .cstack { position: relative; }
-.cterm.first .cgloss { position: absolute; top: 100%; left: 0; }
-.cterm.first::after { content: ""; flex: 1 1 auto; align-self: flex-start;
-  height: 2px; margin-top: calc(var(--termh) / 2 - 1px); background: var(--line); }
-/* The language and its years, against the rail — the ladder's own column, at
-   the ladder's own sizes, so a branch reads as the timeline it is. */
-.cwhen { display: flex; flex-direction: column; align-items: flex-end; gap: 1px;
-  text-align: right; line-height: 1.35; font-variant-numeric: tabular-nums; }
-.cwhen-name { color: var(--fg); font-weight: 600; font-size: 13px; }
-.cwhen-name.kind-attested { color: var(--attested); }
-.cwhen-name.kind-proto { color: var(--literary); }
-.cwhen-era { color: var(--dim); font-size: 11.5px; }
-/* The rail: per-row segments that join into one continuous 2px line. */
-.cnode .crail, .cterm .crail { position: relative; align-self: stretch; }
-.cnode .crail::before, .cterm .crail::before { content: ""; position: absolute;
-  left: 50%; margin-left: -1px; top: 0; bottom: 0; width: 2px; background: var(--line); }
-.cnode:first-child .crail::before { top: 50%; }
-.cpiece:not(.has-chain) .cterm .crail::before { display: none; }
-.cterm .crail::before { bottom: auto; height: calc(var(--termh) / 2); }
-.cnode .crail i, .cterm .crail i { position: absolute; left: 50%; top: 50%;
+/* A column: its ancestors, oldest at the top, then the piece itself. */
+.cpiece { display: flex; flex-direction: column; justify-content: flex-end;
+  align-items: stretch; flex: none; }
+.cchain { display: flex; flex-direction: column; }
+/* The first piece hangs from the step's own rail: its rail track is drawn a
+   little left of where the tree's content begins (past the step's 14px column
+   gap and half of its 20px rail track), so its oldest form and the diamond are
+   one vertical line and not two (admin, 2026-11-12). */
+.cpiece.first { margin-left: calc(-1 * (var(--railpad) + var(--crail) / 2)); }
+/* Every row of every column: the rail track, then the word.  One template for
+   an ancestor, a built ancestor and the piece, so the vertical never steps
+   sideways. */
+.cnode, .cbuild, .cterm { display: grid;
+  grid-template-columns: var(--crail) auto;
+  align-items: start; column-gap: 8px; height: var(--crow); }
+.cnode > .crail, .cbuild > .crail, .cterm > .crail { grid-column: 1; }
+.cnode > .cstack, .cbuild > .cstrip, .cterm > .cstack { grid-column: 2; }
+/* A piece of a nested formation is met by the `+` beside it, so it keeps no
+   rail track: the row is the word and its meaning, nothing else. */
+.cterm.instrip { grid-template-columns: auto; }
+.cterm.instrip > .cstack { grid-column: 1; }
+.cstack { display: flex; flex-direction: column; min-width: 0; }
+.cwordrow { display: flex; align-items: center; height: var(--termh); }
+/* The stage a word belongs to stands beside the word, small and quiet: it is
+   what two words on the same line are compared by (admin, 2026-11-12). */
+.cstage { font-family: var(--sans, system-ui, sans-serif); font-style: normal;
+  font-size: 11px; letter-spacing: .04em; color: var(--dim);
+  margin-left: 9px; align-self: center; white-space: nowrap; }
+.cstage.kind-proto { color: var(--literary); }
+.cstage.kind-attested { color: var(--attested); }
+/* A piece's own row runs on to the `+` when another piece follows: the line
+   leaves the word's right edge and crosses the column, however wide its
+   ancestors made it, so the pieces are joined on the one line (admin,
+   2026-11-12).  A one-word formation has nothing to join and keeps no line. */
+.cpiece.continues > .cterm { grid-template-columns: var(--crail) auto minmax(0, 1fr); }
+.cpiece.continues > .cterm::after { content: ""; grid-column: 3; grid-row: 1;
+  height: 2px; align-self: start; margin-top: calc(var(--termh) / 2 - 1px);
+  background: var(--line); }
+.cpiece:not(.continues) > .cterm { grid-template-columns: var(--crail) auto; }
+.cpiece:not(.continues) > .cterm.instrip { grid-template-columns: auto; }
+/* A meaning under an ancestor stays inside the column: a long description of
+   what a suffix does wraps to two lines, and the row is already as tall as
+   that, so no meaning can push a row out of line (admin, 2026-11-12). */
+.cchain .cgloss { white-space: normal; max-width: 240px; line-height: 1.2; }
+.cchain .cterm.bound .cgloss { max-width: 240px; }
+/* A word no record explains ends in a ???; nothing says which stage it is of. */
+.cnode.unknown .cstage { display: none; }
+/* The rail: per-row segments that join into one continuous 2px line.  A row's
+   mark sits on the word's own centre — half a term row down — because that is
+   where the word and the `+` are. */
+.cnode .crail, .cbuild .crail, .cterm .crail { position: relative; align-self: stretch; }
+.cnode .crail::before, .cbuild .crail::before, .cterm .crail::before { content: "";
+  position: absolute; left: 50%; margin-left: -1px; top: -1px; bottom: -1px;
+  width: 2px; background: var(--line); }
+/* the oldest row's line starts at its own mark, not above it */
+.cchain > :first-child .crail::before { top: calc(var(--termh) / 2); }
+/* the piece's line only comes down to it: nothing continues below its dot */
+.cterm .crail::before { bottom: auto; height: calc(var(--termh) / 2 + 1px); }
+/* the line that reaches a piece from the `+` on its left */
+.cterm > .crail::after { content: ""; position: absolute;
+  left: 0; top: calc(var(--termh) / 2 - 1px); width: calc(var(--crail) / 2);
+  height: 2px; background: var(--line); }
+/* a track that carries no line: a bound morpheme's (the `+` reaches it) */
+.crail.blank::before, .cterm > .crail.blank::after { display: none; }
+/* The first piece's track carries the step's mark: the diamond stands on the
+   same 2px line the ancestors climb, in the piece's own row, so it is on the
+   pieces' line whatever the tree's height (admin, 2026-11-12). */
+.crail.mark::before, .cterm > .crail.mark::after { display: none; }
+.crail.mark > i { width: 10px; height: 10px; margin: -5px 0 0 -5px;
+  border-radius: 1px; transform: rotate(45deg); background: var(--accent-fill);
+  border: 1px solid var(--accent); box-shadow: 0 0 0 3px var(--bg); }
+.cnode .crail i, .crail > i { position: absolute; left: 50%; top: calc(var(--termh) / 2);
   width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%;
   background: var(--bg); border: 2px solid var(--dim); }
 .cterm .crail i { background: var(--accent); border-color: var(--accent); }
+/* A built ancestor's mark is a diamond, not a dot: that row is a construction
+   (admin, 2026-11-12). */
+.cbuild > .crail > i { width: 10px; height: 10px; margin: -5px 0 0 -5px;
+  border-radius: 1px; transform: rotate(45deg); background: var(--accent-fill);
+  border: 1px solid var(--accent); box-shadow: 0 0 0 3px var(--bg); }
 /* The meaning under a word of the timeline: quiet, one line, never bold —
    the same claim the headword's own line makes, at the size of a footnote. */
 .cgloss { display: block; font-family: var(--sans, system-ui, sans-serif);
@@ -723,30 +755,13 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
 .cform .cread { font-family: var(--mono); font-size: 12px; font-style: normal;
   color: var(--muted); margin-left: 7px; unicode-bidi: isolate; }
 .cform .cunknown { font-family: var(--mono); font-weight: 600; letter-spacing: .02em; }
-/* The horizontal line that runs into a piece from the left: it starts at the
-   piece column's own edge (where the `+` left off) and reaches the dot. */
-.cterm .cline { height: 2px; background: var(--line); align-self: start;
-  margin-top: calc(var(--termh) / 2 - 1px); margin-right: -8px; }
-/* A piece with no history above it needs no branch column: the line reaches it
-   at once.  A piece that does keeps the column, because that is where its
-   ancestors' language names stand (admin, 2026-11-12). */
-.cpiece:not(.has-chain) .cterm { grid-template-columns: 0 var(--crail) auto; column-gap: 0; }
-/* A nested construction: a word of the chain was itself built, and the step
-   that built it stands above the word in the same grammar — the diamond on the
-   chain's own rail, the first piece beside it, the line to the next.  It is one
-   size down because it is a step inside a step (admin, 2026-11-12: keep going
-   up, all of it). */
-.cbuild { display: block; --clabel: 132px; --termh: 40px; --foot: 15px; }
-.cbuild .cstrip { display: flex; align-items: flex-end; gap: 0;
-  width: max-content; padding: 4px 0 0; }
-.cbuild .cstrip > .cdiamond { align-self: flex-end;
-  margin: 0 12px calc(var(--termh) / 2 - 4px + var(--foot)) 0; }
-.cbuild .cstrip > .cterm.first { margin-left: 0; height: calc(var(--termh) + var(--foot)); }
-.cbuild .cform.term { font-size: 18px; }
-.cbuild .cnode { min-height: 38px; }
-.cbuild .cplus { flex: 0 0 44px; height: var(--termh); }
-
-.cpiece:not(.has-chain) .cterm { grid-template-columns: 0 var(--crail) auto; }
+/* A built ancestor is a row of the same staircase: the diamond on the column's
+   own rail, and the pieces of that formation beside it at the tree's own sizes
+   — never a smaller staircase inside a column, because a step nobody can read
+   is not a step (admin, 2026-11-12: the climb above *h₂énts). */
+.cbuild .cstrip { display: flex; align-items: flex-start; height: var(--crow); }
+.cbuild .cplus { flex: 0 0 44px; height: var(--termh); padding-bottom: 0;
+  align-self: flex-start; }
 
 .rung-rec { margin-top: 3px; font-size: 12.5px; color: var(--muted); }
 .rung-rec > * + * { margin-left: 8px; }
@@ -1075,12 +1090,12 @@ table tbody tr { transition: background .15s ease; }
      folded spine would break the one tree (admin, 2026-11-12).  The first word
      starts just right of the diamond, so the scroll box needs no negative
      margin here — the rail column is the widest thing on the left. */
-  .btrees { --clabel: 110px; --crail: 16px; padding-left: 4px; margin-left: 0; }
-  .cterm.first { margin-left: 0; }
+  /* the step's rail column is 16px wide and 10px from the words, so the tree
+     reaches back over it: its first column starts at the box's own left edge,
+     which is where the rail is, and no word is clipped by the scroll box */
+  .btrees { --crail: 16px; --railpad: 22px; padding-left: 30px; margin-left: -26px; }
   .cform { font-size: 16px; }
   .cform.term { font-size: 18px; }
-  .cwhen-name { font-size: 10.5px; }
-  .cwhen-era { font-size: 9.5px; }
   .cplus { flex: 0 0 34px; }
   .lawname { min-width: 0; }
   /* The branch stacks too: on a phone the name is the row and the form, the

@@ -738,7 +738,8 @@ assert.ok(singleWords.includes("combining form"),
 assert.ok(singleHtml.includes("*h₂énts"), "the word it was formed from stands on the step");
 assert.ok(singleHtml.includes("*h₂ent-"),
   "and that word's own construction is drawn above it");
-assert.ok(singleHtml.indexOf("*h₂ent-") < singleHtml.indexOf("combining form"),
+const singleTree = singleHtml.slice(singleHtml.indexOf('class="buildbody"'));
+assert.ok(singleTree.indexOf("*h₂ent-") < singleTree.indexOf("*h₂énts"),
   "oldest first: the pieces of the piece come before the formation that used it");
 
 /* ---------------------------------------------------------------- */
@@ -946,10 +947,13 @@ const builtHtml = context.constructStep(causLevel, 0,
 const builtText = plain(builtHtml);
 /* The step's blocks, so an assertion can say what is inside one of them. */
 const chunk = (html, cls) => (html.match(new RegExp(`<div class="${cls}[^"]*"[\\s\\S]*?<\\/div>`, "g")) || []);
+/* One column, from its own div to the next: a column nests rows inside rows, so
+   a regex that stopped at the first `</div>` would cut it short. */
+const columns = (html) => html.split('<div class="cpiece').slice(1);
 const terms = chunk(builtHtml, "cterm");
 assert.ok(builtHtml.includes('class="constructstep"'), "the construction is a ladder step");
-assert.ok(builtHtml.includes('<div class="rail" aria-hidden="true"><i class="cdiamond"></i></div>'),
-  "the diamond marks the step on the main rail itself");
+assert.ok(!builtHtml.includes('<div class="rail" aria-hidden="true"><i class="cdiamond"></i></div>'),
+  "the mark stands in the tree, not on a block of its own");
 assert.ok(!builtText.includes("CONSTRUCTION"), "no CONSTRUCTION line under the word any more");
 assert.ok(builtText.includes("construction"), "the step names itself in the margin");
 /* One tree: the first word stands immediately right of the diamond — the
@@ -965,10 +969,11 @@ assert.ok(!builtHtml.includes('class="cwire"'),
   "no redundant wire: the first word starts at the diamond");
 assert.ok(/class="cterm first"/.test(terms[0]),
   "the first piece is the one the diamond marks");
-assert.ok(!terms[0].includes('class="cline"') && !terms[0].includes('class="crail"'),
-  "it carries no line and no dot of its own");
-assert.ok(terms[1].includes('class="cline"'),
-  "the next piece is met by the line that left the first word");
+assert.ok(terms[0].includes('class="crail mark"') && terms[0].includes('<i class="cdiamond"></i>'),
+  "the first piece's own rail carries the step's diamond, on the pieces' line");
+assert.ok(/class="cterm[^"]*"[^>]*>\s*<span class="crail" aria-hidden="true"><i><\/i><\/span>/
+  .test(terms[1]),
+  "the next piece is met by the rail and wears the dot of its own column");
 assert.ok(builtHtml.indexOf('class="cterm first"') < builtHtml.indexOf(">+<"),
   "the + comes after the first word, from its right side");
 assert.ok(builtHtml.indexOf(">+<") < builtHtml.indexOf('class="cplus"', builtHtml.indexOf(">+<")) + 1
@@ -995,43 +1000,100 @@ assert.ok(terms[0].includes('href="#/word/peo/%F0%90%8E%A8%F0%90%8E%A1%F0%90%8F%
 assert.ok(terms[1].includes('href="#/word/peo/*farnah"'), "the second piece too");
 assert.ok(builtHtml.includes('href="#/word/ira-pro/*%C4%8Di%CE%B8r%C3%A1h"'),
   "each piece's ancestors are doors of their own");
-/* The first piece's own descent is the ladder's own rows, on the page's rail:
-   same left column, same language-and-years column, same sizes (admin,
-   2026-11-12: the top of the tree is where the timeline gets tight). */
-const roots = builtHtml.split('<li class="rung croot"').slice(1);
-assert.equal(roots.length, 3, "three ancestors climb over 𐎨𐎡𐏂, as ladder rungs");
-assert.ok(roots[0].includes('class="when-name kind-proto"') && roots[0].includes("Proto-Indo-European"),
-  "the trunk is labelled with the ancestor's language, as in the ladder");
-assert.ok(roots[0].includes("c. 4500–2500 BCE"), "and with the years it was in use");
-assert.ok(roots[0].includes('class="rail"') && roots[0].includes('class="rung-body"'),
-  "a root row is a rung, not a thinner sub-timeline");
-/* Proto-Indo-European is the top of the family, not an unexplained form: the
-   trail ends there without a ??? (2026-11-12). */
-assert.ok(roots[0].includes("*kit-ró-s"), "the trunk ends at a Proto-Indo-European word");
-assert.ok(!roots[0].includes("cunknown"), "and gets no ??? above it");
-assert.ok(roots[0].includes("the top of the family"),
-  "the row says which ending it is");
-assert.ok(!builtHtml.includes('style="--gap:0"'),
-  "a root rung takes its spacing from the sheet, not from a unitless zero");
-assert.ok(!builtHtml.includes('class="cunknown"'),
-  "nothing in this tree is unexplained");
-/* A piece's *own* branch — the donor of a borrowed word, say — keeps the
-   column form, because its language label stands beside the piece itself. */
-const chain = chunk(builtHtml, "cnode");
-assert.equal(chain.length, 1, "the borrowed piece's donor keeps its column above it");
-assert.ok(chain[0].includes("kind-attested") && chain[0].includes("Old Median"),
-  "a donor stage keeps the attested colour the ladder gives it");
-assert.ok(chain[0].includes("Old Median *farnah — the record says the word was borrowed from here"),
+/* Every piece climbs its own column, one step per row, oldest at the top, and
+   every row is one step high — so two words of the same stage land on one
+   horizontal line (admin, 2026-11-12).  The first piece's descent is no longer
+   a set of ladder rungs above the step: it is the same kind of row as the
+   donor's, because it has to line up with it. */
+const cols = columns(builtHtml);
+assert.equal(cols.length, 2, "one column per piece");
+const rowCount = (html) => (html.match(/<div class="cnode[^"]*"/g) || []).length;
+assert.equal(rowCount(cols[0]), 3,
+  "𐎨𐎡𐏂 climbs three steps: Proto-Iranian, Proto-Indo-Iranian, Proto-Indo-European");
+assert.equal(rowCount(cols[1]), 1, "the borrowed word's donor stands in its own column");
+assert.ok(cols[0].indexOf("Proto-Indo-European") < cols[0].indexOf("Proto-Indo-Iranian")
+  && cols[0].indexOf("Proto-Indo-Iranian") < cols[0].indexOf("Proto-Iranian"),
+  "oldest first: a column is read from the top down to the piece");
+/* The stage stands beside the word, and it is what two rows on one line are
+   compared by — no separate label column any more (admin, 2026-11-12). */
+assert.ok(cols[0].includes('class="cstage kind-proto">PIE<'),
+  "an ancestor names the stage it belongs to beside its own word");
+assert.ok(cols[1].includes('class="cstage kind-attested">OMed.<'),
+  "and a donor stage keeps the attested colour the ladder gives it");
+assert.ok(cols[1].includes("Old Median *farnah — the record says the word was borrowed from here"),
   "a borrowed donor ends the other trunk and says so");
-assert.ok(!/<span class="cwhen"><\/span>/.test(builtHtml),
-  "the piece's own row carries no language label");
+assert.ok(cols[0].includes("c. 4500–2500 BCE"),
+  "the years it was in use are on the row's hover");
+/* Proto-Indo-European is the top of the family, not an unexplained form: the
+   climb ends there without a ??? (2026-11-12). */
+assert.ok(cols[0].includes("*kit-ró-s"), "the climb ends at a Proto-Indo-European word");
+assert.ok(cols[0].includes("the top of the family"), "and says that it is the end of the trail");
+assert.ok(!builtHtml.includes("cunknown"), "nothing in this tree is unexplained");
+assert.ok(!builtHtml.includes('class="cwhen"'),
+  "the language takes no column of its own: it stands beside the word");
 /* Every word of the timeline says what it means, ancestors included (admin,
-   2026-11-12): the rung under a construction carries its dictionary sense the
-   way the headword's own line carries its own, and a bound morpheme carries a
-   description of what it does instead of a part of speech. */
-const senseRung = roots.find((h) => h.includes("Proto-Iranian"));
-assert.ok(senseRung && senseRung.includes('<span class="sense">adj · “visible”</span>'),
-  "an ancestor rung prints the category and the sense under its word");
+   2026-11-12): the row above a construction carries its dictionary sense the
+   way the headword's own line carries its own. */
+assert.ok(cols[0].includes('<span class="cgloss">adj · “visible”</span>'),
+  "an ancestor prints the category and the sense under its word");
+
+/* The reader's own example (admin, 2026-11-12): *anda- climbs *h₂entó- →
+   "construction from *h₂énts" → "*h₂ent- + *-s", while *swarō climbs to
+   *swer-.  *h₂entó- and *swer- are both Proto-Indo-European, so they must
+   stand on one horizontal line — each is the row immediately above its own
+   piece, and every column's rows share one height, so a column with three
+   ancestors rises three equal rows above the two-row column beside it. */
+const pieWord = (form, over) => origin(Object.assign({ lang: "ine-pro",
+  lang_name: "Proto-Indo-European", short: "PIE", kind: "proto",
+  era_label: "c. 4500–2500 BCE", form, terminal: "pie", parents: [] }, over));
+const h2ento = pieWord("h₂entó-", { gloss: "against", pos: "combining form",
+  built_as: singlePiece.builds[0], builds: singlePiece.builds });
+const alignPieces = [
+  { form: "*anda-", gloss: "facing", pos: "prefix", reading: "", known: true,
+    lang: "gem-pro", bound: false, branch: origin({ lang: "gem-pro",
+      lang_name: "Proto-Germanic", short: "PGmc.", kind: "proto", form: "*anda-",
+      gloss: "facing", pos: "prefix", parents: [h2ento] }) },
+  { form: "*swarō", gloss: "oath", pos: "noun", reading: "", known: true,
+    lang: "gem-pro", bound: false, branch: origin({ lang: "gem-pro",
+      lang_name: "Proto-Germanic", short: "PGmc.", kind: "proto", form: "*swarō",
+      gloss: "oath", pos: "noun",
+      parents: [pieWord("swer-", { gloss: "to ache", pos: "root" })] }) },
+];
+const alignBuild = buildOf(alignPieces, { lang: "gem-pro",
+  lang_name: "Proto-Germanic", of: "andaswarō" });
+const alignHtml = context.constructStep({ form: "andaswarō", stage: "gem-pro",
+  name: "Proto-Germanic", kind: "proto", built_as: alignBuild, builds: [alignBuild] },
+  0, (stage, w) => `#/word/${stage}/${encodeURIComponent(w)}`);
+const alignCols = columns(alignHtml);
+assert.equal(alignCols.length, 2, "two pieces, two columns");
+/* Oldest first in each column, and the shared stage last — the row next to the
+   piece line. */
+const chainRows = (col) => col.split(/<div class="(?:cnode|cbuild)/).slice(1);
+assert.equal(chainRows(alignCols[0]).length, 3,
+  "*anda-'s column climbs three rows: two formations, then *h₂entó-");
+assert.equal((alignCols[0].match(/class="cbuild"/g) || []).length, 2,
+  "two of those rows are constructions of their own");
+assert.equal(chainRows(alignCols[1]).length, 1, "*swarō's column climbs one row");
+assert.ok(chainRows(alignCols[0]).slice(-1)[0].includes("*h₂entó-"),
+  "*h₂entó- is the last row of its column, the one next to *anda-");
+assert.ok(chainRows(alignCols[1]).slice(-1)[0].includes("*swer-"),
+  "*swer- is the last row of its column, the one next to *swarō");
+assert.ok(chainRows(alignCols[0]).slice(-1)[0].includes("PIE")
+  && chainRows(alignCols[1]).slice(-1)[0].includes("PIE"),
+  "both name Proto-Indo-European, and so they are read on one line");
+assert.ok(alignCols[0].indexOf("*h₂ent-") < alignCols[0].indexOf("*h₂énts")
+  && alignCols[0].indexOf('class="cbuild"') < alignCols[0].indexOf("*h₂entó-"),
+  "the climb above *anda- reads *h₂ent- + *-s, then *h₂énts, then *h₂entó-");
+/* The one height and the bottom anchor are the sheet's job, and they are the
+   whole of the invariant: every row is `--crow` tall, and a column hangs from
+   the piece line rather than from the top of the tree. */
+const sheet = fs.readFileSync(path.join(WEB, "style.css"), "utf8");
+assert.ok(/\.cnode, \.cbuild, \.cterm \{[^}]*height: var\(--crow\)/.test(sheet),
+  "one row height for an ancestor, a built ancestor and the piece");
+assert.ok(/\.bline \{[^}]*align-items: flex-end/.test(sheet),
+  "the columns are anchored at the pieces' own line");
+assert.ok(/\.cpiece \{[^}]*justify-content: flex-end/.test(sheet),
+  "and a column hangs from its bottom, whatever stands above it");
 /* The tree is the step's last row: the horizontal line sits above the word it
    builds, so where the step ends is where its spine has to be measured from. */
 const bodyHtml = builtHtml.slice(builtHtml.indexOf('class="buildbody">'));
@@ -1114,15 +1176,15 @@ assert.ok(suffixHtml.includes('<span class="cgloss">Forms adjectives from Caland
   "a suffix says what it does under itself, unquoted");
 assert.ok(suffixHtml.includes('<span class="cgloss">“to shine, glow”</span>'),
   "a root's sense is quoted, and a root names no category it has not got");
-assert.ok(chunk(unknownHtml, "cpiece")[0].includes("has-chain") === false,
-  "the bound piece keeps no branch column of its own");
+assert.ok(!columns(unknownHtml)[1].includes("has-chain"),
+  "the bound piece keeps no climb of its own");
 /* A dot marks a word whose own line continues above it.  A bound morpheme has
    no line above it, so it wears none — the line reaches it from the `+` and
    stops.  Its cell still holds the rail column, or the word would slide into
    the 18px track and off the shared line (admin, 2026-11-12). */
 const dots = (html) => (html.match(/class="crail" aria-hidden="true"><i><\/i><\/span>/g) || []).length;
 assert.equal(dots(suffixHtml), 0, "no dot is drawn before a suffix");
-assert.ok(suffixHtml.includes('<span class="crail" aria-hidden="true"></span>'),
+assert.ok(suffixHtml.includes('<span class="crail blank" aria-hidden="true"></span>'),
   "the suffix's cell keeps the rail column, empty");
 assert.equal(dots(chunk(builtHtml, "cterm").join("")), 1,
   "only the piece with a line above it wears the dot, not the one the line ends on");
@@ -1190,15 +1252,17 @@ const nestedLevel = Object.assign({}, causLevel, {
 nestedLevel.builds = [nestedLevel.built_as];
 const nestedHtml = context.constructStep(nestedLevel, 0, () => "#/x");
 const nestedText = plain(nestedHtml);
-assert.equal((nestedHtml.match(/class="constructstep/g) || []).length, 2,
-  "the built ancestor keeps its own construction step");
-assert.ok(nestedHtml.includes('class="cdiamond"'),
-  "a nested step is marked with the diamond too");
+assert.equal((nestedHtml.match(/class="constructstep/g) || []).length, 1,
+  "the built ancestor is a row of the piece's own climb, not a second step");
+assert.equal((nestedHtml.match(/class="cbuild"/g) || []).length, 1,
+  "its construction is drawn in that row");
+assert.ok(nestedHtml.includes('class="cdiamond mini"'),
+  "and the row is marked with the diamond, as a construction is");
 assert.ok(nestedText.indexOf("*keyt-") < nestedText.indexOf("*-rós")
           && nestedText.indexOf("*-rós") < nestedText.indexOf("*kit-ró-s"),
   "the pieces stand above the word they built");
-assert.ok(nestedHtml.indexOf('class="constructstep') < nestedHtml.indexOf("*kit-ró-s"),
-  "and the step is drawn above its word, never beside it");
+assert.ok(nestedHtml.indexOf('class="cbuild"') < nestedHtml.indexOf("*kit-ró-s"),
+  "and the row is drawn above that word, never beside it");
 
 /* A piece whose own branch runs through a word that was built keeps that
    construction inside the piece's column, one grammar and one size down:

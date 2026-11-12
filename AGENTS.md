@@ -189,33 +189,47 @@ that keeps the `*` opens nothing).
   draws the same pieces. The step still carries the reader's tools — the suffix
   the word wears and the `(+)` that tries another — in a compact row inside the
   step (`constructHtml(…, compact)`).
-- **The construction is one tree, not sub-timelines** (2026-11-12, admin): the
-  diamond sits on the main rail itself (`.constructstep .rail .cdiamond`, at
-  `top: calc(100% - var(--spine))`), and **the first piece stands immediately to
-  its right** — the diamond is that word's own mark, so there is no wire and no
-  second dot between them (`.cterm.first`: no `.cline`, no `.crail`; admin,
-  2026-11-12: the wire only bought empty sky above the line). The 2px line then
-  leaves **that word's right edge** (`cplus` for `+`, `.cterm .cline` into the
-  next piece's dot) and runs through the pieces, which are written at **word
-  size** — `cform term`, 21px, mono italic, in the colour of their evidence —
-  and joined by `+`, each with its meaning on the line under it (see the bullet
-  on meanings below). A piece carries **no
-  language label of its own**: it is a word of the stage the step belongs to.
-  The **first** piece's descent is drawn as the ladder's own rungs (`.rung
-  .croot`, `1` per stage: `.when` column, rail, `.rung-body`), so it keeps the
-  ladder's rhythm and spacing — it is the line the headword's first element came
-  down, not an inset. Every other piece keeps its own column above itself
-  (`.cnode` rows: the language and its years against the rail on the left, at
-  the ladder's own sizes 13px/11.5px, the form on the right), through the same
-  2px rail and the same 10px rung as the ladder below, until the record ends — a
-  Proto-Indo-European word, a donor it was borrowed from, a `???`, or (a bound
-  morpheme, an outside-family word) nothing. The tree is the step's **last row**, so `--spine` (half a term row)
-  is measured from the step's own bottom and the rail's tail carries on to the
-  rung that holds the word. Pieces with no branch drop the label column
-  (`.cpiece:not(.has-chain)`), so the line reaches them at once. Three pieces
-  make three full timelines and the tree scrolls sideways rather than folding.
-  Cuneiform is set upright and spaced (`.cunei`), because a synthesised oblique
-  smears its wedge signs into each other.
+- **The construction is one tree of columns, and every column hangs from the
+  pieces' line** (2026-11-12, admin): `constructStep` draws one column per piece
+  (`.cpiece`), and every row of every column — an ancestor `.cnode`, a built
+  ancestor `.cbuild`, the piece itself `.cterm` — is one grid of `--crail | the
+  word`, exactly `--crow` high. A column is anchored at its **bottom**
+  (`align-items: flex-end` on `.bline`, `justify-content: flex-end` on
+  `.cpiece`), so a column's k-th ancestor is k rows above the pieces' line and
+  **two pieces whose ancestors stand in the same stage land on one horizontal
+  line** — *h₂entó- over *anda- beside *swer- over *swarō, the reader's own
+  example. That is the rule to keep: rows may not size themselves to their
+  content, or the two clauses drift apart by however many lines a gloss ran to.
+  `--crow` is a term row (`--termh` 46) plus three lines of meaning (3 × 14) plus
+  a hairline; a column's gloss wraps at 240px inside it (`.cchain .cgloss`) and
+  the piece's own long gloss hangs into the tree's `--bpad` strip, so no meaning
+  is cut. The tree scrolls sideways rather than folding: three pieces make three
+  full columns.
+- **The stage stands beside the word** (2026-11-12, admin): a column row prints
+  the form and, next to it, the stage it belongs to — `.cstage`, `n.short ||
+  n.lang_name`, coloured by `langKind` (reconstructed / attested) — and the full
+  name, the years and the entry's own sentence are on the row's hover. There is
+  no label column any more: it made a column as wide as its longest language
+  name, and the row is what two words on one line are compared by.
+- **The diamond stands in the first piece's own row** (2026-11-12, admin):
+  `.crail.mark` — the first column's rail track — carries the step's diamond
+  (`.cdiamond`), so the mark is on the pieces' line by construction. The step's
+  own rail is then one unbroken segment (`.constructstep .rail::before`, `top:
+  calc(-1 * var(--gap) - 12px); bottom: 0`): no `--spine`, no measurement from
+  the bottom of the step, because that measurement broke the moment the tree
+  gained a horizontal scrollbar (its 15px moved every mark up off its word).
+  A later piece wears the accent dot on its own track (`.crail > i`); a bound
+  morpheme wears nothing and keeps the empty track (`.crail.blank`), because the
+  line reaches it from the `+`.
+- **The pieces are joined on one line** (2026-11-12): `+` (`.cplus`) stands
+  between two columns, and a piece whose column continues draws the line from
+  its word's right edge across the column (`.cpiece.continues > .cterm::after`);
+  a one-word formation has nothing to join and draws none. The pieces are written
+  at **word size** (`cform term`, 21px mono italic) in the colour of their
+  evidence, carry **no language label of their own** (they are words of the
+  step's stage), and each carries its meaning under it (see the bullet on
+  meanings below). Cuneiform is set upright and spaced (`.cunei`), because a
+  synthesised oblique smears its wedge signs into each other.
 - **Every word of the timeline says what it means** (2026-11-12, admin): the
   sense stands **under the form**, in the wording the headword's own line uses —
   `adj · “bright, clear, shining”` — not on hover alone, and it applies to the
@@ -226,9 +240,8 @@ that keeps the `*` opens nothing).
   suffix says what it does (`*-rós`: "Forms adjectives from Caland system
   roots"). `_rung_gloss` drops the source's leading colon. The page prints
   `.rung-rec .sense` under a rung and `.cgloss` under a piece; every term row
-  reserves that line (`--foot` on `.btrees`/`.cbuild`, `--spine = termh/2 +
-  foot`), so the line through the pieces stays level whatever a word means and
-  where the diamond sits still follows. A bound morpheme's description is cut at
+  reserves that line (`--foot`, inside `--crow`), so the line through the pieces
+  stays level whatever a word means. A bound morpheme's description is cut at
   64 characters with the whole of it on hover, because it is prose.
 - **The rail is continuous, always** (2026-11-12, admin): the vertical 2px line
   must run unbroken from the top of the ladder through every rung, the diamond
@@ -237,20 +250,22 @@ that keeps the `*` opens nothing).
   so **`--gap` must be a length**: a bare `--gap:0` makes the declaration
   invalid, the segment loses its top, and the column disappears between two
   stages (that was the bug the reader reported between PIE, Proto-Indo-Iranian
-  and Proto-Iranian). `.rung.croot` sets `--gap: 6px` in the sheet and emits no
-  inline style; `tests/test_ui_render.js` asserts every `--gap` in the ladder
-  markup ends in `px`. A column that hangs lower than the one beside it —
-  Old Median *farnah is newer than Proto-Iranian — is allowed to, because the
-  step's rail spans its whole height and the spine is measured from its bottom.
+  and Proto-Iranian). `tests/test_ui_render.js` asserts every `--gap` in the
+  ladder markup ends in `px`. Rows of a column are one fixed height and meet edge
+  to edge, and each segment overlaps its neighbour by a pixel
+  (`top: -1px; bottom: -1px`), so no sub-pixel seam shows at a row boundary.
 - **A word of the chain that was itself built keeps its construction**
   (2026-11-12, admin): *kit-ró-s is *keyt- + *-rós, and Wiktionary states it in
   its article on Proto-Indo-Iranian *čitrás — there is no article, and no
   glossary entry, for *kit-ró-s itself. `_origin_node` therefore carries a
   construction stated **for an ancestor's stage and form in the child's entry**
   (`_rung_builds(entry, stage_of(parent), parent_form, record_only=True)`), and a
-  construction replaces the single parent the form would otherwise climb to. The
-  step is drawn one size down (`.cbuild`/`.cstrip`, `.cdiamond.mini`) above the
-  word it built, `_BUILD_DEPTH = 3` deep.
+  construction replaces the single parent the form would otherwise climb to. It
+  is drawn as **a row of the same staircase** (`.cbuild`: the diamond on the
+  column's rail, the formation's pieces beside it at the tree's own sizes, never
+  a smaller staircase inside a column), so the climb above a piece can be read
+  row by row — `_BUILD_DEPTH = 3` deep, and `climbOf` keeps climbing through the
+  build's first piece.
 - **The ladder climbs through the ancestor's own ladder** (2026-11-12, admin):
   a record that quotes an ancestor form and stops is not the end of the
   timeline. When `start > 0` and the reader has not pinned a start
@@ -342,10 +357,11 @@ that keeps the `*` opens nothing).
   (Wiktionary's *h₂énts derived terms and the *anda- entry — there is no
   *h₂entó- page). `_SINGLE_PIECE_KINDS` is the only licence for a one-piece
   row: every other kind is a join, and a one-piece row of another kind stays a
-  truncated analysis. On the page a piece that is itself built draws **its own
-  construction above the step** (`ownStep` in `constructStep`), so the timeline
-  reads *anda- → construction from *h₂énts → *h₂ent- + *-s — stopping at the
-  piece would hide the step that made it.
+  truncated analysis. On the page a piece that is itself built keeps **its own
+  construction in its column** (`climbOf`/`buildRow` in `constructStep`), one
+  row of the same staircase rather than a sub-timeline, so the timeline reads
+  *anda- → *h₂entó- → construction from *h₂énts → *h₂ent- + *-s — stopping at
+  the piece would hide the step that made it.
 - **A composition is built in the grade its suffix takes** (2026-11-12):
   `_formation_grade` reads the `grades:` table and `_grade_stem` writes it, so
   *ters- + *-nó- is *tr̥s-nó-s*, never *ters-nó-s*, and the built step and the
@@ -389,8 +405,8 @@ that keeps the `*` opens nothing).
   continues above it — and its cell keeps the empty rail column so the word stays
   on the shared line. A suffix's gloss is a sentence ("Creates collective nouns
   and mass nouns, …"), so it wraps under the piece into the strip every step
-  reserves (`--bpad`, counted in `--spine`), never widening the row and never
-  lifting a word off the line.
+  reserves (`--bpad`), never widening the row and never lifting a word off the
+  line.
 - **Ablaut is a grade, never a law** (2026-11-12, admin's question about
   *ters-): PIE roots have e-, o- and zero grades, and the formation's accent
   decides which one stands — an unaccented root reduces, so the oxytone types

@@ -1,3 +1,52 @@
+## 2026-11-12 — every column hangs from the pieces' line
+
+**What.** On `gem-pro/andaswarō` the climb above *anda- stopped at *h₂énts: the
+piece's own construction (*h₂ent- + *-s) was drawn as a nested strip crammed
+into the column, one size down, and the rows of that column were not the rows of
+the one beside it, so *h₂entó- (PIE, over *anda-) and *swer- (PIE, over *swarō)
+stood two rows apart. The reader asked for two things: the climb above the piece
+must keep going, and **two words that come from the same stage of the family
+must stand on one horizontal line** (admin, 2026-11-12).
+
+1. **One row per step, one height for every row.** `chainRow` is now a
+   `.cnode` of the form, its meaning and its stage; `climbOf` turns a word whose
+   own record states a construction into a `.cbuild` row and climbs on through
+   that construction's first piece, so *anda-'s column reads *h₂ent- + *-s,
+   *h₂énts, *h₂entó- — three equal rows — and *swarō's reads *swer-. Every row
+   (`.cnode`, `.cbuild`, `.cterm`) is one grid, `--crail | the word`, exactly
+   `--crow` high.
+2. **A column is anchored at its bottom.** `.bline` is `align-items: flex-end`
+   and `.cpiece` is `justify-content: flex-end`, so a column's k-th ancestor is
+   k rows above the pieces' line. Same stage ⇒ same distance from the line ⇒
+   same line. This is the invariant a change to this tree has to keep; it is why
+   rows may not size themselves to their content.
+3. **The stage stands beside the word.** `.cstage` replaces the label column
+   (`.cwhen`, 128px): a column no longer has to be as wide as its longest
+   language name, and the row itself says which stage a word is of, which is what
+   two rows on one line are compared by. Era and the entry's sentence are on the
+   row's hover.
+4. **The diamond is the first piece's own mark.** The step's `.rail` is one
+   unbroken segment and the diamond lives in the first column's rail track
+   (`.crail.mark`), in the piece's row. Measuring it from the bottom of the step
+   (`--spine`) was correct only while the tree had no horizontal scrollbar: on a
+   phone the scrollbar's 15px moved every mark up off its word. `--spine` is
+   gone.
+5. **A built ancestor is not a smaller staircase.** `.cbuild` keeps the tree's
+   own sizes and heights; a step a reader cannot read at the size of its
+   neighbours is not a step.
+
+**Tests.** `tests/test_ui_render.js`: the construction section was rewritten to
+the column contract (one column per piece, oldest first, the last row of each
+column the one next to the piece, the stage beside the word), and a new case
+renders the reader's own example and asserts that *h₂entó- and *swer- are both
+the last row of their column and both PIE — the markup half of the invariant —
+with the sheet's half (`height: var(--crow)` on every row class, `flex-end` on
+`.bline` and `.cpiece`) checked in the same case.
+
+**Numbers.** 973 Python tests green (unchanged), node suite green; checked in the browser at
+1400px and 420px, in both themes: the diamond, the dot and the word share a
+centre to within half a pixel at both widths.
+
 ## 2026-11-12 — *anda- descends through *h₂entó-, and a one-word formation is a step
 
 **What.** On `gem-pro/*anda` the timeline jumped from *anda- straight to PIE

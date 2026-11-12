@@ -1559,24 +1559,20 @@ function formationLine(level, current) {
    A record may state the same word more than one way (English *about* is
    `on + be + out` and `on + but`): each analysis gets its own tab, because
    choosing one for the reader would hide the other. */
-function constructStep(level, i, linkTo, opts, nest = 0) {
+function constructStep(level, i, linkTo, opts) {
   const builds = ((level.builds && level.builds.length) ? level.builds
     : [level.built_as]).filter((b) => b && (b.pieces || []).length);
   if (!builds.length) return "";
-  /* A nested step (a word of a chain that has a construction of its own) gets
-     no tabs, no picker and no second copy of the page's own machinery. */
   const uid = `bs-${String(level.stage || "x").replace(/[^a-z0-9-]/gi, "")}-${i}`;
   const link = (lang, form, known) => (linkTo ? linkTo(lang, form, known) : "");
   const kindOf = (b) => ({ suffix: "suffix", prefix: "prefix", compound: "compound",
     affix: "affix", infix: "infix", combining: "combining form",
     derivation: "derivation" }[b.kind] || "formation");
   /* The construction is one tree, not a set of inset pictures (admin,
-     2026-11-12): the diamond sits on the main rail, the first word stands
-     immediately to its right (no line, no second mark — the diamond *is* its
-     mark), and the line then leaves the right of that word for `+` and the
-     next piece, which keeps a timeline of its own above it.  The first
-     element's own ancestry continues up the same rail, as the ladder's own
-     rungs, because that is the line the headword's first element came down. */
+     2026-11-12): the first word stands immediately right of the diamond (no
+     line, no second mark — the diamond *is* its mark), the line then leaves
+     the right of that word for `+` and the next piece, and above each piece
+     its own climb rises, one row per step (see `climbOf`). */
   const eraOf = (n) => (n && n.era_label) || "date unknown";
   /* What a word on the timeline means, in the same wording the headword's own
      line uses — `adj · “visible”` — so a rung is a word with a sense and not
@@ -1622,27 +1618,29 @@ function constructStep(level, i, linkTo, opts, nest = 0) {
       ev: evOf(n).replace(/^ev-/, ""), tip,
     })}${n.known ? "</a>" : "</span>"}${
     n.reading ? `<span class="reading">${esc(n.reading)}</span>` : ""}</span>${extra}`;
-  /* One row of a piece's own timeline, inside its column: the language and its
-     years against the rail on the left, the form on the right — the ladder's
-     own rung, at the ladder's own sizes. */
+  /* One row of a piece's own timeline, inside its column: the word, what it
+     means, and the stage it belongs to beside it.  Every row of every column
+     is exactly one step high (`--crow`), so the ancestors of two pieces that
+     stand in the same language land on the same line — *h₂entó- and *swer-, a
+     PIE word above each piece of *andaswarō (admin, 2026-11-12).  The stage is
+     written beside the word instead of in a column of its own, so the column
+     is no wider than its words and the rail under an ancestor is the rail the
+     piece itself stands on. */
   const chainRow = (n) => n && n.unknown
     ? `<div class="cnode unknown">
-      <span class="cwhen"></span>
       <span class="crail" aria-hidden="true"><i></i></span>
-      <span class="cform ev-weak" data-tip="No record says where this word came from — it may have come from somewhere, but where is not known."><span class="cunknown">???</span></span>
+      <span class="cstack"><span class="cwordrow"><span class="cform ev-weak" data-tip="No record says where this word came from — it may have come from somewhere, but where is not known."><span class="cunknown">???</span></span></span></span>
     </div>`
-    : `<div class="cnode">
-      <span class="cwhen"><span class="cwhen-name ${langKind(n)}">${esc(n.lang_name || n.lang || "")}</span>
-        <span class="cwhen-era">${esc(eraOf(n))}</span></span>
+    : `<div class="cnode" data-tip="${esc(`${n.lang_name || n.lang || ""}${eraOf(n) ? ` · ${eraOf(n)}` : ""} — ${saidOf(n)}`)}">
       <span class="crail" aria-hidden="true"><i></i></span>
-      <span class="cform ${scriptClass(n.form)} ${evOf(n)}" data-tip="${esc(saidOf(n))}">${
+      <span class="cstack"><span class="cwordrow"><span class="cform ${scriptClass(n.form)} ${evOf(n)}">${
         n.known ? `<a class="cword" href="${esc(link(n.lang, n.form, true))}">${esc(pf(starred(n.form, n.lang, n.kind, n.script)))}</a>`
           : `<span class="cword">${esc(pf(starred(n.form, n.lang, n.kind, n.script)))}</span>`}${
-        n.reading ? `<i class="cread">${esc(n.reading)}</i>` : ""}${
+        n.reading ? `<i class="cread">${esc(n.reading)}</i>` : ""}</span><span class="cstage ${langKind(n)}">${esc(n.short || n.lang_name || n.lang || "")}</span></span>${
         meaningOf(n.pos, n.gloss, false)
-          ? `<i class="cgloss">${meaningOf(n.pos, n.gloss, false)}</i>`
+          ? `<span class="cgloss">${meaningOf(n.pos, n.gloss, false)}</span>`
           : n.known === false
-            ? `<i class="cgloss"><span class="norec">no entry for this word</span></i>` : ""}</span>
+            ? `<span class="cgloss"><span class="norec">no entry for this word</span></span>` : ""}</span>
     </div>`;
   /* Where the line above a word goes: its recorded parent, or — for a word
      whose entry records no origin, or a form no entry holds — a ??? hanging
@@ -1653,27 +1651,35 @@ function constructStep(level, i, linkTo, opts, nest = 0) {
     if (n.terminal === "end" || n.terminal === "missing") return [{ unknown: true }];
     return n.parents || [];
   };
-  /* The piece's ancestors, oldest first, with the ??? at the top when nothing
-     recorded explains the oldest one.  One line above, never the row list. */
-  const chainOf = (node) => {
+  /* A piece's climb, nearest first: one row per step, never two steps crammed
+     into one.  A word whose own record states a construction is that
+     construction — a row of its own — and the climb goes on through the word
+     it was made from, so every row of every column is the same height and two
+     pieces' ancestors at the same distance stand on one line (admin,
+     2026-11-12). */
+  const climbOf = (p) => {
     const rows = [];
-    let cur = node;
+    let cur = p.bound ? null : p.branch;
     let guard = 0;
     while (cur && guard++ < 12) {
-      const parents = parentsOf(cur);
-      if (!parents.length) break;
-      const parent = parents[0];
+      if (cur.builds && cur.builds.length) {
+        rows.push({ build: cur.builds[0], word: cur });
+        const first = cur.builds[0].pieces[0];
+        cur = first && !first.bound ? first.branch : null;
+        continue;
+      }
+      const parent = parentsOf(cur)[0];
       if (!parent) break;
       if (parent.unknown) { rows.push({ unknown: true }); break; }
       rows.push(parent);
       cur = parent;
     }
-    return rows.reverse();
+    return rows;
   };
   /* A word on the construction's line: word size, its reading below it.  The
      first word needs no mark of its own — the diamond beside it is its mark —
      so it carries no rail, no dot and no label column. */
-  const termCell = (b, p, k, first) => {
+  const termCell = (b, p, k, opts) => {
     const formText = String(p.form || "");
     /* A suffix carries its hyphen after the reconstruction's star: *-tós, not
        -*-tós (2026-11-12).  The star itself comes from the one test above, so a
@@ -1710,16 +1716,18 @@ function constructStep(level, i, linkTo, opts, nest = 0) {
     /* The word and its meaning are one cell: the word sits on the line the
        `+` draws, and the meaning hangs under it without ever moving that line
        (admin, 2026-11-12). */
-    /* A bound morpheme has no timeline above it, so it gets no rail and no
-       dot: a dot is the mark of a word whose own line continues upward
-       (admin, 2026-11-12).  The line still reaches it from the `+`. */
-    /* The rail column is kept even when it holds nothing: the cell is a
-       three-column grid (label, rail, word) and a missing child would shuffle
-       the word into the 18px rail track. */
-    const rail = first ? ""
-      : `<span class="cline" aria-hidden="true"></span><span class="crail" aria-hidden="true">${
-          p.bound ? "" : "<i></i>"}</span>`;
-    return `<div class="cterm${p.bound ? " bound" : ""}${first ? " first" : ""}" data-tip="${esc(tip)}">
+    /* A piece of the tree keeps the rail track, because that is where its
+       column's line runs and where the mark that stands for it sits: the
+       first piece wears the diamond — the step's own mark, in the row of the
+       piece it builds, so it is on the pieces' line by construction — a later
+       piece wears the dot, and a bound morpheme wears nothing (the line
+       reaches it from the `+`).  A piece inside a nested formation
+       (`◇ *h₂ent- + *-s`) is met by the `+` beside it and has no rail at all. */
+    const mark = opts.first ? " mark" : p.bound ? " blank" : "";
+    const rail = !opts.rail ? ""
+      : `<span class="crail${mark}" aria-hidden="true">${
+          opts.first ? '<i class="cdiamond"></i>' : p.bound ? "" : "<i></i>"}</span>`;
+    return `<div class="cterm${opts.rail ? "" : " instrip"}${p.bound ? " bound" : ""}${opts.first ? " first" : ""}" data-tip="${esc(tip)}">
         ${rail}
         <span class="cstack">
           <span class="cwordrow"><span class="cform term ${scriptClass(p.form)} ${ev}">${body}${reading}</span>${grade}</span>
@@ -1727,82 +1735,19 @@ function constructStep(level, i, linkTo, opts, nest = 0) {
         </span>
       </div>`;
   };
-  /* A word may itself be a construction — *kit-ró-s is *keyt- + *-rós — and a
-     page that stopped at the word would be hiding the step that made it.  It
-     is drawn in the same grammar, one size down: the diamond on the word's own
-     rail, the first piece beside it, the line to the next.  `nest` keeps a
-     record that states a word in terms of itself from running away. */
-  const nestedBuild = (b, plus) => {
-    const first = b.pieces[0];
-    const above = (first.bound || !first.branch)
-      ? "" : chainOf(first.branch).map((n) => nodeBlock(n, plus + 1)).join("");
-    const rest = b.pieces.slice(1).map((p, k) => `<span class="cplus" aria-hidden="true"><i>+</i></span>${
-      columnOf(b, p, k + 1, plus + 1)}`).join("");
-    return `<div class="cbuild">${above}<div class="cstrip"><i class="cdiamond mini" aria-hidden="true"></i>${
-      termCell(b, first, 0, true)}${rest}</div></div>`;
+  /* A word that is itself a construction — *h₂entó- is a combining form from
+     *h₂énts, and *h₂énts is *h₂ent- + *-s — keeps that step in its column, one
+     row high like every other step, so the climb never stops at a piece the
+     record explains (admin, 2026-11-12).  It is a row of the one staircase,
+     not a smaller staircase of its own: the diamond sits on the column's own
+     rail, at the size every other row has. */
+  const buildRow = (item) => {
+    const bb = item.build;
+    const rest = bb.pieces.slice(1).map((p, k) => `<span class="cplus" aria-hidden="true"><i>+</i></span>${
+      termCell(bb, p, k + 1, { first: false, rail: false })}`).join("");
+    return `<div class="cbuild" data-tip="${esc(tipOf(bb))}"><span class="crail" aria-hidden="true"><i class="cdiamond mini"></i></span><div class="cstrip">${
+      termCell(bb, bb.pieces[0], 0, { first: true, rail: false })}${rest}</div></div>`;
   };
-  /* One word of a chain, with the construction that made it (if the record
-     states one) standing above it. */
-  const nodeBlock = (n, plus) => (n && n.builds && n.builds.length && plus < 3
-    ? nestedBuild(n.builds[0], plus) : "") + chainRow(n);
-  /* One piece: its own timeline above, the word itself on the line below. */
-  const columnOf = (b, p, k, plus = 0) => {
-    const rows = p.bound || !p.branch ? [] : chainOf(p.branch);
-    const above = (p.bound || !p.branch ? "" : ownStep(p.branch, plus + 1))
-      + rows.map((n) => nodeBlock(n, plus)).join("");
-    return `<div class="cpiece${rows.length ? " has-chain" : ""}">${
-      above ? `<div class="cchain">${above}</div>` : ""}${termCell(b, p, k, false)}</div>`;
-  };
-  /* The first element's own descent stands on the page's rail, as the ladder
-     stands: the same left column, the same rung, the same spacing — and any
-     construction of its own above it, because the reader asked to keep going
-     up.  These rows are the ladder's siblings, so they keep the ladder's
-     rhythm instead of a tighter grid of their own. */
-  const rootRow = (n) => {
-    /* A trail that stops with no recorded origin hangs a ??? above the word —
-       the ladder's own way of saying "it may have come from somewhere, and
-       where is not known", never a blank row (admin, 2026-11-12). */
-    if (n && n.unknown) {
-      return `<li class="rung croot unknown" data-croot="1">
-        <div class="when"></div>
-        <div class="rail" aria-hidden="true"><i></i></div>
-        <div class="rung-body"><div class="rung-forms"><span class="form ev-weak" data-tip="No record says where this word came from — it may have come from somewhere, but where is not known."><span class="cunknown">???</span></span></div></div>
-      </li>`;
-    }
-    /* `--gap` is a length, always: a bare `0` makes calc() drop the rail
-       segment and the column then vanishes above a construction (admin,
-       2026-11-12).  The row's spacing comes from `.rung.croot` in the sheet,
-       which sets the same variable, so nothing here spells a number. */
-    const meaning = meaningOf(n.pos, n.gloss, false);
-    return `<li class="rung croot" data-croot="1">
-      <div class="when">
-        <span class="when-name kind-${n.kind === "proto" ? "proto" : "attested"}">${esc(n.lang_name || n.lang || "")}</span>
-        <span class="when-era">${esc(eraOf(n))}</span>
-      </div>
-      <div class="rail" aria-hidden="true"><i></i></div>
-      <div class="rung-body"><div class="rung-forms">${wordHtml(n, saidOf(n))}</div>${
-        meaning ? `<div class="rung-rec"><span class="sense">${meaning}</span></div>`
-          : n.known === false
-            ? `<div class="rung-rec"><span class="norec">no entry for this word</span></div>`
-            : ""}</div>
-    </li>`;
-  };
-  /* A word that is itself a construction says so above itself, in this same
-     grammar: *h₂entó- is a combining form from *h₂énts, and *h₂énts is
-     *h₂ent- + *-s — a step that stopped at the piece would hide the formation
-     the record states for it (admin, 2026-11-12). */
-  const ownStep = (n, depth) => (n && n.builds && n.builds.length && depth < 3)
-    ? constructStep({ stage: n.lang, form: n.form, name: n.lang_name,
-        era_label: n.era_label, builds: n.builds, built_as: n.built_as },
-      `${i}-${depth}`, linkTo, Object.assign({}, opts, { d: null }), depth + 1)
-    : "";
-  const rootRows = (n, depth) => (n ? ownStep(n, depth) + rootRow(n) : "");
-  const lead = builds[0].pieces[0];
-  /* The first piece stands on the diamond's own line, so its construction —
-     not a second copy of the word — is what goes above it. */
-  const roots = (lead.bound || !lead.branch) ? ""
-    : ownStep(lead.branch, nest + 1)
-      + chainOf(lead.branch).map((n) => rootRows(n, nest + 1)).join("");
 
   /* `source: ours` means the record says nothing and this model read the seam
      (2026-11-10).  The two are different claims and must not share one label:
@@ -1823,12 +1768,20 @@ function constructStep(level, i, linkTo, opts, nest = 0) {
   const radios = builds.length > 1
     ? builds.map((_, k) => `<input class="bstep-radio" type="radio" name="${uid}" id="${uid}-${k}"${k ? "" : " checked"} aria-label="construction ${k + 1}">`).join("")
     : "";
-  /* One tree per analysis: the first word at the rail's right, the line from
-     its own right edge through `+` to the other pieces. */
+  /* One tree per analysis: a column per piece.  The first word stands at the
+     rail's right — the diamond is its mark — and the line runs from its own
+     right edge through `+` to the next piece; above each piece stands its own
+     climb, one step per row, so two pieces that come from the same stage of
+     the family share a line instead of drifting apart (admin, 2026-11-12:
+     *h₂entó- and *swer- on one horizontal line). */
   const tree = (b) => `<div class="btree"><div class="bline">${
-    termCell(b, b.pieces[0], 0, true)}${
-    b.pieces.slice(1).map((p, k) => `<span class="cplus" aria-hidden="true"><i>+</i></span>${
-      columnOf(b, p, k + 1)}`).join("")}</div></div>`;
+    b.pieces.map((p, k) => {
+      const rows = climbOf(p);
+      return `${k ? `<span class="cplus" aria-hidden="true"><i>+</i></span>` : ""}${
+        `<div class="cpiece${rows.length ? " has-chain" : ""}${k === 0 ? " first" : ""}${k < b.pieces.length - 1 ? " continues" : ""}">${
+          rows.length ? `<div class="cchain">${[...rows].reverse().map((item) => item.build ? buildRow(item) : chainRow(item)).join("")}</div>` : ""}${
+          termCell(b, p, k, { first: k === 0, rail: true })}</div>`}`;
+    }).join("")}</div></div>`;
   const trees = `<div class="btrees">${builds.map(tree).join("")}</div>`;
   /* The page's own construction machinery — the base, the suffix the word
      wears, the picker that tries another cited suffix, and the composed form —
@@ -1839,13 +1792,13 @@ function constructStep(level, i, linkTo, opts, nest = 0) {
      picker — repeated what the tree below already draws, piece by piece
      (admin, 2026-11-12: "that is denoted as part of the timeline").  The
      composition tools live on the rung's own `build…` control. */
-  return `${roots}<li class="constructstep${ours ? " ours" : ""}${builds.length > 1 ? " multi" : ""}"
+  return `<li class="constructstep${ours ? " ours" : ""}${builds.length > 1 ? " multi" : ""}"
       data-tip="${esc(builds.length > 1 ? `${builds.length} constructions are recorded for this form; each tab is one of them, and none is preferred over another.` : tipOf(builds[0]))}">
     <div class="when">
       <span class="when-name">construction</span>
       <span class="when-era">${builds.length > 1 ? `${builds.length} analyses` : esc(kindOf(builds[0]))}${ours ? " · our reading" : ""}</span>
     </div>
-    <div class="rail" aria-hidden="true"><i class="cdiamond"></i></div>
+    <div class="rail" aria-hidden="true"></div>
     <div class="buildbody">${radios}${tabs}${trees}</div>
   </li>`;
 }
