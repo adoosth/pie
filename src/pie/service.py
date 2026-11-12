@@ -1957,6 +1957,21 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
                       "lang": lang, "lang_name": _lang(lang).get("name", lang),
                       "of": normalise_etymon(of) if of else "",
                       "pieces": pieces, "source": "record"})
+    if len(found) > 1:
+        # A record read twice, the second time stopping early, is one
+        # construction and not a rival analysis: *sokʷh₂ṓy is stored as
+        # *sekʷ- + *-éh₂ and again as *sekʷ- + *-éh₂ + *-ṓy.  The shorter row
+        # is a prefix of the longer one, so it is the same analysis, not a tab
+        # (admin, 2026-11-12).
+        sequences = [tuple(p["form"] for p in b["pieces"]) for b in found]
+        keep = []
+        for k, seq in enumerate(sequences):
+            if any(k2 != k and len(other) > len(seq)
+                   and other[:len(seq)] == seq
+                   for k2, other in enumerate(sequences)):
+                continue
+            keep.append(found[k])
+        found = keep
     if found or record_only:
         return found
     # Nothing in the record: the word may still be made of its own language's
@@ -3732,6 +3747,17 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
             # something a law derived: same form, different claim.
             block["starts"] = bool(index == 0 and not edited and block["same"])
         builds = _rung_builds(entry, stage, version)
+        if not builds and stage != lang:
+            # A rung above the headword is explained by its *own* entry: the
+            # Proto-Indo-European ancestor of Proto-Iranian *háxā is
+            # *sekʷ- + *-éh₂ + *-ṓy, stated in PIE's article and nowhere in the
+            # Proto-Iranian one.  The page keeps going up, so the step that
+            # made that ancestor belongs on its rung (admin, 2026-11-12).  Only
+            # the record's rows are read: the seam reader's guess belongs to
+            # the page the word has, not to an ancestor's rung.
+            above = _lemma_entry(stage, version)
+            if above:
+                builds = _rung_builds(above, stage, version, record_only=True)
         rows.append({
             "stage": stage,
             "name": row.get("name", stage),

@@ -2386,6 +2386,33 @@ class TestAConstructionIsATree(unittest.TestCase):
         self.assertNotEqual(pie_node["terminal"], "missing",
                             "the form is not a ??? once its construction is known")
 
+    def test_one_construction_stated_twice_is_one_analysis_not_two_tabs(self):
+        # *sokʷh₂ṓy's record lists the same seam twice — *sekʷ- + *-éh₂ and
+        # again *sekʷ- + *-éh₂ + *-ṓy — because the second row carries on past
+        # the first.  A shorter row that is a prefix of a longer one is the same
+        # finding read twice, not a rival analysis: the page drew two tabs of
+        # one construction (admin, 2026-11-12).
+        level = service.hierarchy("ine-pro", "sokʷh₂ṓy")["levels"][0]
+        self.assertEqual(len(level["builds"]), 1)
+        self.assertEqual([p["form"] for p in level["builds"][0]["pieces"]],
+                         ["*sekʷ-", "*-éh₂", "*-ṓy"])
+
+    def test_an_ancestor_rung_is_built_by_its_own_entry(self):
+        # The Proto-Indo-European rung above Proto-Iranian *háxā is
+        # *sokʷh₂ṓy, and it was *sekʷ- + *-éh₂ + *-ṓy — a fact stated in PIE's
+        # article and nowhere in the Proto-Iranian one.  A rung that only looks
+        # at the page's own entry loses the step, which is what the reader saw
+        # (admin, 2026-11-12).
+        levels = service.hierarchy("ira-pro", "háxā")["levels"]
+        pie = next(l for l in levels if l["stage"] == "ine-pro")
+        self.assertEqual(pie["form"], "sokʷh₂ṓy")
+        self.assertEqual(len(pie["builds"]), 1)
+        self.assertEqual([p["form"] for p in pie["builds"][0]["pieces"]],
+                         ["*sekʷ-", "*-éh₂", "*-ṓy"])
+        # An ancestor's step is the record's own; the seam reader's guess
+        # belongs to the page a word has, not to a form above it.
+        self.assertEqual(pie["builds"][0]["source"], "record")
+
     def test_the_ladder_climbs_through_the_ancestors_own_ladder(self):
         # Proto-Iranian *čiθráh's record stops at Proto-Indo-Iranian *čitrás,
         # but *čitrás is a word with a page whose ladder reaches PIE and the

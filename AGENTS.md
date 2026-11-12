@@ -276,12 +276,32 @@ that keeps the `*` opens nothing).
   construction (pieces of the current language + affixes/morphology). A
   construction is never a sound law; a borrowing is drawn as a donor box, not as
   a law row.
-- **A word the record states twice gets two tabs** (2026-11-12): `builds` is a
-  list, one entry per analysis the record prints (English *about*: `on + būtan`
-  and `be + ūtan`), de-duplicated by `(kind, pieces)`. The step renders one tree
-  per build behind CSS-only radios (`bstep-radio`/`bstep-tabs`/`btree`), so a
-  repaint of the ladder cannot leave a tab dead. `built_as` keeps the first row
-  for older callers.
+- **A word the record states twice gets two tabs — but only when the two are
+  different formations** (2026-11-12): `builds` is a list, one entry per analysis
+  the record prints (English *about*: `on + būtan` and `be + ūtan`),
+  de-duplicated by `(kind, pieces)`, and a row whose piece sequence is a **prefix**
+  of a longer row is the same finding read twice and is dropped (*sokʷh₂ṓy* is
+  stored as `*sekʷ- + *-éh₂` and again `*sekʷ- + *-éh₂ + *-ṓy`, which used to
+  draw two tabs of one construction — admin, 2026-11-12). The step renders one
+  tree per build behind CSS-only radios (`bstep-radio`/`bstep-tabs`/`btree`), so a
+  repaint of the ladder cannot leave a tab dead; **a tab is labelled with the
+  formation itself** (`on + būtan`), not `affix 1`. `built_as` keeps the first
+  row for older callers.
+- **A rung above the headword is built by its own entry** (2026-11-12): the
+  Proto-Indo-European ancestor on Proto-Iranian *háxā*'s page is *sokʷh₂ṓy*
+  `*sekʷ- + *-éh₂ + *-ṓy`, stated in PIE's article and in no Iranian one, so a
+  rung whose stage is not the page's reads `_rung_builds` of the **ancestor's own
+  lemma entry** (`record_only=True`; the seam reader's guess belongs to the page a
+  word has, not to a form above it). A step that only looked at the page's entry
+  lost it.
+- **Nothing repeats the tree under it** (2026-11-12): the old `suffix it wears`
+  card and its `-éh₂ -ṓy` tokens are gone, because the pieces are the timeline.
+  A bound morpheme carries **no dot** — a dot is the mark of a word whose own line
+  continues above it — and its cell keeps the empty rail column so the word stays
+  on the shared line. A suffix's gloss is a sentence ("Creates collective nouns
+  and mass nouns, …"), so it wraps under the piece into the strip every step
+  reserves (`--bpad`, counted in `--spine`), never widening the row and never
+  lifting a word off the line.
 - **The ladder is the whole explanation, and its order is fixed** (2026-11-07):
   `service.hierarchy()` → `renderHierarchy`, then the branch below, then the
   cognates. No separate derivation section, and no counterfactual table

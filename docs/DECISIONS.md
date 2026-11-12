@@ -3350,3 +3350,40 @@ working state, like `data/meanings/`), with both readings, both meanings and the
 page it was seen on; `pie unverified` prints it and the review page lists it as
 the kind `unverified_match`. The queue is what makes the pile reviewable by a
 person or an agent later, and it is the only place a "maybe" lives.
+
+## 2026-11-12 · one construction, one line
+
+*sokʷh₂ṓy's record prints its seam twice — `*sekʷ- + *-éh₂` and
+`*sekʷ- + *-éh₂ + *-ṓy` — and the page read the two as rival analyses and drew a
+tab for each: two tabs of one construction, which is what the reader saw and
+rejected. **A row whose pieces are a prefix of another row's is the same finding
+read twice, not a second analysis**, so `_rung_builds` drops it, and one
+construction now draws one line. The tabs stay for the case they were built for
+— English *about* really does have two formations — and each is labelled with
+the formation (`on + būtan`, `be + ūtan`) instead of `affix 1` / `affix 2`,
+which named nothing a reader could choose by.
+
+**The step above the headword belongs to the ancestor's own entry.** Proto-Iranian
+*háxā's Proto-Indo-European rung is *sokʷh₂ṓy*, and *sokʷh₂ṓy was built from
+three pieces — a fact stated in PIE's article and in no Iranian one. The rung
+had only asked the *page's* entry, so the page showed the ancestor without the
+step that made it. A rung whose stage is not the page's stage now reads
+`_rung_builds` of the ancestor's own lemma entry (record rows only: the seam
+reader's guess belongs to the page a word has, not to a form above it).
+
+**Nothing under a construction repeats it.** The `suffix it wears` card and the
+`-éh₂ -ṓy` tokens beside it were a second printing of the pieces the tree draws,
+so they are gone; the composition controls stay where they were. A **bound
+morpheme wears no dot**: a dot marks a word whose own line continues above it,
+and the line from the `+` reaches a suffix and stops. Its cell keeps the empty
+rail column, because the cell is a three-column grid and a missing child slides
+the word into an 18px track and off the line.
+
+**A suffix's gloss wraps.** `-éh₂` is *"Creates collective nouns and mass nouns,
+corresponding to thematic formations with accent on the suffix"` — a sentence,
+not a sense, and as one nowrap line it ran into the next piece and broke the
+timeline. It now wraps under the piece into a strip every construction step
+reserves below its terms (`--bpad`), which is part of `--spine` so the diamond
+still sits exactly on the line. The strip is out of the term's own height, so a
+three-line gloss never lifts a word off the shared line, and nothing is
+truncated.

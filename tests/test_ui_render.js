@@ -1429,7 +1429,9 @@ assert.ok(senseRung && senseRung.includes('<span class="sense">adj · “visible
 /* The tree is the step's last row: the horizontal line sits above the word it
    builds, so where the step ends is where its spine has to be measured from. */
 const bodyHtml = builtHtml.slice(builtHtml.indexOf('class="buildbody">'));
-assert.ok(bodyHtml.lastIndexOf('class="btrees"') > bodyHtml.lastIndexOf('class="steprow"'),
+assert.ok(!builtHtml.includes('class="steprow"'),
+  "nothing but the tree stands in the step: the card that repeated its pieces is gone");
+assert.ok(bodyHtml.includes('class="btrees"'),
   "the tree closes the step, so the spine is the step's own bottom");
 
 /* A word of a family language whose record states no origin hangs under a ???
@@ -1469,6 +1471,29 @@ assert.ok(suffixHtml.includes('<span class="cgloss">“to shine, glow”</span>'
   "a root's sense is quoted, and a root names no category it has not got");
 assert.ok(chunk(unknownHtml, "cpiece")[0].includes("has-chain") === false,
   "the bound piece keeps no branch column of its own");
+/* A dot marks a word whose own line continues above it.  A bound morpheme has
+   no line above it, so it wears none — the line reaches it from the `+` and
+   stops.  Its cell still holds the rail column, or the word would slide into
+   the 18px track and off the shared line (admin, 2026-11-12). */
+const dots = (html) => (html.match(/class="crail" aria-hidden="true"><i><\/i><\/span>/g) || []).length;
+assert.equal(dots(suffixHtml), 0, "no dot is drawn before a suffix");
+assert.ok(suffixHtml.includes('<span class="crail" aria-hidden="true"></span>'),
+  "the suffix's cell keeps the rail column, empty");
+assert.equal(dots(chunk(builtHtml, "cterm").join("")), 1,
+  "only the piece with a line above it wears the dot, not the one the line ends on");
+/* A suffix's gloss is a sentence, not a word: it is neither cut short nor
+   forced onto one line that runs into the next piece (admin, 2026-11-12). */
+const longSuffix = buildOf([
+  { form: "*sekʷ-", gloss: "to follow", pos: "root", reading: "", known: true,
+    lang: "ine-pro", bound: false, branch: null },
+  { form: "*-éh₂", pos: "suffix", known: true, lang: "ine-pro", bound: true, branch: null,
+    gloss: "Creates collective nouns and mass nouns, corresponding to thematic "
+      + "formations with accent on the suffix." },
+]);
+const longHtml = context.constructStep(Object.assign({}, causLevel,
+  { built_as: longSuffix, builds: [longSuffix] }), 0, () => "#/x");
+assert.ok(longHtml.includes("accent on the suffix"), "the whole of a long gloss is in the markup");
+assert.ok(!longHtml.includes("…"), "and none of it is replaced by an ellipsis");
 
 /* A word in the chain that was itself built keeps its construction above it —
    *kit-ró-s is *keyt- + *-rós — in the same grammar, one size down: the

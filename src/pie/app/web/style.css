@@ -678,7 +678,13 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
   /* Where the diamond sits, measured from the step's own bottom: the tree is
      its last row, so the pieces' line is half a term-row plus the reserved
      meaning line above the edge (2026-11-12). */
-  --termh: 46px; --foot: 17px; --spine: calc(var(--termh) / 2 + var(--foot)); }
+  --termh: 46px; --foot: 17px;
+  /* A suffix's gloss is a sentence about what it does and can run to three or
+     four lines.  Those lines hang *below* the terms into this strip, so every
+     word of the tree stays on one line and no gloss is ever cut (admin,
+     2026-11-12: expand vertically, never horizontally). */
+  --bpad: 56px;
+  --spine: calc(var(--termh) / 2 + var(--foot) + var(--bpad)); }
 /* The step stands above the form it builds: its rail comes down from the stage
    above and stops at the diamond, where the pieces' line leaves it, and a short
    tail carries on to the word below.  Nothing above the diamond when the step
@@ -730,9 +736,6 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
 .bstep-radio:nth-of-type(4):checked ~ .bstep-tabs .btab:nth-of-type(4) {
   border-color: var(--accent); color: var(--fg);
   background: color-mix(in srgb, var(--accent) 12%, var(--bg-2)); }
-/* The page's own machinery — the base, the suffix, the "try another suffix"
-   picker — belongs to the step that draws the pieces (2026-11-12). */
-.constructstep .steprow { margin: 10px 0 2px; }
 /* A rung that carries a construction above it hands the rail over to the
    diamond, and the step hands it back to the word below: no border in
    between, one continuous line. */
@@ -755,7 +758,7 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
      reaches left to the rail column, because that is where the first word
      now starts. */
   overflow-x: auto; overflow-y: hidden;
-  padding: 6px 2px 0 34px; margin-left: -34px; }
+  padding: 6px 2px var(--bpad) 34px; margin-left: -34px; }
 .btree, .bline { display: block; width: max-content; max-width: none; }
 /* One line of pieces: the first word at the rail's right edge, then the line
    out of its own right edge through `+` to the next piece. */
@@ -822,6 +825,13 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
   font-style: normal; font-size: 12px; line-height: 1.35; color: var(--muted);
   white-space: nowrap; }
 .cterm .cgloss { padding-top: 1px; }
+/* A suffix's gloss says what the suffix does, and a sentence does not fit in a
+   word's width: it wraps under the piece and runs down into the strip the tree
+   keeps for it, while the term row itself keeps its height — so a long gloss
+   never lifts a word off the line and never cuts itself off (admin,
+   2026-11-12).  The whole of it is on the cell's hover as well. */
+.cterm.bound .cgloss { width: max-content; max-width: 200px;
+  white-space: normal; }
 .cform > .cgloss { margin-top: 3px; }
 /* The word itself, at the ladder's size and in its own evidence colour. */
 .cform { font-family: var(--mono); font-style: italic; font-size: 21px; line-height: 1.15;

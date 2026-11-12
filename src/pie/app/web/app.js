@@ -1686,10 +1686,11 @@ function constructStep(level, i, linkTo, opts, nest = 0) {
   const meaningOf = (pos, gloss, bound) => {
     const g = String(gloss || "").trim().replace(/[.;]\s*$/, "");
     if (!g) return "";
-    /* A bound morpheme's gloss is a description of what it does, and some run
-       to a line; the line under a piece is one line, so it is cut with the
-       whole of it on hover (the tip is built by the caller). */
-    if (bound) return g.length > 64 ? `${esc(g.slice(0, 63).trimEnd())}…` : esc(g);
+    /* A bound morpheme's gloss is a description of what it does and can run
+       long: the sheet wraps it to two lines and the whole of it is on the
+       element's own hover, so the line under the word is never lost to a
+       truncation and never runs into the next piece (admin, 2026-11-12). */
+    if (bound) return esc(g);
     const p = String(pos || "").trim();
     return `${p && p !== "suffix" && p !== "root" ? esc(p) + " · " : ""}“${esc(g)}”`;
   };
@@ -1799,8 +1800,17 @@ function constructStep(level, i, linkTo, opts, nest = 0) {
     /* The word and its meaning are one cell: the word sits on the line the
        `+` draws, and the meaning hangs under it without ever moving that line
        (admin, 2026-11-12). */
+    /* A bound morpheme has no timeline above it, so it gets no rail and no
+       dot: a dot is the mark of a word whose own line continues upward
+       (admin, 2026-11-12).  The line still reaches it from the `+`. */
+    /* The rail column is kept even when it holds nothing: the cell is a
+       three-column grid (label, rail, word) and a missing child would shuffle
+       the word into the 18px rail track. */
+    const rail = first ? ""
+      : `<span class="cline" aria-hidden="true"></span><span class="crail" aria-hidden="true">${
+          p.bound ? "" : "<i></i>"}</span>`;
     return `<div class="cterm${p.bound ? " bound" : ""}${first ? " first" : ""}" data-tip="${esc(tip)}">
-        ${first ? "" : `<span class="cline" aria-hidden="true"></span><span class="crail" aria-hidden="true"><i></i></span>`}
+        ${rail}
         <span class="cstack">
           <span class="cwordrow"><span class="cform term ${scriptClass(p.form)} ${ev}">${body}${reading}</span></span>
           ${meaning ? `<span class="cgloss">${meaning}</span>` : ""}
@@ -1887,9 +1897,13 @@ function constructStep(level, i, linkTo, opts, nest = 0) {
   const tipOf = (b) => (b.source === "ours"
     ? `The dictionary records no construction for this word; this model reads the seam ${joinedOf(b)} → ${b.of || level.form}. A formation is not a sound law.`
     : `The record states this ${kindOf(b)}: ${joinedOf(b)} → ${b.of || level.form}. A formation is not a sound law.`);
+  /* A tab only exists when the record states two different formations.  Its
+     label is the formation itself — `on + būtan` against `be + ūtan` — because
+     `affix 1` / `affix 2` says nothing a reader can choose by (admin,
+     2026-11-12: the tabs were meaningless). */
   const tabs = builds.length > 1
     ? `<div class="bstep-tabs" role="tablist">${builds.map((b, k) => `<label for="${uid}-${k}"
-         class="btab" role="tab" data-tip="${esc(tipOf(b))}">${esc(kindOf(b))}${builds.filter((o) => kindOf(o) === kindOf(b)).length > 1 ? ` ${k + 1}` : ""}</label>`).join("")}</div>`
+         class="btab" role="tab" data-tip="${esc(tipOf(b))}">${esc(joinedOf(b))}</label>`).join("")}</div>`
     : "";
   const radios = builds.length > 1
     ? builds.map((_, k) => `<input class="bstep-radio" type="radio" name="${uid}" id="${uid}-${k}"${k ? "" : " checked"} aria-label="construction ${k + 1}">`).join("")
@@ -1906,10 +1920,10 @@ function constructStep(level, i, linkTo, opts, nest = 0) {
      belongs to the step that draws the pieces, not to the space under the
      title (admin, 2026-11-12).  It is printed once, on the rung of the word's
      own stage, because that is the formation whose pieces these are. */
-  const page = opts && opts.d;
-  const row = page && page.construction && level.stage === page.lang
-    ? `<div class="steprow">${constructHtml(page, opts.morph, opts.fromSuffix, true)}</div>`
-    : "";
+  /* The card that used to stand here — "suffix it wears", its chips and its
+     picker — repeated what the tree below already draws, piece by piece
+     (admin, 2026-11-12: "that is denoted as part of the timeline").  The
+     composition tools live on the rung's own `build…` control. */
   return `${roots}<li class="constructstep${ours ? " ours" : ""}${builds.length > 1 ? " multi" : ""}"
       data-tip="${esc(builds.length > 1 ? `${builds.length} constructions are recorded for this form; each tab is one of them, and none is preferred over another.` : tipOf(builds[0]))}">
     <div class="when">
@@ -1917,7 +1931,7 @@ function constructStep(level, i, linkTo, opts, nest = 0) {
       <span class="when-era">${builds.length > 1 ? `${builds.length} analyses` : esc(kindOf(builds[0]))}${ours ? " · our reading" : ""}</span>
     </div>
     <div class="rail" aria-hidden="true"><i class="cdiamond"></i></div>
-    <div class="buildbody">${radios}${tabs}${row}${trees}</div>
+    <div class="buildbody">${radios}${tabs}${trees}</div>
   </li>`;
 }
 
