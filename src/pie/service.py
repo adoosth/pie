@@ -397,9 +397,26 @@ def readings_for(entry: dict) -> dict:
     return {"ipa": ipa, "reading": reading}
 
 
+def _notation_entries(lang: str, word: str) -> list[dict]:
+    """The glossary rows for a spelling, reading a reconstructed hyphen as notation.
+
+    A record may write a reconstructed word with its morpheme boundaries
+    (``*tr̥s-nó-s``) while the glossary heads the word solid (``*tr̥snós``).  A
+    hyphen there is the record's notation, not a sound, and a lookup that
+    compares spellings literally reported "no entry for this word" beside a link
+    that opened the entry it had (admin, 2026-11-12, Persian تشنه).  Every
+    reader of a form — its meaning, its evidence, its ✓ — goes through here.
+    """
+    entries = word_index().get((lang, word)) or []
+    if entries:
+        return entries
+    record = _lemma_entry(lang, word)
+    return [record] if record else []
+
+
 def pronunciation(lang: str, word: str, fallback: str = "") -> dict:
     """IPA + romanisation for a form, and whether a glossary records it."""
-    entries = word_index().get((lang, word)) or []
+    entries = _notation_entries(lang, word)
     if not entries:
         return {"ipa": "", "reading": fallback, "documented": False}
     out = readings_for(entries[0])
@@ -469,7 +486,7 @@ def is_reconstructed(lang: str, word: str) -> bool:
     Latin's own 684 reconstructed words — read as if a text spelled them
     (2026-11-08: an attested word must be one a text writes).
     """
-    rows = word_index().get((lang, word)) or []
+    rows = _notation_entries(lang, word)
     # Homographs are separate entries: Old English *ne* is an attested adverb
     # and conjunction beside a reconstructed noun **nē*. The word is gold only
     # when every entry under it is a reconstruction.
@@ -1482,6 +1499,11 @@ def _lemma_index(lang: str) -> dict[str, dict]:
     out: dict[str, dict] = {}
     for word, rows in data.lexicon_index(lang).items():
         out.setdefault(normalise_etymon(word), rows[0])
+        # A stage may head a word in lower case while a record quotes it with a
+        # capital (Proto-Iranian heads *hā́fš, the ancestry row writes *Hā́fš).
+        # Case is spelling, not a sound, and one more key per word costs a
+        # dictionary slot only where the two differ (2026-11-12).
+        out.setdefault(normalise_etymon(word).casefold(), rows[0])
         if "\u200c" in word:
             # The same headword without the seam: a composed Persian compound
             # is written with the ZWNJ and the dictionary may head it without
@@ -1495,9 +1517,20 @@ def _lemma_entry(lang: str, form: str) -> dict | None:
     key = normalise_etymon(form)
     if not key:
         return None
-    record = _lemma_index(lang).get(key)
+    record = _lemma_index(lang).get(key) or _lemma_index(lang).get(key.casefold())
     if record:
         return record
+    # The engine writes stress as a token before the syllable (Hnˈawa) and a
+    # dictionary writes it as an acute on the vowel (Hnáwa, headed hnáwa) or
+    # not at all (naht).  The token is notation, so an ancestor spelled with it
+    # is the same headword — and a rung that missed this said "no entry for
+    # this word" under a form whose page showed a meaning (admin, 2026-11-12).
+    for spelled in (printable_form(form), form.replace("ˈ", "").replace("ˌ", "")):
+        if not spelled or spelled == form:
+            continue
+        rows = word_index().get((lang, spelled))
+        if rows:
+            return rows[0]
     # A record may write a reconstructed form with its morpheme boundaries
     # (*tr̥s-nó-s), while the glossary heads the word solid (*tr̥snós).  A
     # hyphen there is the record's notation, not a sound, and a page that says
@@ -6699,52 +6732,34 @@ def _compose_build(spec: dict, base: str, stage: str,
                     or str(r.get("form") or "").strip("-") == arg.strip("-")), None)
         if not row:
             return None
-        if row.get("rule"):
-            made = compose(base, row["id"], stage)
-            form = str(made.get("form") or "")
-            if not form or form == base:
-                return None
-            return {"form": form, "kind": "suffix",
-                    "pieces": [_piece_row(stage, base),
-                               {"form": row.get("form", ""), "word": row["id"],
-                                "lang": stage, "lang_name": _lang(stage).get("name", stage),
-                                "gloss": row.get("gloss", ""), "pos": "suffix",
-                                "known": True, "affix": True}],
-                    "steps": made.get("steps") or [],
-                    "law": made.get("law"),
-                    "note": "The suffix is the registered formation law; the "
-                            "law adds a morpheme, which no sound change may do."}
-        attach = str(row.get("form") or "").strip("-")
-        if not attach:
+        # One composition, one implementation: `compose` is the hand-written
+        # morphology (a final nominative ending or thematic vowel may have to
+        # drop, and the suffix brings its own ending), and the formation's law
+        # when the suffix registers one.  A second suffix on the first result
+        # must behave exactly like the first (2026-11-12).
+        made = compose(base, row["id"], stage)
+        form = str(made.get("form") or "")
+        if not form or form == base:
             return None
-        # The suffix's own formation sets the root's grade and brings its
-        # ending: *-nó- is oxytone, so *ters- is *tr̥s- there and the word is
-        # *tr̥s-nó-s, not *ters-nó (2026-11-12).
-        stem, grade = _formation_grade(base, str(row.get("form") or ""), stage)
-        ending = str(row.get("ending") or "")
-        form = detokenize(tokenize(stem + attach + ending))
+        grade = made.get("grade")
         piece = _piece_row(stage, base)
         if grade:
             piece = {**piece, "grade": grade["grade"], "grade_label": grade["label"],
                      "grade_note": grade["note"]}
-        steps = [{"label": "word", "form": base}]
-        if grade:
-            steps.append({"label": grade["label"], "form": stem,
-                          "note": grade["note"]})
-        steps += [{"label": "suffix", "form": str(row.get("form") or ""),
-                   "note": row.get("gloss", "")}]
-        if ending:
-            steps.append({"label": "ending", "form": ending})
-        steps.append({"label": "composed", "form": form})
         return {"form": form, "kind": "suffix",
                 "pieces": [piece,
-                           {"form": str(row.get("form") or ""), "word": row["id"],
+                           {"form": row.get("form", ""), "word": row["id"],
                             "lang": stage, "lang_name": _lang(stage).get("name", stage),
                             "gloss": row.get("gloss", ""), "pos": "suffix",
                             "known": True, "affix": True}],
-                "steps": steps, "grade": grade,
-                "note": "A suffix is added to the word's stem; no sound change "
-                        "and no register of sound laws produces it."}
+                "steps": made.get("steps") or [],
+                "law": made.get("law"),
+                "grade": grade,
+                "note": ("The suffix is the registered formation law; the law "
+                         "adds a morpheme, which no sound change may do."
+                         if made.get("law") else
+                         "A suffix is added to the word's stem; no sound change "
+                         "and no register of sound laws produces it.")}
     if kind == "ending":
         rows = ((morphology(stage) or {}).get("endings") or [])
         endings = [str(r.get("form") or "").lstrip("-") for r in rows]

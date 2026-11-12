@@ -290,8 +290,13 @@ that keeps the `*` opens nothing).
   (`*tr̥s-nó-s`) while the glossary heads the same word solid (`*tr̥snós`), so
   `_lemma_entry` retries the joined spelling (stress aside) — **only for a
   reconstructed form** (`*` or a proto stage): in an attested language a hyphen
-  can belong to the headword (English well-being ≠ wellbeing). A rung that
-  says "no entry for this word" beside a link that opens the entry is wrong.
+  can belong to the headword (English well-being ≠ wellbeing). Every reader of
+  a form — its sense, its evidence, its ✓ — asks `_notation_entries`, so the
+  three can never disagree: a rung that says "no entry for this word" beside a
+  link that opens the entry is wrong.  `_lemma_entry` also reads the **stress
+  token** (`Hnˈawa` = the dictionary's `Hnáwa`) and **case** (a stage heads
+  `hā́fš`, an etymology row writes `Hā́fš`), because a token and a capital are
+  spelling, not sounds — 494 rungs over 325 pages agree with their own pages.
 - **A composition is built in the grade its suffix takes** (2026-11-12):
   `_formation_grade` reads the `grades:` table and `_grade_stem` writes it, so
   *ters- + *-nó- is *tr̥s-nó-s*, never *ters-nó-s*, and the built step and the

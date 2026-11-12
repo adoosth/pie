@@ -1355,8 +1355,12 @@ function draftBuiltHtml(row, stage, orig, spec) {
   return `${pieces} <i class="barrow" aria-hidden="true">→</i>
     <a class="dresult formlink" href="${esc(href)}" data-tip="Open this built word in the timeline: the formation stands above it and the laws carry it down.">${esc(pf(
       (/-pro$/.test(String(stage)) && row.form && !String(row.form).startsWith("*") ? "*" : "")
-      + String(row.form || "")))}</a>${row.note ? `<span class="bnote sub">${esc(row.note)}</span>` : ""}`;
+      + String(row.form || "")))}</a>`;
 }
+
+/* Two spellings are one word when they differ only in the stress the engine
+   writes as a token and the dictionary writes as an acute. */
+const plainForm = (form) => String(form || "").replace(/[ˈˌ]/g, "");
 
 function openDraft(btn) {
   const L = ladderState;
@@ -1416,6 +1420,15 @@ function openDraft(btn) {
         sel.value = "";
         return;
       }
+      /* An ending the word already wears is not a step: adding *-os to *tr̥snós
+         used to print *tr̥snós again and call it a second piece (admin,
+         2026-11-12).  The row says why nothing changed instead. */
+      if (plainForm(row.form) === plainForm(current)) {
+        note.hidden = false;
+        note.textContent = `${pf(current)} already has that piece — the formed word is the same word.`;
+        sel.value = "";
+        return;
+      }
       chain += 1;
       /* The stem's grade belongs beside the word it changed: *ters- is *tr̥s-
          in this formation, and the row says so in the same words the timeline
@@ -1429,7 +1442,7 @@ function openDraft(btn) {
       current = row.form;
       note.hidden = false;
       note.textContent = chain === 1
-        ? `That is the stage's own formation; add another piece, or open the word to follow it down the laws.`
+        ? `${row.note || "The stage's own formation."} Add another piece, or open the result to follow it down the laws.`
         : `Another piece on the same line; the row is one formation, not a sound law.`;
       sel.value = "";
     }).catch(() => {

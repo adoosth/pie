@@ -10,8 +10,14 @@ a button beside a row of pills, which did nothing when clicked.
    (`*tr̥snós`). `_lemma_entry` now retries the joined spelling, stress aside, for
    every reconstructed form — and only for one: in an attested language a hyphen
    can be part of the headword (English *well-being* is not *wellbeing*), so the
-   fallback never runs there. A rung can no longer call a word missing while
-   linking to the entry that holds it.
+   fallback never runs there. The sense, the evidence and the ✓ all ask the
+   same helper (`_notation_entries`), because fixing only the sense left the
+   rung showing *no entry* under a correct gloss. Two more notations were doing
+   the same thing: the engine's **stress token** (*Hnˈawa* for the dictionary's
+   *Hnáwa*) and **case** (a stage heads *hā́fš*, an etymology row writes
+   *Hā́fš*). `_lemma_entry` reads both, so a rung can no longer call a word
+   missing while linking to the entry that holds it — 494 rungs over 325 pages
+   now agree with the page each links to.
 2. **The button and the pills are gone.** The dot beside a word is a button
    (`button.rdot`): clicking it opens a row *above* that word — a diamond on the
    rail, because a formation is not a sound change — holding the word itself
@@ -24,13 +30,15 @@ a button beside a row of pills, which did nothing when clicked.
    stem in (`*ters-` → *zero grade*), and the form they make — so the row shows
    `*ters- zero grade + *-nó- → *tr̥snós` without a page reload, and its result
    links to the built word in the timeline (`?build=`). A second choice composes
-   on the first result, so two suffixes stand on one line instead of a tab each.
+   on the first result, so two suffixes stand on one line instead of a tab each,
+   and a piece the word already wears says so instead of printing the same form
+   again.
 
 **Why.** The reader asked for a construction he could *do* rather than a menu he
 had to decode: one click from the word, then the stage's own terms. The pills
 looked clickable and the panel asked him to type a word he had not chosen yet.
 
-**Numbers.** 963 Python tests and the render suite; the dot, the menu and the
+**Numbers.** 964 Python tests and the render suite; the dot, the menu and the
 joined-spelling lookup each have a test.
 
 ## 2026-11-12 · an icon is a page that was recorded

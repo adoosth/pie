@@ -2786,12 +2786,48 @@ class TestTheSectionsOfThePicker(unittest.TestCase):
         while linking to the second must not say "no entry for this word"
         (admin, 2026-11-12, Persian تشنه)."""
         self.assertEqual(service._lemma_entry("ine-pro", "tr̥s-nó-s")["word"], "tr̥snós")
+        # The rung's three readers — the sense, the evidence and the ✓ — must
+        # agree with that lookup, or the page says "no entry" under a link that
+        # opens one (2026-11-12).
+        self.assertTrue(service.pronunciation("ine-pro", "*tr̥s-nó-s")["documented"])
+        self.assertTrue(service.is_reconstructed("ine-pro", "tr̥s-nó-s"))
+        meta = service._form_meta("ine-pro", "tr̥s-nó-s")
+        self.assertTrue(meta["known"])
+        self.assertEqual(meta["evidence"], "literary")
         built = service.build_at("ine-pro:suffix:no", "ters-")
         self.assertEqual(service.printable_form(built["form"]), "tr̥snós")
         self.assertEqual([p["form"] for p in built["pieces"]], ["ters", "-nó-"])
         words = service.headwords("ine-pro")
         self.assertTrue(words and all(not w["word"].startswith("-") for w in words),
                         "the word menu holds words, not bound morphemes")
+
+    def test_a_rung_reads_the_notation_of_its_ancestor(self):
+        """An ancestor comes from an etymology row, written in the engine's
+        notation: Proto-Iranian *Hnˈawa where the glossary heads *Hnáwa (and
+        keys it hnáwa). Neither the stress token nor a capital is a sound, so
+        the rung must not call a word with a meaning "no entry" (admin,
+        2026-11-12: "fix all such cases")."""
+        for lang, form, want in (("iir-pro", "Hnˈawa", "nine"),
+                                 ("iir-pro", "tˈuH", "you, thou"),
+                                 ("ira-pro", "Hā́fš", "water")):
+            record = service._lemma_entry(lang, form)
+            self.assertIsNotNone(record, f"{lang} {form} is in the glossary")
+            self.assertIn(want, record.get("gloss") or [])
+        # And on a page: no rung may say "no entry" for a record whose own
+        # page has a meaning.
+        for page_lang, page_word in (("peo", "𐎴𐎺𐎶"), ("fa", "تشنه"),
+                                     ("iir-pro", "čitrás"), ("peo", "Ciçafarnāh"),
+                                     ("peo", "𐎬𐎺𐎶"), ("ira-pro", "Hácwapatiš"),
+                                     ("pal", "ʾp̄")):
+            page = service.word(page_lang, page_word)
+            for level in page["hierarchy"]["levels"]:
+                record = level.get("recorded") or {}
+                if record.get("known") is False and record.get("w"):
+                    other = service.word(level["stage"], record["w"]) or {}
+                    self.assertFalse(
+                        other.get("gloss"),
+                        f"{page_lang}/{page_word}: rung {level['form']} says no entry "
+                        f"but {record['w']} has one")
 
     def test_the_pie_page_has_a_rung_of_its_own(self):
         """Proto-Indo-European is the top of the family, not the end of the
