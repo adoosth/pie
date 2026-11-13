@@ -779,9 +779,11 @@ that keeps the `*` opens nothing).
 - **A piece the record glosses as grammar is a bound morpheme, not a word**
   (admin, 2026-11-13): `service._grammar_gloss` reads «𐎴 (*-naʰ*, nominal
   suffix)» whatever the spelling, and only an *affix* entry of the stage may
-  answer it — the letter 𐎴 opens no page from a suffix. Its reading is the
-  stage's morphology-table row (`data/morphology/<lang>.yaml`) or the reading
-  the record quotes.
+  answer it — the letter 𐎴 opens no page from a suffix, and a suffix the stage
+  does hold as an affix keeps its own page. Only suffix/prefix/ending make a
+  piece bound (`_affix_gloss`): a clitic or a particle is a word (PIE *ḱe,
+  *te). Its reading is the stage's morphology-table row
+  (`data/morphology/<lang>.yaml`) or the reading the record quotes.
 - **No form in another script is ever printed alone** (2026-11-08).
   `translit.is_scripted` decides what "another script" means (written *in* it,
   not "contains a strange character"); every payload carries `reading_auto`,

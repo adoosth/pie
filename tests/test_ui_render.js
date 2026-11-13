@@ -1277,8 +1277,10 @@ assert.equal((unknownHtml.match(/class="cunknown"/g) || []).length, 1,
   "and only a word gets one: a bound morpheme has no line above it");
 assert.ok(unknownHtml.includes("No record says where this word came from"),
   "and the ??? says what it means");
-assert.ok(unknownHtml.includes("a suffix the stage's own registry lists, not a word"),
+assert.ok(unknownHtml.includes("a bound morpheme with no entry of its own"),
   "a bound morpheme is drawn as itself, with no trunk");
+assert.ok(!unknownHtml.includes('href="#/x"><span'), 
+  "and it opens no page when the stage holds no affix entry for it");
 /* A bound morpheme has no word's sense, so its gloss is a description of what
    it does; it is printed as that description rather than quoted as a meaning
    (admin, 2026-11-12). */
@@ -1292,6 +1294,8 @@ const suffixHtml = context.constructStep(Object.assign({}, causLevel,
   { built_as: suffixPiece, builds: [suffixPiece] }), 0, () => "#/x");
 assert.ok(suffixHtml.includes('<span class="cgloss">Forms adjectives from Caland system roots</span>'),
   "a suffix says what it does under itself, unquoted");
+assert.ok(suffixHtml.includes('href="#/x"'),
+  "a suffix the stage's glossary holds as an affix opens its own page (admin, 2026-11-13)");
 assert.ok(suffixHtml.includes('<span class="cgloss">“to shine, glow”</span>'),
   "a root's sense is quoted, and a root names no category it has not got");
 assert.ok(!columns(unknownHtml)[1].includes("has-chain"),

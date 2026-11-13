@@ -1805,11 +1805,16 @@ function constructStep(level, i, linkTo, opts) {
     const hyphened = b.kind === "suffix" && k > 0 && !formText.replace(/^\*/, "").startsWith("-")
       ? formText.replace(/^\*/, "*-") : formText;
     const show = starred(hyphened, b.lang);
-    const href = p.bound ? "" : link(b.lang, p.form, p.known);
+    /* A bound morpheme opens no *word* page — the letter that happens to share
+       its signs is not its entry.  It opens its own page when the stage's
+       glossary holds an affix entry for it, which is the right page for a
+       suffix (admin, 2026-11-13: a suffix must open the suffix's own page, or
+       none). */
+    const href = p.bound && !p.known ? "" : link(b.lang, p.form, p.known);
     const said = p.bound
-      ? `a suffix the stage's own registry lists, not a word${p.gloss ? ` — ${p.gloss}` : ""}`
+      ? `${p.known ? "a suffix the stage's own registry lists" : "a bound morpheme with no entry of its own"}${p.gloss ? ` — ${p.gloss}` : ""}`
       : p.gloss ? `“${p.gloss}”` : `a word of ${b.lang_name}`;
-    const tip = p.bound ? said
+    const tip = p.bound ? said + (href ? " — open its page" : "")
       : p.branch && p.branch.terminal === "outside"
         ? `${said} — a language outside the family: its own trail begins here${href ? " — open the word page" : ""}`
         : href ? `${said} — open the word page` : said;

@@ -2475,9 +2475,32 @@ _GRAMMAR_GLOSS = re.compile(
     r"morpheme|particle)\b", re.IGNORECASE)
 
 
+#: The subset of those words that names a bound **affix**, and so decides that a
+#: piece wears no dot and climbs no history of its own.  A clitic or a particle
+#: is a word with a page (PIE *ḱe, the enclitic *te), and keeps it.
+_AFFIX_GLOSS = re.compile(r"\b(suffix|prefix|ending|infix|interfix)\b",
+                          re.IGNORECASE)
+
+
+def _head_clause(gloss: str) -> str:
+    """The part of a gloss that describes the piece, before it starts defining.
+
+    A word's own meaning may mention a particle («also, too; … as a
+    post-positive particle», Persian هم) without the piece being one: a record
+    describes the grammar first when it gives one («nominal suffix», «Deictic
+    particle, here», «enclitic accusative of …»).
+    """
+    return re.split(r"[,;:.—–]", str(gloss or "").strip(), 1)[0]
+
+
 def _grammar_gloss(gloss: str) -> bool:
     """Whether a construction's parenthesis says the piece is a bound morpheme."""
-    return bool(_GRAMMAR_GLOSS.search(str(gloss or "")))
+    return bool(_GRAMMAR_GLOSS.search(_head_clause(gloss)))
+
+
+def _affix_gloss(gloss: str) -> bool:
+    """Whether a construction's parenthesis names an affix (suffix, prefix…)."""
+    return bool(_AFFIX_GLOSS.search(_head_clause(gloss)))
 
 
 def _morph_reading(form: str, lang: str = "ine-pro") -> str:
@@ -3587,8 +3610,10 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
             # Grammar is bound even without a hyphen: the record's own
             # parenthesis («nominal suffix») says so, and a morpheme is never
             # walked as a word with a history (admin, 2026-11-13).
+            # Only an affix is *bound*: a particle or a clitic is a word with a
+            # page (PIE *ḱe, the enclitic *te), and keeps its dot and its link.
             bound = (_bound_piece(kind, form_piece, index) or slot
-                     or _grammar_gloss(gloss))
+                     or _affix_gloss(gloss))
             # The meaning under the word in the timeline (admin, 2026-11-12):
             # the row's own parenthesis when it has one, otherwise the sense
             # the piece's glossary entry gives it.  That fallback is what lets
