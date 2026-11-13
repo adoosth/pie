@@ -4313,7 +4313,15 @@ def unrecorded_ancestry(entry: dict, chain: list[str]) -> list[dict]:
                        _stated_piece_ancestry(piece[2])
                        if isinstance(piece, (list, tuple)) and len(piece) > 2 else (),
                        _bound_piece(str(own_row.get("kind") or ""), raw, index)
-                       or _suffix_spelling(raw)))
+                       or _suffix_spelling(raw)
+                       # A record that calls the formation an affix and gives
+                       # its second piece no meaning of its own has named the
+                       # bound half: the notation is gone by then (`ـکش` >
+                       # `کش`), so the spelling cannot say so (batch 12).
+                       or (str(own_row.get("kind") or "") in ("affix", "suffix", "infix")
+                           and index > 0
+                           and not str(piece[1] if isinstance(piece, (list, tuple))
+                                       and len(piece) > 1 else "").strip())))
     for join in _compound_pieces(entry, own_stage):
         # A join's own row says which of its pieces are bound (a suffix written
         # with its hyphen), and a bound piece is grammar, not a word: without
