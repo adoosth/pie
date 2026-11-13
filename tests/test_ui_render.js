@@ -1486,36 +1486,13 @@ assert.ok(sourcesHtml.includes("vajehyab.com/dehkhoda/%D8%A2%D8%A8"),
 assert.equal(context.sourceRow({ word: "x", lang: "en", evidence: "attested", pages: [] }), "",
   "a word with no recorded page has no icons");
 
-/* A compound draws its pieces as a join (2026-11-09): the two origins meet
-   only at the headword, and each piece's chain keeps its own language. */
-const joinHtml = context.renderJoin({
-  word: "astronaut", lang: "en", lang_name: "English",
-  joins: [{ etym: "From astro- + -naut", pieces: [
-    { form: "astro-", word: "astro-", lang: "en", gloss: "stars", pos: "prefix",
-      ancestry: [{ lang: "grc", lang_name: "Ancient Greek", branch: "Greek", form: "ἄστρον" }] },
-    { form: "-naut", word: "-naut", lang: "en", gloss: "traveller", pos: "suffix",
-      ancestry: [{ lang: "grc", lang_name: "Ancient Greek", branch: "Greek", form: "ναύτης" }] },
-  ] }],
-});
-assert.ok(joinHtml.includes("astro-") && joinHtml.includes("-naut"), "both pieces are printed");
-assert.ok(joinHtml.includes("Ancient Greek"), "each piece names where it came from");
-assert.ok(joinHtml.includes("astronaut"), "the join ends at the word itself");
-assert.equal((joinHtml.match(/class="jrow"/g) || []).length, 2, "one row per piece");
-
-/* A piece with no recorded ancestry is a source of its own: book + house is
-   not "both from Middle Persian" when only the house has an ancestor. */
-const mixedJoin = context.renderJoin({
-  word: "کتابخانه", lang: "fa", lang_name: "Persian",
-  joins: [{ etym: "From کتاب + خانه", pieces: [
-    { form: "کتاب", word: "کتاب", lang: "fa", gloss: "book", pos: "noun", ancestry: [] },
-    { form: "خانه", word: "خانه", lang: "fa", gloss: "house", pos: "noun",
-      ancestry: [{ lang: "pal", lang_name: "Middle Persian", branch: "Iranian", form: "𐭡𐭩𐭲𐭠" }] },
-  ] }],
-});
-assert.ok(mixedJoin.includes("and an unrecorded source"),
-  "an unrecorded piece is named, not folded into the other piece's origin");
-assert.ok(!mixedJoin.includes("both from Middle Persian"),
-  "two pieces are never called one origin");
+/* A compound's pieces are drawn in the timeline, never in a section of their
+   own (admin, 2026-11-13: the "WHERE THE PIECES COME FROM" block is gone from
+   every word page, because the timeline already draws it). */
+assert.equal(typeof context.renderJoin, "undefined", "the piece section is gone");
+assert.ok(!/<h2>Where the pieces come from/i.test(
+  fs.readFileSync(path.join(WEB, "app.js"), "utf8")),
+  "no renderer prints the section's heading");
 
 /* The coverage table separates what the record says from what the model
    explains, and draws both as bars (2026-11-09). */

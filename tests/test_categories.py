@@ -218,6 +218,36 @@ class MissingRungTest(unittest.TestCase):
                                  missing_steps=[self.hole])
         self.assertEqual(row["category"], "non_pie")
 
+    def test_a_hole_outranks_the_published_band(self):
+        """A rung the page draws as "no entry" cannot be green by any index.
+
+        fa آبجو read "fully explained" above exactly that line, because the
+        published band was measured before a compound's pieces were walked.  A
+        measured hole is a fact of the page, so it wins over the index
+        (admin, 2026-11-13).
+        """
+        from pie import service
+        own = {"category": "partial", "reason": "no entry for Old Persian *yáwaʰ",
+               "missing_steps": ["peo"], "missing": [self.hole]}
+        row = service._page_category({}, "fa", {"levels": [{}], "category": own},
+                                     "full")
+        self.assertEqual(row["category"], "partial")
+
+    def test_a_pieces_hole_is_the_words_hole(self):
+        """A compound's record has no ancestry; its pieces' rungs still do.
+
+        چامه‌سرایی is built from three pieces and its own record names no
+        ancestor, so the walk used to return nothing while the page drew a
+        dark-red rung above a piece (admin, 2026-11-13, fa آبجو).
+        """
+        from pie import data, service
+        entry = service._lemma_index("fa")["چامه‌سرایی"]
+        self.assertFalse(entry.get("anc"), "the compound's own record has none")
+        holes = service.unrecorded_ancestry(entry, data.derivation_chain("fa"))
+        self.assertTrue(holes, "a piece's missing ancestor is reported")
+        self.assertEqual(len({(h["stage"], h["form"]) for h in holes}), len(holes),
+                         "one row per rung, however many pieces reach it")
+
     def test_the_reason_names_at_most_three_and_counts_the_rest(self):
         holes = [{**self.hole, "form": f"f{i}", "written": f"*f{i}"} for i in range(5)]
         row = categories.verdict(recorded=True, pie_linked=True, from_pie=True,

@@ -203,8 +203,12 @@ that keeps the `*` opens nothing).
   timeline runs old (top) to new (bottom), so a construction the record states
   is drawn **above** the form it produces. Nothing about a construction is
   printed under the word: the `CONSTRUCTION:` block of 2026-11-08 is gone from
-  the header, and the `jointime` section is suppressed when the timeline already
-  draws the same pieces. The step still carries the reader's tools — the suffix
+  the header, and since 2026-11-13 the `jointime` section ("Where the pieces
+  come from") is **gone entirely** — it was a second copy of the step whenever
+  the two agreed and a rival analysis whenever they did not (admin: "remove
+  this section from all word pages entirely; what it wants to show is already
+  shown in the timeline"). `joins`/`seam_join` stay on the payload; no renderer
+  prints them as a section. The step still carries the reader's tools — the suffix
   the word wears and the `(+)` that tries another — in a compact row inside the
   step (`constructHtml(…, compact)`).
 - **The construction is one tree of columns, and every column hangs from the
@@ -832,6 +836,26 @@ that keeps the `*` opens nothing).
   name it (`rule: "<src>~<dst>:<id>"`) so the PIE panel composes with the rule
   the ladder runs. A formation rule never applies without a pathway naming it:
   coverage must not move.
+- **Every piece of a construction is drawn** (2026-11-13, admin): a record may
+  join its pieces with a conjunction before the plus ("From *h₂eḱ- (“sharp”) +
+  *h₂ṓws (“ear”) **and +** *-yéti"), and a stored template may stop short of
+  the sentence it came from. `_ARITHMETIC_RE` reads the conjunction, and a
+  stated row that starts with the stored row and adds a piece replaces it — the
+  prefix-merge compares pieces without notation. A suffix read this way is a
+  bound morpheme and takes its gloss from the morphology table.
+- **A hole in a piece's chain is a hole in the word's** (2026-11-13, admin: fa
+  آبجو). `service.unrecorded_ancestry` walks each piece the stage heads
+  (`_own_construction` and `_compound_pieces`), because a compound's record has
+  no ancestry of its own while the page draws the pieces' rungs; the row is
+  reported once per (stage, form), and `_page_category` lets a hole outrank the
+  published band, so no index can call a word green above a rung it draws as
+  "no entry for this word". A record that writes an ablauting noun with both
+  stems (`*h₂ṓp-s ~ *h₂ép-s`) is one word: `_lemma_entry` tries each side.
+- **A suffix in the morphology table is a record, not a licence**
+  (2026-11-13): `-lom` (`-lo-` + neuter nom.sg. `-m`, attach `drop`) sits with
+  `-tro-` because Proto-Germanic *ailą's own entry names *h₂éydʰ-lom; the PIE
+  word is an entry with that one construction, and the page still decides the
+  band by the laws.
 - **A compound is drawn as a join** (2026-11-09): `service._compound_pieces()`
   reads the entry's own "From X + Y" (Compound of / Blend of / Equivalent to /
   Formed from / Built from), keeps a piece only when the same language's glossary

@@ -132,7 +132,51 @@ class ConstructionPiece(unittest.TestCase):
         self.assertEqual(row["link"], "")
 
 
+    def test_a_piece_statement_with_and_is_read_to_its_end(self):
+        """A record joins with "and +", and the stored template can stop short.
+
+        *h₂ḱh₂owsyéti's sentence reads "From *h₂eḱ- (“sharp”) + *h₂ṓws (“ear”) and
+        + *-yéti (denominative verbal suffix)"; the arithmetic reader used to
+        stop at the word before the conjunction, and its stored row names only
+        the two words.  The suffix is a piece of the construction, bound, with
+        the morphology table's gloss (admin, 2026-11-13).
+        """
+        entry = service._lemma_index("ine-pro")["h₂ḱh₂owsyéti"]
+        builds = service._rung_builds(entry, "ine-pro", "h₂ḱh₂owsyéti")
+        self.assertEqual(len(builds), 1, "one analysis, not two copies of it")
+        pieces = builds[0]["pieces"]
+        self.assertEqual([p["form"] for p in pieces],
+                         ["h₂eḱ-", "h₂ṓws", "-yéti"])
+        self.assertTrue(pieces[-1]["bound"], "a suffix is a morpheme, not a word")
+        self.assertIn("denominative", pieces[-1]["gloss"])
+
+    def test_the_lom_suffix_is_registered_and_builds_a_word(self):
+        """`-lom` is a cited PIE suffix, and *ailą's PIE rung is a real entry.
+
+        The admin asked whether the morphology could add *-lom to a PIE word for
+        gem-pro/ailą: the record names *h₂éydʰ-lom, the suffix is registered
+        beside *-tro-, and the PIE word is an entry whose own construction is
+        *h₂eydʰ- + *-lom (2026-11-13).
+        """
+        row = [s for s in (service.morphology("ine-pro") or {})["suffixes"]
+               if s["id"] == "lom"]
+        self.assertTrue(row)
+        self.assertEqual(row[0]["form"], "-lo-")
+        self.assertEqual(row[0]["ending"], "-m")
+        built = service.build_at("ine-pro:suffix:lom@h₂eydʰ-")
+        self.assertEqual(built["form"], "h₂eydʰlom")
+        self.assertIsNotNone(service._lemma_entry("ine-pro", "h₂éydʰ-lom"),
+                             "the PIE word the record names has an entry")
+        entry = service._lemma_index("gem-pro")["ailą"]
+        rungs = [b for b in service._rung_builds(
+            service._lemma_entry("ine-pro", "h₂éydʰ-lom"),
+            "ine-pro", "h₂éydʰlom")]
+        self.assertEqual([service.normalise_etymon(p["form"])
+                          for p in rungs[0]["pieces"]],
+                         ["h₂eydʰ", "lom"])
+
 class PreStageAncestry(unittest.TestCase):
+
     """A `pre-` label marks the form it precedes — it does not license a climb.
 
     Wiktionary writes *anda-'s origin in prose: "From pre-Germanic *h₂entó-, a

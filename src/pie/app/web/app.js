@@ -886,7 +886,6 @@ async function viewWord(lang, w, params) {
         ${donorLine(d)}</div>` : ""}
       ${wiktionaryLine(d)}
     </div>
-    ${((d.joins || []).length || d.seam_join) && !builtInTimeline(d) ? renderJoin(d) : ""}
 
     ${/* One timeline for every word, Proto-Indo-European included. A borrowed
          word has two rungs and no sound laws — whether the donor is outside the
@@ -1831,68 +1830,15 @@ function constructStep(level, i, linkTo, opts) {
   </li>`;
 }
 
-/* A compound has more than one origin (2026-11-09). The dictionary states that
-   the word is built from two (or three) pieces; each piece is a word of the
-   same language with a recorded ancestry of its own, and the timelines meet
-   only at the headword. Drawing that honestly is the point: it shows that
-   astronaut's first element and second element each travelled a different
-   path from Greek, and that the join is not a sound law but a formation. */
-function renderJoin(d) {
-  /* A seam this model reads is drawn exactly like a join the record states —
-     two words with their own origins meeting at the headword — and the caption
-     says which of the two it is (2026-11-10). */
-  const stated = (d.joins || [])[0];
-  const j = stated || d.seam_join;
-  if (!j) return "";
-  const ours = !stated;
-  const piece = (p) => {
-    /* A suffix is a bound morpheme of the stage, not a word with its own
-       origin: it is drawn as itself, with the registry's gloss, and no link
-       (2026-11-10). */
-    if (p.bound) {
-      return `<div class="jrow bound">
-        <span class="jpiece bound">${esc(pf(starred(p.form, p.lang)))}</span>
-        <span class="jgloss sub">${esc(p.gloss ? `“${p.gloss}”` : "")}</span>
-        <div class="jchain"><span class="sub">a suffix the stage's own registry lists, not a word</span></div>
-      </div>`;
-    }
-    const steps = (p.ancestry || []).map((a) => `<span class="jstep" style="--c:${colorFor(a.branch)}">
-        <a href="${esc(wordHref(a.lang, a.form, true))}">${esc(pf(starred(a.form, a.lang, a.kind, a.script)))}</a>
-        <span class="sub">${esc(a.lang_name)}</span></span>`).join(`<i class="jlink">›</i>`);
-    return `<div class="jrow">
-      <a class="jpiece" href="${esc(wordHref(p.lang, p.word, true))}">${esc(pf(starred(p.form, p.lang)))}</a>
-      <span class="jgloss sub">${esc(p.gloss ? `“${p.gloss}”` : (p.pos || ""))}</span>
-      <div class="jchain">${steps || `<span class="sub">no ancestor recorded for this piece</span>`}</div>
-    </div>`;
-  };
-  /* Two pieces, and where each one comes from: the interesting case is a join
-     of two different stocks (Greek + Latin in a modern compound), so the
-     header names them instead of counting pieces twice (2026-11-09). */
-  const words = j.pieces.filter((p) => !p.bound);
-  const bound = j.pieces.filter((p) => p.bound).length;
-  const originsFor = words.map((p) => ((p.ancestry || [])[0] || {}).lang_name || "");
-  const distinct = [...new Set(originsFor.filter(Boolean))];
-  /* A piece with no recorded ancestry is a source like any other, and it must
-     not be absorbed into the other piece's origin: book + house is not "both
-     from Middle Persian" when only the house has a recorded ancestor. */
-  const missing = originsFor.filter((name) => !name).length;
-  const sources = missing
-    ? [...distinct, missing === 1 ? "an unrecorded source" : `${missing} unrecorded sources`]
-    : distinct;
-  const originLine = (sources.length > 1
-    ? `from ${sources.slice(0, -1).join(", ")} and ${sources[sources.length - 1]}`
-    : sources.length === 1
-      ? `both from ${sources[0]}`
-      : "no recorded origin for either piece") + (bound ? `, plus ${bound === 1 ? "a suffix" : `${bound} suffixes`} of the stage` : "");
-  return `<section class="jointime reveal${ours ? " ours" : ""}">
-    <h2>Where the pieces come from <span class="sub">· ${j.pieces.length} pieces, ${esc(originLine)}</span>${
-      ours ? ` <span class="badge ours" data-tip="The dictionary states no construction for this word. This model read its seam: the pieces are words of the language, but the join between them is our reading, not a quotation.">our reading of the seam</span>` : ""}</h2>
-    <p class="sub">${esc(String(j.etym || "").replace(/\.$/, ""))}. Each piece keeps its own recorded ancestry.</p>
-    ${j.pieces.map(piece).join("")}
-    <div class="jmerge"><i class="jlink">›</i><span class="jword">${esc(pf(starred(d.word, d.lang, d.kind, d.script)))}</span>
-      <span class="sub">${esc(d.lang_name)}</span></div>
-  </section>`;
-}
+/* A compound's pieces are drawn once, in the timeline (admin, 2026-11-13:
+   "I thought we completely got rid of the WHERE THE PIECES COME FROM section.
+   Please remove this section from all word pages entirely; what it wants to
+   show is already shown in the timeline").  The section between the header and
+   the timeline — each piece with its own chain, meeting again at the headword —
+   was a second copy of the construction step, and it appeared exactly when the
+   step and the join did not agree, so the reader got two analyses of one word.
+   The payload keeps `joins` and `seam_join`: the timeline's step and the band's
+   reading are built from them. */
 
 function renderBuiltFrom(d) {
   const rows = (d.built_from || []).map((r) => {
@@ -1913,23 +1859,6 @@ function renderBuiltFrom(d) {
     <h2>Words built on it <span class="sub count">· ${rows.length}</span></h2>
     <ul class="builtlist">${rows.join("")}</ul>
   </section>`;
-}
-
-/* Whether the timeline under the word already draws the construction, so the
-   page does not print the same analysis twice (admin, 2026-11-12: constructions
-   belong in the timeline, never under the word).  The test is the pieces
-   themselves, not the section's presence: a join the rung does not carry is
-   still printed by `renderJoin`. */
-function builtInTimeline(d) {
-  const steps = (((d.hierarchy || {}).levels) || [])
-    .filter((l) => (l.builds || []).length && l.stage === d.lang)
-    .flatMap((l) => l.builds);
-  if (!steps.length) return false;
-  const key = (rows) => rows.map((r) => String(r.form || "").replace(/^\*/, "")).sort().join("\u0000");
-  const drawn = steps.map((b) => key(b.pieces || []));
-  const joins = ((d.joins || []).length ? [d.joins[0]] : [d.seam_join]).filter(Boolean);
-  if (!joins.length) return false;
-  return joins.every((j) => drawn.includes(key(j.pieces || [])));
 }
 
 /* Where a record was read. The server resolves each source: a hand-built

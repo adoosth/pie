@@ -20,15 +20,15 @@ never a count and never in a denominator.
 
 | band | words | share | definition |
 |---|---:|---:|---|
-| **fully explained** (dark green) | 852 | 0.2% | A recorded origin — a PIE etymon carried by cited laws, or the record's own registered construction of explained pieces — reproduced exactly, every recorded intermediate matching. |
+| **fully explained** (dark green) | 480 | 0.1% | A recorded origin — a PIE etymon carried by cited laws, or the record's own registered construction of explained pieces — reproduced exactly, every recorded intermediate matching. |
 | **fully explained, with adjustments** (light green) | 54 | 0.0% | The same path, but a recorded intermediate disagrees, or one step is an approved adjustment of ours. |
-| **partially explained** (yellow) | 131,352 | 34.5% | A recorded chain that does not reach the word from the PIE etymon in full: it starts lower, a recorded rung has no entry, or the laws do not reproduce it. |
+| **partially explained** (yellow) | 131,725 | 34.6% | A recorded chain that does not reach the word from the PIE etymon in full: it starts lower, a recorded rung has no entry, or the laws do not reproduce it. |
 | **unexplained** (red) | 77,633 | 20.4% | No recorded etymology. |
 | **non-PIE** (dark grey) | 91,918 | 24.1% | Recorded as borrowed from outside the family. |
 | **loan from another IE language** (blue grey) | 71,976 | 18.9% | Borrowed from a sister branch; recorded, not derived by this chain. |
 | **built from its own words** (brown) | 7,324 | 1.9% | Made of the language's own words, or of one plus a suffix: a formation, not a derivation. |
 
-**906 of 381,109 attested words are fully explained (0.24%), and 71,976 more are recorded loans from a
+**534 of 381,110 attested words are fully explained (0.14%), and 71,976 more are recorded loans from a
 sister branch. Both greens need a recorded origin carried all the way to the
 word — by cited laws, or by the record's own registered construction (the
 pieces spell it, each piece starts from a PIE etymon or from outside the
@@ -42,31 +42,31 @@ ancestor (Old Persian 𐎣𐎠𐎶 from Proto-Iranian) is yellow.
 
 | language | full | adjusted | partial | unexplained | non-PIE | IE loan | built | in review | explained | stored |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| Persian (`fa`) | 248 | 0 | 4,846 | 76,750 | 71,691 | 2,918 | 7,321 | 2,091 | 248 | 163,774 |
-| Sanskrit (`sa`) | 196 | 14 | 3,756 | 14 | 90 | 82 | 0 | 4,078 | 210 | 4,152 |
-| English (`en`) | 174 | 1 | 57,010 | 104 | 15,924 | 41,017 | 3 | 31,153 | 175 | 114,233 |
-| Ancient Greek (`grc`) | 63 | 9 | 3,555 | 29 | 539 | 852 | 0 | 4,120 | 72 | 5,047 |
-| Gothic (`got`) | 39 | 1 | 1,919 | 0 | 54 | 139 | 0 | 1,030 | 40 | 2,152 |
-| Latin (`la`) | 30 | 2 | 5,476 | 81 | 328 | 1,572 | 0 | 5,131 | 32 | 7,489 |
-| Old Norse (`non`) | 24 | 1 | 2,940 | 1 | 4 | 85 | 0 | 2,082 | 25 | 3,055 |
-| Old Irish (`sga`) | 21 | 2 | 1,693 | 1 | 35 | 167 | 0 | 1,534 | 23 | 1,919 |
-| Lithuanian (`lt`) | 11 | 8 | 1,426 | 0 | 83 | 853 | 0 | 1,204 | 19 | 2,381 |
-| Old Church Slavonic (`chu`) | 6 | 7 | 1,842 | 0 | 21 | 102 | 0 | 626 | 13 | 1,978 |
+| Sanskrit (`sa`) | 159 | 14 | 3,793 | 14 | 90 | 82 | 0 | 4,081 | 173 | 4,152 |
+| English (`en`) | 71 | 1 | 57,113 | 104 | 15,924 | 41,017 | 3 | 31,181 | 72 | 114,233 |
+| Ancient Greek (`grc`) | 63 | 9 | 3,555 | 29 | 539 | 852 | 0 | 4,122 | 72 | 5,047 |
+| Persian (`fa`) | 51 | 0 | 5,043 | 76,750 | 71,691 | 2,918 | 7,321 | 2,091 | 51 | 163,774 |
+| Gothic (`got`) | 37 | 1 | 1,921 | 0 | 54 | 139 | 0 | 1,030 | 38 | 2,152 |
+| Latin (`la`) | 30 | 2 | 5,476 | 81 | 328 | 1,572 | 0 | 5,138 | 32 | 7,489 |
+| Lithuanian (`lt`) | 10 | 8 | 1,427 | 0 | 83 | 853 | 0 | 1,207 | 18 | 2,381 |
+| Old Norse (`non`) | 16 | 1 | 2,948 | 1 | 4 | 85 | 0 | 2,084 | 17 | 3,055 |
+| Old Church Slavonic (`chu`) | 6 | 7 | 1,842 | 0 | 21 | 102 | 0 | 628 | 13 | 1,978 |
 | Avestan (`ave`) | 12 | 0 | 300 | 40 | 0 | 0 | 0 | 103 | 12 | 352 |
-| Greek (`el`) | 5 | 4 | 6,577 | 0 | 407 | 3,147 | 0 | 5,241 | 9 | 10,140 |
-| Old English (`ang`) | 5 | 2 | 6,048 | 7 | 63 | 299 | 0 | 3,633 | 7 | 6,424 |
-| Middle English (`enm`) | 5 | 1 | 4,425 | 11 | 72 | 2,992 | 0 | 3,084 | 6 | 7,506 |
+| Old Irish (`sga`) | 8 | 2 | 1,706 | 1 | 35 | 167 | 0 | 1,537 | 10 | 1,919 |
+| Greek (`el`) | 5 | 4 | 6,577 | 0 | 407 | 3,147 | 0 | 5,240 | 9 | 10,140 |
+| Old English (`ang`) | 4 | 2 | 6,049 | 7 | 63 | 299 | 0 | 3,634 | 6 | 6,424 |
 | Old Persian (`peo`) | 5 | 0 | 200 | 89 | 13 | 18 | 0 | 157 | 5 | 325 |
-| German (`de`) | 4 | 0 | 9,736 | 3 | 514 | 5,923 | 0 | 6,519 | 4 | 16,180 |
-| Italian (`it`) | 1 | 2 | 11,479 | 7 | 680 | 7,550 | 0 | 14,528 | 3 | 19,719 |
-| Old High German (`goh`) | 1 | 0 | 1,522 | 0 | 2 | 41 | 0 | 640 | 1 | 1,566 |
-| Hittite (`hit`) | 1 | 0 | 285 | 0 | 3 | 0 | 0 | 288 | 1 | 289 |
-| Old Armenian (`xcl`) | 1 | 0 | 1,024 | 0 | 133 | 261 | 0 | 1,153 | 1 | 1,419 |
+| Italian (`it`) | 1 | 2 | 11,479 | 7 | 680 | 7,550 | 0 | 14,529 | 3 | 19,719 |
+| Middle English (`enm`) | 0 | 1 | 4,430 | 11 | 72 | 2,992 | 0 | 3,084 | 1 | 7,506 |
+| Old High German (`goh`) | 1 | 0 | 1,522 | 0 | 2 | 41 | 0 | 641 | 1 | 1,566 |
+| Hittite (`hit`) | 1 | 0 | 285 | 0 | 3 | 0 | 0 | 289 | 1 | 289 |
+| German (`de`) | 0 | 0 | 9,740 | 3 | 514 | 5,923 | 0 | 6,521 | 0 | 16,180 |
 | Middle High German (`gmh`) | 0 | 0 | 542 | 0 | 0 | 32 | 0 | 185 | 0 | 574 |
 | Armenian (`hy`) | 0 | 0 | 2,252 | 0 | 514 | 2,271 | 0 | 231 | 0 | 5,037 |
-| Middle Persian (`pal`) | 0 | 0 | 183 | 494 | 0 | 17 | 0 | 61 | 0 | 694 |
-| Albanian (`sq`) | 0 | 0 | 1,861 | 0 | 745 | 1,401 | 0 | 1,842 | 0 | 4,007 |
+| Middle Persian (`pal`) | 0 | 0 | 184 | 494 | 0 | 17 | 0 | 61 | 0 | 695 |
+| Albanian (`sq`) | 0 | 0 | 1,861 | 0 | 745 | 1,401 | 0 | 1,847 | 0 | 4,007 |
 | Tocharian B (`txb`) | 0 | 0 | 427 | 0 | 2 | 234 | 0 | 507 | 0 | 663 |
+| Old Armenian (`xcl`) | 0 | 0 | 1,025 | 0 | 133 | 261 | 0 | 1,159 | 0 | 1,419 |
 | Parthian (`xpr`) | 0 | 0 | 28 | 2 | 1 | 3 | 0 | 1 | 0 | 34 |
 
 ## What a language is thought to hold
@@ -93,7 +93,7 @@ no grey band at all (`data/vocabulary_estimates.yaml`).
 | Ancient Greek (`grc`) | 116,502 | 111,455 | entries (headwords) of literary and documentary Ancient Greek (dictionary) | [Liddell–Scott–Jones, A Greek–English Lexicon, 9th edition (1940), as summarised in its Wikipedia article](https://en.wikipedia.org/wiki/A_Greek%E2%80%93English_Lexicon), 1940 |
 | Latin (`la`) | 40,000 | 32,511 | headword entries of Classical Latin (to AD 200), covering 100,000 senses (dictionary) | [Oxford Latin Dictionary, 2nd edition (OUP 2012), as summarised in its Wikipedia article](https://en.wikipedia.org/wiki/Oxford_Latin_Dictionary), 2012 |
 | Avestan (`ave`) | 7,959 | 7,607 | dictionary entries (lemmas) of the standard Avestan dictionary (dictionary) | [Chr. Bartholomae, Altiranisches Wörterbuch (1904), digitised as the CAB edition (FU Berlin)](https://cab.geschkult.fu-berlin.de/dictionaries/Bartholomae_Dictionary.html), 1904 |
-| Middle Persian (`pal`) | 4,000 | 3,306 | the commonest simple words a concise dictionary sets out to cover — a curated core, not the attested vocabulary (floor) | [D. N. MacKenzie, A Concise Pahlavi Dictionary (OUP 1971), preface](https://www.parsianjoman.org/wp-content/uploads/2015/09/A-Concise-Pahlavi-Dictionary.pdf), 1971 |
+| Middle Persian (`pal`) | 4,000 | 3,305 | the commonest simple words a concise dictionary sets out to cover — a curated core, not the attested vocabulary (floor) | [D. N. MacKenzie, A Concise Pahlavi Dictionary (OUP 1971), preface](https://www.parsianjoman.org/wp-content/uploads/2015/09/A-Concise-Pahlavi-Dictionary.pdf), 1971 |
 
 Every figure above was read on the page it cites on 2026-11-09; the quotation for
 each one lives with the number in `data/vocabulary_estimates.yaml`, together with the
@@ -126,7 +126,7 @@ with an older release.
   writes the same form with a morpheme hyphen the laws never write (`a-`, `-kas`).
   Both are counted apart: in neither did a rule demonstrate anything.
 
-Corpus: **426,393 glossary entries**, 114,511 with a recorded ancestor,
+Corpus: **426,395 glossary entries**, 114,513 with a recorded ancestor,
 **6,430 reconstructed exactly**, of which **978 start at the
 PIE etymon** (1.5% of the whole glossary,
 12,109 once the orthographic layer is allowed (2.8%),
@@ -148,7 +148,7 @@ about the dictionary's own spelling (2026-11-08).
 
 **38 more** reproduce a form the glossary itself
 marks as a **reconstruction** (Wiktionary's `Reconstruction:` namespace), out of
-567 reconstruction entries with a recorded ancestor.
+568 reconstruction entries with a recorded ancestor.
 They are counted apart and never added:
 a reconstruction is not a word a text spells, and a figure of *attested* forms that
 included one could not be checked against the record (2026-11-08).
@@ -173,7 +173,7 @@ included one could not be checked against the record (2026-11-08).
 | Middle High German (`gmh`) | 92% (533) | 43 | 29 | 3 | **96** | 29 | — | 33 | 1 | — | 1 | 159 | 580 | `████░░░░░░░░░░` 27% |
 | Proto-Germanic (`gem-pro`) | 56% (3,326) | 3,326 | 30 | 7 | **95** | 0 | — | 2 | 21 | — | 384 | 118 | 5,908 | `▏░░░░░░░░░░░░░` 2.0% |
 | Proto-Balto-Slavic (`ine-bsl-pro`) | 92% (454) | 454 | 1 | 0 | **46** | 0 | — | 3 | 3 | — | 2 | 52 | 491 | `█░░░░░░░░░░░░░` 11% |
-| Middle Persian (`pal`) | 16% (112) | 35 | 16 | 0 | **3** | 0 | — | — | — | 10 | — | 13 | 694 | `▏░░░░░░░░░░░░░` 1.9% |
+| Middle Persian (`pal`) | 16% (113) | 35 | 16 | 0 | **3** | 0 | — | — | — | 10 | — | 13 | 695 | `▏░░░░░░░░░░░░░` 1.9% |
 | Persian (`fa`) | 1.4% (2,301) | 866 | 5,497 | 669 | **0** | 136 | — | 229 | — | 421 | 128 | 793 | 164,823 | `▏░░░░░░░░░░░░░` 0.48% |
 | Greek (`el`) | 49% (5,090) | 312 | 2,174 | 1,370 | **0** | 646 | — | 318 | — | — | 194 | 964 | 10,471 | `█░░░░░░░░░░░░░` 9.2% |
 | Armenian (`hy`) | 1.2% (64) | 64 | 2,859 | 2,400 | **0** | 0 | — | — | — | — | — | 0 | 5,398 | `░░░░░░░░░░░░░░` 0% |
@@ -184,7 +184,7 @@ included one could not be checked against the record (2026-11-08).
 | Old Church Slavonic (`chu`) | 90% (1,802) | 278 | 116 | 77 | **0** | 0 | — | 400 | — | 946 | 76 | 1,346 | 1,999 | `█████████░░░░░` 67% |
 | Old Armenian (`xcl`) | 59% (920) | 920 | 379 | 245 | **0** | 0 | — | — | — | — | 15 | 0 | 1,564 | `░░░░░░░░░░░░░░` 0% |
 | Tocharian B (`txb`) | 63% (442) | 398 | 241 | 14 | **0** | 0 | — | — | — | — | 1 | 0 | 697 | `░░░░░░░░░░░░░░` 0% |
-| Old Persian (`peo`) | 41% (214) | 101 | 29 | 5 | **0** | 0 | — | 1 | — | 61 | — | 65 | 528 | `██░░░░░░░░░░░░` 12% |
+| Old Persian (`peo`) | 41% (215) | 101 | 29 | 5 | **0** | 0 | — | 1 | — | 61 | — | 65 | 529 | `██░░░░░░░░░░░░` 12% |
 | Avestan (`ave`) | 89% (312) | 195 | 0 | 0 | **0** | 26 | 33 | 1 | — | — | — | 60 | 352 | `██░░░░░░░░░░░░` 17% |
 | Hittite (`hit`) | 85% (253) | 235 | 1 | 2 | **0** | 0 | — | — | — | — | 6 | 0 | 298 | `░░░░░░░░░░░░░░` 0% |
 | Parthian (`xpr`) | 38% (13) | 1 | 4 | 0 | **0** | 0 | — | — | — | — | — | 0 | 34 | `░░░░░░░░░░░░░░` 0% |

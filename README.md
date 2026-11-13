@@ -134,14 +134,14 @@ Old High German          1,571 (97%)     163 / 1,625 (10%)   ██░░░░�
 Latin                    3,526 (43%)    136 / 8,160 (1.7%)   ▏░░░░░░░░░░░░░░░░░
 Old Irish                1,739 (87%)    107 / 2,004 (5.3%)   █░░░░░░░░░░░░░░░░░
 Proto-Germanic           3,326 (56%)     95 / 5,908 (1.6%)   ▏░░░░░░░░░░░░░░░░░
-Middle Persian             112 (16%)       3 / 694 (0.43%)   ▏░░░░░░░░░░░░░░░░░
+Middle Persian             113 (16%)       3 / 695 (0.43%)   ▏░░░░░░░░░░░░░░░░░
 Persian                 2,301 (1.4%)      0 / 164,823 (0%)   ░░░░░░░░░░░░░░░░░░
 Greek                    5,090 (49%)       0 / 10,471 (0%)   ░░░░░░░░░░░░░░░░░░
 ```
 
-**By the bands: 852 fully explained, 54 with approved adjustments, 131,352 partially explained and waiting for a law, 77,633 with no recorded etymology, 91,918 non-PIE** — plus 71,976 recorded loans from a sister branch, counted in the same total and never in green — and 7,324 words the record does not analyse but whose own language's words do (a formation, never a derivation, so never green either).
+**By the bands: 480 fully explained, 54 with approved adjustments, 131,725 partially explained and waiting for a law, 77,633 with no recorded etymology, 91,918 non-PIE** — plus 71,976 recorded loans from a sister branch, counted in the same total and never in green — and 7,324 words the record does not analyse but whose own language's words do (a formation, never a derivation, so never green either).
 
-**6,430 of 426,393 glossary entries reconstructed exactly (1.5%; 978 of them straight from the PIE etymon); 114,511 have a recorded ancestor and 47,397 reach a recorded PIE etymon.** The orthographic layer adds 5,103 more spellings (12,109 in total, 2.8%) — reported separately, because a writing convention is not a sound law. 1,438 more are reached through a language's own writing system (Old Persian cuneiform: the laws produce *wˈarkah* and the monument writes 𐎺𐎼𐎣) — counted apart, because the signs do not spell every sound (a syllabary leaves a final /h/ to the reader, an abjad the short vowels). 12 further words are completed by a word's own recorded pathway (a law that does not apply to it, with the reason stored) — also counted apart, never added. The percentage moves as words and rules are added — that is the point. Full table: [`docs/COVERAGE.md`](docs/COVERAGE.md).
+**6,430 of 426,395 glossary entries reconstructed exactly (1.5%; 978 of them straight from the PIE etymon); 114,513 have a recorded ancestor and 47,397 reach a recorded PIE etymon.** The orthographic layer adds 5,103 more spellings (12,109 in total, 2.8%) — reported separately, because a writing convention is not a sound law. 1,438 more are reached through a language's own writing system (Old Persian cuneiform: the laws produce *wˈarkah* and the monument writes 𐎺𐎼𐎣) — counted apart, because the signs do not spell every sound (a syllabary leaves a final /h/ to the reader, an abjad the short vowels). 12 further words are completed by a word's own recorded pathway (a law that does not apply to it, with the reason stored) — also counted apart, never added. The percentage moves as words and rules are added — that is the point. Full table: [`docs/COVERAGE.md`](docs/COVERAGE.md).
 
 ![Exact-derivation coverage by language](docs/coverage.svg)
 <!-- coverage:end -->

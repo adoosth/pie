@@ -1411,30 +1411,6 @@ a.lawname:hover, a.lawname:focus-visible { color: var(--accent); }
   margin-right: 5px; vertical-align: -1px; }
 .covtable td, .covtable th { vertical-align: middle; }
 
-/* a compound's pieces, each with its own ancestry ---------------------- */
-.jointime { margin: 18px 0 8px; padding: 14px 16px; border: 1px solid var(--line);
-  border-radius: 12px; background: color-mix(in srgb, var(--bg-2) 92%, var(--bg-3)); }
-.jointime h2 { margin: 0 0 4px; font-size: 15px; }
-.jrow { display: grid; grid-template-columns: auto auto 1fr; gap: 4px 12px;
-  align-items: baseline; padding: 10px 0 10px 14px; position: relative;
-  border-left: 2px solid color-mix(in srgb, var(--accent) 35%, var(--line)); }
-.jrow + .jrow { border-top: 1px dashed color-mix(in srgb, var(--line) 70%, transparent); }
-.jrow::before { content: ""; position: absolute; left: -5px; top: 16px; width: 8px; height: 8px;
-  border-radius: 50%; background: var(--accent-fill); box-shadow: 0 0 0 2px var(--bg-2); }
-.jpiece { font-size: 17px; font-weight: 600; color: var(--fg); text-decoration: none; }
-.jpiece:hover { color: var(--accent); }
-.jgloss { max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.jchain { display: flex; flex-wrap: wrap; align-items: baseline; gap: 3px; grid-column: 1 / -1;
-  margin-top: 2px; font-size: 13px; }
-.jstep { border-bottom: 2px solid var(--c, var(--line)); padding-bottom: 1px; }
-.jstep a { color: var(--fg); }
-.jstep .sub { margin-left: 4px; }
-.jlink { font-style: normal; color: var(--dim); padding: 0 3px; }
-.jmerge { display: flex; align-items: baseline; gap: 6px; margin-left: 14px; padding-top: 10px;
-  border-left: 2px solid var(--accent-fill); }
-.jmerge .jlink { color: var(--accent); }
-.jword { font-size: 19px; font-weight: 700; }
-
 /* -------------------------------------------------------------------- */
 /* one progress bar for the whole corpus (2026-11-09)                   */
 /* -------------------------------------------------------------------- */

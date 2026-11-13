@@ -135,6 +135,22 @@ suffixes:
     sources: [fortson-2004, beekes-2011]
     example: "*h₂erh₃- ‘to plough’ → *h₂érh₃trom ‘plough’"
 
+  - id: lom
+    form: "-lo-"
+    ending: "-m"
+    attach: drop
+    gloss: "instrument or means noun"
+    note: >
+      The *-lo- noun of instrument and means beside *-tro- (*-trom), neuter
+      thematic with nom.sg. *-lom. The record that names it for this model is
+      Proto-Germanic *ailą: Wiktionary's *ailą entry reads "from earlier *aidlą,
+      from Proto-Indo-European *h₂éydʰ-lom, from *h₂eydʰ- ('to burn')", so the
+      suffix is quoted rather than offered free. Latin -lum and Proto-Germanic
+      *-lą continue the same formation.
+    outcomes: "Latin -lum, Proto-Germanic *-lą"
+    sources: [wiktionary]
+    example: "*h₂eydʰ- 'to burn' → *h₂éydʰlom 'fire' (Proto-Germanic *ailą)"
+
   - id: wont
     form: "-wont-"
     ending: "-s"

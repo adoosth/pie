@@ -1821,6 +1821,15 @@ def _lemma_entry(lang: str, form: str) -> dict | None:
     key = normalise_etymon(form)
     if not key:
         return None
+    # A record that names the two stems of one ablauting noun writes them
+    # together: "*h₂ṓp-s ~ *h₂ép-s" is *one* word, and looking up the joined
+    # string found nothing — so the page said "no entry" for a word the record
+    # names, and the band inherited the hole (admin, 2026-11-13, Persian آبجو).
+    if "~" in form:
+        for variant in form.split("~"):
+            found = _lemma_entry(lang, variant.strip())
+            if found is not None:
+                return found
     record = _lemma_index(lang).get(key) or _lemma_index(lang).get(key.casefold())
     if record:
         return record
@@ -2644,6 +2653,42 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
     rows = list(entry.get("built_as") or [])
     if not any(_built_row_names(row, form, stage) for row in rows):
         rows.extend(_reduplication_rows(entry, stage))
+    # A template can stop where the sentence goes on: the stored row for
+    # *h₂ḱh₂owsyéti names *h₂eḱ- + *h₂ṓws, while its own etymology continues
+    # "and + *-yéti (denominative verbal suffix)".  The dictionary's arithmetic
+    # is the fuller statement of the same analysis, so a row the sentence
+    # states that *starts with* the stored row and adds a piece is read here;
+    # the prefix-merge below then keeps the longer one and drops the shorter
+    # (admin, 2026-11-13: the suffix was missing from the timeline).
+    if rows and str(entry.get("etym") or ""):
+        stored = [tuple(normalise_etymon(str(p[0] if isinstance(p, (list, tuple)) else p))
+                        for p in (row.get("pieces") or []))
+                  for row in rows]
+        for stated in _stated_constructions(str(entry.get("etym") or ""), stage,
+                                            str(entry.get("word") or ""),
+                                            str(entry.get("pos") or "")):
+            seq = ([stated["base"]["form"]]
+                   + [m["form"] for m in stated.get("members") or []]
+                   + [x["form"] for x in stated.get("suffixes") or []])
+            forms = tuple(normalise_etymon(str(x)) for x in seq)
+            if len(forms) < 2 or not any(
+                    len(old) and forms[:len(old)] == old and len(forms) > len(old)
+                    for old in stored):
+                continue
+            rows.append({
+                "lang": stage,
+                # A row that ends in a bound morpheme is an affix formation
+                # (the suffix is drawn as a morpheme, not as a word with no
+                # history); a row of words only is a compound.
+                "kind": "affix" if stated.get("suffixes") else "compound",
+                "of": str(entry.get("word") or ""),
+                "pieces": [[stated["base"]["form"], stated["base"].get("gloss") or ""]]
+                          + [[m["form"], m.get("gloss") or ""]
+                             for m in stated.get("members") or []]
+                          + [[x["form"], x.get("gloss") or ""]
+                             for x in stated.get("suffixes") or []],
+                "confidence": str(stated.get("confidence") or "stated"),
+            })
     for row in rows:
         lang = str(row.get("lang") or "")
         if data.stage_of(lang) != stage:
@@ -2752,7 +2797,11 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
         # *sekʷ- + *-éh₂ and again as *sekʷ- + *-éh₂ + *-ṓy.  The shorter row
         # is a prefix of the longer one, so it is the same analysis, not a tab
         # (admin, 2026-11-12).
-        sequences = [tuple(p["form"] for p in b["pieces"]) for b in found]
+        # Compared without notation: the same analysis may spell a piece
+        # with the star its row carried (*h₂eḱ-) in one statement and without
+        # it in the other (h₂eḱ-).
+        sequences = [tuple(normalise_etymon(p["form"]) for p in b["pieces"])
+                     for b in found]
         keep = []
         for k, seq in enumerate(sequences):
             if any(k2 != k and len(other) > len(seq)
@@ -3432,7 +3481,37 @@ def unrecorded_ancestry(entry: dict, chain: list[str]) -> list[dict]:
                     walk(found, depth - 1, seen)
 
     walk(entry, 3, set())
-    return out
+    # A word the record builds at its own stage has pieces the page draws as
+    # columns of their own, each carrying that piece's recorded ancestors.  A
+    # piece's ancestor the glossary does not head is therefore a hole in *this*
+    # timeline, exactly like a hole in the word's own chain — which is why fa
+    # آبجو could read “fully explained” beside a dark-red “no entry for this
+    # word” over Old Persian *yáwaʰ: the walk started at the compound's record,
+    # and a compound's record has no ancestry of its own (admin, 2026-11-13).
+    # Only a piece this stage really heads is followed; an unheaded piece is a
+    # morpheme, and `construction_path` already refuses one.
+    own_stage = data.stage_of(entry.get("lang") or "") or entry.get("lang") or ""
+    seen_forms = {(own_stage, normalise_etymon(str(entry.get("word") or "")))}
+    pieces: list[str] = []
+    for piece in (_own_construction(entry, chain) or {}).get("pieces") or []:
+        pieces.append(str(piece[0] if isinstance(piece, (list, tuple)) else piece))
+    for join in _compound_pieces(entry, own_stage):
+        pieces.extend(str(p.get("word") or "") for p in join.get("pieces") or [])
+    for raw in pieces:
+        form = normalise_etymon(raw)
+        if not form or (own_stage, form) in seen_forms:
+            continue
+        found = _lemma_entry(own_stage, form)
+        if found is None or found is entry:
+            continue
+        walk(found, 2, set(seen_forms))
+    # Two pieces may share an ancestor (آب and جو both climb through Old
+    # Persian), and the walk visits each piece on its own: the hole is one
+    # rung of one page, so it is named once.
+    unique: dict[tuple[str, str], dict] = {}
+    for row in out:
+        unique.setdefault((row["stage"], row["form"]), row)
+    return list(unique.values())
 
 
 def ancestor_starts(entry: dict, chain: list[str],
@@ -3825,6 +3904,13 @@ def _page_category(entry: dict, lang: str, ladder: dict | None,
         except Exception:
             own = None
     if published and (not own or own.get("category") != published):
+        # A hole is not a difference of measurement.  The page draws the rung
+        # and prints “no entry for this word” over it, so no published band may
+        # call the word green beside it (admin, 2026-11-13: fa آبجو read
+        # “fully explained” above exactly that line, because the index was
+        # measured before a compound's pieces were walked).
+        if own and own.get("category") == "partial" and own.get("missing_steps"):
+            return own
         return _published_category(published, own)
     return own
 
@@ -6745,8 +6831,13 @@ _TERM_RE = re.compile(
 #: construction that does not build the word at all (2026-11-08).
 _ARITHMETIC_RE = re.compile(
     r"\*[^\s+,;\[\]]+?\s*(?:\((?:[^()]|\([^()]*\)){0,90}\)\s*)?"
-    r"(?:\+\s*(?:[a-z]+\s+){0,3}\*[^\s+,;\[\]]+\s*"
-    r"(?:\((?:[^()]|\([^()]*\)){0,90}\)\s*)?)+")
+    # A record may join its pieces with a conjunction before the plus — "From
+    # *h₂eḱ- (“sharp”) + *h₂ṓws (“ear”) and + *-yéti (denominative verbal
+    # suffix)" — and the chain used to stop at the word before the conjunction,
+    # so the suffix the sentence names was missing from the timeline (admin,
+    # 2026-11-13).
+    r"(?:(?:\s*,?\s*(?:and|or|plus))?\s*\+\s*(?:[a-z]+\s+){0,3}"
+    r"\*[^\s+,;\[\]]+\s*(?:\((?:[^()]|\([^()]*\)){0,90}\)\s*)?)+")
 
 #: The words that make an arithmetic an etymology rather than a list: a
 #: sentence is only read for a construction when it says how the word is

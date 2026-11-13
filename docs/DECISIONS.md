@@ -4098,3 +4098,60 @@ line; nothing in the header changed.
 as its base (one derivation piece, known, glossed, with *h₂eh₂óyḱe above it);
 the ladder's last rung is gem-pro *aiganaz and carries the step; a one-piece
 row of another kind still starts nothing.
+
+## 2026-11-13 — one drawing of a construction, one reading of a chain, and
+## the suffix a template stopped short of
+
+**The pieces section is gone** (admin: "I thought we completely got rid of the
+WHERE THE PIECES COME FROM section. Please remove this section from all word
+pages entirely; what it wants to show is already shown in the timeline"). The
+block stood between the header and the timeline and drew each piece with its
+own ancestry, meeting again at the headword; `builtInTimeline` suppressed it
+only when the timeline's step carried *exactly* the same piece list. So it was
+either a second copy of the step or — when the two disagreed — a rival analysis
+of one word. `renderJoin` and its section are deleted; `joins`/`seam_join` stay
+on the payload because the timeline's step and the band's reading are built
+from them.
+
+**A chain joined with "and" no longer stops short.** *h₂ḱh₂owsyéti's own
+sentence reads "From *h₂eḱ- (“sharp”) + *h₂ṓws (“ear”) and + *-yéti
+(denominative verbal suffix)", and `_ARITHMETIC_RE` required the `+` to follow
+the previous term directly, so the suffix after "and +" was never read. It is
+read now, and a word whose *stored* template stopped short of its own sentence
+takes the longer statement: `_rung_builds` accepts a stated row that starts with
+the stored one and adds a piece, and the prefix-merge (compared without
+notation) drops the shorter — one construction, three pieces, the suffix
+carrying its morphology gloss.
+
+**A hole in a piece's chain is a hole in the word's** (admin: fa آبجو "I can
+still see 'no entry for this word' on the page but it's still 'fully
+explained'. This should be impossible"). `unrecorded_ancestry` walked the
+entry's own record, and a compound's record has no ancestry of its own: the
+pieces' rungs are drawn by the page but were never measured. It now walks each
+piece the stage heads (from `_own_construction` and `_compound_pieces`) to depth
+two and reports what it finds once per (stage, form). A **hole also outranks the
+published band** in `_page_category`: the rung is on the page, so no index may
+call the word green beside it.
+
+**Two notations that hid a word.** A record that names the two stems of one
+ablauting noun writes them together (`*h₂ṓp-s ~ *h₂ép-s`); `_lemma_entry` now
+tries each side, so the rung resolves to the word rather than to nothing.
+
+**Three entries the pages were missing**, each filed from the record that names
+it, in `data/lexicon/_supplement/`: Old Persian *yáwaʰ "barley" (Wiktionary's
+Persian جو: "from Middle Persian …, from Old Persian *yáwaʰ, from Proto-Iranian
+*yáwah"), the Middle Persian jaw it names, and PIE *h₂ṓp-s ~ *h₂ép-s, the root
+noun of *h₂ep- (Wiktionary's *Hā́ps: "From Proto-Indo-European *h₂ṓp-s ~
+*h₂ép-s, from *h₂ep-"). With them, fa آبجو is complete on both branches:
+آب → PIE *h₂ṓp-s, جو → PIE *yéwos.
+
+**`-lom` is a registered PIE suffix** (admin: "Do we have an established
+morphology that would add a -lom suffix to a PIE word? If so, it would help with
+gem-pro/ailą"). `data/morphology/ine-pro.yaml` gains the `lom` row — `-lo-` plus
+the neuter nom.sg. `-m`, attach `drop` — beside `-tro-`, with the record that
+names it: Proto-Germanic *ailą "from earlier *aidlą, from Proto-Indo-European
+*h₂éydʰ-lom, from *h₂eydʰ- (‘to burn’)". The PIE word is an entry
+(`h₂éydʰlom`, one construction of *h₂eydʰ- + *-lom), so gem-pro/ailą's ladder
+now climbs *ailą → ◇ *h₂eydʰ- + *-lom → *h₂éydʰlom and the rung is a word of its
+stage. The laws that carry *h₂éydʰlom down give *íydlą, not *ailą — the page
+says "differs — the worklist", which is a law question, not a morphology one.
