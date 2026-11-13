@@ -136,6 +136,11 @@ def _meaning_clause(line: str, head: str, tag: str = "") -> str:
                 and VERBISH.search(clauses[index + 1])):
             continue
         return _with_synonyms(clause, clauses[index + 1:])
+    # Nothing but the dictionary's apparatus — فسیجان's whole first line is
+    # «(تاریخ قم )» — is no meaning at all, and a source note is not one
+    # (critic batch 08, 2026-11-13).
+    if NOTE_ONLY.match(clauses[-1]) or COMPARATIVE.match(clauses[-1]):
+        return ""
     return clauses[-1]
 
 

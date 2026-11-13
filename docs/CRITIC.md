@@ -141,3 +141,30 @@ The super agent fixes what it can, adds the reusable class to
 `tools/critic.py` so the next batch finds it mechanically, records the rule in
 `AGENTS.md` and `docs/DECISIONS.md`, and spawns the next critic on a fresh
 random sample (a word may not be reviewed twice unless a fix changed it).
+
+## Other languages (from the Old Persian round on)
+
+The rules do not change with the language; the *evidence* does. What to read
+first in each one:
+
+- **Persian (fa)** — Dehkhoda's own entry (`vajehyab.com/dehkhoda/<word>`) is
+  the definition; the entry's first clause is often notation (a respelling, a
+  comparative etymology list, the name a name entry is about), so check that
+  the page's meaning is the clause that actually defines the word.
+- **Old Persian (peo)** — the writing is a **syllabary**. A rung can only climb
+  from a *reading*: the entry's `translit`/`phon`, the language's spelling
+  table, or a reading the corpus quotes. A page whose cuneiform form has no
+  reading, or whose reading disagrees with the entry's own transliteration, is a
+  broken rung — the laws were handed a syllabary and refused it (`unreadable`).
+  A form the record quotes that the glossary does not head must print **no
+  entry**, and its Proto-Iranian/PII/PIE rungs must each be entries of their
+  stage. Wiktionary: `Reconstruction:Old_Persian/<form>` and the attested
+  article.
+- **Middle Persian (pal)** — the Book Pahlavi spelling is ambiguous; the entry
+  needs a transliteration (MacKenzie's) before anything can be derived. A page
+  that shows a Book Pahlavi word with no reading, or that treats a Manichaean
+  spelling as another Book Pahlavi spelling of the same word, is a finding.
+
+A batch on a new language starts with `tools/critic.py sample --lang <code>`;
+if its Persian-oriented filters starve the sample, take the words from
+`data.lexicon(<code>)` by hand and say so in the report.

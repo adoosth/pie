@@ -4804,6 +4804,9 @@ def _page_gloss(lang: str, entry: dict, glosses) -> list[str]:
     if note and note.start() > 0:
         first = first[:note.start()]
     # A dictionary's own hedge is not a meaning (فیرزانی «ظاهراً مخفف …»).
+    # «بقول دزی (ج 2 ص 19)» opens طالیسفر's entry: whose opinion the sentence
+    # reports is not the meaning, and the reading after it usually is.
+    first = re.sub(r"^\s*(?:به\s*|\u0628)?قول\s+[^(]{1,30}\([^)]{0,40}\)\s*", "", first)
     hedge = re.search(r"\.\s*(?:ظاهراً|ظاهرا|شاید|گویا|احتمالاً)\b", first)
     if hedge and hedge.start() > 0:
         first = first[:hedge.start()]
