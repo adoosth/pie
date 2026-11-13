@@ -4484,3 +4484,14 @@ now registers the three suffixes from the reconstructions that gloss them,
 `_base_row` answers a bound piece only with a bound headword (and prints the
 morphology gloss, with no link to a page that is not the morpheme), and
 `unrecorded_ancestry` treats a join's bound piece as grammar rather than a word.
+
+**0.17.26 — a syllabary writes its vowels (2026-11-13).** Two readings of the
+same signs were being called one reading: 𐎠𐎼𐏁𐎫𐎡𐏁 is recorded *r̥štiš*, the
+laws produce *arštˈiš* (a prothetic a for r̥), the consonant skeleton matched and
+the page wore a ✓. `_same_reading` compares the readings themselves for a script
+that writes vowels (stress and notation aside); 9 of the 93 matching Old Persian
+pages lose the ✓ and say what the laws make instead. And `_stage_descendants`
+resolved the branch's starting form only *after* refusing it: 127 pages said
+«the record gives no reading» beside a reading they printed (𐎥𐎭𐎠𐎼𐎹 =
+Gaⁿdāraya); `_phonological_form` now runs first, and the branch carries the word
+into Middle Persian again.

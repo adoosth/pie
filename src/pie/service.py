@@ -7050,9 +7050,13 @@ def _same_reading(fit: dict, form: str, readings: list[str]) -> bool:
         # -ā comes from PIE *-eh₂ and no registered law drops it (2026-11-12).
         return _abjad_reading(fit, form, recorded) is not None
     if not unwritten:
-        # A syllabary or a logogram: the sign-by-sign comparison is the
-        # documented convention, and the consonants are the test (2026-11-11).
-        return script.reading_skeleton(form) == script.reading_skeleton(recorded[0])
+        # A syllabary *writes its vowels*, so they are evidence and not the
+        # reader's guess: 𐎠𐎼𐏁𐎫𐎡𐏁 is read r̥štiš and the laws' arštˈiš is a
+        # different reading with the same consonant skeleton, which the old
+        # comparison called a match and marked ✓ (critic peo-03, 2026-11-13).
+        # Stress and notation are still not sounds (`_same_form`).
+        return _same_form(form, recorded[0]) or any(
+            _same_form(form, spelled) for spelled in recorded[1:])
     # The letter is absent from *both* writings: *daivaʰ* is written da-i-va,
     # and the aspiration the transcription marks is the /h/ no sign carries.
     def without(text: str) -> str:
@@ -7290,6 +7294,15 @@ def _stage_descendants(lang: str, form: str,
     tentative one (red), never green or gold.
     """
     origin_records = _recorded_at(origin[0], origin[1]) if origin else {}
+    # The form a page hands over may still be the writing; the laws need its
+    # reading, and the reading is exactly what `_phonological_form` finds.  The
+    # guard used to look at the writing alone, so 127 Old Persian pages said
+    # «the record gives no reading» beside a reading they were printing
+    # (critic peo-03, 2026-11-13: 𐎥𐎭𐎠𐎼𐎹 = Gaⁿdāraya).
+    if translit.is_scripted(form):
+        reading = _phonological_form(lang, form)
+        if reading and not translit.is_scripted(reading):
+            form = reading
     if translit.is_scripted(form):
         # The branch runs the son laws over *segments*, and a form written in
         # its own script has none: Old Persian 𐎠𐎼𐎲𐎠𐎹 was copied into the
