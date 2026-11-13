@@ -54,6 +54,7 @@ from urllib.parse import quote
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from pie import data  # noqa: E402
+from pie.meanings import entry_for  # noqa: E402
 
 OUT = data.DATA / "dehkhoda" / "structure.jsonl.gz"
 MEANINGS = data.DATA / "meanings" / "fa"
@@ -236,13 +237,9 @@ def cached_entries(meanings: Path) -> dict[str, str]:
         # One page can print several words; the tag to read is the one under
         # this headword, not whichever entry happens to come first (review,
         # 2026-11-10).
-        chosen = None
-        for entry in entries:
-            if str(entry.get("head") or "").strip() == word:
-                chosen = entry
-                break
-        if chosen is not None or entries:
-            out[word] = (chosen or entries[0]).get("text") or ""
+        chosen = entry_for(entries, word)
+        if chosen is not None:
+            out[word] = chosen.get("text") or ""
     return out
 
 

@@ -1235,7 +1235,23 @@ def _not_a_flattened_prefix(rows: list[tuple[str, str, str]], entry: dict) -> li
         return rows
     # The root the sentence names is the verb's own; the prefixes it is made
     # with are pieces, and their history is not the verb's history.
-    return [row for row in rows if str(row[2] or "") == "root"]
+    roots = [row for row in rows if str(row[2] or "") == "root"]
+    if roots:
+        return roots
+    # No row is marked a root, and the sentence still states pieces.  Then the
+    # *chain* ends where a stage repeats: آماده's rows are pal āmādag ← Proto-
+    # Iranian *āmaH- ← (*ā- + *maH-) ← PIE *meh₁-, and only the two before the
+    # repeat are this word's lineage — the rest is the history of a piece.  An
+    # emptied ancestry was worse than either: آماده then said no origin was
+    # recorded at all (critic batch 09, 2026-11-13).
+    out: list[tuple[str, str, str]] = []
+    seen: set[str] = set()
+    for row in rows:
+        if row[0] in seen:
+            break
+        seen.add(row[0])
+        out.append(row)
+    return out or rows[:1]
 
 
 #: A sentence that states where a word comes from, in words rather than in an
@@ -5666,7 +5682,23 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
         candidates = [(own["stage"], str(entry.get("word") or ""))]
     # A compound's cognate set belongs to one of its pieces, not to the whole
     # word: *pótis is the etymon of *pátiš, and a ladder may not start there.
-    pie = None if own else ((cog or {}).get("pie") or _pie_form(entry))
+    # A cognate set that names a *different* PIE etymon from the one the word's
+    # own ancestry reaches was read off a piece, not off the word: آماده's set
+    # is ine-pro:h₂éd, the etymology of the prefix *ā-, while its own chain ends
+    # at *meh₁- «to measure» (critic batch 09, 2026-11-13; seven آ- words drew
+    # the identical *h₂éd ladder).  The ancestry is the record's own statement
+    # about this word, so it wins and the set is not used.
+    # `_pie_form` answers with the entry's cognate set first, which is the very
+    # thing being checked here, so read the ancestry alone.
+    own_pie = _pie_form({**entry, "cog": ""})
+    # `_pie_form` passes over a bare root, so compare the PIE names the chain
+    # actually holds — آماده's *meh₁- is a root and the cog is still wrong.
+    chain_pie = [str(w) for l, w, _r in (entry.get("anc") or []) if l == "ine-pro" and w]
+    set_pie = str((cog or {}).get("pie") or "")
+    if set_pie and chain_pie and all(normalise_etymon(w) != normalise_etymon(set_pie)
+                                     for w in chain_pie):
+        cog = None
+    pie = None if own else ((cog or {}).get("pie") or own_pie)
     formed = bool(_formed_from(entry))
     linked_by_set = (bool(pie) and not formed
                      and not any(stage == chain[0] for stage, _w in candidates))

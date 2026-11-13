@@ -261,7 +261,9 @@ def _from_cache(words: list[str]) -> int:
                 continue
             if not row or not row.get("entries"):
                 continue
-            first = row["entries"][0]
+            first = meanings.entry_for(row["entries"], word)
+            if not first:
+                continue
             tag = tag_of(first.get("text", ""))
             gloss = first_line(first.get("text", ""), first.get("head") or word, tag)
             if not gloss:
@@ -327,11 +329,13 @@ def main(argv=None) -> int:
                 print(f"  ! {word}: {exc}", flush=True)
             gloss = ""
             if row and row.get("entries"):
-                first = row["entries"][0]
+                first = meanings.entry_for(row["entries"], word)
+                if not first:
+                    continue
                 gloss = first_line(first.get("text", ""), first.get("head") or word,
                                    tag_of(first.get("text", "")))
             if gloss:
-                tag = tag_of(row["entries"][0].get("text", ""))
+                tag = tag_of(first.get("text", ""))
                 stream.write((json.dumps({"word": word, "gloss": [gloss],
                                           "tag": tag, "origin": lang_of(tag),
                                           "url": row.get("url", "")},

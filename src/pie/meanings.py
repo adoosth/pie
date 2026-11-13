@@ -96,6 +96,44 @@ class _Entry(HTMLParser):
             self._buf.append(text)
 
 
+#: The dictionary's parenthetical, right after the headword: «(اِخ)» is a
+#: proper name, «(اِ)» a noun.
+_TAG = re.compile(r"^[^()（）]{0,60}[（(]\s*([^)）]{1,24})\s*[)）]")
+#: Dehkhoda's marks for a proper name: a person, a place, a tribe.
+NAME_TAGS = ("اِخ", "اَخ")
+
+
+def tag_of(entry: dict) -> str:
+    m = _TAG.match(str((entry or {}).get("text") or ""))
+    return m.group(1).strip() if m else ""
+
+
+def is_name_entry(entry: dict) -> bool:
+    tag = tag_of(entry)
+    return any(name in tag for name in NAME_TAGS)
+
+
+def entry_for(entries: list[dict], word: str = "") -> dict | None:
+    """The entry to read for a headword that has several.
+
+    A page can print more than one word under one headword.  The one to read is
+    the entry filed under this headword, and — when the dictionary gives a
+    person's biography first and the word itself after it (ابوشبل «صحابی است»
+    before «اسد … شیر», محاسن a scholar before «ج ِ حسن») — the first entry that
+    is not a proper name, because the page is the word's, not the man's (critic
+    batch 09, 2026-11-13).
+    """
+    entries = [e for e in entries or [] if str(e.get("text") or "").strip()]
+    if not entries:
+        return None
+    same = [e for e in entries if word and str(e.get("head") or "").strip() == word]
+    pool = same or entries
+    for entry in pool:
+        if not is_name_entry(entry):
+            return entry
+    return pool[0]
+
+
 def _tidy(text: str) -> str:
     """One paragraph of the page's own text, line breaks inside it kept."""
     text = unescape(text).replace("\u200c", "\u200c")
