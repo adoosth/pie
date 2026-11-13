@@ -4860,6 +4860,7 @@ def _page_category(entry: dict, lang: str, ladder: dict | None,
     own = None
     if ladder and ladder.get("category"):
         own = ladder["category"]
+        own = _name_the_form_the_laws_make(own, ladder)
     elif not (ladder and ladder.get("levels")):
         try:
             own = _category_of(entry, data.derivation_chain(lang), None, None,
@@ -4890,6 +4891,33 @@ _BAND_REASON = {
     "non_pie": "the published measurement has it coming from outside the family",
     "ie_loan": "the published measurement has it borrowed from another IE branch",
 }
+
+
+def _name_the_form_the_laws_make(own: dict, ladder: dict) -> dict:
+    """Say which form the laws produced, when the recorded word is another.
+
+    The counter says «no rule applied» when nothing it tried reproduced the
+    word, and the page printed that above a step that plainly did fire —
+    پادشاه's two laws give pādešāy and the record reads pādišāh (critic batch
+    08, 2026-11-13).  The ladder knows both forms, so the reason names them.
+    """
+    if not own or own.get("reason") != "no rule applied":
+        return own
+    fired = [row for level in ladder.get("levels") or []
+             for row in level.get("rules") or []
+             if row.get("fired") and not row.get("disabled")]
+    if not fired:
+        return own
+    last = (ladder.get("levels") or [{}])[-1]
+    made = str(last.get("form") or "")
+    recorded = str((last.get("recorded") or {}).get("reading")
+                   or last.get("baseline") or "")
+    if not made or not recorded or made == recorded:
+        return own
+    return {**own,
+            "reason": (f"the laws produce {made}, not the recorded {recorded}: "
+                       f"{len(fired)} of them apply and the rest of the change "
+                       "is not modelled")}
 
 
 def _published_category(band: str, own: dict | None) -> dict | None:

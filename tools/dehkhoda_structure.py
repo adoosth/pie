@@ -176,8 +176,15 @@ def pos_of(label: str) -> str | None:
         return POS[label]
     for part in label.split("،"):
         tokens = [t for t in part.replace("/", " ").split() if t]
+        foreign = bool(tokens) and tokens[0] in LANG_TOKENS
         while tokens and tokens[0] in LANG_TOKENS:
             tokens.pop(0)
+        # An Arabic maṣdar is a *noun* in Persian: فظاظة is «درشتخوی گردیدن»
+        # in Dehkhoda's words, but the word a Persian sentence uses is the
+        # noun «درشتخویی», and the page called it a verb (critic batch 08,
+        # 2026-11-13).  A Persian مص (an infinitive) is still a verb.
+        if foreign and tokens == ["مص"]:
+            return "noun"
         # "اِمرکب" and "اِمصغر" are one word: the modifier ran into the
         # abbreviation.  Split it off before the lookup and keep reading.
         if tokens:
