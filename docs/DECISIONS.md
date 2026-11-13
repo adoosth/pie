@@ -1,3 +1,36 @@
+## 2026-11-13 — the glossary is read in pages
+
+**What.** The glossary printed the first 400 words of a stage and stopped. That
+was already a lie for Persian and Old Persian; after the MPCD import it made
+Middle Persian's 17,153 words unreadable past `abāgpāmišn` — there was no
+button, no link and no address that reached page 2 (admin, 2026-11-13: "no way
+to move to the next page lol").
+
+**The page is a parameter, and it is in the address.** `service.glossary`
+takes `page` (1-based, clamped to the list), and its answer says where the
+reader is: `page`, `pages`, `first`, `last`, beside the existing `total`. The
+interface keeps it in the hash (`#/glossary?lang=pal&band=all&page=2`) together
+with the language, the category and the spelling filter, so a page can be
+linked, bookmarked and left with the browser's Back button. Changing the
+language, the category or the filter starts at page 1 — those are different
+lists — and a page past the end is the last page, not an error.
+
+**First / previous · page N of M · words a–b of total · next / last**, above
+and below the table. The first page's left pair and the last page's right pair
+are disabled spans, not links, so the ends of the list look like ends.
+
+**Only the page is dressed.** The list still builds a row for every word of the
+stage, because the counts (bands, spellings, the category selector) are about
+the whole stage and must not shrink to 400 — but the dressing (status,
+written form, meaning, reading, evidence) was the expensive part and is now
+done for the returned slice only (`_glossary_row_shown`). A warm request over
+Middle Persian's 17,153 words drops from about 1.0 s to 0.2 s.
+
+No coverage re-measurement: no band changed. Five tests
+(`tests/test_glossary_pages.py`) hold the contract — page 2 starts where page 1
+stops with no overlap, a page past the end is the last page, every page of a
+three-page list is fully dressed, and `q` keeps its own pages.
+
 ## 2026-11-13 — a Middle Persian word may bring its corpus with it
 
 **What.** The Zoroastrian Middle Persian Digital Corpus and Dictionary

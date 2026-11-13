@@ -587,7 +587,11 @@ async function viewGlossary(params) {
   const o = await api("/api/overview");
   const langs = o.languages.filter((l) => l.words > 0).sort((a, b) => a.name.localeCompare(b.name));
   const q = (params && params.get("q")) || "";
-  const g = await api("/api/glossary", { lang, limit: 400, band: band || null, q: q || null });
+  /* A stage of 17,000 words is read in pages (admin, 2026-11-13): the address
+     carries which one, so a page can be linked, bookmarked and stepped back
+     from with the browser's Back button like any other view. */
+  const page = Math.max(1, parseInt((params && params.get("page")) || "1", 10) || 1);
+  const g = await api("/api/glossary", { lang, limit: 400, band: band || null, q: q || null, page });
   const rows = g.rows || [];
   /* The same six colours as the coverage page (2026-11-09): every
      headword is painted with its band, read from the published measurement so
@@ -613,6 +617,29 @@ async function viewGlossary(params) {
     q.push(`band=${encodeURIComponent(nextBand || "all")}`);
     location.hash = `#/glossary?${q.join("&")}`;
   };
+  /* The pager: the same list, one page further on.  A new language, band or
+     spelling filter starts again at the first page; only `next`/`previous`
+     carry `page`. */
+  const pageHref = (n) => {
+    const parts = [`lang=${encodeURIComponent(lang)}`, `band=${encodeURIComponent(band || "all")}`];
+    if (q) parts.push(`q=${encodeURIComponent(q)}`);
+    if (n > 1) parts.push(`page=${n}`);
+    return `#/glossary?${parts.join("&")}`;
+  };
+  const pager = () => {
+    const pages = g.pages || 1;
+    const cur = g.page || 1;
+    if (pages <= 1) return "";
+    const step = (n, label) => (n < 1 || n > pages)
+      ? `<span class="pagebtn off">${label}</span>`
+      : `<a class="pagebtn" href="${esc(pageHref(n))}">${label}</a>`;
+    return `<nav class="glosspager" aria-label="Pages of the glossary">
+      ${step(1, "first")}${step(cur - 1, "previous")}
+      <span class="pagepos">page <b>${cur.toLocaleString()}</b> of ${pages.toLocaleString()}
+        · words ${(g.first || 0).toLocaleString()}–${(g.last || 0).toLocaleString()}
+        of ${(g.total || 0).toLocaleString()}</span>
+      ${step(cur + 1, "next")}${step(pages, "last")}</nav>`;
+  };
   app.innerHTML = `
     <h1>Glossary</h1>
     <p class="sub">Every headword of one stage, each opening its own page — the ladder, the branch below it
@@ -634,9 +661,9 @@ async function viewGlossary(params) {
       band === "pie" && bandOptions.length ? " · PIE words only, non-PIE hidden"
         : band ? ` · ${esc(bandLabel(band).toLowerCase())}` : ""}${
       q ? ` · filtered to “${esc(q)}”` : ""}${
-      g.total > rows.length ? ` · showing the first ${rows.length}` : ""}${
       g.banded && rows.length > g.banded ? ` · ${(rows.length - g.banded).toLocaleString()} not banded (reconstructions, and forms the counter leaves out)` : ""}</p>
     ${legendKeys.length ? `<p class="glosslegend" title="Each word is painted with its coverage band, from the same measurement as the coverage page. The numbers count words of this whole stage. A spelling that carries several words is listed once per word, numbered; the coverage page counts them the same way">${legendKeys.map((k) => `<span><i class="${bandClass(k)}"></i>${esc(bandLabel(k))} <b>${(counts[k] || 0).toLocaleString()}</b></span>`).join("")}</p>` : ""}
+    ${pager()}
     ${rows.length ? `<table class="glosslist"><thead><tr><th>form</th><th>status</th><th>pos</th><th>meaning</th></tr></thead><tbody>
       ${rows.map((r, i) => `<tr class="click reveal" style="--i:${Math.min(i, 16)}" tabindex="0"
         onclick="location.hash='${wordHref(lang, r.word, true, "", r.senses > 1 ? r.sense : 0)}'"
@@ -647,7 +674,8 @@ async function viewGlossary(params) {
           data-tip="${esc((g.statuses || {})[r.attestation] || "")}">${esc(r.attestation || "—")}</span></td>
         <td class="sub">${esc(r.pos || "—")}</td>
         <td>${esc((r.gloss || []).join("; "))}</td></tr>`).join("")}
-    </tbody></table>` : `<p class="empty">${band ? `No ${esc(bandLabel(band).toLowerCase())} in this stage.` : "This stage has no glossary entries."}</p>`}`;
+    </tbody></table>` : `<p class="empty">${band ? `No ${esc(bandLabel(band).toLowerCase())} in this stage.` : "This stage has no glossary entries."}</p>`}
+    ${pager()}`;
   $("#glang").onchange = (e) => goto(e.target.value, band);
   /* The list is 92,000 words long; finding one by spelling is what the
      server's `q` is for, and until now the address could not carry it

@@ -64,6 +64,13 @@ step (admin, 2026-11-12: "I don't want it to take ~10 seconds").
 - **Measure before and after** with `/tmp`-style probes: a cold process
   (`PYTHONPATH=src python3 -c 'from pie import service; service.word(...)'`) and
   the browser, because client rendering is a separate cost.
+- **A long list is read in pages, and only the page is dressed** (admin,
+  2026-11-13): `service.glossary(..., page=N)` still builds a row per word of
+  the stage — the band and spelling counts are the whole stage's — but
+  `_glossary_row_shown` dresses only the 400 returned rows (status, meaning,
+  reading), which took a warm Middle Persian request from 1.0 s to 0.2 s. The
+  answer carries `page`/`pages`/`first`/`last`, and the address carries the
+  page, so a page can be linked and Back works.
 
 ## Where things live
 

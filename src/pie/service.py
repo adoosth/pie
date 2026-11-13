@@ -986,8 +986,35 @@ def search(q: str, lang: str | None = None, limit: int = 40, gloss: bool = True)
     return (exact + prefix + contains + semantic)[:limit]
 
 
+def _glossary_row_shown(row: dict, lang: str, proto: bool) -> dict:
+    """One glossary row as the list prints it: status, meaning, reading.
+
+    Called for the rows of the page only.  The word, its band, its part of
+    speech and which sense it is were settled while the whole stage was read
+    (they are what the ordering and the counts need), and nothing here changes
+    that: this is the dressing, not a second decision.
+    """
+    entry = row.pop("_entry")
+    group = row.pop("_group")
+    word = row["word"]
+    status = attestation.for_word(group["entries"], proto=proto,
+                                  in_script=_in_native_script(lang, word))
+    row.update({
+        "attestation": status,
+        "written": attestation.written(word, status),
+        "gloss": [g for g in _page_gloss(lang, entry, group["gloss"])[:2] if g],
+        # This row's own reading, not the spelling's first homograph: دوش is duš
+        # (shower) and dōš (shoulder, 'last night'), and a list that printed one
+        # reading for all three said the wrong word (2026-11-12).
+        "reading": readings_for(entry)["reading"],
+    })
+    return _with_reading({**row, "show_reading": show_reading(lang, word),
+                          "evidence": evidence_for(word, lang)}, lang, word)
+
+
 def glossary(lang: str, limit: int = 400, roots_first: bool = True,
-             band: str | None = None, q: str | None = None) -> dict:
+             band: str | None = None, q: str | None = None,
+             page: int = 1) -> dict:
     """Every headword of one stage, alphabetically, each a door to its page.
 
     This is the replacement for a separate "cognates" page (2026-11-08): a word or root *glossary* that opens the word view again, instead of
@@ -1000,6 +1027,13 @@ def glossary(lang: str, limit: int = 400, roots_first: bool = True,
     `tools/coverage.py` that publishes `data/coverage.json`: the list cannot
     disagree with the numbers, and the page never re-measures 400 words per
     request.  A proto stage has no band — the six are for attested languages.
+
+    **The list is paged** (admin, 2026-11-13): Middle Persian holds 17,000 words
+    and the page showed the first 400 with no way on.  `page` is 1-based and
+    clamped to the list, and the answer carries `page`/`pages` so the reader can
+    step through it.  Only the rows of the page asked for are dressed (meaning,
+    status, reading): building the gloss of all 17,000 to print 400 made one
+    request cost a second.
     """
     # `all` is the address the glossary writes for "no filter", so the API
     # accepts it too (2026-11-09).
@@ -1042,32 +1076,21 @@ def glossary(lang: str, limit: int = 400, roots_first: bool = True,
             bound = headword.startswith("-") or headword.endswith("-")
             kind = ("root" if pos_label == "root"
                     else "affix" if bound or pos_label in _BOUND_POS else "")
-            # The reading line is only ever printed, so it is built for the
-            # rows that are shown, not for the 165,000 the counts need
-            # (2026-11-10).
-            # How this headword is known, for the chip beside it: attested
-            # words print in their own script, a reconstruction carries its
-            # asterisk (2026-11-11).
-            status = attestation.for_word(
-                group["entries"], proto=proto,
-                in_script=_in_native_script(lang, entry["word"]))
+            # Everything a row *prints* — its status, its meaning, its
+            # reading — is dressed on the page slice below, not here: the list
+            # is built for all 17,000 words so the counts are whole, but only
+            # the 400 a reader opens are ever shown (2026-11-13).  The
+            # dressing is `_glossary_row_shown`.
             rows.append({
                 "_q": matched,
+                "_entry": entry, "_group": group,
                 "word": entry["word"], "pos": " / ".join(group["pos"]),
-                "attestation": status,
-                "written": attestation.written(entry["word"], status),
-                "gloss": [g for g in _page_gloss(lang, entry, group["gloss"])[:2] if g],
                 "kind": kind,
                 "root": kind == "root",
                 # The colour of this sense, from the same published measurement
                 # the coverage page prints.
                 "band": _band_in(index, entry["word"], group["sense"]),
                 "sense": group["sense"], "senses": len(groups),
-                # This row's own reading, not the spelling's first homograph:
-                # دوش is duš (shower) and dōš (shoulder, 'last night'), and a
-                # list that printed one reading for all three said the wrong
-                # word (2026-11-12).
-                "reading": readings_for(entry)["reading"],
                 "ipa": entry.get("ipa") or "",
             })
     rows.sort(key=lambda r: (0 if (roots_first and r["root"]) else 1,
@@ -1087,18 +1110,24 @@ def glossary(lang: str, limit: int = 400, roots_first: bool = True,
         rows = [r for r in rows if r["band"] != "non_pie"]
     elif band:
         rows = [r for r in rows if r["band"] == band]
-    shown = [_with_reading({**row,
-                            "show_reading": show_reading(lang, row["word"]),
-                            "evidence": evidence_for(row["word"], lang)}, lang, row["word"])
-             for row in rows[:limit]]
+    total = len(rows)
+    limit = max(1, int(limit or 400))
+    pages = max(1, -(-total // limit))
+    page = min(max(1, int(page or 1)), pages)
+    start = (page - 1) * limit
+    shown = [_glossary_row_shown(row, lang, proto) for row in rows[start:start + limit]]
     legend = Counter(r["band"] for r in shown if r["band"])
     # *banded* describes the list the reader filtered, not the 400 rows on the
     # page: subtracting a page's count from a language's total said "4 not
     # banded" about a stage of 7,613 (2026-11-12, critic P1-3).
     banded = sum(1 for r in rows if r["band"])
     return {"lang": lang, "lang_name": _lang(lang).get("name", lang),
-            "total": len(rows), "roots": sum(1 for r in rows if r["root"]),
+            "total": total, "roots": sum(1 for r in rows if r["root"]),
             "rows": shown, "limit": limit,
+            # Which slice of the list this is, so the page can offer the rest
+            # of it rather than stop at the 400th word (admin, 2026-11-13).
+            "page": page, "pages": pages,
+            "first": start + 1 if shown else 0, "last": start + len(shown),
             "band": band or "",
             # What "attested", "recorded" and "proposed" mean, once per page:
             # the status column says the word, the tooltip says the sentence

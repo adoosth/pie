@@ -169,10 +169,14 @@ class Handler(BaseHTTPRequestHandler):
             # ``q`` narrows the list to words whose spelling contains it; the
             # service has accepted it since 2026-11-10, but the endpoint
             # dropped it, so the interface could not ask (2026-11-12).
+            # ``page`` steps through the list: Middle Persian holds 17,000
+            # words and the first 400 used to be all a reader could reach
+            # (admin, 2026-11-13).
             return self._json(service.glossary(qs.get("lang", "ine-pro"),
                                                int(qs.get("limit", 400)),
                                                band=qs.get("band") or None,
-                                               q=qs.get("q") or None))
+                                               q=qs.get("q") or None,
+                                               page=int(qs.get("page", 1) or 1)))
         if endpoint == "compose":
             return self._json(service.compose(qs.get("form", ""),
                                               qs.get("suffix") or None,

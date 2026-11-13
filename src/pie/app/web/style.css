@@ -1595,6 +1595,17 @@ a.lawname:hover, a.lawname:focus-visible { color: var(--accent); }
 .glosslegend span { display: inline-flex; align-items: center; gap: 6px; }
 .glosslegend i { width: 10px; height: 10px; border-radius: 3px; flex: none; }
 .glosslegend b { font-weight: 600; color: var(--fg); font-variant-numeric: tabular-nums; }
+/* The glossary is paged (2026-11-13): a stage of 17,000 words is read in
+   steps, so the four doors and the range they open stand above and below the
+   list.  They are links, not buttons: a page has an address and Back works. */
+.glosspager { display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  margin: 4px 0 14px; font-size: 12.5px; color: var(--muted); }
+.glosspager .pagebtn { display: inline-block; padding: 3px 10px; border: 1px solid var(--line);
+  border-radius: 999px; color: var(--fg); text-decoration: none; }
+.glosspager .pagebtn:hover { border-color: var(--muted); }
+.glosspager .pagebtn.off { color: var(--muted); border-style: dashed; cursor: default; }
+.glosspager .pagepos { margin: 0 6px; font-variant-numeric: tabular-nums; }
+.glosspager .pagepos b { color: var(--fg); }
 .backlogbar { display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
   margin: 20px 0 10px; }
 .backlogbar label { display: flex; align-items: center; gap: 7px; font-size: 12px;
