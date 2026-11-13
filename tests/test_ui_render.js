@@ -1739,3 +1739,93 @@ assert.strictEqual(evaluate('catRail({pos:"",lang:"peo"})'), "", "no category, n
 assert.ok(evaluate('catRail({pos:"noun",lang:"fa"})').includes("tabsabove"),
   "Persian's category drops past the source tabs to sit beside the meaning");
 assert.strictEqual(evaluate('catRail({pos:"",lang:"fa"})'), "");
+
+/* ---------------------------------------------------------------- */
+/* transcription and transliteration (admin, 2026-11-13)              */
+/* ---------------------------------------------------------------- */
+/* A transcribed word keeps its spellings beside it in the same mono line
+   as a recorded reading, and says on hover that they are writing, not
+   pronunciation. */
+const spellingsHtml = evaluate(
+  'wordMeta({word:"garm", spellings:["glm","g03lm"], script:"Pahlavi (Book Pahlavi), Manichaean"}, [], null, "pal")');
+assert.ok(spellingsHtml.includes('class="translit spellings"'), spellingsHtml);
+assert.ok(plain(spellingsHtml).includes("· glm, g03lm"), "the spellings follow the headword");
+assert.ok(spellingsHtml.includes("Pahlavi") && spellingsHtml.includes("not pronunciations"),
+  "hovering the spellings says they are written forms, not sounds");
+assert.strictEqual(evaluate('wordMeta({word:"garm"}, [], null, "pal")'), "",
+  "a word with no recorded spellings keeps the line absent");
+const manySpellings = evaluate(
+  'wordMeta({word:"garm", spellings:["glm","g03lm","hwʾb","fourth"]}, [], null, "pal")');
+assert.ok(plain(manySpellings).includes("glm, g03lm, hwʾb, …"), "three spellings, then an ellipsis");
+assert.ok(!plain(manySpellings).includes("fourth"), "the fourth spelling is not printed");
+
+const transcribedStanding = evaluate(`standing({
+  attestation:{status:"attested",label:"attested",definition:"A text writes it."},
+  attested_how:"transcription"})`);
+assert.match(transcribedStanding,
+  /data-tip="[^"]*The form above is the record's transcription[^"]*rather than its writing\."/,
+  "the status tooltip names the transcription, not a writing");
+
+/* The optional glossary columns appear only when a row has something that is
+   not already the form cell.  The renderer is driven with fixtures, so this
+   needs no server. */
+(async () => {
+  const overview = {
+    languages: [
+      { id: "peo", name: "Old Persian", words: 1 },
+      { id: "pal", name: "Middle Persian", words: 1 },
+    ],
+    coverage: { definitions: { full: { label: "fully explained", definition: "Every step is cited." } } },
+  };
+  const rows = {
+    pal: [{ word: "garm", written: "garm", transcription: "garm", transliteration: "",
+            attestation: "attested", pos: "adjective", gloss: ["warm"], band: "full", senses: 1 }],
+    peo: [{ word: "vr̥kaʰ", written: "𐎺𐎼𐎣", transcription: "vr̥kaʰ", transliteration: "v-r-k",
+            attestation: "attested", pos: "noun", gloss: ["wolf"], band: "full", senses: 1 }],
+  };
+  const oldFetch = context.fetch;
+  context.fetch = async (url) => {
+    const u = new URL(String(url));
+    const body = u.pathname === "/api/overview" ? overview : {
+      rows: rows[u.searchParams.get("lang")] || [], total: 1, headwords: 1,
+      stage_total: 1, banded: 1, page: 1, pages: 1, first: 1, last: 1,
+      counts: {}, statuses: { attested: "A text writes this word." },
+    };
+    return { ok: true, status: 200, json: async () => body };
+  };
+  try {
+    await context.viewGlossary(new URLSearchParams("lang=pal&band=all"));
+    const emptyHtml = evaluate("app.innerHTML");
+    assert.ok(!emptyHtml.includes(">transcription</th>"),
+      "a transcription equal to the form adds no column");
+    assert.ok(!emptyHtml.includes(">transliteration</th>"),
+      "an empty transliteration adds no column");
+    assert.ok(!emptyHtml.includes('class="glossmore"'),
+      "with no optional value there is no phone line either");
+
+    await context.viewGlossary(new URLSearchParams("lang=peo&band=all"));
+    const fullHtml = evaluate("app.innerHTML");
+    const formCol = fullHtml.indexOf(">form</th>");
+    const soundCol = fullHtml.indexOf(">transcription</th>");
+    const writeCol = fullHtml.indexOf(">transliteration</th>");
+    const statusCol = fullHtml.indexOf(">status</th>");
+    assert.ok(formCol >= 0 && formCol < soundCol && soundCol < writeCol && writeCol < statusCol,
+      "the two columns sit after the form, transcription before transliteration");
+    assert.ok(fullHtml.includes('<th class="glossopt" data-tip="Transcription — how the word sounds'),
+      "the transcription header explains the column");
+    assert.ok(fullHtml.includes('<th class="glossopt" data-tip="Transliteration — how the word is written'),
+      "the transliteration header explains the column");
+    assert.ok(fullHtml.includes('<td class="sub glossopt">vr̥kaʰ</td>'),
+      "the row prints how the word sounds");
+    assert.ok(fullHtml.includes('<td class="sub glossopt">v-r-k</td>'),
+      "the row prints how the word is written");
+    assert.ok(plain(fullHtml).includes("transcription vr̥kaʰ · transliteration v-r-k"),
+      "the phone line keeps both facts under the form");
+    console.log("transcription and transliteration ok");
+  } catch (e) {
+    console.error(e);
+    process.exitCode = 1;
+  } finally {
+    context.fetch = oldFetch;
+  }
+})();

@@ -1602,6 +1602,20 @@ a.lawname:hover, a.lawname:focus-visible { color: var(--accent); }
 .glstatus.attested { color: var(--attested); }
 .glstatus.literary { color: var(--literary); }
 .glstatus.proposed { color: var(--proposed); }
+/* The transcription and transliteration columns are optional: the page adds
+   them only when a row has a value that differs from its form.  A phone hides
+   them and prints the same facts under the form instead (admin, 2026-11-13). */
+.glosslist .glossopt { font-family: var(--mono); font-size: 12.5px; }
+.glossmore { display: none; }
+.glossmore i { font-style: normal; color: var(--dim); }
+@media (max-width: 700px) {
+  .glosslist .glossopt { display: none; }
+  .glosslist .glossmore { display: block; margin-top: 3px; font-family: var(--mono);
+    font-size: 12px; color: var(--muted); }
+  .glosslist .glossmore-label { font-family: var(--sans); font-size: 9.5px;
+    letter-spacing: .07em; text-transform: uppercase; color: var(--dim);
+    margin-right: 2px; }
+}
 .glosslegend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 6px 0 14px;
   font-size: 12.5px; color: var(--muted); }
 .glosslegend span { display: inline-flex; align-items: center; gap: 6px; }

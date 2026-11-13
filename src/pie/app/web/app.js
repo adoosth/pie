@@ -614,6 +614,31 @@ async function viewGlossary(params) {
   const page = Math.max(1, parseInt((params && params.get("page")) || "1", 10) || 1);
   const g = await api("/api/glossary", { lang, limit: 400, band: band || null, q: q || null, page });
   const rows = g.rows || [];
+  /* Transcription and transliteration are optional columns: a stage that
+     writes its words as they sound (Middle Persian) has nothing to add beside
+     the form, and a stage whose spelling is the form itself needs no second
+     copy of it (admin, 2026-11-13). */
+  const formCell = (r) => r.written || r.word || "";
+  const optValue = (r, field) => {
+    const value = r[field] || "";
+    return value && value !== formCell(r) ? value : "";
+  };
+  const showTranscription = rows.some((r) => optValue(r, "transcription"));
+  const showTransliteration = rows.some((r) => optValue(r, "transliteration"));
+  const transcriptionTip = "Transcription — how the word sounds, as the record transcribes it. It is not the recorded spelling.";
+  const transliterationTip = "Transliteration — how the word is written in Latin letters. It is not a pronunciation.";
+  /* On a phone the two columns are hidden; the same facts stand on a second
+     line under the form instead, so the table never widens the page. */
+  const phoneNotes = (r) => {
+    const parts = [];
+    if (showTranscription && optValue(r, "transcription")) {
+      parts.push(`<span data-tip="${esc(transcriptionTip)}"><span class="glossmore-label">transcription</span> ${esc(optValue(r, "transcription"))}</span>`);
+    }
+    if (showTransliteration && optValue(r, "transliteration")) {
+      parts.push(`<span data-tip="${esc(transliterationTip)}"><span class="glossmore-label">transliteration</span> ${esc(optValue(r, "transliteration"))}</span>`);
+    }
+    return parts.length ? `<span class="glossmore">${parts.join("<i> · </i>")}</span>` : "";
+  };
   /* The same six colours as the coverage page (2026-11-09): every
      headword is painted with its band, read from the published measurement so
      the list and the numbers cannot disagree.  A proto stage has no band, and
@@ -685,12 +710,18 @@ async function viewGlossary(params) {
       g.banded && rows.length > g.banded ? ` · ${(rows.length - g.banded).toLocaleString()} not banded (reconstructions, and forms the counter leaves out)` : ""}</p>
     ${legendKeys.length ? `<p class="glosslegend" title="Each word is painted with its coverage band, from the same measurement as the coverage page. The numbers count words of this whole stage. A spelling that carries several words is listed once per word, numbered; the coverage page counts them the same way">${legendKeys.map((k) => `<span><i class="${bandClass(k)}"></i>${esc(bandLabel(k))} <b>${(counts[k] || 0).toLocaleString()}</b></span>`).join("")}</p>` : ""}
     ${pager()}
-    ${rows.length ? `<table class="glosslist"><thead><tr><th>form</th><th>status</th><th>pos</th><th>meaning</th></tr></thead><tbody>
+    ${rows.length ? `<table class="glosslist"><thead><tr><th>form</th>${
+      showTranscription ? `<th class="glossopt" data-tip="${esc(transcriptionTip)}">transcription</th>` : ""
+    }${
+      showTransliteration ? `<th class="glossopt" data-tip="${esc(transliterationTip)}">transliteration</th>` : ""
+    }<th>status</th><th>pos</th><th>meaning</th></tr></thead><tbody>
       ${rows.map((r, i) => `<tr class="click reveal" style="--i:${Math.min(i, 16)}" tabindex="0"
         onclick="location.hash='${wordHref(lang, r.word, true, "", r.senses > 1 ? r.sense : 0)}'"
         onkeydown="if(event.key==='Enter')location.hash='${wordHref(lang, r.word, true, "", r.senses > 1 ? r.sense : 0)}'">
         <td><a class="mono glossword" href="${esc(wordHref(lang, r.word, true, "", r.senses > 1 ? r.sense : 0))}" dir="auto"${r.band ? ` style="--band:var(${bandVar(r.band)})" data-tip="${esc(bandTip(r.band))}"` : ""}>${esc(r.written || r.word)}</a>${r.senses > 1 ? `<span class="sense no" data-tip="This spelling is ${r.senses} words; this row is the ${r.sense}${r.sense === 1 ? "st" : r.sense === 2 ? "nd" : r.sense === 3 ? "rd" : "th"}.">${r.sense}</span>` : ""}
-          ${r.show_reading && r.reading ? `<span class="sub reading${r.reading_auto ? " auto" : ""}"${r.reading_auto ? ` data-tip="${esc(r.reading_note || "")}"` : ""}> ${esc(r.reading)}</span>` : ""}</td>
+          ${r.show_reading && r.reading ? `<span class="sub reading${r.reading_auto ? " auto" : ""}"${r.reading_auto ? ` data-tip="${esc(r.reading_note || "")}"` : ""}> ${esc(r.reading)}</span>` : ""}${phoneNotes(r)}</td>
+        ${showTranscription ? `<td class="sub glossopt">${esc(optValue(r, "transcription") || "—")}</td>` : ""}
+        ${showTransliteration ? `<td class="sub glossopt">${esc(optValue(r, "transliteration") || "—")}</td>` : ""}
         <td><span class="glstatus ${esc(ATTEST_BADGE[r.attestation] || "")}"
           data-tip="${esc((g.statuses || {})[r.attestation] || "")}">${esc(r.attestation || "—")}</span></td>
         <td class="sub">${esc(r.pos || "—")}</td>
@@ -889,7 +920,11 @@ async function viewWord(lang, w, params) {
   /* Keep Wiktionary's own order but mark the reading the sound laws produce:
      that is the one the ladder below compares against. */
   const matched = d.derivation && d.derivation.matched_form;
-  const readings = [d.translit, ...(d.translit_alt || [])].filter(Boolean);
+  /* A reading that repeats the headword adds nothing but a second copy of the
+     title: Middle Persian garm *is* its reading, so the header printed "garm"
+     beside "garm" (admin, 2026-11-13). */
+  const readings = [d.translit, ...(d.translit_alt || [])]
+    .filter((r) => r && r !== d.word && r !== d.written);
   const ev = d.evidence || "attested";
   /* The asterisk in front of a reconstructed word means one thing, so hovering
      it says one thing (admin, 2026-11-12): no text spells this word.  The long
@@ -3367,7 +3402,7 @@ const BACKLOG_KINDS = {
    beside the band, because "fully explained" answers a different question:
    how much of the word's ancestry the laws reproduce, not whether a text
    wrote the word at all (2026-11-11). */
-const ATTEST_BADGE = { attested: "attested", transliterated: "literary", recorded: "literary", proposed: "proposed", "non-existent": "warn" };
+const ATTEST_BADGE = { attested: "attested", recorded: "literary", proposed: "proposed", "non-existent": "warn" };
 function attestBadge(a, extra) {
   if (!a || !a.status) return "";
   const tip = [a.definition, a.reason && a.reason !== a.definition ? a.reason : "", extra || ""]
@@ -3395,7 +3430,12 @@ function attestNote(a, extra) {
    without giving either one a box. */
 function standing(d) {
   const band = bandBadge(d);
-  const know = attestNote(d.attestation, recordSourceText(d));
+  /* A Middle Persian headword is the record's transcription, not its writing:
+     the status tooltip says which layer the form above belongs to. */
+  const how = d.attested_how === "transcription"
+    ? "The form above is the record's transcription — how the word sounds — rather than its writing."
+    : "";
+  const know = attestNote(d.attestation, [recordSourceText(d), how].filter(Boolean).join(" "));
   if (!band && !know) return "";
   return `<span class="standing">${band}${band && know ? `<i class="standsep">·</i>` : ""}${know}</span>`;
 }
@@ -3406,6 +3446,15 @@ function standing(d) {
    (2026-11-12). */
 function wordMeta(d, readings, matched, lang) {
   const bits = [];
+  /* The recorded spellings are writing, not pronunciation: print them in the
+     same mono line as a recorded reading, with the writing named on hover
+     (admin, 2026-11-13). */
+  const spellings = [...new Set((d.spellings || []).filter(Boolean))];
+  if (spellings.length) {
+    const shown = spellings.slice(0, 3).join(", ") + (spellings.length > 3 ? ", …" : "");
+    const tip = `The spellings the record writes${d.script ? ` in ${d.script}` : ""} — transliterations, not pronunciations.`;
+    bits.push(`<span class="translit spellings" data-tip="${esc(tip)}"><i>· </i>${esc(shown)}</span>`);
+  }
   /* One romanisation per reading, printed once (admin, 2026-11-13): a record
      that gives the same string twice gave one reading, and the header used to
      print «Vr̥kānaʰ · Vr̥kānaʰ».  The alternatives stay in the payload; this is
@@ -3431,10 +3480,9 @@ function wordMeta(d, readings, matched, lang) {
   /* IPA is optional and belongs here, beside the word, where a reader can see
      it is a phonetic note and not the word's citation form (admin, 2026-11-13). */
   if (d.ipa) bits.push(`<span class="ipa">/${esc(d.ipa.replace(/^\/|\/$/g, ""))}/</span>`);
-  /* The standing line already says "transliterated" when the glossary holds
-     this word as a reading of its signs; a second note under the title saying
-     "transliteration only" said the same thing again in a worse way (admin,
-     2026-11-12). */
+  /* The status already says how a transcribed word is known; a second note
+     under the title saying "transliteration only" said the same thing again
+     in a worse way (admin, 2026-11-12). */
   if (d.pos_label) {
     bits.push(`<span class="metaplain" data-tip="${esc(`The dictionary's own label for this word, printed verbatim beside the headword: «${d.pos_label}». It states the part of speech and, where it says so, that the word is a compound (مرکب) or a relative adjective (نسبی). It is a grammar label, not an etymology.`)}">«${esc(d.pos_label)}»</span>${saidExtra(d) ? `<span class="sub said-gloss">${esc(saidExtra(d))}</span>` : ""}`);
   }
