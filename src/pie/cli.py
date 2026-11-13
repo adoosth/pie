@@ -261,6 +261,17 @@ def cmd_doctor(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_cache(args: argparse.Namespace) -> int:
+    """Report the cache, and optionally drop what nothing can read again."""
+    files = [p for p in data.CACHE_DIR.glob("*") if p.is_file()] if data.CACHE_DIR.exists() else []
+    print(f"{data.CACHE_DIR}  ·  {len(files)} files  ·  "
+          f"{sum(p.stat().st_size for p in files) / 1e6:,.0f} MB")
+    if args.prune or args.all:
+        removed, size = data.prune_cache(remove_all=args.all)
+        print(f"removed {removed} files  ·  {size / 1e6:,.0f} MB freed")
+    return 0
+
+
 def cmd_unverified(args: argparse.Namespace) -> int:
     """Print the matches the engine refused to verify, for a person to judge.
 
@@ -514,6 +525,13 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("--lang", default=None, help="only this stage's rows")
     sp.add_argument("--json", action="store_true")
     sp.set_defaults(func=cmd_unverified)
+
+    sp = sub.add_parser("cache", help="where derived data is kept; --prune drops what no reader can use")
+    sp.add_argument("--prune", action="store_true",
+                    help="delete artefacts an edit or a version bump has retired")
+    sp.add_argument("--all", action="store_true",
+                    help="delete every cached artefact (the next page rebuilds them)")
+    sp.set_defaults(func=cmd_cache)
 
     sp = sub.add_parser("serve", help="run the web interface")
     sp.add_argument("--host", default="127.0.0.1")

@@ -5,11 +5,14 @@ from __future__ import annotations
 import gzip
 import hashlib
 import json
+import mmap
 import os
 import pickle
+import re
+import threading
 from functools import lru_cache
 from pathlib import Path
-from typing import Iterable
+from typing import Iterable, Mapping
 
 import yaml
 
@@ -79,12 +82,20 @@ def _load_yaml(path: Path):
     return _compose_yaml(path, stat.st_size, stat.st_mtime_ns)
 
 
+#: `yaml.CSafeLoader` (libyaml) when the wheel carries it, else the
+#: pure-Python loader — same document, same result.
+_YAML_LOADER = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
+
+
 @lru_cache(maxsize=256)
 def _compose_yaml(path: Path, size: int, mtime: int):
     if size < 0:
         raise FileNotFoundError(path)
     with path.open(encoding="utf-8") as fh:
-        return yaml.safe_load(fh)
+        # libyaml's loader parses the same document in a tenth of the time;
+        # a page reads a dozen law and morphology files, and the pure-Python
+        # parser was 0.35 s of the first page (2026-11-13).
+        return yaml.load(fh, Loader=_YAML_LOADER)
 
 
 #: Where derived structures may be kept between runs.  Nothing here is part of
@@ -446,32 +457,36 @@ def _parse_lexicon(file: Path, opener, lang: str, limit: int | None = None) -> l
             line = line.strip()
             if not line:
                 continue
-            entry = json.loads(line)
-            label = labels.get(entry.get("word") or "")
-            if label:
-                if not entry.get("pos"):
-                    entry["pos"] = label["pos"]
-                entry["pos_label"] = label["pos_label"]
-                if label["structure"]:
-                    entry["structure"] = dict(label["structure"])
-            # One word, one spelling: a stage that states a standard alphabet
-            # (data/notation/) is read in it, whoever wrote the row (admin,
-            # 2026-11-13: jaw and ǰaw were two entries for "barley").
-            word = notation.canonical(lang, entry.get("word") or "")
-            if word:
-                entry["word"] = word
-            # An ancestor is named in *its own* stage's notation: a Persian
-            # row that names Middle Persian *jaw* must draw the glossary's
-            # ǰaw, or one page would print two spellings of one word (admin,
-            # 2026-11-13: "consistent for the entire language's romanizations").
-            for pair in entry.get("anc") or []:
-                if (isinstance(pair, list) and len(pair) >= 2
-                        and isinstance(pair[1], str) and pair[1]):
-                    pair[1] = notation.canonical(str(pair[0]), pair[1])
-            rows.append(entry)
+            rows.append(_canonical_entry(lang, labels, json.loads(line)))
             if limit and len(rows) >= limit:
                 break
     return rows
+
+
+def _canonical_entry(lang: str, labels: dict, entry: dict) -> dict:
+    """One glossary row as every reader sees it, notation and labels applied."""
+    label = labels.get(entry.get("word") or "")
+    if label:
+        if not entry.get("pos"):
+            entry["pos"] = label["pos"]
+        entry["pos_label"] = label["pos_label"]
+        if label["structure"]:
+            entry["structure"] = dict(label["structure"])
+    # One word, one spelling: a stage that states a standard alphabet
+    # (data/notation/) is read in it, whoever wrote the row (admin,
+    # 2026-11-13: jaw and ǰaw were two entries for "barley").
+    word = notation.canonical(lang, entry.get("word") or "")
+    if word:
+        entry["word"] = word
+    # An ancestor is named in *its own* stage's notation: a Persian row that
+    # names Middle Persian *jaw* must draw the glossary's ǰaw, or one page
+    # would print two spellings of one word (admin, 2026-11-13: "consistent for
+    # the entire language's romanizations").
+    for pair in entry.get("anc") or []:
+        if (isinstance(pair, list) and len(pair) >= 2
+                and isinstance(pair[1], str) and pair[1]):
+            pair[1] = notation.canonical(str(pair[0]), pair[1])
+    return entry
 
 
 @lru_cache(maxsize=64)
@@ -482,12 +497,408 @@ def lexicon_index(lang: str) -> dict[str, list[dict]]:
     return idx
 
 
-def available_lexicons() -> list[tuple[str, int]]:
-    out = []
-    for path in sorted(LEXICON_DIR.glob("*.jsonl*")):
-        lang = path.name.split(".")[0]
-        out.append((lang, path.stat().st_size))
+#: A gloss in parentheses at the very end of a form: ``*per- (fare)``.
+#: Only a trailing one is dictionary apparatus; a parenthesis inside the form
+#: is the movable s (``*(s)pend-``) and is handled below.
+_TRAILING_GLOSS = re.compile(r"\s*\([^()]*\)\s*$")
+#: A parenthetical that is one or two *sounds* is optional notation, and its
+#: letters are part of the form: Middle Persian pādixšā(y) is pādixšāy, and the
+#: rung printed pādixšā with a stray «y» as its gloss (critic batch 08,
+#: 2026-11-13).
+_TRAILING_SOUND = re.compile(r"\s*\(([^\W\d_]{1,2})\)\s*$", re.UNICODE)
+
+
+def normalise_etymon(form: str) -> str:
+    """Strip the notation that belongs to a dictionary, not to a derivation.
+
+    ``*bʰeh₂g-`` → ``*bʰeh₂g``; ``*(s)pend-`` → ``*spend`` (the movable s is
+    treated as present); ``(*kʷ)`` style brackets are dropped.
+
+    Three pieces of dictionary apparatus are removed whole rather than merged
+    into the form, because each would otherwise become part of a word that no
+    dictionary holds: a sense label after a hash (``*kʷís#Determiner`` →
+    ``*kʷís``), a gloss in trailing parentheses (``*per- (fare)`` → ``*per``),
+    and the second member of an alternation (``*ḱḗr ~ *kr̥d-`` → ``*ḱḗr``, the
+    first member being the one the entry names first).  A genuine two-word
+    lemma such as ``newe founde`` carries none of these and is left whole: a
+    space is a word boundary, never a label.
+    """
+    form = form.strip()
+    # The overwhelmingly common case is a plain glossary headword, and this
+    # ran once per entry when a language's lemma index was built (164k Persian
+    # headwords): nothing to strip, nothing to compose (2026-11-12).
+    if not any(ch in form for ch in "#()~*") and form[:1] != "-" and form[-1:] != "-":
+        return form
+    if "#" in form:
+        form = form.split("#", 1)[0]
+    sound = _TRAILING_SOUND.search(form)
+    if sound:
+        form = form[: sound.start()] + sound.group(1)
+    form = _TRAILING_GLOSS.sub("", form)
+    if "~" in form:
+        form = form.split("~", 1)[0]
+    form = form.strip().strip("*").strip()
+    form = form.replace("(", "").replace(")", "")
+    return form.strip("-").strip()
+
+
+#: Bumped when the shape of the row store changes.  The hundreds place is the
+#: parsed-glossary shape it copies, so a change to `_canonical_entry` retires
+#: the row text with the parse cache instead of leaving rows of the old shape.
+ROW_STORE_VERSION = LEXICON_VERSION * 100 + 1
+
+
+def _lexicon_source(lang: str) -> tuple[Path, object] | None:
+    """The glossary file a stage is read from, gzip preferred over plain."""
+    packed = LEXICON_DIR / f"{lang}.jsonl.gz"
+    if packed.exists():
+        return packed, gzip.open
+    plain = LEXICON_DIR / f"{lang}.jsonl"
+    if plain.exists():
+        return plain, open
+    return None
+
+
+def lexicon_source(lang: str) -> Path | None:
+    """The file a stage's glossary is read from, or ``None`` if it has none."""
+    source = _lexicon_source(lang)
+    return source[0] if source else None
+
+
+class _RowStore:
+    """One stage's rows on disk, read by offset instead of all at once.
+
+    A word page asks every language of the family for one spelling, and
+    loading each 16 MB glossary to answer that was the cold-page cost: 31
+    gzip pickles in, a handful of rows out.  The row text is kept as one plain
+    file and the index as `word -> byte offset`, so a lookup is a dictionary
+    hit and one `json.loads`, and the whole stage never becomes a Python dict
+    (2026-11-13).
+    """
+
+    def __init__(self, rows_path: Path, index: dict) -> None:
+        self.words: dict[str, int] = index["words"]
+        self.more: dict[str, tuple[int, ...]] = index.get("more") or {}
+        self.lemmas: dict[str, str] = index.get("lemmas") or {}
+        # One page asks for the same handful of spellings again and again
+        # (the cognate row, its senses, its evidence); a bounded memo keeps the
+        # repeated decodes without ever becoming the whole glossary.
+        self._cache: dict[str, list[dict]] = {}
+        # Mapping from the descriptor keeps the text readable after the
+        # descriptor closes, so a page holds no open file per language.
+        with rows_path.open("rb") as fh:
+            if fh.seek(0, os.SEEK_END):
+                self._mm = mmap.mmap(fh.fileno(), 0, access=mmap.ACCESS_READ)
+            else:
+                self._mm = None
+
+    def _row(self, offset: int) -> dict:
+        if self._mm is None:
+            raise ValueError("empty row store")
+        end = self._mm.find(b"\n", offset)
+        if end < 0:
+            end = len(self._mm)
+        return json.loads(self._mm[offset:end].decode("utf-8"))
+
+    def rows(self, word: str) -> list[dict]:
+        hit = self._cache.get(word)
+        if hit is not None:
+            return hit
+        first = self.words.get(word)
+        if first is None:
+            return []
+        rows = [self._row(first), *(self._row(off) for off in self.more.get(word, ()))]
+        if len(self._cache) >= 512:
+            self._cache.clear()
+        self._cache[word] = rows
+        return rows
+
+
+class _LemmaRows(Mapping):
+    """``lemma -> its stage row``, decoding the one row a lookup asks for."""
+
+    def __init__(self, store: _RowStore) -> None:
+        self._store = store
+        self._lemmas = store.lemmas
+
+    def __getitem__(self, key: str) -> dict:
+        rows = self._store.rows(self._lemmas[key])
+        if not rows:
+            raise KeyError(key)
+        return rows[0]
+
+    def get(self, key: str, default=None):
+        word = self._lemmas.get(key)
+        if word is None:
+            return default
+        rows = self._store.rows(word)
+        return rows[0] if rows else default
+
+    def __iter__(self):
+        return iter(self._lemmas)
+
+    def __len__(self) -> int:
+        return len(self._lemmas)
+
+
+_ROW_STORES: dict[str, tuple[tuple, _RowStore]] = {}
+_ROW_SOURCES: dict[str, tuple[Path, object]] = {}
+_ROW_LOCK = threading.Lock()
+
+
+def _structure_stat() -> tuple[int, int]:
+    try:
+        st = (DATA / "dehkhoda" / "structure.jsonl.gz").stat()
+    except OSError:
+        return (0, 0)
+    return (st.st_size, st.st_mtime_ns)
+
+
+def _row_store_paths(lang: str, stamp: str) -> Path:
+    return Path(str(CACHE_DIR / f"lexicon-rows-{lang}-v{ROW_STORE_VERSION}-{stamp}")
+                + ".jsonl")
+
+
+def _write_row_store(lang: str, rows_path: Path) -> dict:
+    """Write the plain row text and return the offset index built beside it."""
+    words: dict[str, int] = {}
+    more: dict[str, list[int]] = {}
+    lemmas: dict[str, str] = {}
+    CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    tmp = rows_path.with_name(f"{rows_path.name}.{os.getpid()}.tmp")
+    offset = 0
+    try:
+        with tmp.open("wb") as out:
+            # `lexicon()` is the parsed glossary every other reader uses, and
+            # its cache already paid the notation pass; re-reading the source
+            # here made a rebuild twice as expensive (2026-11-13).
+            for entry in lexicon(lang):
+                word = str(entry["word"])
+                if word in words:
+                    more.setdefault(word, []).append(offset)
+                else:
+                    words[word] = offset
+                    # `data.lexicon_index` groups spellings case-insensitively;
+                    # the lemma keys keep that behaviour while the row index
+                    # keeps the exact headword `service.lang_index` uses.
+                    lower = word.lower()
+                    lemma = normalise_etymon(lower)
+                    lemmas.setdefault(lemma, word)
+                    lemmas.setdefault(lemma.casefold(), word)
+                    quoted = str(entry.get("translit_quoted") or "")
+                    if quoted:
+                        lemmas.setdefault(normalise_etymon(quoted), word)
+                    if "\u200c" in lower:
+                        lemmas.setdefault(
+                            normalise_etymon(lower.replace("\u200c", "")), word)
+                data = json.dumps(entry, ensure_ascii=False,
+                                  separators=(",", ":")).encode("utf-8")
+                out.write(data)
+                out.write(b"\n")
+                offset += len(data) + 1
+        tmp.replace(rows_path)
+    except BaseException:
+        try:
+            tmp.unlink(missing_ok=True)
+        except OSError:
+            pass
+        raise
+    return {"version": ROW_STORE_VERSION, "words": words,
+            "more": {word: tuple(offsets) for word, offsets in more.items()},
+            "lemmas": lemmas}
+
+
+def _row_store(lang: str) -> _RowStore | None:
+    """The stage's row store, or ``None`` when the cache cannot be used."""
+    source = _ROW_SOURCES.get(lang)
+    if source is None:
+        source = _lexicon_source(lang)
+        if source is None:
+            return None
+        _ROW_SOURCES[lang] = source
+    file = source[0]
+    try:
+        stat = file.stat()
+    except OSError:
+        _ROW_SOURCES.pop(lang, None)
+        return None
+    key = (stat.st_size, stat.st_mtime_ns, *_structure_stat())
+    hit = _ROW_STORES.get(lang)
+    if hit and hit[0] == key:
+        return hit[1]
+    # The daemon prewarm and a reader can meet here; one build at a time keeps
+    # them from writing the same temporary file.
+    with _ROW_LOCK:
+        hit = _ROW_STORES.get(lang)
+        if hit and hit[0] == key:
+            return hit[1]
+        sources = [file, DATA / "dehkhoda" / "structure.jsonl.gz"]
+        stamp = cache_stamp(*sources)
+        rows_path = _row_store_paths(lang, stamp)
+        try:
+            index = cached(f"lexicon-rows-{lang}", ROW_STORE_VERSION, sources,
+                           lambda: _write_row_store(lang, rows_path))
+            if not rows_path.exists():
+                # An index without its row text cannot answer; rewrite both.
+                index = _write_row_store(lang, rows_path)
+            store = _RowStore(rows_path, index)
+        except (OSError, ValueError):
+            return None
+        _ROW_STORES[lang] = (key, store)
+        return store
+
+
+def lexicon_rows(lang: str, word: str) -> list[dict]:
+    """The rows one spelling has in one stage, without loading the stage."""
+    store = _row_store(lang)
+    if store is not None:
+        return store.rows(word)
+    source = _lexicon_source(lang)
+    if source is None:
+        return []
+    file, opener = source
+    labels = structures().get(lang) or {}
+    rows: list[dict] = []
+    with opener(file, "rt", encoding="utf-8") as fh:
+        for line in fh:
+            line = line.strip()
+            if line:
+                entry = _canonical_entry(lang, labels, json.loads(line))
+                if entry["word"] == word:
+                    rows.append(entry)
+    return rows
+
+
+def lexicon_words(lang: str):
+    """Every headword exactly as the glossary spells it, in glossary order."""
+    store = _row_store(lang)
+    if store is not None:
+        return store.words.keys()
+    out: dict[str, None] = {}
+    for entry in lexicon(lang):
+        out.setdefault(entry["word"], None)
+    return out.keys()
+
+
+def lexicon_spellings(lang: str):
+    """Every headword key of `lexicon_index`, lower-cased and de-duplicated."""
+    store = _row_store(lang)
+    if store is not None:
+        def lower_keys():
+            seen: set[str] = set()
+            for word in store.words:
+                lower = word.lower()
+                if lower not in seen:
+                    seen.add(lower)
+                    yield lower
+        return lower_keys()
+    return lexicon_index(lang).keys()
+
+
+def lexicon_lemma_rows(lang: str) -> Mapping[str, dict]:
+    """A stage's first row per notation-free lemma, read on demand."""
+    store = _row_store(lang)
+    if store is not None:
+        return _LemmaRows(store)
+    # No cache directory: the old full index still answers, just slowly.
+    out: dict[str, dict] = {}
+    for word, rows in lexicon_index(lang).items():
+        out.setdefault(normalise_etymon(word), rows[0])
+        out.setdefault(normalise_etymon(word).casefold(), rows[0])
+        quoted = rows[0].get("translit_quoted") or ""
+        if quoted:
+            out.setdefault(normalise_etymon(quoted), rows[0])
+        if "\u200c" in word:
+            out.setdefault(normalise_etymon(word.replace("\u200c", "")), rows[0])
     return out
+
+
+# Longer kind first: `lexicon` would otherwise match the head of
+# `lexicon-rows-en` and leave a language called "-rows-en".
+_ARTEFACT = re.compile(r"^(lexicon-rows|lexicon)-(.+)-v(\d+)-([0-9a-f]{20})"
+                       r"\.(?:pickle\.gz|jsonl)$")
+
+
+def prune_cache(remove_all: bool = False) -> tuple[int, int]:
+    """Delete the cached artefacts no reader can ask for again.
+
+    Every artefact is named after the version that shaped it and the stamp of
+    the files it was built from, so a file whose name no longer matches the
+    current ones is dead: the version moved, a glossary was edited, a language
+    was removed.  Only the two glossary artefacts are judged — other caches are
+    cheap, and guessing at their inputs here would duplicate the code that
+    wrote them.  Returns (files removed, bytes).
+    """
+    files = removed = 0
+    try:
+        paths = sorted(CACHE_DIR.iterdir())
+    except OSError:
+        return 0, 0
+    for path in paths:
+        if not path.is_file():
+            continue
+        if remove_all:
+            dead = True
+        else:
+            match = _ARTEFACT.match(path.name)
+            if not match:
+                continue
+            kind, lang, version, stamp = match.groups()
+            want = LEXICON_VERSION if kind == "lexicon" else ROW_STORE_VERSION
+            if int(version) != want:
+                dead = True
+            else:
+                source = _lexicon_source(lang)
+                inputs = [source[0]] if source else []
+                if kind == "lexicon-rows":
+                    inputs.append(DATA / "dehkhoda" / "structure.jsonl.gz")
+                dead = not inputs or cache_stamp(*inputs) != stamp
+        if not dead:
+            continue
+        try:
+            size = path.stat().st_size
+            path.unlink()
+        except OSError:
+            continue
+        files += 1
+        removed += size
+    return files, removed
+
+
+_LEXICONS: dict = {"key": None, "rows": []}
+
+
+def _lexicon_dir_key() -> tuple:
+    """One `stat` of the folder: adding or removing a glossary moves it."""
+    try:
+        st = LEXICON_DIR.stat()
+        return (st.st_mtime_ns,)
+    except OSError:
+        return ()
+
+
+def available_lexicons() -> list[tuple[str, int]]:
+    """Every glossary file: its language and its size in bytes.
+
+    A word page asked this once per headword it drew, and each answer stat'ed
+    every glossary file — 17,000 words cost 640,000 `stat` calls and six
+    seconds a glossary request (2026-11-13).  The folder's own stamp is the
+    key now, so adding or removing a glossary still shows up at once, while the
+    per-file sizes are read once.  Editing a file in place keeps its size in
+    this list, which only orders "the largest stages" — the rows themselves
+    come from `lexicon()`, whose cache does check the file.
+    """
+    key = _lexicon_dir_key()
+    if _LEXICONS["key"] != key:
+        rows = []
+        for path in sorted(LEXICON_DIR.glob("*.jsonl*")):
+            try:
+                size = path.stat().st_size
+            except OSError:
+                continue
+            rows.append((path.name.split(".")[0], size))
+        _LEXICONS.update(key=key, rows=rows)
+    return list(_LEXICONS["rows"])
 
 
 def cognate_sets() -> list[dict]:

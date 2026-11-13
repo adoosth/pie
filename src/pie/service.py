@@ -86,6 +86,12 @@ def cognate_index() -> dict[str, dict]:
     return {rec["id"]: rec for rec in data.cognate_sets()}
 
 
+#: Stages whose whole glossary is already in memory.  A single-spelling
+#: question consults this set and reads the row store instead of building the
+#: stage's full index; a list view has already paid for that index.
+_LOADED_LANGS: set[str] = set()
+
+
 @lru_cache(maxsize=None)
 def lang_index(lang: str) -> dict[str, list[dict]]:
     """One stage's glossary by headword, loaded and grouped on its own.
@@ -98,7 +104,15 @@ def lang_index(lang: str) -> dict[str, list[dict]]:
     idx: dict[str, list[dict]] = {}
     for entry in data.lexicon(lang):
         idx.setdefault(entry["word"], []).append(entry)
+    _LOADED_LANGS.add(lang)
     return idx
+
+
+def _rows_for(lang: str, word: str) -> list[dict]:
+    """One spelling's rows, loading the stage only when a list view needs it."""
+    if lang in _LOADED_LANGS:
+        return lang_index(lang).get(word) or []
+    return data.lexicon_rows(lang, word)
 
 
 class _WordIndex(Mapping):
@@ -124,7 +138,10 @@ class _WordIndex(Mapping):
             lang, word = key
         except (TypeError, ValueError):
             raise KeyError(key) from None
-        return self._lang(lang)[word]
+        rows = _rows_for(lang, word)
+        if not rows:
+            raise KeyError(key)
+        return rows
 
     def __iter__(self):
         for lang in self._order:
@@ -168,13 +185,18 @@ def word_entries(lang: str, word: str) -> list[dict]:
     walked all 591k rows of every glossary to find a word in one of them
     (2026-11-12).
     """
-    rows = lang_index(lang).get(word)
+    rows = _rows_for(lang, word)
     if rows:
         return rows
     folded = word.casefold()
-    for spelling, candidates in lang_index(lang).items():
-        if spelling.casefold() == folded:
-            return candidates
+    if lang in _LOADED_LANGS:
+        for spelling, candidates in lang_index(lang).items():
+            if spelling.casefold() == folded:
+                return candidates
+    else:
+        for spelling in data.lexicon_words(lang):
+            if spelling.casefold() == folded:
+                return data.lexicon_rows(lang, spelling)
     return []
 
 
@@ -191,7 +213,14 @@ def prewarm() -> None:
     data.rulesets()
     band_index()
     for lang in [lang for lang, _ in data.available_lexicons()]:
-        lang_index(lang)
+        # The row store is what a word page reads; loading the full glossary
+        # here made every restart spend four seconds on pages nobody had
+        # asked for yet (2026-11-13).
+        data.lexicon_words(lang)
+        # A word page reads the pages of every language it draws; parsing
+        # those 100k-line files inside the request cost the first reader
+        # 0.8 s (2026-11-13).
+        _en_pages(lang)
     cog_words()
     # Only a reconstructed stage's etymologies are parsed for constructions,
     # and the scan of one is a whole glossary: do the two that have any.
@@ -202,6 +231,12 @@ def prewarm() -> None:
     # Greek, Latin).  The rest build on demand, as before.
     for lang, size in sorted(data.available_lexicons(), key=lambda row: -row[1])[:6]:
         _lemma_index(lang)
+    # The glossary's own rows, for the two stages a reader opens most: the
+    # list is grouped and sorted once per stage, and building Persian's 164,000
+    # rows inside the first click cost 3.5 s (2026-11-13).
+    stamp = _band_stamp()
+    for lang in ("pal", "fa"):
+        _glossary_rows(lang, stamp, True)
 
 
 @lru_cache(maxsize=4096)
@@ -775,8 +810,8 @@ def _entry_sources(entry: dict) -> list[dict]:
                 # (`tools/en_wiktionary_index.py`); otherwise the icon stays
                 # away instead of opening a title that may not exist (admin,
                 # 2026-11-12).
-                found = wiktionary_pages.en_page(entry.get("lang") or "",
-                                                 entry.get("word") or "")
+                found = _en_page(entry.get("lang") or "",
+                                 entry.get("word") or "")
                 if found:
                     source["entry"] = found["url"]
         elif stored and _same_site(stored, row.get("url") or ""):
@@ -806,6 +841,28 @@ def _entry_sources(entry: dict) -> list[dict]:
             "entry": page["url"],
         })
     return out
+
+
+@lru_cache(maxsize=None)
+def _en_pages(lang: str) -> dict[str, str]:
+    """The recorded English-Wiktionary page of each headword, kept whole.
+
+    A word page asks this for every source of every rung, and the underlying
+    reader parses a 100k-line file the first time it sees a language.  It keeps
+    only sixteen languages, so a page that crossed the family could parse the
+    same files again; keeping the maps here (and beside the glossary cache)
+    makes the question a dictionary lookup (2026-11-13).
+    """
+    path = wiktionary_pages.EN_DIR / f"{lang}.jsonl.gz"
+    return data.cached(f"en-pages-{lang}", 1, [path],
+                       lambda: wiktionary_pages.en_pages(lang))
+
+
+def _en_page(lang: str, word: str) -> dict | None:
+    url = _en_pages(lang).get(word)
+    if not url:
+        return None
+    return {"url": url, "site": "en.wiktionary.org", "title": "Wiktionary"}
 
 
 def _same_site(one: str, other: str) -> bool:
@@ -844,8 +901,8 @@ def _entry_pages(entry: dict) -> list[dict]:
             "note": f"{n:,} occurrences in the corpus" if isinstance(n, int) and n > 0 else "",
         })
     if not any(p["kind"] == "wiktionary" for p in pages):
-        found = wiktionary_pages.en_page(entry.get("lang") or "",
-                                         entry.get("word") or "")
+        found = _en_page(entry.get("lang") or "",
+                             entry.get("word") or "")
         if found and found["url"] not in seen:
             pages.append({"id": "wiktionary", "title": "Wiktionary",
                           "url": found["url"], "kind": "wiktionary"})
@@ -1035,20 +1092,27 @@ def search(q: str, lang: str | None = None, limit: int = 40, gloss: bool = True)
     return (exact + prefix + contains + semantic)[:limit]
 
 
-def _glossary_row_shown(row: dict, lang: str, proto: bool) -> dict:
+def _glossary_row_shown(row: tuple, lang: str, proto: bool) -> dict:
     """One glossary row as the list prints it: status, meaning, reading.
 
     Called for the rows of the page only.  The word, its band, its part of
-    speech and which sense it is were settled while the whole stage was read
-    (they are what the ordering and the counts need), and nothing here changes
-    that: this is the dressing, not a second decision.
+    speech and which sense it is were settled once for the whole stage (they
+    are what the ordering and the counts need); this is the dressing, not a
+    second decision, and it is where the recorded entries are read again
+    (2026-11-13).
     """
-    entry = row.pop("_entry")
-    group = row.pop("_group")
-    word = row["word"]
-    status = attestation.for_word(group["entries"], proto=proto,
+    word, pos, kind, band, sense, senses_count, ipa = row
+    entries = word_entries(lang, word)
+    groups = _senses_for((lang, word)) or senses.groups(entries)
+    group = next((g for g in groups if g.get("sense") == sense),
+                 groups[0] if groups else {"entries": entries, "gloss": [], "pos": [],
+                                           "sense": sense, "rep": entries[0] if entries else {}})
+    entry = group.get("rep") or (entries[0] if entries else {})
+    status = attestation.for_word(group.get("entries") or [], proto=proto,
                                   in_script=_in_native_script(lang, word))
-    row.update({
+    out = {
+        "word": word, "pos": pos, "kind": kind, "root": kind == "root",
+        "band": band, "sense": sense, "senses": senses_count, "ipa": ipa,
         "attestation": status,
         "written": attestation.written(word, status),
         "gloss": [g for g in _page_gloss(lang, entry, group["gloss"])[:2] if g],
@@ -1056,9 +1120,90 @@ def _glossary_row_shown(row: dict, lang: str, proto: bool) -> dict:
         # (shower) and dōš (shoulder, 'last night'), and a list that printed one
         # reading for all three said the wrong word (2026-11-12).
         "reading": readings_for(entry)["reading"],
-    })
-    return _with_reading({**row, "show_reading": show_reading(lang, word),
+    }
+    return _with_reading({**out, "show_reading": show_reading(lang, word),
                           "evidence": evidence_for(word, lang)}, lang, word)
+
+
+def band_path() -> Path:
+    """The published measurement's file, the input every band colour needs."""
+    return data.DATA / "category_index.json.gz"
+
+
+def _band_stamp() -> int:
+    """The published measurement's identity, for caches keyed on its colours."""
+    try:
+        return band_path().stat().st_mtime_ns
+    except OSError:
+        return 0
+
+
+#: One glossary row before it is dressed, as the tuple the list sorts and
+#: counts: position in `_GLOSSARY_ROW`.  Plain values only, so a stage's rows
+#: can be kept on disk and a restart reads them back instead of grouping the
+#: senses of 164,000 Persian headwords again.
+_GLOSSARY_ROW = ("word", "pos", "kind", "band", "sense", "senses", "ipa")
+_GLOSSARY_VERSION = 1
+
+
+def _build_glossary_rows(lang: str) -> list[tuple]:
+    """Every row of a stage, undressed, in glossary order."""
+    index = band_index().get(lang) or {}
+    rows: list[tuple] = []
+    for word, entries in lang_index(lang).items():
+        # One row per *word*, not per part of speech (2026-11-09): a spelling
+        # Wiktionary writes as a noun and a verb with one etymology is one
+        # headword with one row, and two spellings that mean different things
+        # are two rows, numbered (1, 2 …) so a reader can pick the right one.
+        groups = _senses_for((lang, word)) or senses.groups(entries)
+        for group in groups:
+            entry = group["rep"]
+            # What the headword *is*, as a column of its own (admin,
+            # 2026-11-13).  The old "root" pill asked whether the word's
+            # etymology mentioned a root, which is true of almost every word
+            # in a reconstructed stage and told the reader nothing: 796 of the
+            # 799 Proto-Indo-Iranian rows wore it.  A row is a **root** when the
+            # dictionary heads it as one, and an **affix** when it is written
+            # bound (-a-, -nós) or headed as one; every other row is a word and
+            # the cell stays empty.
+            pos_label = (entry.get("pos") or "").strip().lower()
+            headword = word.strip()
+            bound = headword.startswith("-") or headword.endswith("-")
+            kind = ("root" if pos_label == "root"
+                    else "affix" if bound or pos_label in _BOUND_POS else "")
+            rows.append((entry["word"], " / ".join(group["pos"]), kind,
+                         # The colour of this sense, from the same published
+                         # measurement the coverage page prints.
+                         _band_in(index, entry["word"], group["sense"]),
+                         group["sense"], len(groups), entry.get("ipa") or ""))
+    return rows
+
+
+@lru_cache(maxsize=6)
+def _glossary_rows(lang: str, _stamp: int, roots_first: bool) -> tuple:
+    """Every row of a stage, sorted — the list before a page, built once.
+
+    A glossary request used to group the senses of all 17,000 Middle Persian
+    headwords again for every page, so stepping to page 2 cost as much as
+    opening the list (admin, 2026-11-13: "the glossary takes a while to
+    load").  What a request varies is the page, the search and the band
+    filter; the rows are one answer per stage, held in `~/.cache/pie` across
+    restarts and in memory until the published measurement changes
+    (`_stamp`).
+    """
+    source = data.lexicon_source(lang)
+    sources = ([source, data.DATA / "dehkhoda" / "structure.jsonl.gz"]
+               if source else [])
+    rows = data.cached(f"glossary-rows-{lang}", _GLOSSARY_VERSION,
+                       [*sources, band_path()], lambda: _build_glossary_rows(lang))
+    word, _pos, kind, _band, sense = 0, 1, 2, 3, 4
+    rows = sorted(rows, key=lambda r: (0 if (roots_first and r[kind] == "root") else 1,
+                                       r[word].lstrip("*").lower(), r[sense]))
+    # The stage's own tallies are read by every page and every filter, so they
+    # are counted once with the rows (2026-11-13).
+    counts = Counter(r[3] for r in rows if r[3])
+    sense_total = sum(1 for r in rows if r[4] == 1)
+    return tuple(rows), counts, len(rows), sense_total
 
 
 def glossary(lang: str, limit: int = 400, roots_first: bool = True,
@@ -1092,86 +1237,50 @@ def glossary(lang: str, limit: int = 400, roots_first: bool = True,
     # file to notice a new measurement, and doing that once per headword made a
     # 165,000-word glossary stat the same file 165,000 times and take five
     # seconds a request (2026-11-10).
-    index = band_index().get(lang) or {}
     # One stage-wide fact, read once: a proto stage is reconstructed as a whole,
     # and a stage with its own script has to show that script to be attested
     # (2026-11-11).
     proto = kind_of(lang) == "proto"
     needle = (q or "").strip().lower()
-    for word, entries in lang_index(lang).items():
-        # A list of 165,000 headwords is read by looking for one: `q` keeps the
-        # rows whose spelling contains it (2026-11-10, the Persian inventory).
-        # The hit is recorded on the row rather than dropping it here, because
-        # the stage-wide counts below must not shrink to the 204 words that
-        # happen to contain "ab" (2026-11-12, critic P1-2).
-        matched = not needle or needle in word.lower()
-        # One row per *word*, not per part of speech (2026-11-09): a spelling
-        # Wiktionary writes as a noun and a verb with one etymology is one
-        # headword with one row, and two spellings that mean different things
-        # are two rows, numbered (1, 2 …) so a reader can pick the right one.
-        groups = _senses_for((lang, word)) or senses.groups(entries)
-        for group in groups:
-            entry = group["rep"]
-            # What the headword *is*, as a column of its own (admin,
-            # 2026-11-13).  The old "root" pill asked whether the word's
-            # etymology mentioned a root, which is true of almost every word
-            # in a reconstructed stage and told the reader nothing: 796 of the
-            # 799 Proto-Indo-Iranian rows wore it.  A row is a **root** when the
-            # dictionary heads it as one, and an **affix** when it is written
-            # bound (-a-, -nós) or headed as one; every other row is a word and
-            # the cell stays empty.
-            pos_label = (entry.get("pos") or "").strip().lower()
-            headword = word.strip()
-            bound = headword.startswith("-") or headword.endswith("-")
-            kind = ("root" if pos_label == "root"
-                    else "affix" if bound or pos_label in _BOUND_POS else "")
-            # Everything a row *prints* — its status, its meaning, its
-            # reading — is dressed on the page slice below, not here: the list
-            # is built for all 17,000 words so the counts are whole, but only
-            # the 400 a reader opens are ever shown (2026-11-13).  The
-            # dressing is `_glossary_row_shown`.
-            rows.append({
-                "_q": matched,
-                "_entry": entry, "_group": group,
-                "word": entry["word"], "pos": " / ".join(group["pos"]),
-                "kind": kind,
-                "root": kind == "root",
-                # The colour of this sense, from the same published measurement
-                # the coverage page prints.
-                "band": _band_in(index, entry["word"], group["sense"]),
-                "sense": group["sense"], "senses": len(groups),
-                "ipa": entry.get("ipa") or "",
-            })
-    rows.sort(key=lambda r: (0 if (roots_first and r["root"]) else 1,
-                             r["word"].lstrip("*").lower(), r.get("sense", 1)))
+    # The undressed list is the same for every page and every search of one
+    # stage: built once, and only the rows a reader sees are copied for
+    # dressing (2026-11-13).
+    rows, counts, stage_total, sense_total = _glossary_rows(
+        lang, _band_stamp(), bool(roots_first))
+    # One row is `_GLOSSARY_ROW`: word, part of speech, kind, band, sense,
+    # how many senses, IPA.
+    word_at, kind_at, band_at = 0, 2, 3
     # Counts over the whole stage, not over the page: a reader filtering for
     # *fully explained* wants to know how many there are, not how many fit in
-    # the first 400 (2026-11-09).
-    counts = Counter(r["band"] for r in rows if r["band"])
-    stage_total = len(rows)
-    sense_total = sum(1 for r in rows if r.get("sense", 1) == 1)
-    rows = [r for r in rows if r.pop("_q", True)]
+    # the first 400 (2026-11-09).  The counts above are the stage's, not the
+    # matches', so a search for "ab" still says what the stage holds
+    # (2026-11-12, critic P1-2).
+    if needle:
+        # A list of 165,000 headwords is read by looking for one: `q` keeps the
+        # rows whose spelling contains it (2026-11-10, the Persian inventory).
+        rows = [r for r in rows if needle in r[word_at].lower()]
     if band == PIE_WORDS_BAND:
         # The reader's default view (2026-11-09): everything the record
         # keeps inside the family.  A word borrowed from Arabic or Turkic is
         # not a failure of the sound laws, so it does not belong in the list a
         # reader opens by default; `band=all` (an empty band) shows them.
-        rows = [r for r in rows if r["band"] != "non_pie"]
+        rows = [r for r in rows if r[band_at] != "non_pie"]
     elif band:
-        rows = [r for r in rows if r["band"] == band]
+        rows = [r for r in rows if r[band_at] == band]
     total = len(rows)
     limit = max(1, int(limit or 400))
     pages = max(1, -(-total // limit))
     page = min(max(1, int(page or 1)), pages)
     start = (page - 1) * limit
-    shown = [_glossary_row_shown(row, lang, proto) for row in rows[start:start + limit]]
+    shown = [_glossary_row_shown(row, lang, proto)
+             for row in rows[start:start + limit]]
     legend = Counter(r["band"] for r in shown if r["band"])
     # *banded* describes the list the reader filtered, not the 400 rows on the
     # page: subtracting a page's count from a language's total said "4 not
     # banded" about a stage of 7,613 (2026-11-12, critic P1-3).
-    banded = sum(1 for r in rows if r["band"])
+    banded = sum(1 for r in rows if r[band_at])
     return {"lang": lang, "lang_name": _lang(lang).get("name", lang),
-            "total": total, "roots": sum(1 for r in rows if r["root"]),
+            "total": total, "roots": sum(1 for r in rows if r[kind_at] == "root"),
             "rows": shown, "limit": limit,
             # Which slice of the list this is, so the page can offer the rest
             # of it rather than stop at the 400th word (admin, 2026-11-13).
@@ -1817,49 +1926,10 @@ def _match_spelling(form: str, spellings: list[str]) -> str | None:
     return next((spelling for spelling in spellings if _same_form(spelling, form)), None)
 
 
-#: A gloss in parentheses at the very end of a form: ``*per- (fare)``.
-#: Only a trailing one is dictionary apparatus; a parenthesis inside the form
-#: is the movable s (``*(s)pend-``) and is handled below.
-_TRAILING_GLOSS = re.compile(r"\s*\([^()]*\)\s*$")
-#: A parenthetical that is one or two *sounds* is optional notation, and its
-#: letters are part of the form: Middle Persian pādixšā(y) is pādixšāy, and the
-#: rung printed pādixšā with a stray «y» as its gloss (critic batch 08,
-#: 2026-11-13).
-_TRAILING_SOUND = re.compile(r"\s*\(([^\W\d_]{1,2})\)\s*$", re.UNICODE)
-
-
-def normalise_etymon(form: str) -> str:
-    """Strip the notation that belongs to a dictionary, not to a derivation.
-
-    ``*bʰeh₂g-`` → ``*bʰeh₂g``; ``*(s)pend-`` → ``*spend`` (the movable s is
-    treated as present); ``(*kʷ)`` style brackets are dropped.
-
-    Three pieces of dictionary apparatus are removed whole rather than merged
-    into the form, because each would otherwise become part of a word that no
-    dictionary holds: a sense label after a hash (``*kʷís#Determiner`` →
-    ``*kʷís``), a gloss in trailing parentheses (``*per- (fare)`` → ``*per``),
-    and the second member of an alternation (``*ḱḗr ~ *kr̥d-`` → ``*ḱḗr``, the
-    first member being the one the entry names first).  A genuine two-word
-    lemma such as ``newe founde`` carries none of these and is left whole: a
-    space is a word boundary, never a label.
-    """
-    form = form.strip()
-    # The overwhelmingly common case is a plain glossary headword, and this
-    # runs once per entry when a language's lemma index is built (164k Persian
-    # headwords): nothing to strip, nothing to compose (2026-11-12).
-    if not any(ch in form for ch in "#()~*") and form[:1] != "-" and form[-1:] != "-":
-        return form
-    if "#" in form:
-        form = form.split("#", 1)[0]
-    sound = _TRAILING_SOUND.search(form)
-    if sound:
-        form = form[: sound.start()] + sound.group(1)
-    form = _TRAILING_GLOSS.sub("", form)
-    if "~" in form:
-        form = form.split("~", 1)[0]
-    form = form.strip().strip("*").strip()
-    form = form.replace("(", "").replace(")", "")
-    return form.strip("-").strip()
+#: Kept here because other modules import it from `service`; the notation
+#: belongs to the data layer, and the row store needs it when it builds a
+#: stage's lemma map (2026-11-13).
+normalise_etymon = data.normalise_etymon
 
 
 def _pie_form(entry: dict) -> str | None:
@@ -1893,13 +1963,13 @@ def _seam_index(lang: str) -> dict[str, str]:
     same word reachable.
     """
     out: dict[str, str] = {}
-    for word in data.lexicon_index(lang):
+    for word in data.lexicon_spellings(lang):
         out.setdefault(word.replace("\u200c", ""), word)
     return out
 
 
 @lru_cache(maxsize=None)
-def _lemma_index(lang: str) -> dict[str, dict]:
+def _lemma_index(lang: str) -> Mapping[str, dict]:
     """Glossary entries keyed by their notation-free lemma.
 
     A cognate set names an etymon the way its root page writes it (``bʰeh₂g-``
@@ -1907,28 +1977,12 @@ def _lemma_index(lang: str) -> dict[str, dict]:
     (``bʰeh₂g``); ``*bōks`` and ``bōks`` are the same lemma too. Indexing by
     ``normalise_etymon`` lets a rung find the dictionary's own record of the
     form it starts from instead of reporting that nothing is recorded.
+
+    The map is built with the row store and decodes only the row a lookup
+    asks for, so a page no longer builds fourteen 100k-entry dictionaries
+    before it can answer (2026-11-13).
     """
-    out: dict[str, dict] = {}
-    for word, rows in data.lexicon_index(lang).items():
-        out.setdefault(normalise_etymon(word), rows[0])
-        # A stage may head a word in lower case while a record quotes it with a
-        # capital (Proto-Iranian heads *hā́fš, the ancestry row writes *Hā́fš).
-        # Case is spelling, not a sound, and one more key per word costs a
-        # dictionary slot only where the two differ (2026-11-12).
-        out.setdefault(normalise_etymon(word).casefold(), rows[0])
-        for entry in rows[:1]:
-            # The spelling a row was quoted under before it took its reading
-            # (Pahlavi hwʾb → xwāb) is still a name for the same entry, so an
-            # old link opens the word and not an empty page (2026-11-13).
-            quoted = entry.get("translit_quoted") or ""
-            if quoted:
-                out.setdefault(normalise_etymon(quoted), entry)
-        if "\u200c" in word:
-            # The same headword without the seam: a composed Persian compound
-            # is written with the ZWNJ and the dictionary may head it without
-            # (2026-11-10).
-            out.setdefault(normalise_etymon(word.replace("\u200c", "")), rows[0])
-    return out
+    return data.lexicon_lemma_rows(lang)
 
 
 #: The meaning a record writes in brackets beside an ancestor it names:
@@ -1996,7 +2050,7 @@ def _stressless_index(lang: str) -> dict[str, list[str]]:
     process and never for a word the ordinary lookup already answered.
     """
     out: dict[str, list[str]] = {}
-    for word in data.lexicon_index(lang):
+    for word in data.lexicon_spellings(lang):
         bare = _skeleton(word)
         if bare:
             out.setdefault(bare, []).append(word)
@@ -2024,7 +2078,7 @@ def _has_glossary(stage: str) -> bool:
     so the page must not read the silence as "no entry" (2026-11-13).
     """
     try:
-        return bool(data.lexicon_index(stage))
+        return bool(data.lexicon_words(stage))
     except Exception:
         return False
 
@@ -9678,10 +9732,14 @@ def _affix_entries(lang: str) -> tuple[dict, ...]:
     with the gloss the record gives them, instead of a hand-written list.
     """
     out: list[dict] = []
-    for word, rows in lang_index(lang).items():
-        if len(word) < 2 or not word.startswith("-"):
+    for key in data.lexicon_words(lang):
+        if len(key) < 2 or not key.startswith("-"):
+            continue
+        rows = data.lexicon_rows(lang, key)
+        if not rows:
             continue
         row = rows[0]
+        word = str(row.get("word") or key)
         out.append({
             "id": word, "form": word, "attach": "keep", "ending": "",
             "gloss": _rung_gloss(row.get("gloss") or [], 80),
@@ -10003,7 +10061,7 @@ def _record_sources(lang: str, word: str, fallback: dict | None = None) -> list[
     if fallback:
         return _entry_sources(fallback)
     known = data.sources().get("wiktionary") or {}
-    found = wiktionary_pages.en_page(lang, word)
+    found = _en_page(lang, word)
     return [{"id": "wiktionary", "title": known.get("title", "Wiktionary"),
              "url": known.get("url", ""), "kind": known.get("kind", ""), "ref": "",
              "entry": found["url"] if found else ""}]
