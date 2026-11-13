@@ -238,3 +238,39 @@ if its Persian-oriented filters starve the sample, take the words from
   a proper name (غزالی، اعبدة، اردشیرگان), the page must say so in the meaning
   line; it must not borrow the biography as a definition. (Open question for the
   admin: whether such a page should carry a meaning at all.)
+
+## What the branch still gets wrong (peo-04 diagnosis, 2026-11-13)
+
+The descendant panel is the last place a page answers with a *form* where it
+should answer with a *word*. Measured on 532 Old Persian pages: 447 fa and 447
+pal rows, 236 carrying a recorded entry; of the first 60 fa rows ~40 gloss an
+unrelated word, several with a ✓ — 𐎠𐎿𐎫𐎡𐎹 «to be» → fa **است «bone»**,
+𐎠𐎼𐎫 «truth» → **آرد «flour»**, 𐎠𐎭𐎶 «I» → **ای «that is to say»**,
+𐎱𐎠𐎮𐎹 «to protect» → **پا «leg»**, dariš «golden» → **در «door»**.
+
+Three distinct causes, and they need three different fixes — do not "fix" them
+by hiding the branch:
+
+1. **`_near_record`/`_reading_index` return the first entry of a spelling**
+   (fa است heads «bone» before the copula). The fa pieces already solve this
+   with `_homonym_by_meaning`: gather every entry the reading can be, then pick
+   the one whose meaning the carried sense asks for. Thread the sense down
+   `_stage_descendants → _branch_children → _branch_node` (the origin entry's
+   gloss is the only sense a page has).
+2. **A form coincidence wears the ✓.** 𐎠𐎭𐎶 *adam* → fa *ay* «that is to say»
+   is the laws' output landing on an unrelated Persian word; the Persian “I” is
+   من. A ✓ needs *both* the form and the sense; with neither evidence a row may
+   show the form the laws produce and no record at all.
+3. **The laws themselves are wrong for that word**: peo 𐎠𐎿𐎫𐎡𐎹 is fa است
+   (*ast*, no final -iy), so no homonym choice can rescue it — that is a missing
+   law (OP final -iy > NP ∅), and the row must say *differs*.
+
+**The band contradicts its own ladder on 37 pages** — the verdict names a hole
+(«no entry for Proto-Iranian *Habí») while the same page's rung at that stage is
+marked `matches: true`. Read the JSON before believing it: `matches` is about
+the laws' output, `known` is about the entry, and the two lookups should never
+be asked to agree on different keys.
+
+**Ātr̥pātah explains the wrong half of its own name**: the record says
+*HáHtr̥š + *paHtáh, the page draws the ladder of «protected» and prints it as
+the word. A compound whose record states its pieces must draw those pieces.
