@@ -2716,6 +2716,9 @@ def _chain_between(lang: str, parent: dict, chain: list[str]) -> list[dict]:
             # The ladder's own word for a rung no glossary records: the laws
             # produce this form between two stages the record names.
             "derived": True,
+            # …and the form it was produced from, so the page can say so under
+            # the rung instead of leaving the reader to guess (2026-11-13).
+            "from": str(forms[index - 1] or "") if index > 0 else str(parent.get("form") or ""),
         }
         if rungs:
             rungs[-1]["parents"] = [rung]
@@ -4356,8 +4359,24 @@ def unrecorded_ancestry(entry: dict, chain: list[str]) -> list[dict]:
         # question mark says, and green may not stand over it (admin,
         # 2026-11-13: fa رضاقلی over قلی).  The climb is the page's own, so the
         # origin the compounding row states for the piece is the one read.
-        dead = (None if bound else
-                _unexplained_branch(_origin_node(own_stage, raw, quoted=piece_anc)))
+        climb = None if bound else _origin_node(own_stage, raw, quoted=piece_anc)
+        # Every rung of that climb must be a word too: a stage the laws reach
+        # through a form no glossary heads is drawn on the page, and the band
+        # may not call the word fully explained above it (admin, 2026-11-13:
+        # ناراحت read «fully explained» while ناـ's column printed «no entry»
+        # for Middle Persian, Old Persian and Proto-Iranian).
+        for stage, form_ in _unheld_chain(climb or {}):
+            if (stage, form_) in seen_forms:
+                continue
+            out.append({"stage": stage,
+                        "name": _lang(stage).get("name", stage),
+                        "form": form_,
+                        "written": ("*" if kind_of(stage) == "proto" else "")
+                        + form_.lstrip("*"),
+                        "rel": "",
+                        "via": str(entry.get("word") or ""),
+                        "kind": "derived"})
+        dead = None if climb is None else _unexplained_branch(climb)
         if dead is not None:
             stage = data.stage_of(str(dead.get("lang") or "")) or str(dead.get("lang") or "")
             if (stage, str(dead.get("form") or "")) not in seen_forms:
@@ -7433,6 +7452,34 @@ def _flatten_branch(nodes: list[dict]) -> list[dict]:
     for node in nodes:
         out.append(node)
         out.extend(_flatten_branch(node["children"]))
+    return out
+
+
+def _unheld_chain(node: dict) -> list[tuple[str, str]]:
+    """The rungs of a piece's climb that no glossary of their stage heads.
+
+    `_chain_between` fills the stages between a recorded ancestor and the word
+    with the forms the cited laws produce, so a piece's column can show
+    Proto-Iranian, Old Persian and Middle Persian rows that are nobody's entry.
+    A word cannot be *fully* explained above them (admin, 2026-11-13: fa ناراحت
+    read «fully explained» while ناـ's climb printed three «no entry» rungs).
+    They are reported as holes of their own kind so the band's sentence says
+    what they are.
+    """
+    out: list[tuple[str, str]] = []
+
+    def walk(n: dict, depth: int) -> None:
+        if not isinstance(n, dict) or depth > 30:
+            return
+        if n.get("derived") and not n.get("known"):
+            stage = data.stage_of(str(n.get("lang") or "")) or str(n.get("lang") or "")
+            form = str(n.get("form") or "")
+            if stage and form:
+                out.append((stage, form))
+        for parent in n.get("parents") or []:
+            walk(parent, depth + 1)
+
+    walk(node, 0)
     return out
 
 

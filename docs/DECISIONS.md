@@ -4544,3 +4544,24 @@ So:
   rows; the same merge added three real Old Persian homonyms (name/adj).
 * The only pieces that stay bound are the ones a record writes as morphemes
   (‑دار, *-lom) or a suffix slot's ending. A stem is never one.
+
+## A rung with no entry says so, and it costs the green band (2026-11-13, admin)
+
+ناراحت read «fully explained» while the column above ناـ printed three rungs
+that no glossary heads — Proto-Iranian, Old Persian and Middle Persian — each
+labelled *a form the laws produce* and each saying *no glossary entry* on hover.
+The admin's ruling: *if there is no entry found, then it should say so; and
+therefore this shouldn't be fully explained.*
+
+So:
+
+* A rung the laws produce between two recorded stages is labelled **no entry for
+  this word**, with the derivation beneath it («the laws produce it from
+  *ná»), and the hover says the same thing. The page never states an entry and
+  its absence side by side.
+* `service._unheld_chain` reports such rungs as holes of their own kind, and
+  `categories.verdict` refuses every green route while one exists:
+  «no entry for Middle Persian n, Old Persian nˈa, Proto-Iranian *nˈa».
+* The rung is not deleted: the climb is still drawn (the admin asked in
+  v0.17.20 that a form bring its whole timeline), it simply stops pretending the
+  model holds what it does not.

@@ -247,7 +247,13 @@ def verdict(*, recorded: bool, non_ie: bool = False, ie_loan: bool = False,
         # about a missing entry where the page draws a question mark
         # (admin, 2026-11-13: fa رضاقلی over قلی).
         def _named(kind: str | None) -> str:
-            rows = [r for r in holes if (str(r.get("kind") or "") or None) == kind]
+            # `None` means "every hole but an origin", which is what the
+            # sentence «no entry for …» names: a recorded rung (no kind) and a
+            # rung the laws produce between two recorded stages (`kind:
+            # derived`) are both forms the page prints with no entry.
+            rows = [r for r in holes
+                    if (str(r.get("kind") or "") != "origin" if kind is None
+                        else str(r.get("kind") or "") == kind)]
             text = ", ".join(f"{r.get('name') or r.get('stage')} "
                              f"{r.get('written') or r.get('form')}" for r in rows[:3])
             more = "" if len(rows) <= 3 else f" and {len(rows) - 3} more"

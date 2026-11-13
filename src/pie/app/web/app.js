@@ -1631,7 +1631,9 @@ function constructStep(level, i, linkTo, opts) {
               n.known ? " — open the donor word's page."
                 : n.outside ? "; a non-PIE word, so this model holds no glossary for it."
                   : "; the donor word has no glossary entry."}`
-          : `${n.gloss ? `“${n.gloss}” — ` : ""}${n.known ? "open the word page" : "no glossary entry"}`);
+          : `${n.gloss ? `“${n.gloss}” — ` : ""}${n.known ? "open the word page"
+              : n.derived ? "no glossary entry at this stage: the cited laws produce this form between two stages the record names"
+                : "no glossary entry"}`);
   /* The word itself, at the ladder's size, in its own evidence colour, its
      reading underneath it — the ladder's own stack. */
   const wordHtml = (n, tip, extra = "") => `<span class="formstack">${
@@ -1664,7 +1666,13 @@ function constructStep(level, i, linkTo, opts) {
         meaningOf(n.pos, n.gloss, false)
           ? `<span class="cgloss">${meaningOf(n.pos, n.gloss, false)}</span>`
           : n.derived
-            ? `<span class="cgloss"><span class="coutside">a form the laws produce</span></span>`
+            /* A rung the laws produce between two recorded stages is still a
+               form no glossary heads: the hover said «no glossary entry» while
+               the line said «a form the laws produce», and the reader was told
+               two things at once (admin, 2026-11-13: ناراحت's Middle Persian,
+               Old Persian and Proto-Iranian rungs).  Say what is missing first,
+               then how the row got here. */
+            ? `<span class="cgloss"><span class="norec">no entry for this word</span> <span class="coutside">· the laws produce it from ${esc(n.from || "the stage above")}</span></span>`
           : n.known === false
             ? `<span class="cgloss"><span class="${n.outside ? "coutside" : "norec"}">${
                 n.outside ? "non-PIE word" : "no entry for this word"}</span></span>` : ""}</span>

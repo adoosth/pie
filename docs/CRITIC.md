@@ -298,3 +298,12 @@ own climb to the infinitive), and the construction combines two words. When a
 page draws such a piece without a dot, calls it a suffix, or resolves it to a
 homograph (مال «property», کش «armpit»), that is a `wrong_piece` finding — and
 the fix is to file the stem, not to rename the piece.
+
+## A rung the laws produce is not an entry (admin, 2026-11-13)
+
+When a piece's column shows a stage between two recorded ones — Proto-Iranian,
+Old Persian, Middle Persian — that form is the model's own derivation, not a
+word any glossary heads. Report a page that calls such a word *fully explained*:
+the band must be partial, and the row must say **no entry for this word** with
+the derivation beside it, never «a form the laws produce» alone. A band and a
+row disagreeing about the same rung is the finding, whichever wording is wrong.
