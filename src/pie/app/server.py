@@ -91,8 +91,9 @@ class Handler(BaseHTTPRequestHandler):
         # The stamp covers the *sheet* too: a change to style.css alone once
         # kept its old address, so an open tab kept yesterday's fonts while the
         # script said it was current (a ǰ drawn with a floating caron, 2026-11-13).
-        stamp = f'{max((WEB / name).stat().st_mtime_ns
-                       for name in ("app.js", "style.css", "index.html")):x}'
+        newest = max((WEB / name).stat().st_mtime_ns
+                     for name in ("app.js", "style.css", "index.html"))
+        stamp = f"{newest:x}"
         html = html.replace('/static/app.js"', f'/static/app.js?v={stamp}"')
         html = html.replace('/static/style.css"', f'/static/style.css?v={stamp}"')
         self._send(html.encode("utf-8"), "text/html; charset=utf-8", 200,
