@@ -202,3 +202,17 @@ first in each one:
 A batch on a new language starts with `tools/critic.py sample --lang <code>`;
 if its Persian-oriented filters starve the sample, take the words from
 `data.lexicon(<code>)` by hand and say so in the report.
+
+## Persian, round 4 (batch 11)
+
+- **A parenthesis after a piece belongs to that piece** — جانشین's
+  «جا (“place”) + نشین present stem of نشستن» gave the verb to جا. Report the
+  piece and the entry the parenthesis names.
+- **A suffix or prefix is chosen by what the sentence says it does**, never by
+  the first homonym: اسبی's ـی is «suffix forming adjectives», not the
+  indefinite article; بجای's بـ is the preposition, not the subjunctive prefix.
+- **Dehkhoda states etymology in the gloss** («مرکب است از جه … و مرز …»,
+  «اصل در آن تایب آباد بوده و تایباد مخفف آن است») while the page says «no
+  recorded etymology» — that contradiction is a finding.
+- **A name entry's notice is not a meaning**: اعبدة opens «[ اَ ب ُ دَ ] (اِخ )»,
+  اردشیرگان quotes Hamza al-Isfahani, تایباد adds a biography.

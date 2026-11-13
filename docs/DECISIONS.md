@@ -4495,3 +4495,21 @@ resolved the branch's starting form only *after* refusing it: 127 pages said
 «the record gives no reading» beside a reading they printed (𐎥𐎭𐎠𐎼𐎹 =
 Gaⁿdāraya); `_phonological_form` now runs first, and the branch carries the word
 into Middle Persian again.
+
+## Batch 11 — a parenthetical belongs to one piece (0.17.26)
+
+The Persian critic's fourth round found the mirror of دستمال: جانشین's «From جا
+(“place”) + نشین present stem of نشستن (“to sit”)» gave the verb to *both*
+pieces, so the place noun climbed as *nešastan* with Proto-Iranian *had above
+it. `_stem_verb` now reads a piece's own segment, up to the next `+`.
+
+Two homonyms were chosen by the flattened Wiktionary tree instead of by the
+sentence: اسبی's ـی took the indefinite article (pal 𐭸) although the sentence
+says «suffix forming adjectives» (pal ig/yḥ). `_piece_hint` keeps the longest
+parenthesis, and `_homonym_by_hint` scores candidates against it — with the
+shorter description winning a tie, so a suffix that *is* the adjectives beats
+one that lists adjectives among nouns. Dehkhoda's own construction clause
+(«مرکب است از …») is now a note, not part of the meaning, and a sense that
+*opens* with its grammar note («نعت فاعلی از استزارة . زیارت خواهنده») keeps the
+meaning instead of the note; a name entry drops its respelling bracket and
+(اِخ) tag, and an attributed quotation («… آرد: …») is a citation, not a sense.
