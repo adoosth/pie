@@ -597,9 +597,14 @@ def _attestation_reason(entry: dict, lang: str, status: str) -> str:
         return ("This model proposes the form itself: nothing in the literature "
                 "records it, so it is printed with an asterisk.")
     if status == "transliterated":
+        # "no writing is known" was a claim the corpus dictionaries do not
+        # support: MPCD gives glm for garm while the glossary's headword is the
+        # reading, so the sentence says what is true of *this headword* only
+        # (admin, 2026-11-13).
         return (f"A text writes this word; the glossary keeps the reading of its "
-                f"signs and no headword in {_lang(lang).get('name', lang)}'s own "
-                f"script is known, so it is not called attested.")
+                f"signs rather than the signs themselves, so the headword is not a "
+                f"writing of {_lang(lang).get('name', lang)} and is not called "
+                f"attested.")
     if status == "recorded":
         return ("No text spells this word: it is a reconstruction the literature "
                 "records as the probable form, and it is printed with an asterisk.")
@@ -614,8 +619,14 @@ def attestation_of(entry: dict, lang: str) -> dict:
         proto=kind_of(lang) == "proto",
         in_script=_in_native_script(lang, entry.get("word") or ""),
     )
-    return attestation.payload(entry.get("word") or "", status,
-                               reason=_attestation_reason(entry, lang, status))
+    reason = _attestation_reason(entry, lang, status)
+    n = entry.get("occurrences")
+    if isinstance(n, int) and n > 0:
+        # A count is the strongest witness there is, so it stands beside the
+        # status rather than staying folded into a tooltip (admin, 2026-11-13).
+        reason = (f"{reason} The corpus writes it {n:,} "
+                  f"{'time' if n == 1 else 'times'}.")
+    return attestation.payload(entry.get("word") or "", status, reason=reason)
 
 
 def _is_wiktionary_url(url: str) -> bool:
@@ -725,6 +736,14 @@ def _entry_sources(entry: dict) -> list[dict]:
             # page.  Only an address on the source's own site counts as that
             # source's page (admin, 2026-11-12: the book must open the word).
             source["entry"] = stored
+        # A corpus dictionary counts what it holds, and the count is the
+        # attestation: Middle Persian garm is written 102 times in the MPCD
+        # texts (admin, 2026-11-13).  It rides with the source the entry was
+        # read from so the icon can say it, and it is a number of *occurrences*,
+        # never a claim about which texts they are in.
+        n = entry.get("occurrences")
+        if isinstance(n, int) and n > 0 and sid == (entry.get("source") or ""):
+            source["occurrences"] = n
         out.append(source)
     page = _wiktionary_page(entry)
     if page:
@@ -764,11 +783,16 @@ def _entry_pages(entry: dict) -> list[dict]:
         if not url or url in seen:
             continue
         seen.add(url)
+        n = src.get("occurrences")
         pages.append({
             "id": src.get("id") or "",
             "title": src.get("title") or "",
             "url": url,
             "kind": "wiktionary" if _is_wiktionary_url(url) else (src.get("kind") or ""),
+            # What the page holds of this word, when the source counts
+            # occurrences: a dictionary can say "the corpus writes it 102
+            # times" without shipping one line of the texts (admin, 2026-11-13).
+            "note": f"{n:,} occurrences in the corpus" if isinstance(n, int) and n > 0 else "",
         })
     if not any(p["kind"] == "wiktionary" for p in pages):
         found = wiktionary_pages.en_page(entry.get("lang") or "",

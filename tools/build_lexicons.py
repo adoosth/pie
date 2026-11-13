@@ -648,7 +648,7 @@ def merge_supplements() -> None:
                 # so it fills an empty field like the rest; `classify` ignores it
                 # whenever the entry has a chain of its own (2026-11-10).
                 for key in ("translit", "pos", "ipa", "etym", "ref",
-                            "borrowed_from", "source_note"):
+                            "borrowed_from", "source_note", "occurrences"):
                     if row.get(key) and not cur.get(key):
                         cur[key] = row[key]
                 # A citation is not a value to fill: the curated supplement

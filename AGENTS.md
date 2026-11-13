@@ -187,7 +187,11 @@ page is never printed, and **a form whose page is not recorded carries no icon a
 all**, not a mark that goes nowhere (that dead W on کبود and on Middle Persian
 `kpwt'` is what the admin reported). The citation is still named in the mark's
 tooltip (`recordSourceText`), and `_entry_sources` keeps `entry` = the page the
-record was read on. A rung with no entry of its own gets no pages: the article it
+record was read on. A **corpus** dictionary can also count: an entry with
+`occurrences: 102` (`source: mpcd`, `tools/import_mpcd.py`) carries the number
+to its page's note ("102 occurrences in the corpus") and to the attestation
+sentence ("The corpus writes it 102 times."); the occurrence list and the texts
+stay at mpcorpus.org, and the skill `mpcd` holds the extraction. A rung with no entry of its own gets no pages: the article it
 was quoted from is a different word's page. `service._wiktionary_title` builds
 the title once: an attested word is its headword, a reconstruction is
 `Reconstruction:<Language>/<word>` **without** its asterisk (`Reconstruction:

@@ -20,15 +20,15 @@ never a count and never in a denominator.
 
 | band | words | share | definition |
 |---|---:|---:|---|
-| **fully explained** (dark green) | 334 | 0.1% | A recorded origin — a PIE etymon carried by cited laws, or the record's own registered construction of explained pieces — reproduced exactly, every recorded intermediate matching. |
+| **fully explained** (dark green) | 333 | 0.1% | A recorded origin — a PIE etymon carried by cited laws, or the record's own registered construction of explained pieces — reproduced exactly, every recorded intermediate matching. |
 | **fully explained, with adjustments** (light green) | 50 | 0.0% | The same path, but a recorded intermediate disagrees, or one step is an approved adjustment of ours. |
-| **partially explained** (yellow) | 131,880 | 34.6% | A recorded chain that does not reach the word from the PIE etymon in full: it starts lower, a recorded rung has no entry, or the laws do not reproduce it. |
-| **unexplained** (red) | 72,840 | 19.1% | No recorded etymology. |
-| **non-PIE** (dark grey) | 95,828 | 25.1% | Recorded as borrowed from outside the family. |
-| **loan from another IE language** (blue grey) | 72,037 | 18.9% | Borrowed from a sister branch; recorded, not derived by this chain. |
-| **built from its own words** (brown) | 8,150 | 2.1% | Made of the language's own words, or of one plus a suffix: a formation, not a derivation. |
+| **partially explained** (yellow) | 131,882 | 33.2% | A recorded chain that does not reach the word from the PIE etymon in full: it starts lower, a recorded rung has no entry, or the laws do not reproduce it. |
+| **unexplained** (red) | 89,174 | 22.4% | No recorded etymology. |
+| **non-PIE** (dark grey) | 95,828 | 24.1% | Recorded as borrowed from outside the family. |
+| **loan from another IE language** (blue grey) | 72,037 | 18.1% | Borrowed from a sister branch; recorded, not derived by this chain. |
+| **built from its own words** (brown) | 8,154 | 2.0% | Made of the language's own words, or of one plus a suffix: a formation, not a derivation. |
 
-**384 of 381,119 attested words are fully explained (0.10%), and 72,037 more are recorded loans from a
+**383 of 397,458 attested words are fully explained (0.10%), and 72,037 more are recorded loans from a
 sister branch. Both greens need a recorded origin carried all the way to the
 word — by cited laws, or by the record's own registered construction (the
 pieces spell it, each piece starts from a PIE etymon or from outside the
@@ -44,7 +44,7 @@ ancestor (Old Persian 𐎣𐎠𐎶 from Proto-Iranian) is yellow.
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | Sanskrit (`sa`) | 129 | 14 | 3,823 | 14 | 90 | 82 | 0 | 4,081 | 143 | 4,152 |
 | Ancient Greek (`grc`) | 50 | 8 | 3,569 | 29 | 539 | 852 | 0 | 4,122 | 58 | 5,047 |
-| Persian (`fa`) | 49 | 0 | 5,049 | 71,954 | 75,600 | 2,979 | 8,147 | 2,091 | 49 | 163,778 |
+| Persian (`fa`) | 48 | 0 | 5,050 | 71,951 | 75,600 | 2,979 | 8,149 | 2,091 | 48 | 163,777 |
 | Latin (`la`) | 29 | 2 | 5,477 | 81 | 328 | 1,572 | 0 | 5,138 | 31 | 7,489 |
 | Lithuanian (`lt`) | 10 | 8 | 1,427 | 0 | 83 | 853 | 0 | 1,207 | 18 | 2,381 |
 | Avestan (`ave`) | 12 | 0 | 300 | 40 | 0 | 0 | 0 | 103 | 12 | 352 |
@@ -63,7 +63,7 @@ ancestor (Old Persian 𐎣𐎠𐎶 from Proto-Iranian) is yellow.
 | Middle High German (`gmh`) | 0 | 0 | 542 | 0 | 0 | 32 | 0 | 185 | 0 | 574 |
 | Hittite (`hit`) | 0 | 0 | 286 | 0 | 3 | 0 | 0 | 289 | 0 | 289 |
 | Armenian (`hy`) | 0 | 0 | 2,252 | 0 | 514 | 2,271 | 0 | 231 | 0 | 5,037 |
-| Middle Persian (`pal`) | 0 | 0 | 186 | 494 | 0 | 17 | 0 | 61 | 0 | 697 |
+| Middle Persian (`pal`) | 0 | 0 | 187 | 16,831 | 0 | 17 | 2 | 61 | 0 | 17,037 |
 | Albanian (`sq`) | 0 | 0 | 1,861 | 0 | 745 | 1,401 | 0 | 1,847 | 0 | 4,007 |
 | Tocharian B (`txb`) | 0 | 0 | 427 | 0 | 2 | 234 | 0 | 507 | 0 | 663 |
 | Old Armenian (`xcl`) | 0 | 0 | 1,025 | 0 | 133 | 261 | 0 | 1,159 | 0 | 1,419 |
@@ -93,7 +93,7 @@ no grey band at all (`data/vocabulary_estimates.yaml`).
 | Ancient Greek (`grc`) | 116,502 | 111,455 | entries (headwords) of literary and documentary Ancient Greek (dictionary) | [Liddell–Scott–Jones, A Greek–English Lexicon, 9th edition (1940), as summarised in its Wikipedia article](https://en.wikipedia.org/wiki/A_Greek%E2%80%93English_Lexicon), 1940 |
 | Latin (`la`) | 40,000 | 32,511 | headword entries of Classical Latin (to AD 200), covering 100,000 senses (dictionary) | [Oxford Latin Dictionary, 2nd edition (OUP 2012), as summarised in its Wikipedia article](https://en.wikipedia.org/wiki/Oxford_Latin_Dictionary), 2012 |
 | Avestan (`ave`) | 7,959 | 7,607 | dictionary entries (lemmas) of the standard Avestan dictionary (dictionary) | [Chr. Bartholomae, Altiranisches Wörterbuch (1904), digitised as the CAB edition (FU Berlin)](https://cab.geschkult.fu-berlin.de/dictionaries/Bartholomae_Dictionary.html), 1904 |
-| Middle Persian (`pal`) | 4,000 | 3,303 | the commonest simple words a concise dictionary sets out to cover — a curated core, not the attested vocabulary (floor) | [D. N. MacKenzie, A Concise Pahlavi Dictionary (OUP 1971), preface](https://www.parsianjoman.org/wp-content/uploads/2015/09/A-Concise-Pahlavi-Dictionary.pdf), 1971 |
+| Middle Persian (`pal`) | 4,000 | 0 | the commonest simple words a concise dictionary sets out to cover — a curated core, not the attested vocabulary (floor) | [D. N. MacKenzie, A Concise Pahlavi Dictionary (OUP 1971), preface](https://www.parsianjoman.org/wp-content/uploads/2015/09/A-Concise-Pahlavi-Dictionary.pdf), 1971 |
 
 Every figure above was read on the page it cites on 2026-11-09; the quotation for
 each one lives with the number in `data/vocabulary_estimates.yaml`, together with the
@@ -126,11 +126,11 @@ with an older release.
   writes the same form with a morpheme hyphen the laws never write (`a-`, `-kas`).
   Both are counted apart: in neither did a rule demonstrate anything.
 
-Corpus: **426,409 glossary entries**, 114,515 with a recorded ancestor,
-**6,419 reconstructed exactly**, of which **971 start at the
-PIE etymon** (1.5% of the whole glossary,
-12,098 once the orthographic layer is allowed (2.8%),
-5.6% of words with a recorded ancestor; 47,391 reach a PIE etymon).  Rules used: all; sample: all eligible words.
+Corpus: **442,865 glossary entries**, 114,516 with a recorded ancestor,
+**6,420 reconstructed exactly**, of which **971 start at the
+PIE etymon** (1.4% of the whole glossary,
+12,099 once the orthographic layer is allowed (2.7%),
+5.6% of words with a recorded ancestor; 47,392 reach a PIE etymon).  Rules used: all; sample: all eligible words.
 
 **12 more** are completed by a word's own recorded pathway — a
 registered law that does not apply to that word, with the reason stored beside it
@@ -173,7 +173,7 @@ included one could not be checked against the record (2026-11-08).
 | Middle High German (`gmh`) | 92% (533) | 43 | 29 | 3 | **96** | 29 | — | 33 | 1 | — | 24 | 159 | 580 | `████░░░░░░░░░░` 27% |
 | Proto-Germanic (`gem-pro`) | 56% (3,326) | 3,326 | 30 | 7 | **95** | 0 | — | 2 | 21 | — | 516 | 118 | 5,908 | `▏░░░░░░░░░░░░░` 2.0% |
 | Proto-Balto-Slavic (`ine-bsl-pro`) | 92% (454) | 454 | 1 | 0 | **46** | 0 | — | 3 | 3 | — | 8 | 52 | 491 | `█░░░░░░░░░░░░░` 11% |
-| Middle Persian (`pal`) | 16% (114) | 35 | 16 | 0 | **3** | 0 | — | — | — | 10 | 4 | 13 | 697 | `▏░░░░░░░░░░░░░` 1.9% |
+| Middle Persian (`pal`) | 0.67% (115) | 36 | 16 | 0 | **4** | 0 | — | — | — | 10 | 4 | 14 | 17,153 | `▏░░░░░░░░░░░░░` 0.08% |
 | Persian (`fa`) | 1.4% (2,301) | 862 | 5,496 | 669 | **0** | 137 | — | 229 | — | 423 | 199 | 796 | 164,827 | `▏░░░░░░░░░░░░░` 0.48% |
 | Greek (`el`) | 49% (5,090) | 312 | 2,174 | 1,370 | **0** | 647 | — | 317 | — | — | 545 | 964 | 10,471 | `█░░░░░░░░░░░░░` 9.2% |
 | Armenian (`hy`) | 1.2% (64) | 64 | 2,859 | 2,400 | **0** | 0 | — | — | — | — | — | 0 | 5,398 | `░░░░░░░░░░░░░░` 0% |
@@ -236,7 +236,7 @@ apply often but never contribute to a match.
 | `long_a_to_a` *ā > *a | ine-bsl-pro → sla-pro | established | 127 |
 | `register_mark_dropped` The acute register mark *ˀ is notation, not a Lithuanian segment | ine-bsl-pro → lt | orthographic | 125 |
 | `final_m_loss` Final *-m is lost | la → it | established | 119 |
-| `final_s_to_h` Final *-Vs > PIr *-Vh | iir-pro → ira-pro | established | 111 |
+| `final_s_to_h` Final *-Vs > PIr *-Vh | iir-pro → ira-pro | established | 112 |
 | `final_ōn_to_ian` Final *-ōn > *-ian | gmw-pro → ang | proposed | 97 |
 | `w_to_v` *w > *v | ine-bsl-pro → sla-pro | established | 96 |
 | `infinitive_aną` Strong infinitive *-aną > -a | gem-pro → non | established | 91 |

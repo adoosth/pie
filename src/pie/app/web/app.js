@@ -3363,7 +3363,8 @@ function sourceRow(d) {
     seen.add(s.url);
     const wikt = s.kind === "wiktionary";
     const name = wikt ? "Wiktionary" : (s.title || "the dictionary").split(",")[0];
-    const tip = wikt ? `Open the Wiktionary entry for this word` : `${name} — the word's own entry`;
+    const tip = wikt ? `Open the Wiktionary entry for this word`
+      : `${name} — the word's own entry${s.note ? ` · ${s.note}` : ""}`;
     const glyph = wikt ? wiktionaryIcon : (s.kind === "dictionary" ? bookIcon : pageIcon);
     const ext = /^https?:/i.test(s.url) ? ' target="_blank" rel="noopener"' : "";
     items.push(`<a class="srcicon${wikt ? " wikt" : ""}" href="${esc(s.url)}"${ext}

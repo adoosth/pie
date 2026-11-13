@@ -2,7 +2,7 @@
  "schema": 2,
  "generated": "2026-11-13",
  "inputs": {
-  "lexicon": "b01815d3f549531ef6130030e83aa2fd9a9efc01",
+  "lexicon": "e29ae483299818f57189e652e85365b3b2389d25",
   "rules": "b08b4598381463851d31424abdbd6c081b15220d"
  },
  "tiers": "all",
@@ -514,7 +514,7 @@
      5
     ]
    ],
-   "seconds": 8.69,
+   "seconds": 8.71,
    "examples": [
     {
      "stage": "ine-pro",
@@ -931,7 +931,7 @@
      1
     ]
    ],
-   "seconds": 14.29,
+   "seconds": 14.72,
    "examples": [
     {
      "stage": "gem-pro",
@@ -1645,7 +1645,7 @@
      8
     ]
    ],
-   "seconds": 38.85,
+   "seconds": 39.68,
    "examples": [
     {
      "stage": "gem-pro",
@@ -2341,7 +2341,7 @@
      12
     ]
    ],
-   "seconds": 48.33,
+   "seconds": 48.0,
    "examples": [
     {
      "stage": "ang",
@@ -3140,7 +3140,7 @@
      6
     ]
    ],
-   "seconds": 304.33,
+   "seconds": 306.4,
    "examples": [
     {
      "stage": "enm",
@@ -3754,7 +3754,7 @@
      1
     ]
    ],
-   "seconds": 6.72,
+   "seconds": 7.68,
    "examples": [
     {
      "stage": "gem-pro",
@@ -4326,7 +4326,7 @@
      1
     ]
    ],
-   "seconds": 1.56,
+   "seconds": 1.49,
    "examples": [
     {
      "stage": "goh",
@@ -4997,7 +4997,7 @@
      1
     ]
    ],
-   "seconds": 44.81,
+   "seconds": 50.18,
    "examples": [
     {
      "stage": "gem-pro",
@@ -5598,7 +5598,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 16.14,
+   "seconds": 19.24,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -6188,7 +6188,7 @@
      26
     ]
    ],
-   "seconds": 17.93,
+   "seconds": 18.5,
    "examples": [
     {
      "stage": "gem-pro",
@@ -6938,7 +6938,7 @@
      3
     ]
    ],
-   "seconds": 16.32,
+   "seconds": 17.81,
    "examples": [
     {
      "stage": "ine-pro",
@@ -7649,7 +7649,7 @@
      3
     ]
    ],
-   "seconds": 31.02,
+   "seconds": 31.03,
    "examples": [
     {
      "stage": "la",
@@ -8397,7 +8397,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 13.1,
+   "seconds": 14.93,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -8915,7 +8915,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 30.65,
+   "seconds": 30.12,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -9242,7 +9242,7 @@
      3
     ]
    ],
-   "seconds": 1.66,
+   "seconds": 1.72,
    "examples": [
     {
      "stage": "ine-pro",
@@ -9428,7 +9428,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.01,
+   "seconds": 0.02,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": []
@@ -10030,7 +10030,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 20.91,
+   "seconds": 21.43,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -10387,7 +10387,7 @@
      4
     ]
    ],
-   "seconds": 1.51,
+   "seconds": 1.11,
    "examples": [
     {
      "stage": "ine-pro",
@@ -10883,7 +10883,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.32,
+   "seconds": 1.42,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -11349,7 +11349,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 1.3,
+   "seconds": 1.31,
    "examples": [],
    "pathway_examples": [
     {
@@ -11450,9 +11450,9 @@
   },
   "pal": {
    "name": "Middle Persian",
-   "glossary": 697,
-   "attested": 697,
-   "categorised": 697,
+   "glossary": 17153,
+   "attested": 17037,
+   "categorised": 17037,
    "estimate": {
     "total": 4000,
     "source": "D. N. MacKenzie, A Concise Pahlavi Dictionary (OUP 1971), preface",
@@ -11461,53 +11461,53 @@
     "counts": "the commonest simple words a concise dictionary sets out to cover — a curated core, not the attested vocabulary",
     "basis": "floor",
     "quote": "The present dictionary ... is intended first to relieve the stranger to Pahlavi of the necessity of covering what is now well-travelled ground-the commonest 4,000 simple words",
-    "unidentified": 3303,
+    "unidentified": 0,
     "band_base": 4000
    },
-   "identified": 114,
-   "pie_linked": 35,
+   "identified": 115,
+   "pie_linked": 36,
    "reconstruction": 0,
    "reconstruction_exact": 0,
-   "eligible": 114,
-   "tested": 114,
-   "exact": 3,
-   "exact_strict": 2,
+   "eligible": 115,
+   "tested": 115,
+   "exact": 4,
+   "exact_strict": 3,
    "exact_notation": 1,
    "exact_pie": 1,
-   "explained": 13,
+   "explained": 14,
    "borrowed": 16,
    "outside": 0,
    "non_ie": 1,
    "unlinked": 77,
-   "no_etym": 494,
+   "no_etym": 16949,
    "pathway": 0,
    "categories": {
     "counts": {
      "full": 0,
      "adjusted": 0,
-     "partial": 186,
-     "unexplained": 494,
+     "partial": 187,
+     "unexplained": 16831,
      "non_pie": 0,
-     "unidentified": 3303,
+     "unidentified": 0,
      "ie_loan": 17,
-     "built": 0
+     "built": 2
     },
-    "total": 697,
+    "total": 17037,
     "explained": 0,
     "explained_rate": 0.0,
     "of_glossary": 0.0,
     "share": {
      "full": 0.0,
      "adjusted": 0.0,
-     "partial": 26.69,
-     "unexplained": 70.88,
+     "partial": 1.1,
+     "unexplained": 98.79,
      "non_pie": 0.0,
-     "ie_loan": 2.44,
-     "built": 0.0
+     "ie_loan": 0.1,
+     "built": 0.01
     }
    },
    "category_reasons": {
-    "unexplained: no recorded etymology": 494,
+    "unexplained: no recorded etymology": 16831,
     "partial: no rule applied": 118,
     "ie_loan: loan from an IE branch": 17,
     "partial: no entry for Old Persian pistaka": 2,
@@ -11543,7 +11543,7 @@
      },
      {
       "word": "agar",
-      "gloss": "inactive, powerless",
+      "gloss": "inactive, powerless · as if · as long as · if · though",
       "reason": "no entry for Proto-Iranian *ha-karam"
      },
      {
@@ -11553,7 +11553,7 @@
      },
      {
       "word": "andar",
-      "gloss": "in, a ong, towards, concerning",
+      "gloss": "in, a ong, towards, concerning · against · among · around · ",
       "reason": "no entry for Proto-Iranian *Hántarah, Proto-Indo-Iranian *Hántaras"
      },
      {
@@ -11563,12 +11563,12 @@
      },
      {
       "word": "az",
-      "gloss": "except, apart fro",
+      "gloss": "except, apart fro · fertile · fertile cow · Az · az · dragon",
       "reason": "no entry for Proto-Indo-Iranian *sáčaH, Proto-Indo-European *sékʷ-eh₂"
      },
      {
       "word": "ast",
-      "gloss": "bemused, intoxicated",
+      "gloss": "bemused, intoxicated · being · existing, existent, extant · ",
       "reason": "no entry for Proto-Iranian *Hásti"
      },
      {
@@ -11624,7 +11624,7 @@
     "ie_loan": [
      {
       "word": "but",
-      "gloss": "Buddha; idol",
+      "gloss": "Buddha; idol · Buddha · idol",
       "reason": "loan from an IE branch"
      },
      {
@@ -11663,13 +11663,24 @@
       "reason": "loan from an IE branch"
      }
     ],
-    "built": []
+    "built": [
+     {
+      "word": "garmtar",
+      "gloss": "hotter · warmer",
+      "reason": "built from garm + -tar (as the record states) — a formation, not a derivation"
+     },
+     {
+      "word": "garmtom",
+      "gloss": "hottest · warmest",
+      "reason": "built from garm + -tom (as the record states) — a formation, not a derivation"
+     }
+    ]
    },
    "categories_untested": 0,
    "case_only": 0,
    "near": 4,
    "errors": 0,
-   "exact_rate": 0.004304,
+   "exact_rate": 0.000233,
    "orthographic": 0,
    "orthographic_examples": [],
    "lemma": 0,
@@ -11716,7 +11727,7 @@
    ],
    "identity_examples": [],
    "bound_examples": [],
-   "exact_orth": 3,
+   "exact_orth": 4,
    "script": 10,
    "script_examples": [
     {
@@ -11768,19 +11779,24 @@
      "translit": "s-p-y-t"
     }
    ],
-   "orth_rate": 0.004304,
-   "exact_of_tested": 0.026316,
-   "identified_rate": 0.163558,
-   "pie_rate": 0.050215,
-   "near_rate": 0.026316,
+   "orth_rate": 0.000233,
+   "exact_of_tested": 0.034783,
+   "identified_rate": 0.006704,
+   "pie_rate": 0.002099,
+   "near_rate": 0.034783,
    "from_stage": {
     "peo": 2,
-    "ine-pro": 1
+    "ine-pro": 1,
+    "iir-pro": 1
    },
    "top_rules": [
     [
      "pal|final_vowel_loss",
-     3
+     4
+    ],
+    [
+     "pal|final_h_loss",
+     2
     ],
     [
      "iir-pro|laryngeal_to_H",
@@ -11803,11 +11819,15 @@
      1
     ],
     [
-     "pal|final_h_loss",
+     "ira-pro|deaspirate_gh",
+     1
+    ],
+    [
+     "ira-pro|final_s_to_h",
      1
     ]
    ],
-   "seconds": 1.09,
+   "seconds": 0.54,
    "examples": [
     {
      "stage": "ine-pro",
@@ -11826,6 +11846,12 @@
      "ancestor": "puçaʰ",
      "word": "pus",
      "output": "pus"
+    },
+    {
+     "stage": "iir-pro",
+     "ancestor": "gʰarmás",
+     "word": "garm",
+     "output": "garm"
     }
    ],
    "pathway_examples": [],
@@ -11892,8 +11918,8 @@
   "fa": {
    "name": "Persian",
    "glossary": 164827,
-   "attested": 163778,
-   "categorised": 163778,
+   "attested": 163777,
+   "categorised": 163777,
    "estimate": {
     "total": 343466,
     "source": "Dehkhoda Dictionary (Loghatnāmeh), digital edition, as described by the Association for Iranian Studies",
@@ -11922,21 +11948,21 @@
    "outside": 669,
    "non_ie": 4314,
    "unlinked": 3117,
-   "no_etym": 153218,
+   "no_etym": 153217,
    "pathway": 7,
    "categories": {
     "counts": {
-     "full": 49,
+     "full": 48,
      "adjusted": 0,
-     "partial": 5049,
-     "unexplained": 71954,
+     "partial": 5050,
+     "unexplained": 71951,
      "non_pie": 75600,
      "unidentified": 0,
      "ie_loan": 2979,
-     "built": 8147
+     "built": 8149
     },
-    "total": 163778,
-    "explained": 49,
+    "total": 163777,
+    "explained": 48,
     "explained_rate": 0.03,
     "of_glossary": 0.03,
     "share": {
@@ -11946,34 +11972,34 @@
      "unexplained": 43.93,
      "non_pie": 46.16,
      "ie_loan": 1.82,
-     "built": 4.97
+     "built": 4.98
     }
    },
    "category_reasons": {
     "non_pie: non-ie source": 75600,
-    "unexplained: no recorded etymology (the dictionary labels it a proper name)": 32131,
-    "unexplained: no recorded etymology": 22869,
+    "unexplained: no recorded etymology (the dictionary labels it a proper name)": 32130,
+    "unexplained: no recorded etymology": 22867,
     "unexplained: no recorded etymology (a compound: the record states no construction)": 15540,
     "ie_loan: loan from an IE branch": 2979,
     "unexplained: no recorded etymology (a relative adjective whose stem is not stored)": 1201,
-    "partial: no rule applied": 683,
+    "partial: no rule applied": 841,
     "unexplained: no recorded etymology (the dictionary labels it a huzvarish)": 157,
+    "partial: reproduced only from Middle Persian, not from the PIE etymon": 152,
+    "partial: unchanged ancestor (no law applied)": 70,
     "unexplained: no recorded etymology (a bound morpheme, not a word)": 56,
     "partial: no recorded origin for Middle Persian 𐭥𐭡𐭩𐭣𐭥𐭭𐭲𐭭𐭩": 23,
     "partial: no recorded origin for Middle Persian apě": 23,
-    "partial: reproduced only from Middle Persian, not from the PIE etymon": 19,
     "partial: no recorded origin for Middle Persian 𐭡𐭩𐭲𐭠": 14,
-    "partial: unchanged ancestor (no law applied)": 13,
     "partial: no entry for Old Persian θˈarah, Proto-Iranian *cŕ̥Hah; no recorded origin for Proto-Iranian *cŕ̥Hah": 13,
     "partial: no entry for Middle Persian kar, Old Persian kar, Proto-Iranian *kar and 1 more": 11,
     "partial: no recorded origin for Proto-Indo-Iranian *(H)wardʰ-": 10,
+    "partial: no entry for Proto-Iranian *jástah, Proto-Indo-European *ǵʰóstos; no recorded origin for Proto-Iranian *jástah": 8,
     "partial: no recorded origin for Middle Persian bʾl": 8,
+    "partial: no recorded origin for Middle Persian dāštan": 8,
     "partial: no entry for Proto-Iranian *Hápa, Proto-Indo-European *h₂épo, Proto-Indo-European *bʰe; no recorded origin for Middle Persian abāz": 8,
+    "partial: reproduced only from Proto-Iranian, not from the PIE etymon": 7,
     "partial: no recorded origin for Middle Persian dān": 7,
-    "partial: no entry for Proto-Indo-European *swelḱs, Proto-Indo-Iranian *Hsu-Hákši; no recorded origin for Middle Persian 𐭧𐭥𐭱": 7,
-    "partial: no entry for Middle Persian n, Old Persian nˈa, Proto-Iranian *nˈa": 7,
-    "partial: no entry for Proto-Iranian *watah; no recorded origin for Middle Persian SLYA": 7,
-    "partial: no entry for Old Persian paišiyā; no recorded origin for Middle Persian pēš": 6
+    "partial: no entry for Proto-Indo-European *swelḱs, Proto-Indo-Iranian *Hsu-Hákši; no recorded origin for Middle Persian 𐭧𐭥𐭱": 7
    },
    "category_examples": {
     "full": [
@@ -12058,7 +12084,7 @@
      {
       "word": "کرنا",
       "gloss": "kerana, kernei, karnay (a long thin brass horn or trumpet) ·",
-      "reason": "no entry for Proto-Iranian *xárah, Middle Persian xar, Old Persian nadah and 5 more; no recorded origin for Middle Persian HMRA, Old Persian nadah"
+      "reason": "no entry for Proto-Iranian *xárah, Old Persian nadah, Proto-Indo-Iranian *nada and 4 more; no recorded origin for Middle Persian HMRA, Old Persian nadah"
      }
     ],
     "unexplained": [
@@ -12504,7 +12530,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 36.03,
+   "seconds": 36.95,
    "examples": [],
    "pathway_examples": [
     {
@@ -13179,7 +13205,7 @@
      3
     ]
    ],
-   "seconds": 2.29,
+   "seconds": 2.53,
    "examples": [
     {
      "stage": "ine-pro",
@@ -13900,7 +13926,7 @@
      1
     ]
    ],
-   "seconds": 6.5,
+   "seconds": 6.89,
    "examples": [
     {
      "stage": "cel-pro",
@@ -14247,7 +14273,7 @@
      1
     ]
    ],
-   "seconds": 1.59,
+   "seconds": 1.71,
    "examples": [
     {
      "stage": "ine-pro",
@@ -14623,7 +14649,7 @@
      28
     ]
    ],
-   "seconds": 9.83,
+   "seconds": 10.1,
    "examples": [
     {
      "stage": "ine-bsl-pro",
@@ -15197,7 +15223,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 7.85,
+   "seconds": 8.32,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -15818,7 +15844,7 @@
      3
     ]
    ],
-   "seconds": 2.85,
+   "seconds": 2.41,
    "examples": [
     {
      "stage": "ine-pro",
@@ -16286,7 +16312,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.09,
+   "seconds": 0.1,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [],
@@ -16528,7 +16554,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.55,
+   "seconds": 0.54,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [],
@@ -17157,7 +17183,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.63,
+   "seconds": 0.5,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [],
@@ -17165,25 +17191,25 @@
   }
  },
  "totals": {
-  "glossary": 426409,
-  "attested": 381119,
-  "identified": 114515,
-  "pie_linked": 47391,
-  "eligible": 114515,
-  "tested": 113946,
-  "exact": 6419,
-  "exact_strict": 5475,
+  "glossary": 442865,
+  "attested": 397458,
+  "identified": 114516,
+  "pie_linked": 47392,
+  "eligible": 114516,
+  "tested": 113947,
+  "exact": 6420,
+  "exact_strict": 5476,
   "exact_notation": 944,
   "exact_pie": 971,
   "reconstruction": 569,
   "reconstruction_exact": 38,
   "pathway": 12,
-  "explained": 17376,
+  "explained": 17377,
   "borrowed": 88043,
   "outside": 38833,
   "non_ie": 11925,
   "unlinked": 25952,
-  "no_etym": 154831,
+  "no_etym": 171285,
   "case_only": 0,
   "near": 22758,
   "orthographic": 5105,
@@ -17192,38 +17218,38 @@
   "bound_form": 495,
   "joined": 19462,
   "script": 1406,
-  "exact_orth": 12098,
+  "exact_orth": 12099,
   "errors": 0,
-  "exact_rate": 0.015054,
-  "identified_rate": 0.268557,
-  "exact_of_identified": 0.056054,
-  "pie_rate": 0.11114,
-  "orth_rate": 0.028372,
-  "explained_of_identified": 0.151736
+  "exact_rate": 0.014497,
+  "identified_rate": 0.25858,
+  "exact_of_identified": 0.056062,
+  "pie_rate": 0.107012,
+  "orth_rate": 0.02732,
+  "explained_of_identified": 0.151743
  },
  "categories": {
   "counts": {
-   "full": 334,
+   "full": 333,
    "adjusted": 50,
-   "partial": 131880,
-   "unexplained": 72840,
+   "partial": 131882,
+   "unexplained": 89174,
    "non_pie": 95828,
-   "unidentified": 1720064,
+   "unidentified": 1716761,
    "ie_loan": 72037,
-   "built": 8150
+   "built": 8154
   },
-  "total": 381119,
-  "explained": 384,
+  "total": 397458,
+  "explained": 383,
   "explained_rate": 0.1,
   "of_glossary": 0.1,
   "share": {
-   "full": 0.09,
+   "full": 0.08,
    "adjusted": 0.01,
-   "partial": 34.6,
-   "unexplained": 19.11,
-   "non_pie": 25.14,
-   "ie_loan": 18.9,
-   "built": 2.14
+   "partial": 33.18,
+   "unexplained": 22.44,
+   "non_pie": 24.11,
+   "ie_loan": 18.12,
+   "built": 2.05
   }
  },
  "definitions": {
@@ -17556,7 +17582,7 @@
    "to": "ira-pro",
    "tier": "established",
    "key": "ira-pro|final_s_to_h",
-   "count": 111
+   "count": 112
   },
   {
    "id": "final_ōn_to_ian",
@@ -18882,6 +18908,15 @@
    "count": 9
   },
   {
+   "id": "deaspirate_gh",
+   "name": "PII *gʰ > PIr *g",
+   "from": "iir-pro",
+   "to": "ira-pro",
+   "tier": "established",
+   "key": "ira-pro|deaspirate_gh",
+   "count": 9
+  },
+  {
    "id": "syllabic_n",
    "name": "Syllabic *n̥ > *an",
    "from": "ine-pro",
@@ -18915,15 +18950,6 @@
    "to": "gmh",
    "tier": "established",
    "key": "gmh|unstressed_u",
-   "count": 8
-  },
-  {
-   "id": "deaspirate_gh",
-   "name": "PII *gʰ > PIr *g",
-   "from": "iir-pro",
-   "to": "ira-pro",
-   "tier": "established",
-   "key": "ira-pro|deaspirate_gh",
    "count": 8
   },
   {
@@ -19233,6 +19259,15 @@
    "count": 4
   },
   {
+   "id": "final_vowel_loss",
+   "name": "Final short vowels are lost",
+   "from": "peo",
+   "to": "pal",
+   "tier": "established",
+   "key": "pal|final_vowel_loss",
+   "count": 4
+  },
+  {
    "id": "ew_to_ow",
    "name": "*ew > *ow",
    "from": "ine-pro",
@@ -19341,15 +19376,6 @@
    "count": 3
   },
   {
-   "id": "final_vowel_loss",
-   "name": "Final short vowels are lost",
-   "from": "peo",
-   "to": "pal",
-   "tier": "established",
-   "key": "pal|final_vowel_loss",
-   "count": 3
-  },
-  {
    "id": "syllabic_m",
    "name": "Syllabic *m̥ > *am",
    "from": "ine-pro",
@@ -19428,6 +19454,15 @@
    "to": "de",
    "tier": "established",
    "key": "de|devoice_d",
+   "count": 2
+  },
+  {
+   "id": "final_h_loss",
+   "name": "Final *-h is lost after a short vowel",
+   "from": "peo",
+   "to": "pal",
+   "tier": "established",
+   "key": "pal|final_h_loss",
    "count": 2
   },
   {
@@ -19539,15 +19574,6 @@
    "count": 1
   },
   {
-   "id": "final_h_loss",
-   "name": "Final *-h is lost after a short vowel",
-   "from": "peo",
-   "to": "pal",
-   "tier": "established",
-   "key": "pal|final_h_loss",
-   "count": 1
-  },
-  {
    "id": "satem_g",
    "name": "Satem: *ǵ > *ź",
    "from": "ine-pro",
@@ -19584,7 +19610,7 @@
    "count": 1
   }
  ],
- "rule_applications": 14022,
+ "rule_applications": 14026,
  "review": {
   "generated": "2026-11-13 02:01",
   "findings": 91288,

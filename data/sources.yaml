@@ -37,6 +37,10 @@
 - id: mackenzie-1971
   title: MacKenzie, A Concise Pahlavi Dictionary (1971/2014)
   kind: dictionary
+- id: mpcd
+  title: Zoroastrian Middle Persian Digital Corpus and Dictionary (MPCD), mpcorpus.org
+  url: https://www.mpcorpus.org
+  kind: dictionary
 - id: durkin-meisterernst-2014
   title: Durkin-Meisterernst, Grammatik des Westmitteliranischen (2014)
   kind: grammar

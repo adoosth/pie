@@ -1,0 +1,43 @@
+language: pal
+
+note: >
+  The two endings a Middle Persian adjective wears for comparison, as the
+  Zoroastrian Middle Persian Digital Corpus and Dictionary (MPCD) tags them.
+  MPCD tags tokens, not lemmas: entry garm "hot, warm" carries 91 tokens tagged
+  ADJ, six tagged ADJ:Cmp and written garmtar, and one tagged ADJ:Sup and
+  written garmtom.  A comparison is an inflection of the adjective, so the
+  endings are registered here as the stage's grammar rather than as words —
+  the same way -s is the athematic nominative in the Proto-Indo-European table.
+
+  Middle Persian writes both endings joined to the adjective with no linker,
+  so `attach` is `keep` and the joining block is empty.  A word built this way
+  is a construction the record states, not a form the sound laws produce.
+
+suffixes:
+  - id: tar
+    form: "-tar"
+    surface: "-tar"
+    ending: ""
+    attach: keep
+    gloss: "comparative — 'more …' (garm 'hot' → garmtar 'hotter')"
+    note: >
+      MPCD, entry garm (mpcorpus.org/dict/d9dbb2df-1839-4e02-9f41-ac56e19c9c97/),
+      morphological analysis: "ADJ:Cmp, Garmtar, 6" of the word's 102 tokens.
+      The same ending continues as Persian -تر (گرمتر 'hotter').
+    outcomes: "Persian گرمتر 'hotter', garmtar in the MPCD texts"
+    sources: [mpcd]
+    example: "garm 'hot' + -tar → garmtar 'hotter'"
+
+  - id: tom
+    form: "-tom"
+    surface: "-tom"
+    ending: ""
+    attach: keep
+    gloss: "superlative — 'most …' (garm 'hot' → garmtom 'hottest')"
+    note: >
+      MPCD, entry garm, morphological analysis: "ADJ:Sup, Garmtom, 1" of the
+      word's 102 tokens.  The same ending continues as Persian -ترین (گرمترین
+      'hottest').
+    outcomes: "Persian گرمترین 'hottest', garmtom in the MPCD texts"
+    sources: [mpcd]
+    example: "garm 'hot' + -tom → garmtom 'hottest'"

@@ -1,3 +1,53 @@
+## 2026-11-13 — a Middle Persian word may bring its corpus with it
+
+**What.** The Zoroastrian Middle Persian Digital Corpus and Dictionary
+(mpcorpus.org) lists 23,524 lemmas over 827,220 tokens, and pie's Middle
+Persian stage held 697 words. The reader asked for the words, for their
+**attestation** — how often a text writes each one — for the morphological
+variants the dictionary analyses (`garmtar`, `garmtom`), and for a link to the
+dictionary's own page. The occurrence lists and the texts themselves are out of
+scope (admin, 2026-11-13).
+
+**Attestation is a count, and the count is only in the tokens.** MPCD tags
+tokens, not lemmas: a lemma's part of speech is the tag most of its tokens
+carry, and its occurrences are the tokens that name it (one token may name
+two). So `tools/import_mpcd.py` reads the lemma dump for the words and their
+English senses, the token pages for the counts, and the tag pages for the
+parts of speech, and files 16,465 of the 23,510 Middle Persian lemmas: a lemma
+with no usable sense (another 4,797) has nothing to say, a phrase is not a word
+of the stage, a clitic is grammar, a UD label (DAT, LOC) is not a meaning,
+and a lemma **no token writes** (222 of them) is a dictionary headword rather
+than an attested word, so it is not filed as one. The stage goes from 697 words
+to 17,153.
+
+**A count rides with the source.** An entry keeps `occurrences`, and
+`_entry_sources` passes it to the page it came from, where `_entry_pages`
+turns it into the icon's note ("102 occurrences in the corpus") and
+`attestation_of` into the sentence under the headword ("The corpus writes it
+102 times."). One number, one place: the word page needs no occurrence list to
+show that the word is real, and no line of the texts reaches this repo.
+
+**The status is unchanged.** Middle Persian entries keep the reading
+(`garm`), not the signs (`glm`), so they are `transliterated` — and the
+sentence that explains that status no longer claims "no headword in Middle
+Persian's own script is known", which MPCD's own orthographic variants
+disprove.
+
+**A variant is the record's construction.** `garmtar` and `garmtom` are not
+lemmas; MPCD analyses them as `ADJ:Cmp` (6 tokens) and `ADJ:Sup` (1) of garm.
+They are filed as entries with `built_as` rows of garm + `-tar`/`-tom`, and the
+two endings are registered in `data/morphology/pal.yaml` (the stage's first
+morphology table) so the construction has somewhere to stand. garm itself
+climbs from Proto-Iranian *garmáh through Proto-Indo-Iranian *gʰarmás to PIE
+*gʷʰer-, the chain the Persian article's own sentence states — which is why the
+Persian گرم improved in the same change: its Middle Persian rung is now a word
+with an entry and a page instead of a form with none.
+
+**Not taken.** MPCD's etymological comments, its own segmentation
+(`morphological_splits`), the genre and century breakdown, and the
+transliteration→transcription table the tokens carry (a ready-made Book
+Pahlavi reading list). Each is a later pass; the skill records where they are.
+
 ## 2026-11-13 — a rung must be an entry, and a composition takes its grade
 
 **What.** `iir-pro/HwáHyati` was dark green with a PIE rung that printed "no
