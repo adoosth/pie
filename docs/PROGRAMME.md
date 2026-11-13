@@ -64,7 +64,7 @@ What follows from it:
 
 Consequence for the interface: the word page is addressed by `lang` + spelling,
 so a spelling with several lexemes currently renders the first entry and only a
-"N entries" badge (see `docs/UI_PLAN.md`, roadmap v1.2). Until the page can separate and list
+"N entries" badge (see `docs/archive/UI_PLAN-2026-11.md.gz`, roadmap v1.2). Until the page can separate and list
 homographs, a reviewer must not read that page as a claim that the forms belong
 to one lexeme.
 
@@ -155,8 +155,11 @@ entry came from (dictionary, edition, page) and must not overwrite kaikki data.
 citations, predicted gain, risks (where it would over-apply), and status
 (`open`/`accepted`/`rejected`, with the reviewer's reason).
 
-**A decision** (`docs/DECISIONS.md`) is one dated paragraph: what changed, why,
-what it cost, and which number moved.
+**A decision** that changes the model is a numbered line in `docs/DECISIONS.md`
+(the rules that still bind) — one sentence, so it can be obeyed. Its reasoning,
+what it cost and which number moved belong in the commit message; before
+2026-11-13 every decision was a dated paragraph and those are kept in
+`docs/archive/DECISIONS-2026-11.md.gz`.
 
 ## Tiers, and what each one may claim
 

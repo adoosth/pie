@@ -1,1257 +1,267 @@
-# pie — working notes for agents
+# pie — how to work on this repo
 
-`README.md` is for readers: what the project is and what it does. This file is
-for anyone changing the model — the rules a change must keep, where each lives,
-and how a change is measured. Read `docs/METHOD.md` before touching data,
-`docs/PROGRAMME.md` before a work session, `docs/DECISIONS.md` before arguing a
-change.
+One model of the Indo-European family: Proto-Indo-European down to the
+attested languages, word by word, with **every step cited and nothing
+invented**. `README.md` is for readers. This file is for whoever changes the
+model — human or agent — and it is the only file that must be read in full.
+Deeper background, when a task needs it: `docs/METHOD.md` (how a derivation is
+decided), `docs/RULE_FORMAT.md` (law files), `docs/FORMATIONS.md` (a stage
+building its own word), `docs/REVIEW.md` (review protocol), `docs/SOURCES.md`
+(licences and citation keys). Everything else under `docs/` is generated or
+archived.
 
-## What this project is
+## The one rule
 
-One model of the family from Proto-Indo-European to the attested languages, in
-which **every word is accounted for by cited material and nothing is invented**:
-a recorded etymon, a cited sound law, or a construction the record itself states.
-A word is either explained by that chain, or it is on the worklist with the
-reason it is not — there is no third answer, no lookup table, and no
-"approximately". The measure of progress is how many words the chain explains
-**exactly as the literature records them**, which is why the coverage number is
-counted, never estimated, and why a word that the engine reproduces only by
-bending a law is never counted as explained.
+> A word is **fully explained** when every step of its path starts from a PIE
+> etymon (or from a non-PIE language, for a borrowing), the exact recorded form
+> is produced by the engine — by cited sound laws **and** by the constructions
+> the record itself states — and every recorded intermediate agrees with what
+> the literature records. Otherwise the word is on the worklist, with the
+> reason. Nothing is ever bent, guessed or looked up to make a word count.
 
-## Build, run, test
+Two consequences that decide most arguments:
+
+- **A writing is not a sound.** The laws rewrite phonemes, so a form written in
+  its own script is refused (`rules.derive_detailed` → `unreadable`); every
+  caller hands over the form's *reading* (`service._phonological_form`).
+- **A green word is never greener than the words above it.** Every rung, piece
+  and ancestor a page draws is asked for its own band; a weak one makes the word
+  partial (`service.unrecorded_ancestry`, `categories.verdict`).
+
+The progress number is counted, never estimated: `tools/coverage.py` measures
+the corpus, `tools/evaluate.py` measures each transition.
+
+## Words you need
+
+| word | meaning |
+|---|---|
+| **rung** | one word on a timeline: a language, its years, the form, its meaning |
+| **timeline / ladder** | the rungs above a word, oldest at the top, each joined by the laws that carry the form down |
+| **construction** | a word the record says was built from pieces (a compound, a root + suffix) |
+| **piece** | one part of a construction; a bound morpheme (suffix, ending) wears no dot and opens its own entry or nothing |
+| **reading** | what a word is pronounced as (`rōz`); **spelling** is how it is written (`lwc`); a **sign transliteration** (`l-w-c`) is mechanical, from the script table |
+| **band** | the colour of a word's explanation: full / adjusted / partial / unexplained / non-PIE / unidentified |
+| **attested / recorded / proposed** | how a form is known: written in a text, stated by the literature as a reconstruction, or our own guess (asterisked, never banded) |
+| **worklist** | the honest remainder: every word the chain does not explain, with the reason (`pie worklist`) |
+
+## Run it
 
 ```bash
 python3 -m venv .venv && . .venv/bin/activate && pip install -e .
-pie serve                                                 # http://127.0.0.1:8100
-PYTHONPATH=src python3 -m unittest discover -s tests       # engine + web contract
-node tests/test_ui_render.js                               # front-end renderers
-PYTHONPATH=src python3 -m pie.cli check-rules              # every rule file + example
-PYTHONPATH=src python3 -m pie.cli worklist                 # what to do next, computed
+pie serve                                   # http://127.0.0.1:8100 (stdlib server, no deps)
+pie doctor                                  # python, encoding, data report — paste this in a bug report
+pie stats                                   # what the corpus holds
+pie cache                                   # where derived data is kept, and how big
+pie cache --prune                           # drop artefacts an edit or a bump retired
 ```
 
-**A change answers to the tests it touches, not to all of them** (admin,
-2026-11-13: "Run maybe 10 tests each time you change sth at most"). Name the ten
-(or fewer) tests that pin what you changed and run those plus
-`node tests/test_ui_render.js`; that is a commit. The full set —
-`unittest discover`, `check-rules` and the renderer suite — is for a release,
-not for every edit, and a change that needs a hundred tests to feel safe is a
-change that has not said yet what it means. `tests/test_web.py` pins the word
-page and cognate table: bidi (`dir="auto"`), the script-aware CSS, full
-language names in every cognate row, and the Romanisation match for Persian and
-Greek.
+The glossary and the word pages are read from `data/lexicon/*.jsonl.gz`
+directly; there is **no build step for a data edit** and none may be introduced.
+Derived data (parsed glossaries, indexes, compiled laws, measured bands) is
+cached under `~/.cache/pie` (`PIE_CACHE_DIR`), keyed on the name, size and mtime
+of every input file — so editing a word or a law invalidates exactly what
+depends on it. Deleting the cache costs one slow page, nothing else. Bump the
+version beside a cached value when its *shape* changes (`data.cached`,
+`LEXICON_VERSION`).
 
-## Speed
+## Measure it
 
-A word page must be instant, and the corpus must stay editable without a build
-step (admin, 2026-11-12: "I don't want it to take ~10 seconds").
+A page must feel instant, and a change to speed is a claim until it is measured:
 
-- **Derived data is cached on disk and keyed on its inputs** (`data.cached`):
-  the parsed glossary, the reading and script indexes, the compiled `rulesets()`,
-  the cognate map, the per-stage construction scan, the published bands, and
-  every YAML file (composed once per `(size, mtime)`). The key is the name, size
-  and mtime of every file the value was built from, so **editing a word or a rule
-  invalidates exactly what depends on it** — no command to remember, no rebuild,
-  and nothing generated is committed. The cache lives in `~/.cache/pie`
-  (`PIE_CACHE_DIR`); deleting it costs one slow page and nothing else. Bump the
-  version number beside a cached value when its *shape* changes.
-- **Load one language at a time.** `service.lang_index(lang)` is the unit of
-  loading; `word_index()` is a `Mapping` that loads a stage when it is asked for
-  one of its words. Never walk `word_index().items()` for a question about one
-  stage — use `lang_index`/`word_entries`.
-- **`serve` warms up before the reader asks** (`service.prewarm`, a daemon
-  thread): registry, laws, bands, every glossary, the cognate map, and the lemma
-  index of the six largest glossaries. Keep it in step with what a page needs.
-- **Measure before and after** with `/tmp`-style probes: a cold process
-  (`PYTHONPATH=src python3 -c 'from pie import service; service.word(...)'`) and
-  the browser, because client rendering is a separate cost.
-- **A long list is read in pages, and only the page is dressed** (admin,
-  2026-11-13): `service.glossary(..., page=N)` still builds a row per word of
-  the stage — the band and spelling counts are the whole stage's — but
-  `_glossary_row_shown` dresses only the 400 returned rows (status, meaning,
-  reading), which took a warm Middle Persian request from 1.0 s to 0.2 s. The
-  answer carries `page`/`pages`/`first`/`last`, and the address carries the
-  page, so a page can be linked and Back works.
+```bash
+PYTHONPATH=src python3 - <<'PY'
+import time; from pie import service
+for label, fn in (("word en/night", lambda: service.word("en", "night")),
+                  ("word fa/آب",    lambda: service.word("fa", "آب")),
+                  ("glossary pal",  lambda: service.glossary("pal", 400, True, None, None, 1))):
+    t = time.time(); fn(); print(label, round(time.time() - t, 2))
+PY
+```
+
+Report two numbers: a **cold process** (the first call above, which is what a
+restart costs) and a **warm** one. Watch for these shapes of slowness, all of
+which have bitten us:
+
+- a `stat`/glob of `data/` inside a per-word loop (`available_lexicons` was
+  called 17,000 times by one glossary request);
+- loading a whole stage when the question is about one spelling
+  (`service.lang_index` is for iteration, `service.word_entries` for one word);
+- walking `word_index().items()` to answer a question about one stage;
+- dressing rows the reader never sees (a 400-row page of 17,000 must dress 400);
+- grouping senses or loading a stage per request when the answer is the same for
+  every page of it (`_glossary_rows` is a disk artefact, `_senses_for` is cached).
 
 ## Where things live
 
-- `data/languages.yaml` — the registry (stages, ancestors, eras, scripts).
-  `era_label` comes from it; `[1500, null]` means "to the present".
-- `data/rules/<src>__<dst>.yaml` — ordered sound laws per transition;
-  `data/spelling/<stage>.yaml` — writing conventions; `data/morphology/*.yaml` —
-  cited suffixes; `data/constructions/` — rival analyses; `data/script/*.yaml` —
-  writing systems; `data/sources.yaml` — every source key.
-- `data/lexicon/<lang>.jsonl.gz` — generated glossaries (never hand-edit);
-  `data/lexicon/_supplement/*` — hand-built rows `tools/build_lexicons.py`
-  merges in, so a rebuild never loses them.
-- Generated by tools: `data/language_names.json` (`build_language_names.py`),
-  `data/readings.json` (`build_readings.py`, `--check` fails when stale),
-  `data/cognate_sets/`, `data/graph/`, `data/review_backlog.yaml`
-  (`backlog.py --write`), `data/coverage.json` (`coverage.py`).
-- `data/pathways.jsonl` — paths stored from the word page: append-only user
-  data, kept on rebuild, never written unless the server re-derived it
-  (`service.store_pathway`).
-- `data/adjusted.yaml` + `reports/laws/` + `reports/words/` — the only route
-  into "with adjustments": a report per changed law, a report per word, explicit
-  approval.
-- `src/pie/` — `phonology.py`, `pattern.py`, `rules.py`/`transforms.py`,
-  `service.py` (read models behind the API), `translit.py`/`readings.py`,
-  `script.py`, `attestation.py`, `categories.py`, `loans.py`, `dubious.py`,
-  `compounds.py`, `pathways.py`, `app/` (stdlib server + `web/`).
-- `tools/` — `build_lexicons.py`, `add_translit.py`, `fetch_wiktionary.py`,
-  `ingest_mackenzie.py`, `docling_convert.py`, `add_roots.py`,
-  `ingest_op_entries.py`, `build_readings.py`, `evaluate.py`, `coverage.py`,
-  `whatif.py`, `worklist.py`, `backlog.py`, `council.py`, `check_sources.py`.
-- `docs/` — METHOD, FORMATIONS, RULES, INTERFACE, ROADMAP, PROGRAMME, REVIEW,
-  DECISIONS, COVERAGE, EVALUATION, WORKLIST, SOURCES.
+**Data** — the model's only truth, all hand-editable:
 
-## Ground rules
+- `data/languages.yaml` — the stage registry: id, name, ancestor, era, script,
+  kind (`proto` / `attested`). `data/language_varieties.yaml` — registers of a
+  stage ("Late Latin").
+- `data/rules/<src>__<dst>.yaml` — ordered sound laws per transition (see
+  `docs/RULE_FORMAT.md`): each rule needs a `source` key, a `tier`, a `from` and
+  the examples it verifies. `data/spelling/<stage>.yaml` — writing conventions,
+  applied after the last law, never counted as a law.
+- `data/lexicon/<lang>.jsonl.gz` — the glossaries, one JSON object per line
+  (`word`, `pos`, `gloss`, `anc` = `[[lang, form, relation], …]`, `phon`,
+  `translit`, `etym`, `ref`, `url`, `occurrences`, `source`). Generated by
+  `tools/build_lexicons.py` from the dumps — a row added by hand goes into
+  `data/lexicon/_supplement/`, which a rebuild merges and never drops.
+- `data/morphology/<lang>.yaml` — the stage's cited suffixes/endings (with the
+  meaning the construction prints); `data/constructions/` — analyses a record
+  states; `data/notation/<lang>.yaml` — the stage's standard alphabet and the
+  folds into it; `data/script/<lang>.yaml` — sign tables; `data/readings*.json` —
+  readings the sources quote; `data/sources.yaml` — every citation key.
+- Measured: `data/coverage.json` (`tools/coverage.py`), `data/review_backlog.yaml`
+  (`tools/backlog.py --write`), `data/worklist.json` (`pie worklist --write`),
+  `data/adjusted.yaml` + `reports/` (approved adjustments only — never hand-made).
 
-**The one hard rule** is stated once, in "Bands, colours and review" below:
-every segment traced to a recorded origin, the exact form produced by cited laws
-or registered constructions, nothing invented to make a word count. Everything
-else here is how to apply it. `docs/COVERAGE.md` is the worklist;
-`docs/ROADMAP.md` names the layers that close the gap.
+**Code** — `src/pie/`: `phonology.py` (segments), `pattern.py` (rule matching),
+`rules.py` + `transforms.py` (the engine), `service.py` (every read model the
+API returns), `data.py` (loading + the disk cache), `attestation.py`,
+`categories.py` (bands), `script.py` / `translit.py` / `readings.py` (writing vs
+reading), `loans.py`, `compounds.py`, `senses.py`, `dubious.py`, `worklist.py`,
+`app/server.py` + `app/web/` (stdlib HTTP server and the front end, no bundler).
 
-- **One artefact per commit** — a rule, a spelling file, a supplement. A mixed
-  diff cannot be reviewed or reverted. Never reformat unrelated files.
-- **A rule needs** a source key from `data/sources.yaml`, an explicit `tier`,
-  and examples that verify. Omitted `tier` defaults to `established` and silently
-  promotes a hypothesis: `check-rules --strict` fails on it.
-- **Cite a locator** (page, section, entry), not just an author.
-- **No target bending.** Case, macrons, apostrophes and near-misses stay outside
-  every historical number; if a comparison needs them it belongs to the
-  orthographic layer and is counted there.
-- **A writing is not a sound** (admin, 2026-11-11: "reconstructing from the word
-  in its own script won't work, don't ever do that"). The laws rewrite segments,
-  so the engine refuses a form written in a script: `rules.derive_detailed`
-  returns `unreadable` and changes nothing, and every caller hands over the
-  form's **reading** instead (`service._phonological_form`). A rung that has no
-  reading says so in words; it never shows a red copy of the script and calls
-  the word unreached.
-- **Measure both ways** — `tools/evaluate.py` per transition,
-  `tools/coverage.py` per corpus. A rule that helps one and hurts the other is a
-  finding, not a win. Before shipping a law:
-  `tools/whatif.py --to <lang> --rules candidate.yaml` (gain and loss) or
-  `--drop <rule-id>` (what an existing law carries); it counts exactly as
-  `coverage.py` does.
-- **Never publish a sample as a number.** Only `coverage.py --docs` (no
-  `--limit`, no `--langs`) rewrites `docs/COVERAGE.md`, the README block and
-  `coverage.svg`; a sampled run writes elsewhere.
-- **Never edit a generated file by hand** — change the tool and rerun it.
-- **A match is verified, or it is a question** (admin, 2026-11-12). A branch row
-  or a ladder rung quotes a record with the ✓ only when the dictionary's own
-  reading is the form the laws produced, allowing just what the writing provably
-  cannot carry (the final /h/ no cuneiform sign writes). An abjad's letters are
-  never evidence on their own — k-b-d is کبد *kabid*, کبود *kabud* and کبوده
-  *kabude* at once — so a record whose reading cannot agree is shown as
-  **unverified**, never dropped silently: yellow `--unverified`, a ⚠ disc, the
-  words *match not verified*, no ✓ and no band. `service._near_record` finds it
-  by comparing readings with a final vowel folded away, and `pie.review` queues
-  it in `data/review/unverified_matches.jsonl` (`pie unverified` prints the
-  queue, the review page lists it as `unverified_match`).
-- Commit author: `Ali Doosthosseini <adoosth@gwdg.de>` (repo-local git config).
-- **Wording:** a rule **applies**, it never "fires" — site, data and docs all
-  say so, and nothing published names who commissioned the work or how many
-  hours it took.
-- **Fix what you find** (admin, 2026-11-11: "if you find any bugs or think the
-  project can be improved, feel free to do so"). Mark the fix where the work
-  happens — a `docs/DECISIONS.md` entry for anything a reader could notice, a
-  regression test for anything that can come back — and keep it inside the
-  change you are already making. A bug fixed on the way is still one artefact:
-  say what it was, in the commit message, and leave unrelated refactoring out.
+**Tools** — `tools/` is where anything repeatable belongs, one file per job,
+`--help` on each: `build_lexicons.py`, `coverage.py`, `evaluate.py`, `whatif.py`,
+`worklist.py`, `backlog.py`, `check_sources.py`, `critic.py`, `unify_notation.py`,
+`quick_tests.py`.
 
-## The word page
+## Change recipes
 
-### Title
+**Add or fix a word.** Edit a row in `data/lexicon/_supplement/<lang>.jsonl`,
+or the per-language supplement list, then check it opens: `pie lookup <lang>
+<word>`. A row states its senses (`gloss`), its ancestry (`anc`) exactly as the
+record writes it, and its `ref` with a locator. Never rewrite a whole glossary
+by hand — change the tool and rerun it.
 
-No pills in the title (admin, 2026-11-11); `tests/test_ui_render.js` fails if a
-`badge` returns. `langRail` prints the language and its `era_label` in the left
-margin beside the headword (`.wordgrid` borrows the page's white space with a
-negative margin, gives it back below 1420 px, stacks above the word below
-760 px), and `catRail` puts `pos` in the same margin level with the meaning
-(`.catrail.tabsabove` drops past Persian's source tabs). Where the model stands
-(`partially explained`, `.catlead`) and how the word is known (`recorded`,
-`attestNote` → `.know`) are one italic line in the title's size, each in its own
-colour; `reviewNote` is a smaller plain `.backlognote` link after them.
-`attestBadge` belongs to glossary rows and search, never to a title.
+**Add a sound law.** Append to `data/rules/<src>__<dst>.yaml` with `from`, `to`,
+`source`, `tier` and `examples`; then
+`pie check-rules --strict` (a missing `tier` defaults to `established` and
+silently promotes a hypothesis — `--strict` refuses it) and
+`tools/whatif.py --to <lang> --rules <file>` for gain **and** loss against the
+corpus. A law that helps one transition and hurts the corpus is a finding, not a
+win.
 
-**Every source icon is a page that was recorded, and nothing else** (admin,
-2026-11-12; the mark was a quotation mark until then, then a monoline stroke W,
-and since the afternoon a serif W — a real glyph in `"Times New Roman", Times,
-Liberation Serif, DejaVu Serif, Georgia, serif`, not an SVG path, because the
-serifs are what make it read as Wikipedia's W and they blur at 11 px when they
-are stroked; `.recorddot .wmark` is 9.5 px, `.srcicon .wmark` 13 px). The server
-resolves each record to its **pages** (`service._entry_pages` → the page payload,
-`recorded.pages` on a rung): the Wiktionary article when one exists
-(`data/sources/en_wiktionary/<lang>.jsonl.gz`, written by
-`tools/en_wiktionary_index.py` from the site's own title list), and the
-dictionary's entry **for the word** when the entry recorded one (Dehkhoda's
-`https://vajehyab.com/dehkhoda/<word>`, never the site's front page). Each page
-is drawn with its own glyph — the serif W for Wiktionary, the open book for a
-dictionary — and both the corner mark (`recordTag`, `.recordmarks`) and the head
-row (`sourceRow`, `.sourcerow`) render one `<a>` per page: an address with no
-page is never printed, and **a form whose page is not recorded carries no icon at
-all**, not a mark that goes nowhere (that dead W on کبود and on Middle Persian
-`kpwt'` is what the admin reported). The citation is still named in the mark's
-tooltip (`recordSourceText`), and `_entry_sources` keeps `entry` = the page the
-record was read on. A **corpus** dictionary can also count: an entry with
-`occurrences: 102` (`source: mpcd`, `tools/import_mpcd.py`) carries the number
-to its page's note ("102 occurrences in the corpus") and to the attestation
-sentence ("The corpus writes it 102 times."); the occurrence list and the texts
-stay at mpcorpus.org, and the skill `mpcd` holds the extraction. A rung with no entry of its own gets no pages: the article it
-was quoted from is a different word's page. `service._wiktionary_title` builds
-the title once: an attested word is its headword, a reconstruction is
-`Reconstruction:<Language>/<word>` **without** its asterisk (`Reconstruction:
-Proto-Germanic/nahts`; the namespace already says "reconstruction", and a link
-that keeps the `*` opens nothing).
+**Add a suffix or ending.** A row in `data/morphology/<lang>.yaml` with the
+gloss a construction will print; the word page then lets a reader build with it
+and `service.construction_path` will use it to explain a registered formation.
 
-### The ladder
+**Add a spelling convention.** `data/spelling/<stage>.yaml`, tier
+`orthographic`, examples that give a whole phonemic form and the written word
+(`spelling.check` applies the whole file). It never enters `data/rules/` and its
+count is never added to `exact`.
 
-- **The section is *Timeline*, and a construction is a step in it, above the
-  word it builds** (2026-11-12, admin): the heading is `Timeline`, never "From X
-  to Y" — the rung margins name the stages, and the paragraph that used to
-  announce "recorded ancestry begins at … earlier stages exist" is gone. The
-  timeline runs old (top) to new (bottom), so a construction the record states
-  is drawn **above** the form it produces. Nothing about a construction is
-  printed under the word: the `CONSTRUCTION:` block of 2026-11-08 is gone from
-  the header, and since 2026-11-13 the `jointime` section ("Where the pieces
-  come from") is **gone entirely** — it was a second copy of the step whenever
-  the two agreed and a rival analysis whenever they did not (admin: "remove
-  this section from all word pages entirely; what it wants to show is already
-  shown in the timeline"). `joins`/`seam_join` stay on the payload; no renderer
-  prints them as a section. The step still carries the reader's tools — the suffix
-  the word wears and the `(+)` that tries another — in a compact row inside the
-  step (`constructHtml(…, compact)`).
-- **The construction is one tree of columns, and every column hangs from the
-  pieces' line** (2026-11-12, admin): `constructStep` draws one column per piece
-  (`.cpiece`), and every row of every column — an ancestor `.cnode`, a built
-  ancestor `.cbuild`, the piece itself `.cterm` — is one grid of `--clabel |
-  --crail | the word`, exactly `--crow` high. A column is anchored at its **bottom**
-  (`align-items: flex-end` on `.bline`, `justify-content: flex-end` on
-  `.cpiece`), so a column's k-th ancestor is k rows above the pieces' line and
-  **two pieces whose ancestors stand in the same stage land on one horizontal
-  line** — *h₂entó- over *anda- beside *swer- over *swarō, the reader's own
-  example. That is the rule to keep: rows may not size themselves to their
-  content, or the two clauses drift apart by however many lines a gloss ran to.
-  `--crow` is a term row (`--termh` 46) plus three lines of meaning (3 × 14) plus
-  a hairline; a column's gloss wraps at 240px inside it (`.cchain .cgloss`) and
-  the piece's own long gloss hangs into the tree's `--bpad` strip, so no meaning
-  is cut. The tree scrolls sideways rather than folding: three pieces make three
-  full columns.
-- **The stage stands in the ladder's own left column** (2026-11-12, admin;
-  reverses the beside-the-word rule of v0.17.10): above a construction the page
-  must read *exactly like the timeline it stands on*, so every row of a column
-  prints the language and then its years against the rail, at the ladder's own
-  sizes — `.cwhen` (name 13px/600 in the `langKind` colour, era 11.5px, right
-  aligned, the name's 17px line centred on the term band) in a `--clabel` track
-  of **156px, the ladder's own**, with a `--cgap` 14px gap and the `--crail` 20px
-  track. The tree therefore begins at the page's own left edge (`.btrees`
-  spans the step's tracks, no padding, no negative margin), which puts the
-  first piece's rail on the step's rail and a column's word where every rung's
-  word begins — measured, not eyeballed: `.ladder .rung .rail` and
-  `.constructstep .rail` share x=360, every `.cwhen` right edge is 336, and a
-  word starts at 384 on a 1500px window.
-  A **diamond** row says `construction` on the diamond's own line, with the kind
-  of formation under it (`.cwhen-build`), and **every** construction of the
-  climb carries one — not only the one under the tree (v0.17.12; the label used
-  to be printed once, at the bottom of the step).
-  The diamond is the step's mark and the first piece stands immediately at it,
-  so that row *is* the step: its label is the step's (`construction`, with the
-  kind of formation under it), because a language name there would name the step
-  after its first piece — and a one-word formation (v0.17.9's
-  `combining`/`derivation`) would print the same word twice and leave the step
-  unnamed. A later piece is a word *of* the step's own stage and carries an
-  empty cell (`.cwhen.lead`) that the line from the `+` runs through; a `???`
-  row carries an empty cell too, because nothing knows its stage.
-- **The diamond stands in the first piece's own row** (2026-11-12, admin):
-  `.crail.mark` — the first column's rail track — carries the step's diamond
-  (`.cdiamond`), so the mark is on the pieces' line by construction.
-  The **diamond stands on the spine, it never cuts it**: the mark keeps the
-  segment coming down from the row above (only its sideways stub into the word
-  is dropped, `.cterm > .crail.mark::after`), and the first piece's track runs
-  on to the bottom of its own row (`.cpiece.first > .cterm > .crail::before {
-  bottom: 0 }`), where the step's rail takes over across the meaning strip.
-  **The spine is three segments, and each belongs to the thing that moves**
-  (v0.17.12): `.rail.top` brings the line down from the stage above to the
-  tree's top; inside the tree the line is the first column's own — `.clead`
-  (a flexible lead above the oldest row, `first: 1 1 auto`) and the rows'
-  `.crail::before`, which therefore scroll sideways *with* the column; and
-  `.rail.foot` carries it from the tree's bottom across the meaning strip to
-  the rung below. The two rails stand outside the scroll box, so a scrolled
-  tree never shows a stray line through someone else's column, and the line
-  that belongs to a word never leaves it. A step with nothing above it hides
-  only `.rail.top` (`:first-child`), never the foot — the half below the word
-  is as much of the spine as the half above it. `.rail.foot` is
-  `calc(var(--bpad) + var(--sbar))` tall because a wide tree draws a horizontal
-  scrollbar inside that band, and the spine has to cross it (measured: 15px of
-  missing line on `gmw-pro/aikīn` and `de/überhitzen` before the fix).
-  Where the climb's oldest row is a `???` and nothing stands above the step, no
-  line hangs over it (`:has(> .cchain > .cnode.unknown:first-child)`) — the
-  ladder's own rule for an origin the record does not give.
-  A later piece wears the accent dot on its own track (`.crail > i`); a bound
-  morpheme wears nothing and keeps the empty track (`.crail.blank`), because the
-  line reaches it from the `+`.
-- **The pieces are joined on one line** (2026-11-12): `+` (`.cplus`) stands
-  between two columns, and a piece whose column continues draws the line from
-  its word's right edge across the column (`.cpiece.continues > .cterm::after`,
-  in the row's fourth track — the label, the rail and the word come first);
-  a one-word formation has nothing to join and draws none. The pieces are written
-  at **word size** (`cform term`, 21px mono italic) in the colour of their
-  evidence, carry **no language label of their own** (they are words of the
-  step's stage), and each carries its meaning under it (see the bullet on
-  meanings below). Cuneiform is set upright and spaced (`.cunei`), because a
-  synthesised oblique smears its wedge signs into each other.
-  The cell is one `--crow` so it hangs with the columns, but its content is the
-  **`--termh` term band**: `padding-top: var(--clabelh); padding-bottom:
-  calc(var(--crow) - var(--clabelh) - var(--termh))` keeps the sign and its two
-  2px stubs on the words' line — centring them in the whole row with `--foot`
-  put them 13px below it (v0.17.11), and a phone's label band above the word
-  would do the same if it were not subtracted. A later piece's empty label cell
-  runs the line on to its dot across the `--cgap` (`.cwhen.lead::before`,
-  `right: calc(-1 * var(--cgap))`), so the join has no seam.
-- **Every word of the timeline says what it means** (2026-11-12, admin): the
-  sense stands **under the form**, in the wording the headword's own line uses —
-  `adj · “bright, clear, shining”` — not on hover alone, and it applies to the
-  ancestors as well as to the pieces. The server carries it on every node the
-  tree draws: `level.recorded.gloss`/`pos` on a rung, `_origin_node`'s
-  `gloss`/`pos` on an ancestor, and a piece's `gloss`/`pos` — the stored
-  parenthesis first, then the piece's own glossary entry, which is how a bound
-  suffix says what it does (`*-rós`: "Forms adjectives from Caland system
-  roots"). `_rung_gloss` drops the source's leading colon. The page prints
-  `.rung-rec .sense` under a rung and `.cgloss` under a piece; every term row
-  reserves that line (`--foot`, inside `--crow`), so the line through the pieces
-  stays level whatever a word means. A bound morpheme's description is cut at
-  64 characters with the whole of it on hover, because it is prose.
-- **The rail is continuous, always** (2026-11-12, admin): the vertical 2px line
-  must run unbroken from the top of the ladder through every rung, the diamond
-  and each piece's column — a break makes the page look like two timelines that
-  do not meet. Each `.rail::before` is drawn with `top: calc(-1 * var(--gap))`,
-  so **`--gap` must be a length**: a bare `--gap:0` makes the declaration
-  invalid, the segment loses its top, and the column disappears between two
-  stages (that was the bug the reader reported between PIE, Proto-Indo-Iranian
-  and Proto-Iranian). `tests/test_ui_render.js` asserts every `--gap` in the
-  ladder markup ends in `px`. Rows of a column are one fixed height and meet edge
-  to edge, and each segment overlaps its neighbour by a pixel
-  (`top: -1px; bottom: -1px`), so no sub-pixel seam shows at a row boundary.
-  A scrollbar is painted above the page, so it can never be allowed to sit on
-  the rail: the tree's own strip hides its bar on the narrow layout
-  (`scrollbar-width: none`, `::-webkit-scrollbar`, as the nav does) while
-  staying scrollable by touch — at 420px the bar crossed the rail column at
-  exactly the height where the spine leaves the tree (v0.17.11); on a wide
-  screen the bar keeps its 15px and the foot rail is that much taller
-  (`--sbar`), so the line crosses it (v0.17.12).
-- **The timeline ends in a circle, and the line to the picker leaves that
-  circle** (2026-11-12, admin): `.nextrung` closes the ladder, and its rail ends
-  in the reader's white circle (`.nextrung .rail i`, 10px, `top: 7px`) with the
-  horizontal line to the language picker starting at the circle's own right edge
-  and on its own centre — `left: calc(50% + 5px)`, `top: 11px`, width
-  `calc(var(--stub) - 5px)`, i.e. the 2px line is centred on the circle's centre
-  and its first pixel is the circle's last. The line is vertical `-gap … +12px`,
-  so it ends *at* the centre it is continued from. v0.17.11 drew the circle at
-  the top of the step and the line 11px below it: two marks that never met
-  (measured on the pixels afterwards: at the junction row the ink runs from the
-  circle's ring into the box's border with no gap, at 1500 and at 420px, where
-  `--stub: 19px`).
-- **On a phone the label goes above the word** (2026-11-12, admin): a 156px
-  column cannot stand left of a rail that is 8px from the page's edge, so at
-  `max-width: 700px` a row is `crail | (label / word)` — two grid rows, the
-  language and its years in one line above the word, exactly as `.rung .when`
-  stacks there. **Every row reserves that band** (`--clabelh: 28px`, part of
-  `--crow`), labelled or not, or two rows of one depth would drift apart; the
-  `+` subtracts it, the dots add it, and `.cwhen.lead` hides its line because
-  the `+` now meets the rail directly.
-- **A word of the chain that was itself built keeps its construction**
-  (2026-11-12, admin): *kit-ró-s is *keyt- + *-rós, and Wiktionary states it in
-  its article on Proto-Indo-Iranian *čitrás — there is no article, and no
-  glossary entry, for *kit-ró-s itself. `_origin_node` therefore carries a
-  construction stated **for an ancestor's stage and form in the child's entry**
-  (`_rung_builds(entry, stage_of(parent), parent_form, record_only=True)`), and a
-  construction replaces the single parent the form would otherwise climb to. It
-  is drawn as **a row of the same staircase** (`.cbuild`: the diamond on the
-  column's rail, the formation's pieces beside it at the tree's own sizes, never
-  a smaller staircase inside a column), so the climb above a piece can be read
-  row by row — `_BUILD_DEPTH = 3` deep, and `climbOf` keeps climbing through the
-  build's first piece.
-- **The ladder climbs through the ancestor's own ladder** (2026-11-12, admin):
-  a record that quotes an ancestor form and stops is not the end of the
-  timeline. When `start > 0` and the reader has not pinned a start
-  (`from_recorded`), `hierarchy` calls itself on the ancestor word and splices
-  its rungs above (`levels_above[:-1]`, `climbed: True`; the start rung keeps
-  this record's form and takes the ancestor ladder's verdict, `climb_start`).
-  `_above` holds the words already climbed through and the climb stops at 4, so
-  a record that names a word in terms of itself cannot loop. Climbed rungs are
-  *drawn*, not listed: `earlier` becomes `[]`. They are excluded from
-  `steps_differ`/`mismatched_steps` — the coverage counter measures the word's
-  own recorded ancestry, and the page must name the same stages it does.
-- **A word the record builds from pieces is never "no origin recorded"**
-  (2026-11-12): the ladder badge reads *built from recorded pieces* when any rung
-  carries `builds`.
-- **A page in Proto-Indo-European is a ladder with one rung, not a selector**
-  (2026-11-12, admin): `hierarchy` no longer refuses a word in the root
-  language — the etymon is the timeline's first rung (its construction, when the
-  record states one, stands above it) and the daughter stages are `next`, one
-  click each (`?path=iir-pro,ira-pro`), exactly as on every other word page.
-  The *reconstruct into* selector, `renderRoot`, `wireRoot` and
-  `renderReconstruct` are deleted; `?into=fa` in an old link is read by
-  `app.server._path` as the same descent. The badge on the etymon's rung reads
-  *top of the family*, and a stage the reader descended into reads *descended by
-  the laws* rather than *differs — the worklist*. The rung also **constructs**,
-  but never through a button and a row of pills (admin, 2026-11-12): **the dot
-  beside a word is the door** (`button.rdot`, wired to `openDraft`), and it
-  opens a row *above* the word — a diamond on the rail, because a formation is
-  not a sound change — holding the word itself and a **menu** of what the stage
-  records (its cited suffixes, its endings, and its own headwords from
-  `/api/words`). Nothing is typed there; the pencil is for typing. Each choice
-  is one step composed by `service.build_at` (`/api/build`): the row shows the
-  pieces, the grade the formation puts the stem in, and the form they make with
-  a link to the built word's timeline, and a second choice composes on the
-  first result (two suffixes on one line).
-- **A hyphen in a reconstruction is notation, not a sound** (admin, 2026-11-12,
-  Persian تشنه): Wiktionary quotes a compound with its morpheme boundaries
-  (`*tr̥s-nó-s`) while the glossary heads the same word solid (`*tr̥snós`), so
-  `_lemma_entry` retries the joined spelling (stress aside) — **only for a
-  reconstructed form** (`*` or a proto stage): in an attested language a hyphen
-  can belong to the headword (English well-being ≠ wellbeing). Every reader of
-  a form — its sense, its evidence, its ✓ — asks `_notation_entries`, so the
-  three can never disagree: a rung that says "no entry for this word" beside a
-  link that opens the entry is wrong.  `_lemma_entry` also reads the **stress
-  token** (`Hnˈawa` = the dictionary's `Hnáwa`) and **case** (a stage heads
-  `hā́fš`, an etymology row writes `Hā́fš`), because a token and a capital are
-  spelling, not sounds — 494 rungs over 325 pages agree with their own pages.
-- **Every word of a reconstructed stage wears its asterisk** (admin,
-  2026-11-12): one test answers for every renderer — `reconStage`/`starred` in
-  `app.js` (the stage's `kind`, a reconstructed script, and only then the
-  `-pro` code) and `attestation.written` on the server. Per-renderer `/-pro$/`
-  tests were why the same word printed `*anda-` in a link and `anda-` on the
-  rung beside it; a rung, a record, a piece, a chain node, a draft, a branch
-  card and a "words built on it" row now all go through the one helper, and a
-  form that already carries its star is never given a second one.
-- **A construction piece says what it means** (admin, 2026-11-12): the
-  etymology quotes some pieces (*mer- (“sea, lake”)), but `From *anda- +
-  *swarō.` quotes none, and `_base_row` used to print only the quotation — so a
-  piece the stage's glossary *does* hold came back `known: true` with an empty
-  gloss, a link that opened its page and nothing under the word. The piece now
-  asks the same reader as the rung and the ✓ (`_lemma_entry`); a gloss the
-  sentence quotes still wins.
-- **A prose origin is read when no ancestry template states one** (admin,
-  2026-11-12, *anda-): Wiktionary wrote *anda-'s origin as a sentence ("From
-  pre-Germanic *h₂entó- … from the Proto-Indo-European root noun *h₂énts") with
-  no `{{inh}}` row, so the ladder ended in a `???` above a piece whose page
-  recorded where it came from. `_prose_ancestry` reads **only the first
-  sentence**, only when it opens with an ancestry cue, never a hedged,
-  comparative or substrate sentence, never one with a `+` (that is a
-  construction), and only a **named registered stage** with a **starred form
-  its glossary actually heads**. It is a fallback inside the one reader
-  (`_ancestry_triples`), used only when the entry has no structured rows, and
-  a stage outside the word's own chain still cannot become a rung.
-- **A `pre-` label marks the form it precedes; it does not license a climb**
-  (admin, 2026-11-12, *anda- again): "pre-Germanic" is a name for a stage, not
-  a stage this model registers, so the first version skipped it and read on to
-  the next registered name — and put *anda- one level too high, on *h₂énts,
-  when the sentence's own form *h₂entó- is the ancestor and *h₂énts is what
-  *h₂entó- was made from. `_PROSE_PRE_STAGE_RE` reads the marked form and
-  resolves its stage from the nearest registered stage the same sentence names
-  for it; the sentence's own word order decides which form is the ancestor.
-  Corpus-wide this changed exactly two entries (*anda- → *h₂entó-, *aba- →
-  *h₂epó-), both in the same class — check the whole corpus before believing a
-  reader is fixed.
-- **A word the record says was formed from one word is a construction with one
-  piece** (admin, 2026-11-12, *h₂entó-): "a combining form or allative
-  formation from … *h₂énts" is the whole of that word's history, so
-  `data/lexicon/_supplement/ine-pro.jsonl.gz` carries it as a `built_as` row
-  with `kind: "combining"` and one piece, cited to the page that states it
-  (Wiktionary's *h₂énts derived terms and the *anda- entry — there is no
-  *h₂entó- page). `_SINGLE_PIECE_KINDS` is the only licence for a one-piece
-  row: every other kind is a join, and a one-piece row of another kind stays a
-  truncated analysis. On the page a piece that is itself built keeps **its own
-  construction in its column** (`climbOf`/`buildRow` in `constructStep`), one
-  row of the same staircase rather than a sub-timeline, so the timeline reads
-  *anda- → *h₂entó- → construction from *h₂énts → *h₂ent- + *-s — stopping at
-  the piece would hide the step that made it. The same licence is what lets a
-  word **start its ladder at itself**: `_own_construction` read only joins, so
-  *aiganaz ("Adjectival formation from *aiganą") climbed to the PIE root its
-  piece inherits and produced a spelling nobody records; it now accepts a
-  one-piece row of a `_SINGLE_PIECE_KINDS` kind (admin, 2026-11-12), and the
-  guard is unchanged — the cross-stage ancestry row must belong to the piece.
-- **A composition is built in the grade its suffix takes** (2026-11-12):
-  `_formation_grade` reads the `grades:` table and `_grade_stem` writes it, so
-  *ters- + *-nó- is *tr̥s-nó-s*, never *ters-nó-s*, and the built step and the
-  composed preview say *zero grade* with the handbook's reason.  Only a grade
-  the table states is applied; *-ó-, *-ti- and *-ró- leave the stem alone.  A
-  root keeps its own spelling on the rung (`*ters-`, hyphen and all) and never
-  loses a "nominative ending" it never had: `compose` drops one only from a
-  word, not from `_is_root_etymon`.  A **bound** piece of a recorded
-  construction has no glossary entry, so its meaning comes from the row written
-  for it by hand (`_morph_gloss`: *-nó-s → "verbal adjective or passive
-  participle"), and the built step spells its pieces as the stage writes them
-  (`*ters-`, `*-nó-`), never as a bare stem.
-- **Three kinds of step, and only one is a sound law** (2026-11-12, admin):
-  inheritance/derivation (the laws), borrowing (the record's donor; its rule set
-  is the donor's, e.g. English s+consonant → Persian *es-* in *starbucks* →
-  *estārbāks* — **not built yet**, the donor box is the honest half), and
-  construction (pieces of the current language + affixes/morphology). A
-  construction is never a sound law; a borrowing is drawn as a donor box, not as
-  a law row.
-- **A word the record states twice gets two tabs — but only when the two are
-  different formations** (2026-11-12): `builds` is a list, one entry per analysis
-  the record prints (English *about*: `on + būtan` and `be + ūtan`),
-  de-duplicated by `(kind, pieces)`, and a row whose piece sequence is a **prefix**
-  of a longer row is the same finding read twice and is dropped (*sokʷh₂ṓy* is
-  stored as `*sekʷ- + *-éh₂` and again `*sekʷ- + *-éh₂ + *-ṓy`, which used to
-  draw two tabs of one construction — admin, 2026-11-12). The step renders one
-  tree per build behind CSS-only radios (`bstep-radio`/`bstep-tabs`/`btree`), so a
-  repaint of the ladder cannot leave a tab dead; **a tab is labelled with the
-  formation itself** (`on + būtan`), not `affix 1`. `built_as` keeps the first
-  row for older callers.
-- **A rung above the headword is built by its own entry** (2026-11-12): the
-  Proto-Indo-European ancestor on Proto-Iranian *háxā*'s page is *sokʷh₂ṓy*
-  `*sekʷ- + *-éh₂ + *-ṓy`, stated in PIE's article and in no Iranian one, so a
-  rung whose stage is not the page's reads `_rung_builds` of the **ancestor's own
-  lemma entry** (`record_only=True`; the seam reader's guess belongs to the page a
-  word has, not to a form above it). A step that only looked at the page's entry
-  lost it.
-- **Nothing repeats the tree under it** (2026-11-12): the old `suffix it wears`
-  card and its `-éh₂ -ṓy` tokens are gone, because the pieces are the timeline.
-  A bound morpheme carries **no dot** — a dot is the mark of a word whose own line
-  continues above it — and its cell keeps the empty rail column so the word stays
-  on the shared line. A suffix's gloss is a sentence ("Creates collective nouns
-  and mass nouns, …"), so it wraps under the piece into the strip every step
-  reserves (`--bpad`), never widening the row and never lifting a word off the
-  line.
-- **Ablaut is a grade, never a law** (2026-11-12, admin's question about
-  *ters-): PIE roots have e-, o- and zero grades, and the formation's accent
-  decides which one stands — an unaccented root reduces, so the oxytone types
-  (*-tó-, *-nó-, *-yé-, *-sḱé-, *-néw-) take a zero-grade root (*tr̥s-tó-s,
-  *tr̥s-nó-s) and the causative *-éye- takes the o-grade (*tors-éye-ti), while
-  the root-accented *térs-e-tor keeps its *e; for a root of the shape *CeR the
-  zero grade is *CR̥. A law rewrites sounds between two stages, and grading
-  happens inside one formation, so this lives in
-  `data/morphology/ine-pro.yaml` under `grades:` (type, grade, note, sources)
-  and never in `data/rules/`. `service.root_grade()` **observes** the grade off
-  the two forms and only then attaches the documented note, and only for a type
-  the handbooks fix: *-ró- and *-ti- are not recorded, and a formation in them
-  carries no note. The grade is printed beside the root on the construction step
-  (`.cgrade`) and in a root page's "words built on it" list.
-- **Reduplication is a formation, not a law** (2026-11-12, admin's question
-  about *h₂eh₂óyḱe): the root's onset is copied and the root takes the grade
-  the type carries, so the four documented types live in
-  `data/morphology/ine-pro.yaml` under `reduplications:` — `perfect-stative`
-  (`Ce-`, o-grade, `-e`), `present-i` (`Ci-`, zero grade), `present-e` (`Ce-`,
-  full grade) and `aorist` (`Ce-`, no grade fixed) — each with its syllable,
-  grade, ending, note, outcomes and sources. `service._reduplication_read`
-  reads a record's own sentence ("Reduplicated stative of the root *h₂eyḱ-
-  (“to obtain, possess, own”)"): first sentence only, no `+` (that is an
-  arithmetic), no hedge, the root at the start of the word, and **never a
-  clause behind an ancestry cue that has already named a starred form** — that
-  clause describes the ancestor — *bibāną* is from PIE *bʰe-bʰóyh₂-e, whose
-  sentence adds "reduplicated stative of *bʰeyh₂-" — not the word. The row is a one-piece
-  `reduplication`, so it is in `_SINGLE_PIECE_KINDS`, starts the ladder at the
-  word (`_own_construction`), is drawn by `_rung_builds` (the type supplies
-  the grade, printed beside the root) and is indexed by `_raw_constructions`.
-  A root or a type the handbooks do not fix states no grade; an entry that
-  offers two analyses ("Root **or** reduplicated root perfect of *megʰ-") is
-  `confidence: argued`. Read over the corpus: 33 entries, all in PIE.
-- **A homonym is chosen by the record, never by index order** (2026-11-12):
-  PIE heads `swer-` twice ("to ache, fester" and "to resound; to speak
-  loudly"), and a lemma index keeps the first. `service._ancestor_gloss` reads
-  the meaning the entry's own sentence quotes beside the form, and
-  `service._sense_entry` returns the entry whose gloss shares a content word
-  with it (`senses.content_words`); with no hint, or no shared word, the first
-  entry stands. It is used by the ladder (`_record_block`), a piece's climb
-  (`_origin_node`, which passes its own quoted gloss down), the ancestry rows
-  (`_ancestry_forms`, including a compound's piece via `_piece_ancestor_gloss`)
-  and the review's `sense_mismatch` check.
-- **Notation is not spelling** (2026-11-13, critic batch 04): a record writes
-  what it read, not the headword — `fa-cls:روز` carries a stage key, `نَامَه`
-  its harakat, `‑ی` a non-breaking hyphen. `service._piece_spelling` drops the
-  key and maps the hyphen, `_lookup_form` drops the harakat for the lookup, and
-  the line keeps what the record prints. Without it, روزنامه's pieces were "no
-  entry" under two ??? and every Persian suffix but ـمند reached the page with
-  no gloss of its own (`_morph_gloss`, which is preferred over a bound piece's
-  glossary entry — the entry for ی is the indefinite article).
-- **A definition names its own base, and that decides the cut** (2026-11-13):
-  مقنعی is «منسوب به مقنعه», so the suffix seam stands on مقنعه (with its final
-  ـه elided before ـی) and not on the homonym مقنع; بیلربی «تحریری از
-  بیگلربیگی» and نیازک «ج ِ نیزک» print "a writing of …" / "plural of …" with
-  the base's own sense instead of a pointer. `service._nisba_base` reads the
-  sentence the *entry at hand* carries, and a seam may then stand beside a
-  `borrowed_from` label, because the loan is the stem's.
-- **A suffix row may be licensed** (2026-11-13): `licensed: ordinal` in
-  `data/morphology/fa.yaml` marks ـم, which is the ordinal ending *and* the 1sg
-  possessive. `_suffix_seam` uses such a row only when the dictionary's own
-  label asks for it («عدد ترتیبی»), so سیزدهم is سیزده + ـم and مردم is not
-  مرد + ـم.
-- **A piece takes its homonym from the child's meaning** (2026-11-13, critic
-  batch 04): `service._homonym_by_meaning` compares the piece's candidate
-  entries against the gloss of the word being built and takes the closer one
-  only when it is strictly closer — آبرو's روی is "face", کمزور's زور is
-  "force, strength". A piece written as a morpheme (‑دار) never opens the free
-  word that shares its letters, and a suffix slot the parse dropped the tatweel
-  from still holds the table's morpheme (گفتار's ‑ار was the place-name ار).
-  A stem piece wears no dot but keeps its ladder (باش → PIE *bʰewH-).
-- **A prefixed verb is not its prefix** (2026-11-13, critic batch 06): when the
-  sentence states a word as one bound form plus another («From Proto-Iranian
-  *ā- + *gam-») and every ancestry row is a bound form, the rows are pieces of
-  a construction, not a chain, and only the root the sentence names survives
-  (`_not_a_flattened_prefix`). نوشتن and شنیدن are still on the worklist.
-- **The first clause of an entry is often notation, and the meaning is the
-  clause after it** (2026-11-13, critic batches 07-08): `tools/dehkhoda_glosses.py`
-  splits Dehkhoda's run at « . » and « || » and skips a clause that is only the
-  headword respelled (اسقوربوط «اِسقُربوط»), a comparative etymology list (نشیب
-  «اوستا: … پهلوی : … کردی :»), a source note («(از ناظم الاطباء)») or the bare
-  name a name entry is about (اطعمه «احمد اطعمهٔ شیرازی . از شاعران بود»); a
-  leading «یا X،» or «بر وزن X،» is a note about the word's shape and comes off,
-  and the short equivalents beside the first sense stay («بیمار . علیل»). A
-  §suffix or §prefix slot, a definition that only names a word («آگاهانیدن»),
-  and a «؛» that separates a foreign phrase from its Persian definition are all
-  read in `service._page_gloss`.
-- **A record that names its base forbids another cut** (2026-11-13, critic batch
-  08): جبذی is «منسوب است به جبذه که نام جد احمدبن حسن است», a nisba to a man
-  the glossary does not hold, so no seam may be drawn on جبذ «to pull» — and the
-  sentence that says what the base is stays in the meaning line. A piece's
-  column also climbs when the piece is *bound* (باش is a stem of بودن and keeps
-  بودن's five rungs); only a morpheme with no entry of its own has no column.
-- **Wiktionary's script requests are not the record** (2026-11-13): «[Book
-  Pahlavi needed]» reaches 1,139 Persian etymology sentences and is a note to
-  the template's editors, so `_drop_parser_requests` takes the bracket away and
-  keeps the transliteration the record prints beside it. A trailing
-  parenthetical of one or two letters is optional *notation*, not a gloss:
-  Middle Persian pādixšā(y) is pādixšāy.
-- **The page prints the meaning, not the dictionary's paragraph** (2026-11-13,
-  critic batch 03): `service._page_gloss` cuts at the first grammar note,
-  cross-reference or quotation (`_GLOSS_NOTE`), drops source attributions
-  («(از ناظم الاطباء)») and a trailing hedge, follows an entry that is *only* a
-  cross-reference, and follows «رجوع به مترادفات» to the variant that holds the
-  sense. `_prose_etym` cuts Wiktionary's flattened *etymology tree* off the
-  front of the etymology (1,662 Persian entries), keeping the sentence after
-  the headword node.
-- **A line begins at the oldest mark** (2026-11-12): a step at the top of the
-  ladder has no row above it, so `.constructstep:first-child` hides `.clead`'s
-  rail (the segment that brings the line *down* from above) and the first row's
-  1px join — otherwise *h₂ent- wears a stub of line that meets nothing.
-- **The ladder is the whole explanation, and its order is fixed** (2026-11-07):
-  `service.hierarchy()` → `renderHierarchy`, then the branch below, then the
-  cognates. No separate derivation section, and no counterfactual table
-  (`renderRebuilds` is gone) — `service.word()` still returns `rebuilds` for the
-  root page's selector, and a rebuilt form may be called a reproduction only when
-  it equals a form recorded for that etymon.
-- **The ladder starts from a reading, never from a script** (2026-11-11): the
-  rung's `form` is what `service._phonological_form` returned, so Middle Persian
-  `lwc` climbs from Old Persian *raučah* — Wiktionary's `ts=` for 𐎼𐎢𐎨 — and not
-  from the cuneiform, which no law can carry; the record is printed beside it
-  with its own reading (`𐎼𐎢𐎨 · raučah`, `lwc · rōz`). A start whose reading
-  nothing records is marked `starts[].unreadable` and its transition
-  `unreadable`, and the rung says the laws rewrite sounds and not signs. The
-  start chips offer the reading too, so "begin at the recorded ancestor" stays a
-  record and not a hypothesis (`_recorded_ancestor_forms` holds both spellings).
-- **A rung** carries the stage's `era_label`, the derived form next to the
-  recorded one **on the same line** — printed once, glowing, with a ✓ disc
-  (`matchdot`) when they are the same form (`recorded.same`) — the laws of its
-  transition, and the record. A rung lights as `recorded.matches` (the laws
-  derived it) or `recorded.starts` (it is the record the ladder starts from). No
-  "reproduces / differs" sentence: the hover text says what the record is.
-- **A record is marked, not labelled**: a page glyph on its top-right corner
-  (`.recorddot`, where the ✓ sits) whose tooltip names the source and opens the
-  page it was read on. No "recorded" word, no "N of M laws applied", no
-  stage → stage label. `service._wiktionary_entry_url()` builds the address
-  (`Reconstruction:<language>/<word>`, bare headword otherwise) and
-  `_entry_sources()` carries it as `entry`; a supplement's own link wins. The
-  front end never builds a remote URL
-  (`test_the_page_stays_dependency_free`); a record with nothing to open is a
-  plain span.
-- **Every stage on a reconstruction quotes its own record** (2026-11-08):
-  `service.reconstruct` reads the target's ancestry too (`_recorded_at` /
-  `_record_block`), so Persian بازو still shows Old Persian 𐎲𐎠𐏀𓅱 · bāzu; such a
-  record is `differs` when the laws miss it, and the produced form prints first.
-  A record's glyph anchors to that word's own `.formblock`, never the wider
-  stack under it.
-- **A ladder may start from a record, not a blank** (2026-11-07): a word that
-  reaches PIE only through its cognate set (`linked_by_set`) starts on the
-  etymon's record — `_recorded_at` resolves it against that stage's glossary
-  (`_lemma_entry`, notation-free) with its POS and sense. Never print "nothing
-  recorded" beside a set that is quoted. Name how the rung was linked
-  (`ancestry_top`, `off_chain`), quote the set's derived form (`set_source`,
-  e.g. `*bʰóh₂g-s ~ *bʰéh₂g-s`) and say that picking one alternant would be this
-  repo's reconstruction. `TestEtymonRung` pins it.
-- **A PIE word gets no ladder**: no ancestry, so `service.word()` marks `is_root`
-  and the page renders `renderRoot`/`renderReconstruct`, its selector fed by
-  `rebuilds.rows`; `/api/reconstruct` returns `service.reconstruct()`. A root has
-  no `cog` row of its own — `service.cognate_set_for()` finds its set by etymon,
-  so never say "no cognate set" while quoting that set. `TestRootWord` pins it.
-- **The ladder is edited in place**: a switch or an edit refetches
-  `/api/hierarchy` and repaints only `#ladder` — never assigns `location.hash`,
-  never reloads or jumps. `pushState` keeps `?off=`, `?from=`, `?form=`
-  shareable and Back working (`popstate` → `route()`, `pendingScroll`); changed
-  rungs pulse, untouched rungs must not replay their entry animation.
-- **A law is switchable and scoped**: `rules.rule_key` (`src~dst:id`, ids repeat)
-  keys the toggle and `?off=…` lists what is off; the chain is re-derived with
-  `baseline`/`changed` marks. A switched-off law that stops applying stays listed
-  so it can be switched back on. No "apply the law anyway" button. The heading
-  carries the chain's state (*exact/differs*, *recorded pathway*, *laws
-  unfiltered*, *edited start*, *pathway stored*, *another suffix*, the off count)
-  in `.ladder-badges` / `.recon-badges`, never in a stack of bars.
-- **An edit keeps its ancestors** (2026-11-08):
-  `service.hierarchy(..., from_stage=, from_form=)` replaces the form on its own
-  rung, marks it `edited` (violet `ev-edited` — a hypothesis, never green unless
-  the typed form is recorded) and re-derives below; rungs above stay as the laws
-  made them, and only a stage above the ladder's start moves `start`. An edited
-  path that lands exactly on the attested word offers **store pathway**
-  (`POST /api/pathway` → `store_pathway` → `data/pathways.jsonl`, listed as
-  `data-load-pathway`); the server re-derives and refuses anything that is not an
-  exact attested match. `enabled=[...]` records a cited law the word turns *on*;
-  `disabled` stays the common case and needs a note.
-- **Below a word is a branch of its direct children only** (2026-11-08):
-  `_stage_descendants(lang, form, origin=, claim=)` builds a tree from
-  `data.descendants()` (the registry's `ancestor` link), each row carrying the
-  form of that single transition, `rows` flattened with `depth`,
-  `counts.direct`/`counts.languages`. `renderBranch` draws a folder tree
-  (`<details class="branchnode">`), so a grandchild is never a daughter. A row
-  that reaches a record quotes and opens it (`recorded.via` = `origin` |
-  `glossary` | `reading`; a `reading` match is a non-Latin entry whose own
-  Romanisation is exactly the derived form, `_reading_index`, never a second
-  attestation). `claim=False` (the "not recorded here" page) keeps every row
-  orange/red: its start is not a recorded etymon. A row whose record agrees on
-  every sound but the ending has `status: "unverified"` and `recorded.via:
-  "near"`; `renderBranch` prints a yellow ⚠ and *match not verified* instead of
-  the ✓, and `counts.unverified` counts them apart from `counts.match`.
-  **The branch starts from this page's own rung** — the last ladder level whose
-  `stage` is the page's language — not from wherever `?path=` carried the
-  timeline, which was making Old Persian derive a form from a Persian word
-  (2026-11-12).
-- **The timeline can be carried past the word** (2026-11-08):
-  `service.hierarchy(..., path=[...])` appends stages, each the `ancestor` of the
-  one before (checked against `data.languages()`); `word()`/`hierarchy()`/
-  `reconstruct()` return `next` — the target's direct children with the form the
-  laws produce, its era and whether it hits a record — drawn as `.nextgrid`
-  tiles and kept in the URL as `?path=pal,fa`. `from_stage`/`from_form` reaches
-  **every** rung: at or above the start it replaces it, inside a path it splices
-  that rung (`edited_at` is its index in `path`), and `data-cut` removes a
-  carried rung. Never gate an edit on "above the word".
-- **On a ladder the word is the link; in a cognate table the language name is**:
-  every form on a rung opens a page — the glossary entry when the stage holds it,
-  otherwise `service.word(..., ghost=True)`, which carries the form through the
-  laws into its branch. Rungs carry `recorded.known`/`form_known`; nothing on a
-  ghost page is green or gold. A cognate row is a quotation: its language name is
-  the link, its words stay plain text to copy.
-- **No underlines in the word view** (2026-11-08): `.formlink` keeps the form's
-  colour and weight, lights its hit area on hover; no dotted language-name
-  underlines in the cognate table. Keep the focus outline.
+**State a construction.** `data/construction/<lang>.yaml`: the pieces, the
+formation (`compound`, `derivation`, `combining`), and the record's sentence.
+Only a construction the record states may make a word green; one this model
+composes for itself needs the approval route (`data/adjusted.yaml`).
 
-### Readings
+**Re-measure.** `PYTHONPATH=src python3 tools/evaluate.py --all --markdown` (per transition) and
+`tools/coverage.py --docs` (corpus, README block, `coverage.svg`). A sampled
+run (`--limit`, `--langs`) writes elsewhere and is never published as a number.
+Commit the regenerated reports with the change; never accept a drop in exact
+coverage without saying why.
 
-- **Every form has two layers, and they are never mixed** (2026-11-11, admin:
-  "`lwc` is not really a romanization … it is still a script reading, and the
-  romanized form `rōz` should be written beside it — the rules should clarify
-  this for all languages"). A form is *written* (the headword in the language's
-  script, or in that script's own transliteration — Book Pahlavi `lwc`) and it
-  is *read* (`rōz`). The page prints both, the laws take the reading, and every
-  comparison and link goes through the reading. Three consequences:
-  `service.show_reading` is true for a script headword **and** for a
-  transliteration of one (`script.writes`), so `lwc · rōz` prints with its
-  reading while Tocharian `pācer` and Proto-Slavic `-akъ` (true Romanisations)
-  stay bare; `service._with_reading` clears the flag when there is no reading to
-  print, or when the "reading" is only the letters again; and
-  `_phonological_form` is the single door from written to read.
-- **`_phonological_form` is the only way into the laws**, in this order and first
-  answer winning: an entry's `phon`; the language's own spelling table
-  (`data/readings_<lang>.json`, Book Pahlavi `sng` → *sang*); the entry's
-  `translit`/IPA; a reading the corpus quotes for that spelling
-  (`data/readings.json` — Wiktionary's `{{inh|pal|peo|𐎼𐎢𐎨|ts=raučah-}}`);
-  and, for an **alphabetic** script only, the letter-by-letter transliteration
-  (Πέρσης → *Pérsēs*). A syllabary's sign string (𐎼𐎢𐎨 → *ra-u-ca*) is never an
-  input: the hyphens print signs, they do not spell sounds. A form with nothing
-  recorded is returned unchanged so the engine can refuse it by name.
-- **A script prints two Latin layers, and IPA is a third, optional one**
-  (admin, 2026-11-13): its **romanisation** (*Vr̥kānaʰ*, *gorg*, *haus* for
-  *house*) is how the word is read and the layer linguists cite; its **sign
-  transliteration** (*v-r-k-a-n*, *g-r-g*) is what the scribe wrote and is
-  shown for every non-Roman script (`readings.signs_for`, `.reading.signs`).
-  It is computed from the sign table and never stored, and a syllabary's
-  inherent vowel is not printed: 𐎺𐎼𐎣 is *v-r-k*, 𐎺𐎼𐎣𐎠𐎴 is *v-r-k-a-n*
-  (admin, 2026-11-13).
-  IPA stays on the word's own page and never on a rung — a phonetic
-  transcription of a dead language is not a claim this model makes.
-- **The left column of a rung is a romanisation, never a script** (admin,
-  2026-11-13): the form the laws produce (*wˈarkah*) stands on the left, the
-  scripted record (*𐎺𐎼𐎣*) beside it with its recorded reading (*vr̥kaʰ*) and
-  its sign transliteration (*v-r-k*); a rung whose own form is the spelling
-  (a word the record gives no ancestor for) prints its reading instead
-  (`level.display`) and keeps `form` for its page, links and construction.
-  A ✓ needs the laws' form to *be* the recorded reading (`_reproduces_reading`):
-  a form the signs allow but the dictionary reads otherwise (*wˈarkah* against
-  *vr̥kaʰ*) is shown as two readings and wears no ✓.  A rung whose Latin form is the laws' own
-  transcription of the signs (*Wˈarkānah*) rather than a reading the record
-  states carries `spoken` so the next
-  step and the branch descend from it; a Latin form that is itself a recorded
-  reading (پدر *pedar* among *padar/pidar/pedar*) stays, and a rung the laws
-  reach with a different word keeps the laws' form (*the laws produce pā, not
-  the recorded pādiy*). `readings_for` dedupes; `alternate_readings` keeps the
-  rest.
-- **A piece the record glosses as grammar is a bound morpheme, not a word**
-  (admin, 2026-11-13): `service._grammar_gloss` reads «𐎴 (*-naʰ*, nominal
-  suffix)» whatever the spelling, and only an *affix* entry of the stage may
-  answer it — the letter 𐎴 opens no page from a suffix, and a suffix the stage
-  does hold as an affix keeps its own page. Only suffix/prefix/ending make a
-  piece bound (`_affix_gloss`): a clitic or a particle is a word (PIE *ḱe,
-  *te). Its reading is the stage's morphology-table row
-  (`data/morphology/<lang>.yaml`) or the reading the record quotes.
-- **No form in another script is ever printed alone** (2026-11-08).
-  `translit.is_scripted` decides what "another script" means (written *in* it,
-  not "contains a strange character"); every payload carries `reading_auto`,
-  `reading_how`, `reading_note` via `service._with_reading`.
-  Three sources, in this order:
-  **recorded** — the entry's own IPA or Romanisation (`readings_for`: `𐎱𐎡𐎫𐎠` →
-  *pitā*, پدر → *pedar · pidar · padar*);
-  **quoted** — the reading the record writes beside the form: an etymology
-  sentence (𐎱𐎠𐎼𐎿 is `p-a-r-s /pārsa/` in *Persida*'s entry) or a Wiktionary
-  template (`{{inh|pal|peo|𐎼𐎢𐎨|ts=raučah-}}`), both harvested into
-  `data/readings.json` by `tools/build_readings.py`; unlike an automatic one it
-  is a record, so the laws may start from it;
-  **automatic** — what the script itself supplies (`translit.py`: letter by
-  letter 𐌻𐌹𐌿𐌸𐍃 → *liuþs*, sign by sign 𐎠𐎼𐎫𐎧𐏁𐏂𐎠 → *a-ra-ta-xa-ša-ça-a*,
-  consonant by consonant هفته → *hfth*; `script.transliterate` for table scripts).
-  Only the automatic kind is blue and dotted (`.reading.auto`, `.translit.auto`)
-  and says "No reading recorded". Never invent a vowel the script does not write,
-  never guess an unknown sign, never offer a syllabic transcription as a
-  pronunciation (`ku-u-ru-u-š` → the reading `Kuruš`). `tests/test_readings.py`
-  sweeps the corpus and fails on a scripted form with no reading;
-  `TestPronunciations` pins the recorded layer.
-- **A record's reading is the dictionary's, not the letters'**: a script
-  headword quoted from an etymology carries the reading that sentence or
-  template writes (`service._etymology_reading`, then
-  `readings.for_form(stage, form)`); a stage's own glossary entry wins over both.
-  Never derive a reading from a script the repo cannot read, and never let the
-  sign-by-sign string stand in for one.
-- **The comparison is made on the reading**: a rung is green when the laws
-  produce the recorded reading, or the writing's signs when the record states no
-  reading (`_same_reading`: what the script cannot write — a final /h/, the
-  y-sign closing a final -i — is set aside on both sides). When the record *does*
-  state a reading and the laws produce another one, the rung says `differs` and
-  prints the two side by side (`the writing allows it — the record reads rōz`);
-  a fit beside a different reading is not a match (2026-11-11, Pahlavi `lwc`).
-- **Scripted words are compared with their readings**, because sound laws output
-  phonology: the page says *exact — the rules reproduce the Romanised form
-  “pedar”*, not "differs".
-- **A script can state a form the laws produced** (2026-11-08):
-  `data/script/<lang>.yaml` is a writing system (signs, readings, kind, word
-  divider, logograms, `stage.references`); `script.match(lang, reading, headword)`
-  → `{ok, translit, logogram, filler, unwritten, convention}`. The comparison may
-  allow what the script does not write — short vowels, a filler vowel, *a* for a
-  syllabic resonant, a+u for /au/, **v ≡ w**, a final /h/ with no sign — so
-  𐎺𐎼𐎣 can be the spelling of the laws' *wˈarkah*. Declared **closing
-  conventions** (`conventions:`: a sign pair writing one vowel word-finally) make
-  𐎠𐎡𐎫𐎡𐎹 *a-i-t-i-y* = /aiti/; `convention` reports the retry, the rung prints
-  its name, and a convention may drop a closing sign, never a vowel or a sound.
-  This is a **reading**: `recorded.fit`, badged *exact, read from the script*,
-  counted in its own `through its script` column (59, all Old Persian) and
-  **never** in the attested figure. Green stays tied to a cuneiform headword with
-  its source. All 262 Old Persian entries with a Romanisation are explained this
-  way — add a table for another script, never a special case for a word.
-- **Stress prints as an acute, not `ˈ`**: the JSON keeps the IPA token (laws and
-  `_same_form` compare it); the front end's `pf()` prints `ˈō` as `ṓ` and `ˈr̥` as
-  `ŕ̥`, and `printable_form()` must agree, because `_headword_at` finds a headword
-  only by that spelling (30 Proto-Indo-Iranian entries carry one). Change both
-  sides together; never "fix" stored forms.
-- **Notation-only lookups are not lookups**: `_headword_at` tries the printed
-  form and the stressless spelling (`jrˈayah`, `nˈaht` → *naht*); `word()` tries
-  both before the ghost page.
-- **Notation is not phonology**: `_comparison_key` drops the breve and reads a
-  standalone ʰ as *h* (Wiktionary's OP spelling of a final /h the syllabary
-  leaves unwritten: `vazr̥kaʰ` = /waˈzr̩kah/); `_same_form` compares stress only
-  when both sides mark it; aspiration inside a stop (`kʰ`, `dʰ`) stays. Use
-  `_same_form` for derived-vs-recorded, `_comparison_key` alone for two recorded
-  spellings.
+## What a word page must keep true
 
-### Constructions and morphology
+These are the invariants a UI change must not break. Each has a test that names
+it; if you change one, change its test in the same commit.
 
-- **A construction piece carries its own branch, and the branch is one line**
-  (2026-11-12): `service._rung_builds` gives every piece a `branch` from
-  `service._origin_node(lang, form)` — the piece's node, its `parents`, and a
-  `terminal` that says why the climb stops: `pie` (the form is Proto-Indo-European
-  — the top of the family, **with or without** a glossary entry, and never a
-  `???`), `outside` (the language is not a PIE descendant at all, so its trail
-  begins there: `data.non_ie_sources()` — Arabic, Turkish, a Semitic proto-form —
-  and no `???` is drawn), `borrowed` (the record says the word was borrowed from
-  here, so the donor's own history is the donor's), `missing` (the record names a
-  form the glossary has no entry for → the page draws `???`), `end` (the entry
-  records no origin → `???` above it), and `""` (climb on). The `???` is
-  therefore what the admin asked for: a family word that came from somewhere and
-  whose origin is not recorded. **One parent per word, not the row list**: an
-  entry may carry nine template alternatives (`non- … non … nān … *nainaz`), so
-  the walk takes the first `inherit`, else `borrow`, else `derived`; a `root` is a
-  relation, never the step above (`_is_root_form`). Depth is capped at 8 and a
-  revisited form stops the walk. Each node also carries `kind`
-  (the language row's `kind`, falling back to `kind_of`), because the tree prints it
-  in the ladder's colour —
-  gold for a proto-stage, green for an attested language. The full language name
-  and the years are printed in the left column; `short` is only a fallback. A
-  bound morpheme has `bound: true` and `branch: null`, and says so — a suffix
-  written with a leading hyphen or, in Persian, a tatweel (`ـدار`) was not
-  inherited or borrowed, and a prefix's trailing hyphen does not make it bound
-  (`astro-` is the Greek word ἄστρον, and keeps its branch).
-  `TestAConstructionIsATree` pins the shapes on
-  `peo/Ciçafarnāh`, `en/non-`, `iir-pro/*čitrás`, `en/livre`, `ar/كِتَاب`,
-  `fa/کتابدار` and `en/about`.
-- **A piece is a form, never a printed structure** (2026-11-12): an early reader
-  stored 50 construction rows whose pieces are `str(['کَم ', '>'])`; the reader
-  refuses such a piece (`_formed_piece`) and `tools/clean_built_as.py` drops the
-  rows from the built glossaries (69 pieces, 34 entries — idempotent, and it
-  needs no kaikki dump). `TestAConstructionIsATree::test_a_printed_structure_is_never_drawn_as_a_word`
-  pins it.
-- **A construction is not printed under the title any more** (2026-11-12): the
-  header block is gone; `service.construction()` still feeds the step's compact
-  row (`constructHtml(…, compact=True)`) — see *The ladder* above. The rules
-  below are the ones that reader follows.
-- **The construction a word wears** (2026-11-08): `service.construction()`
-  parses the entry's own statement (`From *wĺ̥kʷos + *-íh₂s.`) into a base (a door
-  when the glossary has it) and its suffixes; nothing is composed when the
-  etymology names a single source. `.construct` prints `base + suffix (+)`; the
-  suffix replaces within the stage's cited suffixes, `(+)` adds to the word as it
-  stands. The old "as it stands" chip row is gone. A hedged derivation naming
-  only a base is an `argued` row (the root; the stem-formative the ending carries
-  when the entry calls it a nominalization; or the suffix it names in prose), and
-  a bare "from *X" is read only when X is a root headword. A gloss's own ";" or
-  nested parentheses must not split the sentence — `_sentences()` counts depth.
-- **One word may have several analyses**: the one it wears stays first with its
-  picker; rivals follow under a dashed rule, read-only and smaller, labelled with
-  the entry's own confidence (*also stated*, *also argued by …*, *also
-  proposed*), their sentence on hover, their base still a door. An analysis
-  stated for a *related* word ("the reanalysed root of X") is never printed under
-  the headword; a rival argued in its own sentence is recorded by hand in
-  `data/constructions/` with quote and author.
-- **A construction piece is a recorded morpheme, and the picker is the stage's
-  morphology** (2026-11-08): `service.morphology(lang)` merges the handbook rows
-  (`data/morphology/<lang>.yaml`), every piece the stage's own constructions wear
-  — with the words that wear it, three `examples`, the `bases` it attaches to,
-  read by `_construction_scan` — and the stage's suffix entries no construction
-  has used. A piece's meaning comes from, in order: the word's own parenthesis,
-  the handbook row (matched by the whole suffixed form: `-ti-` + `-s` = `-tis`,
-  never the bare stem), the `endings:` table (only when the letters really close
-  the word, `_piece_is_tail`; every paradigm value the letters have, since the
-  stem class decides), then the dictionary's suffix entries of the **exact**
-  spelling. Among several senses the first kind the sense names must fit, and
-  ‑os/‑ós are never merged (‑o‑ must not borrow ‑ō, ‑ōm not ‑óm). Never
-  invent a meaning: only a reconstructed stage gets a registry, and a composed
-  form stays this repo's hypothesis.
-- **The picker's sections come from the record**: `service.morphology` gives each
-  row a `section` and the stage a `sections` list (`MORPH_SECTIONS`); the word's
-  own morphemes print first in the colour of a record, the rest under headings
-  that open beside them (arrow keys walk, Escape returns, a narrow window opens
-  them below). A new section means adding it to `MORPH_SECTIONS` with the rule
-  that fills it and keeping `TestTheSectionsOfThePicker` green.
-- **A suffix is a law** (2026-11-08): a derivational suffix a record shows is a
-  rule with `tier: formation` and `off_by_default: true`, enabled by the word
-  through `enabled` in `data/pathways.jsonl`; `data/morphology/<lang>.yaml` may
-  name it (`rule: "<src>~<dst>:<id>"`) so the PIE panel composes with the rule
-  the ladder runs. A formation rule never applies without a pathway naming it:
-  coverage must not move.
-- **Every piece of a construction is drawn** (2026-11-13, admin): a record may
-  join its pieces with a conjunction before the plus ("From *h₂eḱ- (“sharp”) +
-  *h₂ṓws (“ear”) **and +** *-yéti"), and a stored template may stop short of
-  the sentence it came from. `_ARITHMETIC_RE` reads the conjunction, and a
-  stated row that starts with the stored row and adds a piece replaces it — the
-  prefix-merge compares pieces without notation. A suffix read this way is a
-  bound morpheme and takes its gloss from the morphology table.
-- **A piece climbs what its own page climbs** (2026-11-13, admin: "The timeline
-  for a word should appear more-or-less exactly the same if another page refers
-  to it"). `_origin_node` picks the parent by **distance along the word's own
-  chain first** — the nearest stage the record names — and only then by relation
-  (inherit → borrow → derived), which is a tie-break between alternatives at one
-  level, not a licence to reach past a nearer derivation (fa جو: `{{der}}` to
-  Middle Persian jaw, `{{inh}}` above it; jaw was skipped as a piece of آبجو).
-- **A hole in a piece's chain is a hole in the word's** (2026-11-13, admin: fa
-  آبجو). `service.unrecorded_ancestry` walks each piece the stage heads
-  (`_own_construction` and `_compound_pieces`), because a compound's record has
-  no ancestry of its own while the page draws the pieces' rungs; the row is
-  reported once per (stage, form), and `_page_category` lets a hole outrank the
-  published band, so no index can call a word green above a rung it draws as
-  "no entry for this word". A record that writes an ablauting noun with both
-  stems (`*h₂ṓp-s ~ *h₂ép-s`) is one word: `_lemma_entry` tries each side.
-- **A `???` is a hole too, and a borrowing never draws one** (2026-11-13, admin:
-  fa رضاقلی read "fully explained" above a ???, and "قلی is obviously a
-  borrowing, so it should never have shown the question marks"). Two rules, one
-  reader. *A question mark forbids green*: `unrecorded_ancestry` reports the
-  word a piece's climb stops over (`_unexplained_branch`, the page's own
-  `climbOf` path) with `kind: "origin"`, so the verdict says "no recorded origin
-  for X" and refuses every green route while it stands. *A stated origin ends
-  the climb*: a compound's row may name where one of its pieces came from —
-  `[form, gloss, [[lang, form, rel]]]`, `_stated_piece_ancestry` — because
-  Persian رضاقلی is "a compound of رضا + Old Anatolian Turkish قلی" and the fa
-  entry for قلی heads another homonym and records nothing. The entry's own rows
-  win when it has them, and `non_ie_sources.yaml` registers the donor
-  (`trk-oat`), so a loan can never be read as an Indo-European one.
-- **A piece brings its whole ladder, and a stage outside the family says so**
-  (2026-11-13, admin: "the timeline above نا only shows from Proto-Indo-Iranian
-  … Every form that is brought into a timeline brings its entire timeline with
-  it above it"; "for non-PIE languages like Arabic … don't say 'no entry for
-  this word', just say 'non-PIE word'"). Two readers, one rule. *A piece climbs
-  every rung its own page draws*: `hierarchy` fills the stages between two
-  recorded rows with the forms the cited laws produce, and `_chain_between`
-  gives a construction's climb the same rungs (`derived: true`, `known: false`,
-  no gloss) instead of starting at the nearest recorded ancestor — fa ناـ's
-  climb is PIE *né → PIIr. *ná → Proto-Iranian → Old Persian → Middle Persian →
-  Persian, exactly the ladder `fa/ناـ` prints. A derived rung is never a hole.
-  *A language outside the family is neither a hole nor an entry*: `_origin_node`
-  carries `outside`, `hierarchy` rows carry `non_ie`, and the page prints
-  **non-PIE word** (muted) where it would otherwise say "no entry for this
-  word" — Arabic راضٍ is a word, it is simply not one this model holds.
-- **The word page is the meaning, the timeline and the sources** (2026-11-13,
-  admin: "word page should really be minimal"). No paragraph of background
-  prose under a timeline: the loan ladder prints the borrowing as its step rows
-  and the contact window as one badge (`633–1100`, tooltip: the contact, never a
-  date for this word), and `data/loan_periods.yaml` carries no `window_note` or
-  `landmarks` any more. A page explains the word, it does not lecture.
-- **A suffix in the morphology table is a record, not a licence**
-  (2026-11-13): `-lom` (`-lo-` + neuter nom.sg. `-m`, attach `drop`) sits with
-  `-tro-` because Proto-Germanic *ailą's own entry names *h₂éydʰ-lom; the PIE
-  word is an entry with that one construction, and the page still decides the
-  band by the laws.
-- **A compound is drawn as a join** (2026-11-09): `service._compound_pieces()`
-  reads the entry's own "From X + Y" (Compound of / Blend of / Equivalent to /
-  Formed from / Built from), keeps a piece only when the same language's glossary
-  records it as a headword, and refuses a sentence naming another language first
-  ("From Latin focus + -alis"). Pieces print with their own recorded chains,
-  oldest first, meeting at the headword. A join is a formation, never a law, and
-  counts in no reconstruction figure.
-- **A root a construction names is an entry** (2026-11-08):
-  `tools/add_roots.py` writes them into
-  `data/lexicon/_supplement/ine-pro.jsonl.gz` (`pos: root`, gold, `url` = the
-  entry read, `ref` = its sentence, `cited_by`), and the root page lists the
-  words built on it (`service._construction_index`). Re-run it after changing
-  the construction reader; it is idempotent. A case form, suffix, pronoun stem or
-  adposition stays plain text (`NOT_A_ROOT` in the tool).
+1. **Title, not pills.** Language and years in the left margin, the category by
+   the meaning, band + record as one italic line.
+2. **A timeline reads, it does not spell.** The leftmost text of a rung is a
+   romanisation; a script follows it with the record's reading and the mechanical
+   sign layer (`𐎺𐎼𐎣 · vr̥kaʰ · v-r-k`). IPA is optional, on the word's own page
+   only, never on a rung.
+3. **Every rung is an entry of its stage** — or it says *no entry for this word*
+   in dark red, upright, with no ✓. A form the laws produce is not an entry.
+4. **No ✓ without the record's own reading.** The laws' form must *be* the
+   reading; a near-miss is shown as a question (`unverified`, ⚠), never counted.
+5. **One romanisation per stage.** `data/notation/<lang>.yaml` holds the standard
+   alphabet; headwords and the ancestors a record names are folded into it at
+   load (`pie notation <lang>` reports anything outside it).
+6. **A construction is drawn once**, as one tree above the form it builds; its
+   pieces are word-sized, carry their own meaning, and a bound morpheme opens its
+   own entry or nothing — never a letter's page.
+7. **A word met twice is one word.** Search, the glossary, the construction menu
+   and the API agree on language + word + sense.
+8. **Evidence colour is the contract**: green/gold mark recorded forms, a
+   rebuilt form is never green, and there is no colour key on the page — every
+   form carries its own tooltip.
 
-## Senses: one spelling, several words
+## Bands and attestation
 
-- A spelling can be two or more words with their own histories (the noun and the
-  verb of English *book*, the flower and the clay of Persian گل). The glossary
-  lists **one row per word** with a small number (1, 2 …) beside it, and the word
-  page carries a strip of those numbers under the headword. Two entries are one
-  word only when they state the same ancestry chain **and** the same etymology
-  sentence — *bank* the institution and *bank* the river's edge are two.
-- **Every list of words is one row per word** (v0.17.13): the glossary always
-  was, and since the reader met *aiganaz* twice the search results, the search
-  box's suggestions and the construction menu are too — `search()` keys its rows
-  by (language, word, sense) and prints the group's parts of speech and meanings,
-  so a word the record keeps under several headings (`===Participle===` "past
-  participle of *aiganą" + `===Adjective===` "own") is listed once, as
-  `verb / adj · own; past participle of *aiganą`. The word page and every rung
-  that quotes the word's own entry print the same group (`head` in `service.word`,
-  the grouping in `_record_block`), while the entry itself still supplies the
-  pathway, the band and the sources. A row is matched to its group by **what it
-  says** (`_group_of`: part of speech, meanings, etymology), never by `is`: the
-  search table and the grouping index are two caches over one glossary, and a
-  parse-cache eviction leaves one holding rows the other has re-read — the first
-  full-suite run of v0.17.13 failed exactly there (*aiganaz lost "own", and
-  Proto-Germanic *wistiz's two origins became one row).
-- **A form-of note is not a meaning.** `senses.points_elsewhere` recognises a
-  gloss that begins *past participle of*, *inflection of*, *alternative form of*
-  … and `senses.meanings_first` prints those last, so a page or a row never
-  answers "what does it mean?" with a description of an ending. Order only:
-  nothing is dropped, and a word whose only gloss is a pointer is unchanged.
-- A link that names no sense (a reconstruction on another ladder, a search
-  result, an old address) opens a **landing page** listing the words with
-  meaning, POS, reading and band, and asks which one is meant. Nothing is
-  guessed: the counter counts the same unit as the bands, the bars and the rows.
-- **Three verdicts per word** (`src/pie/attestation.py`, computed once):
-  `attested` (a text or dictionary writes it in the language's own script),
-  `recorded` (reconstructed in the literature, printed with a leading asterisk),
-  `proposed` (this model's guess, asterisked), and `non-existent` for a form with
-  no entry. Printed beside the coverage band and on every glossary and search
-  row; headword and row words wear the star when they are not attested, so script
-  and status never disagree.
+Six bands, one verdict (`categories.py`) shared by the word page, the glossary
+row and the counter: `full`, `adjusted` (the same path, with a recorded step
+that differs or an approved change of ours), `partial`, `unexplained`,
+`non_pie`, `unidentified`. Two facets sit beside them and are never green:
+`ie_loan` and `built` (a formation from the language's own words).
 
-## Data and generation
+Three things are **not** a hole in a timeline: a root (a relation, not a step), a
+bound morpheme (grammar, not a word), a borrowing (not inheritance) — and a stage
+this model holds no glossary for at all is *our* gap, named as such.
 
-- **A hand-added entry shows its citation on hover.** Supplements in
-  `data/lexicon/_supplement/<lang>.jsonl.gz` carry `source`/`sources` (keys of
-  `data/sources.yaml`) and `ref` (the sentence they rest on);
-  `service._entry_sources` resolves them. No *Source:* line is printed: since
-  2026-11-08 `recordSourceText()` puts titles and ref in the tooltip of the
-  record itself (the record glyph, the glowing matched form, the headword's
-  evidence badge).
-- **A supplement row may state the construction, not only the entry.** A
-  `built_as` row in `data/lexicon/_supplement/<lang>.jsonl.gz` **replaces** the
-  dump's `built_as` for that headword (never unions with it), so a word whose
-  Wiktionary page states a formation the dump drops (*aiganaz: "Adjectival
-  formation from *aiganą") can carry the step without editing the generated
-  glossary. `tools/build_lexicons.py` writes it through; re-running
-  `--supplements-only` is idempotent.
-- **An Old Persian word is written only in the cuneiform a source prints**
-  (2026-11-08): curated rows in
-  `data/lexicon/_supplement/peo_entries.json` (`ref`, `url`, `sources`) reach the
-  glossary only through `tools/ingest_op_entries.py` (`--fetch` snapshots the
-  live Wiktionary categories, `--check` verifies the curated rows, a plain run
-  writes idempotently and keeps hand-written rows). Kent (1953) corroborates 31
-  by `s.v.`, but its OCR prints transliterations, so a Kent-only word was not
-  added and no cuneiform was reconstructed from a reading. Overlap is checked on
-  the headword and the normalised reading; script letters, number signs, starred
-  reconstructions, phrases and inflection-only pages are not entries.
-- **The Proto-Germanic strong-verb inventory is Wikipedia's list, and it claims
-  no meaning it was not given** (2026-11-12): `tools/ingest_strong_verbs.py`
-  reads the Proto-Germanic root lists of Wikipedia's *Germanic strong verb*
-  (after Seebold 1970, Mailhammer 2007, Kroonen 2013), keeps the class of each
-  root in `strong_class`, and writes only the roots the glossary lacks. The
-  article prints no senses, so an entry taken from it carries `source:
-  wikipedia-strong-verb`, the class in `ref`, and **no gloss** — it is recorded,
-  not explained, and the page says so by printing nothing under the word. A
-  root whose Wiktionary page exists (`Reconstruction:Proto-Germanic/<verb>`,
-  redirects followed: *dīganą* → *diganą*) also takes that page's glosses, IPA,
-  etymology sentence and PIE root in `anc` — but only when the page is not
-  marked unknown/unclear and names a single ancestor, because one parent per
-  word is the model's rule and three rival roots are a question, not a parent.
-  The words are the article's, the meanings are the dictionary's, and neither
-  is inferred.
-- **Coverage reports the record too** (2026-11-09): `data/coverage.json` carries
-  `borrowed`, `outside`, `non_ie`, `unlinked`, `no_etym`, `explained` per
-  language; a borrowed word is not a failed reconstruction.
-- **Cognate tables** group by branch, print the language name (never a code:
-  `xcl` → Old Armenian), show the native form with its reading, and mark the row
-  you are reading. Look-ups fade in with a short stagger, a skeleton covers the
-  wait, and every animation is off under `prefers-reduced-motion`.
+Attestation is separate from the band: `attested` (a text or a dictionary writes
+it in the language's own script), `recorded` (a reconstruction the literature
+proposes, printed with an asterisk), `proposed` (our own guess, also
+asterisked). A form no glossary of its stage spells is *non-existent* and says so.
 
-- **`data/readings.json` is the corpus's own readings, and it is generated**
-  (2026-11-11): one row per spelling, `{reading, translit, source, lang}`, from
-  `tools/build_readings.py` — etymology parentheses and Wiktionary `ts=`/`tr=`
-  templates, `ts` (a transcription) winning over `tr`. `lang` is the language
-  that *spells* the word, not the entry the sentence was read in, so a page
-  looks a form up in its own language (`readings.for_form`). A form the glossary
-  already reads in its own entry is not copied here; a template may only fill in
-  a form the glossary or an ancestry row actually names. Never hand-edit it:
-  `tools/build_readings.py --check` says whether it is current.
-- **The Persian Wiktionary is a per-word record, not a bulk source**
-  (2026-11-11): `tools/fa_wiktionary.py` asks fa.wiktionary.org about words and
-  writes `data/sources/fa_wiktionary.jsonl.gz` — one row per word, `found` (page,
-  revision, the etymology the page prints) or `missing`, so no later pass asks
-  twice. Read it through `pie.wiktionary.note()`, never by hand; add words only
-  by running the tool. The etymology is a quotation shown beside this model's own
-  reading (`wiktionaryLine()`), never merged into `etym`, and never counted.
-  First pass: 1203 words, 257 pages (21%), 72 etymologies.
+## Tests — a budget, not a ceremony
 
-## Bands, colours and review
-
-**What "fully explained" means** (the admin's rule, restated 2026-11-13 — this is
-the whole test; the rest of this file is how to apply it):
-
-> every segment starts from a PIE etymon or from a non-PIE language, the exact
-> recorded form is produced by the engine — cited sound laws **and** the
-> record's own registered constructions of each stage — and the result matches
-> what the literature records. If the same conditions hold but the result is
-> not exactly what the literature records, it is *fully explained, with
-> adjustments* (light green). Nothing is ever invented to make a word count.
-
-A green path has one of two shapes, and the second is the only thing the
-2026-11-13 rule added:
-
-- **laws** — a recorded PIE etymon carried down the chain by cited rules, the
-  output equal to the attestation, every recorded intermediate agreeing;
-- **construction** — the record states the word is built at its own stage
-  (*andaswarō* = *anda- + *swarō); the pieces spell the headword; every piece is
-  the PIE etymon itself, a word whose own record names one, a non-PIE source, or
-  a morpheme the stage's morphology registers (*-s is the athematic nominative
-  singular); every recorded intermediate agrees. `service.construction_path`
-  measures it and `_own_construction` is its only source, so a construction the
-  record does not state never counts; one this model composes itself is held to
-  the approval rule, exactly like our own law.
-
-- **every rung is a word of its stage, and nothing drawn a `???` can be green.**
-  Green also needs the timeline to be whole: each recorded ancestor must be an
-  entry of its stage, and the walk continues through an ancestor's own entry,
-  because the page draws that ancestor's own step too — a hole one stage higher
-  is the same hole. A piece's climb ends at PIE, outside the family, at a donor,
-  or at a `???` where no record says where the word came from; the last of those
-  is a hole in exactly the same sense and reaches the verdict as
-  `kind: "origin"` ("no recorded origin for X"). A piece may carry the origin
-  the row that quotes it states (`_stated_piece_ancestry`), so a borrowing ends
-  at its donor rather than at a question mark. `service.unrecorded_ancestry` is
-  the one reader; while it has a row, the verdict refuses every green route
-  (*HwáHyati* was dark green over a PIE rung that printed "no entry for this
-  word", and fa رضاقلی was green over a ???, 2026-11-13). Three things are not
-  a hole: a **root** and a **bound** spelling (a relation and a morpheme, not
-  words), a **borrowing** (not inheritance), and a stage this model holds **no
-  glossary** for at all (Proto-Italic, Proto-Hellenic) — that is a gap of ours,
-  named as such, never a missing word of the record. And a composition takes
-  the grade its suffix asks for (*bʰendʰ-* + *-tós* → *bʰn̥dʰtós*; a
-  diphthong's zero grade is its second element, *leykʷ-* → *likʷ-*), because a
-  record cites the root in the grade it is listed under.
-
-- **Six bands** (`src/pie/categories.py`, one verdict shared by counter, coverage
-  page and word pages): `full` (the whole path above, reproduced exactly),
-  `adjusted` (the same path, with a recorded step or an approved change of
-  ours), `partial`, `unexplained`, `non_pie`, `unidentified`. Two facets sit
-  beside them and are never green: `ie_loan` and `built` (a formation from the
-  language's own words, with no etymology recorded).
-- **"With adjustments" has two routes**: an approved change of ours
-  (`data/adjusted.yaml` with a report per changed law and per word), or a
-  recorded stage the path does not reproduce (the band names the stage).
-- **The review backlog** (`data/review_backlog.yaml`, `docs/REVIEW_BACKLOG.md`)
-  is generated by `tools/backlog.py --write`, never hand-edited; a parked word
-  does not count as explained and its ancestry is not evidence. `dubious.py`
-  detects, `tools/council.py` handles candidate laws.
-- **Evidence colours are the contract** (2026-11-07): `service.evidence_for`
-  (recorded) and `_rebuild_evidence` (rebuilt) give `attested` green + glow,
-  `literary` gold, `strong` orange, `weak` red. Green and gold mark recorded
-  forms only; a rebuilt form is never green, and a match against a proto-stage
-  reconstruction is gold (`service.kind_of`). No legend: every form carries
-  `data-tip` with `EVIDENCE_TEXT[evidence]`, explained by one fixed tooltip layer
-  (`showTip`), and worded badges keep the same words for touch and screen
-  readers. Do not reintroduce a colour key. A fifth colour is about existence,
-  not evidence (admin, 2026-11-12): `ev-missing`, dark red (`--missing`), for a
-  form the etymology names that **no entry in that stage's glossary spells**
-  (`recorded.known === false`). Such a form is no word of the stage: it wears no
-  ✓, no halo and no `matched` class — there is nothing for the laws to have
-  matched — it is upright rather than italic (it is not a reconstruction of a
-  word either), and the line under it says *no entry for this word*. The old
-  "transliteration only — no reconstructed spelling recorded" note is gone
-  everywhere: a rung says what the word means, or that there is no entry for it.
-  **`known` is resolved by reading, not by spelling**: a row that quotes Old
-  Persian 𐎼𐎢𐎨 for 𐎼𐎢𐎨𐏃 (the syllabary writes no final /h/) is the word the
-  glossary holds — `_record_block` takes the entry whose recorded reading is the
-  quotation's reading, and `headword` carries the spelling the page opens, so a
-  rung never calls a real word missing and never links to a spelling no page
-  holds. `_reading_index` is cached for that lookup.
-- **No worded kind badge in the rung body** (`kindWord` is gone): the language
-  name carries it — `kind-attested` green, `kind-proto` gold — spelled out in its
-  `data-tip` with branch, era and script, so the form is first on the right. The
-  rung-only states (`edited`, `changed`, `was …`) sit on that line and *this
-  word* under the date. `TestHierarchy` and the ladder block in
-  `tests/test_ui_render.js` pin it.
-
-## The orthographic layer
-
-`data/spelling/<stage>.yaml` holds writing conventions (tier `orthographic`), not
-sound laws, applied after the stage's last phonological rule.
-
-- A file states a convention ("/æ/ is written ⟨a⟩"), never a lookup. Test: would
-  it apply to a word that does not exist yet?
-- Examples give a **whole** phonemic form and the written word; `spelling.check`
-  applies the whole file, unlike `check-rules`, which applies a law alone.
-- `orthographic` never appears in `data/rules/`, and its count is never added to
-  `exact`. `service.hierarchy()` exposes `result.written` only when the
-  conventions land exactly on the recorded word.
-- Conventions that cannot be decided from the phonemic form (German noun
-  capitalisation, ⟨v⟩ vs ⟨w⟩, English ⟨ea⟩ vs ⟨ee⟩) stay misses.
-
-## The programme
-
-`docs/PROGRAMME.md` governs parallel work: workstreams, four roles (descriptive
-linguist, historical linguist, skeptic, integrator), and the loop propose →
-critique → implement → measure → review → log. `docs/REVIEW.md` is the gate,
-`docs/DECISIONS.md` the append-only record, `proposals/` the ideas argued for
-(rejected ones with the reason).
+**One minute, and only the tests your change touches.** The repo is in
+development; a change is proven by the handful of tests that pin what it
+changed, not by the whole suite.
 
 ```bash
-PYTHONPATH=src python3 -m pie.cli worklist                  # what to do next
-PYTHONPATH=src python3 -m pie.cli worklist --lang en        # one language, full detail
-PYTHONPATH=src python3 tools/worklist.py --write            # regenerate docs/WORKLIST.md
+python3 tools/quick_tests.py            # curated fast set, hard 60 s budget
+python3 tools/quick_tests.py --list     # what it runs and why
+PYTHONPATH=src python3 -m unittest tests.test_web tests.test_notation   # by name
+node tests/test_ui_render.js            # only when app.js / style.css changed
 ```
 
-## Measuring a change
+The full suite (`python3 -m unittest discover -s tests`, ~1,000 tests) is for a
+**release** or when the admin explicitly asks for it — never for an ordinary
+edit. Add a test when a rule can silently regress; do not add tests for a
+sentence on a page. Keep `tests/test_syntax.py` green: the repo must parse on
+Python 3.10 (the Windows machine runs 3.11, this box 3.14).
 
-```bash
-PYTHONPATH=src python3 tools/evaluate.py --all --markdown   # docs/EVALUATION.md
-PYTHONPATH=src python3 tools/coverage.py --docs             # COVERAGE.md + README + svg
-```
+## Commits and reports
 
-Commit the regenerated reports with the change. Regressions show in the diff;
-never accept a drop in exact coverage without explaining it.
+- One artefact per commit — a rule, a spelling row, a supplement file. Never
+  reformat unrelated files; a bug fixed on the way is named in the message and
+  stays inside the same artefact.
+- Commit as the repo's own identity (already configured: `Ali Doosthosseini
+  <adoosth@gwdg.de>`); never add an author or a co-author trailer.
+- Say what changed and **why**, with the numbers that moved (coverage, timings).
+  A rule **applies**, it never "fires"; nothing published names who commissioned
+  the work or how many hours it took.
+- Fix what you find (admin, 2026-11-11) — inside the change you are already
+  making, with a `docs/DECISIONS.md` line if a reader could notice it.
+
+## Working with delegated agents
+
+The repo is small enough to split by area; each agent gets a **write set** and a
+**measurement**, and reports back in numbers.
+
+- Give an agent one area: `src/` (engine + service), `app/web/` (front end),
+  `data/` (a corpus question), `tools/`, or one documentation file. Two agents
+  never edit the same file in the same round.
+- Every agent brief names: the files it may edit, the behaviour that must stay
+  (the invariants above), the tests it may run (the budget above), and the
+  measurement it must report before and after.
+- A critic agent (`docs/CRITIC.md`) reads pages and reports — it never edits
+  `data/` or `src/`. A worklist agent proposes the next task from
+  `pie worklist` and says what "done" would mean.
+- The integrator (the super agent) reviews the diff, re-runs the numbers, and
+  decides what lands. Nothing lands on an agent's word alone.
+
+## Open fronts
+
+Where the model is thin, in the order the worklist ranks them: law coverage for
+the transitions with the most misses (`docs/EVALUATION.md`), the stages with a
+large `unexplained` share (Middle Persian and Persian above all), the
+reconstruction pages that still start at a form rather than at an entry, and the
+front-end speed budget. `pie worklist` is the live list; `docs/COVERAGE.md` is
+the published measurement.
