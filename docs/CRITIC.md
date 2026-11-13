@@ -142,6 +142,24 @@ The super agent fixes what it can, adds the reusable class to
 `AGENTS.md` and `docs/DECISIONS.md`, and spawns the next critic on a fresh
 random sample (a word may not be reviewed twice unless a fix changed it).
 
+## Where a ladder may begin (Old Persian round 1, 2026-11-13)
+
+Four faults of the same shape — the timeline explaining a *different* word:
+
+- **a root named by the ancestry** is a relation, not a start (𐎠𐎿𐎲𐎠𐎼 ran
+  from *h₁eḱ "horse", one piece's root, and printed **aθ**);
+- **an aside ancestor** (`derived … whence spear`) may not outrank the inherited
+  chain when the laws do not reach the word from it (𐎠𐎼𐏁𐎫𐎡𐎣 printed the
+  spear's reading as the spearman's);
+- **a compound's cognate set** belongs to one piece (Vahumanāh ← PIE "good");
+- **a hedged etymology** ("uncertain; possibly related to") is a relation, and a
+  ladder may not start there (𐎱𐎠𐎼𐎿 → pˈarθuš).
+
+A critic reports each as `broken_timeline`, quoting the sentence and naming the
+form the word's own row must print. Since 0.17.23 a differing last rung also
+carries a sentence («the laws produce X, not the recorded Y») — its absence is a
+finding.
+
 ## Other languages (from the Old Persian round on)
 
 The rules do not change with the language; the *evidence* does. What to read

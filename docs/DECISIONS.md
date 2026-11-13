@@ -4430,3 +4430,38 @@ records:
 (164,824 rows, 164,805 with a gloss) while the mean meaning fell from 90 to 32
 characters — the dictionary's apparatus, not its senses, was what the page had
 been printing.
+
+## A word's ladder starts at a word, not at a relation (0.17.23, 2026-11-13)
+
+The first Old Persian critic round (`report-peo-01.md`) found three ways a
+ladder began above the word it was explaining.
+
+- **A verified start wins.** `hierarchy` took the first recorded ancestor in
+  chain order even when the laws did not reach the word from it, while a later
+  recorded ancestor reproduced it exactly: 𐎠𐎼𐏁𐎫𐎡𐎣 *r̥štikaʰ* "spearman" was
+  drawn from PIE *h₁r̥stís, the *spear* word its record names only in an aside,
+  and the word's own rung printed **arštˈiš**. The ladder now asks
+  `_derive_for_entry` first and begins at the verified start when there is one;
+  the page reads *Hr̥štikás → Hr̥štikˈah → arštikˈah (match)*.
+- **A root never starts a ladder, even when the ancestry names it.** 𐎠𐎿𐎲𐎠𐎼's
+  ancestry carries `ine-pro *h₁eḱ-` as a *root* (the root of one piece, "horse"),
+  and the cognate-set insert readded it above the inherited chain: the ladder
+  ran *h₁eḱ → Hać → Hac → aθ* and printed **aθ** as the word. The entry's own
+  `root` row now counts as a root for `set_is_root`, so the ladder starts at the
+  inherited Proto-Indo-Iranian form.
+- **A compound's cognate set is one piece's.** A record that joins two forms at
+  one stage («From *Hwáhuš + *mánah») states pieces, and the set belongs to one
+  of them: Proto-Iranian *Hwáhumanāh was drawn as PIE *h₁wésus "good" →
+  *Hwā́suš, with *-manāh appearing from nowhere.
+- **A hedged record is not an origin.** 23 Persian and Old Persian entries say
+  "uncertain" or "possibly related to" and still carry a cognate set;
+  𐎱𐎠𐎼𐎿 *Pārsaʰ* "Persia" was drawn as the history of *pérḱus* and printed
+  **pˈarθuš**. `_hedged_record` keeps the set a cognate and the recorded ancestor
+  the start.
+- **A differing last rung says so.** fa گسی's timeline ended on **sīyad**, a
+  form its record does not contain, beside a band whose reason described the
+  counter rather than the page. `_name_the_form_the_laws_make` now fires
+  whenever the word's own rung differs: «the laws produce sīyad, not the
+  recorded gosî».
+
+**Tests.** 115 across `test_build`, `test_categories`, `test_seam`.

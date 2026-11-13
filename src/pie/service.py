@@ -2410,6 +2410,18 @@ def _formed_from(entry: dict) -> set[tuple[str, str]]:
 
 
 
+#: A record's own words for "this is a guess" (2026-11-13, critic peo-01).
+_HEDGED = re.compile(
+    r"\b(uncertain|uncertainly|possibly|perhaps|maybe|may be|might be|"
+    r"presumably|conceivably|speculatively)\b", re.IGNORECASE)
+
+
+def _hedged_record(entry: dict) -> bool:
+    """Whether the record only guesses where the word comes from."""
+    text = str(entry.get("etym") or "")
+    return bool(text) and bool(_HEDGED.search(text))
+
+
 def _is_root_etymon(stage: str, form: str) -> bool:
     """Whether a cognate-set etymon is a bare root rather than a word.
 
@@ -4920,7 +4932,19 @@ def _name_the_form_the_laws_make(own: dict, ladder: dict) -> dict:
     پادشاه's two laws give pādešāy and the record reads pādišāh (critic batch
     08, 2026-11-13).  The ladder knows both forms, so the reason names them.
     """
-    if not own or own.get("reason") != "no rule applied":
+    if not own:
+        return own
+    # The counter's reason is not the only way to get here: a page whose last
+    # rung says ``differs`` also printed the laws' form as if it were the word
+    # and said nothing (critic batch 10, 2026-11-13: fa گسی's timeline ended on
+    # **sīyad**, a form its record does not contain, beside a band whose reason
+    # described the counter instead).  Whenever the word's own rung differs,
+    # the sentence names both forms; a green band is never overwritten, because
+    # that disagreement is measured elsewhere.
+    last_level = (ladder.get("levels") or [{}])[-1]
+    differs = str(last_level.get("status") or "") in ("differs", "unverified")
+    if own.get("reason") != "no rule applied" and not (
+            differs and own.get("category") not in ("full", "adjusted")):
         return own
     fired = [row for level in ladder.get("levels") or []
              for row in level.get("rules") or []
@@ -5698,6 +5722,28 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
     if set_pie and chain_pie and all(normalise_etymon(w) != normalise_etymon(set_pie)
                                      for w in chain_pie):
         cog = None
+    # A record that joins two forms at one stage ("From *Hwáhuš «good» + *mánah
+    # «mind»") states a compound's *pieces*; the cognate set of such an entry
+    # belongs to one of them, not to the whole word.  Peo Vahumanāh's Proto-
+    # Iranian ancestor was drawn as the history of its first piece — PIE
+    # *h₁wésus "good" → *Hwā́suš — with *-manāh appearing from nowhere (critic
+    # peo-01, 2026-11-13).  The pieces are what the ladder must show.
+    # A record that hedges ("Uncertain; possibly related to Sanskrit पर्शु")
+    # states a *relation*, not an origin.  The cognate set is that guess, and a
+    # ladder that starts from it derives some other word: 𐎱𐎠𐎼𐎿 *Pārsaʰ*
+    # "Persia" was drawn as the history of *pérḱus* and printed **pˈarθuš** on
+    # its own row (critic peo-01, 2026-11-13).  The recorded ancestor is the
+    # honest start; the set stays a cognate.
+    if cog and _hedged_record(entry):
+        cog = None
+    if cog and "+" in str(entry.get("etym") or ""):
+        stages: dict[str, int] = {}
+        for lg, _w, rel in (entry.get("anc") or []):
+            if rel != "root":
+                stage = data.stage_of(lg) or lg
+                stages[stage] = stages.get(stage, 0) + 1
+        if any(n >= 2 for n in stages.values()):
+            cog = None
     pie = None if own else ((cog or {}).get("pie") or own_pie)
     formed = bool(_formed_from(entry))
     linked_by_set = (bool(pie) and not formed
@@ -5710,7 +5756,17 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
     # the honest start, and the root stays above the ladder as the cognate it
     # is (proposals/010, 2026-11-09). `linked_by_set` stays true: the word
     # still reaches PIE only through the set, and the page still says so.
-    set_is_root = bool(linked_by_set) and _is_root_etymon(chain[0], pie)
+    # The entry's own ancestry may say in so many words that the PIE form is a
+    # *root* (`{{der|peo|ine-pro|*h₁eḱ-|horse}}` in a compound's sentence).
+    # A root is a relation, never an ancestor, so it may not start the ladder
+    # even when the glossary heads it under another part of speech: āsabāra's
+    # ladder began at *h₁eḱ "horse" — one piece's root — and printed **aθ** on
+    # its own row (critic peo-01, 2026-11-13).
+    own_root = any(
+        rel == "root" and (data.stage_of(lg) or lg) == chain[0]
+        and normalise_etymon(w) == normalise_etymon(pie or "")
+        for lg, w, rel in _ancestry_triples(entry))
+    set_is_root = bool(linked_by_set) and (_is_root_etymon(chain[0], pie) or own_root)
     if linked_by_set and not set_is_root:
         # A cognate set links the word to an etymon even when Wiktionary's own
         # ancestry rows stop lower down; that is still a known ancestor.
@@ -5753,12 +5809,23 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
             # Asked for a "recorded" start that this word's record does not
             # name: refuse rather than quietly showing some other ladder.
             return None
+    deepest: dict | None = None
     if hypothesis:
         start_stage, start_form = hypothesis["stage"], hypothesis["composed"]
     elif recorded_start:
         start_stage, start_form = recorded_start["stage"], recorded_start["form"]
     else:
         start_stage, start_form = candidates[0]
+        # A start the laws carry to the word is verified; a start they miss is
+        # where a rule is missing.  When a *later* recorded ancestor reproduces
+        # the word and the topmost one does not, the ladder must begin at the
+        # verified one: 𐎠𐎼𐏁𐎫𐎡𐎣 is *r̥štikaʰ*, and the PIE form its record
+        # names only in an aside (*h₁r̥stís) derives the *spear* word, so the
+        # page printed another word's form on this word's own row
+        # (critic peo-01, 2026-11-13).
+        deepest = _derive_for_entry(entry, chain, disabled, enabled)
+        if deepest and deepest.get("match"):
+            start_stage, start_form = deepest["start"], deepest["input"]
     start = chain.index(start_stage) if start_stage in chain else 0
     edited: dict | None = None
     if from_stage and not recorded_start and (from_form or "").strip():
@@ -6158,7 +6225,8 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
                 final["stage"], final["form"], child, origin_records=recorded,
                 claim=True, depth=len(levels_chain), seen=frozenset(levels_chain),
                 recurse=False))
-    deepest = _derive_for_entry(entry, chain, disabled, enabled)
+    if deepest is None:
+        deepest = _derive_for_entry(entry, chain, disabled, enabled)
     exact = None
     if deepest and deepest.get("match"):
         exact = {
