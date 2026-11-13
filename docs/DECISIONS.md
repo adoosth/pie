@@ -41,12 +41,24 @@ and every headword that leaves them; a variant spelling is a failure (there are
 none), a quoted Avestan or transliterated form is listed as quoted, and the one
 row outside the alphabet (MPCD's stray `q`) is reported rather than hidden.
 
+**An ancestor is written in its own stage's notation.** A Persian row that
+names Middle Persian *jaw* is read as the glossary's ǰaw (`data.lexicon` folds
+every recorded ancestor by the ancestor's stage, `LEXICON_VERSION` 3), so
+fa/جو's timeline and the ǰaw page draw one word, not two spellings of it.
+
 **Two defects found on the way.** DejaVu Sans Mono, which `monospace` resolves
 to on Linux, draws ǰ with its caron detached and floated right in a slanted
 face, so a headword read "j ˇ aw"; the mono stack now names Liberation Mono and
-Noto Sans Mono. And the remaining worklist is named, not hidden: MacKenzie's
-1971 text lost its diacritics in the PDF pass (436 headwords keep a spelling
-that is not a reading) and 88 Wiktionary rows state no reading to take.
+Noto Sans Mono. That fix stayed invisible for a while because `/` stamped
+`style.css` with **app.js's** mtime — a sheet-only change kept its old address
+and an open tab kept yesterday's font. The stamp is now the newest of
+`app.js`, `style.css` and `index.html`, and `/api/version` reports the sheet,
+so a CSS change reloads the tab. The remaining worklist is named, not hidden:
+127 headwords carry a quoted spelling beside their reading (one, `haft` ←
+Pahlavi `hp̄t'`, states no reading), 193 headwords are Avestan citations MPCD
+itself heads in Avestan notation (β, ϑ, ą — left as written, since renaming an
+Avestan word into Middle Persian letters would miswrite it), and MPCD's stray
+lemma `q` is the only headword outside the alphabet.
 
 ## 2026-11-13 — a timeline reads, it does not spell
 
