@@ -2704,6 +2704,12 @@ def _formed_piece(form) -> str:
     while isinstance(value, (list, tuple)) and value:
         value = value[0]
     text = _STAGE_KEY.sub("", str(value or "").strip()).replace("\u2011", "-").replace("\u2010", "-")
+    # A scraps of the record's own sentence can land in the slot — رفتار's row
+    # stores «رفت رفتن (raftan, “to go”)>».  The piece is the first token, and
+    # only when the junk tells us so; a piece is never two Persian words.
+    if "(" in text or text.endswith(">"):
+        text = re.split(r"\s+\(|>", text)[0].strip()
+        text = text.split(" ")[0]
     if not text or _MALFORMED_PIECE.match(text):
         return ""
     return text
@@ -2900,6 +2906,17 @@ def _piece_entry(lang: str, form: str, gloss: str, etym: str = "",
         if scored[0][0] > 0 and (len(scored) == 1 or scored[0][0] > scored[1][0]):
             return scored[0][1]
     return rows[0]
+
+
+def _suffix_slot(kind: str, index: int, count: int) -> bool:
+    """Whether a piece holds the suffix slot of a row the record writes as one.
+
+    گفتار's row is [گفتن, ار] with kind `suffix`, and the parse dropped the
+    tatweel that marks the ending, so the piece resolved to the place-name ار
+    ("a village of 952 souls") and the pieces spelled گفتنار (critic batch 06,
+    2026-11-13).  The row's own kind says the last piece is a morpheme.
+    """
+    return kind == "suffix" and count > 1 and index == count - 1
 
 
 def _bound_piece(kind: str, form: str, index: int) -> bool:
@@ -3115,7 +3132,7 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
             piece_anc = (_stated_piece_ancestry(piece_row[2])
                          if isinstance(piece_row, (list, tuple))
                          and len(piece_row) > 2 else ())
-            piece = _piece_entry(lang, form_piece, str(gloss or ""),
+            piece = _piece_entry(lang, form_piece.lstrip("‑ـ"), str(gloss or ""),
                                  str(entry.get("etym") or ""),
                                  " ".join(str(g) for g in entry.get("gloss") or ()))
             # A piece is a word of its own, so the line prints it the way the
@@ -3132,7 +3149,13 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
             # hyphen does (باشنده, critic batch 03, 2026-11-13).
             piece_stem = (_piece_hint(str(entry.get("etym") or ""), form_piece).endswith("-")
                           or bool(_stem_verb(str(entry.get("etym") or ""), form_piece)))
-            bound = _bound_piece(kind, form_piece, index) or piece_stem
+            # A suffix slot holds a morpheme even when the parse dropped its
+            # tatweel — but only if what the lookup found is not itself an
+            # affix entry (PIE *-lom is a suffix with a page of its own).
+            slot = (_suffix_slot(kind, index, len(raw))
+                    and str((piece or {}).get("pos") or "") not in
+                    ("suffix", "prefix", "affix", "infix", "interfix"))
+            bound = _bound_piece(kind, form_piece, index) or piece_stem or slot
             # The meaning under the word in the timeline (admin, 2026-11-12):
             # the row's own parenthesis when it has one, otherwise the sense
             # the piece's glossary entry gives it.  That fallback is what lets
@@ -3585,8 +3608,13 @@ def _seam_pieces(lang: str, parts: Iterable[str]) -> list[dict]:
     out = []
     for part in parts:
         if str(part).startswith("-"):
-            out.append({"form": "‑" + str(part).lstrip("-"), "gloss": "", "known": True,
-                        "recorded": True, "bound": True, "lang": lang,
+            # A suffix of a seam says what it does, exactly as a suffix of a
+            # recorded construction does; otherwise لگنچه, معلمی and قلمی print
+            # their ending bare while باغچه prints "diminutive" (critic batch
+            # 05, 2026-11-13).
+            out.append({"form": "‑" + str(part).lstrip("-"),
+                        "gloss": _morph_gloss(part, lang).split(" (")[0].strip(),
+                        "known": True, "recorded": True, "bound": True, "lang": lang,
                         "branch": None})
             continue
         entry = _lemma_entry(lang, part) or {}
@@ -4484,28 +4512,37 @@ def _pointer_relation(lang: str, text: str, word: str) -> tuple[str, str] | None
     2026-11-13).  Only a short opening segment counts, and the base must be a
     headword this glossary holds.
     """
-    head = re.split(r"\.\s|\u06d4", str(text or ""), 1)[0].strip()
-    if not head or len(head.split()) > 4:
-        return None
+    whole = str(text or "").strip()
+    # «بمعنی بادژفام است که …» states the other word and then defines it.
+    synonym = re.match(r"^بمعنی\s+(\S+)\s+است\b", whole)
+    if synonym and synonym.group(1) != word and _lemma_entry(lang, synonym.group(1)):
+        return "the same as", synonym.group(1)
     for pattern, relation in ((r"^تحریر[یی]\s+از\s+(\S+)", "a writing of"),
                               (r"^ج\s*ِ\s*(\S+)", "plural of"),
                               (r"^مثنی\s+ی?\s*(\S+)", "dual of"),
                               (r"^مصغر\s+(\S+)", "diminutive of")):
-        found = re.match(pattern, head)
+        found = re.match(pattern, whole)
         if not found:
             continue
-        base = found.group(1).strip(" .،")
+        base = _lookup_form(found.group(1)).strip(" .،[]")
         if base and base != word and _lemma_entry(lang, base):
             return relation, base
     return None
 
 
-def _short_sense(entry: dict | None) -> str:
-    """One sense of an entry, cut at its first full stop."""
+def _short_sense(entry: dict | None, lang: str = "") -> str:
+    """One sense of an entry, cut at its first full stop.
+
+    A sense may itself be written as a pointer («بمعنی بادژ است و سرخی …»);
+    the clause that names the other word goes and its definition stays, because
+    a page that quotes a cross-reference has not said what the word means
+    (critic batch 03, 2026-11-13).
+    """
     if not entry:
         return ""
     sense = next((str(g).strip() for g in entry.get("gloss") or [] if str(g).strip()), "")
     sense = _LEAD_PAREN.sub("", sense)
+    sense = re.sub(r"^بمعنی\s+\S+\s+است\s*(?:که|و)?\s*", "", sense)
     sense = re.sub(r"\s*\([^()]{0,25}\)\s*", " ", sense)
     note = _GLOSS_NOTE.search(sense)
     if note and note.start() > 0:
@@ -4544,7 +4581,7 @@ def _page_gloss(lang: str, entry: dict, glosses) -> list[str]:
     pointer = _pointer_relation(lang, first, str(entry.get("word") or ""))
     if pointer:
         relation, base = pointer
-        quoted = _short_sense(_lemma_entry(lang, base))
+        quoted = _short_sense(_lemma_entry(lang, base), lang)
         return [f"{relation} {base}" + (f": {quoted}" if quoted else ""), *rest]
     # A relative definition is a meaning in itself: «منسوب به مقنعه» says what
     # the word is about, and the clause after it explains the relation rather
@@ -4561,7 +4598,7 @@ def _page_gloss(lang: str, entry: dict, glosses) -> list[str]:
         base = only_ref.group(1)
         other = _lemma_entry(lang, base)
         if other and other.get("word") != entry.get("word"):
-            quoted = _short_sense(other)
+            quoted = _short_sense(other, lang)
             if quoted:
                 return [f"{base}: {quoted}", *rest]
     # An entry defined only by "see the synonyms of the word" quotes the variant.
@@ -4574,7 +4611,7 @@ def _page_gloss(lang: str, entry: dict, glosses) -> list[str]:
             other = _lemma_entry(lang, token)
             if other is None or other.get("word") == entry.get("word"):
                 continue
-            sense = _short_sense(other)
+            sense = _short_sense(other, lang)
             if sense:
                 return [f"{token}: {sense}", *rest]
     # The meaning is the run of sentences before the first grammatical note,

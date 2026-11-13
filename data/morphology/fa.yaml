@@ -162,6 +162,24 @@ suffixes:
     sources: [wiktionary]
     example: "پسر 'boy' + ـک → پسرک 'little boy'"
 
+  - id: ar
+    form: "-ار"
+    surface: "ـار"
+    ending: ""
+    attach: keep
+    gloss: "agent noun — a noun made from a verb (گفتن → گفتار 'speech')"
+    note: >
+      Wiktionary, ـار (en.wiktionary.org/wiki/ـار), "suffix which forms agent
+      nouns", with the alternative forms ـگار، ـکار، ـگر، ـر, inherited from
+      Middle Persian ‑ār (agent noun-forming). The page's own citation
+      (Filippone 2011) records Middle Persian ‑tār/‑dār forming agent nouns
+      and notes that Persian goftār 'speech' descends from an older 'speaker',
+      so the derived word is often an abstract noun rather than a person. This
+      row states the function and the words it is read on; it claims no law.
+    outcomes: "Persian گفتار 'speech', رفتار 'behaviour', کردار 'deed', آفریدگار 'creator'"
+    sources: [wiktionary]
+    example: "گفت 'say (stem)' + ـار → گفتار 'speech'"
+
   - id: om
     form: "-م"
     surface: "ـم"
