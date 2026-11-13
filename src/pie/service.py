@@ -2116,9 +2116,11 @@ def _compound_pieces(entry: dict, lang: str) -> list[dict]:
                             "prefix", "suffix", "infix", "interfix"):
                         record = other
                         break
-            if record is None:
-                found = []
-                break
+            # A piece the glossary does not head is still a piece the record
+            # states: خودارضایی is «From خود + ارضایی» and the whole seam used
+            # to vanish because ارضایی has no entry, leaving "no rule applied"
+            # where the record had said how the word was made (critic batch 11,
+            # 2026-11-13).  The piece is drawn and says there is no entry.
             # The piece without its gloss is what the sentence names and what
             # the page shows ("-en", not "-en (compare …)").
             found.append((bare, record))
@@ -2126,15 +2128,16 @@ def _compound_pieces(entry: dict, lang: str) -> list[dict]:
             continue
         rows = []
         for piece, record in found:
-            chain = _ancestry_forms(record)
+            chain = list(_ancestry_forms(record)) if record else []
             chain.reverse()          # oldest first, as a timeline reads
             rows.append({
                 "form": piece,
-                "word": record["word"],
+                "word": (record or {}).get("word") or piece,
                 "lang": lang,
-                "gloss": (record.get("gloss") or [""])[0],
-                "pos": record.get("pos", ""),
-                "etymon": _pie_form(record),
+                "known": record is not None,
+                "gloss": ((record or {}).get("gloss") or [""])[0],
+                "pos": (record or {}).get("pos", ""),
+                "etymon": _pie_form(record) if record else "None",
                 "ancestry": [{"lang": a["lang"], "lang_name": a["lang_name"],
                               "branch": _lang(a["lang"]).get("branch", ""),
                               "form": a["form"]} for a in chain[:12]],
@@ -2888,7 +2891,15 @@ def _stem_verb(etym: str, form: str) -> str:
     at = etym.find(form + " (")
     if at < 0:
         return ""
-    found = _STEM_OF.search(etym[at:at + 200])
+    tail = etym[at:at + 200]
+    # The phrase describes the piece it follows: in «From جا (“place”) + نشین
+    # present stem of نشستن (“to sit”)» the verb is نشین's, and reading the
+    # sentence to its end gave it to جا, so the place noun climbed as a verb
+    # (critic batch 11, 2026-11-13).
+    stop = tail.find(" + ")
+    if stop > 0:
+        tail = tail[:stop]
+    found = _STEM_OF.search(tail)
     return found.group(1) if found else ""
 
 
@@ -2901,8 +2912,59 @@ def _piece_hint(etym: str, form: str) -> str:
     """
     if not etym or not form:
         return ""
-    match = re.search(re.escape(form) + _PIECE_HINT_RE, etym)
-    return match.group(1).strip() if match else ""
+    # The stored etymology opens with Wiktionary's flattened tree («Persian ـی
+    # (-i)»), whose parentheses are shorter than the sentence's own («(-i,
+    # suffix forming adjectives)»).  The longest is the one that says what the
+    # piece does (critic batch 11: اسبی's ـی was drawn as the article).
+    found = [m.group(1).strip() for m in
+             re.finditer(re.escape(form) + _PIECE_HINT_RE, etym)]
+    return max(found, key=len) if found else ""
+
+
+#: A parenthesis that describes what a morpheme *does* — «suffix forming
+#: adjectives», «present stem form of بودن» — rather than what it means.
+_MORPH_HINT = re.compile(
+    r"\b(?:suffix|prefix|affix|infix|interfix|ending|particle|preposition|"
+    r"clitic|forming|forms|marks)\b", re.I)
+
+
+def _homonym_by_hint(rows: list[dict], hint: str) -> dict | None:
+    """The homonym the record's own parenthesis describes, if it describes one.
+
+    اسبی's sentence is «+ ـی (-i, suffix forming adjectives)», and the spelling ـی
+    heads five words: the adjectival suffix, the indefinite article, the
+    abstract-noun suffix, the second-person ending and the letter.  The
+    ancestor heuristic chose the article (PIE *óywos) and the page dated a
+    horse-adjective to the numeral ‘one’ (critic batch 11, 2026-11-13).  A hint
+    that talks about the morpheme's function is the record speaking about this
+    piece, so it is scored before any meaning or index order.
+    """
+    if len(rows) < 2 or not hint or not _MORPH_HINT.search(hint):
+        return None
+    wanted = senses.content_words(hint)
+
+    def closeness(row):
+        own = senses.content_words(" ".join(str(g) for g in row.get("gloss") or ()))
+        hits = 0
+        for mine in own:
+            for their in wanted:
+                # «forming» describes a gloss that says «Forms …»: the two are
+                # one word of the record in two shapes.
+                if mine == their or (len(mine) > 4 and len(their) > 4
+                                     and mine[:4] == their[:4]):
+                    hits += 1
+                    break
+        # Two candidates can both mention the word («… from adjectives»): the
+        # one whose whole description is that word is the piece, not the one
+        # that lists it among three (ادراک: abstract nouns, adjectives,
+        # occupational nouns).
+        return (hits, -len(own))
+
+    scored = sorted(((closeness(row), row) for row in rows),
+                    key=lambda pair: pair[0], reverse=True)
+    if scored[0][0][0] > 0 and (len(scored) == 1 or scored[0][0] > scored[1][0]):
+        return scored[0][1]
+    return None
 
 
 def _ancestor_gloss_words(entry: dict) -> set[str]:
@@ -2989,6 +3051,9 @@ def _piece_entry(lang: str, form: str, gloss: str, etym: str = "",
     rows = _notation_entries(lang, form)
     if gloss and len(rows) > 1:
         return _sense_entry(lang, form, gloss)
+    by_hint = _homonym_by_hint(rows, hint)
+    if by_hint is not None:
+        return by_hint
     by_meaning = _homonym_by_meaning(lang, rows, child)
     if by_meaning is not None:
         return by_meaning
@@ -4643,9 +4708,16 @@ _GLOSS_NOTE = re.compile(
     r"(?:^|\.\s|،\s|\u06d4\s*|؛\s*)"
     r"(?:(?:و\s+)?رجوع\s+به|بمعنی\s|نعت\s|صفت\s|اسم\s|مصدر\s|مثنی\s|"
     r"تحریر[یی]\s+از|ج\s*ِ\s|در\s+نجوم|و\s+این\s+نسبت|"
+    r"و\s+این\s+کلمه|و\s+اصل\s+در\s+آن|"
     r"(?:اوستا|پهلوی|پازند|کردی|بلوچی|افغانی|پشتو|تاجیکی|عربی|ترکی|ارمنی|"
     r"سریانی|عبری|سانسکریت)\s*:|\(از\s)")
 _LEAD_PAREN = re.compile(r"^\s*(?:\([^()]{0,60}\)\s*)+")
+#: A name entry carries the respelling in brackets and the (اِخ) tag before the
+#: meaning — «[ اَ ب ُ دَ ] (اِخ ) از آبهای …» (critic batch 11, 2026-11-13).
+_NAME_MARK = re.compile(r"^\s*\[[^\]]{0,40}\]\s*"
+                        r"|\(\s*ا[\u064b-\u0652]*[خسمص][\u064b-\u0652]*\s*\)\s*")
+#: «حمزهٔ اصفهانی در تاریخ … آرد: …» — an attributed quotation is not a meaning.
+_ATTRIBUTED = re.compile(r"^[^:]{0,80}?\s(?:آرد|آورد|نویسد|گوید)\s*:\s*")
 _ATTRIBUTION = re.compile(r"\.\s*\((?:از\s+)?[^()]{0,25}\)\s*\.?")
 
 
@@ -4693,6 +4765,16 @@ def _short_sense(entry: dict | None, lang: str = "") -> str:
     note = _GLOSS_NOTE.search(sense)
     if note and note.start() > 0:
         sense = sense[:note.start()]
+    elif note:
+        # A sense that *opens* with its grammar note («نعت فاعلی از استزارة .
+        # زیارت خواهنده») kept the note and threw the meaning away, because the
+        # first split then cut at the note's own full stop (critic batch 11:
+        # مستزیر, میزنده).  The clause after the note is the meaning.
+        rest = re.split(r"\s\.\s|\.\s|\u06d4", sense, 1)
+        if len(rest) > 1 and len(rest[1].strip()) > 1:
+            sense = rest[1]
+    sense = _NAME_MARK.sub(" ", sense)
+    sense = _ATTRIBUTED.sub("", sense)
     sense = re.split(r"\s\.\s|\.\s|\u06d4|\s*؛\s*", sense, 1)[0]
     return re.sub(r"\s+", " ", sense).strip(" .،؛")
 
@@ -4762,6 +4844,8 @@ def _page_gloss(lang: str, entry: dict, glosses) -> list[str]:
     if not glosses:
         return glosses
     first = _LEAD_PAREN.sub("", glosses[0]).strip()
+    first = _NAME_MARK.sub(" ", first)      # «[ اَ ب ُ دَ ] (اِخ ) …»
+    first = _ATTRIBUTED.sub("", first)      # «… آرد: …» is a citation
     rest = glosses[1:]
     # The first "sense" may be the headword written again with its vowels —
     # اسقوربوط «اِسْقُربوط. مرضی ساری …» — and a respelling is not a meaning
@@ -4839,6 +4923,13 @@ def _page_gloss(lang: str, entry: dict, glosses) -> list[str]:
     note = _GLOSS_NOTE.search(first)
     if note and note.start() > 0:
         first = first[:note.start()]
+    elif note:
+        # A sense that opens with its grammar note («نعت فاعلی از استزارة .
+        # زیارت خواهنده») kept the note and lost the meaning it introduced
+        # (critic batch 11: مستزیر، میزنده).
+        after = re.split(r"\s\.\s|\.\s|\u06d4", first, 1)
+        if len(after) > 1 and len(after[1].strip()) > 1:
+            first = after[1]
     # A dictionary's own hedge is not a meaning (فیرزانی «ظاهراً مخفف …»).
     # «بقول دزی (ج 2 ص 19)» opens طالیسفر's entry: whose opinion the sentence
     # reports is not the meaning, and the reading after it usually is.

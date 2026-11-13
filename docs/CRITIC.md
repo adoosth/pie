@@ -160,6 +160,22 @@ form the word's own row must print. Since 0.17.23 a differing last rung also
 carries a sentence («the laws produce X, not the recorded Y») — its absence is a
 finding.
 
+### What the Old Persian rounds added (2026-11-13)
+
+- **Two readings of the same signs are not one reading.** A syllabary writes its
+  vowels, so *r̥štiš* and the laws' *arštˈiš* are different words even though the
+  consonant skeleton agrees. A ✓ beside the first while the page prints the
+  second is a `band_overclaim`.
+- **A bound piece is not a letter.** −𐎠/−𐎣/−𐎹 must not resolve to the entry of
+  the sign 𐎠, and a band may not say «no recorded origin for Old Persian 𐎣»
+  over a suffix the record glosses.
+- **A branch starts from a reading.** "The record gives no reading" beside a
+  reading the page prints is a contradiction; so is a cuneiform form copied into
+  the Pahlavi row.
+- **The sampler has two layers.** `sample --layered` takes half a batch from
+  entries that state an origin: a sample of etymology-less one-line headwords
+  tests nothing.
+
 ## Other languages (from the Old Persian round on)
 
 The rules do not change with the language; the *evidence* does. What to read
