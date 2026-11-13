@@ -50,7 +50,8 @@ Parsed glossaries and the indexes built from them are kept in `~/.cache/pie`
 files they came from: editing a word or a law invalidates exactly what depends on
 it, and a page is served in milliseconds instead of re-reading the corpus. The
 server also reads the corpus once at start-up, in the background. Deleting the
-cache costs one slow page and nothing else.
+cache costs one slow page and nothing else; `pie cache` says how much it holds,
+`pie cache --prune` drops the artefacts an edit or a version bump has retired.
 
 ## Quick use
 
@@ -66,6 +67,7 @@ pie check-rules                        # validate every rule file and example
 pie spell --lang en "fˈuːt"            # the orthographic layer, on its own
 pie worklist                           # the next tasks, computed from the corpus
 pie unverified                         # matches nobody has verified yet, queued for review
+pie cache                              # where the derived data lives, and how big
 python tools/evaluate.py --from ine-pro --to gem-pro   # accuracy against Wiktionary
 ```
 
