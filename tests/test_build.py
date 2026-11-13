@@ -175,6 +175,28 @@ class ConstructionPiece(unittest.TestCase):
                           for p in rungs[0]["pieces"]],
                          ["h₂eydʰ", "lom"])
 
+    def test_a_piece_climbs_the_stage_the_word_itself_names(self):
+        """A word drawn as a piece climbs what its own page climbs.
+
+        fa جو?sense=1 shows Middle Persian jaw; آبجو's timeline lost it, because
+        the node walk preferred *any* inheritance over a nearer derivation and
+        Wiktionary writes the Persian ← Middle Persian link with `{{der}}`
+        (admin, 2026-11-13: "The timeline for a word should appear more-or-less
+        exactly the same if another page refers to it").
+        """
+        node = service._origin_node("fa", "جو")
+        self.assertEqual(node["parents"][0]["lang"], "pal")
+        self.assertEqual(node["parents"][0]["form"], "jaw")
+
+    def test_a_piece_climbs_the_same_stages_as_its_own_page(self):
+        ladder = [lv["stage"] for lv in
+                  service.word("fa", "جو", sense=1)["hierarchy"]["levels"]]
+        branch, node = ["fa"], service._origin_node("fa", "جو")
+        while node.get("parents"):
+            node = node["parents"][0]
+            branch.append(node["lang"])
+        self.assertEqual(list(reversed(branch)), ladder)
+
 class PreStageAncestry(unittest.TestCase):
 
     """A `pre-` label marks the form it precedes — it does not license a climb.

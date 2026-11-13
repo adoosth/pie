@@ -843,6 +843,13 @@ that keeps the `*` opens nothing).
   stated row that starts with the stored row and adds a piece replaces it — the
   prefix-merge compares pieces without notation. A suffix read this way is a
   bound morpheme and takes its gloss from the morphology table.
+- **A piece climbs what its own page climbs** (2026-11-13, admin: "The timeline
+  for a word should appear more-or-less exactly the same if another page refers
+  to it"). `_origin_node` picks the parent by **distance along the word's own
+  chain first** — the nearest stage the record names — and only then by relation
+  (inherit → borrow → derived), which is a tie-break between alternatives at one
+  level, not a licence to reach past a nearer derivation (fa جو: `{{der}}` to
+  Middle Persian jaw, `{{inh}}` above it; jaw was skipped as a piece of آبجو).
 - **A hole in a piece's chain is a hole in the word's** (2026-11-13, admin: fa
   آبجو). `service.unrecorded_ancestry` walks each piece the stage heads
   (`_own_construction` and `_compound_pieces`), because a compound's record has

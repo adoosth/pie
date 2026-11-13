@@ -4155,3 +4155,30 @@ names it: Proto-Germanic *ailą "from earlier *aidlą, from Proto-Indo-European
 now climbs *ailą → ◇ *h₂eydʰ- + *-lom → *h₂éydʰlom and the rung is a word of its
 stage. The laws that carry *h₂éydʰlom down give *íydlą, not *ailą — the page
 says "differs — the worklist", which is a law question, not a morphology one.
+
+## 2026-11-13 — a piece climbs what its own page climbs
+
+fa جو?sense=1 shows Middle Persian **jaw**; the same word drawn as a piece of
+آبجو climbed from Old Persian and skipped Middle Persian entirely (admin: "The
+timeline for a word should appear more-or-less exactly the same if another page
+refers to it. This should not happen").
+
+The record was never the problem: جو's ancestry rows are `pal jaw` (**derived**),
+then `peo *yáwaʰ`, `ira-pro *yáwah`, `iir-pro *yáwas`, `ine-pro *yéwos` (all
+**inherit**). `_origin_node` — the one reader behind every construction piece's
+branch — chose its parent by walking relation kinds in the order
+inherit → borrow → derived, which is right for choosing between *alternatives at
+one level* ("non … nān … *nainaz") and wrong for choosing between *levels*: it
+reached past the nearer derivation to a farther inheritance.
+
+Distance along the word's own chain now decides first — the nearest stage the
+record names is the parent — and the relation order only breaks a tie at that
+distance. جو's branch reads jaw → *yáwaʰ → *yáwah → *yáwas → *yéwos, the same
+six rows its own page prints, and آبجو's two columns now end on one line at
+Middle Persian.
+
+**Tests.** `tests/test_build.ConstructionPiece`:
+`test_a_piece_climbs_the_stage_the_word_itself_names` (the parent is pal jaw, not
+the farther PIE inheritance) and
+`test_a_piece_climbs_the_same_stages_as_its_own_page` (the piece's chain and the
+word's own ladder name the same stages in the same order).

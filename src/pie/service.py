@@ -2416,10 +2416,28 @@ def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
     # not an ancestor (see `_is_root_form`), so it is never the step above.
     rows = [t for t in _ancestry_triples(entry) if (t[0], t[1]) not in seen]
     chosen = None
-    for rel_kind in ("inherit", "borrow", "derived"):
-        chosen = next((t for t in rows if t[2] == rel_kind), None)
-        if chosen:
-            break
+    if rows:
+        # **The nearest recorded stage is the parent** (admin, 2026-11-13:
+        # "The timeline for a word should appear more-or-less exactly the same
+        # if another page refers to it" — fa جو showed Middle Persian jaw on its
+        # own page and lost it as a piece of آبجو).  The relation preference
+        # below exists to choose between *alternatives at one level* ("non …
+        # nān … *nainaz"), and it used to reach past a nearer derivation to a
+        # farther inheritance: Wiktionary writes the Persian ← Middle Persian
+        # link with `{{der}}` and the rest with `{{inh}}`, so jaw was skipped and
+        # the piece climbed from Old Persian.  Distance along the word's own
+        # chain decides first, relation only breaks the tie.
+        chain = data.derivation_chain(lang)
+        def _distance(row: tuple) -> int:
+            stage = data.stage_of(row[0]) or row[0]
+            return chain.index(stage) if stage in chain else -1
+        best = max(_distance(t) for t in rows)
+        nearest = [t for t in rows if _distance(t) == best]
+        for rel_kind in ("inherit", "borrow", "derived"):
+            chosen = next((t for t in nearest if t[2] == rel_kind), None)
+            if chosen:
+                break
+        chosen = chosen or nearest[0]
     if chosen is None:
         node["terminal"] = "end"
         return node
