@@ -7,6 +7,16 @@
 stage:
   id: peo
   name: Old Persian cuneiform
+  # The transliteration of this script is one Latin letter per sign, and a
+  # consonant sign writes its consonant plus an inherent a (ka, da, ra).  The
+  # inherent a is not evidence — the sign would write it before any vowel —
+  # so it is not transliterated: 𐎺𐎼𐎣 is v-r-k, and a vowel the scribe
+  # actually wrote keeps its own sign (𐎺𐎼𐎣𐎠𐎴 is v-r-k-a-n).  This is the
+  # edition convention Wiktionary's cuneiform transliteration uses, and it is
+  # computed from the table below — no transliteration is ever stored
+  # (admin, 2026-11-13).
+  transliteration:
+    inherent_vowel: a
   description: >
     A syllabary: signs spell a vowel (a, i, u) or a consonant plus a vowel
     (ka, ku, ki …).  Four conventions matter for reading a word:

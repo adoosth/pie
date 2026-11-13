@@ -820,15 +820,17 @@ console.log("spelled badge ok");
 /* ---------------------------------------------------------------- */
 /* reading a script, and carrying the timeline on                    */
 /* ---------------------------------------------------------------- */
-/* 2026-11-08: 𐎺𐎼𐎣 is *wárkah*. The syllabary writes va-ra-ka
-   and leaves the final /h/ unwritten, so the laws' form is a reading of the
-   record — a match, with the signs printed beside it. Below the word, the
-   direct descendants of Old Persian are buttons that add a rung each. */
+/* 2026-11-13: 𐎺𐎼𐎣 is read vr̥kaʰ.  The laws reach *wˈarkah*, which is a
+   different reading of the same signs, so the rung prints the romanisation the
+   laws produce on the left and the script with its own reading and sign
+   transliteration beside it — and wears no ✓, because the two are not the
+   same reading (admin).  Below the word, the direct descendants of Old
+   Persian are buttons that add a rung each. */
 const read = {
   start: "ine-pro", start_name: "Proto-Indo-European", etymon: "wĺ̥kʷos", root: false,
   switched_off: 0, missing: [], total_steps: 5, earlier: [], exact: null,
   path: ["pal"], can_extend: true,
-  result: { status: "match", form: "wˈarkah", target: "𐎺𐎼𐎣", match: true,
+  result: { status: "differs", form: "vr̥g", target: "𐎺𐎼𐎣", match: false,
             match_via_script: true, match_via_translit: false, ipa: "", reading: "",
             attested: true },
   levels: [
@@ -836,16 +838,16 @@ const read = {
             era_label: "c. 4500–2500 BCE", era_mid: -3500, form: "wĺ̥kʷos", baseline: "wĺ̥kʷos",
             status: "start", evidence: "literary" }),
     level({ stage: "peo", name: "Old Persian", short: "OP", era_label: "c. 525–300 BCE",
-            era_mid: -412, form: "wˈarkah", baseline: "wˈarkah", status: "match",
-            evidence: "attested",
-            recorded: { w: "𐎺𐎼𐎣", more: [], evidence: "attested", ipa: "", reading: "",
-                        show_reading: true, matches: true, via: null,
-                        fit: { ok: true, translit: "va-ra-ka", logogram: false,
+            era_mid: -412, form: "wˈarkah", display: "", baseline: "wˈarkah", status: "differs",
+            evidence: "weak",
+            recorded: { w: "𐎺𐎼𐎣", more: [], evidence: "attested", ipa: "", reading: "vr̥kaʰ",
+                        signs: "v-r-k",
+                        show_reading: true, matches: false, via: null, known: true,
+                        fit: { ok: true, translit: "v-r-k", logogram: false,
                                filler: [1], unwritten: ["h"] } } }),
     level({ stage: "pal", name: "Middle Persian", short: "MP", era_label: "c. 224–650",
-            era_mid: 435, form: "gˈurg", baseline: "gˈurg", status: "match", evidence: "attested",
-            recorded: { w: "𐭢𐭥𐭫𐭢", more: [], evidence: "attested", ipa: "", reading: "gurg",
-                        show_reading: true, matches: true } }),
+            era_mid: 435, form: "vr̥g", baseline: "vr̥g", status: "derived", evidence: "weak",
+            recorded: null }),
   ],
   next: [Object.assign(row({ l: "fa", lang_name: "Persian", branch: "Indo-Iranian (Iranian)",
                               short: "fa", era_label: "since c. 900", form: "gˈurg", steps: 2,
@@ -854,12 +856,40 @@ const read = {
 };
 const readHtml = context.renderHierarchy(read, { lang: "peo", word: "𐎺𐎼𐎣", lang_name: "Old Persian" });
 const readWords = plain(readHtml);
-assert.ok(readWords.includes("exact, read from the script"),
-  "a match through the writing system says how it was made");
-assert.ok(readWords.includes("read va-ra-ka"), "the signs the record writes are printed");
+assert.ok(readWords.includes("wárkah"), "the laws' romanisation is the rung's own form");
+assert.ok(readWords.includes("𐎺𐎼𐎣"), "the script the record writes is printed beside it");
+assert.ok(readWords.includes("vr̥kaʰ"), "with the reading the dictionary records");
+assert.ok(readWords.includes("read v-r-k"), "and the sign transliteration, one letter per sign");
+assert.ok(readWords.includes("the writing allows it"), "the two readings are explained");
+assert.ok(!readWords.includes("exact, read from the script"),
+  "a different reading of the same signs is not a match");
+assert.ok(!readHtml.includes("matchdot"), "and it wears no ✓");
 assert.ok(readWords.includes("leaves h unwritten"), "and what the script does not write");
 assert.ok(readWords.includes("a vowel sign carries a bare consonant"),
   "the filler vowel is explained, not hidden");
+/* A rung whose form is the spelling itself (a word the record gives no
+   ancestor for) prints its reading on the left and the script beside it. */
+const scripted = {
+  start: "peo", start_name: "Old Persian", etymon: null, root: false,
+  switched_off: 0, missing: [], total_steps: 0, earlier: [], exact: null,
+  path: [], can_extend: true,
+  result: { status: "start", form: "𐎠𐎼𐎲𐎠𐎹", target: "𐎠𐎼𐎲𐎠𐎹", match: false,
+            match_via_script: false, match_via_translit: false, ipa: "", reading: "Arabāya",
+            attested: true },
+  levels: [
+    level({ stage: "peo", name: "Old Persian", short: "OP", era_label: "c. 525–300 BCE",
+            era_mid: -412, form: "𐎠𐎼𐎲𐎠𐎹", display: "Arabāya", baseline: "𐎠𐎼𐎲𐎠𐎹",
+            status: "start", evidence: "attested",
+            recorded: { w: "𐎠𐎼𐎲𐎠𐎹", more: [], evidence: "attested", ipa: "",
+                        reading: "Arabāya", signs: "a-r-b-a-y", show_reading: false,
+                        matches: false, starts: true, via: null, known: true } }),
+  ],
+  next: [],
+};
+const scriptedHtml = context.renderHierarchy(scripted, { lang: "peo", word: "𐎠𐎼𐎲𐎠𐎹", lang_name: "Old Persian" });
+const scriptedWords = plain(scriptedHtml);
+assert.ok(scriptedWords.includes("Arabāya"), "a rung written in its own script is shown by its reading");
+assert.ok(scriptedWords.includes("a-r-b-a-y"), "and the signs stand beside it");
 assert.ok(readHtml.includes('data-edit="pal"'), "a rung the timeline was carried into is editable");
 assert.ok(readHtml.includes('data-cut="pal"'), "and it can be cut off again");
 assert.ok(!readHtml.includes('data-cut="peo"'), "the word's own rung is not a carried one");

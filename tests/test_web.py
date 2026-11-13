@@ -1313,7 +1313,7 @@ class TestReconstructedRungs(unittest.TestCase):
         # the final /h/ has no sign: the form is a reading of the record, so the
         # rung matches and says which signs it was read from (2026-11-08).
         self.assertEqual(peo["status"], "match")
-        self.assertEqual(rec["fit"]["translit"], "da-i-va")
+        self.assertEqual(rec["fit"]["translit"], "d-i-v")
         self.assertEqual(peo["evidence"], "attested", "the record is a cuneiform headword")
         self.assertEqual(rec["evidence"], "attested")
 
@@ -2083,7 +2083,7 @@ class TestScriptHeadwordsInTheHierarchy(unittest.TestCase):
         # and the rung says which signs the reading was made from
         # (2026-11-08: a cuneiform word can be read).
         self.assertTrue(rung["recorded"]["matches"])
-        self.assertEqual(rung["recorded"]["fit"]["translit"], "da-i-va")
+        self.assertEqual(rung["recorded"]["fit"]["translit"], "d-i-v")
         self.assertEqual(rung["recorded"]["fit"]["unwritten"], ["h"])
         self.assertTrue(page["hierarchy"]["result"]["match_via_script"])
 
@@ -2859,7 +2859,15 @@ class TestTheOldPersianScript(unittest.TestCase):
     def test_a_headword_is_read_sign_by_sign(self):
         from pie import script
 
-        self.assertEqual(script.transliterate("peo", "𐎺𐎼𐎣"), "va-ra-ka")
+        # One letter per sign, and a consonant sign's inherent -a is not
+        # evidence: 𐎺𐎼𐎣 is v-r-k, as an edition transliterates it.  The
+        # vowels a word actually spells keep their sign (admin, 2026-11-13).
+        self.assertEqual(script.transliterate("peo", "𐎺𐎼𐎣"), "v-r-k")
+        self.assertEqual(script.transliterate("peo", "𐎺𐎼𐎣𐎠𐎴"), "v-r-k-a-n")
+        self.assertEqual(script.transliterate("peo", "𐎺𐎼𐎣𐎠𐎴𐎡𐎹"), "v-r-k-a-n-i-y")
+        # vi and ku are signs of their own, not v + i or k + u.
+        self.assertEqual(script.transliterate("peo", "𐎻"), "vi")
+        self.assertEqual(script.transliterate("peo", "𐎤"), "ku")
         self.assertEqual(script.signs("peo", "𐎺𐎼𐎣")[0]["value"], "va")
 
     def test_the_laws_output_is_a_reading_of_the_cuneiform_word(self):
@@ -2867,7 +2875,7 @@ class TestTheOldPersianScript(unittest.TestCase):
 
         fit = script.match("peo", "wˈarkah", "𐎺𐎼𐎣")
         self.assertTrue(fit["ok"])
-        self.assertEqual(fit["translit"], "va-ra-ka")
+        self.assertEqual(fit["translit"], "v-r-k")
         self.assertIn("h", fit["unwritten"], "the final /h/ has no sign")
 
     def test_a_filler_vowel_spells_a_bare_consonant(self):

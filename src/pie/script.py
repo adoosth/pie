@@ -259,18 +259,42 @@ def _key_letter(letter: str) -> str:
 
 
 def transliterate(lang: str, word: str) -> str:
-    """The sign-by-sign transliteration of a headword: ``va-ra-ka``.
+    """The sign-by-sign transliteration of a headword: ``v-r-k``.
 
     A hyphen joins the signs, exactly as an edition of the inscriptions prints
     them.  This is what the script *writes* — it is not a pronunciation and
     the service never treats it as one (``attested_spellings`` rejects
     hyphenated transcriptions for that reason).  An unknown character is kept
     as it is, so the string never claims more than it knows.
+
+    A syllabary's consonant sign carries an *inherent* vowel that is not
+    evidence of anything — 𐎺 spells va, ra, ka whatever the word says — so a
+    table may declare it (``stage.transliteration.inherent_vowel``) and the
+    letter is dropped: 𐎺𐎼𐎣 is ``v-r-k``, while a vowel the scribe wrote with
+    its own sign keeps it (𐎺𐎼𐎣𐎠𐎴 is ``v-r-k-a-n``).  A sign whose own value
+    is a syllable with another vowel (ku, vi) keeps that vowel: it is a
+    different sign from k + u, and the transliteration has to keep them apart.
+    Nothing here is stored per word: the layer is computed from the table.
     """
     decoded = signs(lang, word)
     if not decoded:
         return ""
-    return "-".join(sign["value"] for sign in decoded)
+    inherent = ((stage(lang).get("transliteration") or {}).get("inherent_vowel")
+                or "")
+    return "-".join(_sign_value(sign, inherent) for sign in decoded)
+
+
+def _sign_value(sign: dict, inherent: str) -> str:
+    """One sign's letter, with its inherent vowel when the table declares one.
+
+    ``inherent`` is the vowel every consonant sign of the script writes and
+    that the edition does not transliterate (Old Persian's ``a``).
+    """
+    value = sign.get("value") or ""
+    if (inherent and sign.get("kind") == "cv" and len(value) > 1
+            and value.endswith(inherent) and value[:-1].isalpha()):
+        return value[:-1]
+    return value
 
 
 def _same_letter(sign_letter: str, form_letter: str) -> bool:
@@ -398,7 +422,7 @@ def match(lang: str, reading: str, headword: str) -> dict | None:
     both forms and let the reader judge.
 
         >>> match("peo", "wˈarkah", "𐎺𐎼𐎣")["translit"]
-        'va-ra-ka'
+        'v-r-k'
 
     A logogram is a whole word in one sign and is compared by value, with a
     dictionary's notation (case, stress, length) aside.

@@ -1,3 +1,40 @@
+## 2026-11-13 — a timeline reads, it does not spell
+
+**What.** The rung for 𐎺𐎼𐎣 printed the cuneiform word alone (with a ✓) and
+put the laws' *wˈarkah* nowhere; the admin asked for the romanisation first,
+the script beside it with the dictionary's own reading (*vr̥kaʰ*) and a sign
+transliteration (*v-r-k*), and no ✓ where the two readings differ.
+
+**The left column of a rung is a romanisation, always.** A rung whose form is
+the spelling itself — a word the record gives no ancestor for — prints its
+reading (`level.display`) on the left and keeps `form` for its page, its
+links and its construction. Every other rung already printed the form the laws
+produce; what changed is that a scripted record no longer replaces it: the
+rung prints *wˈarkah* and the record 𐎺𐎼𐎣 beside it with *vr̥kaʰ* and *v-r-k*.
+
+**A ✓ is a claim about the record's reading.** `_reproduces_reading` requires
+the laws' form to *be* the reading the record states, notation aside (stress,
+the dictionary's ʰ for h, the transcriber's v for *w). A form the signs allow
+but the record reads otherwise is shown as two readings, in the «differs»
+colour, with no ✓ — 𐎺𐎼𐎣 is *vr̥kaʰ*, not *wˈarkah*. A closing convention (the
+y of a-i-t-i-y) is still not a sound, so 𐎠𐎡𐎫𐎡𐎹 *aitiy* stays a match.
+The ladder still *reaches* 𐎺𐎼𐎣 (`_script_fit`), so the start rule and the
+ancestor chips are unchanged; `_derive_for_entry` now reports `fits` (reach)
+and `match` (reproduction) separately, and the band follows `match`: the script
+layer of `tools/coverage.py` uses the strict fit, and the published bands were
+re-measured.
+
+**Sign transliteration is computed, and economical.** A syllabary's consonant
+sign writes its consonant plus an inherent vowel that is not evidence — 𐎺 is
+*va*, 𐎼 is *ra*, 𐎣 is *ka* — so the table declares the vowel
+(`stage.transliteration.inherent_vowel: a` in `data/script/peo.yaml`) and
+`script.transliterate` drops it: 𐎺𐎼𐎣 is *v-r-k*, 𐎺𐎼𐎣𐎠𐎴 is *v-r-k-a-n*,
+𐎺𐎼𐎣𐎠𐎴𐎡𐎹 is *v-r-k-a-n-i-y*, exactly as an edition transliterates them. A
+sign whose own value is a syllable with another vowel (*vi*, *ku*) keeps it —
+it is a different sign — and a vowel sign prints its vowel. Nothing is stored
+per word, and a scripted form always prints its signs, even when its reading
+is suppressed because the rung already prints it.
+
 ## 2026-11-13 — three layers of reading, and a suffix is not a letter
 
 **What.** The Old Persian page 𐎺𐎼𐎣𐎠𐎴𐎡𐎹 printed its adjectival suffix
@@ -9,8 +46,11 @@ sound laws have nothing to start from» on a page whose title was the reading
 **A script prints two Latin layers, and IPA is a third, optional one.** The
 **romanisation** (*Vr̥kānaʰ*, *gorg*, and *haus* for English *house*) is how the
 word is read, and it is the layer linguists cite; the **sign transliteration**
-(*va-ra-ka-a-na*, *g-r-g*) is what the scribe wrote, and every form in a
-non-Roman script shows it. IPA is stored per word and printed on the word's own
+(*v-r-k-a-n*, *g-r-g*) is what the scribe wrote, and every form in a
+non-Roman script shows it.  The transliteration is computed from the sign
+table (never stored), and a syllabary's inherent vowel is not printed: 𐎺𐎼𐎣 is
+*v-r-k*, and a vowel the scribe wrote with its own sign stays (𐎺𐎼𐎣𐎠𐎴 is
+*v-r-k-a-n*) (admin, 2026-11-13). IPA is stored per word and printed on the word's own
 page — never on a timeline: a phonetic transcription of a dead language is a
 claim the model does not make (`readings.signs_for`, `.reading.signs`,
 `.cread.signs`).

@@ -225,19 +225,23 @@ const form = (w, lang, opts = {}) => {
 };
 /* A form written in a script prints its **romanisation** — how the word is read,
    which is the layer linguists cite — and, beside it, the **transliteration**
-   of the signs (g-r-g for گرگ, va-ra-ka-a-na for 𐎺𐎼𐎣𐎠𐎴, admin
+   of the signs (g-r-g for گرگ, v-r-k-a-n for 𐎺𐎼𐎣𐎠𐎴, admin
    2026-11-13).  IPA used to stand in for the romanisation, which put a phonetic
    transcription of a dead language where the standard reading belongs; it is
    optional, it is stored per word, and a timeline never prints it.  A scripted
    form is never printed bare, and an automatic reading keeps its own colour so
    a reader can tell what a dictionary states from what the signs spell. */
 const readingOf = (o) => {
-  if (!o || o.show === false) return "";
+  if (!o) return "";
   const tip = o.note || (o.auto
     ? "No reading recorded — read from the script automatically."
     : "Romanisation — recorded for this word");
   const bits = [];
-  if (o.reading) {
+  /* `show === false` suppresses the *reading* (the rung already prints it, or
+     the word is a Latin form whose reading would repeat it).  The sign layer
+     is a different fact and always prints for a scripted word: a script with
+     no transliteration is unreadable (admin, 2026-11-13). */
+  if (o.reading && o.show !== false) {
     bits.push(`<span class="reading${o.auto ? " auto" : ""}" data-tip="${esc(tip)}">${esc(o.reading)}</span>`);
   }
   /* What the signs spell: not a pronunciation, so it is printed smaller and
@@ -2298,6 +2302,12 @@ function renderHierarchy(h, d, opts) {
        an affix (2026-11-08: suffixes in another colour). */
     const cited = (level.formation && level.formation.surface) || "";
     const added = cited ? cited.replace(/^-/, "") : "";
+    /* What the left column of the rung prints.  A word written in its own
+       script is shown by its reading — the layer a reconstruction is made
+       from — and the script stands beside it in the record (admin,
+       2026-11-13).  `level.form` stays the recorded form: it is what the page
+       links to and what an edit changes. */
+    const shownForm = level.display || level.form;
     const recOpts = rec ? {
       /* A form with no entry is non-existent, whatever the literature says
          about it: dark red, like every other form the glossary does not hold
@@ -2319,7 +2329,7 @@ function renderHierarchy(h, d, opts) {
        the page glyph for a record (2026-11-08). */
     /* A formation law's morpheme is printed in the accent colour on the rung
        where the law applied, so the suffix can be seen inside the word. */
-    const madeForm = () => form(level.form, level.stage, {
+    const madeForm = () => form(shownForm, level.stage, {
       ev: level.evidence, tip, focus: true, href: madeHref,
       mark: added || undefined,
       hrefTip: level.form_known
@@ -2459,7 +2469,11 @@ function renderHierarchy(h, d, opts) {
   }).join("");
 
   const notes = [];
-  if (h.exact && !r.match && !h.edited) {
+  /* «The laws do reach the word exactly» is said only when the word's own
+     rung reproduces its record.  A form the signs allow but the record reads
+     otherwise (𐎺𐎼𐎣 read vr̥kaʰ, the laws' wˈarkah) is not exact, and the
+     rung already prints both readings (admin, 2026-11-13). */
+  if (h.exact && !r.match && !h.edited && h.exact.reproduces !== false) {
     notes.push(`The full path from ${esc(h.start_name)} differs, but the laws do reach the word exactly from
       <b>${esc(h.exact.name)} ${esc(pf(starred(h.exact.form, h.exact.stage)))}</b> (${h.exact.steps} ${h.exact.steps === 1 ? "law" : "laws"} below it);
       the gap is in the steps above.`);
@@ -3396,7 +3410,7 @@ function wordMeta(d, readings, matched, lang) {
     }).join("<i> · </i>")}</span>`);
   }
   /* What the signs spell, always shown beside a non-Roman script (admin,
-     2026-11-13): g-r-g for گرگ, va-ra-ka-a-na for 𐎺𐎼𐎣𐎠𐎴.  It is the
+     2026-11-13): g-r-g for گرگ, v-r-k-a-n for 𐎺𐎼𐎣𐎠𐎴.  It is the
      transliteration, not a second pronunciation. */
   if (d.signs && !uniq.includes(d.signs)) {
     bits.push(`<span class="translit signs" data-tip="Transliteration — what the signs spell, sign by sign. It is not a pronunciation.">${esc(d.signs)}</span>`);

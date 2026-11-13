@@ -764,13 +764,24 @@ that keeps the `*` opens nothing).
 - **A script prints two Latin layers, and IPA is a third, optional one**
   (admin, 2026-11-13): its **romanisation** (*Vr̥kānaʰ*, *gorg*, *haus* for
   *house*) is how the word is read and the layer linguists cite; its **sign
-  transliteration** (*va-ra-ka-a-na*, *g-r-g*) is what the scribe wrote and is
+  transliteration** (*v-r-k-a-n*, *g-r-g*) is what the scribe wrote and is
   shown for every non-Roman script (`readings.signs_for`, `.reading.signs`).
+  It is computed from the sign table and never stored, and a syllabary's
+  inherent vowel is not printed: 𐎺𐎼𐎣 is *v-r-k*, 𐎺𐎼𐎣𐎠𐎴 is *v-r-k-a-n*
+  (admin, 2026-11-13).
   IPA stays on the word's own page and never on a rung — a phonetic
   transcription of a dead language is not a claim this model makes.
-- **One word, one romanisation**: a rung whose Latin form is the laws' own
+- **The left column of a rung is a romanisation, never a script** (admin,
+  2026-11-13): the form the laws produce (*wˈarkah*) stands on the left, the
+  scripted record (*𐎺𐎼𐎣*) beside it with its recorded reading (*vr̥kaʰ*) and
+  its sign transliteration (*v-r-k*); a rung whose own form is the spelling
+  (a word the record gives no ancestor for) prints its reading instead
+  (`level.display`) and keeps `form` for its page, links and construction.
+  A ✓ needs the laws' form to *be* the recorded reading (`_reproduces_reading`):
+  a form the signs allow but the dictionary reads otherwise (*wˈarkah* against
+  *vr̥kaʰ*) is shown as two readings and wears no ✓.  A rung whose Latin form is the laws' own
   transcription of the signs (*Wˈarkānah*) rather than a reading the record
-  states prints the record's reading instead, and carries `spoken` so the next
+  states carries `spoken` so the next
   step and the branch descend from it; a Latin form that is itself a recorded
   reading (پدر *pedar* among *padar/pidar/pedar*) stays, and a rung the laws
   reach with a different word keeps the laws' form (*the laws produce pā, not

@@ -87,7 +87,9 @@ class TestWhereAReadingComesFrom(unittest.TestCase):
         # states one (zanaʰ), so the rule is shown on a headword that still has
         # none.
         meta = service._form_meta("peo", "𐎱𐎢𐎫𐎠𐎹")
-        self.assertEqual(meta["reading"], "pa-u-ta-a-ya")
+        # The automatic reading is the signs' own transliteration, and a
+        # consonant sign's inherent -a is not printed (admin, 2026-11-13).
+        self.assertEqual(meta["reading"], "p-u-t-a-y")
         self.assertTrue(meta["reading_auto"])
         self.assertEqual(meta["reading_how"], "signs")
         self.assertEqual(service._form_meta("peo", "𐏀𐎴")["reading"], "zanaʰ")
@@ -128,8 +130,9 @@ class TestTheTransliterations(unittest.TestCase):
                          "gi-ma-an")
 
     def test_the_old_persian_syllabary_prints_what_the_signs_say(self):
-        self.assertEqual(script.transliterate("peo", "𐎱𐎠𐎼𐎿"),
-                         "pa-a-ra-sa")
+        # p-a-r-s: the sign 𐎠 is a written vowel and stays; the inherent -a
+        # of 𐎱 and 𐎼 is not evidence and is not printed (admin, 2026-11-13).
+        self.assertEqual(script.transliterate("peo", "𐎱𐎠𐎼𐎿"), "p-a-r-s")
 
     def test_an_unknown_character_is_kept_not_invented(self):
         out = translit.transliterate("𐎺x")

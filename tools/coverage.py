@@ -680,7 +680,7 @@ def measure(lang: str, meta: dict, chain: list[str], rulesets, tiers, limit: int
                 # dictionary records.  A fit is therefore accepted only when
                 # the entry's own reading agrees with it (2026-11-12 — the
                 # same rule the word page's rungs follow).
-                fit = service._script_fit(entry, output)
+                fit = service._script_fit(entry, output, strict=True)
                 if not (fit and fit["ok"]) or not steps:
                     continue
                 scripted += 1

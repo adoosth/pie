@@ -245,7 +245,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.25,
+   "seconds": 0.26,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [],
@@ -514,7 +514,7 @@
      5
     ]
    ],
-   "seconds": 8.71,
+   "seconds": 9.39,
    "examples": [
     {
      "stage": "ine-pro",
@@ -931,7 +931,7 @@
      1
     ]
    ],
-   "seconds": 14.72,
+   "seconds": 14.56,
    "examples": [
     {
      "stage": "gem-pro",
@@ -1645,7 +1645,7 @@
      8
     ]
    ],
-   "seconds": 39.68,
+   "seconds": 40.73,
    "examples": [
     {
      "stage": "gem-pro",
@@ -2341,7 +2341,7 @@
      12
     ]
    ],
-   "seconds": 48.0,
+   "seconds": 48.72,
    "examples": [
     {
      "stage": "ang",
@@ -3140,7 +3140,7 @@
      6
     ]
    ],
-   "seconds": 306.4,
+   "seconds": 311.73,
    "examples": [
     {
      "stage": "enm",
@@ -3754,7 +3754,7 @@
      1
     ]
    ],
-   "seconds": 7.68,
+   "seconds": 7.84,
    "examples": [
     {
      "stage": "gem-pro",
@@ -4326,7 +4326,7 @@
      1
     ]
    ],
-   "seconds": 1.49,
+   "seconds": 1.5,
    "examples": [
     {
      "stage": "goh",
@@ -4997,7 +4997,7 @@
      1
     ]
    ],
-   "seconds": 50.18,
+   "seconds": 50.24,
    "examples": [
     {
      "stage": "gem-pro",
@@ -5598,7 +5598,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 19.24,
+   "seconds": 18.9,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -6188,7 +6188,7 @@
      26
     ]
    ],
-   "seconds": 18.5,
+   "seconds": 18.64,
    "examples": [
     {
      "stage": "gem-pro",
@@ -6938,7 +6938,7 @@
      3
     ]
    ],
-   "seconds": 17.81,
+   "seconds": 17.89,
    "examples": [
     {
      "stage": "ine-pro",
@@ -7649,7 +7649,7 @@
      3
     ]
    ],
-   "seconds": 31.03,
+   "seconds": 30.47,
    "examples": [
     {
      "stage": "la",
@@ -8397,7 +8397,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 14.93,
+   "seconds": 14.95,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -8915,7 +8915,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 30.12,
+   "seconds": 29.91,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -9242,7 +9242,7 @@
      3
     ]
    ],
-   "seconds": 1.72,
+   "seconds": 1.63,
    "examples": [
     {
      "stage": "ine-pro",
@@ -9428,7 +9428,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.02,
+   "seconds": 0.01,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": []
@@ -10030,7 +10030,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 21.43,
+   "seconds": 21.25,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -10387,7 +10387,7 @@
      4
     ]
    ],
-   "seconds": 1.11,
+   "seconds": 1.1,
    "examples": [
     {
      "stage": "ine-pro",
@@ -10883,7 +10883,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 1.42,
+   "seconds": 1.37,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -10962,7 +10962,7 @@
    "exact_strict": 0,
    "exact_notation": 0,
    "exact_pie": 0,
-   "explained": 56,
+   "explained": 43,
    "borrowed": 29,
    "outside": 5,
    "non_ie": 13,
@@ -10971,22 +10971,22 @@
    "pathway": 3,
    "categories": {
     "counts": {
-     "full": 3,
+     "full": 4,
      "adjusted": 0,
-     "partial": 202,
+     "partial": 201,
      "unexplained": 92,
      "non_pie": 13,
      "ie_loan": 18,
      "built": 0
     },
     "total": 328,
-    "explained": 3,
-    "explained_rate": 0.91,
-    "of_glossary": 0.91,
+    "explained": 4,
+    "explained_rate": 1.22,
+    "of_glossary": 1.22,
     "share": {
-     "full": 0.91,
+     "full": 1.22,
      "adjusted": 0.0,
-     "partial": 61.59,
+     "partial": 61.28,
      "unexplained": 28.05,
      "non_pie": 3.96,
      "ie_loan": 5.49,
@@ -10995,14 +10995,15 @@
    },
    "category_reasons": {
     "unexplained: no recorded etymology": 92,
-    "partial: no rule applied": 59,
+    "partial: no rule applied": 64,
     "ie_loan: loan from an IE branch": 18,
     "non_pie: non-ie source": 13,
-    "partial: reproduced only from Proto-Indo-Iranian, not from the PIE etymon": 6,
-    "partial: reproduced only from Proto-Iranian, not from the PIE etymon": 5,
-    "partial: needs approval of our modification": 3,
-    "full: script layer": 3,
+    "partial: reproduced only from Proto-Indo-Iranian, not from the PIE etymon": 4,
+    "partial: reproduced only from Proto-Iranian, not from the PIE etymon": 4,
+    "partial: needs approval of our modification": 2,
+    "full: script layer": 2,
     "partial: no recorded origin for Old Persian Skuδi": 2,
+    "partial: no entry for Proto-Iranian *Wŕ̥kānah": 2,
     "partial: no entry for Proto-Iranian *wašnah, Proto-Indo-Iranian *wašnas": 2,
     "partial: no recorded origin for Old Persian 𐎹𐎢𐎴": 2,
     "partial: no entry for Proto-Indo-Iranian *kšáyah, Proto-Indo-Iranian *kšáyati; no recorded origin for Proto-Indo-Iranian *kšáyah": 1,
@@ -11016,8 +11017,7 @@
     "partial: no entry for Proto-Indo-European *putlós": 1,
     "partial: no entry for Proto-Iranian *dātam": 1,
     "partial: no entry for Proto-Iranian *Hr̥štíš, Proto-Indo-Iranian *Hr̥štíš, Proto-Indo-European *h₁r̥s-tí-s": 1,
-    "partial: no entry for Proto-Iranian *duHráh": 1,
-    "partial: no entry for Proto-Iranian *nápāth": 1
+    "partial: no entry for Proto-Iranian *duHráh": 1
    },
    "category_examples": {
     "full": [
@@ -11032,9 +11032,14 @@
       "reason": "script layer"
      },
      {
-      "word": "𐎪𐎡𐎺",
-      "gloss": "living",
-      "reason": "script layer"
+      "word": "𐎤𐎢𐏁𐎡𐎹",
+      "gloss": "Kushite · Nubian · Ethiopian",
+      "reason": "construction of 𐎤𐎢𐏁 + -𐎡𐎹"
+     },
+     {
+      "word": "𐎿𐎢𐎦𐎢𐎭𐎡𐎹",
+      "gloss": "a Sogdian",
+      "reason": "construction of 𐎿𐎢𐎦𐎢𐎭 + -𐎡𐎹"
      }
     ],
     "adjusted": [],
@@ -11221,8 +11226,17 @@
    "identity": 1,
    "bound_form": 0,
    "joined": 7,
-   "constructed": 0,
-   "construction_examples": [],
+   "constructed": 2,
+   "construction_examples": [
+    {
+     "word": "𐎤𐎢𐏁𐎡𐎹",
+     "reason": "construction of 𐎤𐎢𐏁 + -𐎡𐎹"
+    },
+    {
+     "word": "𐎿𐎢𐎦𐎢𐎭𐎡𐎹",
+     "reason": "construction of 𐎿𐎢𐎦𐎢𐎭 + -𐎡𐎹"
+    }
+   ],
    "gaps": [],
    "joined_examples": [
     {
@@ -11291,7 +11305,7 @@
    ],
    "bound_examples": [],
    "exact_orth": 0,
-   "script": 52,
+   "script": 39,
    "script_examples": [
     {
      "stage": "iir-pro",
@@ -11309,37 +11323,37 @@
      "stage": "iir-pro",
      "output": "adˈam",
      "word": "𐎠𐎭𐎶",
-     "translit": "a-da-ma"
+     "translit": "a-d-m"
     },
     {
      "stage": "ine-pro",
      "output": "ˈasti",
      "word": "𐎠𐎿𐎫𐎡𐎹",
-     "translit": "a-sa-ta-i-ya"
+     "translit": "a-s-t-i-y"
     },
     {
      "stage": "iir-pro",
      "output": "utˈa",
      "word": "𐎢𐎫𐎠",
-     "translit": "u-ta-a"
+     "translit": "u-t-a"
     },
     {
      "stage": "iir-pro",
      "output": "puçˈah",
      "word": "𐎱𐎢𐏂",
-     "translit": "pa-u-ça"
+     "translit": "p-u-ç"
     },
     {
      "stage": "iir-pro",
      "output": "brˈātā",
      "word": "𐎲𐎼𐎠𐎫𐎠",
-     "translit": "ba-ra-a-ta-a"
+     "translit": "b-r-a-t-a"
     },
     {
      "stage": "ira-pro",
      "output": "kˈāmah",
      "word": "𐎣𐎠𐎶",
-     "translit": "ka-a-ma"
+     "translit": "k-a-m"
     }
    ],
    "orth_rate": 0.0,
@@ -11349,7 +11363,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 1.31,
+   "seconds": 1.28,
    "examples": [],
    "pathway_examples": [
     {
@@ -11361,7 +11375,7 @@
      "enabled": [
       "peo~pal:r_stem_oblique"
      ],
-     "translit": "pa-i-ta-a"
+     "translit": "p-i-t-a"
     },
     {
      "stage": "ira-pro",
@@ -11372,7 +11386,7 @@
      "enabled": [
       "peo~pal:r_stem_oblique"
      ],
-     "translit": "ma-a-ta-a"
+     "translit": "m-a-t-a"
     },
     {
      "stage": "ine-pro",
@@ -11385,7 +11399,7 @@
      "enabled": [
       "ira-pro~peo:j_to_z_median"
      ],
-     "translit": "za-na"
+     "translit": "z-n"
     }
    ],
    "closest_misses": [
@@ -11474,7 +11488,7 @@
    "exact_strict": 3,
    "exact_notation": 1,
    "exact_pie": 1,
-   "explained": 14,
+   "explained": 12,
    "borrowed": 16,
    "outside": 0,
    "non_ie": 1,
@@ -11508,14 +11522,13 @@
    },
    "category_reasons": {
     "unexplained: no recorded etymology": 16831,
-    "partial: no rule applied": 118,
+    "partial: no rule applied": 119,
     "ie_loan: loan from an IE branch": 17,
     "partial: no entry for Old Persian pistaka": 2,
     "partial: no entry for Proto-Indo-European *ḱweytós": 2,
     "partial: no entry for Proto-Indo-Iranian *swápati, Proto-Indo-European *swép-e-ti": 2,
     "partial: no entry for Proto-Iranian *hínduš": 2,
     "partial: needs approval of our modification": 2,
-    "partial: reproduced only from Proto-Iranian, not from the PIE etymon": 2,
     "partial: no entry for Proto-Iranian *ha-karam": 1,
     "partial: no entry for Proto-Iranian *Hántarah, Proto-Indo-Iranian *Hántaras": 1,
     "partial: no entry for Proto-Indo-Iranian *sáčaH, Proto-Indo-European *sékʷ-eh₂": 1,
@@ -11530,7 +11543,8 @@
     "partial: no entry for Old Persian 𐏃𐎢𐎶": 1,
     "partial: no entry for Proto-Iranian *háynaH": 1,
     "partial: no recorded origin for Middle Persian čwp": 1,
-    "partial: no entry for Proto-Iranian *wrinǰiš, Proto-Indo-Iranian *wriHǰʰíš": 1
+    "partial: no entry for Proto-Iranian *wrinǰiš, Proto-Indo-Iranian *wriHǰʰíš": 1,
+    "partial: no entry for Proto-Indo-Iranian *wyHāgʰrás": 1
    },
    "category_examples": {
     "full": [],
@@ -11678,7 +11692,7 @@
    },
    "categories_untested": 0,
    "case_only": 0,
-   "near": 4,
+   "near": 5,
    "errors": 0,
    "exact_rate": 0.000233,
    "orthographic": 0,
@@ -11728,14 +11742,8 @@
    "identity_examples": [],
    "bound_examples": [],
    "exact_orth": 4,
-   "script": 10,
+   "script": 8,
    "script_examples": [
-    {
-     "stage": "ine-pro",
-     "output": "ham",
-     "word": "hm",
-     "translit": "h-m"
-    },
     {
      "stage": "iir-pro",
      "output": "bˈūm",
@@ -11747,12 +11755,6 @@
      "output": "gˈurg",
      "word": "gwlg",
      "translit": "g-w-l-g"
-    },
-    {
-     "stage": "ira-pro",
-     "output": "hapt",
-     "word": "hp̄t'",
-     "translit": "h-p-t"
     },
     {
      "stage": "peo",
@@ -11777,6 +11779,18 @@
      "output": "spēd",
      "word": "spyt'",
      "translit": "s-p-y-t"
+    },
+    {
+     "stage": "ine-pro",
+     "output": "dēw",
+     "word": "𐫅𐫏𐫇",
+     "translit": "d-y-w"
+    },
+    {
+     "stage": "peo",
+     "output": "kām",
+     "word": "𐭪𐭠𐭬",
+     "translit": "k-ʾ-m"
     }
    ],
    "orth_rate": 0.000233,
@@ -12262,7 +12276,7 @@
    "near": 0,
    "errors": 0,
    "exact_rate": 0.0,
-   "orthographic": 137,
+   "orthographic": 139,
    "orthographic_examples": [
     {
      "stage": "pal",
@@ -12471,8 +12485,8 @@
     }
    ],
    "bound_examples": [],
-   "exact_orth": 137,
-   "script": 423,
+   "exact_orth": 139,
+   "script": 421,
    "script_examples": [
     {
      "stage": "ine-pro",
@@ -12523,14 +12537,14 @@
      "translit": "b-n-d"
     }
    ],
-   "orth_rate": 0.000831,
+   "orth_rate": 0.000843,
    "exact_of_tested": 0.0,
    "identified_rate": 0.01396,
    "pie_rate": 0.00523,
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 36.95,
+   "seconds": 37.5,
    "examples": [],
    "pathway_examples": [
     {
@@ -13926,7 +13940,7 @@
      1
     ]
    ],
-   "seconds": 6.89,
+   "seconds": 6.74,
    "examples": [
     {
      "stage": "cel-pro",
@@ -14273,7 +14287,7 @@
      1
     ]
    ],
-   "seconds": 1.71,
+   "seconds": 1.69,
    "examples": [
     {
      "stage": "ine-pro",
@@ -14649,7 +14663,7 @@
      28
     ]
    ],
-   "seconds": 10.1,
+   "seconds": 10.05,
    "examples": [
     {
      "stage": "ine-bsl-pro",
@@ -15223,7 +15237,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 8.32,
+   "seconds": 8.34,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -15844,7 +15858,7 @@
      3
     ]
    ],
-   "seconds": 2.41,
+   "seconds": 0.86,
    "examples": [
     {
      "stage": "ine-pro",
@@ -16312,7 +16326,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.1,
+   "seconds": 0.09,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [],
@@ -16554,7 +16568,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.54,
+   "seconds": 0.59,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [],
@@ -16865,7 +16879,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.33,
+   "seconds": 0.34,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [],
@@ -17183,7 +17197,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.5,
+   "seconds": 0.49,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [],
@@ -17204,34 +17218,34 @@
   "reconstruction": 569,
   "reconstruction_exact": 38,
   "pathway": 12,
-  "explained": 17377,
+  "explained": 17362,
   "borrowed": 88043,
   "outside": 38833,
   "non_ie": 11925,
   "unlinked": 25952,
   "no_etym": 171285,
   "case_only": 0,
-  "near": 22758,
-  "orthographic": 5105,
+  "near": 22759,
+  "orthographic": 5107,
   "lemma": 574,
   "identity": 3365,
   "bound_form": 495,
   "joined": 19462,
-  "script": 1406,
-  "exact_orth": 12099,
+  "script": 1389,
+  "exact_orth": 12101,
   "errors": 0,
   "exact_rate": 0.014497,
   "identified_rate": 0.25858,
   "exact_of_identified": 0.056062,
   "pie_rate": 0.107012,
-  "orth_rate": 0.02732,
-  "explained_of_identified": 0.151743
+  "orth_rate": 0.027324,
+  "explained_of_identified": 0.151612
  },
  "categories": {
   "counts": {
-   "full": 333,
+   "full": 334,
    "adjusted": 50,
-   "partial": 131882,
+   "partial": 131881,
    "unexplained": 89174,
    "non_pie": 95828,
    "unidentified": 1716761,
@@ -17239,7 +17253,7 @@
    "built": 8154
   },
   "total": 397458,
-  "explained": 383,
+  "explained": 384,
   "explained_rate": 0.1,
   "of_glossary": 0.1,
   "share": {

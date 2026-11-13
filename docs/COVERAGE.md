@@ -20,15 +20,15 @@ never a count and never in a denominator.
 
 | band | words | share | definition |
 |---|---:|---:|---|
-| **fully explained** (dark green) | 333 | 0.1% | A recorded origin — a PIE etymon carried by cited laws, or the record's own registered construction of explained pieces — reproduced exactly, every recorded intermediate matching. |
+| **fully explained** (dark green) | 334 | 0.1% | A recorded origin — a PIE etymon carried by cited laws, or the record's own registered construction of explained pieces — reproduced exactly, every recorded intermediate matching. |
 | **fully explained, with adjustments** (light green) | 50 | 0.0% | The same path, but a recorded intermediate disagrees, or one step is an approved adjustment of ours. |
-| **partially explained** (yellow) | 131,882 | 33.2% | A recorded chain that does not reach the word from the PIE etymon in full: it starts lower, a recorded rung has no entry, or the laws do not reproduce it. |
+| **partially explained** (yellow) | 131,881 | 33.2% | A recorded chain that does not reach the word from the PIE etymon in full: it starts lower, a recorded rung has no entry, or the laws do not reproduce it. |
 | **unexplained** (red) | 89,174 | 22.4% | No recorded etymology. |
 | **non-PIE** (dark grey) | 95,828 | 24.1% | Recorded as borrowed from outside the family. |
 | **loan from another IE language** (blue grey) | 72,037 | 18.1% | Borrowed from a sister branch; recorded, not derived by this chain. |
 | **built from its own words** (brown) | 8,154 | 2.0% | Made of the language's own words, or of one plus a suffix: a formation, not a derivation. |
 
-**383 of 397,458 attested words are fully explained (0.10%), and 72,037 more are recorded loans from a
+**384 of 397,458 attested words are fully explained (0.10%), and 72,037 more are recorded loans from a
 sister branch. Both greens need a recorded origin carried all the way to the
 word — by cited laws, or by the record's own registered construction (the
 pieces spell it, each piece starts from a PIE etymon or from outside the
@@ -55,7 +55,7 @@ ancestor (Old Persian 𐎣𐎠𐎶 from Proto-Iranian) is yellow.
 | Greek (`el`) | 5 | 4 | 6,577 | 0 | 407 | 3,147 | 0 | 5,240 | 9 | 10,140 |
 | Gothic (`got`) | 8 | 1 | 1,950 | 0 | 54 | 139 | 0 | 1,030 | 9 | 2,152 |
 | Old English (`ang`) | 4 | 2 | 6,049 | 7 | 63 | 299 | 0 | 3,634 | 6 | 6,424 |
-| Old Persian (`peo`) | 3 | 0 | 202 | 92 | 13 | 18 | 0 | 157 | 3 | 328 |
+| Old Persian (`peo`) | 4 | 0 | 201 | 92 | 13 | 18 | 0 | 157 | 4 | 328 |
 | Italian (`it`) | 0 | 2 | 11,480 | 7 | 680 | 7,550 | 0 | 14,529 | 2 | 19,719 |
 | Old High German (`goh`) | 1 | 0 | 1,522 | 0 | 2 | 41 | 0 | 641 | 1 | 1,566 |
 | German (`de`) | 0 | 0 | 9,739 | 3 | 515 | 5,923 | 0 | 6,521 | 0 | 16,180 |
@@ -129,7 +129,7 @@ with an older release.
 Corpus: **442,865 glossary entries**, 114,516 with a recorded ancestor,
 **6,420 reconstructed exactly**, of which **971 start at the
 PIE etymon** (1.4% of the whole glossary,
-12,099 once the orthographic layer is allowed (2.7%),
+12,101 once the orthographic layer is allowed (2.7%),
 5.6% of words with a recorded ancestor; 47,392 reach a PIE etymon).  Rules used: all; sample: all eligible words.
 
 **12 more** are completed by a word's own recorded pathway — a
@@ -137,7 +137,7 @@ registered law that does not apply to that word, with the reason stored beside i
 (`data/pathways.jsonl`). They are counted apart and never added to the figure above:
 a per-word exception must be visible, not silent.
 
-**1,406 more** are reached through a language's own writing system, out of
+**1,389 more** are reached through a language's own writing system, out of
 the words written in a script with a table in `data/script/` (Old Persian: the laws
 produce *wˈarkah* and the monument writes 𐎺𐎼𐎣, *va-ra-ka*). The signs do not spell
 every sound: a syllabary leaves a final /h/ unwritten and closes a final -i with a y-sign
@@ -173,8 +173,8 @@ included one could not be checked against the record (2026-11-08).
 | Middle High German (`gmh`) | 92% (533) | 43 | 29 | 3 | **96** | 29 | — | 33 | 1 | — | 24 | 159 | 580 | `████░░░░░░░░░░` 27% |
 | Proto-Germanic (`gem-pro`) | 56% (3,326) | 3,326 | 30 | 7 | **95** | 0 | — | 2 | 21 | — | 516 | 118 | 5,908 | `▏░░░░░░░░░░░░░` 2.0% |
 | Proto-Balto-Slavic (`ine-bsl-pro`) | 92% (454) | 454 | 1 | 0 | **46** | 0 | — | 3 | 3 | — | 8 | 52 | 491 | `█░░░░░░░░░░░░░` 11% |
-| Middle Persian (`pal`) | 0.67% (115) | 36 | 16 | 0 | **4** | 0 | — | — | — | 10 | 4 | 14 | 17,153 | `▏░░░░░░░░░░░░░` 0.08% |
-| Persian (`fa`) | 1.4% (2,301) | 862 | 5,496 | 669 | **0** | 137 | — | 229 | — | 423 | 199 | 796 | 164,827 | `▏░░░░░░░░░░░░░` 0.48% |
+| Middle Persian (`pal`) | 0.67% (115) | 36 | 16 | 0 | **4** | 0 | — | — | — | 8 | 4 | 12 | 17,153 | `▏░░░░░░░░░░░░░` 0.07% |
+| Persian (`fa`) | 1.4% (2,301) | 862 | 5,496 | 669 | **0** | 139 | — | 229 | — | 421 | 199 | 796 | 164,827 | `▏░░░░░░░░░░░░░` 0.48% |
 | Greek (`el`) | 49% (5,090) | 312 | 2,174 | 1,370 | **0** | 647 | — | 317 | — | — | 545 | 964 | 10,471 | `█░░░░░░░░░░░░░` 9.2% |
 | Armenian (`hy`) | 1.2% (64) | 64 | 2,859 | 2,400 | **0** | 0 | — | — | — | — | — | 0 | 5,398 | `░░░░░░░░░░░░░░` 0% |
 | Ancient Greek (`grc`) | 64% (3,323) | 3,233 | 1,212 | 198 | **0** | 294 | — | 81 | — | — | 563 | 375 | 5,222 | `█░░░░░░░░░░░░░` 7.2% |
@@ -184,7 +184,7 @@ included one could not be checked against the record (2026-11-08).
 | Old Church Slavonic (`chu`) | 90% (1,802) | 278 | 116 | 77 | **0** | 0 | — | 402 | — | 921 | 142 | 1,323 | 1,999 | `█████████░░░░░` 66% |
 | Old Armenian (`xcl`) | 59% (920) | 920 | 379 | 245 | **0** | 0 | — | — | — | — | 81 | 0 | 1,564 | `░░░░░░░░░░░░░░` 0% |
 | Tocharian B (`txb`) | 63% (442) | 398 | 241 | 14 | **0** | 0 | — | — | — | — | 23 | 0 | 697 | `░░░░░░░░░░░░░░` 0% |
-| Old Persian (`peo`) | 40% (215) | 101 | 29 | 5 | **0** | 0 | — | 1 | — | 52 | 7 | 56 | 535 | `█░░░░░░░░░░░░░` 10% |
+| Old Persian (`peo`) | 40% (215) | 101 | 29 | 5 | **0** | 0 | — | 1 | — | 39 | 7 | 43 | 535 | `█░░░░░░░░░░░░░` 8.0% |
 | Avestan (`ave`) | 89% (312) | 195 | 0 | 0 | **0** | 26 | 33 | 1 | — | — | — | 60 | 352 | `██░░░░░░░░░░░░` 17% |
 | Hittite (`hit`) | 85% (253) | 235 | 1 | 2 | **0** | 0 | — | — | — | — | 11 | 0 | 298 | `░░░░░░░░░░░░░░` 0% |
 | Parthian (`xpr`) | 38% (13) | 1 | 4 | 0 | **0** | 0 | — | — | — | — | — | 0 | 34 | `░░░░░░░░░░░░░░` 0% |

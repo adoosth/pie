@@ -4978,7 +4978,7 @@ def _recorded_ancestor_forms(entry: dict, chain: list[str]) -> dict[str, list[st
     return out
 
 
-def _script_fit(entry: dict, form: str) -> dict | None:
+def _script_fit(entry: dict, form: str, strict: bool = False) -> dict | None:
     """A reading of the word's own script that its record agrees with.
 
     The signs of an abjad cannot tell dōš from dūš, so a fit is only evidence
@@ -4993,8 +4993,15 @@ def _script_fit(entry: dict, form: str) -> dict | None:
     found = script.match(lang, form, word)
     if not found or not found.get("ok"):
         return None
-    readings = [readings_for(entry)["reading"], *attested_spellings(entry)]
-    if not _same_reading(found, form, [r for r in readings if r]):
+    readings = [r for r in (readings_for(entry)["reading"],
+                            *attested_spellings(entry)) if r]
+    if not _same_reading(found, form, readings):
+        return None
+    if strict and not _reproduces_reading(found, form, readings):
+        # `strict` asks the question a ✓ and a coverage figure ask: is the
+        # form the reading the record states, not just one the signs allow?
+        # 𐎺𐎼𐎣 is read vr̥kaʰ and the laws reach wˈarkah, which the signs
+        # allow and the record does not say (admin, 2026-11-13).
         return None
     return found
 
@@ -5167,6 +5174,15 @@ def _category_of(entry: dict, chain: list[str], exact: dict | None,
         # no etymology, but what kind of word has none (2026-11-10).
         verdict = {**verdict,
                    "reason": cats.unexplained_reason(entry.get("structure"))}
+    if (verdict["category"] == "partial" and verdict.get("reason") == "no rule applied"
+            and deepest and deepest.get("fits") and not deepest.get("match")):
+        # The laws do apply; they reach a form the signs allow and not the
+        # reading the record states (𐎺𐎼𐎣: laws *wˈarkah*, record *vr̥kaʰ*).
+        # "No rule applied" would be a lie about the worklist entry, and the
+        # rung that prints both forms says which one the laws miss.
+        verdict = {**verdict,
+                   "reason": ("the laws reach a form the writing allows, but the "
+                              "record reads it differently")}
     meta = cats.CATEGORIES[verdict["category"]]
     return {**verdict, "label": meta["label"], "colour": meta["colour"],
             "definition": meta["definition"]}
@@ -5711,6 +5727,11 @@ def _derive_for_entry(entry: dict, chain: list[str],
         matched = _match_spelling(d.output, spellings)
         scripted = fit_of(d.output) if not matched else None
     stage, form, d = chosen
+    # The laws may reach the word's *signs* without reproducing the reading the
+    # record states (𐎺𐎼𐎣, laws *wˈarkah*, record *vr̥kaʰ*).  That is a reach,
+    # not a match: a ✓ and a published band are claims about the record
+    # (admin, 2026-11-13).
+    reproduced = _script_fit(entry, d.output, strict=True) if scripted else None
     start = chain.index(stage)
     return {
         "input": form,
@@ -5722,7 +5743,11 @@ def _derive_for_entry(entry: dict, chain: list[str],
         "steps": [s.__dict__ for s in d.steps],
         "skipped": d.skipped,
         "target": target,
-        "match": matched is not None or scripted is not None,
+        "match": matched is not None or reproduced is not None,
+        # True when a form the signs allow was reached, whether or not it is
+        # the record's own reading: the ladder-start rule and the "try this
+        # ancestor" chips ask about the reach, the band asks about the record.
+        "fits": matched is not None or scripted is not None,
         # True when the rules reproduce the word's recorded romanisation rather
         # than its own script (پدر → pedar): the phonology is exact, the
         # orthography is a separate layer and the page says so.
@@ -6085,7 +6110,13 @@ def _record_block(stage: str, here: dict | None, match_form: str | None,
             # the form differ only in what the *writing* leaves out (the final
             # /h/ no Old Persian sign writes, a final -i closed by the y-sign),
             # the two are one reading and the fit stands (2026-11-08).
-            if not any(readings) or _same_reading(candidate, match_form, readings):
+            # The signs allow the form — but a ✓ also needs the record's own
+            # reading to *be* that form.  A spelling the dictionary reads one
+            # way and the laws another is shown as two readings, never as a
+            # match (admin, 2026-11-13: 𐎺𐎼𐎣, laws *wˈarkah*, record *vr̥kaʰ*).
+            if not any(readings) or (
+                    _same_reading(candidate, match_form, readings)
+                    and _reproduces_reading(candidate, match_form, readings)):
                 matches = True
                 if via is None:
                     # Name the reading the match was made on when it is not the
@@ -6432,7 +6463,7 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
         # page printed another word's form on this word's own row
         # (critic peo-01, 2026-11-13).
         deepest = _derive_for_entry(entry, chain, disabled, enabled)
-        if (deepest and deepest.get("match")
+        if (deepest and deepest.get("fits")
                 and _starts_from_a_base_word(entry, candidates[0], chain)):
             start_stage, start_form = deepest["start"], deepest["input"]
     start = chain.index(start_stage) if start_stage in chain else 0
@@ -6513,10 +6544,15 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
     stated = str((rung or {}).get("via") or (rung or {}).get("reading") or "")
     reading_form = (_phonological_form(lang, str(entry.get("word") or form))
                     if (here and needs_reading(lang)) else "")
+    # The record itself is what says how the spelling is read.  It does not
+    # have to be a *match*: 𐎺𐎼𐎣 is read vr̥kaʰ and the laws reach wˈarkah,
+    # and the rung says both (admin, 2026-11-13).  What the stages below the
+    # word run on is the reading either way, because a script is not an input
+    # to a sound law.
     transcribed = bool(
         here and not edited and not hypothesis and not translit.is_scripted(here)
-        and stated and stated != here and rung and rung.get("matches")
-        and rung.get("in_script") and not rung.get("unverified"))
+        and stated and stated != here and rung and rung.get("in_script")
+        and rung.get("fit") and not rung.get("unverified"))
     # A word written in its own script also enters the stages below it through
     # its **reading**, not its signs: the laws rewrite sounds, so carrying the
     # cuneiform into Middle Persian could only say «no reading is recorded for
@@ -6660,6 +6696,19 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
         version = rung_forms[index] if index < len(rung_forms) else trace.output
         before_disabling = (baseline_forms[index] if index < len(baseline_forms)
                             else baseline.output)
+        # A rung's own form is a reading, never a writing.  The laws rewrite
+        # sounds, and the one rung whose form is the spelling itself is the
+        # one the ladder starts from when the record states no ancestor: its
+        # script is printed beside it in the record, and the left column says
+        # how it is read (admin, 2026-11-13: the timeline reconstructs from
+        # romanisations, not from glyphs).  The rung keeps its recorded form —
+        # that is what its record, its construction and its page are keyed by —
+        # and carries the reading it prints as `display`.
+        display = ""
+        if translit.is_scripted(version):
+            read = _phonological_form(stage, version)
+            if read and not translit.is_scripted(read):
+                display = read
         hop = rung_hops[index] if index < len(rung_hops) else None
         if hop is not None:
             tiers_fired.extend(sorted({r["tier"] for r in hop.rules if r.get("fired")},
@@ -6748,18 +6797,23 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
             # Whether the form the laws produce *is* the recorded form, notation
             # aside (*bōks / bōks, bʰeh₂g- / bʰeh₂g). The ladder prints such a
             # rung once, glowing, instead of repeating the form below it.
-            block["same"] = (bool(normalise_etymon(version))
+            block["same"] = (not display
+                             and bool(normalise_etymon(version))
                              and _same_form(normalise_etymon(version),
                                             normalise_etymon(block["w"])))
-            if stage == lang and transcribed and index == own_at:
-                # The rung's Latin form is the laws' transcription of the signs,
-                # not a reading the record states: the rung prints the record
-                # once, with its reading, so the page says the word one way
-                # (Wˈarkānah beside 𐎺𐎼𐎣𐎠𐎴 Vr̥kānaʰ, admin 2026-11-13).
-                block["same"] = True
+            if display and block.get("reading") \
+                    and _same_form(block["reading"], display):
+                # The rung already prints this reading on the left, so the
+                # record does not repeat it: the script and the signs are the
+                # rest of the word (admin, 2026-11-13).
+                block["show_reading"] = False
             # The ladder's first rung is the record it starts from, not
-            # something a law derived: same form, different claim.
-            block["starts"] = bool(index == 0 and not edited and block["same"])
+            # something a law derived: same form, different claim.  A record
+            # written in its own script is never "the same string", but the
+            # rung still starts from it — its reading is what the page prints
+            # on the left (admin, 2026-11-13).
+            block["starts"] = bool(index == 0 and not edited
+                                   and (block["same"] or translit.is_scripted(block["w"])))
         builds = _rung_builds(entry, stage, version, disabled=disabled,
                               enabled=enabled)
         if not builds and stage != lang:
@@ -6789,6 +6843,11 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
             "era_label": era_label(era),
             "era_mid": era_midpoint(era),
             "form": version,
+            # What the left column prints: a rung written in its own script is
+            # shown by its reading, and the script stands beside it in the
+            # record (admin, 2026-11-13).  Empty when the form is already a
+            # romanisation, so `form` is what prints.
+            "display": display,
             # The form the stages below this rung run on, when it is not the
             # rung's own Latin form: the reading a scripted record matched on.
             # The rung prints that reading (one word, one romanisation) and the
@@ -6912,6 +6971,15 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
             "form": deepest["input"],
             "steps": len(deepest["steps"]),
             "via_translit": bool(deepest.get("match_via_translit")),
+            # Whether the word's own rung reproduces its record.  `match`
+            # above says the laws *reach* the word (a reading its signs
+            # allow); only a rung the record's own reading agrees with may be
+            # called exact, because the page must never say «the laws do reach
+            # the word exactly» over a rung that prints two readings
+            # (admin, 2026-11-13: 𐎺𐎼𐎣 read vr̥kaʰ, the laws' wˈarkah).
+            "reproduces": any(row["stage"] == lang
+                              and row["status"] in ("match", "cited")
+                              for row in rows),
         }
     earlier = [
         {"id": stage, "name": _lang(stage).get("name", stage), "era_label": era_label(_lang(stage).get("era"))}
@@ -7694,6 +7762,41 @@ def _abjad_reading(fit: dict, form: str, readings: list[str]) -> str | None:
         return None
     key = _reading_key(form)
     return next((r for r in readings if r and _reading_key(r) == key), None)
+
+
+def _reproduces_reading(fit: dict, form: str, readings: list[str]) -> bool:
+    """Whether the laws' form *is* the reading the record states.
+
+    A ✓ says the registered laws reproduced the record, and a possible reading
+    of the same signs is not that (admin, 2026-11-13): 𐎺𐎼𐎣 is read
+    *vr̥kaʰ*, the laws reach *wˈarkah*, and the vowels are the scribe's
+    evidence — the two are different readings of one spelling, so the rung says
+    both and wears no ✓.  Only notation is set aside: stress, the way a
+    dictionary writes a final /h/ (ʰ for h), a letter the signs cannot carry,
+    and the transcriber's letter for a single consonant (v for the laws' *w).
+
+    A spelling with no recorded reading has nothing to reproduce, and the
+    caller keeps its own rule for that case.
+    """
+    recorded = [r for r in readings if r]
+    if not recorded:
+        return False
+    if fit.get("abjad"):
+        return _abjad_reading(fit, form, recorded) is not None
+    unwritten = set("".join(fit.get("unwritten") or []))
+
+    def spoken(text: str) -> str:
+        text = "".join(ch for ch in text.replace("ʰ", "h") if ch not in unwritten)
+        return text.replace("v", "w")
+
+    if fit.get("convention"):
+        # A closing convention writes a sign that carries no sound of its own
+        # (the y of a-i-t-i-y marks the final -i), so a dictionary may print
+        # that letter and the two are one reading.
+        return any(_same_form(spoken(form), spoken(reading)) or
+                   _same_form(spoken(form), spoken(reading)[:-1])
+                   for reading in recorded)
+    return any(_same_form(spoken(form), spoken(reading)) for reading in recorded)
 
 
 def _same_reading(fit: dict, form: str, readings: list[str]) -> bool:
