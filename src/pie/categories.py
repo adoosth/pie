@@ -23,7 +23,9 @@ category                colour      definition
                                     adjustment of ours (a report for the law and
                                     one for the word)
 ``partial``             yellow      a recorded chain from PIE that the engine
-                                    does not reproduce exactly — the worklist
+                                    does not reproduce exactly, or whose rungs
+                                    are not all words this model holds — the
+                                    worklist
 ``unexplained``         red         no recorded etymology at all
 ``non_pie``             dark grey   recorded as coming from outside the family
                                     (Arabic into Persian, Turkic, Semitic …)
@@ -75,7 +77,8 @@ CATEGORIES: dict[str, dict] = {
         "colour": "#f2b705",
         "short": "yellow",
         "definition": ("A recorded chain that does not reach the word from the PIE "
-                       "etymon: it starts lower, or the laws do not reproduce it."),
+                       "etymon in full: it starts lower, a recorded rung has no "
+                       "entry, or the laws do not reproduce it."),
     },
     "unexplained": {
         "label": "unexplained",
@@ -170,7 +173,7 @@ def verdict(*, recorded: bool, non_ie: bool = False, ie_loan: bool = False,
             pie_linked: bool = False, mismatched_steps=(),
             from_pie: bool = False, start_name: str = "",
             built_from=(), built_note: str = "",
-            construction: dict | None = None) -> dict:
+            construction: dict | None = None, missing_steps=()) -> dict:
     """One word's category from the facts the counter measured.
 
     ``matched_by`` is the strongest thing that worked: ``laws`` (the derived form
@@ -201,6 +204,15 @@ def verdict(*, recorded: bool, non_ie: bool = False, ie_loan: bool = False,
     terms as the laws: exact against the record is dark green, a recorded step
     that disagrees is light green, and both need the construction to be the
     record's own (admin, 2026-11-13).
+
+    ``missing_steps`` is the recorded ancestry a stage's glossary does not hold
+    — ``service.unrecorded_ancestry`` returns one row per such ancestor.  A
+    timeline with a hole in it is incomplete however exactly the laws reproduce
+    the last mile, so a word with a missing rung is *partially* explained and
+    says which word is missing.  This is the only clause of the admin's test
+    ("every segment starts from PIE, the laws or a registered construction
+    produce the word, and everything matches what is recorded") that was not
+    measured before 2026-11-13.
     """
     if non_ie:
         return {"category": "non_pie", "reason": "non-ie source"}
@@ -219,6 +231,22 @@ def verdict(*, recorded: bool, non_ie: bool = False, ie_loan: bool = False,
 
     used = set(tiers or ())
     ours = used & OUR_TIERS
+
+    # A recorded rung whose word this glossary does not hold is a hole in the
+    # timeline: the page prints "no entry for this word" over it, so the band
+    # cannot be green beside it.  Checked before every green route — the laws,
+    # a construction and a writing layer alike — because the missing word is
+    # the explanation of a stage, not a property of the last mile
+    # (admin, 2026-11-13).
+    holes = [row for row in (missing_steps or ()) if isinstance(row, dict)]
+    if holes:
+        named = ", ".join(f"{row.get('name') or row.get('stage')} "
+                          f"{row.get('written') or row.get('form')}" for row in holes[:3])
+        more = "" if len(holes) <= 3 else f" and {len(holes) - 3} more"
+        return {"category": "partial",
+                "reason": f"no entry for {named}{more}",
+                "missing_steps": [str(row.get("stage") or "") for row in holes],
+                "missing": holes}
 
     # A word the record builds out of its own words is derived by that
     # construction, not by a law: *andaswarō is *anda- + *swarō, and neither

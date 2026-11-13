@@ -20,15 +20,15 @@ never a count and never in a denominator.
 
 | band | words | share | definition |
 |---|---:|---:|---|
-| **fully explained** (dark green) | 1,091 | 0.3% | A recorded origin — a PIE etymon carried by cited laws, or the record's own registered construction of explained pieces — reproduced exactly, every recorded intermediate matching. |
-| **fully explained, with adjustments** (light green) | 147 | 0.0% | The same path, but a recorded intermediate disagrees, or one step is an approved adjustment of ours. |
-| **partially explained** (yellow) | 131,020 | 34.4% | A recorded chain that does not reach the word from the PIE etymon: it starts lower, or the laws do not reproduce it. |
+| **fully explained** (dark green) | 852 | 0.2% | A recorded origin — a PIE etymon carried by cited laws, or the record's own registered construction of explained pieces — reproduced exactly, every recorded intermediate matching. |
+| **fully explained, with adjustments** (light green) | 54 | 0.0% | The same path, but a recorded intermediate disagrees, or one step is an approved adjustment of ours. |
+| **partially explained** (yellow) | 131,352 | 34.5% | A recorded chain that does not reach the word from the PIE etymon in full: it starts lower, a recorded rung has no entry, or the laws do not reproduce it. |
 | **unexplained** (red) | 77,633 | 20.4% | No recorded etymology. |
 | **non-PIE** (dark grey) | 91,918 | 24.1% | Recorded as borrowed from outside the family. |
 | **loan from another IE language** (blue grey) | 71,976 | 18.9% | Borrowed from a sister branch; recorded, not derived by this chain. |
 | **built from its own words** (brown) | 7,324 | 1.9% | Made of the language's own words, or of one plus a suffix: a formation, not a derivation. |
 
-**1,238 of 381,109 attested words are fully explained (0.32%), and 71,976 more are recorded loans from a
+**906 of 381,109 attested words are fully explained (0.24%), and 71,976 more are recorded loans from a
 sister branch. Both greens need a recorded origin carried all the way to the
 word — by cited laws, or by the record's own registered construction (the
 pieces spell it, each piece starts from a PIE etymon or from outside the
@@ -42,29 +42,29 @@ ancestor (Old Persian 𐎣𐎠𐎶 from Proto-Iranian) is yellow.
 
 | language | full | adjusted | partial | unexplained | non-PIE | IE loan | built | in review | explained | stored |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| Sanskrit (`sa`) | 277 | 53 | 3,636 | 14 | 90 | 82 | 0 | 4,078 | 330 | 4,152 |
-| Persian (`fa`) | 256 | 10 | 4,828 | 76,750 | 71,691 | 2,918 | 7,321 | 2,091 | 266 | 163,774 |
-| English (`en`) | 181 | 3 | 57,001 | 104 | 15,924 | 41,017 | 3 | 31,153 | 184 | 114,233 |
-| Ancient Greek (`grc`) | 112 | 16 | 3,499 | 29 | 539 | 852 | 0 | 4,120 | 128 | 5,047 |
-| Latin (`la`) | 77 | 12 | 5,419 | 81 | 328 | 1,572 | 0 | 5,131 | 89 | 7,489 |
-| Gothic (`got`) | 39 | 2 | 1,918 | 0 | 54 | 139 | 0 | 1,030 | 41 | 2,152 |
-| Old Irish (`sga`) | 30 | 4 | 1,682 | 1 | 35 | 167 | 0 | 1,534 | 34 | 1,919 |
-| Lithuanian (`lt`) | 18 | 15 | 1,412 | 0 | 83 | 853 | 0 | 1,204 | 33 | 2,381 |
-| Old Norse (`non`) | 25 | 2 | 2,938 | 1 | 4 | 85 | 0 | 2,082 | 27 | 3,055 |
-| Old Church Slavonic (`chu`) | 11 | 12 | 1,832 | 0 | 21 | 102 | 0 | 626 | 23 | 1,978 |
-| Old Persian (`peo`) | 16 | 2 | 187 | 89 | 13 | 18 | 0 | 157 | 18 | 325 |
-| Avestan (`ave`) | 15 | 0 | 297 | 40 | 0 | 0 | 0 | 103 | 15 | 352 |
-| Italian (`it`) | 6 | 6 | 11,470 | 7 | 680 | 7,550 | 0 | 14,528 | 12 | 19,719 |
-| Old English (`ang`) | 8 | 3 | 6,044 | 7 | 63 | 299 | 0 | 3,633 | 11 | 6,424 |
-| Greek (`el`) | 5 | 5 | 6,576 | 0 | 407 | 3,147 | 0 | 5,241 | 10 | 10,140 |
-| Middle English (`enm`) | 6 | 2 | 4,423 | 11 | 72 | 2,992 | 0 | 3,084 | 8 | 7,506 |
+| Persian (`fa`) | 248 | 0 | 4,846 | 76,750 | 71,691 | 2,918 | 7,321 | 2,091 | 248 | 163,774 |
+| Sanskrit (`sa`) | 196 | 14 | 3,756 | 14 | 90 | 82 | 0 | 4,078 | 210 | 4,152 |
+| English (`en`) | 174 | 1 | 57,010 | 104 | 15,924 | 41,017 | 3 | 31,153 | 175 | 114,233 |
+| Ancient Greek (`grc`) | 63 | 9 | 3,555 | 29 | 539 | 852 | 0 | 4,120 | 72 | 5,047 |
+| Gothic (`got`) | 39 | 1 | 1,919 | 0 | 54 | 139 | 0 | 1,030 | 40 | 2,152 |
+| Latin (`la`) | 30 | 2 | 5,476 | 81 | 328 | 1,572 | 0 | 5,131 | 32 | 7,489 |
+| Old Norse (`non`) | 24 | 1 | 2,940 | 1 | 4 | 85 | 0 | 2,082 | 25 | 3,055 |
+| Old Irish (`sga`) | 21 | 2 | 1,693 | 1 | 35 | 167 | 0 | 1,534 | 23 | 1,919 |
+| Lithuanian (`lt`) | 11 | 8 | 1,426 | 0 | 83 | 853 | 0 | 1,204 | 19 | 2,381 |
+| Old Church Slavonic (`chu`) | 6 | 7 | 1,842 | 0 | 21 | 102 | 0 | 626 | 13 | 1,978 |
+| Avestan (`ave`) | 12 | 0 | 300 | 40 | 0 | 0 | 0 | 103 | 12 | 352 |
+| Greek (`el`) | 5 | 4 | 6,577 | 0 | 407 | 3,147 | 0 | 5,241 | 9 | 10,140 |
+| Old English (`ang`) | 5 | 2 | 6,048 | 7 | 63 | 299 | 0 | 3,633 | 7 | 6,424 |
+| Middle English (`enm`) | 5 | 1 | 4,425 | 11 | 72 | 2,992 | 0 | 3,084 | 6 | 7,506 |
+| Old Persian (`peo`) | 5 | 0 | 200 | 89 | 13 | 18 | 0 | 157 | 5 | 325 |
 | German (`de`) | 4 | 0 | 9,736 | 3 | 514 | 5,923 | 0 | 6,519 | 4 | 16,180 |
-| Middle Persian (`pal`) | 2 | 0 | 181 | 494 | 0 | 17 | 0 | 61 | 2 | 694 |
+| Italian (`it`) | 1 | 2 | 11,479 | 7 | 680 | 7,550 | 0 | 14,528 | 3 | 19,719 |
 | Old High German (`goh`) | 1 | 0 | 1,522 | 0 | 2 | 41 | 0 | 640 | 1 | 1,566 |
 | Hittite (`hit`) | 1 | 0 | 285 | 0 | 3 | 0 | 0 | 288 | 1 | 289 |
 | Old Armenian (`xcl`) | 1 | 0 | 1,024 | 0 | 133 | 261 | 0 | 1,153 | 1 | 1,419 |
 | Middle High German (`gmh`) | 0 | 0 | 542 | 0 | 0 | 32 | 0 | 185 | 0 | 574 |
 | Armenian (`hy`) | 0 | 0 | 2,252 | 0 | 514 | 2,271 | 0 | 231 | 0 | 5,037 |
+| Middle Persian (`pal`) | 0 | 0 | 183 | 494 | 0 | 17 | 0 | 61 | 0 | 694 |
 | Albanian (`sq`) | 0 | 0 | 1,861 | 0 | 745 | 1,401 | 0 | 1,842 | 0 | 4,007 |
 | Tocharian B (`txb`) | 0 | 0 | 427 | 0 | 2 | 234 | 0 | 507 | 0 | 663 |
 | Parthian (`xpr`) | 0 | 0 | 28 | 2 | 1 | 3 | 0 | 1 | 0 | 34 |

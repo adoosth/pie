@@ -1,3 +1,89 @@
+## 2026-11-13 — a rung must be an entry, and a composition takes its grade
+
+**What.** `iir-pro/HwáHyati` was dark green with a PIE rung that printed "no
+entry for this word": its record names *h₁wéh₂-ye-ti*, the laws reproduce the
+daughter from it exactly, and the PIE glossary had no such entry. The reader
+asked for the band to be *partial* until that entry exists, for the entry to be
+made from the record's own suffix formation, and for Proto-Indo-Iranian to be
+described correctly in the same way (admin, 2026-11-13).
+
+**The clause the verdict never measured.** "Every segment starts from a PIE
+etymon, the exact form is produced by the laws *or* a registered construction,
+and everything matches the record": the first two clauses were measured, the
+third was not. `service.unrecorded_ancestry` now reads the record's ancestry —
+through `_ancestry_triples`, with `_lemma_entry` so a hyphen, the engine's stress
+token, a stressless spelling and case are notation — and returns one row per
+form no entry of its stage heads. `categories.verdict` refuses **every** green
+route (laws, construction, writing layer) while that list is non-empty, and the
+page and the counter read the same call, so a band cannot disagree with a rung.
+Three kinds of row are not holes: a root or a bound spelling (a relation, a
+morpheme), a borrowing (not inheritance), and a stage with no glossary at all
+(Proto-Italic, Proto-Hellenic — a gap of ours, named as such). A row the
+extraction cut mid-etymology ("+") is punctuation, not a word.
+
+**The walk does not stop at the daughter's own record.** A rung that *is* an
+entry has a timeline of its own and the page draws it (`ownStep`), so a word
+*that* entry names and its glossary lacks is the same hole one stage higher:
+Sanskrit तृण inherits Proto-Indo-Iranian *tŕ̥nam, which is an entry, whose own
+record names PIE *tŕ̥nom, which is not. Depth is bounded (3) and a form is
+visited once. Filling the rungs filled the bands: iir-pro full 347 → 240.
+
+**The entry** (`data/lexicon/_supplement/ine-pro.jsonl.gz`, 40 rows).
+*h₁wéh₂yeti, verb, "to become empty, die out" — the sense is quoted from the
+Lithuanian *pavojus* record, which glosses *\*(h₁)wéh₂-ye-ti* so; the entry
+quotes that record, Greek ἐάω and Proto-Indo-Iranian *HwáHyati, and states the
+suffix formation those sentences give: *h₁weh₂- "to be/become empty" + *-yeti
+"thematic present, 3rd singular". A morphology row `ye` in
+`data/morphology/ine-pro.yaml` registers `-ye-` + `-ti` (Fortson, Sihler), and
+`_bound_forms` now registers a suffix's form *with its ending* (`-yeti`, `-nós`,
+`-m`), because that is the piece a record writes.
+
+**A composition takes the grade its suffix asks for.** A record cites the root
+under its e-grade and writes the word in the grade the suffix makes
+("*bʰn̥dʰtós, from *bʰendʰ- + *-tós*"). Read as a plain concatenation the row
+spelled *bʰendʰtós*, so 16 of the first 66 filed entries said their own
+construction "does not spell the word". `construction_path` now retries with
+`_formation_grade` — only for a grade the morphology table documents, and only
+when the plain join has failed — and `_grade_stem` learned the diphthong rule
+(a diphthong's zero grade is its second element: *leykʷ- → *likʷ-*, *wekʷ-* →
+*ukʷ-*, *dewk-* → *duk-*, *peys-* → *pis-*; and a root-initial glide vocalises:
+*wekʷ- → *ukʷ-*). 50 of the 66 now compose exactly; the 16 that do not name a
+suffix whose grade the table does not state (*-is, *-us, *-ós, *-wós, *-trom)
+and say so.
+
+**The tool** (`tools/add_pie_ancestors.py`, new, idempotent). For each hole in a
+daughter's record: the record's own `… from *A (“x”) + *B (y)` clause *for that
+form*, every piece a PIE word or a registered morpheme, the consonant skeletons
+equal (vowels, laryngeals, glides and stress set aside), no hedged sentence
+(`uncertain|possibly|perhaps|…`), and the entry's own construction must compose
+exactly. The gloss stays empty unless the record glosses the form; the citation
+is the sentence and the page it came from. Run for Proto-Indo-Iranian it filed
+68 entries and refused 259, each with its reason (the record states no
+formation; the clause is about another form; the record hedges it; the model
+cannot compose the suffix's grade yet). `--check` now reports 0.
+
+**Measured.** iir-pro (799 entries): full 347 → 187 with the guard alone, 240
+after the entries and the grade rule; partial 386 → 502; every demotion carries
+a real hole, and no word moved up that was not green before. Corpus-wide
+full+adjusted 1,238 → 906: sa 330 → 210, la 89 → 32, grc 128 → 72, en 184 → 175.
+Those are the same class — a Latin word whose record names PIE *twé or *kʷóm,
+forms the PIE glossary does not hold — and the same tool fills them
+(`--lang la` finds 8, `--lang gem-pro` 26, 59 in all the affected stages); they
+are the worklist, not a regression to hide.
+
+**Not measured, and named as the next gap.** ~100-280 words per language have
+an *existing* ancestor whose stored construction does not compose its form even
+with the documented grades (e.g. iir-pro *éti < *ís + *-ti). The fix is more
+morphology documentation, not a colour; a demotion there would be right but is a
+different measurement.
+
+**Tests.** `tests/test_build.IncompleteTimeline` (the hole, the recursive hole,
+the "+" row, the band/rung agreement across the stage) and
+`tests/test_build.GradedComposition` (zero and o grade, diphthongs, an
+undocumented suffix still getting no grade, the PIE entry and its `*-yeti`
+construction); `tests/test_categories.MissingRungTest` (a hole outranks every
+green route and cannot be bought back by a construction).
+
 ## 2026-11-13 — a registered construction may carry a word to "fully explained"
 
 **What.** The reader looked at `gem-pro/andaswarō`, saw that nothing was

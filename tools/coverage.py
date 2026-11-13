@@ -824,6 +824,10 @@ def measure(lang: str, meta: dict, chain: list[str], rulesets, tiers, limit: int
             from_pie=bool(layer_stage) and layer_stage == chain[0],
             start_name=(data.languages().get(layer_stage or "", {}).get("name")
                         or layer_stage or ""),
+            # Every rung of the recorded ancestry must be a word this model
+            # holds, or the timeline has a hole and the band cannot be green
+            # (admin, 2026-11-13).
+            missing_steps=service.unrecorded_ancestry(entry, chain),
         )
 
     # Every attested word gets a verdict, not only the ones a rule could
@@ -855,6 +859,7 @@ def measure(lang: str, meta: dict, chain: list[str], rulesets, tiers, limit: int
             built_note=built_note,
             construction=construction,
             pie_linked=inherited(entry),
+            missing_steps=service.unrecorded_ancestry(entry, chain),
         )
     for entry in attested if categorical else ():
         verdict = verdicts.get(id(entry))

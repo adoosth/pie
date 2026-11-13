@@ -159,6 +159,21 @@ suffixes:
     sources: [fortson-2004, ringe-2006]
     example: "Latin puer → pueriscus (the type, in Latin)"
 
+  - id: ye
+    form: "-ye-"
+    ending: "-ti"
+    attach: keep
+    gloss: "thematic present, 3rd singular"
+    note: >
+      The unaccented *-ye- present: the thematic type beside the oxytone *-yé-
+      of the grade table below. It adds the primary ending *-ti and changes
+      nothing in the root, so *h₁weh₂- + *-yeti gives *h₁wéh₂yeti with the
+      accent on the root. Three descendants of exactly that form are recorded
+      (Greek ἐάω, Lithuanian pavojus, Proto-Indo-Iranian *HwáHyati).
+    outcomes: "Sanskrit -yati, Greek -έω, Lithuanian -óti (thematic presents)"
+    sources: [fortson-2004, sihler-1995, wiktionary]
+    example: "*h₁weh₂- ‘to be/become empty’ → *h₁wéh₂yeti ‘becomes empty’"
+
 # The grammatical endings a construction may carry (2026-11-08: # the *-ós* in *dl̥h₁gʰós* must say what it is). A construction names a stem and
 # the letters the headword wears after it; when those letters are the
 # paradigm's ending rather than a derivational suffix, this table says what the

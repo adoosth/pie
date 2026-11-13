@@ -1,4 +1,4 @@
-generated: 2026-11-13 00:27
+generated: 2026-11-13 02:01
 kinds:
   etymon_missing: the PIE (or oldest modelled) ancestor named in anc is not a headword in that stage's glossary
   cognate_conflict: the entry's cognate set names a different PIE form from the PIE ancestor in anc
@@ -6,16 +6,16 @@ kinds:
   sense_mismatch: the entry's gloss shares no content word with the claimed etymon's gloss or with its cognate set's gloss
 counts:
   by_kind:
-    etymon_missing: 46666
+    etymon_missing: 46655
     cognate_conflict: 4880
     hedged_ancestry: 13712
-    sense_mismatch: 25964
+    sense_mismatch: 26041
   by_language:
     ang:
       etymon_missing: 1850
       cognate_conflict: 212
       hedged_ancestry: 391
-      sense_mismatch: 1180
+      sense_mismatch: 1181
     ave:
       etymon_missing: 43
       hedged_ancestry: 6
@@ -24,32 +24,32 @@ counts:
       etymon_missing: 284
       cognate_conflict: 46
       hedged_ancestry: 28
-      sense_mismatch: 268
+      sense_mismatch: 270
     de:
       etymon_missing: 4100
       cognate_conflict: 148
       hedged_ancestry: 1060
-      sense_mismatch: 1211
+      sense_mismatch: 1213
     el:
-      etymon_missing: 4558
+      etymon_missing: 4557
       cognate_conflict: 49
       hedged_ancestry: 182
       sense_mismatch: 452
     en:
-      etymon_missing: 14614
+      etymon_missing: 14613
       cognate_conflict: 1139
       hedged_ancestry: 5627
-      sense_mismatch: 9773
+      sense_mismatch: 9802
     enm:
       etymon_missing: 1781
       cognate_conflict: 72
       hedged_ancestry: 436
       sense_mismatch: 795
     fa:
-      etymon_missing: 1081
+      etymon_missing: 1080
       cognate_conflict: 121
       hedged_ancestry: 380
-      sense_mismatch: 509
+      sense_mismatch: 510
     gmh:
       etymon_missing: 106
       cognate_conflict: 9
@@ -59,22 +59,22 @@ counts:
       etymon_missing: 251
       cognate_conflict: 44
       hedged_ancestry: 54
-      sense_mismatch: 291
+      sense_mismatch: 292
     got:
       etymon_missing: 175
       cognate_conflict: 82
       hedged_ancestry: 106
       sense_mismatch: 667
     grc:
-      etymon_missing: 1029
+      etymon_missing: 1024
       cognate_conflict: 490
       hedged_ancestry: 903
-      sense_mismatch: 1698
+      sense_mismatch: 1705
     hit:
       etymon_missing: 106
       cognate_conflict: 53
       hedged_ancestry: 44
-      sense_mismatch: 85
+      sense_mismatch: 86
     hy:
       etymon_missing: 15
       cognate_conflict: 5
@@ -84,22 +84,22 @@ counts:
       etymon_missing: 11609
       cognate_conflict: 209
       hedged_ancestry: 1031
-      sense_mismatch: 1679
+      sense_mismatch: 1680
     la:
-      etymon_missing: 1215
+      etymon_missing: 1213
       cognate_conflict: 586
       hedged_ancestry: 1388
-      sense_mismatch: 1942
+      sense_mismatch: 1951
     lt:
       etymon_missing: 388
       cognate_conflict: 112
       hedged_ancestry: 273
-      sense_mismatch: 431
+      sense_mismatch: 434
     non:
       etymon_missing: 488
       cognate_conflict: 217
       hedged_ancestry: 202
-      sense_mismatch: 1175
+      sense_mismatch: 1177
     pal:
       etymon_missing: 30
       hedged_ancestry: 13
@@ -110,20 +110,20 @@ counts:
       hedged_ancestry: 15
       sense_mismatch: 60
     sa:
-      etymon_missing: 1389
+      etymon_missing: 1388
       cognate_conflict: 680
       hedged_ancestry: 481
-      sense_mismatch: 1528
+      sense_mismatch: 1532
     sga:
       etymon_missing: 351
       cognate_conflict: 191
       hedged_ancestry: 151
-      sense_mismatch: 841
+      sense_mismatch: 844
     sq:
       etymon_missing: 576
       cognate_conflict: 235
       hedged_ancestry: 380
-      sense_mismatch: 651
+      sense_mismatch: 656
     txb:
       etymon_missing: 123
       cognate_conflict: 71
@@ -133,14 +133,14 @@ counts:
       etymon_missing: 446
       cognate_conflict: 84
       hedged_ancestry: 312
-      sense_mismatch: 311
+      sense_mismatch: 317
     xpr:
       etymon_missing: 1
 truncated:
-  etymon_missing: 45466
+  etymon_missing: 45455
   cognate_conflict: 3380
   hedged_ancestry: 12912
-  sense_mismatch: 25564
+  sense_mismatch: 25641
 words:
 - {detail: ancestry names *-eh₂yési at ine-pro; the PIE glossary has no headword eh₂yési, etymon: '*-eh₂yési', evidence: 'anc row: ine-pro *-eh₂yési (inherit)', found: '2026-11-13', kind: etymon_missing, lang: ang, status: open, word: -ast}
 - {detail: ancestry names *Háwǰaswants at iir-pro; the iir-pro glossary has no headword háwǰaswants, etymon: '*Háwǰaswants', evidence: 'anc row: iir-pro *Háwǰaswants; no PIE ancestor is named', found: '2026-11-13', kind: etymon_missing, lang: ave, status: open, word: 𐬀𐬊𐬘𐬋𐬢𐬵𐬎𐬎𐬀𐬧𐬙}
@@ -3754,7 +3754,7 @@ words:
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: tewtéh₂, evidence: 'gloss given, male vs etymon gloss crowd, heap, pile; cognate set gloss crowd, heap, pile', found: '2026-11-13', kind: sense_mismatch, lang: goh, status: open, word: Diotgrim}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*ǵn̥h₁tós', evidence: 'gloss added, born, root, specified vs etymon gloss begotten, produced; cognate set gloss begotten, produced', found: '2026-11-13', kind: sense_mismatch, lang: got, status: open, word: -𐌺𐌿𐌽𐌳𐍃}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*-wénts', evidence: 'gloss ful vs etymon gloss adjectives, nominal, possessive, stems; cognate set gloss adjectives, nominal, possessive, stems', found: '2026-11-13', kind: sense_mismatch, lang: grc, status: open, word: -εις}
-- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₁n̥gʷnis', evidence: 'gloss agni, deity, vedic vs cognate set gloss fire', found: '2026-11-13', kind: sense_mismatch, lang: hit, status: open, word: 𒀀𒀝𒉌𒅖}
+- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₁n̥gʷnis', evidence: 'gloss agni, deity, vedic vs etymon gloss fire; cognate set gloss fire', found: '2026-11-13', kind: sense_mismatch, lang: hit, status: open, word: 𒀀𒀝𒉌𒅖}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: h₂óyu, evidence: 'gloss yes vs etymon gloss lifetime, long, time; cognate set gloss lifetime, long, time', found: '2026-11-13', kind: sense_mismatch, lang: hy, status: open, word: այո}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: gʰébʰōl, evidence: 'gloss cephaly vs etymon gloss head, top; cognate set gloss head, top', found: '2026-11-13', kind: sense_mismatch, lang: it, status: open, word: -cefalia}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*-eh₂yéti', evidence: 'gloss active, conjugation, first, indicative vs etymon gloss causative, creates, frequentative, intensive; cognate set gloss causative, creates, frequentative, intensive', found: '2026-11-13', kind: sense_mismatch, lang: la, status: open, word: -as}
@@ -3914,7 +3914,7 @@ words:
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: bʰeh₂g, evidence: 'gloss garden, orchard vs etymon gloss allot, distribute, divide; cognate set gloss allot, distribute, divide', found: '2026-11-13', kind: sense_mismatch, lang: peo, status: open, word: bāgah}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*-kos', evidence: 'gloss diminutive, masculine, nominal, suffix vs etymon gloss adjectives, characteristic, creates, deadjectival; cognate set gloss adjectives, characteristic, creates, deadjectival', found: '2026-11-13', kind: sense_mismatch, lang: sa, status: open, word: -क}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*bʰérǵʰonts', evidence: 'gloss brythonic, given, male, proto vs etymon gloss high; cognate set gloss high', found: '2026-11-13', kind: sense_mismatch, lang: sga, status: open, word: Brénainn}
-- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₁n̥gʷnis', evidence: gloss jupiter vs cognate set gloss fire, found: '2026-11-13', kind: sense_mismatch, lang: sq, status: open, word: Enjt}
+- {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*h₁n̥gʷnis', evidence: gloss jupiter vs etymon gloss fire; cognate set gloss fire, found: '2026-11-13', kind: sense_mismatch, lang: sq, status: open, word: Enjt}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*ǵneh₃-', evidence: 'gloss foolish, stupid vs etymon gloss know, recognise; cognate set gloss know, recognise', found: '2026-11-13', kind: sense_mismatch, lang: txb, status: open, word: aknātsa}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*-s', evidence: 'gloss case, countries, forming, marker vs etymon gloss accented, derives, feminine, mobile', found: '2026-11-13', kind: sense_mismatch, lang: xcl, status: open, word: -ք}
 - {detail: the entry's gloss and the claimed origin's gloss share no content word, etymon: '*leyg-', evidence: 'gloss act, action, activity, ation vs etymon gloss around, dance, frolic, jitter', found: '2026-11-13', kind: sense_mismatch, lang: ang, status: open, word: -lac}

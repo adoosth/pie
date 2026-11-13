@@ -430,3 +430,175 @@ class ConstructionCarries(unittest.TestCase):
                           "explained": True, "stated": True})
         self.assertEqual(row["category"], "full")
         self.assertNotIn("construction", row["reason"])
+
+
+class IncompleteTimeline(unittest.TestCase):
+    """A recorded rung that is not a word of its stage cannot be green.
+
+    Proto-Indo-Iranian *HwáHyati is reproduced character for character from the
+    PIE form its record names (*h₁wéh₂-ye-ti), and the page printed "fully
+    explained" while the PIE rung under it said "no entry for this word": the
+    chain was complete by the laws and incomplete in the record
+    (admin, 2026-11-13).  The band now asks the same question the rung asks,
+    through one helper (``service.unrecorded_ancestry``), so a green band and a
+    missing rung cannot appear on one page.
+    """
+
+    def test_a_recorded_ancestor_no_entry_heads_is_reported(self):
+        # *mitrás is "from Proto-Indo-European *mi-tró-s" and the PIE glossary
+        # has no such word (the record names it and never says how it was made,
+        # so `tools/add_pie_ancestors.py` refuses to file one).
+        entry = service._lemma_entry("iir-pro", "mitrás")
+        holes = service.unrecorded_ancestry(entry, ["ine-pro", "iir-pro"])
+        self.assertEqual([(h["stage"], h["form"]) for h in holes],
+                         [("ine-pro", "mi-tró-s")])
+
+    def test_the_page_that_reported_it_is_yellow_and_says_why(self):
+        page = service.word("iir-pro", "mitrás")["category"]
+        self.assertEqual(page["category"], "partial")
+        self.assertEqual(page["reason"],
+                         "no entry for Proto-Indo-European *mi-tró-s")
+
+    def test_a_root_and_a_bound_form_are_not_steps(self):
+        # *h₁weh₂- is a relation, not a rung; an entry with only that row has
+        # no hole to report even though the *-ye-ti word is a different word.
+        entry = service._lemma_entry("iir-pro", "HwáHyati")
+        holes = service.unrecorded_ancestry(entry, ["ine-pro", "iir-pro"])
+        self.assertEqual(holes, [])
+
+    def test_the_band_and_the_rung_agree_across_the_stage(self):
+        # The rule is general, in the direction that matters: a rung that
+        # prints "no entry for this word" never stands over a green band, and a
+        # green band means no recorded ancestor is missing.  (The converse does
+        # not hold — a word can be yellow for a hole the ladder does not print,
+        # or for a last mile the laws miss.)
+        for word in ("HwáHyati", "dʰárati", "Hr̥tás", "stáHnam", "Háćru",
+                     "nagnás", "smárati", "mitrás", "Hásuras"):
+            page = service.word("iir-pro", word)
+            band = page["category"]["category"]
+            rows = [row for row in page["hierarchy"]["levels"]
+                    if (row.get("recorded") or {}).get("known") is False]
+            if rows:
+                self.assertEqual(band, "partial", f"{word}: {rows[0]['form']}")
+            if band == "full":
+                entry = service._lemma_entry("iir-pro", word)
+                self.assertEqual(
+                    service.unrecorded_ancestry(entry, ["ine-pro", "iir-pro"]),
+                    [], word)
+
+    def test_the_stressless_spelling_of_a_headword_is_the_same_word(self):
+        # A record often quotes a reconstruction without the accent the
+        # dictionary heads (*h₂m̥bʰi for h₂m̥bʰí).  That is notation, not a
+        # missing word.
+        self.assertEqual(service._lemma_entry("ine-pro", "h₂m̥bʰi")["word"], "h₂m̥bʰí")
+        self.assertEqual(service._lemma_entry("ine-pro", "h₂eḱru")["word"], "h₂éḱru")
+
+    def test_a_hole_above_an_ancestor_is_the_same_hole(self):
+        # Sanskrit तृण inherits Proto-Indo-Iranian *tŕ̥nam, which the glossary
+        # holds, and *that* entry names a PIE word the PIE glossary does not
+        # (*tŕ̥nom).  The daughter's page draws the ancestor's timeline, so the
+        # missing word is visible one step higher and cannot be green either.
+        entry = service._lemma_entry("sa", "तृण")
+        holes = service.unrecorded_ancestry(
+            entry, ["ine-pro", "iir-pro", "inc-pro", "sa"])
+        self.assertEqual([(h["stage"], h["form"]) for h in holes],
+                         [("ine-pro", "tŕ̥nom")])
+        self.assertEqual(holes[0]["via"], "tŕ̥nam")
+
+    def test_a_cut_etymology_row_is_not_a_word(self):
+        # One entry's extraction left the join ("+") in its ancestry row.
+        # Punctuation is not a form, so it is never reported as a hole.
+        entry = service._lemma_entry("gem-pro", "*sagō")
+        forms = [h["form"] for h in
+                 service.unrecorded_ancestry(entry, ["ine-pro", "gem-pro"])]
+        self.assertNotIn("+", forms)
+
+
+class GradedComposition(unittest.TestCase):
+    """A composition takes the grade its suffix asks for.
+
+    A record cites the root under the e-grade it is listed under and writes the
+    word in the grade the suffix makes: "*bʰn̥dʰtós, from *bʰendʰ- + *-tós".
+    Read as a plain concatenation the row spelled *bʰendʰtós, so the entry said
+    its own construction "does not spell the word" (2026-11-13).
+    """
+
+    def entry(self, word):
+        return service._lemma_entry("ine-pro", word)
+
+    def test_a_zero_grade_suffix_gets_the_root_it_asks_for(self):
+        path = service.construction_path(self.entry("bʰn̥dʰtós"), "ine-pro")
+        self.assertTrue(path["exact"])
+        self.assertTrue(path["explained"])
+        self.assertEqual(path["form"], "bʰn̥dʰtós")
+        self.assertEqual(path["grade"]["grade"], "zero")
+
+    def test_an_o_grade_suffix_gets_the_root_it_asks_for(self):
+        path = service.construction_path(self.entry("bʰóh₂mos"), "ine-pro")
+        self.assertTrue(path["exact"])
+        self.assertEqual(path["grade"]["grade"], "o")
+
+    def test_the_diphthong_zero_grade_is_its_second_element(self):
+        # *leykʷ- → *likʷ-, *wekʷ- → *ukʷ-, *dewk- → *duk-; the old reading
+        # dropped the vowel and kept a glide that is not a syllable.
+        for stem, made in (("leykʷ-", "likʷ"), ("wekʷ-", "ukʷ"),
+                           ("dewk-", "duk"), ("peys-", "pis"),
+                           ("bʰeyh₂-", "bʰih₂")):
+            self.assertEqual(service._formation_grade(stem, "-tós", "ine-pro")[0],
+                             made, stem)
+
+    def test_an_undocumented_suffix_still_gets_no_grade(self):
+        # *-ró- is not a documented grade type, so nothing is guessed.
+        self.assertEqual(service._formation_grade("ḱweyt-", "-rós", "ine-pro")[0],
+                         "ḱweyt-")
+
+    def test_the_word_the_record_names_is_an_entry_again(self):
+        # *ukʷ-tó-s is the PIE word Proto-Indo-Iranian *uktás inherits.
+        page = service.word("iir-pro", "uktás")
+        self.assertEqual(page["category"]["category"], "full")
+        self.assertIsNotNone(self.entry("ukʷtós"))
+
+
+class NamedAncestorEntry(unittest.TestCase):
+    """The PIE form a Proto-Indo-Iranian record names is an entry of its own.
+
+    *HwáHyati's record says "From Proto-Indo-European *h₁wéh₂-ye-ti, from
+    *h₁weh₂-", so the PIE word is the root plus a present suffix — and the PIE
+    page has to show that construction, not only the word.
+    """
+
+    def test_the_entry_exists_with_the_sense_its_records_quote(self):
+        page = service.word("ine-pro", "h₁wéh₂yeti")
+        self.assertIsNotNone(page)
+        self.assertEqual(page["gloss"], ["to become empty, die out"])
+        self.assertEqual(page["pos"], "verb")
+
+    def test_its_timeline_states_the_suffix_formation(self):
+        level = service.word("ine-pro", "h₁wéh₂yeti")["hierarchy"]["levels"][0]
+        builds = level["builds"]
+        self.assertEqual(len(builds), 1)
+        self.assertEqual(builds[0]["kind"], "suffix")
+        self.assertEqual([p["form"] for p in builds[0]["pieces"]],
+                         ["*h₁weh₂-", "*-yeti"])
+        # A bound piece is a registered morpheme, not a word with an origin.
+        self.assertTrue(builds[0]["pieces"][1]["bound"])
+        self.assertTrue(builds[0]["pieces"][1]["known"])
+
+    def test_the_construction_spells_the_word_and_stands_on_pie(self):
+        entry = service._lemma_entry("ine-pro", "h₁wéh₂yeti")
+        path = service.construction_path(entry, "ine-pro")
+        self.assertTrue(path["exact"])
+        self.assertTrue(path["explained"])
+        self.assertEqual([p["origin"] for p in path["pieces"]],
+                         ["PIE *h₁weh₂", "registered morpheme"])
+
+    def test_the_descendants_record_the_same_word(self):
+        # The form is named by three records: Proto-Indo-Iranian *HwáHyati,
+        # Greek ἐάω and Lithuanian pavojus (through *pavóti).
+        self.assertEqual(service._lemma_entry("ine-pro", "h₁wéh₂-ye-ti")["word"],
+                         "h₁wéh₂yeti")
+        entry = service._lemma_entry("iir-pro", "HwáHyati")
+        self.assertEqual(
+            service.unrecorded_ancestry(entry, ["ine-pro", "iir-pro"]), [])
+        self.assertEqual(service.word("iir-pro", "HwáHyati")["category"]["category"],
+                         "full")

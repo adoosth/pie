@@ -172,6 +172,66 @@ class RecordedStepTest(unittest.TestCase):
         self.assertEqual(row["category"], "full")
 
 
+class MissingRungTest(unittest.TestCase):
+    """A timeline with a hole in it is not "fully explained".
+
+    The admin's test (2026-11-13): every segment starts from PIE or a non-PIE
+    language, the exact word is produced by cited laws *or* by the record's own
+    registered construction, and everything matches what is recorded.  The
+    third clause had a gap — a rung whose word the stage's glossary does not
+    hold was never checked — so Proto-Indo-Iranian *HwáHyati read dark green
+    over a PIE rung that printed "no entry for this word".
+    """
+
+    hole = {"stage": "ine-pro", "name": "Proto-Indo-European",
+            "form": "h₁wéh₂-ye-ti", "written": "*h₁wéh₂-ye-ti"}
+
+    def test_a_missing_rung_is_partial_even_with_exact_laws(self):
+        row = categories.verdict(recorded=True, pie_linked=True, from_pie=True,
+                                 matched_by="laws", tiers={"established"},
+                                 missing_steps=[self.hole])
+        self.assertEqual(row["category"], "partial")
+        self.assertIn("h₁wéh₂-ye-ti", row["reason"])
+        self.assertEqual(row["missing_steps"], ["ine-pro"])
+
+    def test_it_cannot_be_bought_back_by_a_construction(self):
+        row = categories.verdict(
+            recorded=True, pie_linked=True, from_pie=True, matched_by="joined",
+            missing_steps=[self.hole],
+            construction={"note": "*a + *b", "exact": True,
+                          "explained": True, "stated": True})
+        self.assertEqual(row["category"], "partial")
+
+    def test_it_outranks_the_adjusted_band_too(self):
+        # A recorded step that disagrees is light green; a rung that does not
+        # exist is not explained at all, so it is yellow.
+        row = categories.verdict(recorded=True, pie_linked=True, from_pie=True,
+                                 matched_by="laws", tiers={"established"},
+                                 mismatched_steps=["iir-pro"],
+                                 missing_steps=[self.hole])
+        self.assertEqual(row["category"], "partial")
+
+    def test_a_non_pie_origin_still_wins(self):
+        # The bands are a precedence, and an Arabic loan has no PIE chain to
+        # have a hole in.
+        row = categories.verdict(recorded=True, non_ie=True,
+                                 missing_steps=[self.hole])
+        self.assertEqual(row["category"], "non_pie")
+
+    def test_the_reason_names_at_most_three_and_counts_the_rest(self):
+        holes = [{**self.hole, "form": f"f{i}", "written": f"*f{i}"} for i in range(5)]
+        row = categories.verdict(recorded=True, pie_linked=True, from_pie=True,
+                                 matched_by="laws", missing_steps=holes)
+        self.assertIn("and 2 more", row["reason"])
+        self.assertEqual(len(row["missing"]), 5)
+
+    def test_a_clean_chain_is_untouched(self):
+        row = categories.verdict(recorded=True, pie_linked=True, from_pie=True,
+                                 matched_by="laws", tiers={"established"},
+                                 missing_steps=())
+        self.assertEqual(row["category"], "full")
+
+
 class SummaryTest(unittest.TestCase):
     def test_unidentified_is_not_in_the_denominator(self):
         counts = {"full": 10, "adjusted": 2, "partial": 6, "unexplained": 1,

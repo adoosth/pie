@@ -1406,7 +1406,8 @@ function openDraft(btn) {
     <div class="rung-body">
       <div class="draftline">
         <span class="draftterm">${form(wordForm, stage,
-          { ev: level.recorded && level.recorded.known === false ? "missing" : (level.evidence || "") })}</span>
+          { ev: level.recorded && level.recorded.known === false
+              && level.recorded.modelled !== false ? "missing" : (level.evidence || "") })}</span>
         <span class="draftpieces"></span>
         <select class="dsel" aria-label="Add a word, a suffix or an ending to ${esc(wordForm)}">${draftMenu(stage, L.data.build_options)}</select>
         <button class="dclose ghost" type="button" aria-label="Close this construction row">×</button>
@@ -2190,7 +2191,11 @@ function renderHierarchy(h, d, opts) {
        etymology row names but no entry spells is not a word of that stage: the
        page prints it dark red, gives it no ✓ and no halo, and says plainly that
        there is no entry for it (admin, 2026-11-12). */
-    const held = !!(rec && rec.known !== false);
+    /* A stage this model holds no glossary for (Proto-Italic, Proto-Hellenic)
+       is not a hole in a word's record: the rung quotes the form and the page
+       says the model describes no glossary there (2026-11-13). */
+    const unmodelled = !!(rec && rec.modelled === false && rec.known !== true);
+    const held = !!(rec && (rec.known !== false || unmodelled));
     /* The record belongs beside the reconstruction, not below it: what the laws
        produce and what that stage's glossary or text has are shown on one line.
        When they are the same form it is printed once, glowing, with a ✓ — so a
@@ -2316,7 +2321,9 @@ function renderHierarchy(h, d, opts) {
        as "no entry for this word" (admin, 2026-11-12). */
     const entryNote = rec && !held
       ? `<span class="sub norec" data-tip="Nothing in ${esc(level.name)}'s glossary is spelled ${esc(rec.w)}: no headword, no reading of the signs, no entry. The form here is the one the etymology names, and nothing else in this stage records it.">no entry for this word</span>`
-      : "";
+      : (unmodelled
+        ? `<span class="sub norec" data-tip="This model holds no ${esc(level.name)} glossary, so the form is quoted from the record and is not linked: nothing is missing from the word's own stage, only from a stage the model does not describe.">no ${esc(level.name)} glossary in this model</span>`
+        : "");
     /* The laws' form is one reading of the signs the record writes, and the
        record itself reads them another way — an abjad's l-w-c can stand for
        rōč and rōz, and the dictionary says rōz. The rung prints both readings

@@ -1757,6 +1757,50 @@ def _sense_entry(lang: str, form: str, hint: str = "") -> dict | None:
     return scored[0][1] if scored[0][0] else rows[0]
 
 
+@lru_cache(maxsize=None)
+def _stressless_index(lang: str) -> dict[str, list[str]]:
+    """A stage's headwords keyed by their letters with stress left out.
+
+    A record often quotes a reconstruction without the accent the dictionary
+    heads (*h₂m̥bʰi for h₂m̥bʰí, *h₂eḱru for h₂éḱru), and that is one word in
+    two notations — ``stress_only`` already decides so for the rungs.  The map
+    exists only for the miss path, so a glossary is walked this way once per
+    process and never for a word the ordinary lookup already answered.
+    """
+    out: dict[str, list[str]] = {}
+    for word in data.lexicon_index(lang):
+        bare = _skeleton(word)
+        if bare:
+            out.setdefault(bare, []).append(word)
+    return out
+
+
+def _skeleton(form: str) -> str:
+    """A form's letters with every combining stress mark taken off."""
+    text = unicodedata.normalize("NFD", str(form or ""))
+    return "".join(ch for ch in text if not unicodedata.combining(ch)).casefold()
+
+
+def _same_boundness(a: str, b: str) -> bool:
+    """Whether two spellings are both bound (*-nós*) or both free (*nós*)."""
+    return ((a[:1] == "-") == (b[:1] == "-")) and ((a[-1:] == "-") == (b[-1:] == "-"))
+
+
+@lru_cache(maxsize=None)
+def _has_glossary(stage: str) -> bool:
+    """Whether this model holds any entry for ``stage`` at all.
+
+    The model describes the stages it has a glossary for.  Proto-Italic and
+    Proto-Hellenic sit in Latin's and Greek's chains without one, and a rung
+    there is a form the literature quotes, not a word this model can look up —
+    so the page must not read the silence as "no entry" (2026-11-13).
+    """
+    try:
+        return bool(data.lexicon_index(stage))
+    except Exception:
+        return False
+
+
 def _lemma_entry(lang: str, form: str) -> dict | None:
     """The glossary entry a form names, comparing lemmas without notation."""
     key = normalise_etymon(form)
@@ -1784,15 +1828,34 @@ def _lemma_entry(lang: str, form: str) -> dict | None:
     # is joined this way: in an attested language a hyphen can belong to the
     # headword itself (English well-being is not wellbeing).
     bare = form.strip("*").strip()
-    if len(bare) < 3 or "-" not in bare[1:-1]:
-        return None
-    if not ("*" in form or kind_of(lang) == "proto"):
-        return None
-    joined = detokenize(tokenize(form))
-    for candidate in (joined, printable_form(joined)):
-        other = normalise_etymon(candidate)
-        if other and other != key:
-            record = _lemma_index(lang).get(other)
+    if (len(bare) >= 3 and "-" in bare[1:-1]
+            and ("*" in form or kind_of(lang) == "proto")):
+        joined = detokenize(tokenize(form))
+        for candidate in (joined, printable_form(joined)):
+            other = normalise_etymon(candidate)
+            if other and other != key:
+                record = (_lemma_index(lang).get(other)
+                          or _lemma_index(lang).get(other.casefold()))
+                if record:
+                    return record
+            # The lemma index is keyed in lower case, so a headword the record
+            # writes with a capital (*HréwdH-ti → HréwdHti) was found nowhere
+            # and the rung said "no entry for this word" beside the entry.
+            rows = word_index().get((lang, candidate))
+            if rows:
+                return rows[0]
+    # One word, two notations of stress: a record that writes no accent
+    # names the headword that carries one (*h₂m̥bʰi → h₂m̥bʰí).  Only that
+    # difference is forgiven (``stress_only``), and a bound spelling answers
+    # only a bound headword, so *-nós* never becomes the free *nós*.
+    bare = _skeleton(key)
+    if bare and kind_of(lang) == "proto":
+        for head in _stressless_index(lang).get(bare, ())[:16]:
+            if not _same_boundness(form, head):
+                continue
+            if not stress_only(printable_form(form), head):
+                continue
+            record = _lemma_index(lang).get(normalise_etymon(head))
             if record:
                 return record
     return None
@@ -2095,10 +2158,24 @@ def _grade_stem(stem: str, grade: str) -> str:
         return stem
     after = tokens[index + 1] if index + 1 < len(tokens) else ""
     before = tokens[index - 1] if index else ""
+    # A diphthong's zero grade is its vocalic second element: *-ey- and *-oy-
+    # become *-i-, *-ew- and *-ow- become *-u- (*leykʷ- → *likʷ-, *dewk- →
+    # *duk-, *ḱweyt- → *ḱwit-).  Read as "the vowel is not beside a sonorant",
+    # these roots lost the vowel and kept a glide that is not a syllable at all
+    # (*l̥ykʷ-, *wkʷ-), which no record writes (2026-11-13).
+    if after in ("y", "w"):
+        return detokenize(tokens[:index] + ["i" if after == "y" else "u"]
+                          + tokens[index + 2:])
     if after in ("r", "l", "m", "n"):
         return detokenize(tokens[:index] + [after + _RING] + tokens[index + 2:])
     if before in ("r", "l", "m", "n"):
         return detokenize(tokens[:index - 1] + [before + _RING] + tokens[index + 1:])
+    # A glide that opened the syllable becomes the vowel when the root loses
+    # its own: *wekʷ- → *ukʷ-, *yeḱ- → *iḱ- (*ukʷ-tó-s is the word the record
+    # writes).
+    if before in ("w", "y"):
+        return detokenize(tokens[:index - 1] + ["u" if before == "w" else "i"]
+                          + tokens[index + 1:])
     # A root whose vowel is not beside a sonorant simply loses it.
     return detokenize(tokens[:index] + tokens[index + 1:])
 
@@ -3058,8 +3135,15 @@ def _bound_forms(stage: str) -> frozenset[str]:
     out = set()
     for row in list(table.get("suffixes") or []) + list(table.get("endings") or []):
         key = row.get("form") or row.get("id")
-        if key:
-            out.add(normalise_etymon(str(key)))
+        if not key:
+            continue
+        out.add(normalise_etymon(str(key)))
+        # A record writes a suffix with the ending it brings in one piece
+        # (*-yeti, *-nós), and that is the same morpheme as the table's
+        # *-ye- plus *-ti: the piece needs no ancestry either way.
+        ending = str(row.get("ending") or "")
+        if ending:
+            out.add(normalise_etymon(str(key).strip("-") + ending.strip("-")))
     return frozenset(out)
 
 
@@ -3074,14 +3158,20 @@ def _piece_text(kind: str, index: int, count: int, form: str, gloss: str) -> str
     different entry with a different history.
     """
     written = str(form or "").strip()
-    if not written or written[:1] == "-" or written[-1:] == "-":
+    # A reconstructed bound piece is written *-yeti: the asterisk comes first
+    # and the hyphen marks the seam after it, so the hyphen is read past the
+    # star (a plain ``written[:1] == "-"`` turned *-yeti into -*-yeti, and the
+    # composed form then spelled nothing).
+    star = "*" if written[:1] == "*" else ""
+    body = written[len(star):]
+    if not written or body[:1] == "-" or written[-1:] == "-":
         return written
     named = bool(re.search(r"\b(?:suffix|prefix|infix|ending)\b", str(gloss or ""), re.I))
     if kind == "suffix" and index == count - 1:
         named = True
     if kind == "prefix" and index == 0:
         named = True
-    return ("-" + written) if named else written
+    return (star + "-" + body) if named else written
 
 
 def _piece_origin(stage: str, form: str, chain: list[str]) -> dict:
@@ -3211,28 +3301,123 @@ def construction_path(entry: dict, lang: str, chain: list[str] | None = None) ->
     # notation and has to come off before the pieces are joined.
     written = [normalise_etymon(piece.replace("\u0640", "-")) or piece
                for piece in pieces]
-    composed = _joined_form(row["stage"], kind, written)
-    origins = [_piece_origin(row["stage"], piece, chain) for piece in pieces]
     word = normalise_etymon(str(entry.get("word") or ""))
+    composed = _joined_form(row["stage"], kind, written)
+    grade = None
+    exact = bool(composed) and (
+        composed.casefold() == word.casefold()
+        or stress_only(composed.casefold(), word.casefold()))
+    # A composition takes the grade its suffix asks for (the rule the page's
+    # own builder applies, v0.17.3): a record cites the root in the e-grade it
+    # is listed under and writes the word in the zero or o-grade the suffix
+    # makes (*bʰendʰ- + *-tós → *bʰn̥dʰtós).  Reading the row as a plain
+    # concatenation called such a word a construction that "does not spell the
+    # word".  Only a grade the morphology table documents is applied, and only
+    # when the plain join has already failed (2026-11-13).
+    if not exact and len(written) >= 2:
+        stem = written[0].lstrip("-")
+        suffix = "-" + written[-1].lstrip("-")
+        graded, why = _formation_grade(stem, suffix, row["stage"])
+        if why and graded:
+            attempt = _joined_form(row["stage"], kind, [graded] + written[1:])
+            if attempt and (attempt.casefold() == word.casefold()
+                            or stress_only(attempt.casefold(), word.casefold())):
+                composed, grade, exact = attempt, why, True
+    origins = [_piece_origin(row["stage"], piece, chain) for piece in pieces]
     return {
         "kind": kind,
         "stage": row["stage"],
         "stage_name": _lang(row["stage"]).get("name", row["stage"]),
         "note": " + ".join(pieces),
         "form": composed,
+        "grade": grade,
         # The pieces must spell the headword.  Two conventions are writing, not
         # sound, and are set aside the way the rest of the model sets them
         # aside: a capital's place in a proper name (ytterbium = Ytterby + -ium,
         # Greenleigh = green + -leigh) and the two ways of writing stress (a
         # dictionary's acute, the engine's ˈ).  Nothing else is forgiven.
-        "exact": bool(composed) and (
-            composed.casefold() == word.casefold()
-            or stress_only(composed.casefold(), word.casefold())),
+        "exact": exact,
         "stated": True,
         "pieces": origins,
         "unexplained": [o["form"] for o in origins if not o["explained"]],
         "explained": bool(origins) and all(o["explained"] for o in origins),
     }
+
+
+def unrecorded_ancestry(entry: dict, chain: list[str]) -> list[dict]:
+    """Recorded ancestors of this word that no entry of their stage heads.
+
+    A word is *fully* explained only when its whole recorded ancestry is a row
+    of words this model holds: every stage it names exists as an entry, the
+    laws carry the oldest one down, and the record's own construction, if any,
+    is registered.  The first two clauses were measured; the third was not, so
+    a timeline could print "no entry for this word" above a dark-green band
+    (admin, 2026-11-13: Proto-Indo-Iranian *HwáHyati, whose PIE rung
+    *h₁wéh₂-ye-ti* the PIE glossary did not hold).
+
+    The check is the reader's own: the forms come from ``_ancestry_triples``,
+    the lookup is ``_lemma_entry`` (so a hyphen, the engine's stress token and
+    case are notation, not a second word), and a row is skipped when it is not
+    a step of the word's chain:
+
+    * a **root** is a relation, not a step (*h₁weh₂-* above *h₁wéh₂-ye-ti*),
+      and a bound spelling (*anda-*, *bʰeh₂g-*) is a morpheme, not a word;
+    * a **borrowing** and a **calque** are not inheritance, so their donor
+      stages are not rungs of this timeline;
+    * a **stage this model holds no glossary for** (Proto-Italic, Proto-Hellenic)
+      is not measured at all.  The rung is a quotation, the page says the model
+      has no glossary there, and an inventory this model never built is a gap
+      of ours — not a hole in the record (`pie.dubious` makes the same
+      distinction).
+
+    The walk does not stop at the word's own record: a rung that *is* an entry
+    has a timeline of its own, and the page draws it (`ownStep`), so a word the
+    ancestor's record names and the glossary lacks is the same hole one step
+    higher — and it must be reported, or a daughter is green above a dark-red
+    row.  Only entries are followed (a hole has nothing to follow), depth is
+    bounded and a form is visited once, so a record that names its own
+    descendant cannot loop.
+
+    Nothing is guessed: a form the record names but the glossary lacks is
+    reported with the spelling the record used.
+    """
+    out: list[dict] = []
+
+    def walk(record: dict, depth: int, seen: set[tuple[str, str]]) -> None:
+        own = data.stage_of(record.get("lang") or "") or record.get("lang") or ""
+        for lang, word, rel in _ancestry_triples(record):
+            if rel not in ("inherit", "derived"):
+                continue
+            stage = data.stage_of(lang) or lang
+            if stage not in chain or stage == own or not _has_glossary(stage):
+                continue
+            for part in re.split(r"[,;]", word or ""):
+                raw = part.strip()
+                form = normalise_etymon(raw)
+                # A row the extraction cut in the middle of an etymology can
+                # hold the join itself ("+", from "*sok-éh₂ + *-nóm"): it is
+                # punctuation, not a form, and naming it would invent a word.
+                if (not form or raw.endswith("-") or form.endswith("-")
+                        or not any(ch.isalpha() for ch in form)):
+                    continue
+                if (stage, form) in seen:
+                    continue
+                seen.add((stage, form))
+                found = _lemma_entry(stage, form)
+                if found is None:
+                    out.append({"stage": stage,
+                                "name": _lang(stage).get("name", stage),
+                                "form": form,
+                                "written": ("*" if kind_of(stage) == "proto" else "")
+                                + form.lstrip("*"),
+                                "rel": rel,
+                                "via": str(record.get("word") or "")})
+                    continue
+                if depth > 0:
+                    walk(found, depth - 1, seen)
+
+    walk(entry, 3, set())
+    return out
 
 
 def ancestor_starts(entry: dict, chain: list[str],
@@ -3582,6 +3767,10 @@ def _category_of(entry: dict, chain: list[str], exact: dict | None,
                        for l, _w, rel in _ancestry_triples(entry)),
         from_pie=from_pie,
         start_name=(_lang(match_stage).get("name", match_stage) if match_stage else ""),
+        # Every rung of the recorded ancestry must be a word this model holds:
+        # a timeline with a hole in it is partial however exact the last mile
+        # (admin, 2026-11-13).
+        missing_steps=unrecorded_ancestry(entry, chain),
     )
     if verdict["category"] == "unexplained":
         # The page says the same thing the counter says: not only that there is
@@ -4222,6 +4411,9 @@ def _record_block(stage: str, here: dict | None, match_form: str | None,
         # sign the headword carries is the same word, and `headword` says which
         # entry holds it (2026-11-12).
         "known": bool(stage_entry),
+        # A stage without a glossary says nothing about the word: the rung is
+        # a quotation, and the page prints that instead of "no entry".
+        "modelled": _has_glossary(stage),
         "headword": headword or "",
     }, stage, primary)
     if near:

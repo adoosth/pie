@@ -974,6 +974,21 @@ A green path has one of two shapes, and the second is the only thing the
   record does not state never counts; one this model composes itself is held to
   the approval rule, exactly like our own law.
 
+- **every rung is a word of its stage.** Green also needs the timeline to be
+  whole: each recorded ancestor must be an entry of its stage, and the walk
+  continues through an ancestor's own entry, because the page draws that
+  ancestor's own step too — a hole one stage higher is the same hole.
+  `service.unrecorded_ancestry` is the one reader; while it has a row, the
+  verdict refuses every green route (*HwáHyati* was dark green over a PIE rung
+  that printed "no entry for this word", 2026-11-13). Three things are not a
+  hole: a **root** and a **bound** spelling (a relation and a morpheme, not
+  words), a **borrowing** (not inheritance), and a stage this model holds **no
+  glossary** for at all (Proto-Italic, Proto-Hellenic) — that is a gap of ours,
+  named as such, never a missing word of the record. And a composition takes
+  the grade its suffix asks for (*bʰendʰ-* + *-tós* → *bʰn̥dʰtós*; a
+  diphthong's zero grade is its second element, *leykʷ-* → *likʷ-*), because a
+  record cites the root in the grade it is listed under.
+
 - **Six bands** (`src/pie/categories.py`, one verdict shared by counter, coverage
   page and word pages): `full` (the whole path above, reproduced exactly),
   `adjusted` (the same path, with a recorded step or an approved change of
