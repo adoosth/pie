@@ -719,7 +719,7 @@ async function viewGlossary(params) {
         onclick="location.hash='${wordHref(lang, r.word, true, "", r.senses > 1 ? r.sense : 0)}'"
         onkeydown="if(event.key==='Enter')location.hash='${wordHref(lang, r.word, true, "", r.senses > 1 ? r.sense : 0)}'">
         <td><a class="mono glossword" href="${esc(wordHref(lang, r.word, true, "", r.senses > 1 ? r.sense : 0))}" dir="auto"${r.band ? ` style="--band:var(${bandVar(r.band)})" data-tip="${esc(bandTip(r.band))}"` : ""}>${esc(r.written || r.word)}</a>${r.senses > 1 ? `<span class="sense no" data-tip="This spelling is ${r.senses} words; this row is the ${r.sense}${r.sense === 1 ? "st" : r.sense === 2 ? "nd" : r.sense === 3 ? "rd" : "th"}.">${r.sense}</span>` : ""}
-          ${r.show_reading && r.reading ? `<span class="sub reading${r.reading_auto ? " auto" : ""}"${r.reading_auto ? ` data-tip="${esc(r.reading_note || "")}"` : ""}> ${esc(r.reading)}</span>` : ""}${phoneNotes(r)}</td>
+          ${!showTranscription && r.show_reading && r.reading ? `<span class="sub reading${r.reading_auto ? " auto" : ""}"${r.reading_auto ? ` data-tip="${esc(r.reading_note || "")}"` : ""}> ${esc(r.reading)}</span>` : ""}${phoneNotes(r)}</td>
         ${showTranscription ? `<td class="sub glossopt">${esc(optValue(r, "transcription") || "—")}</td>` : ""}
         ${showTransliteration ? `<td class="sub glossopt">${esc(optValue(r, "transliteration") || "—")}</td>` : ""}
         <td><span class="glstatus ${esc(ATTEST_BADGE[r.attestation] || "")}"
