@@ -2300,6 +2300,11 @@ def _rung_gloss(glosses: Iterable[str], limit: int = 110) -> str:
     # sense (": type, form, lineage").  It is punctuation of the source, not of
     # the meaning, and it is dropped rather than printed under a word.
     text = text.lstrip(": ").strip()
+    note = _GLOSS_NOTE.search(text)
+    if note and note.start() > 0:
+        text = text[:note.start()].strip()
+    elif note:
+        return ""
     # Dehkhoda separates one sense from the next with a spaced full stop, and a
     # bound piece inherits the whole run ("to touch and rub … . (Nāzem
     # al-Atebbā)…").  The first sense is the meaning; the rest is a dictionary's
@@ -2307,7 +2312,10 @@ def _rung_gloss(glosses: Iterable[str], limit: int = 110) -> str:
     if " . " in text:
         text = text.split(" . ", 1)[0].strip()
     if len(text) > limit:
-        text = text[:limit].rstrip(" ,;:-") + "…"
+        # Cut at a clause, never mid-word: نشیب's rung ended at «کردی :»
+        # (critic batch 07, 2026-11-13).
+        cut = max(text.rfind("،", 0, limit), text.rfind(" ", 0, limit))
+        text = (text[:cut] if cut > limit // 2 else text[:limit]).rstrip(" ,;:-،") + "…"
     return text
 
 
@@ -3174,12 +3182,24 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
             # hyphen does (باشنده, critic batch 03, 2026-11-13).
             piece_stem = (_piece_hint(str(entry.get("etym") or ""), form_piece).endswith("-")
                           or bool(_stem_verb(str(entry.get("etym") or ""), form_piece)))
+            # A piece written as a morpheme (‑دار، *-lom) is not a free word:
+            # the entry the lookup finds for «دار» is the noun "tree", which
+            # would hang a whole tree above a suffix (critic batch 07; the
+            # suite's own bound-morpheme test, 2026-11-13).
+            if (str(form_piece).startswith(("-", "ـ", "*-")) and piece
+                    and str(piece.get("pos") or "") not in
+                    ("suffix", "prefix", "affix", "infix", "interfix")):
+                piece = None
             # A suffix slot holds a morpheme even when the parse dropped its
             # tatweel — but only if what the lookup found is not itself an
             # affix entry (PIE *-lom is a suffix with a page of its own).
             slot = (_suffix_slot(kind, index, len(raw))
                     and str((piece or {}).get("pos") or "") not in
                     ("suffix", "prefix", "affix", "infix", "interfix"))
+            if slot:
+                # گفتار's «ار» found the place-name ار; the row says the slot is
+                # an ending, so the morpheme — not that word — is drawn.
+                piece = None
             bound = _bound_piece(kind, form_piece, index) or piece_stem or slot
             # The meaning under the word in the timeline (admin, 2026-11-12):
             # the row's own parenthesis when it has one, otherwise the sense
@@ -3221,7 +3241,11 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
                 # branch of the timeline, not as a footnote (2026-11-12).  A
                 # bound morpheme has none: it is not a word that was inherited
                 # or borrowed.
-                "branch": None if bound else _origin_node(lang, form_piece,
+                # A stem wears no dot, but it is still a word with a history:
+                # باش (the stem of بودن) keeps the ladder that reaches PIE
+                # *bʰewH- (critic batch 07, 2026-11-13).  Only a morpheme with
+                # no entry of its own has no column.
+                "branch": None if (bound and not piece) else _origin_node(lang, form_piece,
                                                           build_depth=build_depth,
                                                           hint=sense or "",
                                                           quoted=piece_anc,
@@ -4523,7 +4547,9 @@ _CROSS_REFERENCE = re.compile(r"(?:و\s+)?رجوع به\s+")
 _GLOSS_NOTE = re.compile(
     r"(?:^|\.\s|،\s|\u06d4\s*|؛\s*)"
     r"(?:(?:و\s+)?رجوع\s+به|بمعنی\s|نعت\s|صفت\s|اسم\s|مصدر\s|مثنی\s|"
-    r"تحریر[یی]\s+از|ج\s*ِ\s|در\s+نجوم|و\s+این\s+نسبت|\(از\s)")
+    r"تحریر[یی]\s+از|ج\s*ِ\s|در\s+نجوم|و\s+این\s+نسبت|"
+    r"(?:اوستا|پهلوی|پازند|کردی|بلوچی|افغانی|پشتو|تاجیکی|عربی|ترکی|ارمنی|"
+    r"سریانی|عبری|سانسکریت)\s*:|\(از\s)")
 _LEAD_PAREN = re.compile(r"^\s*(?:\([^()]{0,60}\)\s*)+")
 _ATTRIBUTION = re.compile(r"\.\s*\((?:از\s+)?[^()]{0,25}\)\s*\.?")
 
@@ -4576,6 +4602,27 @@ def _short_sense(entry: dict | None, lang: str = "") -> str:
     return re.sub(r"\s+", " ", sense).strip(" .،؛")
 
 
+def _is_respelling(token: str, headword: str) -> bool:
+    """Whether a one-word "sense" is the headword written again.
+
+    Dehkhoda often opens with the word re-spelled — اسقوربوط «اِسْقُربوط. مرضی
+    ساری …» — and the page printed the respelling as the meaning (critic batch
+    07, 2026-11-13).  A variant spelling shares the head of the word and differs
+    by a letter or two; a different word does not.
+    """
+    if not token or not headword or " " in token or len(token) < 3:
+        return False
+    if abs(len(token) - len(headword)) > 3:
+        return False
+    if token == headword:
+        return True
+    if token[:3] != headword[:3]:
+        return False
+    import difflib
+    # One letter apart is a spelling; two words of a variant list are not.
+    return difflib.SequenceMatcher(None, token, headword).ratio() >= 0.8
+
+
 def _page_gloss(lang: str, entry: dict, glosses) -> list[str]:
     """The meaning to print, cut down to what the record actually defines.
 
@@ -4601,6 +4648,15 @@ def _page_gloss(lang: str, entry: dict, glosses) -> list[str]:
         return glosses
     first = _LEAD_PAREN.sub("", glosses[0]).strip()
     rest = glosses[1:]
+    # The first "sense" may be the headword written again with its vowels —
+    # اسقوربوط «اِسْقُربوط. مرضی ساری …» — and a respelling is not a meaning
+    # (critic batch 07, 2026-11-13).
+    lead = re.split(r"\.\s", first, 1)
+    head_word = _lookup_form(str(entry.get("word") or ""))
+    if (len(lead) == 2 and len(re.split(r"\s\.\s", lead[1], 1)[0].split()) >= 3
+            and _is_respelling(_lookup_form(lead[0]).strip(" ."), head_word)):
+        # The next sentence must be a definition; a variant list is not one.
+        first = lead[1].strip()
     # A definition that only names the base is still a meaning, once the base's
     # own sense is quoted beside the relation (بیلربی، نیازک).
     pointer = _pointer_relation(lang, first, str(entry.get("word") or ""))
@@ -4637,7 +4693,11 @@ def _page_gloss(lang: str, entry: dict, glosses) -> list[str]:
             if other is None or other.get("word") == entry.get("word"):
                 continue
             sense = _short_sense(other, lang)
-            if sense:
+            if not sense:
+                continue
+            # A variant whose own sense is another spelling has not defined the
+            # word; keep looking for the one that does (شکربره → شکربرگ).
+            if not _is_respelling(sense, token):
                 return [f"{token}: {sense}", *rest]
     # The meaning is the run of sentences before the first grammatical note,
     # cross-reference or quotation; `_short_sense` holds the same rule.

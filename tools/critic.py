@@ -243,7 +243,8 @@ def page_findings(lang: str, word: str) -> list[dict]:
 
     # 5. A piece whose entry is missing from its own stage.
     for piece in pieces:
-        if piece.get("known") is False and str(piece.get("lang")) == lang:
+        if (piece.get("known") is False and str(piece.get("lang")) == lang
+                and not piece.get("bound")):
             out.append(_finding(
                 lang, word, "missing_entry", "medium",
                 f"piece {piece['form']} has no entry",
