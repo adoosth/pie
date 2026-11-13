@@ -841,7 +841,7 @@ const read = {
             era_mid: -412, form: "wˈarkah", display: "", baseline: "wˈarkah", status: "differs",
             evidence: "weak",
             recorded: { w: "𐎺𐎼𐎣", more: [], evidence: "attested", ipa: "", reading: "vr̥kaʰ",
-                        signs: "v-r-k",
+                        signs: "v-r-k", pos: "noun", gloss: "wolf", notation: "v-r-k",
                         show_reading: true, matches: false, via: null, known: true,
                         fit: { ok: true, translit: "v-r-k", logogram: false,
                                filler: [1], unwritten: ["h"] } } }),
@@ -859,14 +859,21 @@ const readWords = plain(readHtml);
 assert.ok(readWords.includes("wárkah"), "the laws' romanisation is the rung's own form");
 assert.ok(readWords.includes("𐎺𐎼𐎣"), "the script the record writes is printed beside it");
 assert.ok(readWords.includes("vr̥kaʰ"), "with the reading the dictionary records");
-assert.ok(readWords.includes("read v-r-k"), "and the sign transliteration, one letter per sign");
-assert.ok(readWords.includes("the writing allows it"), "the two readings are explained");
+assert.ok(readWords.includes("v-r-k"), "and the sign transliteration, one letter per sign");
+assert.ok(readWords.includes("noun · “wolf”"), "the rung's sub-line carries the sense");
+assert.ok(!readWords.includes("read v-r-k"),
+  "the rung does not explain the sign reading below a form the reader can already read");
+assert.ok(!readWords.includes("the writing allows it"),
+  "nor repeats that the record reads the signs another way");
 assert.ok(!readWords.includes("exact, read from the script"),
   "a different reading of the same signs is not a match");
 assert.ok(!readHtml.includes("matchdot"), "and it wears no ✓");
-assert.ok(readWords.includes("leaves h unwritten"), "and what the script does not write");
-assert.ok(readWords.includes("a vowel sign carries a bare consonant"),
-  "the filler vowel is explained, not hidden");
+assert.ok(!readWords.includes("leaves h unwritten"),
+  "what the script leaves unwritten is not explained under the transcription");
+assert.ok(!readWords.includes("a vowel sign carries a bare consonant"),
+  "nor is the filler-vowel convention repeated");
+assert.ok(!readWords.includes("spelled v-r-k"),
+  "and the spelling note is not printed under the rung either");
 /* A rung whose form is the spelling itself (a word the record gives no
    ancestor for) prints its reading on the left and the script beside it. */
 const scripted = {
@@ -890,20 +897,24 @@ const scriptedHtml = context.renderHierarchy(scripted, { lang: "peo", word: "�
 const scriptedWords = plain(scriptedHtml);
 assert.ok(scriptedWords.includes("Arabāya"), "a rung written in its own script is shown by its reading");
 assert.ok(scriptedWords.includes("a-r-b-a-y"), "and the signs stand beside it");
-/* 2026-11-13: the pencil edits the romanisation a rung prints, never the
-   recorded writing.  The Old Persian seed is the display; when no display is
-   supplied it falls back to the reading the form was carried on. */
+/* 2026-11-13: the pencil seeds the form the server says the rung prints
+   (`level.edit`), never the recorded writing.  Wˈarkānah is the reconstructed
+   form, so the pencil must offer it even though its `ˈ` is a modifier letter;
+   a rung whose own form is a writing carries its reading in `edit`.  When a
+   server predates `edit`, the display or the form is still a safe fallback. */
 const peoEdit = { stage: "peo", name: "Old Persian", form: "𐎺𐎼𐎣𐎠𐎴𐎡𐎹",
-                  display: "Vạrkāniya", spoken: "" };
+                  display: "Vạrkāniya", edit: "Vạrkāniya", spoken: "" };
 assert.equal(context.editSeed(peoEdit), "Vạrkāniya",
-  "the edit input is seeded with the rung's romanisation");
+  "the edit input is seeded with level.edit");
 assert.ok(!/[\u{103A0}-\u{103DF}]/u.test(context.editSeed(peoEdit)),
   "the edit input never contains the language's own script");
-assert.equal(context.editSeed({ ...peoEdit, display: "", spoken: "vr̥kaʰ" }), "vr̥kaʰ",
-  "without a display, the edit input falls back to the spoken reading");
-assert.ok(!/[\u{103A0}-\u{103DF}]/u.test(
-  context.editSeed({ ...peoEdit, display: "", spoken: "vr̥kaʰ" })),
-  "the fallback seed is romanisation too");
+assert.equal(context.editSeed({ ...peoEdit, form: "Wˈarkānah", display: "Vr̥kānaʰ",
+                                edit: "Wˈarkānah" }), "Wˈarkānah",
+  "a reconstructed form with a modifier letter is not mistaken for a script");
+assert.equal(context.editSeed({ ...peoEdit, edit: "", spoken: "vr̥kaʰ" }), "Vạrkāniya",
+  "a server without level.edit falls back to the display");
+assert.equal(context.editSeed({ ...peoEdit, edit: "", display: "", form: "Wˈarkānah" }),
+  "Wˈarkānah", "and then to the form the rung prints");
 assert.ok(readHtml.includes('data-edit="pal"'), "a rung the timeline was carried into is editable");
 assert.ok(readHtml.includes('data-cut="pal"'), "and it can be cut off again");
 assert.ok(!readHtml.includes('data-cut="peo"'), "the word's own rung is not a carried one");

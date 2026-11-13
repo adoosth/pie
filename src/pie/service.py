@@ -7036,6 +7036,12 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
             # record (admin, 2026-11-13).  Empty when the form is already a
             # romanisation, so `form` is what prints.
             "display": display,
+            # What the pencil seeds: the form the rung prints.  A rung whose
+            # own form is a writing prints its reading, so the pencil never
+            # offers a script for editing (admin, 2026-11-13).  The client does
+            # not guess this from the characters: the character test called
+            # Wˈarkānah scripted, because *ˈ* is a modifier letter.
+            "edit": display or version,
             # The reading a scripted rung prints beside its writing.  It is
             # what the stages below that rung run on, because a script is not
             # a sound; on a romanised rung the own form is carried instead

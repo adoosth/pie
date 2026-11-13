@@ -79,11 +79,6 @@ const isRTL = (s) => RTL_CHARS.test(String(s ?? ""));
    one shape.  Upright and slightly apart is how the signs stay signs. */
 const CUNEIFORM_CHARS = /[\u{103A0}-\u{103DF}]/u;
 const scriptClass = (s) => (isRTL(s) ? "rtl" : CUNEIFORM_CHARS.test(String(s ?? "")) ? "cunei" : "");
-/* A form is scripted when it contains a letter outside the Latin script.
-   Romanisations, including IPA and the usual diacritics, stay editable; a
-   word in its own writing (cuneiform, Arabic, Greek, Cyrillic, …) does not. */
-const isScripted = (s) => [...String(s ?? "")].some(
-  (ch) => /\p{L}/u.test(ch) && !/\p{Script=Latin}/u.test(ch));
 /* Evidence is the whole point of the colour scheme (2026-11-07):
      attested  green, glowing — the word is in a text or a dictionary;
      literary  gold  — reconstructed in the literature, normally written *so;
@@ -2409,27 +2404,6 @@ function renderHierarchy(h, d, opts) {
        word with a sense and not only a string of letters. */
     const sense = rec && rec.gloss
       ? `<span class="sense">${rec.pos ? `${esc(rec.pos)} · ` : ""}“${esc(rec.gloss)}”</span>` : "";
-    const notation = rec && rec.notation
-      ? `<span class="sub notation" data-tip="The source transcribes the Old Persian sign 𐎺 with v, the sound laws write the same consonant *w. Spelling, not phonology: not counted as a match.">spelled ${esc(rec.notation)}</span>`
-      : "";
-    /* What the script writes when the record is in another script: the laws'
-       form is one of the readings the signs allow, and the page prints the
-       signs so the reader can check the fit (2026-11-08: 𐎺𐎼𐎣). */
-    const fit = rec && rec.fit;
-    const fitWords = [];
-    if (fit) {
-      if ((fit.unwritten || []).length) fitWords.push(`the script leaves ${fit.unwritten.map((u) => `<span class="mono">${esc(u)}</span>`).join(" ")} unwritten`);
-      if (!fit.logogram && (fit.filler || []).length) fitWords.push("a vowel sign carries a bare consonant");
-      /* A sign that writes the end of a word without a sound of its own is a
-         convention of the script, so the rung says which one it used instead
-         of leaving the extra glyph unexplained (2026-11-08). */
-      if (fit.convention && fit.convention.name) fitWords.push(esc(fit.convention.name));
-      if (fit.logogram) fitWords.push("one sign for the whole word");
-    }
-    const fitNote = fit
-      ? `<span class="sub readfit" data-tip="${esc(`Reading the signs: the word is written ${fit.translit}. A syllabary writes consonants and some vowels, so the string a dictionary spells is not the same string as the signs; this form is a reading they allow.`)}"
-          >read <span class="mono">${esc(fit.translit)}</span>${fitWords.length ? ` · ${fitWords.join(" · ")}` : ""}</span>`
-      : "";
     /* A green rung is a claim about a written word, so the record itself names
        its citation — in the tooltip of the form or its RECORDED badge, never on
        a printed line under every word (2026-11-08). */
@@ -2448,14 +2422,6 @@ function renderHierarchy(h, d, opts) {
       : (unmodelled
         ? `<span class="sub norec" data-tip="This model holds no ${esc(level.name)} glossary, so the form is quoted from the record and is not linked: nothing is missing from the word's own stage, only from a stage the model does not describe.">no ${esc(level.name)} glossary in this model</span>`
         : "");
-    /* The laws' form is one reading of the signs the record writes, and the
-       record itself reads them another way — an abjad's l-w-c can stand for
-       rōč and rōz, and the dictionary says rōz. The rung prints both readings
-       instead of leaving a red form beside a green word unexplained
-       (2026-11-11). */
-    const readDiffers = (level.status === "differs" && rec && rec.reading && rec.fit)
-      ? `<span class="sub readfit" data-tip="${esc(`The laws produce a form the writing ${rec.fit.translit || ""} can stand for, but the dictionary reads this spelling ${rec.reading}; the difference is the record's, not a gap in the laws.`)}">the writing allows it — the record reads ${esc(rec.reading)}</span>`
-      : "";
     /* A near miss is a question, not a verdict: the record is shown, and the
        rung says in words that nobody has verified the match yet (admin,
        2026-11-12). */
@@ -2465,7 +2431,7 @@ function renderHierarchy(h, d, opts) {
             ? `The letters of this entry agree with the form the laws produce, but no reading is recorded for it, and an abjad writes no vowels: the letters alone cannot verify a match, so it is kept for review instead of being counted.`
             : `The record is read ${rec.review && rec.review.record ? rec.review.record : rec.reading || rec.w}; the laws give ${level.form}. Every sound but the ending agrees, and no registered law accounts for that difference — so the match is kept for review instead of being counted.`)}">match not verified</span>`
       : "";
-    const meta = [sense, more, notation, fitNote, readDiffers, entryNote, unverifiedNote].filter(Boolean).join(" ");
+    const meta = [sense, more, entryNote, unverifiedNote].filter(Boolean).join(" ");
     /* Whether a stage is a written language or a reconstruction is a claim
        about the language, not a badge on the word: the name in the timeline
        carries it in its colour, and says it in words on hover, with the
@@ -2828,13 +2794,14 @@ async function updateLadder(showStage) {
   }
 }
 
-/* The pencil edits the romanisation the rung prints, never the writing.  A
-   displayed reading wins over the recorded form; when no display exists and
-   the form is still scripted, the reading it was carried on is the seed. */
+/* The pencil edits the form the server says the rung prints (`level.edit`),
+   never the writing.  The server knows whether this rung's own form is a
+   writing and therefore prints its reading; the client must not guess that
+   from the characters — `ˈ` is a modifier letter, and that guess called the
+   reconstructed Wˈarkānah "scripted" and offered the record's reading instead
+   (admin, 2026-11-13). */
 function editSeed(level) {
-  const shown = String((level && (level.display || level.form)) || "");
-  if (!isScripted(shown)) return pf(shown);
-  return pf((level && (level.spoken || level.display || level.form)) || "");
+  return String((level && (level.edit || level.display || level.form)) || "");
 }
 
 function startEdit(stage) {

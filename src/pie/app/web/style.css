@@ -1400,10 +1400,6 @@ a.lawname:hover, a.lawname:focus-visible { color: var(--accent); }
 .nextstate { font-size: 11px; color: var(--dim); margin-top: 2px; }
 .nextstate.hit { color: var(--attested); }
 .nextstate.miss { color: var(--weak); }
-/* The signs a form was read from: printed beside the record, never instead of
-   it, so a reading is something a reader can check (2026-11-08). */
-.readfit { color: var(--muted); }
-.readfit .mono { color: var(--fg); }
 /* "change" belongs to the stage, so it sits under the language name in the
    timeline column rather than beside the word (2026-11-08). */
 .change { font: inherit; font-size: 10.5px; letter-spacing: .04em; padding: 1px 7px;

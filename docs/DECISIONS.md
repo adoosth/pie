@@ -102,6 +102,14 @@ page also belongs in `AGENTS.md` ("What a word page must keep true").
     and is not the input), while a cuneiform headword with no ancestor is read
     and then continued from that reading. The same rule seeds the pencil: what
     is edited is the printed romanisation, never the script.
+29. **A rung's sub-line says what the word means, not how to read it.** The
+    sense (`noun · "Gorgan; Vahrkana"`) stays; "read v-r-k-a-n", "the script
+    leaves h unwritten", "the writing allows it — the record reads …" are gone
+    from the page, because the transcription and the signs are already printed
+    on the rung (admin, 2026-11-13). "No entry for this word" and "match not
+    verified" stay: they are facts about the word. The pencil reads its seed
+    from the payload (`level.edit`, the printed form), never from a character
+    test — `Wˈarkānah` is a romanisation even though `ˈ` is a letter.
 
 ## Interface
 
