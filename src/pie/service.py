@@ -1210,7 +1210,32 @@ def _ancestry_triples(entry: dict) -> list[tuple[str, str, str]]:
         # `_prose_ancestry`).  Nothing is read when one does, so a word with
         # both is answered by the template alone.
         out.extend(_prose_ancestry(entry))
-    return out
+    return _not_a_flattened_prefix(out, entry)
+
+
+#: "From Proto-Iranian *ā- + *gam-" — a verb stated as two bound morphemes.
+_PREFIXED_VERB = re.compile(r"\bfrom\s+(?:[A-Za-z][\w-]*\s+)?\S*-\s*\+\s*\S*-", re.I)
+
+
+def _not_a_flattened_prefix(rows: list[tuple[str, str, str]], entry: dict) -> list[tuple[str, str, str]]:
+    """Drop an ancestry that is really a prefixed verb's pieces read in a line.
+
+    fa آمدن's record says "From Proto-Iranian *ā- + *gam-", and the extractor
+    filed both morphemes as ancestors, so the ladder climbed *ā- and printed
+    Proto-Indo-European *h₂éd → Persian ad above a verb meaning "to come, to
+    arrive" (critic batch 06, 2026-11-13).  When every row is a bound form and
+    the sentence states the word as one bound form plus another, the rows are
+    pieces of a construction, not a chain: only the root the sentence names
+    survives, and a chain with no root is no ancestry at all.
+    """
+    if len(rows) < 2 or not any(str(row[1] or "").endswith("-") for row in rows):
+        return rows
+    first = re.split(r"\.\s|;", str(entry.get("etym") or ""), 1)[0]
+    if not _PREFIXED_VERB.search(first):
+        return rows
+    # The root the sentence names is the verb's own; the prefixes it is made
+    # with are pieces, and their history is not the verb's history.
+    return [row for row in rows if str(row[2] or "") == "root"]
 
 
 #: A sentence that states where a word comes from, in words rather than in an
