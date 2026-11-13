@@ -20,15 +20,15 @@ never a count and never in a denominator.
 
 | band | words | share | definition |
 |---|---:|---:|---|
-| **fully explained** (dark green) | 420 | 0.1% | A recorded origin — a PIE etymon carried by cited laws, or the record's own registered construction of explained pieces — reproduced exactly, every recorded intermediate matching. |
+| **fully explained** (dark green) | 421 | 0.1% | A recorded origin — a PIE etymon carried by cited laws, or the record's own registered construction of explained pieces — reproduced exactly, every recorded intermediate matching. |
 | **fully explained, with adjustments** (light green) | 54 | 0.0% | The same path, but a recorded intermediate disagrees, or one step is an approved adjustment of ours. |
-| **partially explained** (yellow) | 131,784 | 34.6% | A recorded chain that does not reach the word from the PIE etymon in full: it starts lower, a recorded rung has no entry, or the laws do not reproduce it. |
-| **unexplained** (red) | 77,633 | 20.4% | No recorded etymology. |
-| **non-PIE** (dark grey) | 91,921 | 24.1% | Recorded as borrowed from outside the family. |
-| **loan from another IE language** (blue grey) | 71,974 | 18.9% | Borrowed from a sister branch; recorded, not derived by this chain. |
-| **built from its own words** (brown) | 7,324 | 1.9% | Made of the language's own words, or of one plus a suffix: a formation, not a derivation. |
+| **partially explained** (yellow) | 131,786 | 34.6% | A recorded chain that does not reach the word from the PIE etymon in full: it starts lower, a recorded rung has no entry, or the laws do not reproduce it. |
+| **unexplained** (red) | 72,837 | 19.1% | No recorded etymology. |
+| **non-PIE** (dark grey) | 95,828 | 25.1% | Recorded as borrowed from outside the family. |
+| **loan from another IE language** (blue grey) | 72,037 | 18.9% | Borrowed from a sister branch; recorded, not derived by this chain. |
+| **built from its own words** (brown) | 8,150 | 2.1% | Made of the language's own words, or of one plus a suffix: a formation, not a derivation. |
 
-**474 of 381,110 attested words are fully explained (0.12%), and 71,974 more are recorded loans from a
+**475 of 381,113 attested words are fully explained (0.12%), and 72,037 more are recorded loans from a
 sister branch. Both greens need a recorded origin carried all the way to the
 word — by cited laws, or by the record's own registered construction (the
 pieces spell it, each piece starts from a PIE etymon or from outside the
@@ -45,8 +45,8 @@ ancestor (Old Persian 𐎣𐎠𐎶 from Proto-Iranian) is yellow.
 | Sanskrit (`sa`) | 138 | 14 | 3,814 | 14 | 90 | 82 | 0 | 4,081 | 152 | 4,152 |
 | Ancient Greek (`grc`) | 55 | 9 | 3,563 | 29 | 539 | 852 | 0 | 4,122 | 64 | 5,047 |
 | English (`en`) | 52 | 1 | 57,132 | 104 | 15,924 | 41,017 | 3 | 31,181 | 53 | 114,233 |
-| Persian (`fa`) | 45 | 0 | 5,049 | 76,750 | 71,693 | 2,916 | 7,321 | 2,091 | 45 | 163,774 |
-| Gothic (`got`) | 34 | 1 | 1,924 | 0 | 54 | 139 | 0 | 1,030 | 35 | 2,152 |
+| Persian (`fa`) | 45 | 0 | 5,050 | 71,954 | 75,600 | 2,979 | 8,147 | 2,091 | 45 | 163,775 |
+| Gothic (`got`) | 35 | 1 | 1,923 | 0 | 54 | 139 | 0 | 1,030 | 36 | 2,152 |
 | Latin (`la`) | 29 | 2 | 5,477 | 81 | 328 | 1,572 | 0 | 5,138 | 31 | 7,489 |
 | Lithuanian (`lt`) | 10 | 8 | 1,427 | 0 | 83 | 853 | 0 | 1,207 | 18 | 2,381 |
 | Old Norse (`non`) | 16 | 1 | 2,948 | 1 | 4 | 85 | 0 | 2,084 | 17 | 3,055 |
@@ -63,7 +63,7 @@ ancestor (Old Persian 𐎣𐎠𐎶 from Proto-Iranian) is yellow.
 | Middle High German (`gmh`) | 0 | 0 | 542 | 0 | 0 | 32 | 0 | 185 | 0 | 574 |
 | Hittite (`hit`) | 0 | 0 | 286 | 0 | 3 | 0 | 0 | 289 | 0 | 289 |
 | Armenian (`hy`) | 0 | 0 | 2,252 | 0 | 514 | 2,271 | 0 | 231 | 0 | 5,037 |
-| Middle Persian (`pal`) | 0 | 0 | 184 | 494 | 0 | 17 | 0 | 61 | 0 | 695 |
+| Middle Persian (`pal`) | 0 | 0 | 186 | 494 | 0 | 17 | 0 | 61 | 0 | 697 |
 | Albanian (`sq`) | 0 | 0 | 1,861 | 0 | 745 | 1,401 | 0 | 1,847 | 0 | 4,007 |
 | Tocharian B (`txb`) | 0 | 0 | 427 | 0 | 2 | 234 | 0 | 507 | 0 | 663 |
 | Old Armenian (`xcl`) | 0 | 0 | 1,025 | 0 | 133 | 261 | 0 | 1,159 | 0 | 1,419 |
@@ -93,7 +93,7 @@ no grey band at all (`data/vocabulary_estimates.yaml`).
 | Ancient Greek (`grc`) | 116,502 | 111,455 | entries (headwords) of literary and documentary Ancient Greek (dictionary) | [Liddell–Scott–Jones, A Greek–English Lexicon, 9th edition (1940), as summarised in its Wikipedia article](https://en.wikipedia.org/wiki/A_Greek%E2%80%93English_Lexicon), 1940 |
 | Latin (`la`) | 40,000 | 32,511 | headword entries of Classical Latin (to AD 200), covering 100,000 senses (dictionary) | [Oxford Latin Dictionary, 2nd edition (OUP 2012), as summarised in its Wikipedia article](https://en.wikipedia.org/wiki/Oxford_Latin_Dictionary), 2012 |
 | Avestan (`ave`) | 7,959 | 7,607 | dictionary entries (lemmas) of the standard Avestan dictionary (dictionary) | [Chr. Bartholomae, Altiranisches Wörterbuch (1904), digitised as the CAB edition (FU Berlin)](https://cab.geschkult.fu-berlin.de/dictionaries/Bartholomae_Dictionary.html), 1904 |
-| Middle Persian (`pal`) | 4,000 | 3,305 | the commonest simple words a concise dictionary sets out to cover — a curated core, not the attested vocabulary (floor) | [D. N. MacKenzie, A Concise Pahlavi Dictionary (OUP 1971), preface](https://www.parsianjoman.org/wp-content/uploads/2015/09/A-Concise-Pahlavi-Dictionary.pdf), 1971 |
+| Middle Persian (`pal`) | 4,000 | 3,303 | the commonest simple words a concise dictionary sets out to cover — a curated core, not the attested vocabulary (floor) | [D. N. MacKenzie, A Concise Pahlavi Dictionary (OUP 1971), preface](https://www.parsianjoman.org/wp-content/uploads/2015/09/A-Concise-Pahlavi-Dictionary.pdf), 1971 |
 
 Every figure above was read on the page it cites on 2026-11-09; the quotation for
 each one lives with the number in `data/vocabulary_estimates.yaml`, together with the
@@ -126,18 +126,18 @@ with an older release.
   writes the same form with a morpheme hyphen the laws never write (`a-`, `-kas`).
   Both are counted apart: in neither did a rule demonstrate anything.
 
-Corpus: **426,395 glossary entries**, 114,513 with a recorded ancestor,
-**6,430 reconstructed exactly**, of which **978 start at the
+Corpus: **426,398 glossary entries**, 114,514 with a recorded ancestor,
+**6,419 reconstructed exactly**, of which **971 start at the
 PIE etymon** (1.5% of the whole glossary,
-12,109 once the orthographic layer is allowed (2.8%),
-5.6% of words with a recorded ancestor; 47,397 reach a PIE etymon).  Rules used: all; sample: all eligible words.
+12,098 once the orthographic layer is allowed (2.8%),
+5.6% of words with a recorded ancestor; 47,391 reach a PIE etymon).  Rules used: all; sample: all eligible words.
 
 **12 more** are completed by a word's own recorded pathway — a
 registered law that does not apply to that word, with the reason stored beside it
 (`data/pathways.jsonl`). They are counted apart and never added to the figure above:
 a per-word exception must be visible, not silent.
 
-**1,438 more** are reached through a language's own writing system, out of
+**1,440 more** are reached through a language's own writing system, out of
 the words written in a script with a table in `data/script/` (Old Persian: the laws
 produce *wˈarkah* and the monument writes 𐎺𐎼𐎣, *va-ra-ka*). The signs do not spell
 every sound: a syllabary leaves a final /h/ unwritten and closes a final -i with a y-sign
@@ -155,33 +155,33 @@ included one could not be checked against the record (2026-11-08).
 
 | language | identified | PIE-linked | borrowed | other source | reconstructed (laws) | + orthography | cited as stem | unchanged | bound form | through its script | built from pieces | explained | glossary | progress (explained / glossary) |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| Italian (`it`) | 54% (12,121) | 1,562 | 4,148 | 3,068 | **1,296** | 378 | — | 123 | 64 | — | 652 | 1,861 | 22,278 | `█░░░░░░░░░░░░░` 8.4% |
-| Old Norse (`non`) | 95% (3,035) | 1,396 | 68 | 75 | **686** | 0 | — | 9 | 15 | — | 216 | 710 | 3,184 | `███░░░░░░░░░░░` 22% |
-| Proto-West Germanic (`gmw-pro`) | 65% (3,653) | 733 | 247 | 14 | **596** | 0 | — | 38 | 29 | — | 626 | 663 | 5,585 | `██░░░░░░░░░░░░` 12% |
-| English (`en`) | 29% (37,619) | 14,888 | 55,903 | 24,638 | **562** | 1,337 | — | 1059 | 76 | — | 5578 | 3,036 | 130,079 | `▏░░░░░░░░░░░░░` 2.3% |
-| Old English (`ang`) | 92% (6,356) | 1,303 | 309 | 175 | **556** | 535 | — | 97 | 40 | — | 343 | 1,228 | 6,931 | `██░░░░░░░░░░░░` 18% |
-| Proto-Slavic (`sla-pro`) | 40% (2,145) | 1,969 | 53 | 43 | **528** | 0 | — | — | 49 | — | 133 | 577 | 5,388 | `█░░░░░░░░░░░░░` 11% |
-| Middle English (`enm`) | 59% (4,722) | 580 | 2,964 | 285 | **386** | 471 | — | 119 | 31 | — | 1007 | 1,007 | 8,053 | `██░░░░░░░░░░░░` 13% |
-| Proto-Indo-Iranian (`iir-pro`) | 90% (720) | 720 | 0 | 0 | **350** | 0 | — | 2 | 40 | — | 3 | 392 | 799 | `███████░░░░░░░` 49% |
+| Italian (`it`) | 54% (12,121) | 1,562 | 4,148 | 3,068 | **1,296** | 378 | — | 123 | 64 | — | 680 | 1,861 | 22,278 | `█░░░░░░░░░░░░░` 8.4% |
+| Old Norse (`non`) | 95% (3,035) | 1,396 | 68 | 75 | **686** | 0 | — | 9 | 15 | — | 219 | 710 | 3,184 | `███░░░░░░░░░░░` 22% |
+| Proto-West Germanic (`gmw-pro`) | 65% (3,653) | 733 | 247 | 14 | **596** | 0 | — | 38 | 29 | — | 629 | 663 | 5,585 | `██░░░░░░░░░░░░` 12% |
+| English (`en`) | 29% (37,619) | 14,887 | 55,903 | 24,638 | **562** | 1,337 | — | 1052 | 76 | — | 5712 | 3,029 | 130,079 | `▏░░░░░░░░░░░░░` 2.3% |
+| Old English (`ang`) | 92% (6,356) | 1,302 | 309 | 175 | **555** | 535 | — | 96 | 41 | — | 347 | 1,227 | 6,931 | `██░░░░░░░░░░░░` 18% |
+| Proto-Slavic (`sla-pro`) | 40% (2,145) | 1,969 | 53 | 43 | **526** | 0 | — | — | 49 | — | 137 | 575 | 5,388 | `█░░░░░░░░░░░░░` 11% |
+| Middle English (`enm`) | 59% (4,722) | 580 | 2,964 | 285 | **386** | 471 | — | 119 | 31 | — | 1026 | 1,007 | 8,053 | `██░░░░░░░░░░░░` 13% |
+| Proto-Indo-Iranian (`iir-pro`) | 90% (720) | 720 | 0 | 0 | **346** | 0 | — | 2 | 40 | — | 8 | 388 | 799 | `███████░░░░░░░` 49% |
 | Lithuanian (`lt`) | 44% (1,107) | 910 | 1,011 | 367 | **257** | 0 | — | 28 | 11 | — | 1 | 296 | 2,501 | `██░░░░░░░░░░░░` 12% |
-| Proto-Iranian (`ira-pro`) | 85% (352) | 236 | 1 | 0 | **224** | 0 | — | 21 | 11 | — | 2 | 256 | 416 | `█████████░░░░░` 62% |
-| German (`de`) | 47% (8,127) | 1,117 | 6,237 | 2,584 | **195** | 167 | — | 601 | 38 | — | 928 | 1,001 | 17,140 | `█░░░░░░░░░░░░░` 5.8% |
-| Old High German (`goh`) | 97% (1,571) | 230 | 41 | 10 | **163** | 7 | — | 58 | 3 | — | 49 | 231 | 1,625 | `██░░░░░░░░░░░░` 14% |
+| Proto-Iranian (`ira-pro`) | 85% (352) | 236 | 1 | 0 | **224** | 0 | — | 21 | 11 | — | 4 | 256 | 416 | `█████████░░░░░` 62% |
+| German (`de`) | 47% (8,127) | 1,117 | 6,237 | 2,584 | **193** | 167 | — | 603 | 38 | — | 1475 | 1,001 | 17,140 | `█░░░░░░░░░░░░░` 5.8% |
+| Old High German (`goh`) | 97% (1,571) | 230 | 41 | 10 | **162** | 7 | — | 58 | 3 | — | 57 | 230 | 1,625 | `██░░░░░░░░░░░░` 14% |
 | Proto-Celtic (`cel-pro`) | 71% (1,149) | 1,149 | 6 | 0 | **148** | 0 | — | 37 | 27 | — | 38 | 212 | 1,613 | `██░░░░░░░░░░░░` 13% |
-| Latin (`la`) | 43% (3,526) | 3,225 | 1,783 | 1,552 | **136** | 213 | — | 39 | 26 | — | 55 | 414 | 8,160 | `█░░░░░░░░░░░░░` 5.1% |
+| Latin (`la`) | 43% (3,526) | 3,225 | 1,783 | 1,552 | **135** | 213 | — | 39 | 26 | — | 56 | 413 | 8,160 | `█░░░░░░░░░░░░░` 5.1% |
 | Old Irish (`sga`) | 87% (1,739) | 1,264 | 171 | 86 | **107** | 66 | — | 5 | 9 | — | 192 | 187 | 2,004 | `█░░░░░░░░░░░░░` 9.3% |
 | Middle High German (`gmh`) | 92% (533) | 43 | 29 | 3 | **96** | 29 | — | 33 | 1 | — | 1 | 159 | 580 | `████░░░░░░░░░░` 27% |
 | Proto-Germanic (`gem-pro`) | 56% (3,326) | 3,326 | 30 | 7 | **95** | 0 | — | 2 | 21 | — | 384 | 118 | 5,908 | `▏░░░░░░░░░░░░░` 2.0% |
 | Proto-Balto-Slavic (`ine-bsl-pro`) | 92% (454) | 454 | 1 | 0 | **46** | 0 | — | 3 | 3 | — | 2 | 52 | 491 | `█░░░░░░░░░░░░░` 11% |
-| Middle Persian (`pal`) | 16% (113) | 35 | 16 | 0 | **3** | 0 | — | — | — | 10 | — | 13 | 695 | `▏░░░░░░░░░░░░░` 1.9% |
-| Persian (`fa`) | 1.4% (2,301) | 866 | 5,497 | 669 | **0** | 136 | — | 229 | — | 421 | 128 | 793 | 164,823 | `▏░░░░░░░░░░░░░` 0.48% |
-| Greek (`el`) | 49% (5,090) | 312 | 2,174 | 1,370 | **0** | 646 | — | 318 | — | — | 194 | 964 | 10,471 | `█░░░░░░░░░░░░░` 9.2% |
+| Middle Persian (`pal`) | 16% (114) | 35 | 16 | 0 | **3** | 0 | — | — | — | 10 | — | 13 | 697 | `▏░░░░░░░░░░░░░` 1.9% |
+| Persian (`fa`) | 1.4% (2,301) | 862 | 5,497 | 669 | **0** | 137 | — | 229 | — | 423 | 139 | 796 | 164,824 | `▏░░░░░░░░░░░░░` 0.48% |
+| Greek (`el`) | 49% (5,090) | 312 | 2,174 | 1,370 | **0** | 647 | — | 317 | — | — | 198 | 964 | 10,471 | `█░░░░░░░░░░░░░` 9.2% |
 | Armenian (`hy`) | 1.2% (64) | 64 | 2,859 | 2,400 | **0** | 0 | — | — | — | — | — | 0 | 5,398 | `░░░░░░░░░░░░░░` 0% |
-| Ancient Greek (`grc`) | 64% (3,323) | 3,233 | 1,212 | 198 | **0** | 294 | — | 81 | — | — | 145 | 375 | 5,222 | `█░░░░░░░░░░░░░` 7.2% |
-| Sanskrit (`sa`) | 83% (4,218) | 3,764 | 104 | 63 | **0** | 520 | 543 | 36 | — | — | 319 | 1,099 | 5,059 | `███░░░░░░░░░░░` 22% |
+| Ancient Greek (`grc`) | 64% (3,323) | 3,233 | 1,212 | 198 | **0** | 294 | — | 81 | — | — | 146 | 375 | 5,222 | `█░░░░░░░░░░░░░` 7.2% |
+| Sanskrit (`sa`) | 83% (4,218) | 3,764 | 104 | 63 | **0** | 520 | 541 | 36 | — | — | 319 | 1,097 | 5,059 | `███░░░░░░░░░░░` 22% |
 | Albanian (`sq`) | 29% (1,216) | 1,216 | 2,224 | 801 | **0** | 0 | — | — | — | — | 17 | 0 | 4,256 | `░░░░░░░░░░░░░░` 0% |
 | Gothic (`got`) | 87% (1,976) | 674 | 186 | 82 | **0** | 278 | — | 30 | — | — | 399 | 308 | 2,263 | `██░░░░░░░░░░░░` 14% |
-| Old Church Slavonic (`chu`) | 90% (1,802) | 278 | 116 | 77 | **0** | 0 | — | 400 | — | 946 | 76 | 1,346 | 1,999 | `█████████░░░░░` 67% |
+| Old Church Slavonic (`chu`) | 90% (1,802) | 278 | 116 | 77 | **0** | 0 | — | 399 | — | 946 | 76 | 1,345 | 1,999 | `█████████░░░░░` 67% |
 | Old Armenian (`xcl`) | 59% (920) | 920 | 379 | 245 | **0** | 0 | — | — | — | — | 15 | 0 | 1,564 | `░░░░░░░░░░░░░░` 0% |
 | Tocharian B (`txb`) | 63% (442) | 398 | 241 | 14 | **0** | 0 | — | — | — | — | 1 | 0 | 697 | `░░░░░░░░░░░░░░` 0% |
 | Old Persian (`peo`) | 41% (215) | 101 | 29 | 5 | **0** | 0 | — | 1 | — | 61 | — | 65 | 529 | `██░░░░░░░░░░░░` 12% |
@@ -211,29 +211,29 @@ apply often but never contribute to a match.
 | `final_s_loss` Final *-s is lost | la → it | established | 897 |
 | `final_a_loss` Final short *-a is lost | gem-pro → gmw-pro | established | 678 |
 | `final_e_loss` Final *-e is lost | enm → en | established | 450 |
-| `vowel_merger_a` *e, *o and *a merge as *a | ine-pro → iir-pro | established | 384 |
+| `vowel_merger_a` *e, *o and *a merge as *a | ine-pro → iir-pro | established | 381 |
 | `long_a_to_a` Long *ā > *a | la → it | established | 316 |
-| `stress_token_dropped` Stress is notation and is not written in the PSl lemma | ine-bsl-pro → sla-pro | orthographic | 278 |
-| `brightening` Anglo-Frisian brightening: *a > *æ | gmw-pro → ang | established | 242 |
-| `register_mark_dropped` The acute register mark *ˀ is notation, not a PSl segment | ine-bsl-pro → sla-pro | orthographic | 235 |
+| `stress_token_dropped` Stress is notation and is not written in the PSl lemma | ine-bsl-pro → sla-pro | orthographic | 277 |
+| `brightening` Anglo-Frisian brightening: *a > *æ | gmw-pro → ang | established | 241 |
 | `final_a_to_e` Final *-a > *-e | ang → enm | established | 234 |
+| `register_mark_dropped` The acute register mark *ˀ is notation, not a PSl segment | ine-bsl-pro → sla-pro | orthographic | 234 |
 | `long_i_to_i` Long *ī > *i | la → it | established | 233 |
 | `final_ą_to_a` Final *-ą > *-a | gmw-pro → ang | established | 227 |
 | `final_a_loss` Final *-a is lost | gmw-pro → ang | established | 227 |
 | `long_o_to_o` Long *ō > *o | la → it | established | 196 |
 | `final_az_to_r` *-az > -r | gem-pro → non | established | 191 |
 | `stress_token_dropped` Stress is notation and is not written in the Lithuanian headword | ine-bsl-pro → lt | orthographic | 184 |
-| `laryngeal_to_H` Laryngeals are preserved as *H | ine-pro → iir-pro | established | 179 |
+| `laryngeal_to_H` Laryngeals are preserved as *H | ine-pro → iir-pro | established | 176 |
 | `final_as_to_yer` Final *-as > *-ъ | ine-bsl-pro → sla-pro | established | 172 |
 | `long_u_to_u` Long *ū > *u | la → it | established | 169 |
 | `long_e_to_e` Long *ē > *e | la → it | established | 149 |
 | `ei_to_i` *ei > *i | ine-bsl-pro → sla-pro | established | 148 |
 | `short_a_to_o` Short *a > *o | ine-bsl-pro → sla-pro | established | 146 |
 | `final_is_to_e` Final *-is becomes *-e | la → it | established | 141 |
-| `breaking_ae_rc` Breaking: *æ > *ea before *r or *l + consonant | gmw-pro → ang | established | 138 |
+| `breaking_ae_rc` Breaking: *æ > *ea before *r or *l + consonant | gmw-pro → ang | established | 137 |
 | `unstressed_a` Unstressed *a > *e | goh → gmh | established | 128 |
 | `o_to_a` *o > *a | ine-pro → ine-bsl-pro | established | 128 |
-| `long_a_to_a` *ā > *a | ine-bsl-pro → sla-pro | established | 128 |
+| `long_a_to_a` *ā > *a | ine-bsl-pro → sla-pro | established | 127 |
 | `register_mark_dropped` The acute register mark *ˀ is notation, not a Lithuanian segment | ine-bsl-pro → lt | orthographic | 125 |
 | `final_m_loss` Final *-m is lost | la → it | established | 119 |
 | `final_s_to_h` Final *-Vs > PIr *-Vh | iir-pro → ira-pro | established | 111 |
@@ -242,8 +242,8 @@ apply often but never contribute to a match.
 | `infinitive_aną` Strong infinitive *-aną > -a | gem-pro → non | established | 91 |
 | `final_ei_to_i_after_t` The infinitive ending *-tei > -ti | ine-bsl-pro → lt | established | 91 |
 | `laryngeal_loss` Laryngeals are lost | ine-pro → cel-pro | established | 88 |
-| `ruki_s` RUKI: *s > *š after r, u, k, i (and the glides and satem affricates) | ine-pro → iir-pro | established | 87 |
 | `w_to_v` *w > v | gem-pro → non | established | 86 |
+| `ruki_s` RUKI: *s > *š after r, u, k, i (and the glides and satem affricates) | ine-pro → iir-pro | established | 84 |
 | `final_o_to_u_s` Final *-os > -us | itc-pro → la | established | 81 |
 | `ai_to_ei` *ai > ei | gem-pro → non | established | 80 |
 | `u_lowering` Short *u > *o before *a | gem-pro → gmw-pro | established | 78 |
@@ -252,8 +252,8 @@ apply often but never contribute to a match.
 | `final_ą_loss` Word-final *-ą is lost | gem-pro → non | established | 73 |
 | `diph_u` NHG diphthongisation: *ū > *au | gmh → de | established | 70 |
 | `o_to_a` *o merges into *a | ine-pro → gem-pro | established | 67 |
-| `d_to_t` HGCS: *d > *t | gmw-pro → goh | established | 65 |
-| `satem_k` Satem: *ḱ > *ć [tɕ], the first affricate | ine-pro → iir-pro | established | 65 |
+| `satem_k` Satem: *ḱ > *ć [tɕ], the first affricate | ine-pro → iir-pro | established | 64 |
+| `d_to_t` HGCS: *d > *t | gmw-pro → goh | established | 62 |
 | `h_loss` Latin *h is lost | la → it | established | 62 |
 | `umlaut_u` i-umlaut: *u > *y | gmw-pro → ang | established | 61 |
 | `final_i_deletion_cluster` Final *-i is lost after a heavy consonant cluster | gmw-pro → ang | established | 60 |
@@ -265,20 +265,20 @@ apply often but never contribute to a match.
 | `infinitive_janą` Light class-1 infinitive *-janą > -ja | gem-pro → non | established | 57 |
 | `ea_to_a` OE *ea > ME *a | ang → enm | established | 56 |
 | `ian_to_en` OE *-ian > ME *-en | ang → enm | proposed | 56 |
-| `short_i_to_yer` Short *i > *ь | ine-bsl-pro → sla-pro | established | 55 |
 | `j_loss` *j is lost after a consonant | gmw-pro → ang | established | 54 |
 | `final_u_loss_cluster` Final *-u is lost after a short vowel and two consonants | gem-pro → non | established | 54 |
 | `long_i_to_i` *ī > *i | ine-bsl-pro → sla-pro | established | 54 |
+| `short_i_to_yer` Short *i > *ь | ine-bsl-pro → sla-pro | established | 54 |
 | `eo_to_e` OE *eo > ME *e | ang → enm | established | 52 |
 | `final_ō_to_u` Word-final *-ō > -u | gem-pro → non | established | 52 |
 | `final_i_lowering` Final *-i > *-e after a light syllable | gmw-pro → ang | established | 50 |
 | `verner_s` Verner: *s > *z (after unstressed syllable) | ine-pro → gem-pro | established | 49 |
 | `u_umlaut_a` u-umlaut: *a > ǫ before *u | gem-pro → non | established | 49 |
-| `au_to_u` *au > *u | ine-bsl-pro → sla-pro | established | 47 |
-| `final_is_to_yer` Final *-is > *-ь | ine-bsl-pro → sla-pro | established | 44 |
+| `au_to_u` *au > *u | ine-bsl-pro → sla-pro | established | 46 |
 | `w_to_v` *w > v | ine-bsl-pro → lt | established | 44 |
 | `final_u_to_e` Final *-u > *-e | ang → enm | established | 43 |
 | `final_ǭ_to_a` Word-final *-ǭ > -a | gem-pro → non | established | 43 |
+| `final_is_to_yer` Final *-is > *-ь | ine-bsl-pro → sla-pro | established | 43 |
 | `laryngeal_loss` Laryngeals are lost | ine-pro → gem-pro | established | 42 |
 | `infinitive_ijaną` Heavy class-1 infinitive *-ijaną > -a | gem-pro → non | established | 42 |
 | `c_from_palatal` PII *ć > PIr *c [ts] | iir-pro → ira-pro | established | 42 |

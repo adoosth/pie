@@ -2,8 +2,8 @@
  "schema": 2,
  "generated": "2026-11-13",
  "inputs": {
-  "lexicon": "9d4aa97d7fc1cf407225b851279b00d29a1e17b8",
-  "rules": "f24361f84c2a89d83a7d64e581aa8a3a67ebdff3"
+  "lexicon": "d83b0dcd10039ff52144a2cb9f071520aa5551ed",
+  "rules": "b08b4598381463851d31424abdbd6c081b15220d"
  },
  "tiers": "all",
  "sample": "all eligible words",
@@ -58,8 +58,8 @@
    "category_reasons": {
     "partial: reproduced only from a later recorded ancestor, not from the PIE etymon": 148,
     "partial: recorded outside the PIE chain": 17,
+    "partial: no recorded origin for Proto-Anatolian *-nū́di": 4,
     "non_pie: non-ie source": 3,
-    "partial: no recorded origin for Proto-Anatolian *-nū́di": 3,
     "partial: no entry for Proto-Indo-European *yugos, Proto-Indo-European *yug-o-s": 3,
     "partial: no entry for Proto-Indo-European *wélh₃-ti": 2,
     "partial: no entry for Proto-Indo-European *h₂erǵis": 2,
@@ -227,7 +227,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.17,
+   "seconds": 0.2,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [],
@@ -496,7 +496,7 @@
      5
     ]
    ],
-   "seconds": 4.91,
+   "seconds": 5.76,
    "examples": [
     {
      "stage": "ine-pro",
@@ -665,7 +665,7 @@
    "lemma_examples": [],
    "identity": 38,
    "bound_form": 29,
-   "joined": 626,
+   "joined": 629,
    "constructed": 0,
    "construction_examples": [],
    "gaps": [],
@@ -913,7 +913,7 @@
      1
     ]
    ],
-   "seconds": 4.83,
+   "seconds": 5.72,
    "examples": [
     {
      "stage": "gem-pro",
@@ -1043,16 +1043,16 @@
    "categorised": 6424,
    "estimate": null,
    "identified": 6356,
-   "pie_linked": 1303,
+   "pie_linked": 1302,
    "reconstruction": 277,
    "reconstruction_exact": 25,
    "eligible": 6356,
    "tested": 6079,
-   "exact": 556,
-   "exact_strict": 548,
+   "exact": 555,
+   "exact_strict": 547,
    "exact_notation": 8,
    "exact_pie": 9,
-   "explained": 1228,
+   "explained": 1227,
    "borrowed": 309,
    "outside": 175,
    "non_ie": 6,
@@ -1084,8 +1084,8 @@
     }
    },
    "category_reasons": {
-    "partial: no rule applied": 2499,
-    "partial: reproduced only from Proto-Germanic, not from the PIE etymon": 373,
+    "partial: no rule applied": 2502,
+    "partial: reproduced only from Proto-Germanic, not from the PIE etymon": 372,
     "ie_loan: loan from an IE branch": 299,
     "partial: reproduced only from Proto-West Germanic, not from the PIE etymon": 190,
     "non_pie: non-ie source": 63,
@@ -1312,9 +1312,9 @@
    },
    "categories_untested": 0,
    "case_only": 0,
-   "near": 1663,
+   "near": 1665,
    "errors": 0,
-   "exact_rate": 0.080219,
+   "exact_rate": 0.080075,
    "orthographic": 535,
    "orthographic_examples": [
     {
@@ -1376,9 +1376,9 @@
    ],
    "lemma": 0,
    "lemma_examples": [],
-   "identity": 97,
-   "bound_form": 40,
-   "joined": 343,
+   "identity": 96,
+   "bound_form": 41,
+   "joined": 347,
    "constructed": 0,
    "construction_examples": [],
    "gaps": [],
@@ -1532,17 +1532,17 @@
      "stage": "gem-pro"
     }
    ],
-   "exact_orth": 1091,
+   "exact_orth": 1090,
    "script": 0,
    "script_examples": [],
-   "orth_rate": 0.157409,
-   "exact_of_tested": 0.091462,
+   "orth_rate": 0.157264,
+   "exact_of_tested": 0.091298,
    "identified_rate": 0.917039,
-   "pie_rate": 0.187996,
-   "near_rate": 0.091462,
+   "pie_rate": 0.187852,
+   "near_rate": 0.091298,
    "from_stage": {
     "gem-pro": 384,
-    "gmw-pro": 163,
+    "gmw-pro": 162,
     "ine-pro": 9
    },
    "top_rules": [
@@ -1552,7 +1552,7 @@
     ],
     [
      "ang|brightening",
-     172
+     171
     ],
     [
      "ang|final_ą_to_a",
@@ -1568,7 +1568,7 @@
     ],
     [
      "ang|breaking_ae_rc",
-     89
+     88
     ],
     [
      "ang|final_ōn_to_ian",
@@ -1627,7 +1627,7 @@
      8
     ]
    ],
-   "seconds": 23.81,
+   "seconds": 23.79,
    "examples": [
     {
      "stage": "gem-pro",
@@ -1800,7 +1800,7 @@
    },
    "category_reasons": {
     "ie_loan: loan from an IE branch": 2992,
-    "partial: no rule applied": 822,
+    "partial: no rule applied": 821,
     "partial: reproduced only from Old English, not from the PIE etymon": 104,
     "partial: reproduced only from Proto-Germanic, not from the PIE etymon": 75,
     "non_pie: non-ie source": 72,
@@ -2072,7 +2072,7 @@
    "lemma_examples": [],
    "identity": 119,
    "bound_form": 31,
-   "joined": 1007,
+   "joined": 1026,
    "constructed": 0,
    "construction_examples": [],
    "gaps": [],
@@ -2323,7 +2323,7 @@
      12
     ]
    ],
-   "seconds": 26.64,
+   "seconds": 27.08,
    "examples": [
     {
      "stage": "ang",
@@ -2464,7 +2464,7 @@
     "band_base": 500000
    },
    "identified": 37619,
-   "pie_linked": 14888,
+   "pie_linked": 14887,
    "reconstruction": 0,
    "reconstruction_exact": 0,
    "eligible": 37619,
@@ -2473,7 +2473,7 @@
    "exact_strict": 561,
    "exact_notation": 1,
    "exact_pie": 3,
-   "explained": 3036,
+   "explained": 3029,
    "borrowed": 55903,
    "outside": 24638,
    "non_ie": 5241,
@@ -2507,29 +2507,29 @@
    },
    "category_reasons": {
     "ie_loan: loan from an IE branch": 41017,
-    "partial: no rule applied": 34559,
+    "partial: no rule applied": 34453,
     "non_pie: non-ie source": 15924,
     "partial: reproduced only from Middle English, not from the PIE etymon": 172,
-    "partial: built from pieces, not derived": 135,
+    "partial: built from pieces, not derived": 143,
     "unexplained: no recorded etymology": 104,
     "partial: unchanged ancestor (no law applied)": 80,
     "partial: no entry for Old English tūn": 52,
-    "partial: no entry for Old English ēare, Old English ǣr, Proto-Germanic *astriją; no recorded origin for Middle English -ere, -er": 50,
-    "partial: no recorded origin for Hindi आल": 43,
-    "partial: no recorded origin for Latin ō": 39,
-    "partial: no recorded origin for Proto-Hellenic *éimi": 37,
+    "partial: no entry for Old English ēare, Old English ǣr, Proto-Germanic *astriją; no recorded origin for Middle English -ere, -er": 49,
+    "partial: no recorded origin for Hindi आल": 40,
+    "partial: no recorded origin for Proto-Hellenic *éimi": 38,
+    "partial: no recorded origin for Ancient Greek Ἕλλην": 26,
     "partial: no entry for Old English ǣt, Proto-West Germanic *āt": 24,
-    "partial: no entry for Old English līċ; no recorded origin for Old English -līċ": 24,
     "partial: no entry for Middle English isen; no recorded origin for Middle English -isen": 22,
-    "partial: no recorded origin for Ancient Greek Ἕλλην": 22,
     "partial: reproduced only from Proto-Germanic, not from the PIE etymon": 20,
     "partial: no entry for Old English hām": 18,
-    "partial: no entry for Proto-West Germanic *in; no recorded origin for Proto-Germanic *inn": 17,
-    "partial: no recorded origin for Proto-Italic *en": 16,
+    "partial: no entry for Middle English ist; no recorded origin for Ancient Greek Ἕλλην": 18,
+    "partial: no entry for Old English līċ; no recorded origin for Old English -līċ": 18,
     "partial: no entry for Old English hōh": 16,
-    "partial: no entry for Middle English legh, Old English lēah, Proto-Indo-European *lówk-o-s and 1 more": 16,
-    "partial: no entry for Old English iġ, Proto-Germanic *īgaz; no recorded origin for Old English -iġ": 15,
-    "partial: no entry for Middle English non, Old English nān, Proto-West Germanic *nain; no recorded origin for Middle English non-": 14
+    "partial: no entry for Proto-West Germanic *in; no recorded origin for Proto-Germanic *inn": 16,
+    "partial: no entry for Old English iġ, Proto-Germanic *īgaz; no recorded origin for Old English -iġ": 16,
+    "partial: no recorded origin for Middle English a-": 16,
+    "partial: no entry for Proto-Indo-European *nŕ̥teros": 16,
+    "partial: no entry for Middle English legh, Old English lēah, Proto-Indo-European *lówk-o-s and 1 more": 16
    },
    "category_examples": {
     "full": [
@@ -2770,7 +2770,7 @@
    },
    "categories_untested": 0,
    "case_only": 0,
-   "near": 8463,
+   "near": 8467,
    "errors": 0,
    "exact_rate": 0.00432,
    "orthographic": 1337,
@@ -2834,9 +2834,9 @@
    ],
    "lemma": 0,
    "lemma_examples": [],
-   "identity": 1059,
+   "identity": 1052,
    "bound_form": 76,
-   "joined": 5578,
+   "joined": 5712,
    "constructed": 52,
    "construction_examples": [
     {
@@ -2875,67 +2875,69 @@
    "gaps": [],
    "joined_examples": [
     {
-     "word": "Sunday",
-     "etym": "equivalent to sun + day, as a calque (interpretātiō germānica) of Latin diēs Sōlis",
+     "word": "Monday",
+     "etym": "equivalent to Moon + day",
      "pieces": [
-      "sun",
+      "Moon",
       "day"
      ]
     },
     {
-     "word": "Sunday",
-     "etym": "equivalent to sun + day, as a calque (interpretātiō germānica) of Latin diēs Sōlis",
+     "word": "Monday",
+     "etym": "equivalent to Moon + day",
      "pieces": [
-      "sun",
+      "Moon",
       "day"
      ]
     },
     {
-     "word": "Sunday",
-     "etym": "equivalent to sun + day, as a calque (interpretātiō germānica) of Latin diēs Sōlis",
+     "word": "Tuesday",
+     "etym": "equivalent to Tiu + -s- + day",
      "pieces": [
-      "sun",
+      "Tiu",
+      "-s-",
       "day"
      ]
     },
     {
-     "word": "synonym",
-     "etym": "By surface analysis, syn- + -onym",
+     "word": "Tuesday",
+     "etym": "equivalent to Tiu + -s- + day",
      "pieces": [
-      "syn-",
-      "-onym"
+      "Tiu",
+      "-s-",
+      "day"
      ]
     },
     {
-     "word": "synonym",
-     "etym": "By surface analysis, syn- + -onym",
+     "word": "Friday",
+     "etym": "equivalent to Frigg + day, a calque of Latin diēs Veneris, via an association (interpretātiō germānica)",
      "pieces": [
-      "syn-",
-      "-onym"
+      "Frigg",
+      "day"
      ]
     },
     {
-     "word": "patronage",
-     "etym": "Equivalent to patron + -age",
+     "word": "Friday",
+     "etym": "equivalent to Frigg + day, a calque of Latin diēs Veneris, via an association (interpretātiō germānica)",
      "pieces": [
-      "patron",
-      "-age"
+      "Frigg",
+      "day"
      ]
     },
     {
-     "word": "patronage",
-     "etym": "Equivalent to patron + -age",
+     "word": "Saturday",
+     "etym": "equivalent to Saturn + day",
      "pieces": [
-      "patron",
-      "-age"
+      "Saturn",
+      "day"
      ]
     },
     {
-     "word": "abalienate",
-     "etym": "Equivalent to ab- + alienate",
+     "word": "Saturday",
+     "etym": "equivalent to Saturn + day",
      "pieces": [
-      "ab-",
-      "alienate"
+      "Saturn",
+      "day"
      ]
     }
    ],
@@ -3029,7 +3031,7 @@
    "orth_rate": 0.014599,
    "exact_of_tested": 0.014939,
    "identified_rate": 0.289201,
-   "pie_rate": 0.114454,
+   "pie_rate": 0.114446,
    "near_rate": 0.014939,
    "from_stage": {
     "enm": 389,
@@ -3120,7 +3122,7 @@
      6
     ]
    ],
-   "seconds": 170.23,
+   "seconds": 195.83,
    "examples": [
     {
      "stage": "enm",
@@ -3279,11 +3281,11 @@
    "reconstruction_exact": 1,
    "eligible": 1571,
    "tested": 1536,
-   "exact": 163,
-   "exact_strict": 162,
+   "exact": 162,
+   "exact_strict": 161,
    "exact_notation": 1,
    "exact_pie": 1,
-   "explained": 231,
+   "explained": 230,
    "borrowed": 41,
    "outside": 10,
    "non_ie": 1,
@@ -3315,14 +3317,15 @@
     }
    },
    "category_reasons": {
-    "partial: no rule applied": 797,
+    "partial: no rule applied": 793,
     "partial: reproduced only from Proto-West Germanic, not from the PIE etymon": 72,
     "ie_loan: loan from an IE branch": 41,
-    "partial: reproduced only from Proto-Germanic, not from the PIE etymon": 39,
+    "partial: reproduced only from Proto-Germanic, not from the PIE etymon": 40,
     "partial: unchanged ancestor (no law applied)": 35,
     "partial: no entry for Proto-West Germanic *Gaut": 7,
     "partial: no entry for Proto-Indo-European *kelh₂tís": 6,
-    "partial: built from pieces, not derived": 4,
+    "partial: built from pieces, not derived": 5,
+    "partial: no entry for Proto-Indo-European *kort-ús": 3,
     "partial: bound form, not a word": 3,
     "partial: no entry for Proto-Indo-European *tód": 2,
     "partial: no entry for Proto-Indo-European *h₁pi": 2,
@@ -3334,7 +3337,6 @@
     "partial: no entry for Proto-Indo-European *krewp-o-s": 2,
     "partial: no entry for Proto-West Germanic *skūru, Proto-Indo-European *skéh₃-ur": 2,
     "non_pie: non-ie source": 2,
-    "partial: no entry for Proto-Germanic *airist": 2,
     "partial: no entry for Proto-Indo-European *lówk-o-s": 2,
     "partial: no entry for Proto-Indo-European *bʰerHǵ-tó-s": 2,
     "partial: no entry for Proto-Germanic *haubidą; no recorded origin for Proto-Germanic *haubidą": 2,
@@ -3453,7 +3455,7 @@
    "case_only": 0,
    "near": 504,
    "errors": 0,
-   "exact_rate": 0.100308,
+   "exact_rate": 0.099692,
    "orthographic": 7,
    "orthographic_examples": [
     {
@@ -3510,7 +3512,7 @@
    "lemma_examples": [],
    "identity": 58,
    "bound_form": 3,
-   "joined": 49,
+   "joined": 57,
    "constructed": 0,
    "construction_examples": [],
    "gaps": [],
@@ -3573,11 +3575,11 @@
      ]
     },
     {
-     "word": "diutisk",
-     "etym": "equivalent to diot (“people”) + -isc (adjective-forming suffix)",
+     "word": "Frenchin",
+     "etym": "From Franko (“Frank”) + -in (fem",
      "pieces": [
-      "diot",
-      "-isc"
+      "Franko",
+      "-in"
      ]
     }
    ],
@@ -3640,16 +3642,16 @@
      "stage": "gem-pro"
     }
    ],
-   "exact_orth": 170,
+   "exact_orth": 169,
    "script": 0,
    "script_examples": [],
-   "orth_rate": 0.104615,
-   "exact_of_tested": 0.10612,
+   "orth_rate": 0.104,
+   "exact_of_tested": 0.105469,
    "identified_rate": 0.966769,
    "pie_rate": 0.141538,
-   "near_rate": 0.10612,
+   "near_rate": 0.105469,
    "from_stage": {
-    "gmw-pro": 103,
+    "gmw-pro": 102,
     "gem-pro": 59,
     "ine-pro": 1
    },
@@ -3660,7 +3662,7 @@
     ],
     [
      "goh|d_to_t",
-     47
+     46
     ],
     [
      "gmw-pro|final_a_loss",
@@ -3735,7 +3737,7 @@
      1
     ]
    ],
-   "seconds": 3.37,
+   "seconds": 3.13,
    "examples": [
     {
      "stage": "gem-pro",
@@ -3787,15 +3789,15 @@
     },
     {
      "stage": "gmw-pro",
-     "ancestor": "hard",
-     "word": "hart",
-     "output": "hart"
-    },
-    {
-     "stage": "gmw-pro",
      "ancestor": "þō",
      "word": "duo",
      "output": "duo"
+    },
+    {
+     "stage": "gem-pro",
+     "ancestor": "stainaz",
+     "word": "stein",
+     "output": "stein"
     }
    ],
    "pathway_examples": [],
@@ -3924,7 +3926,7 @@
     "partial: no entry for Proto-Indo-European *h₂epoteros, Proto-Indo-European *h₂epóteros": 1,
     "partial: no entry for Old High German ās, Proto-West Germanic *ās, Proto-Indo-European *h₁ēd-s-om": 1,
     "partial: no entry for Old High German rāt": 1,
-    "partial: no entry for Proto-Indo-European *raþą, Proto-Indo-European *Hróth₂-o-m, Proto-Germanic *raþą": 1,
+    "partial: no entry for Proto-Germanic *raþą": 1,
     "partial: no entry for Old High German rōsa": 1,
     "partial: no entry for Old High German bëro": 1,
     "partial: no entry for Old High German ër": 1,
@@ -4251,7 +4253,7 @@
      1
     ]
    ],
-   "seconds": 0.48,
+   "seconds": 1.46,
    "examples": [
     {
      "stage": "goh",
@@ -4397,8 +4399,8 @@
    "reconstruction_exact": 0,
    "eligible": 8127,
    "tested": 8127,
-   "exact": 195,
-   "exact_strict": 195,
+   "exact": 193,
+   "exact_strict": 193,
    "exact_notation": 0,
    "exact_pie": 0,
    "explained": 1001,
@@ -4435,7 +4437,7 @@
    },
    "category_reasons": {
     "ie_loan: loan from an IE branch": 5923,
-    "partial: no rule applied": 2869,
+    "partial: no rule applied": 2699,
     "non_pie: non-ie source": 515,
     "partial: bound form, not a word": 12,
     "partial: unchanged ancestor (no law applied)": 10,
@@ -4445,6 +4447,8 @@
     "partial: no entry for Middle High German ër, Old High German ër": 5,
     "partial: no entry for Middle High German Adalbërt, Old High German Adalbërht": 5,
     "partial: no entry for Proto-Indo-European *bʰérgʰs": 5,
+    "partial: no entry for Middle High German es; no recorded origin for Middle High German -es": 4,
+    "partial: no recorded origin for German -isch": 4,
     "partial: no entry for Proto-Indo-European *pléwketi": 4,
     "partial: no entry for Middle High German in, Proto-West Germanic *in": 3,
     "partial: no entry for Old High German āno": 3,
@@ -4455,9 +4459,7 @@
     "unexplained: no recorded etymology": 3,
     "partial: no entry for Middle High German her": 3,
     "partial: no entry for Middle High German wecke, Old High German wecki": 3,
-    "partial: no entry for Proto-West Germanic *sigʀ": 3,
-    "partial: no entry for Middle High German Briunhilde, Old High German Brunnīhilta, Proto-West Germanic *Brunnjuhildi": 3,
-    "partial: no entry for Middle High German abe, Middle High German ab, Proto-West Germanic *ab": 2
+    "partial: no entry for Old High German ër; no recorded origin for Middle High German ër": 3
    },
    "category_examples": {
     "full": [],
@@ -4471,7 +4473,7 @@
      {
       "word": "raven",
       "gloss": "to rave (to attend a rave)",
-      "reason": "no rule applied"
+      "reason": "no entry for Middle High German en, Proto-Indo-European *onom; no recorded origin for Middle High German -en"
      },
      {
       "word": "April",
@@ -4501,7 +4503,7 @@
      {
       "word": "ab-",
       "gloss": "Separable verb prefix that indicates removal or quitting, of",
-      "reason": "no entry for Middle High German abe, Middle High German ab, Proto-West Germanic *ab"
+      "reason": "no entry for Middle High German abe, Middle High German ab, Proto-West Germanic *aba"
      }
     ],
     "unexplained": [
@@ -4610,9 +4612,9 @@
    },
    "categories_untested": 0,
    "case_only": 0,
-   "near": 3059,
+   "near": 3053,
    "errors": 0,
-   "exact_rate": 0.011377,
+   "exact_rate": 0.01126,
    "orthographic": 167,
    "orthographic_examples": [
     {
@@ -4674,9 +4676,9 @@
    ],
    "lemma": 0,
    "lemma_examples": [],
-   "identity": 601,
+   "identity": 603,
    "bound_form": 38,
-   "joined": 928,
+   "joined": 1475,
    "constructed": 0,
    "construction_examples": [],
    "gaps": [],
@@ -4714,11 +4716,11 @@
      ]
     },
     {
-     "word": "langsam",
-     "etym": "equivalent to lang + -sam",
+     "word": "mutig",
+     "etym": "equivalent to Mut + -ig",
      "pieces": [
-      "lang",
-      "-sam"
+      "Mut",
+      "-ig"
      ]
     },
     {
@@ -4730,19 +4732,19 @@
      ]
     },
     {
-     "word": "links",
-     "etym": "By surface analysis, link + -s",
+     "word": "langsam",
+     "etym": "equivalent to lang + -sam",
      "pieces": [
-      "link",
-      "-s"
+      "lang",
+      "-sam"
      ]
     },
     {
-     "word": "neunzehn",
-     "etym": "Equivalent to neun + zehn",
+     "word": "Wissenschaft",
+     "etym": "by surface analysis, Wissen (“knowledge”) + -schaft (“-ship",
      "pieces": [
-      "neun",
-      "zehn"
+      "Wissen",
+      "-schaft"
      ]
     }
    ],
@@ -4830,18 +4832,18 @@
      "stage": "gmh"
     }
    ],
-   "exact_orth": 362,
+   "exact_orth": 360,
    "script": 0,
    "script_examples": [],
-   "orth_rate": 0.02112,
-   "exact_of_tested": 0.023994,
+   "orth_rate": 0.021004,
+   "exact_of_tested": 0.023748,
    "identified_rate": 0.474154,
    "pie_rate": 0.065169,
-   "near_rate": 0.023994,
+   "near_rate": 0.023748,
    "from_stage": {
     "gmh": 92,
     "goh": 61,
-    "gmw-pro": 27,
+    "gmw-pro": 25,
     "gem-pro": 15
    },
    "top_rules": [
@@ -4875,7 +4877,7 @@
     ],
     [
      "goh|d_to_t",
-     11
+     9
     ],
     [
      "gmh|unstressed_o",
@@ -4922,7 +4924,7 @@
      1
     ]
    ],
-   "seconds": 29.58,
+   "seconds": 32.87,
    "examples": [
     {
      "stage": "gem-pro",
@@ -4955,18 +4957,6 @@
      "output": "bitter"
     },
     {
-     "stage": "gmw-pro",
-     "ancestor": "hard",
-     "word": "hart",
-     "output": "hart"
-    },
-    {
-     "stage": "gmw-pro",
-     "ancestor": "hard",
-     "word": "hart",
-     "output": "hart"
-    },
-    {
      "stage": "goh",
      "ancestor": "bergan",
      "word": "bergen",
@@ -4983,6 +4973,18 @@
      "ancestor": "undar",
      "word": "unter",
      "output": "unter"
+    },
+    {
+     "stage": "gmh",
+     "ancestor": "ūf",
+     "word": "auf",
+     "output": "auf"
+    },
+    {
+     "stage": "gmh",
+     "ancestor": "ūf",
+     "word": "auf",
+     "output": "auf"
     }
    ],
    "pathway_examples": [],
@@ -5003,7 +5005,7 @@
     },
     {
      "pie": "h₂epó",
-     "stage": "gmh",
+     "stage": "gmw-pro",
      "word": "ab-",
      "output": "abe",
      "distance": 1
@@ -5071,22 +5073,22 @@
    "pathway": 0,
    "categories": {
     "counts": {
-     "full": 34,
+     "full": 35,
      "adjusted": 1,
-     "partial": 1924,
+     "partial": 1923,
      "unexplained": 0,
      "non_pie": 54,
      "ie_loan": 139,
      "built": 0
     },
     "total": 2152,
-    "explained": 35,
-    "explained_rate": 1.63,
-    "of_glossary": 1.63,
+    "explained": 36,
+    "explained_rate": 1.67,
+    "of_glossary": 1.67,
     "share": {
-     "full": 1.58,
+     "full": 1.63,
      "adjusted": 0.05,
-     "partial": 89.41,
+     "partial": 89.36,
      "unexplained": 0.0,
      "non_pie": 2.51,
      "ie_loan": 6.46,
@@ -5097,12 +5099,12 @@
     "partial: no rule applied": 1012,
     "partial: reproduced only from Proto-Germanic, not from the PIE etymon": 185,
     "ie_loan: loan from an IE branch": 139,
-    "partial: built from pieces, not derived": 89,
+    "partial: built from pieces, not derived": 85,
     "non_pie: non-ie source": 54,
     "partial: unchanged ancestor (no law applied)": 22,
     "partial: no entry for Proto-Indo-European *úd-s": 20,
     "partial: no entry for Proto-Indo-European *h₁pi": 16,
-    "partial: no entry for Proto-Indo-European *meth₂": 11,
+    "partial: no entry for Proto-Indo-European *meth₂": 10,
     "partial: no recorded origin for Proto-Germanic *-þiz": 8,
     "partial: no entry for Proto-Indo-European *pr̥h₂-éy": 7,
     "partial: no recorded origin for Proto-Germanic *ana": 7,
@@ -5112,12 +5114,12 @@
     "partial: no entry for Proto-Indo-European *gʰebʰ-e-ti": 4,
     "partial: no entry for Proto-Indo-European *ǵn̥h₁-yó-m": 4,
     "partial: no entry for Proto-Indo-European *dʰewb-ó-s": 4,
-    "partial: no entry for Proto-Germanic *īgaz; no recorded origin for Proto-Germanic *-īgaz": 4,
     "partial: no recorded origin for Proto-Germanic *-līkaz": 4,
     "partial: no entry for Proto-Indo-European *séh₂gti": 4,
     "partial: no entry for Proto-Indo-European *h₂érmos": 3,
     "partial: no recorded origin for Proto-Germanic *-inōną": 3,
-    "partial: no entry for Proto-Indo-European *pr̥h₂i": 3
+    "partial: no entry for Proto-Indo-European *pr̥h₂i": 3,
+    "partial: no entry for Proto-Indo-European *doh₁": 3
    },
    "category_examples": {
     "full": [
@@ -5368,7 +5370,7 @@
    "identity": 30,
    "bound_form": 0,
    "joined": 399,
-   "constructed": 30,
+   "constructed": 31,
    "construction_examples": [
     {
      "word": "𐍄𐍅𐌹𐍃𐍃𐍄𐌰𐌽𐌳𐌰𐌽",
@@ -5523,7 +5525,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 7.06,
+   "seconds": 7.12,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -5637,16 +5639,16 @@
     "partial: no rule applied": 1473,
     "partial: reproduced only from Proto-Germanic, not from the PIE etymon": 449,
     "ie_loan: loan from an IE branch": 85,
-    "partial: built from pieces, not derived": 15,
+    "partial: built from pieces, not derived": 14,
     "partial: no entry for Proto-Indo-European *tóm, Proto-Indo-European *tóna": 12,
     "partial: bound form, not a word": 11,
     "partial: no entry for Proto-Indo-European *n̥kʷos": 10,
     "full: cited laws, no change": 9,
     "partial: no entry for Proto-Indo-European *om": 8,
-    "partial: no recorded origin for Proto-Germanic *laikaz": 8,
     "partial: unchanged ancestor (no law applied)": 7,
     "partial: no entry for Proto-Indo-European *h₂enh₁-dʰō": 7,
-    "partial: no recorded origin for Proto-Germanic *-līkaz": 5,
+    "partial: no recorded origin for Proto-Germanic *-līkaz": 7,
+    "partial: no recorded origin for Proto-Germanic *laikaz": 7,
     "partial: no recorded origin for Proto-Germanic *tigiwiz": 5,
     "non_pie: non-ie source": 4,
     "partial: no entry for Proto-Germanic *atą; no recorded origin for Proto-Germanic *atą": 4,
@@ -5827,7 +5829,7 @@
    },
    "categories_untested": 0,
    "case_only": 0,
-   "near": 777,
+   "near": 776,
    "errors": 0,
    "exact_rate": 0.215452,
    "orthographic": 0,
@@ -5836,7 +5838,7 @@
    "lemma_examples": [],
    "identity": 9,
    "bound_form": 15,
-   "joined": 216,
+   "joined": 219,
    "constructed": 7,
    "construction_examples": [
     {
@@ -6113,7 +6115,7 @@
      26
     ]
    ],
-   "seconds": 9.44,
+   "seconds": 9.67,
    "examples": [
     {
      "stage": "gem-pro",
@@ -6259,11 +6261,11 @@
    "reconstruction_exact": 0,
    "eligible": 3526,
    "tested": 3496,
-   "exact": 136,
-   "exact_strict": 110,
+   "exact": 135,
+   "exact_strict": 109,
    "exact_notation": 26,
-   "exact_pie": 46,
-   "explained": 414,
+   "exact_pie": 45,
+   "explained": 413,
    "borrowed": 1783,
    "outside": 1552,
    "non_ie": 190,
@@ -6296,7 +6298,7 @@
     }
    },
    "category_reasons": {
-    "partial: no rule applied": 4381,
+    "partial: no rule applied": 4374,
     "ie_loan: loan from an IE branch": 1572,
     "non_pie: non-ie source": 328,
     "partial: reproduced only from Proto-Italic, not from the PIE etymon": 156,
@@ -6311,15 +6313,15 @@
     "partial: no entry for Proto-Indo-European *elós": 3,
     "partial: no entry for Proto-Indo-European *moy-nós": 3,
     "partial: no entry for Proto-Indo-European *óynos": 3,
+    "partial: no entry for Proto-Indo-European *eh₂": 3,
     "partial: no entry for Proto-Indo-European *elós; no recorded origin for Proto-Italic *-elos": 3,
+    "partial: no recorded origin for Proto-Italic *-ikos": 3,
     "partial: no entry for Proto-Indo-European *dʰǵʰyési": 2,
     "partial: no entry for Proto-Indo-European *lókus": 2,
     "partial: no entry for Proto-Indo-European *om": 2,
     "partial: no entry for Proto-Indo-European *éy": 2,
     "adjusted: recorded step differs: itc-pro": 2,
-    "partial: no entry for Proto-Indo-European *leh₂iwos": 2,
-    "partial: no entry for Proto-Indo-European *dʰh₁-os": 2,
-    "partial: no entry for Proto-Indo-European *pro-bʰH-wó-s": 2
+    "partial: no entry for Proto-Indo-European *leh₂iwos": 2
    },
    "category_examples": {
     "full": [
@@ -6551,7 +6553,7 @@
    "case_only": 0,
    "near": 436,
    "errors": 0,
-   "exact_rate": 0.016667,
+   "exact_rate": 0.016544,
    "orthographic": 213,
    "orthographic_examples": [
     {
@@ -6615,7 +6617,7 @@
    "lemma_examples": [],
    "identity": 39,
    "bound_form": 26,
-   "joined": 55,
+   "joined": 56,
    "constructed": 0,
    "construction_examples": [],
    "gaps": [],
@@ -6769,17 +6771,17 @@
      "stage": "ine-pro"
     }
    ],
-   "exact_orth": 349,
+   "exact_orth": 348,
    "script": 0,
    "script_examples": [],
-   "orth_rate": 0.04277,
-   "exact_of_tested": 0.038902,
+   "orth_rate": 0.042647,
+   "exact_of_tested": 0.038616,
    "identified_rate": 0.432108,
    "pie_rate": 0.395221,
-   "near_rate": 0.038902,
+   "near_rate": 0.038616,
    "from_stage": {
     "itc-pro": 90,
-    "ine-pro": 46
+    "ine-pro": 45
    },
    "top_rules": [
     [
@@ -6792,7 +6794,7 @@
     ],
     [
      "itc-pro|laryngeal_loss",
-     21
+     20
     ],
     [
      "la|final_long_a",
@@ -6863,7 +6865,7 @@
      3
     ]
    ],
-   "seconds": 11.52,
+   "seconds": 12.45,
    "examples": [
     {
      "stage": "ine-pro",
@@ -7047,7 +7049,7 @@
    },
    "category_reasons": {
     "ie_loan: loan from an IE branch": 7550,
-    "partial: no rule applied": 3076,
+    "partial: no rule applied": 3071,
     "non_pie: non-ie source": 680,
     "partial: reproduced only from Latin, not from the PIE etymon": 208,
     "partial: unchanged ancestor (no law applied)": 46,
@@ -7056,7 +7058,7 @@
     "unexplained: no recorded etymology": 7,
     "partial: built from pieces, not derived": 7,
     "partial: no entry for Latin ō; no recorded origin for Latin -ō": 7,
-    "partial: no entry for Latin ismus; no recorded origin for Latin -ismus": 5,
+    "partial: no entry for Latin ismus; no recorded origin for Latin -ismus": 6,
     "partial: no entry for Latin bēta": 4,
     "partial: no entry for Latin ō": 4,
     "partial: no entry for Proto-Indo-European *Hróth₂eh₂, Proto-Indo-European *Hróth₂-eh₂": 4,
@@ -7325,7 +7327,7 @@
    "lemma_examples": [],
    "identity": 123,
    "bound_form": 64,
-   "joined": 652,
+   "joined": 680,
    "constructed": 0,
    "construction_examples": [],
    "gaps": [],
@@ -7574,7 +7576,7 @@
      3
     ]
    ],
-   "seconds": 20.76,
+   "seconds": 19.73,
    "examples": [
     {
      "stage": "la",
@@ -7850,7 +7852,7 @@
     }
    },
    "category_reasons": {
-    "partial: no rule applied": 2462,
+    "partial: no rule applied": 2463,
     "ie_loan: loan from an IE branch": 852,
     "non_pie: non-ie source": 539,
     "partial: reproduced only from Proto-Hellenic, not from the PIE etymon": 104,
@@ -7861,8 +7863,6 @@
     "partial: no entry for Proto-Indo-European *eyéti, Proto-Indo-European *esyéti": 5,
     "partial: no recorded origin for Proto-Hellenic *-os": 4,
     "partial: no entry for Proto-Indo-European *pr̥h₂-k-yé-ti": 4,
-    "partial: no recorded origin for Proto-Hellenic *-mə": 4,
-    "partial: no recorded origin for Proto-Hellenic *-tós": 4,
     "partial: no recorded origin for Ancient Greek ἀπο-": 4,
     "partial: no recorded origin for Ancient Greek ᾰ̓νᾰ́": 4,
     "partial: construction of γέννα + -ᾰ́ω does not spell the word": 3,
@@ -7871,6 +7871,8 @@
     "partial: no recorded origin for Proto-Hellenic *-tron": 3,
     "partial: no recorded origin for Proto-Hellenic *ə-": 3,
     "partial: no recorded origin for Proto-Hellenic *tʰehós": 3,
+    "partial: no recorded origin for Proto-Hellenic *-mə": 3,
+    "partial: no recorded origin for Proto-Hellenic *-tós": 3,
     "partial: no entry for Proto-Indo-European *sh₂i-men": 3,
     "partial: no entry for Proto-Indo-European *dwoΗdeḱm̥": 2,
     "partial: no entry for Proto-Indo-European *méǵʰsri": 2
@@ -8199,7 +8201,7 @@
    "lemma_examples": [],
    "identity": 81,
    "bound_form": 0,
-   "joined": 145,
+   "joined": 146,
    "constructed": 1,
    "construction_examples": [
     {
@@ -8327,7 +8329,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 7.86,
+   "seconds": 8.69,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -8450,9 +8452,9 @@
    },
    "category_reasons": {
     "ie_loan: loan from an IE branch": 3147,
-    "partial: no rule applied": 2555,
+    "partial: no rule applied": 2552,
     "non_pie: non-ie source": 407,
-    "partial: reproduced only from Ancient Greek, not from the PIE etymon": 177,
+    "partial: reproduced only from Ancient Greek, not from the PIE etymon": 178,
     "partial: unchanged ancestor (no law applied)": 41,
     "partial: reproduced only from Proto-Hellenic, not from the PIE etymon": 7,
     "full: orthographic layer": 5,
@@ -8659,7 +8661,7 @@
    "near": 2,
    "errors": 0,
    "exact_rate": 0.0,
-   "orthographic": 646,
+   "orthographic": 647,
    "orthographic_examples": [
     {
      "stage": "grc",
@@ -8720,9 +8722,9 @@
    ],
    "lemma": 0,
    "lemma_examples": [],
-   "identity": 318,
+   "identity": 317,
    "bound_form": 0,
-   "joined": 194,
+   "joined": 198,
    "constructed": 0,
    "construction_examples": [],
    "gaps": [],
@@ -8835,17 +8837,17 @@
     }
    ],
    "bound_examples": [],
-   "exact_orth": 646,
+   "exact_orth": 647,
    "script": 0,
    "script_examples": [],
-   "orth_rate": 0.061694,
+   "orth_rate": 0.06179,
    "exact_of_tested": 0.0,
    "identified_rate": 0.486104,
    "pie_rate": 0.029797,
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 21.68,
+   "seconds": 23.52,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -8920,11 +8922,11 @@
    "reconstruction_exact": 0,
    "eligible": 720,
    "tested": 720,
-   "exact": 350,
+   "exact": 346,
    "exact_strict": 3,
-   "exact_notation": 347,
-   "exact_pie": 350,
-   "explained": 392,
+   "exact_notation": 343,
+   "exact_pie": 346,
+   "explained": 388,
    "borrowed": 0,
    "outside": 0,
    "non_ie": 0,
@@ -8947,14 +8949,14 @@
    "case_only": 0,
    "near": 38,
    "errors": 0,
-   "exact_rate": 0.438048,
+   "exact_rate": 0.433041,
    "orthographic": 0,
    "orthographic_examples": [],
    "lemma": 0,
    "lemma_examples": [],
    "identity": 2,
    "bound_form": 40,
-   "joined": 3,
+   "joined": 8,
    "constructed": 0,
    "construction_examples": [],
    "gaps": [],
@@ -8968,11 +8970,51 @@
      ]
     },
     {
+     "word": "naHuHaȷ́ás",
+     "etym": "From *náHuš (“boat”) + *Haȷ́ás (“driver, leader”)",
+     "pieces": [
+      "*náHuš",
+      "*Haȷ́ás"
+     ]
+    },
+    {
      "word": "utˢtamás",
      "etym": "Equivalent to *ud- + *-tamas",
      "pieces": [
       "*ud-",
       "*-tamas"
+     ]
+    },
+    {
+     "word": "Háćwapatiš",
+     "etym": "From *Háćwas (“horse”) + *pátiš (“master”)",
+     "pieces": [
+      "*Háćwas",
+      "*pátiš"
+     ]
+    },
+    {
+     "word": "HwásištHas",
+     "etym": "From *Hwásuš (“good”) + *-ištHas (superlative suffix)",
+     "pieces": [
+      "*Hwásuš",
+      "*-ištHas"
+     ]
+    },
+    {
+     "word": "swáHdištHas",
+     "etym": "From *swáHduš (“sweet”) + *-ištHas (superlative suffix)",
+     "pieces": [
+      "*swáHduš",
+      "*-ištHas"
+     ]
+    },
+    {
+     "word": "maȷ́ʰištHas",
+     "etym": "From *maȷ́ʰā́ (“great, big”) + *-ištHas (superlative suffix)",
+     "pieces": [
+      "*maȷ́ʰā́",
+      "*-ištHas"
      ]
     },
     {
@@ -9038,29 +9080,29 @@
      "stage": "ine-pro"
     }
    ],
-   "exact_orth": 350,
+   "exact_orth": 346,
    "script": 0,
    "script_examples": [],
-   "orth_rate": 0.438048,
-   "exact_of_tested": 0.486111,
+   "orth_rate": 0.433041,
+   "exact_of_tested": 0.480556,
    "identified_rate": 0.901126,
    "pie_rate": 0.901126,
-   "near_rate": 0.486111,
+   "near_rate": 0.480556,
    "from_stage": {
-    "ine-pro": 350
+    "ine-pro": 346
    },
    "top_rules": [
     [
      "iir-pro|vowel_merger_a",
-     311
+     308
     ],
     [
      "iir-pro|laryngeal_to_H",
-     150
+     148
     ],
     [
      "iir-pro|ruki_s",
-     70
+     68
     ],
     [
      "iir-pro|satem_k",
@@ -9096,7 +9138,7 @@
     ],
     [
      "iir-pro|syllabic_l_to_r",
-     14
+     13
     ],
     [
      "iir-pro|syllabic_m",
@@ -9131,7 +9173,7 @@
      3
     ]
    ],
-   "seconds": 2.37,
+   "seconds": 1.45,
    "examples": [
     {
      "stage": "ine-pro",
@@ -9348,7 +9390,7 @@
    "exact_strict": 0,
    "exact_notation": 0,
    "exact_pie": 0,
-   "explained": 1099,
+   "explained": 1097,
    "borrowed": 104,
    "outside": 63,
    "non_ie": 22,
@@ -9381,9 +9423,9 @@
     }
    },
    "category_reasons": {
-    "partial: no rule applied": 1642,
+    "partial: no rule applied": 1643,
     "full: orthographic layer": 131,
-    "partial: cited as a stem, not derived": 97,
+    "partial: cited as a stem, not derived": 99,
     "non_pie: non-ie source": 90,
     "ie_loan: loan from an IE branch": 82,
     "partial: reproduced only from Proto-Indo-Iranian, not from the PIE etymon": 40,
@@ -9393,8 +9435,8 @@
     "partial: unchanged ancestor (no law applied)": 12,
     "partial: no entry for Proto-Indo-Iranian *tiš; no recorded origin for Proto-Indo-Aryan *-tiṣ": 11,
     "partial: built from pieces, not derived": 10,
+    "partial: no recorded origin for Proto-Indo-Aryan *-tás": 10,
     "adjusted: recorded step differs: inc-pro": 9,
-    "partial: no recorded origin for Proto-Indo-Aryan *-tás": 9,
     "partial: no entry for Proto-Indo-Iranian *áyati; no recorded origin for Proto-Indo-Aryan *-áyati": 9,
     "partial: no entry for Proto-Indo-Iranian *áyati": 9,
     "partial: no entry for Proto-Indo-Iranian *itás, Proto-Indo-European *itós": 8,
@@ -9726,7 +9768,7 @@
      "written": "न"
     }
    ],
-   "lemma": 543,
+   "lemma": 541,
    "lemma_examples": [
     {
      "stage": "ine-pro",
@@ -9937,7 +9979,7 @@
     }
    ],
    "bound_examples": [],
-   "exact_orth": 1063,
+   "exact_orth": 1061,
    "script": 0,
    "script_examples": [],
    "orth_rate": 0.102787,
@@ -9947,7 +9989,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 11.96,
+   "seconds": 14.43,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -10025,7 +10067,7 @@
    "exact": 224,
    "exact_strict": 8,
    "exact_notation": 216,
-   "exact_pie": 86,
+   "exact_pie": 85,
    "explained": 256,
    "borrowed": 1,
    "outside": 0,
@@ -10056,17 +10098,33 @@
    "lemma_examples": [],
    "identity": 21,
    "bound_form": 11,
-   "joined": 2,
+   "joined": 4,
    "constructed": 0,
    "construction_examples": [],
    "gaps": [],
    "joined_examples": [
+    {
+     "word": "cwaHdapatiš",
+     "etym": "From *cwáHdah (“army”) + *pátiš (“lord”) (from Proto-Indo-European *pótis (“master”))",
+     "pieces": [
+      "*cwáHdah",
+      "*pátiš"
+     ]
+    },
     {
      "word": "fragāwah",
      "etym": "From *fra- + *gāwah (“an increase”)",
      "pieces": [
       "*fra-",
       "*gāwah"
+     ]
+    },
+    {
+     "word": "gawpaHā",
+     "etym": "From *gā́wš ~ *gáwah (“cow”) + *-paHā (“protector, keeper”), from Proto-Indo-European *péh₂-ō ~",
+     "pieces": [
+      "*gā́wš ~ *gáwah",
+      "*-paHā"
      ]
     },
     {
@@ -10171,8 +10229,8 @@
    "pie_rate": 0.567308,
    "near_rate": 0.636364,
    "from_stage": {
-    "iir-pro": 138,
-    "ine-pro": 86
+    "iir-pro": 139,
+    "ine-pro": 85
    },
    "top_rules": [
     [
@@ -10189,7 +10247,7 @@
     ],
     [
      "iir-pro|laryngeal_to_H",
-     28
+     27
     ],
     [
      "ira-pro|j_from_palatal",
@@ -10209,11 +10267,11 @@
     ],
     [
      "iir-pro|satem_k",
-     18
+     17
     ],
     [
      "iir-pro|ruki_s",
-     17
+     16
     ],
     [
      "ira-pro|t_to_theta_before_sonorant",
@@ -10256,7 +10314,7 @@
      4
     ]
    ],
-   "seconds": 1.27,
+   "seconds": 1.88,
    "examples": [
     {
      "stage": "ine-pro",
@@ -10752,7 +10810,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 1.15,
+   "seconds": 0.81,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -10872,7 +10930,6 @@
     "full: script layer": 5,
     "partial: needs approval of our modification": 4,
     "partial: no recorded origin for Old Persian Skuδi": 2,
-    "partial: no entry for Proto-Iranian *Wŕ̥kānah": 2,
     "partial: no entry for Proto-Iranian *wašnah, Proto-Indo-Iranian *wašnas": 2,
     "partial: no entry for Proto-Indo-Iranian *kšáyah, Proto-Indo-Iranian *kšáyati; no recorded origin for Proto-Indo-Iranian *kšáyah": 1,
     "partial: no entry for Proto-Iranian *Hwáhuš; no recorded origin for Proto-Iranian *Hwáhuš": 1,
@@ -10886,7 +10943,8 @@
     "partial: no entry for Proto-Iranian *dātam": 1,
     "partial: no entry for Proto-Iranian *Hr̥štíš, Proto-Indo-Iranian *Hr̥štíš, Proto-Indo-European *h₁r̥s-tí-s": 1,
     "partial: no entry for Proto-Iranian *duHráh": 1,
-    "partial: no entry for Proto-Iranian *nápāth": 1
+    "partial: no entry for Proto-Iranian *nápāth": 1,
+    "partial: no entry for Proto-Indo-European *pṓd-o-s": 1
    },
    "category_examples": {
     "full": [
@@ -11171,7 +11229,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.56,
+   "seconds": 0.22,
    "examples": [],
    "pathway_examples": [
     {
@@ -11272,9 +11330,9 @@
   },
   "pal": {
    "name": "Middle Persian",
-   "glossary": 695,
-   "attested": 695,
-   "categorised": 695,
+   "glossary": 697,
+   "attested": 697,
+   "categorised": 697,
    "estimate": {
     "total": 4000,
     "source": "D. N. MacKenzie, A Concise Pahlavi Dictionary (OUP 1971), preface",
@@ -11283,15 +11341,15 @@
     "counts": "the commonest simple words a concise dictionary sets out to cover — a curated core, not the attested vocabulary",
     "basis": "floor",
     "quote": "The present dictionary ... is intended first to relieve the stranger to Pahlavi of the necessity of covering what is now well-travelled ground-the commonest 4,000 simple words",
-    "unidentified": 3305,
+    "unidentified": 3303,
     "band_base": 4000
    },
-   "identified": 113,
+   "identified": 114,
    "pie_linked": 35,
    "reconstruction": 0,
    "reconstruction_exact": 0,
-   "eligible": 113,
-   "tested": 113,
+   "eligible": 114,
+   "tested": 114,
    "exact": 3,
    "exact_strict": 2,
    "exact_notation": 1,
@@ -11300,37 +11358,37 @@
    "borrowed": 16,
    "outside": 0,
    "non_ie": 1,
-   "unlinked": 76,
+   "unlinked": 77,
    "no_etym": 494,
    "pathway": 0,
    "categories": {
     "counts": {
      "full": 0,
      "adjusted": 0,
-     "partial": 184,
+     "partial": 186,
      "unexplained": 494,
      "non_pie": 0,
-     "unidentified": 3305,
+     "unidentified": 3303,
      "ie_loan": 17,
      "built": 0
     },
-    "total": 695,
+    "total": 697,
     "explained": 0,
     "explained_rate": 0.0,
     "of_glossary": 0.0,
     "share": {
      "full": 0.0,
      "adjusted": 0.0,
-     "partial": 26.47,
-     "unexplained": 71.08,
+     "partial": 26.69,
+     "unexplained": 70.88,
      "non_pie": 0.0,
-     "ie_loan": 2.45,
+     "ie_loan": 2.44,
      "built": 0.0
     }
    },
    "category_reasons": {
     "unexplained: no recorded etymology": 494,
-    "partial: no rule applied": 121,
+    "partial: no rule applied": 123,
     "ie_loan: loan from an IE branch": 17,
     "partial: no entry for Old Persian pistaka": 2,
     "partial: no entry for Proto-Indo-European *ḱweytós": 2,
@@ -11491,7 +11549,7 @@
    "case_only": 0,
    "near": 4,
    "errors": 0,
-   "exact_rate": 0.004317,
+   "exact_rate": 0.004304,
    "orthographic": 0,
    "orthographic_examples": [],
    "lemma": 0,
@@ -11557,11 +11615,11 @@
      "translit": "s-p-y-t"
     }
    ],
-   "orth_rate": 0.004317,
-   "exact_of_tested": 0.026549,
-   "identified_rate": 0.16259,
-   "pie_rate": 0.05036,
-   "near_rate": 0.026549,
+   "orth_rate": 0.004304,
+   "exact_of_tested": 0.026316,
+   "identified_rate": 0.163558,
+   "pie_rate": 0.050215,
+   "near_rate": 0.026316,
    "from_stage": {
     "peo": 2,
     "ine-pro": 1
@@ -11596,7 +11654,7 @@
      1
     ]
    ],
-   "seconds": 0.61,
+   "seconds": 0.13,
    "examples": [
     {
      "stage": "ine-pro",
@@ -11680,9 +11738,9 @@
   },
   "fa": {
    "name": "Persian",
-   "glossary": 164823,
-   "attested": 163774,
-   "categorised": 163774,
+   "glossary": 164824,
+   "attested": 163775,
+   "categorised": 163775,
    "estimate": {
     "total": 343466,
     "source": "Dehkhoda Dictionary (Loghatnāmeh), digital edition, as described by the Association for Iranian Studies",
@@ -11697,7 +11755,7 @@
     "band_base": 160802
    },
    "identified": 2301,
-   "pie_linked": 866,
+   "pie_linked": 862,
    "reconstruction": 0,
    "reconstruction_exact": 0,
    "eligible": 2301,
@@ -11706,25 +11764,25 @@
    "exact_strict": 0,
    "exact_notation": 0,
    "exact_pie": 0,
-   "explained": 793,
+   "explained": 796,
    "borrowed": 5497,
    "outside": 669,
    "non_ie": 4315,
-   "unlinked": 3116,
+   "unlinked": 3117,
    "no_etym": 153218,
    "pathway": 7,
    "categories": {
     "counts": {
      "full": 45,
      "adjusted": 0,
-     "partial": 5049,
-     "unexplained": 76750,
-     "non_pie": 71693,
+     "partial": 5050,
+     "unexplained": 71954,
+     "non_pie": 75600,
      "unidentified": 0,
-     "ie_loan": 2916,
-     "built": 7321
+     "ie_loan": 2979,
+     "built": 8147
     },
-    "total": 163774,
+    "total": 163775,
     "explained": 45,
     "explained_rate": 0.03,
     "of_glossary": 0.03,
@@ -11732,31 +11790,31 @@
      "full": 0.03,
      "adjusted": 0.0,
      "partial": 3.08,
-     "unexplained": 46.86,
-     "non_pie": 43.78,
-     "ie_loan": 1.78,
-     "built": 4.47
+     "unexplained": 43.93,
+     "non_pie": 46.16,
+     "ie_loan": 1.82,
+     "built": 4.97
     }
    },
    "category_reasons": {
-    "non_pie: non-ie source": 71693,
-    "unexplained: no recorded etymology (the dictionary labels it a proper name)": 38253,
-    "unexplained: no recorded etymology": 21981,
-    "unexplained: no recorded etymology (a compound the model cannot cut)": 15287,
-    "ie_loan: loan from an IE branch": 2916,
-    "unexplained: no recorded etymology (a relative adjective whose stem is not stored)": 1034,
-    "partial: no rule applied": 719,
-    "partial: no entry for Proto-Iranian *Háywah, Proto-Indo-European *óywos; no recorded origin for Middle Persian 𐭸": 167,
-    "unexplained: no recorded etymology (the dictionary labels it a huzvarish)": 153,
-    "unexplained: no recorded etymology (a bound morpheme, not a word)": 42,
+    "non_pie: non-ie source": 75600,
+    "unexplained: no recorded etymology (the dictionary labels it a proper name)": 32131,
+    "unexplained: no recorded etymology": 22869,
+    "unexplained: no recorded etymology (a compound: the record states no construction)": 15540,
+    "ie_loan: loan from an IE branch": 2979,
+    "unexplained: no recorded etymology (a relative adjective whose stem is not stored)": 1201,
+    "partial: no rule applied": 698,
+    "partial: no entry for Proto-Iranian *Háywah, Proto-Indo-European *óywos; no recorded origin for Middle Persian 𐭸": 163,
+    "unexplained: no recorded etymology (the dictionary labels it a huzvarish)": 157,
+    "unexplained: no recorded etymology (a bound morpheme, not a word)": 56,
     "partial: no recorded origin for Middle Persian 𐭥𐭡𐭩𐭣𐭥𐭭𐭲𐭭𐭩": 22,
     "partial: reproduced only from Middle Persian, not from the PIE etymon": 19,
     "partial: no entry for Proto-Iranian *Háywah, Proto-Indo-European *óywos": 18,
     "partial: no recorded origin for Middle Persian apě": 17,
+    "partial: no recorded origin for Middle Persian 𐭡𐭩𐭲𐭠": 15,
     "partial: no entry for Middle Persian 𐭪": 14,
     "partial: unchanged ancestor (no law applied)": 13,
     "partial: no entry for Middle Persian stʾn', Old Persian 𐎿𐎫𐎠𐎴, Proto-Iranian *stā́nam and 1 more; no recorded origin for Middle Persian -stʾn'": 13,
-    "partial: no recorded origin for Middle Persian 𐭡𐭩𐭲𐭠": 13,
     "partial: no entry for Middle Persian k'; no recorded origin for Middle Persian -k'": 12,
     "partial: no recorded origin for Persian ـشناس": 12,
     "partial: no entry for Proto-Iranian *cŕ̥Hah; no recorded origin for Proto-Iranian *cŕ̥Hah": 9,
@@ -11853,7 +11911,7 @@
     "unexplained": [
      {
       "word": "آآ",
-      "gloss": "نام عدهٔ بسیاری از رودخانه های ممالک سلت و آلمان . || نام رو",
+      "gloss": "نام عدهٔ بسیاری از رودخانه های ممالک سلت و آلمان",
       "reason": "no recorded etymology (the dictionary labels it a proper name)"
      },
      {
@@ -11995,7 +12053,7 @@
      },
      {
       "word": "آبانگاه",
-      "gloss": "نام فرشتهٔ موکل بر آب . || (اِ مرکب ) نام روز دهم فروردین ما",
+      "gloss": "(اِ مرکب ) نام روز دهم فروردین ماه ، و گویند اگر در این روزب",
       "reason": "built from آبان + -گاه (the seam this model reads, which the record does not name) — a formation, not a derivation"
      },
      {
@@ -12005,12 +12063,12 @@
      },
      {
       "word": "آبخانه",
-      "gloss": "جایی معلوم برای قضای حاجت . مستراح . مبرز. مخرج .کنیف . مغتس",
+      "gloss": "جایی معلوم برای قضای حاجت . مستراح . مبرز . مخرج .کنیف",
       "reason": "built from آب + خانه (the model's cut of a word the dictionary prints as a compound) — a formation, not a derivation"
      },
      {
       "word": "آبخوری",
-      "gloss": "ظرف آب خوردن . مشربه . آبخواره . آبخور. || شارب (موی سبلت ).",
+      "gloss": "ظرف آب خوردن . مشربه . آبخواره . آبخور",
       "reason": "built from آبخور + -ی (the model's cut of a word the dictionary prints as a compound) — a formation, not a derivation"
      },
      {
@@ -12025,7 +12083,7 @@
    "near": 0,
    "errors": 0,
    "exact_rate": 0.0,
-   "orthographic": 136,
+   "orthographic": 137,
    "orthographic_examples": [
     {
      "stage": "pal",
@@ -12088,7 +12146,7 @@
    "lemma_examples": [],
    "identity": 229,
    "bound_form": 0,
-   "joined": 128,
+   "joined": 139,
    "constructed": 41,
    "construction_examples": [
     {
@@ -12234,8 +12292,8 @@
     }
    ],
    "bound_examples": [],
-   "exact_orth": 136,
-   "script": 421,
+   "exact_orth": 137,
+   "script": 423,
    "script_examples": [
     {
      "stage": "ine-pro",
@@ -12286,14 +12344,14 @@
      "translit": "b-n-d"
     }
    ],
-   "orth_rate": 0.000825,
+   "orth_rate": 0.000831,
    "exact_of_tested": 0.0,
    "identified_rate": 0.01396,
-   "pie_rate": 0.005254,
+   "pie_rate": 0.00523,
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 22.43,
+   "seconds": 25.41,
    "examples": [],
    "pathway_examples": [
     {
@@ -12965,7 +13023,7 @@
      3
     ]
    ],
-   "seconds": 2.12,
+   "seconds": 0.65,
    "examples": [
     {
      "stage": "ine-pro",
@@ -13136,18 +13194,18 @@
     }
    },
    "category_reasons": {
-    "partial: no rule applied": 826,
+    "partial: no rule applied": 835,
     "ie_loan: loan from an IE branch": 167,
     "partial: reproduced only from Proto-Celtic, not from the PIE etymon": 85,
     "non_pie: non-ie source": 35,
     "partial: no recorded origin for Proto-Celtic *to-": 19,
-    "partial: built from pieces, not derived": 16,
+    "partial: built from pieces, not derived": 15,
     "partial: no recorded origin for Proto-Celtic *ad-": 11,
     "partial: no entry for Proto-Indo-European *eh₂kos": 9,
     "partial: bound form, not a word": 8,
     "partial: no entry for Proto-Indo-European *ups; no recorded origin for Proto-Celtic *uts-": 8,
     "partial: no recorded origin for Proto-Celtic *ɸare-": 7,
-    "partial: no entry for Proto-Indo-European *i-eh₂": 5,
+    "partial: no entry for Proto-Indo-European *i-eh₂": 4,
     "partial: unchanged ancestor (no law applied)": 3,
     "full: cited laws, no change": 3,
     "partial: no entry for Proto-Indo-European *līnom": 3,
@@ -13657,7 +13715,7 @@
      1
     ]
    ],
-   "seconds": 4.04,
+   "seconds": 5.91,
    "examples": [
     {
      "stage": "cel-pro",
@@ -13956,7 +14014,7 @@
      1
     ]
    ],
-   "seconds": 0.76,
+   "seconds": 0.2,
    "examples": [
     {
      "stage": "ine-pro",
@@ -14091,11 +14149,11 @@
    "reconstruction_exact": 0,
    "eligible": 2145,
    "tested": 2145,
-   "exact": 528,
-   "exact_strict": 527,
+   "exact": 526,
+   "exact_strict": 525,
    "exact_notation": 1,
-   "exact_pie": 111,
-   "explained": 577,
+   "exact_pie": 110,
+   "explained": 575,
    "borrowed": 53,
    "outside": 43,
    "non_ie": 11,
@@ -14118,14 +14176,14 @@
    "case_only": 0,
    "near": 362,
    "errors": 0,
-   "exact_rate": 0.097996,
+   "exact_rate": 0.097624,
    "orthographic": 0,
    "orthographic_examples": [],
    "lemma": 0,
    "lemma_examples": [],
    "identity": 0,
    "bound_form": 49,
-   "joined": 133,
+   "joined": 137,
    "constructed": 0,
    "construction_examples": [],
    "gaps": [],
@@ -14239,26 +14297,26 @@
      "stage": "ine-pro"
     }
    ],
-   "exact_orth": 528,
+   "exact_orth": 526,
    "script": 0,
    "script_examples": [],
-   "orth_rate": 0.097996,
-   "exact_of_tested": 0.246154,
+   "orth_rate": 0.097624,
+   "exact_of_tested": 0.245221,
    "identified_rate": 0.398107,
    "pie_rate": 0.365442,
-   "near_rate": 0.246154,
+   "near_rate": 0.245221,
    "from_stage": {
-    "ine-bsl-pro": 417,
-    "ine-pro": 111
+    "ine-bsl-pro": 416,
+    "ine-pro": 110
    },
    "top_rules": [
     [
      "sla-pro|stress_token_dropped",
-     278
+     277
     ],
     [
      "sla-pro|register_mark_dropped",
-     235
+     234
     ],
     [
      "sla-pro|final_as_to_yer",
@@ -14274,7 +14332,7 @@
     ],
     [
      "sla-pro|long_a_to_a",
-     128
+     127
     ],
     [
      "sla-pro|w_to_v",
@@ -14285,11 +14343,11 @@
      79
     ],
     [
-     "sla-pro|short_i_to_yer",
-     55
+     "sla-pro|long_i_to_i",
+     54
     ],
     [
-     "sla-pro|long_i_to_i",
+     "sla-pro|short_i_to_yer",
      54
     ],
     [
@@ -14298,11 +14356,11 @@
     ],
     [
      "sla-pro|au_to_u",
-     47
+     46
     ],
     [
      "sla-pro|final_is_to_yer",
-     44
+     43
     ],
     [
      "sla-pro|palatal_z_to_z",
@@ -14333,7 +14391,7 @@
      28
     ]
    ],
-   "seconds": 6.5,
+   "seconds": 7.54,
    "examples": [
     {
      "stage": "ine-bsl-pro",
@@ -14472,7 +14530,7 @@
    "exact_strict": 0,
    "exact_notation": 0,
    "exact_pie": 0,
-   "explained": 1346,
+   "explained": 1345,
    "borrowed": 116,
    "outside": 77,
    "non_ie": 5,
@@ -14505,8 +14563,8 @@
    },
    "category_reasons": {
     "partial: reproduced only from Proto-Slavic, not from the PIE etymon": 515,
-    "partial: no rule applied": 313,
-    "partial: unchanged ancestor (no law applied)": 271,
+    "partial: no rule applied": 312,
+    "partial: unchanged ancestor (no law applied)": 272,
     "ie_loan: loan from an IE branch": 102,
     "partial: reproduced only from Proto-Balto-Slavic, not from the PIE etymon": 28,
     "non_pie: non-ie source": 21,
@@ -14515,7 +14573,7 @@
     "partial: no entry for Proto-Indo-European *bʰlondʰ-o-s": 4,
     "partial: no entry for Proto-Balto-Slavic *álˀktei": 4,
     "partial: no entry for Proto-Balto-Slavic *mildnī, Proto-Indo-European *ml̥dʰ-nih₂": 4,
-    "partial: no entry for Proto-Indo-European *h₃ebʰi": 3,
+    "partial: no entry for Proto-Balto-Slavic *ab, Proto-Indo-European *h₃ebʰi": 3,
     "partial: no entry for Proto-Indo-European *ǵʰólh₃-tom": 3,
     "partial: no entry for Proto-Balto-Slavic *pāˀstéi": 3,
     "partial: no entry for Proto-Balto-Slavic *lánkīˀtei": 3,
@@ -14603,7 +14661,7 @@
      {
       "word": "о",
       "gloss": "about · around · through",
-      "reason": "no entry for Proto-Indo-European *h₃ebʰi"
+      "reason": "no entry for Proto-Balto-Slavic *ab, Proto-Indo-European *h₃ebʰi"
      },
      {
       "word": "а",
@@ -14731,14 +14789,14 @@
    },
    "categories_untested": 0,
    "case_only": 0,
-   "near": 6,
+   "near": 2,
    "errors": 0,
    "exact_rate": 0.0,
    "orthographic": 0,
    "orthographic_examples": [],
    "lemma": 0,
    "lemma_examples": [],
-   "identity": 400,
+   "identity": 399,
    "bound_form": 0,
    "joined": 76,
    "constructed": 0,
@@ -14812,11 +14870,6 @@
    ],
    "identity_examples": [
     {
-     "word": "о",
-     "output": "o",
-     "stage": "sla-pro"
-    },
-    {
      "word": "а",
      "output": "a",
      "stage": "sla-pro"
@@ -14849,6 +14902,11 @@
     {
      "word": "баба",
      "output": "baba",
+     "stage": "sla-pro"
+    },
+    {
+     "word": "мати",
+     "output": "mati",
      "stage": "sla-pro"
     }
    ],
@@ -14912,7 +14970,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 5.3,
+   "seconds": 5.61,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -14920,8 +14978,8 @@
      "pie": "h₃ebʰi",
      "stage": "sla-pro",
      "word": "о",
-     "output": "o",
-     "distance": 1
+     "output": "ob",
+     "distance": 2
     },
     {
      "pie": "a",
@@ -15477,7 +15535,7 @@
      3
     ]
    ],
-   "seconds": 3.19,
+   "seconds": 3.31,
    "examples": [
     {
      "stage": "ine-pro",
@@ -15887,7 +15945,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.06,
+   "seconds": 0.07,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [],
@@ -15942,7 +16000,7 @@
    },
    "category_reasons": {
     "ie_loan: loan from an IE branch": 2271,
-    "partial: no rule applied": 2140,
+    "partial: no rule applied": 2138,
     "non_pie: non-ie source": 514,
     "partial: reproduced only from a later recorded ancestor, not from the PIE etymon": 49,
     "partial: no recorded origin for Middle Armenian -ա-": 13,
@@ -15953,18 +16011,18 @@
     "partial: no entry for Proto-Indo-European *wóyh₁nom": 1,
     "partial: no recorded origin for Old Armenian բադ, Middle Armenian -ա-, Old Armenian կտուց": 1,
     "partial: no entry for Proto-Indo-European *pónteh₁s": 1,
+    "partial: no recorded origin for Armenian Սարգիս": 1,
     "partial: no recorded origin for Armenian Հովհաննես": 1,
     "partial: no recorded origin for Middle Armenian -ա-, Old Armenian նուշ": 1,
     "partial: no recorded origin for Armenian գայլ, Middle Armenian -ա-": 1,
     "partial: no recorded origin for Old Armenian ժամ": 1,
     "partial: no recorded origin for Old Armenian ճանապարհ, Old Armenian որդն": 1,
     "partial: no recorded origin for Middle Armenian բազուկ, Middle Armenian -ա-, Middle Armenian թան": 1,
+    "partial: no recorded origin for Old Armenian յարութիւն": 1,
     "partial: no recorded origin for Old Armenian թերթ": 1,
     "partial: no entry for Proto-Indo-European *ǵʰi-m-ós": 1,
     "partial: no recorded origin for Middle Armenian -ա-, Old Armenian նկար": 1,
-    "partial: no recorded origin for Middle Armenian -ա-, Middle Armenian պատ": 1,
-    "partial: no recorded origin for Middle Armenian բոխի, Middle Armenian -ա-": 1,
-    "partial: no recorded origin for Russian бензо-, Old Armenian սղոց": 1
+    "partial: no recorded origin for Middle Armenian -ա-, Middle Armenian պատ": 1
    },
    "category_examples": {
     "full": [],
@@ -16129,7 +16187,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.31,
+   "seconds": 0.41,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [],
@@ -16438,7 +16496,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.15,
+   "seconds": 0.21,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [],
@@ -16504,7 +16562,7 @@
    },
    "category_reasons": {
     "ie_loan: loan from an IE branch": 1401,
-    "partial: reproduced only from a later recorded ancestor, not from the PIE etymon": 828,
+    "partial: reproduced only from a later recorded ancestor, not from the PIE etymon": 826,
     "partial: no rule applied": 757,
     "non_pie: non-ie source": 745,
     "partial: no entry for Proto-Indo-European *h₁us-los, Proto-Indo-European *h₂us-los": 4,
@@ -16757,7 +16815,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.28,
+   "seconds": 0.4,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [],
@@ -16765,65 +16823,65 @@
   }
  },
  "totals": {
-  "glossary": 426395,
-  "attested": 381110,
-  "identified": 114513,
-  "pie_linked": 47397,
-  "eligible": 114513,
-  "tested": 113945,
-  "exact": 6430,
-  "exact_strict": 5482,
-  "exact_notation": 948,
-  "exact_pie": 978,
+  "glossary": 426398,
+  "attested": 381113,
+  "identified": 114514,
+  "pie_linked": 47391,
+  "eligible": 114514,
+  "tested": 113946,
+  "exact": 6419,
+  "exact_strict": 5475,
+  "exact_notation": 944,
+  "exact_pie": 971,
   "reconstruction": 568,
   "reconstruction_exact": 38,
   "pathway": 12,
-  "explained": 17423,
+  "explained": 17407,
   "borrowed": 88044,
   "outside": 38833,
   "non_ie": 11926,
-  "unlinked": 25946,
+  "unlinked": 25948,
   "no_etym": 154828,
   "case_only": 0,
-  "near": 22763,
-  "orthographic": 5103,
-  "lemma": 576,
-  "identity": 3370,
-  "bound_form": 494,
-  "joined": 11510,
-  "script": 1438,
-  "exact_orth": 12109,
+  "near": 22758,
+  "orthographic": 5105,
+  "lemma": 574,
+  "identity": 3362,
+  "bound_form": 495,
+  "joined": 12284,
+  "script": 1440,
+  "exact_orth": 12098,
   "errors": 0,
-  "exact_rate": 0.01508,
+  "exact_rate": 0.015054,
   "identified_rate": 0.268561,
-  "exact_of_identified": 0.056151,
-  "pie_rate": 0.111157,
-  "orth_rate": 0.028399,
-  "explained_of_identified": 0.152149
+  "exact_of_identified": 0.056054,
+  "pie_rate": 0.111143,
+  "orth_rate": 0.028373,
+  "explained_of_identified": 0.152008
  },
  "categories": {
   "counts": {
-   "full": 420,
+   "full": 421,
    "adjusted": 54,
-   "partial": 131784,
-   "unexplained": 77633,
-   "non_pie": 91921,
-   "unidentified": 1720066,
-   "ie_loan": 71974,
-   "built": 7324
+   "partial": 131786,
+   "unexplained": 72837,
+   "non_pie": 95828,
+   "unidentified": 1720064,
+   "ie_loan": 72037,
+   "built": 8150
   },
-  "total": 381110,
-  "explained": 474,
+  "total": 381113,
+  "explained": 475,
   "explained_rate": 0.12,
   "of_glossary": 0.12,
   "share": {
    "full": 0.11,
    "adjusted": 0.01,
    "partial": 34.58,
-   "unexplained": 20.37,
-   "non_pie": 24.12,
-   "ie_loan": 18.89,
-   "built": 1.92
+   "unexplained": 19.11,
+   "non_pie": 25.14,
+   "ie_loan": 18.9,
+   "built": 2.14
   }
  },
  "definitions": {
@@ -16931,7 +16989,7 @@
    "to": "iir-pro",
    "tier": "established",
    "key": "iir-pro|vowel_merger_a",
-   "count": 384
+   "count": 381
   },
   {
    "id": "long_a_to_a",
@@ -16949,7 +17007,7 @@
    "to": "sla-pro",
    "tier": "orthographic",
    "key": "sla-pro|stress_token_dropped",
-   "count": 278
+   "count": 277
   },
   {
    "id": "brightening",
@@ -16958,16 +17016,7 @@
    "to": "ang",
    "tier": "established",
    "key": "ang|brightening",
-   "count": 242
-  },
-  {
-   "id": "register_mark_dropped",
-   "name": "The acute register mark *ˀ is notation, not a PSl segment",
-   "from": "ine-bsl-pro",
-   "to": "sla-pro",
-   "tier": "orthographic",
-   "key": "sla-pro|register_mark_dropped",
-   "count": 235
+   "count": 241
   },
   {
    "id": "final_a_to_e",
@@ -16976,6 +17025,15 @@
    "to": "enm",
    "tier": "established",
    "key": "enm|final_a_to_e",
+   "count": 234
+  },
+  {
+   "id": "register_mark_dropped",
+   "name": "The acute register mark *ˀ is notation, not a PSl segment",
+   "from": "ine-bsl-pro",
+   "to": "sla-pro",
+   "tier": "orthographic",
+   "key": "sla-pro|register_mark_dropped",
    "count": 234
   },
   {
@@ -17039,7 +17097,7 @@
    "to": "iir-pro",
    "tier": "established",
    "key": "iir-pro|laryngeal_to_H",
-   "count": 179
+   "count": 176
   },
   {
    "id": "final_as_to_yer",
@@ -17102,7 +17160,7 @@
    "to": "ang",
    "tier": "established",
    "key": "ang|breaking_ae_rc",
-   "count": 138
+   "count": 137
   },
   {
    "id": "unstressed_a",
@@ -17129,7 +17187,7 @@
    "to": "sla-pro",
    "tier": "established",
    "key": "sla-pro|long_a_to_a",
-   "count": 128
+   "count": 127
   },
   {
    "id": "register_mark_dropped",
@@ -17204,15 +17262,6 @@
    "count": 88
   },
   {
-   "id": "ruki_s",
-   "name": "RUKI: *s > *š after r, u, k, i (and the glides and satem affricates)",
-   "from": "ine-pro",
-   "to": "iir-pro",
-   "tier": "established",
-   "key": "iir-pro|ruki_s",
-   "count": 87
-  },
-  {
    "id": "w_to_v",
    "name": "*w > v",
    "from": "gem-pro",
@@ -17220,6 +17269,15 @@
    "tier": "established",
    "key": "non|w_to_v",
    "count": 86
+  },
+  {
+   "id": "ruki_s",
+   "name": "RUKI: *s > *š after r, u, k, i (and the glides and satem affricates)",
+   "from": "ine-pro",
+   "to": "iir-pro",
+   "tier": "established",
+   "key": "iir-pro|ruki_s",
+   "count": 84
   },
   {
    "id": "final_o_to_u_s",
@@ -17294,22 +17352,22 @@
    "count": 67
   },
   {
-   "id": "d_to_t",
-   "name": "HGCS: *d > *t",
-   "from": "gmw-pro",
-   "to": "goh",
-   "tier": "established",
-   "key": "goh|d_to_t",
-   "count": 65
-  },
-  {
    "id": "satem_k",
    "name": "Satem: *ḱ > *ć [tɕ], the first affricate",
    "from": "ine-pro",
    "to": "iir-pro",
    "tier": "established",
    "key": "iir-pro|satem_k",
-   "count": 65
+   "count": 64
+  },
+  {
+   "id": "d_to_t",
+   "name": "HGCS: *d > *t",
+   "from": "gmw-pro",
+   "to": "goh",
+   "tier": "established",
+   "key": "goh|d_to_t",
+   "count": 62
   },
   {
    "id": "h_loss",
@@ -17411,15 +17469,6 @@
    "count": 56
   },
   {
-   "id": "short_i_to_yer",
-   "name": "Short *i > *ь",
-   "from": "ine-bsl-pro",
-   "to": "sla-pro",
-   "tier": "established",
-   "key": "sla-pro|short_i_to_yer",
-   "count": 55
-  },
-  {
    "id": "j_loss",
    "name": "*j is lost after a consonant",
    "from": "gmw-pro",
@@ -17444,6 +17493,15 @@
    "to": "sla-pro",
    "tier": "established",
    "key": "sla-pro|long_i_to_i",
+   "count": 54
+  },
+  {
+   "id": "short_i_to_yer",
+   "name": "Short *i > *ь",
+   "from": "ine-bsl-pro",
+   "to": "sla-pro",
+   "tier": "established",
+   "key": "sla-pro|short_i_to_yer",
    "count": 54
   },
   {
@@ -17498,16 +17556,7 @@
    "to": "sla-pro",
    "tier": "established",
    "key": "sla-pro|au_to_u",
-   "count": 47
-  },
-  {
-   "id": "final_is_to_yer",
-   "name": "Final *-is > *-ь",
-   "from": "ine-bsl-pro",
-   "to": "sla-pro",
-   "tier": "established",
-   "key": "sla-pro|final_is_to_yer",
-   "count": 44
+   "count": 46
   },
   {
    "id": "w_to_v",
@@ -17534,6 +17583,15 @@
    "to": "non",
    "tier": "established",
    "key": "non|final_ǭ_to_a",
+   "count": 43
+  },
+  {
+   "id": "final_is_to_yer",
+   "name": "Final *-is > *-ь",
+   "from": "ine-bsl-pro",
+   "to": "sla-pro",
+   "tier": "established",
+   "key": "sla-pro|final_is_to_yer",
    "count": 43
   },
   {
@@ -17762,15 +17820,6 @@
    "count": 29
   },
   {
-   "id": "laryngeal_loss",
-   "name": "Laryngeals are lost",
-   "from": "ine-pro",
-   "to": "itc-pro",
-   "tier": "established",
-   "key": "itc-pro|laryngeal_loss",
-   "count": 29
-  },
-  {
    "id": "syllabic_n",
    "name": "Syllabic *n̥ becomes *a'",
    "from": "ine-pro",
@@ -17778,6 +17827,15 @@
    "tier": "established",
    "key": "iir-pro|syllabic_n",
    "count": 29
+  },
+  {
+   "id": "laryngeal_loss",
+   "name": "Laryngeals are lost",
+   "from": "ine-pro",
+   "to": "itc-pro",
+   "tier": "established",
+   "key": "itc-pro|laryngeal_loss",
+   "count": 28
   },
   {
    "id": "long_vowel_merger",
@@ -18212,15 +18270,6 @@
    "count": 14
   },
   {
-   "id": "syllabic_l_to_r",
-   "name": "*l̥ > *r̥",
-   "from": "ine-pro",
-   "to": "iir-pro",
-   "tier": "proposed",
-   "key": "iir-pro|syllabic_l_to_r",
-   "count": 14
-  },
-  {
    "id": "bh_to_b",
    "name": "*bʰ > *b",
    "from": "ine-pro",
@@ -18254,6 +18303,15 @@
    "to": "ang",
    "tier": "established",
    "key": "ang|breaking_e_lc",
+   "count": 13
+  },
+  {
+   "id": "syllabic_l_to_r",
+   "name": "*l̥ > *r̥",
+   "from": "ine-pro",
+   "to": "iir-pro",
+   "tier": "proposed",
+   "key": "iir-pro|syllabic_l_to_r",
    "count": 13
   },
   {
@@ -19184,7 +19242,7 @@
    "count": 1
   }
  ],
- "rule_applications": 14045,
+ "rule_applications": 14022,
  "review": {
   "generated": "2026-11-13 02:01",
   "findings": 91288,

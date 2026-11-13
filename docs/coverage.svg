@@ -1,19 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="860" height="892" viewBox="0 0 860 892" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">
 <rect width="860" height="892" fill="#0d1117"/>
 <text x="24" y="36" fill="#e8e6e1" font-size="19" font-weight="600">pie — coverage by category</text>
-<text x="24" y="60" fill="#8b98a8" font-size="12">474 of 381,110 attested words fully explained (0.12%) · 2026-11-13</text>
+<text x="24" y="60" fill="#8b98a8" font-size="12">475 of 381,113 attested words fully explained (0.12%) · 2026-11-13</text>
 <rect x="24" y="73" width="12" height="12" fill="#43a35e" rx="2"/>
-<text x="42" y="84" fill="#8b98a8" font-size="11">fully explained 420</text>
+<text x="42" y="84" fill="#8b98a8" font-size="11">fully explained 421</text>
 <rect x="154" y="73" width="12" height="12" fill="#9ccc65" rx="2"/>
 <text x="172" y="84" fill="#8b98a8" font-size="11">with adjustments 54</text>
 <rect x="284" y="73" width="12" height="12" fill="#f2c14e" rx="2"/>
-<text x="302" y="84" fill="#8b98a8" font-size="11">partially explained 131,784</text>
+<text x="302" y="84" fill="#8b98a8" font-size="11">partially explained 131,786</text>
 <rect x="462" y="73" width="12" height="12" fill="#ef6b6b" rx="2"/>
-<text x="480" y="84" fill="#8b98a8" font-size="11">unexplained 77,633</text>
+<text x="480" y="84" fill="#8b98a8" font-size="11">unexplained 72,837</text>
 <rect x="586" y="73" width="12" height="12" fill="#7a7a7a" rx="2"/>
-<text x="604" y="84" fill="#8b98a8" font-size="11">non-PIE 91,921</text>
+<text x="604" y="84" fill="#8b98a8" font-size="11">non-PIE 95,828</text>
 <rect x="686" y="73" width="12" height="12" fill="#90a4ae" rx="2"/>
-<text x="704" y="84" fill="#8b98a8" font-size="11">IE loan 71,974</text>
+<text x="704" y="84" fill="#8b98a8" font-size="11">IE loan 72,037</text>
 <text x="24" y="143" fill="#e8e6e1" font-size="12">Italian</text>
 <rect x="170" y="132" width="470" height="14" fill="#161f2b" rx="3"/>
 <rect x="170.0" y="132" width="1.2" height="14" fill="#43a35e"/>
@@ -105,18 +105,18 @@
 <text x="654" y="413" fill="#8b98a8" font-size="11">0 / 574 · 0%</text>
 <text x="24" y="440" fill="#e8e6e1" font-size="12">Middle Persian</text>
 <rect x="170" y="429" width="470" height="14" fill="#161f2b" rx="3"/>
-<rect x="170.0" y="429" width="124.4" height="14" fill="#f2c14e"/>
-<rect x="294.4" y="429" width="334.1" height="14" fill="#ef6b6b"/>
+<rect x="170.0" y="429" width="125.4" height="14" fill="#f2c14e"/>
+<rect x="295.4" y="429" width="333.1" height="14" fill="#ef6b6b"/>
 <rect x="628.5" y="429" width="11.5" height="14" fill="#90a4ae"/>
-<text x="654" y="440" fill="#8b98a8" font-size="11">0 / 695 · 0%</text>
+<text x="654" y="440" fill="#8b98a8" font-size="11">0 / 697 · 0%</text>
 <text x="24" y="467" fill="#e8e6e1" font-size="12">Persian</text>
 <rect x="170" y="456" width="470" height="14" fill="#161f2b" rx="3"/>
 <rect x="170.0" y="456" width="1.2" height="14" fill="#43a35e"/>
 <rect x="170.1" y="456" width="14.5" height="14" fill="#f2c14e"/>
-<rect x="184.6" y="456" width="220.3" height="14" fill="#ef6b6b"/>
-<rect x="404.9" y="456" width="205.7" height="14" fill="#7a7a7a"/>
-<rect x="610.6" y="456" width="8.4" height="14" fill="#90a4ae"/>
-<text x="654" y="467" fill="#8b98a8" font-size="11">45 / 163,774 · 0.03%</text>
+<rect x="184.6" y="456" width="206.5" height="14" fill="#ef6b6b"/>
+<rect x="391.1" y="456" width="217.0" height="14" fill="#7a7a7a"/>
+<rect x="608.1" y="456" width="8.5" height="14" fill="#90a4ae"/>
+<text x="654" y="467" fill="#8b98a8" font-size="11">45 / 163,775 · 0.03%</text>
 <text x="24" y="494" fill="#e8e6e1" font-size="12">Greek</text>
 <rect x="170" y="483" width="470" height="14" fill="#161f2b" rx="3"/>
 <rect x="170.0" y="483" width="1.2" height="14" fill="#43a35e"/>
@@ -157,12 +157,12 @@
 <text x="654" y="602" fill="#8b98a8" font-size="11">0 / 4,007 · 0%</text>
 <text x="24" y="629" fill="#e8e6e1" font-size="12">Gothic</text>
 <rect x="170" y="618" width="470" height="14" fill="#161f2b" rx="3"/>
-<rect x="170.0" y="618" width="7.4" height="14" fill="#43a35e"/>
-<rect x="177.4" y="618" width="1.2" height="14" fill="#9ccc65"/>
-<rect x="177.6" y="618" width="420.2" height="14" fill="#f2c14e"/>
+<rect x="170.0" y="618" width="7.6" height="14" fill="#43a35e"/>
+<rect x="177.6" y="618" width="1.2" height="14" fill="#9ccc65"/>
+<rect x="177.9" y="618" width="420.0" height="14" fill="#f2c14e"/>
 <rect x="597.8" y="618" width="11.8" height="14" fill="#7a7a7a"/>
 <rect x="609.6" y="618" width="30.4" height="14" fill="#90a4ae"/>
-<text x="654" y="629" fill="#8b98a8" font-size="11">35 / 2,152 · 1.6%</text>
+<text x="654" y="629" fill="#8b98a8" font-size="11">36 / 2,152 · 1.7%</text>
 <text x="24" y="656" fill="#e8e6e1" font-size="12">Old Church Slavonic</text>
 <rect x="170" y="645" width="470" height="14" fill="#161f2b" rx="3"/>
 <rect x="170.0" y="645" width="1.4" height="14" fill="#43a35e"/>

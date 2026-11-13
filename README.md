@@ -124,24 +124,24 @@ language                  identified         reconstructed   progress (exact / g
 Italian                 12,121 (54%) 1,296 / 22,278 (5.8%)   █░░░░░░░░░░░░░░░░░
 Old Norse                3,035 (95%)     686 / 3,184 (22%)   ████░░░░░░░░░░░░░░
 English                 37,619 (29%) 562 / 130,079 (0.43%)   ▏░░░░░░░░░░░░░░░░░
-Old English              6,356 (92%)    556 / 6,931 (8.0%)   █░░░░░░░░░░░░░░░░░
-Proto-Slavic             2,145 (40%)    528 / 5,388 (9.8%)   ██░░░░░░░░░░░░░░░░
-Proto-Indo-Iranian         720 (90%)       350 / 799 (44%)   ████████░░░░░░░░░░
+Old English              6,356 (92%)    555 / 6,931 (8.0%)   █░░░░░░░░░░░░░░░░░
+Proto-Slavic             2,145 (40%)    526 / 5,388 (9.8%)   ██░░░░░░░░░░░░░░░░
+Proto-Indo-Iranian         720 (90%)       346 / 799 (43%)   ████████░░░░░░░░░░
 Lithuanian               1,107 (44%)     257 / 2,501 (10%)   ██░░░░░░░░░░░░░░░░
 Proto-Iranian              352 (85%)       224 / 416 (54%)   ██████████░░░░░░░░
-German                   8,127 (47%)   195 / 17,140 (1.1%)   ▏░░░░░░░░░░░░░░░░░
-Old High German          1,571 (97%)     163 / 1,625 (10%)   ██░░░░░░░░░░░░░░░░
-Latin                    3,526 (43%)    136 / 8,160 (1.7%)   ▏░░░░░░░░░░░░░░░░░
+German                   8,127 (47%)   193 / 17,140 (1.1%)   ▏░░░░░░░░░░░░░░░░░
+Old High German          1,571 (97%)   162 / 1,625 (10.0%)   ██░░░░░░░░░░░░░░░░
+Latin                    3,526 (43%)    135 / 8,160 (1.7%)   ▏░░░░░░░░░░░░░░░░░
 Old Irish                1,739 (87%)    107 / 2,004 (5.3%)   █░░░░░░░░░░░░░░░░░
 Proto-Germanic           3,326 (56%)     95 / 5,908 (1.6%)   ▏░░░░░░░░░░░░░░░░░
-Middle Persian             113 (16%)       3 / 695 (0.43%)   ▏░░░░░░░░░░░░░░░░░
-Persian                 2,301 (1.4%)      0 / 164,823 (0%)   ░░░░░░░░░░░░░░░░░░
+Middle Persian             114 (16%)       3 / 697 (0.43%)   ▏░░░░░░░░░░░░░░░░░
+Persian                 2,301 (1.4%)      0 / 164,824 (0%)   ░░░░░░░░░░░░░░░░░░
 Greek                    5,090 (49%)       0 / 10,471 (0%)   ░░░░░░░░░░░░░░░░░░
 ```
 
-**By the bands: 420 fully explained, 54 with approved adjustments, 131,784 partially explained and waiting for a law, 77,633 with no recorded etymology, 91,921 non-PIE** — plus 71,974 recorded loans from a sister branch, counted in the same total and never in green — and 7,324 words the record does not analyse but whose own language's words do (a formation, never a derivation, so never green either).
+**By the bands: 421 fully explained, 54 with approved adjustments, 131,786 partially explained and waiting for a law, 72,837 with no recorded etymology, 95,828 non-PIE** — plus 72,037 recorded loans from a sister branch, counted in the same total and never in green — and 8,150 words the record does not analyse but whose own language's words do (a formation, never a derivation, so never green either).
 
-**6,430 of 426,395 glossary entries reconstructed exactly (1.5%; 978 of them straight from the PIE etymon); 114,513 have a recorded ancestor and 47,397 reach a recorded PIE etymon.** The orthographic layer adds 5,103 more spellings (12,109 in total, 2.8%) — reported separately, because a writing convention is not a sound law. 1,438 more are reached through a language's own writing system (Old Persian cuneiform: the laws produce *wˈarkah* and the monument writes 𐎺𐎼𐎣) — counted apart, because the signs do not spell every sound (a syllabary leaves a final /h/ to the reader, an abjad the short vowels). 12 further words are completed by a word's own recorded pathway (a law that does not apply to it, with the reason stored) — also counted apart, never added. The percentage moves as words and rules are added — that is the point. Full table: [`docs/COVERAGE.md`](docs/COVERAGE.md).
+**6,419 of 426,398 glossary entries reconstructed exactly (1.5%; 971 of them straight from the PIE etymon); 114,514 have a recorded ancestor and 47,391 reach a recorded PIE etymon.** The orthographic layer adds 5,105 more spellings (12,098 in total, 2.8%) — reported separately, because a writing convention is not a sound law. 1,440 more are reached through a language's own writing system (Old Persian cuneiform: the laws produce *wˈarkah* and the monument writes 𐎺𐎼𐎣) — counted apart, because the signs do not spell every sound (a syllabary leaves a final /h/ to the reader, an abjad the short vowels). 12 further words are completed by a word's own recorded pathway (a law that does not apply to it, with the reason stored) — also counted apart, never added. The percentage moves as words and rules are added — that is the point. Full table: [`docs/COVERAGE.md`](docs/COVERAGE.md).
 
 ![Exact-derivation coverage by language](docs/coverage.svg)
 <!-- coverage:end -->
