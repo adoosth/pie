@@ -196,7 +196,7 @@ class ConstructionPiece(unittest.TestCase):
         """
         node = service._origin_node("fa", "جو")
         self.assertEqual(node["parents"][0]["lang"], "pal")
-        self.assertEqual(node["parents"][0]["form"], "jaw")
+        self.assertEqual(node["parents"][0]["form"], "ǰaw")
 
     def test_a_piece_climbs_the_same_stages_as_its_own_page(self):
         ladder = [lv["stage"] for lv in

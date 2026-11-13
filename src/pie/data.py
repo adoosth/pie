@@ -406,7 +406,8 @@ def structures() -> dict[str, dict[str, dict]]:
 
 
 #: Bumped when the shape of a parsed glossary row changes.
-LEXICON_VERSION = 2  # 2: headwords are folded into the stage's standard notation
+LEXICON_VERSION = 3  # 3: headwords and the ancestors they name are folded
+# into the stage's standard notation (data/notation/)
 
 
 def lexicon_paths() -> list[Path]:
@@ -459,6 +460,14 @@ def _parse_lexicon(file: Path, opener, lang: str, limit: int | None = None) -> l
             word = notation.canonical(lang, entry.get("word") or "")
             if word:
                 entry["word"] = word
+            # An ancestor is named in *its own* stage's notation: a Persian
+            # row that names Middle Persian *jaw* must draw the glossary's
+            # ǰaw, or one page would print two spellings of one word (admin,
+            # 2026-11-13: "consistent for the entire language's romanizations").
+            for pair in entry.get("anc") or []:
+                if (isinstance(pair, list) and len(pair) >= 2
+                        and isinstance(pair[1], str) and pair[1]):
+                    pair[1] = notation.canonical(str(pair[0]), pair[1])
             rows.append(entry)
             if limit and len(rows) >= limit:
                 break

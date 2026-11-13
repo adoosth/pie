@@ -10,7 +10,7 @@ reading that has none there (2026-11-09).
 import json
 import unittest
 
-from pie import data, script
+from pie import data, notation, script
 from pie.service import normalise_etymon
 
 
@@ -35,7 +35,10 @@ class TestSigns(unittest.TestCase):
         self.assertGreater(len(self.table), 40)
 
     def test_every_sign_is_exercised_by_a_recorded_word(self):
-        unused = [sign for sign in self.table if not any(sign in form for form in self.forms)]
+        # The table's own letters are written in the stage's notation too, so a
+        # sign the record spells č is not missing because the table says c.
+        unused = [sign for sign in self.table
+                  if not any(notation.canonical("pal", sign) in form for form in self.forms)]
         self.assertEqual(unused, [], f"signs no recorded word writes: {unused}")
 
     def test_every_convention_is_exercised(self):
