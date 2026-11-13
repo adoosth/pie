@@ -207,6 +207,29 @@ rules:
     examples:
       - {in: "*xwadāy", out: "*xadāy", gloss: "lord (NP xodā)"}
 
+  - id: medial_xs_to_s
+    order: 30
+    name: "MP *-xš- > NP -š-"
+    match: "x š"
+    replace: š
+    env: {left: V}
+    tier: proposed
+    description: >
+      The cluster *-xš- reduces to -š- after a vowel: MP pādixšāy 'ruler' >
+      pādišāy, whose Persian continuation is پادشاه pādišāh.  The file already
+      presupposes the change in its own example for a_to_o_after_w (MP waxš
+      'growth' > NP xoš), where nothing else could delete the *x.
+    notes: >
+      Only a postvocalic cluster is claimed: word-initial *xš- is kept, as in
+      xšāy- 'to rule' and in خسرو.  The Persian -h of پادشاه and the fate of
+      the final *-y (pādixšāy → pādišā, against xwadāy → xodā and sarāy >
+      sarāy) are a separate, lexical matter the stage description already
+      names as unmodelled; they are not this rule's business.
+    references: [sadeghi-1978, korn-2016]
+    examples:
+      - {in: "pādixšāy", out: "pādišāy", gloss: "ruler (NP پادشاه)"}
+      - {in: "waxš", out: "waš", gloss: "growth (NP خوش, with the vowel rounded by a_to_o_after_w)"}
+
   - id: final_ih_to_i
     order: 63
     name: "MP final *-īh > NP -ī"

@@ -4337,3 +4337,96 @@ now carries `section: false` for those and `wiktionary.en_pages` draws no W, so
 **Tests.** `tests.test_build` + `test_seam` + `test_dehkhoda_structure` +
 `test_web.TestAConstructionIsATree` (125). Full coverage rerun; the published
 band index and `docs/COVERAGE.md` follow the new measurements.
+
+**Second round (batches 04–07, 15 pages each).** The classes the later critics
+found, and what each one cost:
+
+- **A piece is chosen by the child's meaning** (`_homonym_by_meaning`): آبرو
+  "face, honour, reputation" is آب + روی *"face"*, not روی "bronze"; کمزور is
+  زور "force, strength", not the slang "cool". The child's own gloss is the
+  only thing in the record that can choose, and it chooses only when one
+  candidate is strictly closer than the rest.
+- **Notation is not spelling, continued**: a piece the parse wrote without its
+  tatweel still holds a morpheme when the row's kind is `suffix` — گفتار's ‑ار
+  was the place-name ار ("a village of 952 souls") and the pieces spelled
+  گفتنار — and a piece written *as* a morpheme (‑دار) never opens the free word
+  that shares its letters (دار "tree"). fa.yaml gains ـار (agent noun, from
+  Middle Persian ‑ār) with its citation, and a stem piece keeps the ladder it
+  climbs (باش → PIE *bʰewH-) while still wearing no dot.
+- **A meaning is a sense**: a leading re-spelling of the headword is dropped
+  when a real definition follows it (اسقوربوط «اِسْقُربوط. مرضی ساری …»), a
+  comparative list («اوستا: …، پهلوی : …، کردی : …») and a «بمعنی X است»
+  pointer are read as what they are, and a rung's gloss is cut at a clause
+  rather than mid-word.
+- **A prefixed verb is not its prefix**: آمدن's record states «From Proto-Iranian
+  *ā- + *gam-», and the extractor filed both morphemes as one chain, so the
+  ladder printed PIE *h₂éd → Persian ad above a verb meaning "to come". When
+  the sentence states the word as one bound form plus another, only the root it
+  names survives (`_not_a_flattened_prefix`). نوشتن and شنیدن still climb their
+  prefix: their sentences do not match the pattern yet, and they are on the
+  worklist.
+- **A recorded word with no entry is filed**: fa/دستکش (en.wiktionary: "From دست
+  + کش, from کشیدن; glove") is a supplement entry, and a sentence that names an
+  infinitive beside a bare stem resolves the piece to that verb.
+
+Four batches read 57 Persian pages twice over: batch 06 (verbs) found 24
+findings on 17 words, batch 07 found 11 on 8 and 7 pages read correctly without
+a finding. `tools/critic.py` gained checks for a verb-stem piece drawn as
+another word, a gloss that carries a grammar note or example, and bound morphemes
+carry no branch.
+
+**Third round (batch 08, and the fixes the last two batches shared).** Batch 08
+read 15 pages and found 14 findings on 9 of them — six pages clean — and its
+three worst were structural rather than cosmetic, so this round worked on the
+records:
+
+- **The first clause is often notation** (batches 07–08, nine findings of
+  eleven): Dehkhoda's first clause can be the headword respelled
+  (اسقوربوط), a comparative etymology list (نشیب «اوستا: …، کردی :»، cut
+  mid-list at the 160-character limit), a source note, the bare name a name
+  entry is about (اطعمه), or — after the «؛» — a foreign phrase (واص «نبت واص؛
+  گیاه با هم نزدیک و درهم»). `tools/dehkhoda_glosses.py:first_line` now splits
+  the run at « . » and « || », skips clause by clause until it finds a
+  definition, strips a leading «یا X،» / «بر وزن X،», and keeps the short
+  equivalents beside the first sense. All 153,200 rows were re-derived from the
+  stored pages (`--from-cache`), which is also the run that showed four of the
+  ten Dehkhoda shards were truncated gzips: they were removed, every word they
+  held verified present in the rebuilt file first.
+- **`--from-cache` read only loose cache files**: `pack_meanings.py` folded 153k
+  loose pages into 256 shards, so the reader found almost nothing. It now walks
+  `meanings.iter_cache()` once (16 s for the corpus, where per-word lookups took
+  minutes).
+- **A record that names its base forbids another cut**: جبذی is a nisba to
+  جبذه, a man's name the glossary does not hold, and the seam had cut it as
+  جبذ «to pull» (an Arabic loan) + ـی. No seam is drawn when the definition
+  names a base that is no entry, and that sentence stays in the meaning line
+  because it is the only thing that says what the base is.
+- **A piece's column climbs even when the piece is bound**: the join built from
+  a record's own sentence carried `ancestry` but no `branch`, and the tree
+  draws columns from `branch`, so باشنده's باش (stem of بودن) had no rung above
+  it while بودن's own page climbs five. The join now carries `branch`, and
+  `climbOf` in the app reads `p.branch` rather than `p.bound` — a suffix with no
+  entry still has no column, a stem with a word behind it does.
+- **The encyclopedia printed its own parser requests**: 1,139 Persian entries
+  carry «[Book Pahlavi needed]» / «[script needed]» inside the etymology
+  sentence, a template's note to its editors. `_drop_parser_requests` takes the
+  bracket and leaves the transliteration the record prints beside it. A trailing
+  one-or-two-letter parenthetical is optional notation, not a gloss:
+  pādixšā(y) is pādixšāy, and the rung no longer prints a stray «y» as its
+  meaning.
+- **پادشاه's gap was real**: `data/rules/pal__fa.yaml` had no *-xš- > -š-, so
+  the only law that fitted gave pādixšā — a form no dictionary holds — and the
+  page printed it as the word. `medial_xs_to_s` (postvocalic, proposed, with the
+  file's own waxš > xoš example as evidence) is registered, and pal pādixšāy is
+  filed as an entry from the record that names it. The Persian -h and the fate
+  of the final *-y (pādišā against xodā and sarāy) are lexical and stay
+  unmodelled, as the stage description already said.
+- **نکواختر**: اختر joins the closed `heads` list (نکو + اختر, the gloss reads
+  «نیک اختر»), and pal 𐫃𐫀𐫍 gāh is filed from the record that names it, so
+  نشیبگاه's گاه column no longer stands over a hole.
+
+**Tests.** 161 across `test_build`, `test_seam`, `test_categories`,
+`test_dehkhoda_structure`, `test_engine`; the glossary row counts are unchanged
+(164,824 rows, 164,805 with a gloss) while the mean meaning fell from 90 to 32
+characters — the dictionary's apparatus, not its senses, was what the page had
+been printing.

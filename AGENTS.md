@@ -570,6 +570,42 @@ that keeps the `*` opens nothing).
   possessive. `_suffix_seam` uses such a row only when the dictionary's own
   label asks for it («عدد ترتیبی»), so سیزدهم is سیزده + ـم and مردم is not
   مرد + ـم.
+- **A piece takes its homonym from the child's meaning** (2026-11-13, critic
+  batch 04): `service._homonym_by_meaning` compares the piece's candidate
+  entries against the gloss of the word being built and takes the closer one
+  only when it is strictly closer — آبرو's روی is "face", کمزور's زور is
+  "force, strength". A piece written as a morpheme (‑دار) never opens the free
+  word that shares its letters, and a suffix slot the parse dropped the tatweel
+  from still holds the table's morpheme (گفتار's ‑ار was the place-name ار).
+  A stem piece wears no dot but keeps its ladder (باش → PIE *bʰewH-).
+- **A prefixed verb is not its prefix** (2026-11-13, critic batch 06): when the
+  sentence states a word as one bound form plus another («From Proto-Iranian
+  *ā- + *gam-») and every ancestry row is a bound form, the rows are pieces of
+  a construction, not a chain, and only the root the sentence names survives
+  (`_not_a_flattened_prefix`). نوشتن and شنیدن are still on the worklist.
+- **The first clause of an entry is often notation, and the meaning is the
+  clause after it** (2026-11-13, critic batches 07-08): `tools/dehkhoda_glosses.py`
+  splits Dehkhoda's run at « . » and « || » and skips a clause that is only the
+  headword respelled (اسقوربوط «اِسقُربوط»), a comparative etymology list (نشیب
+  «اوستا: … پهلوی : … کردی :»), a source note («(از ناظم الاطباء)») or the bare
+  name a name entry is about (اطعمه «احمد اطعمهٔ شیرازی . از شاعران بود»); a
+  leading «یا X،» or «بر وزن X،» is a note about the word's shape and comes off,
+  and the short equivalents beside the first sense stay («بیمار . علیل»). A
+  §suffix or §prefix slot, a definition that only names a word («آگاهانیدن»),
+  and a «؛» that separates a foreign phrase from its Persian definition are all
+  read in `service._page_gloss`.
+- **A record that names its base forbids another cut** (2026-11-13, critic batch
+  08): جبذی is «منسوب است به جبذه که نام جد احمدبن حسن است», a nisba to a man
+  the glossary does not hold, so no seam may be drawn on جبذ «to pull» — and the
+  sentence that says what the base is stays in the meaning line. A piece's
+  column also climbs when the piece is *bound* (باش is a stem of بودن and keeps
+  بودن's five rungs); only a morpheme with no entry of its own has no column.
+- **Wiktionary's script requests are not the record** (2026-11-13): «[Book
+  Pahlavi needed]» reaches 1,139 Persian etymology sentences and is a note to
+  the template's editors, so `_drop_parser_requests` takes the bracket away and
+  keeps the transliteration the record prints beside it. A trailing
+  parenthetical of one or two letters is optional *notation*, not a gloss:
+  Middle Persian pādixšā(y) is pādixšāy.
 - **The page prints the meaning, not the dictionary's paragraph** (2026-11-13,
   critic batch 03): `service._page_gloss` cuts at the first grammar note,
   cross-reference or quotation (`_GLOSS_NOTE`), drops source attributions

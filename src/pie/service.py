@@ -1295,6 +1295,27 @@ _ETYM_CUE = re.compile(r"\b(Borrowed|Inherited|From|Probably|Possibly|Uncertain|
                        r"Alteration|Unknown|Named)\b")
 
 
+#: Wiktionary prints a *request for a script* where a language has none
+#: registered: «Middle Persian [Book Pahlavi needed] (clʾγ)».  It is the
+#: template's note to its editors, not part of the record, and 1,139 Persian
+#: entries printed it inside the etymology sentence (critic batch 08,
+#: 2026-11-13).  The transliteration beside it is the form the record names, so
+#: only the bracketed request goes.
+_PARSER_REQUEST = re.compile(r"\s*\[(?:[A-Za-z][A-Za-z ]{0,24} )?needed\]")
+#: What the request leaves behind when it stood alone in a parenthesis.
+_EMPTY_PAREN = re.compile(r"\s*\(\s*\)")
+
+
+def _drop_parser_requests(text: str) -> str:
+    if "needed]" not in text:
+        return text
+    text = _PARSER_REQUEST.sub("", text)
+    text = _EMPTY_PAREN.sub("", text)
+    text = re.sub(r"\s+,", ",", text)
+    text = re.sub(r",\s*(?:and|or|و)\.", ".", text)
+    return re.sub(r"[ \t]{2,}", " ", text).strip()
+
+
 def _prose_etym(lang: str, word: str, text: str) -> str:
     """The record's sentence, with Wiktionary's flattened etymology *tree* cut.
 
@@ -1307,7 +1328,7 @@ def _prose_etym(lang: str, word: str, text: str) -> str:
     tree ends on (`Persian گالیم`), with the opening cue as a fallback.  A tree
     with no sentence under it says nothing rather than reciting nodes.
     """
-    text = str(text or "").strip()
+    text = _drop_parser_requests(str(text or "").strip())
     if "Etymology tree" not in text:
         return text
     tail = ""
@@ -1682,6 +1703,11 @@ def _match_spelling(form: str, spellings: list[str]) -> str | None:
 #: Only a trailing one is dictionary apparatus; a parenthesis inside the form
 #: is the movable s (``*(s)pend-``) and is handled below.
 _TRAILING_GLOSS = re.compile(r"\s*\([^()]*\)\s*$")
+#: A parenthetical that is one or two *sounds* is optional notation, and its
+#: letters are part of the form: Middle Persian pādixšā(y) is pādixšāy, and the
+#: rung printed pādixšā with a stray «y» as its gloss (critic batch 08,
+#: 2026-11-13).
+_TRAILING_SOUND = re.compile(r"\s*\(([^\W\d_]{1,2})\)\s*$", re.UNICODE)
 
 
 def normalise_etymon(form: str) -> str:
@@ -1707,6 +1733,9 @@ def normalise_etymon(form: str) -> str:
         return form
     if "#" in form:
         form = form.split("#", 1)[0]
+    sound = _TRAILING_SOUND.search(form)
+    if sound:
+        form = form[: sound.start()] + sound.group(1)
     form = _TRAILING_GLOSS.sub("", form)
     if "~" in form:
         form = form.split("~", 1)[0]
@@ -2093,6 +2122,12 @@ def _compound_pieces(entry: dict, lang: str) -> list[dict]:
                 "ancestry": [{"lang": a["lang"], "lang_name": a["lang_name"],
                               "branch": _lang(a["lang"]).get("branch", ""),
                               "form": a["form"]} for a in chain[:12]],
+                # The piece's own climb, in the shape the timeline draws: a
+                # join's column used to have a list of ancestors and nothing
+                # the tree could render, so باشنده's باش stood with no rung
+                # above it while بودن's own page climbs five (critic batch 07,
+                # 2026-11-13).
+                "branch": _origin_node(lang, piece, given=record),
             })
         return [{"pieces": rows, "etym": match.group(0).strip()}]
     return []
@@ -3411,6 +3446,22 @@ def _nisba_base(lang: str, word: str, glosses: Iterable[str]) -> str:
     return ""
 
 
+def _nisba_name(word: str, glosses: Iterable[str]) -> str:
+    """The word a definition says this one is «منسوب به», entry or not.
+
+    `_nisba_base` answers only when the glossary holds the base; a caller that
+    must *refuse* on a missing base needs the name itself (جبذی, critic batch
+    08, 2026-11-13).
+    """
+    for sense in glosses or []:
+        found = _NISBA.match(str(sense))
+        if found:
+            base = found.group(1).strip()
+            if base and base != word:
+                return base
+    return ""
+
+
 @lru_cache(maxsize=8192)
 def _definition_stem(lang: str, word: str) -> str:
     """The word a definition calls this one «منسوب به», if it is an entry.
@@ -3583,8 +3634,16 @@ def _seam_payload(lang: str, entry: dict) -> dict | None:
     # it is relative to (مقنعی «منسوب به مقنعه»): then the loan is the stem's
     # and the headword is the -ی formation on it (critic batch 02, 2026-11-13).
     word = str(entry.get("word") or "")
-    hint = (_nisba_base(lang, word, entry.get("gloss") or [])
-            if entry.get("borrowed_from") else "")
+    # A definition that names the word this one is «منسوب به» has said which
+    # word it was built on.  When that word is no entry of this glossary —
+    # جبذی is «منسوب است به جبذه که نام جد احمدبن حسن است», a man's name — the
+    # record has not left the base open, so the model may not cut the word on a
+    # different one (جبذ «to pull», an Arabic loan): critic batch 08,
+    # 2026-11-13.
+    named = _nisba_name(word, entry.get("gloss") or [])
+    if named and not _lemma_entry(lang, named):
+        return None
+    hint = named if named else ""
     if entry.get("borrowed_from") and not hint:
         return None
     seam = seam_of(lang, word, str(entry.get("pos_label") or ""), hint)
@@ -4616,11 +4675,27 @@ def _is_respelling(token: str, headword: str) -> bool:
         return False
     if token == headword:
         return True
-    if token[:3] != headword[:3]:
+    # آگهانیدن is written «آگاهانیدن» in its own entry: a long vowel inside a
+    # word is a spelling too, so two leading letters and a close shape are
+    # enough (critic batch 07, 2026-11-13).
+    if token[:2] != headword[:2]:
         return False
     import difflib
     # One letter apart is a spelling; two words of a variant list are not.
     return difflib.SequenceMatcher(None, token, headword).ratio() >= 0.8
+
+
+#: A gloss that is only a label: «a word for time:» introduces the senses
+#: below it instead of being one.
+_GLOSS_LABEL = re.compile(r"^[^.!?]{1,60}:$")
+#: A clause with a verb is a new sense; without one it is another word for
+#: the same sense («علیل», «مریض») and belongs beside the first.
+_GLOSS_VERB = re.compile(r"(?:^|\s)(?:است|بود|شد|شود|کرد|کند|دارد|داشت|"
+                         r"هست|نیست|می‌\S+|نمی‌\S+)(?:\s|$)")
+
+
+def _gloss_label(text: str) -> bool:
+    return bool(_GLOSS_LABEL.match(str(text or "").strip())) and len(str(text).split()) <= 6
 
 
 def _page_gloss(lang: str, entry: dict, glosses) -> list[str]:
@@ -4644,6 +4719,10 @@ def _page_gloss(lang: str, entry: dict, glosses) -> list[str]:
     One hop only, and nothing is invented.
     """
     glosses = [str(g).strip() for g in (glosses or []) if str(g).strip()]
+    # A Wiktionary *label* («a word for time:») is a heading the article puts
+    # over a definition, not a meaning: the definition under it follows in the
+    # same list (گاه, critic batch 07, 2026-11-13).
+    glosses = [g for g in glosses if not _gloss_label(g)]
     if not glosses:
         return glosses
     first = _LEAD_PAREN.sub("", glosses[0]).strip()
@@ -4664,16 +4743,36 @@ def _page_gloss(lang: str, entry: dict, glosses) -> list[str]:
         relation, base = pointer
         quoted = _short_sense(_lemma_entry(lang, base), lang)
         return [f"{relation} {base}" + (f": {quoted}" if quoted else ""), *rest]
+    # A whole entry that is one word — «آگاهانیدن» for آگهانیدن — points at
+    # the word it means, and that word's own sense is the meaning (critic
+    # batch 07, 2026-11-13).  A single letter or a fragment of the headword is
+    # not a pointer.
+    if (" " not in first and len(first) >= 4 and first != head_word
+            and _is_respelling(first, head_word)):
+        other = _lemma_entry(lang, first) or _lemma_entry(lang, _lookup_form(first))
+        if other and other.get("word") != entry.get("word"):
+            quoted = _short_sense(other, lang)
+            if quoted:
+                return [f"the same as {first}: {quoted}", *rest]
     # A relative definition is a meaning in itself: «منسوب به مقنعه» says what
     # the word is about, and the clause after it explains the relation rather
     # than adding a sense.
     relative = re.match(r"^((?:منسوب|نسبت)\s*(?:است\s*)?به\s+[^\s.،؛]+)", first)
     if relative:
+        # The base is a word of this glossary, so "attributed to X" is a
+        # meaning and the clause after it explains the relation.  When the
+        # glossary does not hold X, that clause is often the only thing that
+        # says what X is — جبذی «منسوب است به جبذه که نام جد احمدبن حسن است»
+        # (critic batch 08, 2026-11-13) — and it stays.
+        base = relative.group(1).split()[-1]
+        if not _lemma_entry(lang, base):
+            return [first, *rest]
         return [relative.group(1), *rest]
     # An entry that is *only* a cross-reference points at the word it means:
     # بوعجرد «رجوع به ابوعجرد شود» printed a direction where a meaning should
     # be (critic batch 03, 2026-11-13).
     only_ref = re.fullmatch(r"\s*(?:و\s+)?رجوع\s+به\s+([^\s.،؛]+)\s*"
+                            r"(?:(?:و|،)\s*(?:حاشیه|توضیح|متن)(?:ٔ|ه|\s)*\s*[^\s.،؛]*\s*)?"
                             r"(?:شود|کنید|نمایید)?\s*[.،؛]?\s*", first)
     if only_ref:
         base = only_ref.group(1)
@@ -4709,8 +4808,33 @@ def _page_gloss(lang: str, entry: dict, glosses) -> list[str]:
     if hedge and hedge.start() > 0:
         first = first[:hedge.start()]
     first = _ATTRIBUTION.sub(". ", first)
+    # Dehkhoda often gives the foreign phrase and its Persian definition either
+    # side of a «؛» — واص «نبت واص؛ گیاه با هم نزدیک و درهم» — and the phrase is
+    # not the meaning (critic batch 08, 2026-11-13).
+    halves = re.split(r"\s*؛\s*", first, maxsplit=1)
+    if (len(halves) == 2 and len(halves[0].split()) <= 3
+            and len(halves[1].split()) > len(halves[0].split())):
+        first = halves[1]
+    # A report's source is not the meaning: اطعمه «از شاعران بود و چنانکه …
+    # یادکرده دیوانی داشته است» says he was a poet and then cites who recorded
+    # it (critic batch 07, 2026-11-13).
+    cited = re.split(r"\s+و\s+چنانکه\b|\s+چنانکه\b", first, maxsplit=1)
+    if len(cited) == 2 and len(cited[0].split()) >= 2:
+        first = cited[0]
     # One sentence: Dehkhoda separates senses with " . " and examples with "؛".
-    first = re.split(r"\s\.\s|\.\s|\u06d4|\s*؛\s*", first, 1)[0]
+    # A synonym list is one meaning written several times — ناتندرست «بیمار .
+    # علیل . مریض . رنجور» — so the short clauses beside the first stay; a
+    # clause with a verb in it is a new sense and ends the line.
+    parts = re.split(r"\s\.\s|\.\s|\u06d4|\s*؛\s*", first)
+    kept = [parts[0]] if parts else []
+    for extra in parts[1:4]:
+        extra = extra.strip(" .،؛ ")
+        if not extra or len(extra.split()) > 4 or _GLOSS_VERB.search(extra):
+            break
+        if len(" . ".join(kept + [extra])) > 90:
+            break
+        kept.append(extra)
+    first = " . ".join(x for x in kept if x)
     first = re.sub(r"\s+", " ", first).strip(" .،؛ ")
     return ([first, *rest] if first else rest)
 
@@ -9129,7 +9253,7 @@ def _senses_page(lang: str, form: str, groups: list[dict], via: str | None) -> d
         rows.append({
             "sense": group["sense"],
             "pos": " / ".join(group["pos"]),
-            "gloss": group["gloss"],
+            "gloss": [g for g in _page_gloss(lang, entry, group["gloss"])[:2] if g],
             "etym": (entry.get("etym") or "")[:220],
             "band": band_for(lang, entry["word"], group["sense"]),
             "recon": bool(entry.get("recon")),

@@ -19,6 +19,7 @@ import random
 import re
 import sys
 import time
+import unicodedata
 from pathlib import Path
 
 from pie import data, meanings
@@ -61,7 +62,108 @@ def done(path: Path) -> set[str]:
     return seen
 
 
-def first_line(text: str, head: str) -> str:
+#: A clause that is Dehkhoda's **comparative etymology** rather than a meaning:
+#: نشیب opens «اوستا: نیخشوئپه ، پهلوی : …، کردی : …» and the meaning is the
+#: clause after it, which the page printed as a list cut at «کردی :» (critic
+#: batch 07, 2026-11-13).
+COMPARATIVE = re.compile(
+    r"^\s*(?:اوستا|پهلوی|پازند|کردی|بلوچی|افغانی|پشتو|تاجیکی|عربی|ترکی|ارمنی|"
+    r"سریانی|عبری|سانسکریت|سنسکریت|هندی|یونانی|لاتینی|فارسی|معرب|آرامی|"
+    r"اوستایی|پهلوی اشکانی|پارسی)\s*:")
+#: Notes about the word's *shape*, not its meaning: «یا الغاز،» names another
+#: spelling and «بر وزن پی سوز،» the pattern it scans (القاز، قیسوس, critic
+#: batch 07, 2026-11-13).
+SHAPE_NOTE = re.compile(r"^\s*(?:یا\s+.{1,30}?[،,]|بر\s+وزن\s+.{1,40}?[،,])\s*")
+#: A clause that is only Dehkhoda's source note — «(از حاشیهٔ برهان چ معین )»,
+#: «(از ناظم الاطباء)» — or only a plural/reading note «ج ِ مَزبله [ ب َ ]».
+NOTE_ONLY = re.compile(r"^(?:\([^()]{0,60}\)\s*)+$|^\(?از\s[^()]{0,60}\)?$")
+#: A Persian verb, near enough to tell a definition («از شاعران بود») from a
+#: label that only names a person («احمد اطعمهٔ شیرازی»).
+VERBISH = re.compile(
+    r"(?:^|\s)(?:است|بود|بودند|بوده|هست|نیست|شد|شود|شدند|باشد|باشند|کرد|کند|"
+    r"دارد|داشت|یافت|گشت|متوفی|از\s+شاعران|می‌\S+|نمی‌\S+)(?:\s|$)")
+
+
+def _letters(text: str) -> str:
+    """The consonants of a Persian spelling: harakat and ZWNJ taken away."""
+    return "".join(ch for ch in unicodedata.normalize("NFD", str(text or ""))
+                   if not unicodedata.combining(ch)
+                   and ch not in "\u200c\u0640 .،؛:")
+
+
+def _is_respelling(token: str, head: str) -> bool:
+    """Whether a clause is the headword written again, with its vowels."""
+    if not token or not head:
+        return False
+    a, b = _letters(token), _letters(head)
+    if len(a) < 3 or len(b) < 3 or abs(len(a) - len(b)) > 2:
+        return False
+    if a == b:
+        return True
+    if a[:2] != b[:2]:
+        return False
+    import difflib
+    return difflib.SequenceMatcher(None, a, b).ratio() >= 0.85
+
+
+def _meaning_clause(line: str, head: str, tag: str = "") -> str:
+    """The first clause of Dehkhoda's run that is a meaning.
+
+    The dictionary's first clause is often **notation**: the headword respelled
+    with its vowels (اسقوربوط «اِسْقُربوط. مرضی ساری …»), a comparative
+    etymology list (نشیب), the name of the person a name entry is about
+    (اطعمه «احمد اطعمهٔ شیرازی . از شاعران بود …»).  Each is skipped when a
+    clause that does define the word follows — never when it is all there is,
+    because an empty meaning is a worse page than a terse one (critic batch 07,
+    2026-11-13).
+    """
+    # «||» is Dehkhoda's own boundary between senses; " . " separates sentences.
+    clauses = [c.strip(" .،؛:") for c in
+               re.split(r"\s*\|\|\s*|\s\.\s|\.\s", line) if c.strip(" .،؛:")]
+    if len(clauses) < 2:
+        return line
+    name_entry = "اِخ" in (tag or "") or "اَخ" in (tag or "")
+    for index, clause in enumerate(clauses):
+        if index == len(clauses) - 1:
+            break
+        if COMPARATIVE.match(clause) or NOTE_ONLY.match(clause):
+            continue
+        if _is_respelling(clause, head):
+            continue
+        # A name entry opens with the name and defines the person in the next
+        # clause: skip a bare name, keep a clause that says something.
+        if (name_entry and len(clause.split()) <= 5 and not VERBISH.search(clause)
+                and VERBISH.search(clauses[index + 1])):
+            continue
+        return _with_synonyms(clause, clauses[index + 1:])
+    return clauses[-1]
+
+
+def _with_synonyms(clause: str, following: list[str]) -> str:
+    """The meaning and the short equivalents Dehkhoda lists beside it.
+
+    «بیمار. علیل. مریض. رنجور. ناسالم . دردمند.» is one sense written six ways,
+    and taking only the first word left the page saying «بیمار» for a word whose
+    whole point is the list.  A further clause is kept while it is short and is
+    not the dictionary's apparatus; a sentence that runs on is not a synonym and
+    ends the meaning, which is also where the 160-character cut lands.
+    """
+    out = [clause]
+    for extra in following:
+        extra = extra.strip(" .،؛:")
+        if not extra or len(extra.split()) > 4 or len(extra) > 40:
+            break
+        if COMPARATIVE.match(extra) or NOTE_ONLY.match(extra) or VERBISH.search(extra):
+            break
+        if len(" . ".join(out + [extra])) > 120:
+            break
+        out.append(extra)
+        if len(out) >= 4:
+            break
+    return " . ".join(out)
+
+
+def first_line(text: str, head: str, tag: str = "") -> str:
     """The dictionary's first sentence, with the headword taken off the front."""
     for line in (text or "").splitlines():
         line = re.sub(r"\s+", " ", line).strip(" .:‌\u00a0")
@@ -81,6 +183,10 @@ def first_line(text: str, head: str) -> str:
             line = stripped
         if len(line) < 2:
             continue
+        # The word's shape is not its meaning (القاز «یا الغاز، …», قیسوس
+        # «بر وزن پی سوز، …»): the note comes off and the definition stays.
+        line = SHAPE_NOTE.sub("", line).strip() or line
+        line = _meaning_clause(line, head, tag)
         if len(line) > MAXLEN:
             cut = max(line.rfind(x, 0, MAXLEN) for x in "،؛.:")
             line = line[: cut + 1] if cut > 40 else line[:MAXLEN].rstrip() + "…"
@@ -136,32 +242,36 @@ def _from_cache(words: list[str]) -> int:
     out = OUT
     out.parent.mkdir(parents=True, exist_ok=True)
     tmp = out.with_suffix(".tmp")
+    # The cache is a loose file per word *or* a row in one of the packed shards
+    # (`tools/pack_meanings.py` folded 153k loose files into 256).  Asking for
+    # one word at a time reopened a whole shard per word; walking the cache once
+    # reads each shard once (2026-11-13).
+    wanted = set(words)
     n = marks = 0
+    written: set[str] = set()
     with open(tmp, "wb") as raw:
         stream = gzip.GzipFile(fileobj=raw, mode="wb", mtime=0)
-        for word in words:
-            path = meanings._cache_path(word)
-            if not path.exists():
+        for word, row in meanings.iter_cache():
+            if word in written or word not in wanted:
                 continue
-            try:
-                with gzip.open(path, "rt", encoding="utf-8") as fh:
-                    row = json.load(fh)
-            except Exception:  # noqa: BLE001 - an unreadable page is skipped
-                continue
-            if not row.get("entries"):
+            if not row or not row.get("entries"):
                 continue
             first = row["entries"][0]
-            gloss = first_line(first.get("text", ""), first.get("head") or word)
+            tag = tag_of(first.get("text", ""))
+            gloss = first_line(first.get("text", ""), first.get("head") or word, tag)
             if not gloss:
                 continue
-            tag = tag_of(first.get("text", ""))
             origin = lang_of(tag)
             marks += 1 if origin else 0
             n += 1
+            written.add(word)
             stream.write((json.dumps({"word": word, "gloss": [gloss], "tag": tag,
                                       "origin": origin, "url": row.get("url", "")},
                                      ensure_ascii=False) + "\n").encode("utf-8"))
         stream.close()
+    # The old shards stay beside this file: `import_dehkhoda._read_rows` reads
+    # them first and this one last, so a row rebuilt here always wins, and a
+    # word whose page was never cached keeps the reading it had (2026-11-13).
     tmp.replace(out)
     print(f"rebuilt {n} rows from the cache ({marks} with a language mark)")
     return 0
@@ -213,7 +323,8 @@ def main(argv=None) -> int:
             gloss = ""
             if row and row.get("entries"):
                 first = row["entries"][0]
-                gloss = first_line(first.get("text", ""), first.get("head") or word)
+                gloss = first_line(first.get("text", ""), first.get("head") or word,
+                                   tag_of(first.get("text", "")))
             if gloss:
                 tag = tag_of(row["entries"][0].get("text", ""))
                 stream.write((json.dumps({"word": word, "gloss": [gloss],

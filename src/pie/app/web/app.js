@@ -1679,13 +1679,18 @@ function constructStep(level, i, linkTo, opts) {
      2026-11-12). */
   const climbOf = (p) => {
     const rows = [];
-    let cur = p.bound ? null : p.branch;
+    /* A piece climbs when it has a branch — the entry it resolved to has a
+       history of its own.  Being *bound* does not take that away: باش is a
+       stem of بودن, and بودن reaches PIE *bʰewH- (critic batch 07,
+       2026-11-13: the column was empty).  A morpheme that is only a suffix
+       has no branch at all, and still stands with no column. */
+    let cur = p.branch || null;
     let guard = 0;
     while (cur && guard++ < 12) {
       if (cur.builds && cur.builds.length) {
         rows.push({ build: cur.builds[0], word: cur });
         const first = cur.builds[0].pieces[0];
-        cur = first && !first.bound ? first.branch : null;
+        cur = first ? (first.branch || null) : null;
         continue;
       }
       const parent = parentsOf(cur)[0];
