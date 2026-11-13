@@ -1989,7 +1989,7 @@ def _lemma_entry(lang: str, form: str) -> dict | None:
     return None
 
 
-def _headword_at(lang: str, form: str) -> dict | None:
+def _headword_at(lang: str, form: str, sense: str = "") -> dict | None:
     """The glossary entry a derived form names, reading the notation as notation.
 
     The engine writes stress as ``ˈ`` before the syllable; a dictionary writes
@@ -2005,10 +2005,18 @@ def _headword_at(lang: str, form: str) -> dict | None:
             if key and key not in keys:
                 keys.append(key)
     for key in keys:
+        rows = word_index().get((lang, key)) or []
+        # One spelling heads several words. ``sense`` is the meaning being
+        # carried down a branch, so when the page knows it, the entry it asks
+        # for wins over index order (`_homonym_by_meaning`, the rule the fa
+        # pieces already use). With no sense the order stands as before.
+        if sense and len(rows) > 1:
+            picked = _homonym_by_meaning(lang, rows, sense)
+            if picked is not None:
+                return picked
         record = _lemma_entry(lang, key)
         if record:
             return record
-        rows = word_index().get((lang, key))
         if rows:
             return rows[0]
     return None
@@ -7186,7 +7194,8 @@ def _record_for_form(lang: str, form: str) -> dict | None:
 
 def _branch_node(parent: str, form: str, target: str, *,
                  origin_records: dict[str, dict], claim: bool, depth: int,
-                 seen: frozenset[str], recurse: bool = True) -> dict:
+                 seen: frozenset[str], recurse: bool = True,
+                 sense: str = "") -> dict:
     """One direct child of a stage, carrying the form there through its laws.
 
     ``parent``'s form is run through the one transition ``parent → target``;
@@ -7208,7 +7217,7 @@ def _branch_node(parent: str, form: str, target: str, *,
                    key=lambda t: TIER_ORDER.index(t) if t in TIER_ORDER else 9)
     candidates: list[dict] = []
     hit: dict | None = None
-    head = None if d.skipped else _headword_at(target, d.output)
+    head = None if d.skipped else _headword_at(target, d.output, sense)
     if not d.skipped:
         bucket = origin_records.get(target) or {}
         for rec_form in bucket.get("forms") or ():
@@ -7265,11 +7274,23 @@ def _branch_node(parent: str, form: str, target: str, *,
                 }
                 candidates.append(hit)
         if hit is not None and hit["via"] != "origin":
+            # A branch lands on a *word*, not on a spelling.  𐎠𐎭𐎶 *adam* “I”
+            # is carried to fa *ay*, which is the form of ای “that is to say”:
+            # the form agrees and the word does not, and the row wore the
+            # branch's ✓ (critic peo-04, 2026-11-13).  The meaning carried down
+            # is the only evidence a page has, so when both meanings are known
+            # and share nothing, the row quotes the record and says the forms
+            # differ — never a match.
+            if _branch_sense_differs(hit, sense):
+                hit["sense_mismatch"] = True
+                hit["matches"] = False
             candidates.append(hit)
     if d.skipped:
         status = "gap"
     elif hit and hit.get("unverified"):
         status = "unverified"
+    elif hit and hit.get("sense_mismatch"):
+        status = "differs"
     elif hit:
         status = "match"
     elif candidates:
@@ -7289,9 +7310,12 @@ def _branch_node(parent: str, form: str, target: str, *,
         evidence = "strong" if high else "weak"
     children = []
     if recurse and not d.skipped and target not in seen:
+        # The meaning travels on: when this stage landed on an entry, that
+        # entry's own meaning is what the next stage's homonym is read against.
+        carried = ((hit or {}).get("gloss") or sense)
         children = _branch_children(target, d.output, origin_records=origin_records,
                                     claim=claim, depth=depth + 1,
-                                    seen=seen | {target})
+                                    seen=seen | {target}, sense=carried)
     return {
         "l": target,
         "lang_name": row.get("name", target),
@@ -7318,11 +7342,12 @@ def _branch_node(parent: str, form: str, target: str, *,
 
 
 def _branch_children(lang: str, form: str, *, origin_records: dict[str, dict],
-                     claim: bool, depth: int, seen: frozenset[str]) -> list[dict]:
+                     claim: bool, depth: int, seen: frozenset[str],
+                     sense: str = "") -> list[dict]:
     """Every direct child of ``lang``, in registry order."""
     return [
         _branch_node(lang, form, child, origin_records=origin_records,
-                     claim=claim, depth=depth, seen=seen)
+                     claim=claim, depth=depth, seen=seen, sense=sense)
         for child in data.descendants(lang)
         if child not in seen
     ]
@@ -7368,6 +7393,34 @@ def _flatten_branch(nodes: list[dict]) -> list[dict]:
         out.append(node)
         out.extend(_flatten_branch(node["children"]))
     return out
+
+
+def _branch_sense(origin: tuple[dict, str] | None) -> str:
+    """The meaning a branch is carried down in.
+
+    A branch begins at the word the reader clicked, and that word's meaning is
+    the only evidence a page has for telling two words of one spelling apart
+    three stages below it.
+    """
+    if not origin:
+        return ""
+    entry = origin[0] or {}
+    return " ".join(str(g) for g in entry.get("gloss") or () if g)
+
+
+def _branch_sense_differs(hit: dict, sense: str) -> bool:
+    """Whether a record the branch landed on is plainly another word.
+
+    Only when both meanings are known and share no content word — a record with
+    no gloss, or a page with no carried sense, is not evidence of a mismatch.
+    """
+    if not sense:
+        return False
+    theirs = senses.content_words(str(hit.get("gloss") or ""))
+    mine = senses.content_words(sense)
+    if not theirs or not mine:
+        return False
+    return not (theirs & mine)
 
 
 def _stage_descendants(lang: str, form: str,
@@ -7421,7 +7474,8 @@ def _stage_descendants(lang: str, form: str,
                      "no reading, so no law can be carried from it"),
         }
     roots = _branch_children(lang, form, origin_records=origin_records,
-                             claim=claim, depth=0, seen=frozenset({lang}))
+                             claim=claim, depth=0, seen=frozenset({lang}),
+                             sense=_branch_sense(origin))
     rows = _flatten_branch(roots)
     modelled = [r for r in rows if not r["skipped"]]
     gaps = [{"l": r["l"], "lang_name": r["lang_name"], "missing": r["skipped"]}
