@@ -637,12 +637,14 @@ async function viewGlossary(params) {
       g.total > rows.length ? ` · showing the first ${rows.length}` : ""}${
       g.banded && rows.length > g.banded ? ` · ${(rows.length - g.banded).toLocaleString()} not banded (reconstructions, and forms the counter leaves out)` : ""}</p>
     ${legendKeys.length ? `<p class="glosslegend" title="Each word is painted with its coverage band, from the same measurement as the coverage page. The numbers count words of this whole stage. A spelling that carries several words is listed once per word, numbered; the coverage page counts them the same way">${legendKeys.map((k) => `<span><i class="${bandClass(k)}"></i>${esc(bandLabel(k))} <b>${(counts[k] || 0).toLocaleString()}</b></span>`).join("")}</p>` : ""}
-    ${rows.length ? `<table><thead><tr><th>form</th><th>pos</th><th>meaning</th></tr></thead><tbody>
+    ${rows.length ? `<table class="glosslist"><thead><tr><th>form</th><th>status</th><th>pos</th><th>meaning</th></tr></thead><tbody>
       ${rows.map((r, i) => `<tr class="click reveal" style="--i:${Math.min(i, 16)}" tabindex="0"
         onclick="location.hash='${wordHref(lang, r.word, true, "", r.senses > 1 ? r.sense : 0)}'"
         onkeydown="if(event.key==='Enter')location.hash='${wordHref(lang, r.word, true, "", r.senses > 1 ? r.sense : 0)}'">
-        <td><a class="mono glossword" href="${esc(wordHref(lang, r.word, true, "", r.senses > 1 ? r.sense : 0))}" dir="auto"${r.band ? ` style="--band:var(${bandVar(r.band)})" data-tip="${esc(bandTip(r.band))}"` : ""}>${esc(r.written || r.word)}</a>${attestBadge({ status: r.attestation, label: { attested: "attested", transliterated: "transliterated", recorded: "recorded", proposed: "proposed" }[r.attestation] })}${r.senses > 1 ? `<span class="sense no" data-tip="This spelling is ${r.senses} words; this row is the ${r.sense}${r.sense === 1 ? "st" : r.sense === 2 ? "nd" : r.sense === 3 ? "rd" : "th"}.">${r.sense}</span>` : ""}${r.root ? ` <span class="badge">root</span>` : ""}
+        <td><a class="mono glossword" href="${esc(wordHref(lang, r.word, true, "", r.senses > 1 ? r.sense : 0))}" dir="auto"${r.band ? ` style="--band:var(${bandVar(r.band)})" data-tip="${esc(bandTip(r.band))}"` : ""}>${esc(r.written || r.word)}</a>${r.senses > 1 ? `<span class="sense no" data-tip="This spelling is ${r.senses} words; this row is the ${r.sense}${r.sense === 1 ? "st" : r.sense === 2 ? "nd" : r.sense === 3 ? "rd" : "th"}.">${r.sense}</span>` : ""}
           ${r.show_reading && r.reading ? `<span class="sub reading${r.reading_auto ? " auto" : ""}"${r.reading_auto ? ` data-tip="${esc(r.reading_note || "")}"` : ""}> ${esc(r.reading)}</span>` : ""}</td>
+        <td><span class="glstatus ${esc(ATTEST_BADGE[r.attestation] || "")}"
+          data-tip="${esc((g.statuses || {})[r.attestation] || "")}">${esc(r.attestation || "—")}</span></td>
         <td class="sub">${esc(r.pos || "—")}</td>
         <td>${esc((r.gloss || []).join("; "))}</td></tr>`).join("")}
     </tbody></table>` : `<p class="empty">${band ? `No ${esc(bandLabel(band).toLowerCase())} in this stage.` : "This stage has no glossary entries."}</p>`}`;

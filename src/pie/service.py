@@ -1005,9 +1005,19 @@ def glossary(lang: str, limit: int = 400, roots_first: bool = True,
         groups = _senses_for((lang, word)) or senses.groups(entries)
         for group in groups:
             entry = group["rep"]
-            roots = (word.strip().endswith("-")
-                     or (entry.get("pos") or "") == "root"
-                     or any(r == "root" for _s, _w, r in _ancestry_triples(entry)))
+            # What the headword *is*, as a column of its own (admin,
+            # 2026-11-13).  The old "root" pill asked whether the word's
+            # etymology mentioned a root, which is true of almost every word
+            # in a reconstructed stage and told the reader nothing: 796 of the
+            # 799 Proto-Indo-Iranian rows wore it.  A row is a **root** when the
+            # dictionary heads it as one, and an **affix** when it is written
+            # bound (-a-, -nós) or headed as one; every other row is a word and
+            # the cell stays empty.
+            pos_label = (entry.get("pos") or "").strip().lower()
+            headword = word.strip()
+            bound = headword.startswith("-") or headword.endswith("-")
+            kind = ("root" if pos_label == "root"
+                    else "affix" if bound or pos_label in _BOUND_POS else "")
             # The reading line is only ever printed, so it is built for the
             # rows that are shown, not for the 165,000 the counts need
             # (2026-11-10).
@@ -1023,7 +1033,8 @@ def glossary(lang: str, limit: int = 400, roots_first: bool = True,
                 "attestation": status,
                 "written": attestation.written(entry["word"], status),
                 "gloss": [g for g in group["gloss"][:2] if g],
-                "root": bool(roots),
+                "kind": kind,
+                "root": kind == "root",
                 # The colour of this sense, from the same published measurement
                 # the coverage page prints.
                 "band": _band_in(index, entry["word"], group["sense"]),
@@ -1065,6 +1076,10 @@ def glossary(lang: str, limit: int = 400, roots_first: bool = True,
             "total": len(rows), "roots": sum(1 for r in rows if r["root"]),
             "rows": shown, "limit": limit,
             "band": band or "",
+            # What "attested", "recorded" and "proposed" mean, once per page:
+            # the status column says the word, the tooltip says the sentence
+            # (`attestation.DEFINITIONS`, the same text the word pages use).
+            "statuses": dict(attestation.DEFINITIONS),
             # The whole stage, before the band is applied: the selector counts
             # "PIE words" as this minus the non-PIE band.
             "stage_total": stage_total,

@@ -1575,6 +1575,17 @@ a.lawname:hover, a.lawname:focus-visible { color: var(--accent); }
 .glossword { font-weight: 500; cursor: help;
   color: color-mix(in srgb, var(--band, currentColor) 80%, var(--fg)); }
 .glossword:hover { color: var(--band, currentColor); }
+/* The two facts that were pills beside the word are columns now (admin,
+   2026-11-13): how the word is known (attested / recorded / proposed) and what
+   it is (a root or a bound affix).  A pill repeated on every row read as
+   decoration; a column can be scanned down, and the empty cell says "an
+   ordinary word" without saying it 400 times. */
+.glosslist th:first-child, .glosslist td:first-child { padding-left: 0; }
+.glstatus { font-size: 10.5px; letter-spacing: .09em; text-transform: uppercase;
+  white-space: nowrap; color: var(--muted); }
+.glstatus.attested { color: var(--attested); }
+.glstatus.literary { color: var(--literary); }
+.glstatus.proposed { color: var(--proposed); }
 .glosslegend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 6px 0 14px;
   font-size: 12.5px; color: var(--muted); }
 .glosslegend span { display: inline-flex; align-items: center; gap: 6px; }
