@@ -3,15 +3,10 @@
 Three states, and a word is exactly one of them (2026-11-11):
 
 ``attested``
-    A text or a dictionary writes this exact form, in the language's own
-    script.  The glossary prints it in that script, never as a Latin reading.
-
-``transliterated``
-    A text writes the word, but the glossary keeps the reading of its signs,
-    not the signs themselves: Middle Persian lwc (rōz), Tocharian B war.  It is
-    a real word of the language and it is not printed with an asterisk, but the
-    headword is not the writing the other two statuses talk about, so it does
-    not claim to be attested either (2026-11-12).
+    A text or a dictionary records this word.  The form above is either the
+    writing itself (Old Persian 𐎭𐎠𐎼𐎹𐎺𐎢𐏁) or the record's transcription of
+    it (Middle Persian ``garm``) — a Latin reading still attests the word, and
+    a record that gives one has recorded it (admin, 2026-11-13).
 
 ``recorded``
     A reconstruction the literature itself proposes — no text spells it, but
@@ -26,13 +21,14 @@ Three states, and a word is exactly one of them (2026-11-11):
 A form with no glossary entry at all is ``non-existent`` — the word page says
 so instead of pretending the stage records it.
 
-The classification is a pure function of the entry: the caller supplies what it
-knows about the stage (a proto stage is reconstructed as a whole; a stage with
-its own script has to show it).
+The classification is a pure function of the entry: whether it is a
+reconstruction, and who proposes it.  The headword's script no longer decides
+the status; `service.word` reports what the form above *is* as
+``attested_how`` (writing or transcription).
 """
 from __future__ import annotations
 
-STATUSES = ("attested", "transliterated", "recorded", "proposed")
+STATUSES = ("attested", "recorded", "proposed")
 NON_EXISTENT = "non-existent"
 
 # The asterisk is *on the word*, not in the label (admin, 2026-11-12): a
@@ -41,18 +37,14 @@ NON_EXISTENT = "non-existent"
 # says the one thing it means: no text spells this word.
 LABELS = {
     "attested": "attested",
-    "transliterated": "transliterated",
     "recorded": "recorded",
     "proposed": "proposed",
     NON_EXISTENT: "non-existent",
 }
 
 DEFINITIONS = {
-    "attested": ("A text or a dictionary writes this exact word in the language's "
-                 "own script — the form above is that writing."),
-    "transliterated": ("A text writes this word; the glossary keeps the reading of "
-                       "its signs rather than the signs themselves, so the headword is "
-                       "not itself the writing."),
+    "attested": ("A text or a dictionary records this word — the form above is the "
+                 "writing, or the transcription the record gives it."),
     "recorded": ("Reconstructed in the literature: no text spells it, so it is "
                  "written with an asterisk, and a dictionary records it as the "
                  "probable word of the language."),
@@ -85,14 +77,17 @@ def _is_reconstruction(entry: dict, proto: bool) -> bool:
 
 
 def classify(entry: dict, *, proto: bool = False, in_script: bool = True) -> str:
-    """One entry's status.  ``in_script`` is whether its headword is written in
-    the stage's own script, which is what makes an attestation an attestation."""
+    """One entry's status.
+
+    ``in_script`` is kept so existing callers need not change, but it no longer
+    decides the status: a recorded transcription attests its word as surely as
+    a recorded writing does (admin, 2026-11-13).  What the headword *is* —
+    writing or transcription — travels beside the status as ``attested_how``.
+    """
     if _is_proposal(entry):
         return "proposed"
     if _is_reconstruction(entry, proto):
         return "recorded"
-    if not in_script:
-        return "transliterated"
     return "attested"
 
 

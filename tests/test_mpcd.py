@@ -38,7 +38,7 @@ class TestSources(unittest.TestCase):
 
     def test_the_count_is_the_attestation(self):
         payload = service.attestation_of(entry(source="mpcd", occurrences=102), "pal")
-        self.assertEqual(payload["status"], "transliterated")
+        self.assertEqual(payload["status"], "attested")
         self.assertIn("The corpus writes it 102 times.", payload["reason"])
 
     def test_one_occurrence_is_one_time(self):

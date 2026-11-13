@@ -16,6 +16,10 @@ What is taken, and what is left behind:
 * its **English senses**, one gloss each;
 * the number of **occurrences**, which is the attestation (`occurrences`, the
   page says "the corpus writes it 102 times");
+* the **spellings** the corpus writes for it: the commonest goes in ``translit``
+  and up to eight more in ``translit_variants`` (garm is written glm 48×,
+  g03lm 43×, …).  They are the same word written differently, never rows of
+  their own (admin, 2026-11-13);
 * the address of its **MPCD entry**, so the word page carries a book icon that
   opens the entry the word was read in (nothing more: the occurrence list and
   the texts it quotes are out of scope, admin 2026-11-13).
@@ -117,6 +121,7 @@ def rows(lemmas: Path, tokens: Path | None, pos: Path | None, *, minimum: int = 
     out: list[dict] = []
     skipped = collections.Counter()
     seen: dict[tuple[str, str], dict] = {}
+    spelled: dict[tuple[str, str], collections.Counter] = {}
     for lemma in read_jsonl(lemmas):
         if lemma.get("language") != "pal":
             skipped["not Middle Persian"] += 1
@@ -154,9 +159,22 @@ def rows(lemmas: Path, tokens: Path | None, pos: Path | None, *, minimum: int = 
                     seen[key]["gloss"].append(g)
             if count:
                 seen[key]["occurrences"] = seen[key].get("occurrences", 0) + count
+            spelled[key].update(spellings.get(lemma["id"]) or {})
             continue
         seen[key] = row
+        spelled[key] = collections.Counter(spellings.get(lemma["id"]) or {})
         out.append(row)
+    # A lemma's corpus spellings are orthographic variants of one word, not
+    # separate words: keep the commonest in `translit` and at most eight more,
+    # most frequent first, in `translit_variants` (2026-11-13).
+    for key, row in seen.items():
+        forms = [form for form, _ in sorted(spelled[key].items(),
+                                            key=lambda item: (-item[1], item[0]))]
+        if forms:
+            row["translit"] = forms[0]
+            row["spellings_n"] = len(forms)
+            if len(forms) > 1:
+                row["translit_variants"] = forms[1:9]
     return out, dict(skipped)
 
 

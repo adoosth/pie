@@ -113,11 +113,12 @@ class GlossaryBandTest(unittest.TestCase):
                                 f"{lang}/{row['word']}#{row['sense']} is {band} but "
                                 f"its ladder is {status} ({reason})")
 
-    def test_a_pahlavi_reading_is_transliterated_not_attested(self):
+    def test_a_pahlavi_reading_is_attested_as_a_transcription(self):
         page = service.word("pal", "lwc")
         self.assertIsNotNone(page)
         self.assertFalse(page["in_script"])
-        self.assertEqual(page["attestation"]["status"], "transliterated")
+        self.assertEqual(page["attestation"]["status"], "attested")
+        self.assertEqual(page["attested_how"], "transcription")
 
     def test_the_root_flag_is_the_headword_not_its_etymology(self):
         """The "root" pill asked whether the *etymology* mentioned a root.
@@ -149,8 +150,8 @@ class GlossaryBandTest(unittest.TestCase):
         from pie import attestation
         page = service.glossary("peo", limit=20)
         self.assertEqual(set(page["statuses"]),
-                         {"attested", "transliterated", "recorded",
-                          "proposed", attestation.NON_EXISTENT})
+                         {"attested", "recorded", "proposed",
+                          attestation.NON_EXISTENT})
         for row in page["rows"]:
             self.assertIn(row["attestation"], attestation.STATUSES)
 

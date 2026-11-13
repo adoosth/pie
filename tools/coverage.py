@@ -902,7 +902,7 @@ def measure(lang: str, meta: dict, chain: list[str], rulesets, tiers, limit: int
         # One band per headword, first entry wins: the word page is keyed by
         # spelling and shows the first entry, so the glossary must colour the
         # same entry.  A homograph whose other reading would fall in another
-        # band is the open gap named in docs/UI_PLAN.md, not a second colour
+        # band is the open gap named in docs/archive/UI_PLAN-2026-11.md.gz, not a second colour
         # (2026-11-09: the glossary words get the same colours).
         bands.setdefault(entry["word"].strip(), {})[sense_of[id(entry)]] = category
         reasons[f'{category}: {verdict["reason"]}'] += 1

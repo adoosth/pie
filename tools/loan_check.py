@@ -13,7 +13,7 @@ band.  This tool answers, for one donor and one target language:
 * whether the contact window in `data/loan_periods.yaml` covers them.
 
     python tools/loan_check.py --lang fa --donor ar
-    python tools/loan_check.py --lang fa --donor ar --sample 120 --markdown docs/LOANS_FA_AR.md
+    python tools/loan_check.py --lang fa --donor ar --sample 120 --markdown /tmp/fa-ar-loans.md
     python tools/loan_check.py --lang fa --donor ar --check   # exit 1 on any disagreement
 
 The sample is a plain alphabetical first-N, not a claim that other words are
@@ -70,7 +70,7 @@ def main() -> int:
         for entry in rows:
             # A word page is keyed by spelling and shows the first stored
             # entry; a second entry with the same spelling is a homograph the
-            # page does not show yet (docs/UI_PLAN.md v1.2).  Its own band is
+            # page does not show yet (docs/archive/UI_PLAN-2026-11.md.gz).  Its own band is
             # not what the page says, so it is counted apart, not as a
             # disagreement (2026-11-09).
             first = (index.get((target, entry["word"])) or [entry])[0]

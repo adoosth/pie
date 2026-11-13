@@ -3127,7 +3127,7 @@ class TestTheLawsStartFromAReading(unittest.TestCase):
         self.assertEqual(page["hierarchy"]["starts"][0]["form"], "raučah")
         self.assertFalse(page["hierarchy"]["starts"][0]["unreadable"])
 
-    def test_a_transliterated_headword_shows_its_reading_and_a_romanisation_does_not(self):
+    def test_a_written_headword_shows_its_reading_and_a_transcription_does_not(self):
         self.assertTrue(service.show_reading("pal", "lwc"))
         self.assertEqual(service._form_meta("pal", "lwc")["reading"], "rōz")
         # رōz is already a romanisation: a second one would be noise.

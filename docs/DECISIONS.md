@@ -70,7 +70,26 @@ page also belongs in `AGENTS.md` ("What a word page must keep true").
 21. **Cite a locator**, not just an author.
 22. **One artefact per commit**, and a bug found on the way is named in the
     message — no unrelated refactoring rides along.
-23. **A page never pays for a whole stage to answer about one word.** A
+23. **A transcription is not a transliteration.** A transcription says how a
+    word sounds (`garm`, `vr̥kaʰ`), a transliteration how it is written in Latin
+    letters (`glm`, `v-r-k`), and the script is the letters themselves. A record
+    that gives a transcription has attested the word: `attested` no longer
+    needs the headword to be the writing, and the old `transliterated` status is
+    gone.
+24. **Spellings are a field, not a row.** A word's written variants (`glm`,
+    `g03lm` …) are `translit` (commonest) + `translit_variants` (at most eight
+    more, most frequent first), marked by `spellings_n`; `translit_alt` stays
+    *alternate readings*. A variant spelling never becomes its own entry.
+25. **The glossary shows both Latin layers when they exist**: `transcription`
+    and `transliteration` per row, each column printed only when a row has a
+    value that is not already the form. A computed transliteration is shown only
+    where the script's table states how (the Old Persian syllabary); elsewhere
+    it would repeat the form's own letters.
+26. **A row is only changed by the supplement that owns it.** The MPCD merge
+    updates `source: mpcd` rows and appends the ones it does not have; it never
+    writes its senses, url, `pos` or spellings onto a row another dictionary
+    heads (71 such rows had to be put back, 2026-11-13).
+27. **A page never pays for a whole stage to answer about one word.** A
     glossary is read by offset (`data.lexicon_rows`), a stage's rows are a disk
     artefact (`_glossary_rows`), and a loop over 17,000 words may not stat
     `data/`. Measure with `AGENTS.md` → "Measure it"; the cache's dead files are

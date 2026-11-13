@@ -50,6 +50,8 @@ class TestPages(unittest.TestCase):
             for row in page["rows"]:
                 self.assertIn("gloss", row)
                 self.assertIn("attestation", row)
+                self.assertIn("transcription", row)
+                self.assertIn("transliteration", row)
                 seen.add((row["word"], row.get("sense") or 1))
         self.assertEqual(len(seen), 150)
 
@@ -57,6 +59,13 @@ class TestPages(unittest.TestCase):
         page = service.glossary("pal", band="all", q="garm", limit=2, page=2)
         self.assertTrue(all("garm" in r["word"] for r in page["rows"]))
         self.assertEqual(page["page"], 2)
+
+    def test_a_middle_persian_row_prints_its_reading_and_its_spelling(self):
+        page = service.glossary("pal", band="all", q="garm", limit=10)
+        row = next(r for r in page["rows"] if r["word"] == "garm")
+        self.assertEqual(row["attestation"], "attested")
+        self.assertEqual(row["transcription"], "garm")
+        self.assertEqual(row["transliteration"], "glm · g03lm · g03lmtl")
 
 
 if __name__ == "__main__":

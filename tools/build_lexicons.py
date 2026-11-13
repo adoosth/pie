@@ -602,6 +602,9 @@ def merge_supplements() -> None:
         #: (admin, 2026-11-13).  Without this the stem row was folded into the
         #: loan and دستمال still read its مال as the Arabic word.
         seen_pos: dict[str, set[str]] = {}
+        #: word → its MPCD rows, so matching a supplement row is a dictionary
+        #: lookup rather than a scan of the whole glossary (16k rows × 17k).
+        mpcd_by_word: dict[str, list[dict]] = {}
         if out_path.exists():
             with gzip.open(out_path, "rt", encoding="utf-8") as fh:
                 for line in fh:
@@ -610,8 +613,24 @@ def merge_supplements() -> None:
                     first.setdefault(row["word"], row)
                     seen_pos.setdefault(row["word"], set()).add(
                         str(row.get("pos") or "").strip().lower())
+                    if row.get("source") == "mpcd":
+                        mpcd_by_word.setdefault(row["word"], []).append(row)
         before = json.dumps(rows, ensure_ascii=False, sort_keys=True)
         added = 0
+        #: The MPCD corpus supplement owns its rows' spellings.  A main MPCD
+        #: row is updated in place (matched by word and, where possible, pos);
+        #: a word with no MPCD row gets one appended, beside any row another
+        #: dictionary already heads (sard keeps wiktionary + mackenzie + mpcd).
+        corpus = sp.name == f"{lang}.mpcd.jsonl.gz"
+
+        def mpcd_row(needle: str, pos: str) -> dict | None:
+            candidates = mpcd_by_word.get(needle) or []
+            exact = [r for r in candidates
+                     if str(r.get("pos") or "").strip().lower() == pos]
+            if exact:
+                return exact[0]
+            return candidates[0] if len(candidates) == 1 else None
+
         with gzip.open(sp, "rt", encoding="utf-8") as fh:
             for line in fh:
                 row = json.loads(line)
@@ -620,16 +639,46 @@ def merge_supplements() -> None:
                     continue
                 cur = first.get(word)
                 pos = str(row.get("pos") or "").strip().lower()
+                found = None
+                if row.get("source") == "mpcd":
+                    found = mpcd_row(word, pos)
+                    if found is not None:
+                        cur = found
+                if corpus and found is not None:
+                    # The corpus supplement owns these rows' spellings and
+                    # nothing else: their gloss, url and occurrences were
+                    # folded when the row was first filed.  Replace the
+                    # spellings outright so a stale one cannot survive.
+                    for key in ("translit", "translit_variants", "spellings_n"):
+                        if row.get(key):
+                            found[key] = row[key]
+                        else:
+                            found.pop(key, None)
+                    seen_pos.setdefault(word, set()).add(pos)
+                    continue
                 if (cur is not None and pos
-                        and pos not in seen_pos.get(word, set())):
+                        and pos not in seen_pos.get(word, set())
+                        and found is None):
                     rows.append(row)
                     seen_pos.setdefault(word, set()).add(pos)
+                    if row.get("source") == "mpcd":
+                        mpcd_by_word.setdefault(word, []).append(row)
+                    added += 1
+                    continue
+                if row.get("source") == "mpcd" and found is None:
+                    # No MPCD row heads this word: append one of its own rather
+                    # than writing MPCD data onto another dictionary's row.
+                    rows.append(row)
+                    seen_pos.setdefault(word, set()).add(pos)
+                    mpcd_by_word.setdefault(word, []).append(row)
                     added += 1
                     continue
                 if cur is None:
                     rows.append(row)
                     first[word] = row
                     seen_pos.setdefault(word, set()).add(pos)
+                    if row.get("source") == "mpcd":
+                        mpcd_by_word.setdefault(word, []).append(row)
                     added += 1
                     continue
                 gl = cur.setdefault("gloss", [])
@@ -643,11 +692,24 @@ def merge_supplements() -> None:
                 for gloss in row.get("gloss") or []:
                     if gloss not in gl:
                         gl.append(gloss)
+                if cur.get("source") == row.get("source") == "mpcd":
+                    # MPCD's translit/translit_variants are the spellings the
+                    # corpus writes, so the newest import replaces them
+                    # outright; an empty value clears a spelling the text no
+                    # longer gives.  This is deliberately not the fill-when-
+                    # empty rule below: the field changed meaning (2026-11-13).
+                    for key in ("translit", "translit_variants", "spellings_n"):
+                        if row.get(key):
+                            cur[key] = row[key]
+                        elif corpus:
+                            cur.pop(key, None)
+                    seen_pos.setdefault(word, set()).add(pos)
                 # `borrowed_from` is a dictionary's own mark on a word that
                 # states no ancestry (Dehkhoda's (ع) beside an Arabic headword),
                 # so it fills an empty field like the rest; `classify` ignores it
                 # whenever the entry has a chain of its own (2026-11-10).
-                for key in ("translit", "pos", "ipa", "etym", "ref",
+                for key in ("translit", "translit_variants", "spellings_n",
+                            "pos", "ipa", "etym", "ref",
                             "borrowed_from", "source_note", "occurrences"):
                     if row.get(key) and not cur.get(key):
                         cur[key] = row[key]

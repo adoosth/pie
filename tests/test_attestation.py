@@ -1,10 +1,11 @@
 """A word is attested, recorded or proposed — and the page says which.
 
 The three states are a claim about the word itself, not about its ancestry: an
-attested word is one a text or a dictionary writes in the language's own
-script; a recorded word is a reconstruction the literature proposes and prints
-with an asterisk; a proposed word is this model's own guess, which nothing in
-the literature records (2026-11-11).
+attested word is one a text or a dictionary records, in the language's own
+script or in the transcription the record gives it; a recorded word is a
+reconstruction the literature proposes and prints with an asterisk; a proposed
+word is this model's own guess, which nothing in the literature records
+(2026-11-11; a transcription attests, 2026-11-13).
 """
 import unittest
 
@@ -40,11 +41,14 @@ class Classification(unittest.TestCase):
         self.assertEqual(attestation.LABELS["recorded"], "recorded")
         self.assertEqual(attestation.LABELS["proposed"], "proposed")
 
-    def test_a_transliteration_is_not_an_attestation(self):
-        """A reading of signs is a real word, but not a writing (2026-11-12)."""
+    def test_a_transcription_is_an_attestation(self):
+        """A record that gives the reading has recorded the word (2026-11-13)."""
+        self.assertEqual(attestation.classify({"word": "garm"}, in_script=False),
+                         "attested")
+        self.assertEqual(attestation.written("garm", "attested"), "garm")
+        # A transliteration is still a record's form, not a reconstruction.
         self.assertEqual(attestation.classify({"word": "lwc"}, in_script=False),
-                         "transliterated")
-        self.assertEqual(attestation.written("lwc", "transliterated"), "lwc")
+                         "attested")
 
     def test_a_reconstruction_stays_recorded_without_a_script(self):
         self.assertEqual(attestation.classify({"word": "madu", "recon": True},
@@ -122,27 +126,41 @@ class Pages(unittest.TestCase):
                       attestation.STATUSES)
 
 
-if __name__ == "__main__":
-    unittest.main()
+class Transcribed(unittest.TestCase):
+    """A record's transcription attests its word (admin, 2026-11-13).
 
-
-class Transliterated(unittest.TestCase):
-    """A reading of the signs is not the writing (2026-11-12).
-
-    Middle Persian and Tocharian B are attested languages whose glossary keeps
-    Latin transliterations; every one of them was printed as *attested* beside
-    a definition that says "in the language's own script".
+    Middle Persian ``garm`` is MPCD's reading of the spellings ``glm``,
+    ``g03lm`` …; the page says "attested" and says what the form above is
+    (``attested_how``), and the spellings stay on the row.
     """
 
-    def test_a_middle_persian_transliteration_is_not_attested(self):
+    def test_a_middle_persian_transcription_is_attested(self):
         from pie import service
 
-        page = service.word("pal", "lwc")
-        self.assertEqual(page["attestation"]["status"], "transliterated")
+        page = service.word("pal", "garm")
+        self.assertEqual(page["attestation"]["status"], "attested")
+        self.assertEqual(page["attested_how"], "transcription")
         self.assertFalse(page["attestation"]["written"].startswith("*"))
+
+    def test_the_recorded_spellings_survive(self):
+        from pie import data, service
+
+        row = next(r for r in data.lexicon("pal") if r["word"] == "garm")
+        self.assertEqual(row["translit"], "glm")
+        self.assertEqual(row["translit_variants"][:2], ["g03lm", "g03lmtl"])
+        shown = next(r for r in service.glossary("pal", limit=50,
+                                                 band="all", q="garm")["rows"]
+                     if r["word"] == "garm")
+        self.assertEqual(shown["transcription"], "garm")
+        self.assertEqual(shown["transliteration"], "glm · g03lm · g03lmtl")
+        self.assertEqual(shown["attestation"], "attested")
 
     def test_a_middle_persian_word_in_pahlavi_is_attested(self):
         from pie import service
 
         word = "𐭫𐭥𐭰"
         self.assertTrue(service._in_native_script("pal", word))
+
+
+if __name__ == "__main__":
+    unittest.main()

@@ -101,6 +101,13 @@ class TestReading(unittest.TestCase):
     def test_a_spelling_with_no_reading_gets_none(self):
         self.assertEqual(script.read("pal", "sng2"), "")
 
+    def test_a_transcription_keeps_the_spellings_the_corpus_writes(self):
+        row = next(r for r in data.lexicon("pal") if r["word"] == "garm")
+        self.assertEqual(row["translit"], "glm")
+        self.assertEqual(row["translit_variants"][:2], ["g03lm", "g03lmtl"])
+        # The spellings are the signs, not a second transcription.
+        self.assertTrue(script.match("pal", "garm", row["translit"])["ok"])
+
 
 if __name__ == "__main__":
     unittest.main()

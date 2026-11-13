@@ -453,6 +453,39 @@ def _is_syllabic(text: str) -> bool:
     return len(parts) > 1 and all(0 < len(p) <= 3 for p in parts)
 
 
+def _spellings_of(lang: str, entry: dict) -> list[str]:
+    """The written forms a record gives for one entry, most frequent first.
+
+    Two shapes count as a spelling record: ``spellings_n`` (MPCD writes the
+    commonest in ``translit`` and the rest in ``translit_variants``), and a
+    headword that is itself a transcription with a ``translit`` beside it
+    (MacKenzie's Aban / yfiynl | M ybynt N ~).  A script headword keeps its
+    ``translit`` as a reading, and is not touched here (admin, 2026-11-13).
+    """
+    recorded = _recorded_spellings(entry)
+    if recorded:
+        return recorded
+    if (kind_of(lang) != "proto" and not _in_native_script(lang, entry.get("word") or "")
+            and (entry.get("translit") or "").strip()):
+        return [str(entry["translit"]).strip()]
+    return []
+
+
+def _recorded_spellings(entry: dict) -> list[str]:
+    """The written forms a record gives for one entry, most frequent first.
+
+    MPCD stores a word's corpus spellings on its row: ``translit`` is the
+    commonest spelling, ``translit_variants`` the rest, and ``spellings_n``
+    marks a row whose ``translit`` is a spelling.  ``translit_alt`` is a
+    different fact — alternate *readings* of one spelling — and is never read
+    here; a row without ``spellings_n`` keeps its ``translit`` as a reading.
+    """
+    if not (entry.get("spellings_n") or entry.get("translit_variants")):
+        return []
+    values = [entry.get("translit"), *(entry.get("translit_variants") or [])]
+    return [str(value) for value in values if value]
+
+
 def readings_for(entry: dict) -> dict:
     """The pronunciation the dictionaries record for one glossary entry.
 
@@ -466,8 +499,22 @@ def readings_for(entry: dict) -> dict:
     # Persian pus, where ``translit`` holds the spelling or nothing at all);
     # it is the same field the laws start from, so the page and the ladder
     # cannot print two different readings of one entry (2026-11-12).
+    # A headword that is not in the stage's own script *is* a transcription of
+    # the word (Middle Persian garm, Tocharian B war): what the record gives is
+    # how it sounds, and ``translit`` beside it is the writing (MPCD's glm,
+    # MacKenzie's yfiynl).  A script headword is the opposite case — the
+    # writing is above and the reading has to be stated (``phon``, or the
+    # romanisation the record superscribes) — and a proto stage heads its forms
+    # with the reading itself (admin, 2026-11-13).
+    head = str(entry.get("word") or "").strip()
+    lang = str(entry.get("lang") or "")
+    transcribed = bool(head) and kind_of(lang) != "proto" and not _in_native_script(lang, head)
     candidates = ([entry.get("phon")] if (entry.get("phon") or "").strip()
-                  else []) + [entry.get("translit")] + list(entry.get("translit_alt") or [])
+                  else [])
+    if transcribed:
+        candidates.append(head)
+    else:
+        candidates += [entry.get("translit")] + list(entry.get("translit_alt") or [])
     # One word, one reading: an alternate that repeats the chosen one is the
     # same string again, and the page printed it twice («Vr̥kānaʰ · Vr̥kānaʰ»,
     # admin, 2026-11-13).  The alternatives stay stored; the *reader* sees each
@@ -493,8 +540,16 @@ def alternate_readings(entry: dict) -> list[str]:
     """
     chosen = readings_for(entry)["reading"]
     out: list[str] = []
-    for raw in ([entry.get("phon")] if (entry.get("phon") or "").strip() else []) \
-            + [entry.get("translit")] + list(entry.get("translit_alt") or []):
+    # A transliteration is not a reading: when the headword is the
+    # transcription, the spellings beside it are the writing, not another
+    # pronunciation (admin, 2026-11-13).
+    head = str(entry.get("word") or "").strip()
+    lang = str(entry.get("lang") or "")
+    transcribed = bool(head) and kind_of(lang) != "proto" and not _in_native_script(lang, head)
+    raw_readings = ([entry.get("phon")] if (entry.get("phon") or "").strip() else [])
+    if not transcribed:
+        raw_readings += [entry.get("translit")] + list(entry.get("translit_alt") or [])
+    for raw in raw_readings:
         text = str(raw or "").strip()
         if text and text != chosen and text not in out:
             out.append(text)
@@ -680,20 +735,15 @@ def _attestation_reason(entry: dict, lang: str, status: str) -> str:
     if status == "proposed":
         return ("This model proposes the form itself: nothing in the literature "
                 "records it, so it is printed with an asterisk.")
-    if status == "transliterated":
-        # "no writing is known" was a claim the corpus dictionaries do not
-        # support: MPCD gives glm for garm while the glossary's headword is the
-        # reading, so the sentence says what is true of *this headword* only
-        # (admin, 2026-11-13).
-        return (f"A text writes this word; the glossary keeps the reading of its "
-                f"signs rather than the signs themselves, so the headword is not a "
-                f"writing of {_lang(lang).get('name', lang)} and is not called "
-                f"attested.")
     if status == "recorded":
         return ("No text spells this word: it is a reconstruction the literature "
                 "records as the probable form, and it is printed with an asterisk.")
-    return ("A text or a dictionary writes this exact word in the language's own "
-            "script — the headword is that writing.")
+    word = str(entry.get("word") or "")
+    if _in_native_script(lang, word):
+        return ("A text or a dictionary writes this word in the language's own "
+                "script — the headword is that writing.")
+    return ("A text or a dictionary records this word and gives its transcription: "
+            "the headword is that transcription, not the signs it was written with.")
 
 
 def attestation_of(entry: dict, lang: str) -> dict:
@@ -1110,11 +1160,34 @@ def _glossary_row_shown(row: tuple, lang: str, proto: bool) -> dict:
     entry = group.get("rep") or (entries[0] if entries else {})
     status = attestation.for_word(group.get("entries") or [], proto=proto,
                                   in_script=_in_native_script(lang, word))
+    # The reading, and the writing it was read from.  A Latin headword is the
+    # record's transcription (Middle Persian garm, Tocharian B ṣar); a form in
+    # the stage's own script is read from its record.  The transliteration is
+    # what a text actually wrote (MPCD's glm, g03lm …), or the script's own
+    # sign-by-sign form when the headword is a writing.  Only the first three
+    # spellings are printed: the list is a glossary, not a concordance
+    # (admin, 2026-11-13).
+    transcription = (word if not _in_native_script(lang, word)
+                     else readings_for(entry)["reading"])
+    spellings = _spellings_of(lang, entry)
+    # A recorded spelling is what a text wrote, so it is always printed.  The
+    # computed one only where the script's own table states how (:peo's
+    # syllabary, whose ka may be *ka* or *k*); for an alphabet the mechanical
+    # rendering would repeat the letters of the form in another font
+    # (admin, 2026-11-13).
+    computed = (bool((script.stage(lang).get("transliteration") or {}))
+                and _in_native_script(lang, word))
+    transliteration = (" · ".join(spellings[:3]) if spellings
+                       else script.transliterate(lang, word) if computed else "")
     out = {
         "word": word, "pos": pos, "kind": kind, "root": kind == "root",
         "band": band, "sense": sense, "senses": senses_count, "ipa": ipa,
         "attestation": status,
         "written": attestation.written(word, status),
+        # The two Latin columns a Middle Persian row needs: how it sounds and
+        # how it is written (admin, 2026-11-13).
+        "transcription": transcription,
+        "transliteration": transliteration,
         "gloss": [g for g in _page_gloss(lang, entry, group["gloss"])[:2] if g],
         # This row's own reading, not the spelling's first homograph: دوش is duš
         # (shower) and dōš (shoulder, 'last night'), and a list that printed one
@@ -10648,6 +10721,14 @@ def word(lang: str, form: str, disabled: Iterable[str] = (),
                 origin = (rows[0], origin_lang)
         branch = _stage_descendants(lang, source, origin)
     word_constructions = constructions(entry, lang)
+    attest = attestation_of(entry, lang)
+    # What the form above *is*, beside how the word is known: the writing
+    # itself, or the record's transcription of it.  A transliteration that is
+    # neither (Book Pahlavi lwc) is reported as a transcription because it is
+    # a Latin rendering, not the script (admin, 2026-11-13).
+    attested_how = (("writing" if _in_native_script(lang, entry["word"])
+                     else "transcription")
+                    if attest.get("status") == "attested" else "")
     page = {
         "word": entry["word"],
         "lang": lang,
@@ -10661,7 +10742,8 @@ def word(lang: str, form: str, disabled: Iterable[str] = (),
         # attested / recorded / proposed, printed beside the coverage band: how
         # the word itself is known, which is a different question from how much
         # of its ancestry the laws reproduce (2026-11-11).
-        "attestation": attestation_of(entry, lang),
+        "attestation": attest,
+        "attested_how": attested_how,
         "show_reading": show_reading(lang, entry["word"]),
         "reading": readings["reading"],
         "pos": head.get("pos", ""),
@@ -10680,6 +10762,10 @@ def word(lang: str, form: str, disabled: Iterable[str] = (),
         # repeated string is the same reading, not a second one (admin,
         # 2026-11-13: the header read «Vr̥kānaʰ · Vr̥kānaʰ»).
         "translit": readings["reading"] or entry.get("translit", ""),
+        # The written forms beside the transcription: MPCD's corpus spellings,
+        # or the Pahlavi spelling a dictionary prints next to its headword
+        # (admin, 2026-11-13).
+        "spellings": _spellings_of(lang, entry),
         "translit_alt": alternate_readings(entry),
         # What the signs spell, beside how the word is read.
         "signs": readings.get("signs", ""),
