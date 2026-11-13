@@ -274,3 +274,17 @@ be asked to agree on different keys.
 **Ātr̥pātah explains the wrong half of its own name**: the record says
 *HáHtr̥š + *paHtáh, the page draws the ladder of «protected» and prints it as
 the word. A compound whose record states its pieces must draw those pieces.
+
+## Read the field before calling it a contradiction
+
+`matches` says *the laws' output is this form*; `known` says *the stage's
+glossary heads it*. A rung with `matches: true, known: false` shows no ✓ and the
+words «no entry for this word», so it does **not** contradict a band that names
+it as a hole — verify on the rendered page before filing a `band_overclaim`
+(𐎠𐎲𐎡𐎹's band and its ladder agree; a scan of the JSON alone did not).
+
+The one real display gap in this family is narrower: a rung that *does* land on
+an entry still prints the laws' form in the word cell (`bˈarati` over an entry
+read *brtiy*, `tˈanū` over tanūš), so the record's own shape has to be read from
+the meaning line. Keep reporting it — one finding per page, and say whether the
+difference is notation (stress, h/ʰ) or a different word.
