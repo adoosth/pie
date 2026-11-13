@@ -494,6 +494,19 @@ def mark_reconstructions(src: Path, only: list[str] | None = None) -> bool:
                 changed += 1
             elif not want and row.pop("recon", None):
                 changed += 1
+            # A word Wiktionary keeps in its Reconstruction: namespace has a
+            # page there, and that page is the record's own address — 198 Old
+            # Persian reconstructions drew no W because only words read from a
+            # Reconstruction: dump carried a url, and these were *flagged* by
+            # this pass instead (critic peo-04, 2026-11-13).  The flag itself is
+            # the evidence, so nothing is synthesised.
+            if want and not row.get("url"):
+                name = _language_name(lang)
+                if name:
+                    row["url"] = ("https://en.wiktionary.org/wiki/Reconstruction:"
+                                  + name.replace(" ", "_") + "/"
+                                  + quote(str(row["word"]).replace(" ", "_")))
+                    changed += 1
         if changed:
             with gzip.open(out_path, "wt", encoding="utf-8") as fh:
                 for row in rows:
@@ -504,6 +517,44 @@ def mark_reconstructions(src: Path, only: list[str] | None = None) -> bool:
                   f"({len(flagged)} in the dump / {len(rows)} in the glossary)")
     print(f"total flagged: {total}")
     return True
+
+
+def fill_recon_urls(only: list[str] | None = None) -> int:
+    """Give every reconstruction of a built glossary the page it was read from.
+
+    A row flagged ``recon`` is one Wiktionary keeps in its ``Reconstruction:``
+    namespace — the flag is Wiktionary's own statement about the word — so its
+    page is ``Reconstruction:<language name>/<word>`` and can be written
+    without reading the dump again.  This is what the critic saw as «199
+    reconstructions carry no W»; 198 Old Persian and 6 Ancient Greek rows were
+    still bare after the dump pass (critic peo-04, 2026-11-13).
+    """
+    changed = 0
+    for lang in (only or list(DUMP_TO_ID.values())):
+        path = DATA / "lexicon" / f"{lang}.jsonl.gz"
+        if not path.exists():
+            continue
+        with gzip.open(path, "rt", encoding="utf-8") as fh:
+            rows = [json.loads(line) for line in fh]
+        name = _language_name(lang)
+        if not name:
+            continue
+        hits = 0
+        for row in rows:
+            if not row.get("recon") or row.get("url") or not row.get("word"):
+                continue
+            row["url"] = ("https://en.wiktionary.org/wiki/Reconstruction:"
+                          + name.replace(" ", "_") + "/"
+                          + quote(str(row["word"]).replace(" ", "_")))
+            hits += 1
+        if hits:
+            with gzip.open(path, "wt", encoding="utf-8") as fh:
+                for row in rows:
+                    fh.write(json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n")
+            print(f"{lang:<10} {hits:>5} reconstruction urls written")
+            changed += hits
+    print(f"total urls written: {changed}")
+    return changed
 
 
 def _text_writer(path: Path):
@@ -657,6 +708,8 @@ def main() -> int:
     ap.add_argument("--min-ancestry", type=int, default=1)
     ap.add_argument("--supplements-only", action="store_true",
                     help="only fold data/lexicon/_supplement/ into the built glossaries")
+    ap.add_argument("--fill-recon-urls", action="store_true",
+                    help="write Reconstruction: urls for rows already flagged recon")
     ap.add_argument("--mark-reconstructions", action="store_true",
                     help="flag reconstruction-only entries in the built glossaries")
     args = ap.parse_args()
@@ -665,6 +718,9 @@ def main() -> int:
         return 0
     if args.mark_reconstructions:
         return 0 if mark_reconstructions(Path(args.src), args.only) else 1
+    if args.fill_recon_urls:
+        fill_recon_urls(args.only or None)
+        return 0
 
     src = Path(args.src)
     (DATA / "lexicon").mkdir(parents=True, exist_ok=True)
