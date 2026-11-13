@@ -4223,8 +4223,16 @@ def unrecorded_ancestry(entry: dict, chain: list[str]) -> list[dict]:
                        if isinstance(piece, (list, tuple)) and len(piece) > 2 else (),
                        _bound_piece(str(own_row.get("kind") or ""), raw, index)))
     for join in _compound_pieces(entry, own_stage):
-        pieces.extend((str(p.get("word") or ""), (), False)
-                      for p in join.get("pieces") or [])
+        # A join's own row says which of its pieces are bound (a suffix written
+        # with its hyphen), and a bound piece is grammar, not a word: without
+        # this the suffix -𐎣 was walked as the letter 𐎣 and the band said
+        # «no recorded origin for Old Persian 𐎣» (critic peo-02, 2026-11-13).
+        kind = str(join.get("kind") or "")
+        for index, p in enumerate(join.get("pieces") or []):
+            raw = str(p.get("word") or "")
+            pieces.append((raw, (),
+                           _bound_piece(kind, raw, index)
+                           or normalise_etymon(raw) in _bound_forms(own_stage)))
     for raw, piece_anc, bound in pieces:
         form = normalise_etymon(raw)
         if not form or (own_stage, form) in seen_forms:
@@ -8165,16 +8173,26 @@ def _base_row(lang: str, base: str, gloss: str = "") -> dict:
     (`_lemma_entry`), so a word known in one place is known in all three.
     """
     entry = _lemma_entry(lang, base)
-    known = bool(entry)
+    if entry and str(base or "").strip()[:1] == "-":
+        # A bound piece is answered only by a bound headword.  The lookup
+        # retries the spelling without its hyphen, so -𐎠 landed on the entry
+        # for the *letter* 𐎠, and five Old Persian pages drew that letter's
+        # definition over an adjectival suffix (critic peo-02, 2026-11-13).
+        head = str(entry.get("word") or "")
+        pos = str(entry.get("pos") or "").lower()
+        if not (head[:1] == "-" or head[-1:] == "-" or pos in _BOUND_POS):
+            entry = None
+    known = bool(entry) or bool(_morph_gloss(str(base or ""), lang))
     # The entry writes its gloss already quoted — *mer- (“sea, lake, wetland”)
     # — and the page quotes what it is given, so the marks are dropped here
     # instead of printing ““sea, lake, wetland”” (2026-11-08). A leading ``~``
     # is the dictionary hedging its own gloss ("~ to be long"), not part of it.
-    said = gloss or _rung_gloss((entry or {}).get("gloss") or [], 70)
+    said = (gloss or _rung_gloss((entry or {}).get("gloss") or [], 70)
+            or _morph_gloss(str(base or ""), lang))
     return {"form": base, "known": known,
             "gloss": said.strip().strip("“”\"'").strip().lstrip("~").strip(),
             "link": f"#/word/{lang}/{quote((entry or {}).get('word') or base)}"
-                    if known else ""}
+                    if entry else ""}
 
 
 def _raw_constructions(entry: dict, lang: str = ROOT_LANG) -> list[dict]:

@@ -77,10 +77,47 @@ def words(lang: str) -> list[str]:
     return out
 
 
+def pool_split(lang: str) -> tuple[list[str], list[str]]:
+    """The pool in two layers: entries that state an origin, and the rest.
+
+    A batch that lands only on one-line dictionary headwords exercises no
+    timeline: batch 10 read 24 Persian pages of which 12 had no etymology at
+    all, and the Old Persian sample was 78 % `Reconstruction:` Latin names
+    although they are 39 % of that lexicon (2026-11-13 — both critics asked
+    for a split).  A critic samples both layers on purpose.
+    """
+    live = set(words(lang))
+    with_record: list[str] = []
+    without: list[str] = []
+    for entry in data.lexicon(lang):
+        word = str(entry.get("word") or "")
+        if not word or word not in live:
+            continue
+        bucket = with_record if (entry.get("anc") or entry.get("built_as")
+                                  or entry.get("etym")) else without
+        if word not in bucket:
+            bucket.append(word)
+    return with_record, without
+
+
 def sample(lang: str, n: int, seed: int) -> list[str]:
     pool = words(lang)
     rng = random.Random(seed)
     return rng.sample(pool, min(n, len(pool)))
+
+
+def sample_layered(lang: str, n: int, seed: int) -> list[str]:
+    """Half from entries that state an origin, half from the rest, shuffled."""
+    recorded, plain = pool_split(lang)
+    rng = random.Random(seed)
+    half = max(1, n // 2)
+    picks = (rng.sample(recorded, min(half, len(recorded))) if recorded else [])
+    picks += (rng.sample(plain, min(n - len(picks), len(plain))) if plain else [])
+    if len(picks) < n:
+        rest = [w for w in words(lang) if w not in picks]
+        picks += rng.sample(rest, min(n - len(picks), len(rest)))
+    rng.shuffle(picks)
+    return picks
 
 
 def _finding(lang, word, kind, severity, page_says, record_says, evidence,
@@ -278,10 +315,13 @@ def main(argv=None) -> int:
     ap.add_argument("--seed", type=int, default=7)
     ap.add_argument("--words", default="")
     ap.add_argument("--json", action="store_true", help="sample as JSON lines")
+    ap.add_argument("--layered", action="store_true",
+                    help="half the sample from entries that state an origin")
     args = ap.parse_args(argv)
 
     picks = ([w.strip() for w in args.words.split(",") if w.strip()]
-             if args.words else sample(args.lang, args.n, args.seed))
+             if args.words else (sample_layered(args.lang, args.n, args.seed)
+                                 if args.layered else sample(args.lang, args.n, args.seed)))
     if args.command == "sample":
         for word in picks:
             row = {"lang": args.lang, "word": word,

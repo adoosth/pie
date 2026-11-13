@@ -1,0 +1,44 @@
+language: peo
+
+note: >
+  The bound morphemes Old Persian's own records state. Each row is written
+  from a reconstruction whose etymology names the suffix and glosses it, so
+  the piece of a construction is grammar the stage registers rather than a word
+  with a history to trace. Without this table a bound piece fell back to the
+  *letter* entry of the same sign («The first letter of the Old Persian
+  cuneiform script»), and five pages read «no recorded origin for Old Persian
+  𐎠» under a suffix the record had just glossed (critic peo-02, 2026-11-13).
+
+suffixes:
+  - id: a
+    form: "-𐎠"
+    ending: ""
+    gloss: "adjectival suffix"
+    note: >
+      Old Persian -𐎠 (-a), from *-aʰ: «formed from 𐎹𐎢𐎴 (Yauna, "Greece") +
+      -𐎠 (-a, adjectival suffix), used as a substantive»
+      (Wiktionary, Reconstruction:Old_Persian/𐎹𐎢𐎴𐎠).
+    sources: [wiktionary]
+    example: "𐎹𐎢𐎴 (Yauna) → 𐎹𐎢𐎴𐎠 (Yaunā)"
+
+  - id: ka
+    form: "-𐎣"
+    ending: ""
+    gloss: "hypocoristic suffix"
+    note: >
+      Old Persian -𐎣 (-kaʰ), a hypocoristic: «From 𐎱𐎠𐎭 (pādaʰ, "foot") +
+      -𐎣 (kaʰ, hypocoristic suffix)» (Reconstruction:Old_Persian/Pādakah);
+      the same suffix in Jīvakah, darikah.
+    sources: [wiktionary]
+    example: "𐎱𐎠𐎭 (pādaʰ) → Pādakah"
+
+  - id: ya
+    form: "-𐎹"
+    ending: ""
+    gloss: "adjectival suffix"
+    note: >
+      Old Persian -𐎹 (-yaʰ): «From 𐎷𐎡𐎰𐎼 (Miθraʰ, "Mithra") + -𐎹
+      (-y / *-yaʰ /, adjectival suffix)» (Reconstruction:Old_Persian/Miθrayah);
+      the same suffix in Tīrayah.
+    sources: [wiktionary]
+    example: "𐎷𐎡𐎰𐎼 (Miθraʰ) → Miθrayah"

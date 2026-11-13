@@ -4474,3 +4474,13 @@ laws run over segments and a form in its own script has none, so
 instead of a row of signs; `renderBranch` prints that sentence. The Old Persian
 glossary also gains the pieces its records name — *pānah, *gadā, *Tīriyah and
 Proto-Iranian *pr̥Húš — and five reconstruction pages carry their W.
+
+**0.17.25 — a bound piece is not a letter (2026-11-13).** Old Persian's records
+write their suffixes as -𐎠, -𐎣, -𐎹, and the lookup retried each without its
+hyphen and found the *letter* of the same sign: five pages drew «The first
+letter of the Old Persian cuneiform script» over an adjectival suffix and said
+«no recorded origin for Old Persian 𐎣» in the band. `data/morphology/peo.yaml`
+now registers the three suffixes from the reconstructions that gloss them,
+`_base_row` answers a bound piece only with a bound headword (and prints the
+morphology gloss, with no link to a page that is not the morpheme), and
+`unrecorded_ancestry` treats a join's bound piece as grammar rather than a word.
