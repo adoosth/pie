@@ -88,7 +88,11 @@ class Handler(BaseHTTPRequestHandler):
         so a new build is a new file to fetch.
         """
         html = (WEB / "index.html").read_text(encoding="utf-8")
-        stamp = f'{(WEB / "app.js").stat().st_mtime_ns:x}'
+        # The stamp covers the *sheet* too: a change to style.css alone once
+        # kept its old address, so an open tab kept yesterday's fonts while the
+        # script said it was current (a ǰ drawn with a floating caron, 2026-11-13).
+        stamp = f'{max((WEB / name).stat().st_mtime_ns
+                       for name in ("app.js", "style.css", "index.html")):x}'
         html = html.replace('/static/app.js"', f'/static/app.js?v={stamp}"')
         html = html.replace('/static/style.css"', f'/static/style.css?v={stamp}"')
         self._send(html.encode("utf-8"), "text/html; charset=utf-8", 200,
@@ -148,7 +152,9 @@ class Handler(BaseHTTPRequestHandler):
             # tab that was open over a rerun of tools/coverage.py has to drop
             # the payloads it cached, or the colours it shows are yesterday's
             # (2026-11-12, critic P1-6).
-            parts = [f"{st.st_mtime_ns:x}-{st.st_size:x}"]
+            sheet = (WEB / "style.css").stat()
+            parts = [f"{st.st_mtime_ns:x}-{st.st_size:x}",
+                     f"{sheet.st_mtime_ns:x}-{sheet.st_size:x}"]
             for name in ("coverage.json", "category_index.json.gz"):
                 artifact = DATA / name
                 try:
