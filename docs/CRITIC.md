@@ -216,3 +216,25 @@ if its Persian-oriented filters starve the sample, take the words from
   recorded etymology» — that contradiction is a finding.
 - **A name entry's notice is not a meaning**: اعبدة opens «[ اَ ب ُ دَ ] (اِخ )»,
   اردشیرگان quotes Hamza al-Isfahani, تایباد adds a biography.
+
+## Persian, round 5 / Old Persian, round 4 (2026-11-13, second half)
+
+- **A spelling capital is not a sound.** A reconstruction is often written with
+  a capital (`*SáraswatiH`), and the laws match literal tokens, so `s_to_h`
+  never fires on the first letter: the page prints `SˈarahwatiH` beside a record
+  that says the PIr form begins in *h*. Report it as a `law_not_applied`, with
+  the position — but say plainly that folding the capital alone does not close
+  the word (`*ā`, `*ī` length is unmodelled too), so it is a *model* gap, not a
+  page bug.
+- **A reconstruction records the page it was read from.** Every reconstructed
+  headword carries `Reconstruction:<language name>/<word>` as its `url`; an
+  entry with no W beside a Wiktionary reconstruction that clearly exists is a
+  `missing_source_link`, and so is a *supplement* row with no `source`.
+- **An ancestor the record names is an entry.** 𐏃𐎼𐎢𐎺𐎫𐎡𐏁's record says
+  «from Proto-Iranian *HárahwatiH»; if the rung prints «no entry» the glossary
+  is incomplete, and filing the ancestor is the fix — the verdict then says what
+  is really missing (here: the laws produce Sˈarahwatī, not Harauvatiš).
+- **A name entry is a last resort for a meaning.** When Dehkhoda's only entry is
+  a proper name (غزالی، اعبدة، اردشیرگان), the page must say so in the meaning
+  line; it must not borrow the biography as a definition. (Open question for the
+  admin: whether such a page should carry a meaning at all.)
