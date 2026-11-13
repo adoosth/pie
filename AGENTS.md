@@ -29,10 +29,16 @@ PYTHONPATH=src python3 -m pie.cli check-rules              # every rule file + e
 PYTHONPATH=src python3 -m pie.cli worklist                 # what to do next, computed
 ```
 
-`check-rules` and both suites must pass before a commit. `tests/test_web.py`
-pins the word page and cognate table: bidi (`dir="auto"`), the script-aware CSS,
-full language names in every cognate row, and the Romanisation match for
-Persian and Greek.
+**A change answers to the tests it touches, not to all of them** (admin,
+2026-11-13: "Run maybe 10 tests each time you change sth at most"). Name the ten
+(or fewer) tests that pin what you changed and run those plus
+`node tests/test_ui_render.js`; that is a commit. The full set —
+`unittest discover`, `check-rules` and the renderer suite — is for a release,
+not for every edit, and a change that needs a hundred tests to feel safe is a
+change that has not said yet what it means. `tests/test_web.py` pins the word
+page and cognate table: bidi (`dir="auto"`), the script-aware CSS, full
+language names in every cognate row, and the Romanisation match for Persian and
+Greek.
 
 ## Speed
 
