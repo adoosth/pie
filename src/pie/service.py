@@ -4349,6 +4349,13 @@ def unrecorded_ancestry(entry: dict, chain: list[str]) -> list[dict]:
                             "rel": "",
                             "via": str(entry.get("word") or ""),
                             "kind": "origin"})
+        if bound:
+            # A bound morpheme is the stage's grammar and has no history of its
+            # own, so the walk stops here — otherwise اسپرم‌کش's ـکش was looked
+            # up by its bare spelling, found کَش «armpit», and the band reported
+            # *kášah and *kóḱsos as missing ancestors of a word meaning
+            # “killer” (critic batch 12, 2026-11-13).
+            continue
         found = _lemma_entry(own_stage, form)
         if found is None or found is entry:
             continue
