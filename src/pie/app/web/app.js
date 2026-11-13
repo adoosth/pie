@@ -1129,9 +1129,16 @@ function renderBranch(desc, opts = {}) {
   const claim = opts.claim !== false;
   const plural = (n, one, many) => `${n} ${n === 1 ? one : many}`;
   if (!tree.length) {
+    /* A stage with no reading is not a stage with no descendants: the branch
+       cannot start from a spelling, and saying "nothing descends" would be a
+       claim about the family instead of about the form (critic peo-02,
+       2026-11-13). */
+    const why = desc && desc.note
+      ? esc(desc.note)
+      : `No modelled language descends directly from ${esc(src.lang_name || "this stage")},
+        so this form cannot be carried further.`;
     return `<h2 class="reveal">Below this stage</h2>
-      <p class="sub">No modelled language descends directly from ${esc(src.lang_name || "this stage")},
-        so this form cannot be carried further.</p>`;
+      <p class="sub">${why}</p>`;
   }
   const laws = (r) => {
     const extra = (r.tiers || []).filter((t) => t !== "established");

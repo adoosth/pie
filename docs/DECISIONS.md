@@ -4465,3 +4465,12 @@ ladder began above the word it was explaining.
   recorded gosî».
 
 **Tests.** 115 across `test_build`, `test_categories`, `test_seam`.
+
+**0.17.24 — the branch below a spelling (2026-11-13).** Old Persian's "below
+this stage" tree copied the parent's cuneiform into the Pahlavi row unchanged
+and called it the Middle Persian word (160 of 479 pages, critic peo-02). The
+laws run over segments and a form in its own script has none, so
+`_stage_descendants` now returns an empty tree with the sentence that says why
+instead of a row of signs; `renderBranch` prints that sentence. The Old Persian
+glossary also gains the pieces its records name — *pānah, *gadā, *Tīriyah and
+Proto-Iranian *pr̥Húš — and five reconstruction pages carry their W.

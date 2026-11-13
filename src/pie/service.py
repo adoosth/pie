@@ -7282,6 +7282,26 @@ def _stage_descendants(lang: str, form: str,
     tentative one (red), never green or gold.
     """
     origin_records = _recorded_at(origin[0], origin[1]) if origin else {}
+    if translit.is_scripted(form):
+        # The branch runs the son laws over *segments*, and a form written in
+        # its own script has none: Old Persian 𐎠𐎼𐎲𐎠𐎹 was copied into the
+        # Pahlavi row unchanged and shown as the Middle Persian word
+        # (critic peo-02, 2026-11-13, 160 of 479 pages).  Nothing can be said
+        # about a stage below a spelling with no reading, so nothing is drawn.
+        return {
+            "source": {"lang": lang,
+                       "lang_name": _lang(lang).get("name", lang),
+                       "form": form},
+            "tree": [],
+            "rows": [],
+            "counts": {"direct": 0, "languages": 0, "match": 0, "unverified": 0,
+                       "differs": 0, "new": 0, "gaps": 0, "steps": 0,
+                       "strong": 0, "weak": 0},
+            "gap_languages": [],
+            "unreadable": True,
+            "note": ("this form is written in its own script and the record gives "
+                     "no reading, so no law can be carried from it"),
+        }
     roots = _branch_children(lang, form, origin_records=origin_records,
                              claim=claim, depth=0, seen=frozenset({lang}))
     rows = _flatten_branch(roots)
