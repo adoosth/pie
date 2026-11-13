@@ -415,10 +415,37 @@ def readings_for(entry: dict) -> dict:
     # cannot print two different readings of one entry (2026-11-12).
     candidates = ([entry.get("phon")] if (entry.get("phon") or "").strip()
                   else []) + [entry.get("translit")] + list(entry.get("translit_alt") or [])
-    reading = next((c for c in candidates if c and not _is_syllabic(c)), "")
+    # One word, one reading: an alternate that repeats the chosen one is the
+    # same string again, and the page printed it twice («Vr̥kānaʰ · Vr̥kānaʰ»,
+    # admin, 2026-11-13).  The alternatives stay stored; the *reader* sees each
+    # one once.
+    seen: list[str] = []
+    for candidate in candidates:
+        text = str(candidate or "").strip()
+        if text and text not in seen:
+            seen.append(text)
+    reading = next((c for c in seen if not _is_syllabic(c)), "")
     if not reading:
-        reading = next((c for c in candidates if c), "")
+        reading = seen[0] if seen else ""
     return {"ipa": ipa, "reading": reading}
+
+
+def alternate_readings(entry: dict) -> list[str]:
+    """The other romanisations a record gives, each once and never the chosen one.
+
+    A spelling may be read more than one way in the literature (𐎺𐎼𐎣𐎠𐎴 is
+    Vr̥kānaʰ, and a style that writes *w* for the sign's *v* writes it
+    Warkānah).  All of them are kept, one is used, and none is printed twice
+    (admin, 2026-11-13).
+    """
+    chosen = readings_for(entry)["reading"]
+    out: list[str] = []
+    for raw in ([entry.get("phon")] if (entry.get("phon") or "").strip() else []) \
+            + [entry.get("translit")] + list(entry.get("translit_alt") or []):
+        text = str(raw or "").strip()
+        if text and text != chosen and text not in out:
+            out.append(text)
+    return out
 
 
 def _notation_entries(lang: str, word: str) -> list[dict]:
@@ -559,6 +586,10 @@ def _with_reading(payload: dict, lang: str, word: str) -> dict:
     payload.update({
         "ipa": line["ipa"],
         "reading": line["reading"],
+        # The second Latin layer: what the signs spell (va-ra-ka-a-na, g-r-g).
+        # It is not a pronunciation and never replaces the romanisation, but a
+        # script is unreadable without it (admin, 2026-11-13).
+        "signs": line.get("signs", ""),
         "reading_auto": line["auto"],
         "reading_how": line["how"],
         "reading_note": line["note"],
@@ -2434,6 +2465,41 @@ def _rung_gloss(glosses: Iterable[str], limit: int = 110) -> str:
     return text
 
 
+#: A record's own word for "this piece is grammar": the parenthesis after the
+#: form in an etymology («𐎴 (*-naʰ, nominal suffix)»).  A piece glossed this way
+#: is a bound morpheme whatever its spelling: Old Persian writes 𐎴 with no
+#: hyphen, and the lookup found the *letter* entry of the same sign (admin,
+#: 2026-11-13).
+_GRAMMAR_GLOSS = re.compile(
+    r"\b(suffix|prefix|ending|infix|interfix|clitic|enclitic|proclitic|"
+    r"morpheme|particle)\b", re.IGNORECASE)
+
+
+def _grammar_gloss(gloss: str) -> bool:
+    """Whether a construction's parenthesis says the piece is a bound morpheme."""
+    return bool(_GRAMMAR_GLOSS.search(str(gloss or "")))
+
+
+def _morph_reading(form: str, lang: str = "ine-pro") -> str:
+    """How a stage's own morphology table reads a morpheme (-𐎡𐎹 → -yaʰ).
+
+    A suffix has no glossary entry to take a reading from, and the table is the
+    record that states one: the piece prints it beside the signs instead of
+    standing there unreadable (admin, 2026-11-13).
+    """
+    wanted = _piece_spelling(str(form or "")).lstrip("*-\u2011\u0640")
+    if not wanted:
+        return ""
+    for row in _curated_suffixes(lang):
+        bare = _piece_spelling(str(row.get("form") or "")).lstrip("*-\u2011\u0640")
+        if not bare:
+            continue
+        ending = str(row.get("ending") or "").lstrip("*")
+        if wanted in (bare, bare.rstrip("-") + ending):
+            return str(row.get("reading") or "").strip()
+    return ""
+
+
 def _morph_gloss(form: str, lang: str = "ine-pro") -> str:
     """What a bound morpheme does, from the row written for it by hand.
 
@@ -3468,6 +3534,18 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
             reading = ""
             if piece and _in_native_script(lang, form_piece):
                 reading = (readings_for(piece).get("reading") or "").strip()
+            # A suffix has no entry to read it from, and the record that states
+            # its reading is the stage's morphology table (-𐎡𐎹 → -yaʰ) or the
+            # reading its own sentence quotes for the spelling (𐎴 → *-naʰ in
+            # data/readings.json).  Without this the adjectival suffix stood
+            # under the word with no reading at all (admin, 2026-11-13).
+            if not reading and _in_native_script(lang, form_piece):
+                reading = (_morph_reading(form_piece, lang)
+                           or (readings_index.for_form(lang, form_piece.lstrip("‑ـ*"))
+                               or {}).get("reading", ""))
+            # The second Latin layer: what the signs spell.
+            signs = (readings_index.signs_for(lang, form_piece)
+                     if _in_native_script(lang, form_piece) else "")
             # A piece the record writes with a trailing hyphen is a **stem**,
             # not a free word (مال (mâl-) in دستمال): it wears no dot and starts
             # no climb of its own, exactly like a bound morpheme, while the
@@ -3480,7 +3558,14 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
             # the entry the lookup finds for «دار» is the noun "tree", which
             # would hang a whole tree above a suffix (critic batch 07; the
             # suite's own bound-morpheme test, 2026-11-13).
-            if (str(form_piece).startswith(("-", "ـ", "*-")) and piece
+            # A piece the record itself glosses as grammar — «(𐎴, nominal
+            # suffix)» — is a morpheme even when it is written with no hyphen:
+            # the lookup then found the *letter* entry of the same sign and
+            # linked a suffix to «the twenty-first letter of the Old Persian
+            # cuneiform script» (admin, 2026-11-13).  Only an affix entry of the
+            # stage may answer grammar; nothing else is that morpheme's page.
+            if ((str(form_piece).startswith(("-", "ـ", "*-")) or _grammar_gloss(gloss))
+                    and piece
                     and str(piece.get("pos") or "") not in
                     ("suffix", "prefix", "affix", "infix", "interfix")):
                 piece = None
@@ -3499,7 +3584,11 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
             # timeline draws it as a word with its own climb — the admin's rule,
             # 2026-11-13.  Only a morpheme the record writes bound (‑دار, *-lom)
             # or a suffix slot wears no dot.
-            bound = _bound_piece(kind, form_piece, index) or slot
+            # Grammar is bound even without a hyphen: the record's own
+            # parenthesis («nominal suffix») says so, and a morpheme is never
+            # walked as a word with a history (admin, 2026-11-13).
+            bound = (_bound_piece(kind, form_piece, index) or slot
+                     or _grammar_gloss(gloss))
             # The meaning under the word in the timeline (admin, 2026-11-12):
             # the row's own parenthesis when it has one, otherwise the sense
             # the piece's glossary entry gives it.  That fallback is what lets
@@ -3533,6 +3622,8 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
                 "gloss": sense,
                 "pos": str((piece or {}).get("pos") or ""),
                 "reading": reading,
+                # What the signs spell, beside how the morpheme is read.
+                "signs": signs,
                 "known": bool(piece),
                 "lang": lang,
                 "bound": bound,
@@ -6378,6 +6469,61 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
                               steps=base_head.steps + base_tail.steps,
                               skipped=base_head.skipped + base_tail.skipped)
 
+    recorded = _recorded_at(entry, lang, None if edited else (start_stage, start_form))
+
+    # One word, one romanisation on a page (admin, 2026-11-13).  A rung of a
+    # scripted word can carry a Latin form that is not its reading: the laws'
+    # transcription of the signs merely *allows* the writing (Wˈarkānah), while
+    # the record says how the word is read (Vr̥kānaʰ).  The rung then prints the
+    # reading the record states, so the timeline and the title do not say one
+    # word two ways.  A Latin form that is itself one of the readings the record
+    # gives is the reading already (Persian pedar beside پدر padar/pidar/pedar),
+    # and a rung the laws reach with a *different* word keeps the laws' form: the
+    # page must still be able to say «the laws produce pā, not the recorded
+    # pādiy».  Nothing here is invented — every form is one a source states.
+    own_at = levels_chain.index(lang) if lang in levels_chain else -1
+    here = trace.forms[own_at] if 0 <= own_at < len(trace.forms) else ""
+    rung = (_record_block(lang, recorded.get(lang), here, entry,
+                          prefer=str(entry.get("word") or "")) if here else None)
+    stated = str((rung or {}).get("via") or (rung or {}).get("reading") or "")
+    reading_form = (_phonological_form(lang, str(entry.get("word") or form))
+                    if (here and needs_reading(lang)) else "")
+    transcribed = bool(
+        here and not edited and not hypothesis and not translit.is_scripted(here)
+        and stated and stated != here and rung and rung.get("matches")
+        and rung.get("in_script") and not rung.get("unverified"))
+    # A word written in its own script also enters the stages below it through
+    # its **reading**, not its signs: the laws rewrite sounds, so carrying the
+    # cuneiform into Middle Persian could only say «no reading is recorded for
+    # it» — beside the reading the word page prints in its own title (admin,
+    # 2026-11-13: 𐎺𐎼𐎣𐎠𐎴𐎡𐎹 is read Vạrkāniya, and the rung below it said
+    # there was nothing to start from).  Its own rung keeps the writing, and the
+    # tail is re-run from the reading — never from a form this function invents.
+    spoken = stated if transcribed else reading_form
+    carrying = bool(
+        extra and not edited and not hypothesis and spoken and spoken != here
+        and 0 <= own_at < len(levels_chain) - 1
+        and (translit.is_scripted(here) or transcribed))
+    if carrying:
+        head, head_hops = run(start_form, levels_chain[:own_at + 1],
+                              disabled=disabled, enabled=enabled)
+        tail, tail_hops = run(spoken, levels_chain[own_at:],
+                              disabled=disabled, enabled=enabled)
+        base_head, _ = run(start_form, levels_chain[:own_at + 1], enabled=enabled)
+        base_tail, _ = run(spoken, levels_chain[own_at:], enabled=enabled)
+        # The word's own rung keeps its own form; only the stages *below* it
+        # start from the reading.
+        own_form = here
+        trace = Derivation(input=start_form, chain=list(levels_chain),
+                           forms=list(head.forms[:own_at]) + [own_form] + list(tail.forms[1:]),
+                           steps=list(head.steps) + list(tail.steps),
+                           skipped=list(head.skipped) + list(tail.skipped))
+        hops = list(head_hops) + list(tail_hops)
+        baseline = Derivation(input=start_form, chain=list(levels_chain),
+                              forms=list(base_head.forms[:own_at]) + [own_form] + list(base_tail.forms[1:]),
+                              steps=list(base_head.steps) + list(base_tail.steps),
+                              skipped=list(base_head.skipped) + list(base_tail.skipped))
+
     # The rungs to print, one per (stage, form). A formation at a stage gives
     # that stage two rungs — the form the laws reach and what was built from it
     # — so the plan is longer than the chain, and every index below reads the
@@ -6437,7 +6583,6 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
                                    steps=head.steps + tail.steps,
                                    skipped=head.skipped + tail.skipped)
 
-    recorded = _recorded_at(entry, lang, None if edited else (start_stage, start_form))
     # The topmost stage *below PIE* that the word's own ancestry records. This,
     # not simply the next stage on the chain, is where its Wiktionary link
     # stops — the rungs between are gaps in the word's own record.
@@ -6581,6 +6726,12 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
             block["same"] = (bool(normalise_etymon(version))
                              and _same_form(normalise_etymon(version),
                                             normalise_etymon(block["w"])))
+            if stage == lang and transcribed and index == own_at:
+                # The rung's Latin form is the laws' transcription of the signs,
+                # not a reading the record states: the rung prints the record
+                # once, with its reading, so the page says the word one way
+                # (Wˈarkānah beside 𐎺𐎼𐎣𐎠𐎴 Vr̥kānaʰ, admin 2026-11-13).
+                block["same"] = True
             # The ladder's first rung is the record it starts from, not
             # something a law derived: same form, different claim.
             block["starts"] = bool(index == 0 and not edited and block["same"])
@@ -6613,6 +6764,11 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
             "era_label": era_label(era),
             "era_mid": era_midpoint(era),
             "form": version,
+            # The form the stages below this rung run on, when it is not the
+            # rung's own Latin form: the reading a scripted record matched on.
+            # The rung prints that reading (one word, one romanisation) and the
+            # next step and the branch descend from it (admin, 2026-11-13).
+            "spoken": spoken if (index == own_at and (transcribed or carrying)) else "",
             "baseline": before_disabling,
             "changed": version != before_disabling,
             "status": status,
@@ -6717,7 +6873,8 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
             if child in levels_chain:
                 continue
             next_rows.append(_branch_node(
-                final["stage"], final["form"], child, origin_records=recorded,
+                final["stage"], final.get("spoken") or final["form"], child,
+                origin_records=recorded,
                 claim=True, depth=len(levels_chain), seen=frozenset(levels_chain),
                 recurse=False))
     if deepest is None:
@@ -7575,6 +7732,18 @@ def _record_for_form(lang: str, form: str) -> dict | None:
     return _script_record(lang, form)
 
 
+def _with_signs(stage: str, record: dict | None) -> dict | None:
+    """A branch row's record with the second Latin layer beside it.
+
+    The branch prints the record's word and its reading; a scripted record also
+    says what its signs spell (g-r-g, va-ra-ka-a-na), so the row is read the
+    same way a word page is (admin, 2026-11-13).
+    """
+    if not record or not record.get("w"):
+        return record
+    return {**record, "signs": readings_index.signs_for(stage, str(record["w"]))}
+
+
 def _branch_node(parent: str, form: str, target: str, *,
                  origin_records: dict[str, dict], claim: bool, depth: int,
                  seen: frozenset[str], recurse: bool = True,
@@ -7715,7 +7884,7 @@ def _branch_node(parent: str, form: str, target: str, *,
         "laws": [s.rule_id for s in d.steps],
         "skipped": list(d.skipped),
         "status": status,
-        "recorded": hit or (candidates[0] if candidates else None),
+        "recorded": _with_signs(target, hit or (candidates[0] if candidates else None)),
         "form_known": bool(head),
         "confidence": "high" if high else "low",
         "evidence": evidence,
@@ -8036,6 +8205,9 @@ def _curated_suffixes(lang: str = ROOT_LANG) -> tuple[dict, ...]:
         suffixes.append({
             "id": row["id"], "form": row.get("form", ""), "ending": row.get("ending", ""),
             "attach": row.get("attach", "drop"), "gloss": row.get("gloss", ""),
+            # How the morpheme is read (-𐎡𐎹 → -yaʰ): a bound piece has no
+            # entry to take a reading from, and the table is its record.
+            "reading": str(row.get("reading") or "").strip(),
             "note": (row.get("note") or "").strip(), "outcomes": row.get("outcomes", ""),
             # How the suffix appears in the derived word (-nás → -nah after
             # *-Vs > *-Vh), so the ladder can highlight the morpheme itself
@@ -10209,7 +10381,10 @@ def word(lang: str, form: str, disabled: Iterable[str] = (),
         # its ladder in Persian, and carrying *that* form down from Old Persian
         # produced a word nobody's laws ever made (2026-11-12).
         own = [lv for lv in ladder["levels"] if lv.get("stage") == lang]
-        source = (own or ladder["levels"])[-1]["form"]
+        # The branch descends from the reading the page prints, not from a
+        # mechanical transcription of the signs (admin, 2026-11-13).
+        last_rung = (own or ladder["levels"])[-1]
+        source = last_rung.get("spoken") or last_rung["form"]
     elif lang == ROOT_LANG:
         source = entry["word"]
     else:
@@ -10257,8 +10432,13 @@ def word(lang: str, form: str, disabled: Iterable[str] = (),
         # Dehkhoda, not from Wiktionary (2026-11-12, critic P1-7).
         "gloss_source": entry.get("source") or "",
         "ipa": readings["ipa"],
-        "translit": entry.get("translit", ""),
-        "translit_alt": entry.get("translit_alt", []),
+        # One romanisation is used and the alternatives are kept beside it; a
+        # repeated string is the same reading, not a second one (admin,
+        # 2026-11-13: the header read «Vr̥kānaʰ · Vr̥kānaʰ»).
+        "translit": readings["reading"] or entry.get("translit", ""),
+        "translit_alt": alternate_readings(entry),
+        # What the signs spell, beside how the word is read.
+        "signs": readings.get("signs", ""),
         "rtl": is_rtl(entry["word"]),
         "etymology": _prose_etym(lang, str(head.get("word") or ""),
                                  entry.get("etym") or ""),

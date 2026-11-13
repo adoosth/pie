@@ -178,7 +178,17 @@ class TestTheFrontEndShowsIt(unittest.TestCase):
     def test_the_reading_renderer_marks_automatic_readings(self):
         js = (WEB / "app.js").read_text(encoding="utf-8")
         self.assertIn("reading_auto", js)
-        self.assertIn('class="reading auto"', js)
+        # The class is built from the flag now, because the same renderer also
+        # prints the sign layer beside the reading (admin, 2026-11-13).
+        self.assertIn('class="reading${o.auto ? " auto" : ""}"', js)
+
+    def test_the_reading_renderer_never_prints_ipa_on_a_rung(self):
+        # IPA is optional and belongs on the word's own page: a timeline shows
+        # the romanisation, never a phonetic transcription (admin, 2026-11-13).
+        js = (WEB / "app.js").read_text(encoding="utf-8")
+        self.assertNotIn("ipa: rec.ipa", js)
+        self.assertNotIn("ipa: r.ipa", js)
+        self.assertIn('class="reading signs"', js)
 
 
 if __name__ == "__main__":

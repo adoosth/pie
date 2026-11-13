@@ -375,6 +375,13 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
 .formlink:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .formlink .reading { text-decoration: none; }
 .reading.ipa { color: color-mix(in srgb, var(--muted) 80%, var(--fg)); }
+/* The transliteration layer: what the signs spell (g-r-g for گرگ), printed
+   beside the romanisation and never in its place.  Smaller and dimmer, because
+   the romanisation is the reading a linguist cites and this is the writing
+   made legible (admin, 2026-11-13). */
+.reading.signs, .translit.signs { color: var(--dim); font-size: 11.5px; }
+.translit.signs { font-size: 13px; letter-spacing: .01em; }
+.cread.signs { color: var(--dim); font-size: 10.5px; margin-left: 4px; }
 /* Hover explanations: one fixed layer, because a native title is clipped by
    the scroll boxes around wide tables. */
 .tip { position: fixed; z-index: 60; max-width: 320px; padding: 8px 11px; border-radius: 8px;

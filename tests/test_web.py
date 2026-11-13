@@ -3193,4 +3193,13 @@ class TestUnverifiedMatch(unittest.TestCase):
         still Old Persian's, not that form carried down again (2026-11-12)."""
         branch = self.page["descendants"]
         self.assertEqual(branch["source"]["lang"], "peo")
-        self.assertEqual(branch["source"]["form"], "kapautakˈah")
+        # The branch descends from the reading the page prints, not from the
+        # laws' own transcription of the signs: one word has one romanisation
+        # (admin, 2026-11-13).  The rung keeps the form the laws produced, so
+        # its fit can still be checked against the record.
+        peo = [lv for lv in self.page["hierarchy"]["levels"]
+               if lv["stage"] == "peo"][-1]
+        self.assertEqual(peo["form"], "kapautakˈah")
+        self.assertEqual(peo["recorded"]["reading"], "kapautakaʰ")
+        self.assertEqual(peo["spoken"], "kapautakaʰ")
+        self.assertEqual(branch["source"]["form"], "kapautakaʰ")

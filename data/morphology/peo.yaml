@@ -13,6 +13,7 @@ suffixes:
   - id: a
     form: "-𐎠"
     ending: ""
+    reading: "-a"
     gloss: "adjectival suffix"
     note: >
       Old Persian -𐎠 (-a), from *-aʰ: «formed from 𐎹𐎢𐎴 (Yauna, "Greece") +
@@ -24,6 +25,7 @@ suffixes:
   - id: ka
     form: "-𐎣"
     ending: ""
+    reading: "-kaʰ"
     gloss: "hypocoristic suffix"
     note: >
       Old Persian -𐎣 (-kaʰ), a hypocoristic: «From 𐎱𐎠𐎭 (pādaʰ, "foot") +
@@ -35,6 +37,7 @@ suffixes:
   - id: ya
     form: "-𐎹"
     ending: ""
+    reading: "-yaʰ"
     gloss: "adjectival suffix"
     note: >
       Old Persian -𐎹 (-yaʰ): «From 𐎷𐎡𐎰𐎼 (Miθraʰ, "Mithra") + -𐎹
@@ -42,3 +45,28 @@ suffixes:
       the same suffix in Tīrayah.
     sources: [wiktionary]
     example: "𐎷𐎡𐎰𐎼 (Miθraʰ) → Miθrayah"
+
+  - id: na
+    form: "-𐎴"
+    ending: ""
+    reading: "*-naʰ"
+    gloss: "nominal suffix"
+    note: >
+      Old Persian -𐎴 (*-naʰ), a nominal suffix: «From 𐎺𐎼𐎣 (vr̥kaʰ, "wolf") +
+      -𐎴 (*-naʰ, nominal suffix)» (Wiktionary, 𐎺𐎼𐎣𐎠𐎴).  The star is the
+      record's: the suffix is reconstructed, and the reading quotes it as the
+      etymology writes it (data/readings.json).
+    sources: [wiktionary]
+    example: "𐎺𐎼𐎣 (vr̥kaʰ) → 𐎺𐎼𐎣𐎠𐎴 (Vr̥kānaʰ)"
+
+  - id: iya
+    form: "-𐎡𐎹"
+    ending: ""
+    reading: "-yaʰ"
+    gloss: "adjectival suffix"
+    note: >
+      Old Persian -𐎡𐎹 (-yaʰ): «Masculine gender adjective formed from 𐎺𐎼𐎣𐎠𐎴
+      (Vạrkāna, "Hyrcania") + -𐎡𐎹 (-yaʰ, adjectival suffix), used as a
+      substantive» (Wiktionary, 𐎺𐎼𐎣𐎠𐎴𐎡𐎹).
+    sources: [wiktionary]
+    example: "𐎺𐎼𐎣𐎠𐎴 (Vạrkāna) → 𐎺𐎼𐎣𐎠𐎴𐎡𐎹 (Vạrkāniya)"

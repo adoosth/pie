@@ -121,6 +121,28 @@ def beside(etym: str, form: str) -> dict:
     return parse_quote(found.group(1), form)
 
 
+def signs_for(lang: str, word: str) -> str:
+    """The sign-by-sign transliteration of a word written in its own script.
+
+    A word has two Latin layers and they answer different questions: its
+    **romanisation** is how the language is read (*Vr̥kānaʰ*, *gorg*), and its
+    **transliteration** is what the signs spell (``va-ra-ka-a-na``, ``g-r-g``).
+    The second is not a pronunciation and may not stand in for the first
+    (admin, 2026-11-13), but a script is unreadable without it, so the page
+    prints both.  A Latin-script or reconstructed word has no such layer and
+    gets an empty string.
+    """
+    if not translit.is_scripted(word):
+        return ""
+    if script.table(lang):
+        written = script.transliterate(lang, word)
+        if written:
+            return written
+    # A script this model keeps no sign table for still has letters
+    # (Greek, Gothic): the letter-by-letter transliteration is its layer.
+    return translit.transliterate(word).get("reading", "")
+
+
 def display(lang: str, word: str, ipa: str = "", reading: str = "") -> dict:
     """The reading line for one form: recorded, quoted, or automatic.
 
@@ -129,6 +151,11 @@ def display(lang: str, word: str, ipa: str = "", reading: str = "") -> dict:
     in one sentence for the tooltip.  A scripted word never leaves this
     function without a reading (2026-11-08).
 
+    ``signs`` is the second Latin layer and is filled whenever the word is
+    written in a script, whether or not a romanisation was recorded: the
+    romanisation says how the word is read, the signs say what the scribe
+    wrote, and a page shows both (admin, 2026-11-13).
+
     A headword already written in Latin letters *is* a kind of reading — Book
     Pahlavi ``lwc`` — and the sign-by-sign layer has nothing to add to it:
     ``l-w-c`` is the same letters a third time, not a pronunciation.  So that
@@ -136,6 +163,7 @@ def display(lang: str, word: str, ipa: str = "", reading: str = "") -> dict:
     shows a reading only when a dictionary states one (2026-11-11).
     """
     out = {"ipa": ipa or "", "reading": reading or "", "translit": "",
+           "signs": signs_for(lang, word),
            "auto": False, "how": "recorded" if reading else "", "note": "",
            "script": ""}
     # A recorded IPA is a reading: an automatic transliteration beside it

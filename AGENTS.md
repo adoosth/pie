@@ -761,6 +761,27 @@ that keeps the `*` opens nothing).
   (Πέρσης → *Pérsēs*). A syllabary's sign string (𐎼𐎢𐎨 → *ra-u-ca*) is never an
   input: the hyphens print signs, they do not spell sounds. A form with nothing
   recorded is returned unchanged so the engine can refuse it by name.
+- **A script prints two Latin layers, and IPA is a third, optional one**
+  (admin, 2026-11-13): its **romanisation** (*Vr̥kānaʰ*, *gorg*, *haus* for
+  *house*) is how the word is read and the layer linguists cite; its **sign
+  transliteration** (*va-ra-ka-a-na*, *g-r-g*) is what the scribe wrote and is
+  shown for every non-Roman script (`readings.signs_for`, `.reading.signs`).
+  IPA stays on the word's own page and never on a rung — a phonetic
+  transcription of a dead language is not a claim this model makes.
+- **One word, one romanisation**: a rung whose Latin form is the laws' own
+  transcription of the signs (*Wˈarkānah*) rather than a reading the record
+  states prints the record's reading instead, and carries `spoken` so the next
+  step and the branch descend from it; a Latin form that is itself a recorded
+  reading (پدر *pedar* among *padar/pidar/pedar*) stays, and a rung the laws
+  reach with a different word keeps the laws' form (*the laws produce pā, not
+  the recorded pādiy*). `readings_for` dedupes; `alternate_readings` keeps the
+  rest.
+- **A piece the record glosses as grammar is a bound morpheme, not a word**
+  (admin, 2026-11-13): `service._grammar_gloss` reads «𐎴 (*-naʰ*, nominal
+  suffix)» whatever the spelling, and only an *affix* entry of the stage may
+  answer it — the letter 𐎴 opens no page from a suffix. Its reading is the
+  stage's morphology-table row (`data/morphology/<lang>.yaml`) or the reading
+  the record quotes.
 - **No form in another script is ever printed alone** (2026-11-08).
   `translit.is_scripted` decides what "another script" means (written *in* it,
   not "contains a strange character"); every payload carries `reading_auto`,

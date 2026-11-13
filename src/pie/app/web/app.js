@@ -223,26 +223,43 @@ const form = (w, lang, opts = {}) => {
     ? `<span class="formstack">${marked}${readingOf(opts)}</span>`
     : `${marked}${readingOf(opts)}`;
 };
-/* Non-Latin scripts are unreadable without a reading: the dictionary's IPA
-   when it records one, its romanisation when it records that, and otherwise a
-   transliteration of the script itself. A scripted form is never printed bare
-   (2026-11-08), and an automatic reading is printed in its own colour so a
-   reader can tell what a dictionary states from what the signs spell. */
+/* A form written in a script prints its **romanisation** — how the word is read,
+   which is the layer linguists cite — and, beside it, the **transliteration**
+   of the signs (g-r-g for گرگ, va-ra-ka-a-na for 𐎺𐎼𐎣𐎠𐎴, admin
+   2026-11-13).  IPA used to stand in for the romanisation, which put a phonetic
+   transcription of a dead language where the standard reading belongs; it is
+   optional, it is stored per word, and a timeline never prints it.  A scripted
+   form is never printed bare, and an automatic reading keeps its own colour so
+   a reader can tell what a dictionary states from what the signs spell. */
 const readingOf = (o) => {
   if (!o || o.show === false) return "";
-  if (o.ipa) return `<span class="reading ipa" data-tip="IPA — recorded for this word">/${esc(o.ipa)}/</span>`;
-  if (!o.reading) return "";
   const tip = o.note || (o.auto
     ? "No reading recorded — read from the script automatically."
     : "Romanisation — recorded for this word");
-  return o.auto
-    ? `<span class="reading auto" data-tip="${esc(tip)}">${esc(o.reading)}</span>`
-    : `<span class="reading" data-tip="${esc(tip)}">${esc(o.reading)}</span>`;
+  const bits = [];
+  if (o.reading) {
+    bits.push(`<span class="reading${o.auto ? " auto" : ""}" data-tip="${esc(tip)}">${esc(o.reading)}</span>`);
+  }
+  /* What the signs spell: not a pronunciation, so it is printed smaller and
+     never as “the” reading.  A sign layer that repeats the romanisation says
+     nothing and is dropped. */
+  if (o.signs && o.signs !== o.reading) {
+    bits.push(`<span class="reading signs" data-tip="Transliteration — what the signs spell, sign by sign. It is not a pronunciation.">${esc(o.signs)}</span>`);
+  }
+  /* IPA is a third, optional layer: a phonetic note the dictionary adds to a
+     word, never a substitute for its reading.  A rung does not ask for it. */
+  if (o.ipa) {
+    bits.push(`<span class="reading ipa" data-tip="IPA — recorded for this word">/${esc(String(o.ipa).replace(/^\/|\/$/g, ""))}/</span>`);
+  }
+  return bits.join("");
 };
 const formOpts = (f) => ({
   ev: f.evidence,
-  ipa: f.ipa,
   reading: f.reading || (f.r && f.r !== f.w ? f.r : ""),
+  /* The second Latin layer travels with the form, and so does the optional
+     IPA; a rung simply never passes one (admin, 2026-11-13). */
+  signs: f.signs || "",
+  ipa: f.ipa || "",
   auto: !!f.reading_auto,
   note: f.reading_note || "",
   show: f.show_reading !== false || (f.r && f.r !== f.w),
@@ -1194,7 +1211,8 @@ function renderBranch(desc, opts = {}) {
        2026-11-12). */
     const held = rec.known !== false;
     const word = form(rec.w, r.l, {
-      ev: held ? rec.evidence : "missing", ipa: rec.ipa, reading: rec.reading,
+      ev: held ? rec.evidence : "missing", reading: rec.reading,
+      signs: rec.signs || "",
       show: rec.show_reading,
       auto: !!rec.reading_auto, note: rec.reading_note,
       href: rec.known ? wordHref(r.l, rec.headword || rec.w, true) : "",
@@ -1668,7 +1686,8 @@ function constructStep(level, i, linkTo, opts) {
     (n.known ? `<a class="formlink" href="${esc(link(n.lang, n.form, true))}" title="${esc(`Open ${n.form} in ${n.lang_name || n.lang}`)}">` : "<span>")}${form(n.form || n.lang, n.lang, {
       ev: evOf(n).replace(/^ev-/, ""), tip,
     })}${n.known ? "</a>" : "</span>"}${
-    n.reading ? `<span class="reading">${esc(n.reading)}</span>` : ""}</span>${extra}`;
+    n.reading ? `<span class="reading">${esc(n.reading)}</span>` : ""}${
+    n.signs && n.signs !== n.reading ? `<span class="reading signs">${esc(n.signs)}</span>` : ""}</span>${extra}`;
   /* One row of a piece's own timeline, inside its column: the language and its
      years against the rail on the left, the word on the right — the ladder's
      own rung, at the ladder's own sizes, because the climb above a construction
@@ -1701,7 +1720,8 @@ function constructStep(level, i, linkTo, opts) {
       <div class="cstack"><span class="cwordrow"><span class="cform ${scriptClass(n.form)} ${evOf(n)}">${
         n.known ? `<a class="cword" href="${esc(link(n.lang, n.form, true))}">${esc(pf(starred(n.form, n.lang, n.kind, n.script)))}</a>`
           : `<span class="cword">${esc(pf(starred(n.form, n.lang, n.kind, n.script)))}</span>`}${
-        n.reading ? `<i class="cread">${esc(n.reading)}</i>` : ""}</span></span>${
+        n.reading ? `<i class="cread">${esc(n.reading)}</i>` : ""}${
+        n.signs && n.signs !== n.reading ? `<i class="cread signs">${esc(n.signs)}</i>` : ""}</span></span>${
         meaningOf(n.pos, n.gloss, false)
           ? `<span class="cgloss">${meaningOf(n.pos, n.gloss, false)}</span>`
           : n.derived
@@ -1798,7 +1818,11 @@ function constructStep(level, i, linkTo, opts) {
     const body = href
       ? `<a class="cword" href="${esc(href)}">${esc(pf(show))}</a>`
       : `<span class="cword">${esc(pf(show))}</span>`;
-    const reading = p.reading ? `<i class="cread">${esc(p.reading)}</i>` : "";
+    /* The piece says how it is read, and — for a script — what its signs
+       spell: a bound morpheme with no entry has only these two, and the
+       adjectival suffix used to stand with neither (admin, 2026-11-13). */
+    const reading = (p.reading ? `<i class="cread">${esc(p.reading)}</i>` : "")
+      + (p.signs && p.signs !== p.reading ? `<i class="cread signs">${esc(p.signs)}</i>` : "");
     /* A root that stands in another grade in this formation says so beside
        itself — *ters- under *tr̥s-tó-s is e-grade beside the word's r̥ — and the
        hover gives the reason the handbooks give (admin, 2026-11-12). */
@@ -2274,7 +2298,7 @@ function renderHierarchy(h, d, opts) {
          about it: dark red, like every other form the glossary does not hold
          (admin, 2026-11-12). */
       ev: held ? rec.evidence : "missing",
-      ipa: rec.ipa, reading: rec.reading, show: rec.show_reading,
+      reading: rec.reading, signs: rec.signs || "", show: rec.show_reading,
       auto: !!rec.reading_auto, note: rec.reading_note,
       /* When the laws' form and the record agree, this is the only line printed
          for the rung, so the suffix the formation law added is still marked. */
@@ -3350,12 +3374,30 @@ function standing(d) {
    (2026-11-12). */
 function wordMeta(d, readings, matched, lang) {
   const bits = [];
-  if (readings.length) {
-    bits.push(`<span class="translit">${readings.map((r) => `<span${r === matched ? ' class="hit" title="matches the sound laws"' : ""}>${esc(r)}</span>`).join("<i> · </i>")}</span>`);
+  /* One romanisation per reading, printed once (admin, 2026-11-13): a record
+     that gives the same string twice gave one reading, and the header used to
+     print «Vr̥kānaʰ · Vr̥kānaʰ».  The alternatives stay in the payload; this is
+     the set the reader sees. */
+  const uniq = [...new Set(readings.filter(Boolean))];
+  if (d.reading && !uniq.includes(d.reading)) uniq.unshift(d.reading);
+  if (uniq.length) {
+    bits.push(`<span class="translit">${uniq.map((r) => {
+      const cls = [r === matched ? "hit" : "",
+                   r === d.reading && d.reading_auto ? "auto" : ""].filter(Boolean).join(" ");
+      const tip = r === d.reading && d.reading_auto
+        ? ` data-tip="${esc(d.reading_note || "No reading recorded — read from the script automatically.")}"`
+        : (r === matched ? ' title="matches the sound laws"' : "");
+      return `<span${cls ? ` class="${cls}"` : ""}${tip}>${esc(r)}</span>`;
+    }).join("<i> · </i>")}</span>`);
   }
-  if (d.reading && !readings.includes(d.reading)) {
-    bits.push(`<span class="translit${d.reading_auto ? " auto" : ""}" data-tip="${esc(d.reading_note || "Romanisation")}">${esc(d.reading)}</span>`);
+  /* What the signs spell, always shown beside a non-Roman script (admin,
+     2026-11-13): g-r-g for گرگ, va-ra-ka-a-na for 𐎺𐎼𐎣𐎠𐎴.  It is the
+     transliteration, not a second pronunciation. */
+  if (d.signs && !uniq.includes(d.signs)) {
+    bits.push(`<span class="translit signs" data-tip="Transliteration — what the signs spell, sign by sign. It is not a pronunciation.">${esc(d.signs)}</span>`);
   }
+  /* IPA is optional and belongs here, beside the word, where a reader can see
+     it is a phonetic note and not the word's citation form (admin, 2026-11-13). */
   if (d.ipa) bits.push(`<span class="ipa">/${esc(d.ipa.replace(/^\/|\/$/g, ""))}/</span>`);
   /* The standing line already says "transliterated" when the glossary holds
      this word as a reading of its signs; a second note under the title saying
@@ -3494,8 +3536,8 @@ function renderLoanLadder(d) {
   }
   const name = (r) => r.lang_name || r.lang;
   const readOpts = (r) => ({
-    ev: r.evidence, ipa: r.ipa, reading: r.reading, show: r.show_reading,
-    auto: !!r.reading_auto, note: r.reading_note,
+    ev: r.evidence, reading: r.reading, signs: r.signs || "",
+    show: r.show_reading, auto: !!r.reading_auto, note: r.reading_note,
   });
   const BORROW = new Set(["borrow", "borrowed", "lbor", "slbor", "obor", "ubor"]);
   /* What the record says about the move from one rung to the one below it:
@@ -3545,7 +3587,8 @@ function renderLoanLadder(d) {
   }).join("");
   const rec = { w: d.word, evidence: d.evidence, sources: d.sources || [],
                 pages: d.pages || [],
-                ipa: d.ipa, reading: d.reading, show_reading: d.show_reading,
+                reading: d.reading, signs: d.signs || "",
+                show_reading: d.show_reading,
                 reading_auto: d.reading_auto, reading_note: d.reading_note };
   const opts = readOpts(rec);
   const word = `<li class="rung here" data-stage="${esc(d.lang)}">

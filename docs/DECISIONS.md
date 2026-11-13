@@ -1,3 +1,50 @@
+## 2026-11-13 — three layers of reading, and a suffix is not a letter
+
+**What.** The Old Persian page 𐎺𐎼𐎣𐎠𐎴𐎡𐎹 printed its adjectival suffix
+without a reading, linked its nominal suffix to «the twenty-first letter of the
+Old Persian cuneiform script», and said «no reading is recorded for it, so the
+sound laws have nothing to start from» on a page whose title was the reading
+(admin, 2026-11-13).
+
+**A script prints two Latin layers, and IPA is a third, optional one.** The
+**romanisation** (*Vr̥kānaʰ*, *gorg*, and *haus* for English *house*) is how the
+word is read, and it is the layer linguists cite; the **sign transliteration**
+(*va-ra-ka-a-na*, *g-r-g*) is what the scribe wrote, and every form in a
+non-Roman script shows it. IPA is stored per word and printed on the word's own
+page — never on a timeline: a phonetic transcription of a dead language is a
+claim the model does not make (`readings.signs_for`, `.reading.signs`,
+`.cread.signs`).
+
+**One word, one romanisation.** A rung of a scripted word used to carry the
+laws' own transcription of the signs (*Wˈarkānah*) while the title carried the
+dictionary's reading (*Vr̥kānaʰ*). The rung now prints the reading the record
+matched on whenever the laws' Latin form is not itself a reading the record
+states, and the row carries `spoken` for the next step and the branch to
+descend from. A Latin form that *is* a recorded reading (Persian پدر *pedar*
+against *padar/pidar/pedar*) stays, and a rung the laws reach with a different
+word keeps the laws' form, so «the laws produce pā, not the recorded pādiy»
+still prints. `readings_for` dedupes the candidates, `alternate_readings`
+keeps the rest — the header no longer says «Vr̥kānaʰ · Vr̥kānaʰ».
+
+**A suffix is a morpheme, not a letter.** A construction piece whose parenthesis
+says it is grammar (`_grammar_gloss`: «𐎴 (*-naʰ*, nominal suffix)») is bound
+whatever its spelling, and is answered only by an *affix* entry of the stage; the
+lookup that found the letter 𐎴 is refused, so the piece opens no page. Its
+reading comes from the stage's morphology table (`data/morphology/<lang>.yaml`,
+`-𐎡𐎹 → -yaʰ`) or the reading the record quotes (`𐎴 → *-naʰ*`), and its signs
+print beside it. Old Persian `-𐎴` and `-𐎡𐎹` were filed as cited suffixes with
+their readings.
+
+**A scripted form enters the stages below it through its reading.** Carrying the
+cuneiform into Middle Persian made the rung below it `unreadable`; the tail of a
+`?path=` timeline is now re-run from the form `_phonological_form` reads, never
+from the signs, so 𐎺𐎼𐎣𐎠𐎴𐎡𐎹 runs to Middle Persian *Vạrgāniy* and Persian
+*Vạrgāney* with no «no reading» notice.
+
+Tests: `tests/test_readings.py` (the sign layer, IPA never on a rung),
+`tests/test_web.py` (the branch descends from the reading; the suffix piece
+carries no link; the notice is gone). Suite 1,055 green.
+
 ## 2026-11-13 — the glossary is read in pages
 
 **What.** The glossary printed the first 400 words of a stage and stopped. That
