@@ -4648,3 +4648,20 @@ So:
   reasons and the index are changed together, never one of them alone.
 * It does not recurse: the ancestor's own band already absorbed its ancestors,
   its holes and its last mile, exactly as on the page.
+
+## A verified start wins over a *base word*, not over a record's own chain (2026-11-13)
+
+v0.17.23's rule — "a start the laws verify wins" — was written for 𐎠𐎼𐏁𐎫𐎡𐎣,
+whose record names the noun *h₁r̥stís "spear" above it: starting there drew the
+*spear's* ladder and printed the spear's reading on the spearman's row.  Applied
+to every word it also decided English *night*: the record inherits Proto-Germanic
+*nahts, Old English niht and Middle English nighte, the laws reproduce the last
+mile, and the steps above it are exactly the laws the model does not have yet —
+so the page began at Middle English and hid the chain the band was calling
+partial.  Twelve tests (and `test_steps`' page-vs-counter check) caught it.
+
+`_starts_from_a_base_word` now gates the rule: the verified later start wins
+only when the topmost start is a form the record says the word was **derived**
+from (a different word — a noun or a root with its own sense).  An `inherit`
+relation is the word's own history, so the ladder keeps its rungs and marks each
+one `differs`; that is where a reader sees which law is missing.
