@@ -2318,7 +2318,7 @@ _BUILD_DEPTH = 3
 
 def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
                  seen: frozenset = frozenset(), build_depth: int = 0,
-                 hint: str = "") -> dict:
+                 hint: str = "", quoted: tuple = ()) -> dict:
     """One word on a construction piece's own timeline (admin, 2026-11-12).
 
     A construction is not a line under the word: its pieces are words with
@@ -2344,11 +2344,24 @@ def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
     showed only the word would be hiding the step that made it (admin,
     2026-11-12: keep going up).  A built form has no single ancestor walk, so
     its construction replaces the parents it would otherwise climb to.
+
+    ``quoted`` is the origin the *quoting* record states for this piece, when
+    the piece's own entry states none: Persian رضاقلی says it is a compound of
+    رضا + Old Anatolian Turkish قلی, so that piece is a borrowing even though
+    the fa entry for قلی records no origin at all — and a borrowing ends its
+    trail at the donor rather than at a ``???`` (admin, 2026-11-13: قلی is
+    obviously a borrowing, so the question marks should never have been there).
     """
     row = _lang(lang)
     # ``hint`` is the meaning the child's own sentence quotes for this form:
     # the two PIE roots spelled *swer- are told apart by it (2026-11-12).
     entry = _sense_entry(lang, form, hint)
+    # A language outside the family — Arabic, Turkish, Old Anatolian Turkish —
+    # has no Indo-European trail to trace and no glossary of its own in this
+    # model.  The page says "non-PIE word" for it instead of "no entry", which
+    # would claim the word is missing when it is only outside what is modelled
+    # (admin, 2026-11-13).
+    outside = lang in data.non_ie_sources()
     node = {
         "lang": lang,
         "lang_name": row.get("name", lang),
@@ -2356,6 +2369,7 @@ def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
         "form": form,
         "rel": rel,
         "known": bool(entry),
+        "outside": outside,
         "era_label": era_label(row.get("era")),
         "branch": row.get("branch", ""),
         # Whether the language is attested or reconstructed: the tree prints the
@@ -2385,7 +2399,7 @@ def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
     if rel == "borrow":
         node["terminal"] = "borrowed"
         return node
-    if lang in data.non_ie_sources():
+    if outside:
         # A word of a language outside the family — Arabic, Turkish, a Semitic
         # proto-form — starts its own trail: the family tree above it is not
         # unknown, it does not exist.  A ??? there would claim a missing
@@ -2415,6 +2429,11 @@ def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
     # the borrowing, then the derivation (2026-11-12).  A root is a relation,
     # not an ancestor (see `_is_root_form`), so it is never the step above.
     rows = [t for t in _ancestry_triples(entry) if (t[0], t[1]) not in seen]
+    if not rows and quoted:
+        # A piece's own entry may say nothing while the record that quotes it
+        # says where it came from.  The entry's own rows win when it has them:
+        # a compound's sentence must not overrule the piece's own article.
+        rows = [tuple(t) for t in quoted if tuple(t)[:2] not in seen]
     chosen = None
     if rows:
         # **The nearest recorded stage is the parent** (admin, 2026-11-13:
@@ -2463,8 +2482,78 @@ def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
             parent["parents"] = []
             if parent.get("terminal") == "missing":
                 parent["terminal"] = ""
-    node["parents"] = [parent]
+    # **A form brings its whole timeline with it** (admin, 2026-11-13, fa
+    # ناراضی: "Every form that is brought into a timeline brings its entire
+    # timeline with it above it, right?").  The record may name only a
+    # Proto-Indo-Iranian ancestor while the word's own page draws every stage
+    # between it and the word, because the cited laws carry the form down.  A
+    # piece drawn from that same record must show the same rungs, so the chain
+    # between the parent and this word is filled with the forms the laws
+    # produce — marked `derived`, never presented as recorded.
+    node["parents"] = _chain_between(lang, parent, data.derivation_chain(lang))
     return node
+
+
+def _chain_between(lang: str, parent: dict, chain: list[str]) -> list[dict]:
+    """The recorded parent, wrapped in the rungs the laws reach it through.
+
+    A word's ladder runs one rung per stage of its chain, deriving each form
+    from the one above (`hierarchy`), so fa ناـ's own page prints Proto-Indo-
+    European *né → Proto-Indo-Iranian *ná → Proto-Iranian → Old Persian →
+    Middle Persian.  A construction piece climbed only the *recorded* rows and
+    therefore started at Proto-Indo-Iranian, which made the same word look
+    shorter wherever another page quoted it (admin, 2026-11-13).
+
+    The rungs added here carry `derived: True` and no entry: they are the
+    model's own derivation, drawn in the ladder's "derived" colour, and they
+    are never counted as a hole (`_unexplained_branch` walks past them).
+    """
+    p_stage = data.stage_of(str(parent.get("lang") or "")) or str(parent.get("lang") or "")
+    own = data.stage_of(lang) or lang
+    if p_stage not in chain or own not in chain:
+        return [parent]
+    first, last = chain.index(p_stage), chain.index(own)
+    if last - first < 2:
+        return [parent]
+    stages = [p_stage] + [s for s in chain[first + 1:last + 1]]
+    try:
+        forms = list(derive_detailed(str(parent.get("form") or ""), stages,
+                                     data.rulesets())[0].forms)
+    except Exception:
+        return [parent]
+    if len(forms) != len(stages):
+        return [parent]
+    rungs: list[dict] = []
+    # The last rung of `stages` is the word itself: the piece already stands
+    # there in the form the record writes, so only the stages between it and
+    # the parent are added.
+    for index in range(len(stages) - 2, 0, -1):
+        stage = stages[index]
+        row = _lang(stage)
+        rung = {
+            "lang": stage,
+            "lang_name": row.get("name", stage),
+            "short": row.get("short", row.get("name", stage)),
+            "form": str(forms[index] or ""),
+            "rel": "",
+            "known": False,
+            "era_label": era_label(row.get("era")),
+            "branch": row.get("branch", ""),
+            "kind": row.get("kind", "") or kind_of(stage),
+            "gloss": "",
+            "pos": "",
+            "reading": "",
+            "terminal": "",
+            "parents": [],
+            # The ladder's own word for a rung no glossary records: the laws
+            # produce this form between two stages the record names.
+            "derived": True,
+        }
+        if rungs:
+            rungs[-1]["parents"] = [rung]
+        rungs.append(rung)
+    rungs[-1]["parents"] = [parent]
+    return [rungs[0]]
 
 
 # A piece of a construction is a word or a morpheme, never a printed
@@ -2520,6 +2609,34 @@ def _formed_piece(form) -> str:
     if not text or _MALFORMED_PIECE.match(text):
         return ""
     return text
+
+
+def _stated_piece_ancestry(value) -> tuple[tuple[str, str, str], ...]:
+    """The origin a construction's own row states for one of its pieces.
+
+    A compound is not always built from the language's own words.  Persian
+    رضاقلی is "a compound of رضا + Old Anatolian Turkish قلی": the second piece
+    is a word of the donor, and its own fa entry says nothing about where it
+    came from — it heads a different homonym.  The row that states the join
+    states the piece's origin too, in the third slot of the piece:
+    ``["قلی", "the possessed form of قل", [["trk-oat", "قلی", "borrow"]]]``.
+    Nothing is read from prose here, and a malformed slot states nothing.
+    """
+    out: list[tuple[str, str, str]] = []
+    for row in value or ():
+        if isinstance(row, dict):
+            lang = str(row.get("lang") or "")
+            form = str(row.get("form") or "")
+            rel = str(row.get("rel") or "borrow")
+        elif isinstance(row, (list, tuple)) and len(row) >= 2:
+            lang, form = str(row[0] or ""), str(row[1] or "")
+            rel = str(row[2] if len(row) > 2 else "borrow")
+        else:
+            continue
+        if not lang or not form.strip():
+            continue
+        out.append((lang, form.strip(), rel or "borrow"))
+    return tuple(out)
 
 
 def _bound_piece(kind: str, form: str, index: int) -> bool:
@@ -2659,6 +2776,11 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
     Only a record that names the pieces makes a row; nothing is read out of
     prose here, and a formation whose product cannot be identified is not
     attached to a rung it may not belong to.
+
+    A piece row is ``[form, gloss]``, or ``[form, gloss, origin]`` when the
+    sentence that states the join also states where that piece came from: fa
+    رضاقلی is a compound of رضا + **Old Anatolian Turkish** قلی, and the third
+    slot says so (see `_stated_piece_ancestry`).
     """
     found: list[dict] = []
     seen_rows: set[tuple] = set()
@@ -2725,6 +2847,11 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
             form_piece = _formed_piece(form_piece)
             if not form_piece:
                 continue
+            # A piece may carry the origin the row's own sentence states for
+            # it, when its entry states none (see `_stated_piece_ancestry`).
+            piece_anc = (_stated_piece_ancestry(piece_row[2])
+                         if isinstance(piece_row, (list, tuple))
+                         and len(piece_row) > 2 else ())
             piece = _lemma_entry(lang, form_piece)
             # A piece is a word of its own, so the line prints it the way the
             # word page does: the writing, then its reading, when the writing
@@ -2762,7 +2889,8 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
                 # bound morpheme has none: it is not a word that was inherited
                 # or borrowed.
                 "branch": None if bound else _origin_node(lang, form_piece,
-                                                          build_depth=build_depth),
+                                                          build_depth=build_depth,
+                                                          quoted=piece_anc),
         })
         # A join is two pieces or more — except a word the record states as
         # *formed from* a single word, which is the whole of its history:
@@ -3426,6 +3554,33 @@ def construction_path(entry: dict, lang: str, chain: list[str] | None = None) ->
     }
 
 
+def _unexplained_branch(node: dict | None) -> dict | None:
+    """The word a drawn climb ends a ``???`` above, or ``None`` when it ends.
+
+    The construction tree draws one column per piece, and the column stops in
+    one of the honest ways `_origin_node` documents — at Proto-Indo-European,
+    at a language outside the family, at a donor, or at the record's stop.  A
+    climb that ends in ``end`` or ``missing`` is drawn as a ``???``, and the
+    reader sees a question mark where an explanation should be; so a band may
+    never be green over it (admin, 2026-11-13: رضاقلی read "fully explained"
+    above a ``???``).  This walks the same path `climbOf` walks in the page.
+    """
+    seen: set[int] = set()
+    while node is not None and id(node) not in seen:
+        seen.add(id(node))
+        if node.get("terminal") in ("end", "missing"):
+            return node
+        builds = node.get("builds") or []
+        if builds:
+            pieces = builds[0].get("pieces") or []
+            first = pieces[0] if pieces else None
+            node = (first or {}).get("branch")
+            continue
+        parents = node.get("parents") or []
+        node = parents[0] if parents else None
+    return None
+
+
 def unrecorded_ancestry(entry: dict, chain: list[str]) -> list[dict]:
     """Recorded ancestors of this word that no entry of their stage heads.
 
@@ -3462,6 +3617,13 @@ def unrecorded_ancestry(entry: dict, chain: list[str]) -> list[dict]:
 
     Nothing is guessed: a form the record names but the glossary lacks is
     reported with the spelling the record used.
+
+    A second shape of hole is the page's own ``???``: each reconstruction piece
+    is drawn as a column that climbs until it stops, and a column that stops at
+    a word whose origin no record states (*``end``*) is exactly what the
+    question mark says.  Those rows are reported with ``kind: "origin"`` so the
+    verdict can say "no recorded origin for X" instead of claiming a missing
+    *entry* (admin, 2026-11-13: fa رضاقلی read "fully explained" above a ???).
     """
     out: list[dict] = []
 
@@ -3510,15 +3672,40 @@ def unrecorded_ancestry(entry: dict, chain: list[str]) -> list[dict]:
     # morpheme, and `construction_path` already refuses one.
     own_stage = data.stage_of(entry.get("lang") or "") or entry.get("lang") or ""
     seen_forms = {(own_stage, normalise_etymon(str(entry.get("word") or "")))}
-    pieces: list[str] = []
-    for piece in (_own_construction(entry, chain) or {}).get("pieces") or []:
-        pieces.append(str(piece[0] if isinstance(piece, (list, tuple)) else piece))
+    pieces: list[tuple[str, tuple, bool]] = []
+    own_row = _own_construction(entry, chain) or {}
+    for index, piece in enumerate(own_row.get("pieces") or []):
+        raw = str(piece[0] if isinstance(piece, (list, tuple)) else piece)
+        pieces.append((raw,
+                       _stated_piece_ancestry(piece[2])
+                       if isinstance(piece, (list, tuple)) and len(piece) > 2 else (),
+                       _bound_piece(str(own_row.get("kind") or ""), raw, index)))
     for join in _compound_pieces(entry, own_stage):
-        pieces.extend(str(p.get("word") or "") for p in join.get("pieces") or [])
-    for raw in pieces:
+        pieces.extend((str(p.get("word") or ""), (), False)
+                      for p in join.get("pieces") or [])
+    for raw, piece_anc, bound in pieces:
         form = normalise_etymon(raw)
         if not form or (own_stage, form) in seen_forms:
             continue
+        # The page draws this piece's climb, so a climb that ends in a `???` is
+        # a hole in *this* timeline however complete the entry behind it looks:
+        # a word whose origin the record does not state is exactly what the
+        # question mark says, and green may not stand over it (admin,
+        # 2026-11-13: fa رضاقلی over قلی).  The climb is the page's own, so the
+        # origin the compounding row states for the piece is the one read.
+        dead = (None if bound else
+                _unexplained_branch(_origin_node(own_stage, raw, quoted=piece_anc)))
+        if dead is not None:
+            stage = data.stage_of(str(dead.get("lang") or "")) or str(dead.get("lang") or "")
+            if (stage, str(dead.get("form") or "")) not in seen_forms:
+                out.append({"stage": stage,
+                            "name": dead.get("lang_name") or _lang(stage).get("name", stage),
+                            "form": str(dead.get("form") or raw),
+                            "written": ("*" if kind_of(stage) == "proto" else "")
+                            + str(dead.get("form") or raw).lstrip("*"),
+                            "rel": "",
+                            "via": str(entry.get("word") or ""),
+                            "kind": "origin"})
         found = _lemma_entry(own_stage, form)
         if found is None or found is entry:
             continue
@@ -5033,6 +5220,10 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
             "name": row.get("name", stage),
             "short": row.get("short", stage),
             "kind": kind_of(stage),
+            # A rung of a language outside the family (Arabic above a Persian
+            # word) is not a missing entry: the model keeps no glossary there,
+            # and the page says "non-PIE word" (admin, 2026-11-13).
+            "non_ie": stage in data.non_ie_sources(),
             "branch": row.get("branch", ""),
             "script": row.get("script", ""),
             "era": era,

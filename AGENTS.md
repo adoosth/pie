@@ -858,6 +858,40 @@ that keeps the `*` opens nothing).
   published band, so no index can call a word green above a rung it draws as
   "no entry for this word". A record that writes an ablauting noun with both
   stems (`*h₂ṓp-s ~ *h₂ép-s`) is one word: `_lemma_entry` tries each side.
+- **A `???` is a hole too, and a borrowing never draws one** (2026-11-13, admin:
+  fa رضاقلی read "fully explained" above a ???, and "قلی is obviously a
+  borrowing, so it should never have shown the question marks"). Two rules, one
+  reader. *A question mark forbids green*: `unrecorded_ancestry` reports the
+  word a piece's climb stops over (`_unexplained_branch`, the page's own
+  `climbOf` path) with `kind: "origin"`, so the verdict says "no recorded origin
+  for X" and refuses every green route while it stands. *A stated origin ends
+  the climb*: a compound's row may name where one of its pieces came from —
+  `[form, gloss, [[lang, form, rel]]]`, `_stated_piece_ancestry` — because
+  Persian رضاقلی is "a compound of رضا + Old Anatolian Turkish قلی" and the fa
+  entry for قلی heads another homonym and records nothing. The entry's own rows
+  win when it has them, and `non_ie_sources.yaml` registers the donor
+  (`trk-oat`), so a loan can never be read as an Indo-European one.
+- **A piece brings its whole ladder, and a stage outside the family says so**
+  (2026-11-13, admin: "the timeline above نا only shows from Proto-Indo-Iranian
+  … Every form that is brought into a timeline brings its entire timeline with
+  it above it"; "for non-PIE languages like Arabic … don't say 'no entry for
+  this word', just say 'non-PIE word'"). Two readers, one rule. *A piece climbs
+  every rung its own page draws*: `hierarchy` fills the stages between two
+  recorded rows with the forms the cited laws produce, and `_chain_between`
+  gives a construction's climb the same rungs (`derived: true`, `known: false`,
+  no gloss) instead of starting at the nearest recorded ancestor — fa ناـ's
+  climb is PIE *né → PIIr. *ná → Proto-Iranian → Old Persian → Middle Persian →
+  Persian, exactly the ladder `fa/ناـ` prints. A derived rung is never a hole.
+  *A language outside the family is neither a hole nor an entry*: `_origin_node`
+  carries `outside`, `hierarchy` rows carry `non_ie`, and the page prints
+  **non-PIE word** (muted) where it would otherwise say "no entry for this
+  word" — Arabic راضٍ is a word, it is simply not one this model holds.
+- **The word page is the meaning, the timeline and the sources** (2026-11-13,
+  admin: "word page should really be minimal"). No paragraph of background
+  prose under a timeline: the loan ladder prints the borrowing as its step rows
+  and the contact window as one badge (`633–1100`, tooltip: the contact, never a
+  date for this word), and `data/loan_periods.yaml` carries no `window_note` or
+  `landmarks` any more. A page explains the word, it does not lecture.
 - **A suffix in the morphology table is a record, not a licence**
   (2026-11-13): `-lom` (`-lo-` + neuter nom.sg. `-m`, attach `drop`) sits with
   `-tro-` because Proto-Germanic *ailą's own entry names *h₂éydʰ-lom; the PIE
@@ -1011,14 +1045,20 @@ A green path has one of two shapes, and the second is the only thing the
   record does not state never counts; one this model composes itself is held to
   the approval rule, exactly like our own law.
 
-- **every rung is a word of its stage.** Green also needs the timeline to be
-  whole: each recorded ancestor must be an entry of its stage, and the walk
-  continues through an ancestor's own entry, because the page draws that
-  ancestor's own step too — a hole one stage higher is the same hole.
-  `service.unrecorded_ancestry` is the one reader; while it has a row, the
-  verdict refuses every green route (*HwáHyati* was dark green over a PIE rung
-  that printed "no entry for this word", 2026-11-13). Three things are not a
-  hole: a **root** and a **bound** spelling (a relation and a morpheme, not
+- **every rung is a word of its stage, and nothing drawn a `???` can be green.**
+  Green also needs the timeline to be whole: each recorded ancestor must be an
+  entry of its stage, and the walk continues through an ancestor's own entry,
+  because the page draws that ancestor's own step too — a hole one stage higher
+  is the same hole. A piece's climb ends at PIE, outside the family, at a donor,
+  or at a `???` where no record says where the word came from; the last of those
+  is a hole in exactly the same sense and reaches the verdict as
+  `kind: "origin"` ("no recorded origin for X"). A piece may carry the origin
+  the row that quotes it states (`_stated_piece_ancestry`), so a borrowing ends
+  at its donor rather than at a question mark. `service.unrecorded_ancestry` is
+  the one reader; while it has a row, the verdict refuses every green route
+  (*HwáHyati* was dark green over a PIE rung that printed "no entry for this
+  word", and fa رضاقلی was green over a ???, 2026-11-13). Three things are not
+  a hole: a **root** and a **bound** spelling (a relation and a morpheme, not
   words), a **borrowing** (not inheritance), and a stage this model holds **no
   glossary** for at all (Proto-Italic, Proto-Hellenic) — that is a gap of ours,
   named as such, never a missing word of the record. And a composition takes

@@ -120,6 +120,15 @@ sources:
       - {source: "حرم", target: "de:Harem"}
       - {source: "آذربایجان", target: "de:Aserbaidschan"}
 
+  trk-oat:
+    name: Old Anatolian Turkish
+    family: Turkic
+    note: The Oghuz Turkic written language of Anatolia from the 13th century to the Ottoman period, recorded under its own code; the donor Wiktionary names for Persian قاشق and سرمه and for the names that enter Persian as compounds (رضاقلی).
+    examples:
+      - {source: "قاشق", target: "fa:قاشق"}
+      - {source: "سرمه", target: "fa:سرمه"}
+      - {source: "بك", target: "en:bey"}
+
   az:
     name: Azerbaijani
     family: Turkic

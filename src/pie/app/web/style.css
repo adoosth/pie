@@ -354,6 +354,11 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
    a word — there is no word here — so it may not wear the italic that marks
    the literature's rebuilt forms, and it wears no ✓ and no halo. */
 .ev-missing { color: var(--missing); font-style: normal; }
+/* A word of a language outside the family: nothing is missing — this model
+   keeps no glossary for Arabic or Turkish — so it is muted, not alarming
+   (admin, 2026-11-13: "don't say 'no entry for this word', say 'non-PIE
+   word'"). */
+.ev-outside { color: var(--muted); font-style: normal; }
 /* A starting form the reader typed: not evidence of anything until it lands
    on a recorded word, so it gets its own violet instead of a claim colour. */
 .ev-edited { color: #8a5bb5; font-style: italic; }
@@ -868,6 +873,9 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
 /* "There is no entry for this word" is a fact about the form, not a reading
    of it: dark red like the form, so the two are read as one statement. */
 .norec { color: var(--missing); font-style: normal; }
+/* A word outside the family is not missing: this model keeps no glossary for
+   Arabic or Turkish, and the note says so (admin, 2026-11-13). */
+.coutside { color: var(--muted); font-style: italic; }
 
 /* the laws of one step, each switchable ---------------------------------- */
 /* The laws sit on the rail between the two forms they changed — a row of the
@@ -1634,13 +1642,6 @@ a.lawname:hover, a.lawname:focus-visible { color: var(--accent); }
 /* request — the ladder above is the timeline now)                      */
 /* -------------------------------------------------------------------- */
 .badge.loan { border-color: var(--cat-non-pie); color: var(--fg); }
-.loanfold { margin: 6px 0 0; max-width: min(860px, 100%); }
-.loanfold > summary { cursor: pointer; }
-.loanfold > summary:hover { color: var(--fg); }
-.loanmarks { list-style: none; padding: 0; margin: 10px 0 0; display: grid; gap: 5px;
-  font-size: 12.5px; }
-.loanmarks li { border-left: 2px solid color-mix(in srgb, var(--cat-non-pie) 55%, var(--line));
-  padding-left: 9px; }
 
 /* -------------------------------------------------------------------- */
 /* one spelling, several words (2026-11-09)                             */

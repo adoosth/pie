@@ -240,11 +240,25 @@ def verdict(*, recorded: bool, non_ie: bool = False, ie_loan: bool = False,
     # (admin, 2026-11-13).
     holes = [row for row in (missing_steps or ()) if isinstance(row, dict)]
     if holes:
-        named = ", ".join(f"{row.get('name') or row.get('stage')} "
-                          f"{row.get('written') or row.get('form')}" for row in holes[:3])
-        more = "" if len(holes) <= 3 else f" and {len(holes) - 3} more"
+        # Two kinds of hole reach this point: a recorded rung whose word the
+        # glossary does not hold (the page prints "no entry for this word"), and
+        # a climb that ends in the page's own `???` — a word whose origin the
+        # record does not state.  The reason must say which, or a reader is told
+        # about a missing entry where the page draws a question mark
+        # (admin, 2026-11-13: fa رضاقلی over قلی).
+        def _named(kind: str | None) -> str:
+            rows = [r for r in holes if (str(r.get("kind") or "") or None) == kind]
+            text = ", ".join(f"{r.get('name') or r.get('stage')} "
+                             f"{r.get('written') or r.get('form')}" for r in rows[:3])
+            more = "" if len(rows) <= 3 else f" and {len(rows) - 3} more"
+            return text + more
+        reasons = []
+        if any(str(r.get("kind") or "") != "origin" for r in holes):
+            reasons.append(f"no entry for {_named(None)}")
+        if any(str(r.get("kind") or "") == "origin" for r in holes):
+            reasons.append(f"no recorded origin for {_named('origin')}")
         return {"category": "partial",
-                "reason": f"no entry for {named}{more}",
+                "reason": "; ".join(reasons),
                 "missing_steps": [str(row.get("stage") or "") for row in holes],
                 "missing": holes}
 

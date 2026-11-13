@@ -4182,3 +4182,109 @@ Middle Persian.
 the farther PIE inheritance) and
 `test_a_piece_climbs_the_same_stages_as_its_own_page` (the piece's chain and the
 word's own ladder name the same stages in the same order).
+
+## 2026-11-13 — a `???` is not an explanation, and a borrowing is not a question
+
+fa رضاقلی read **fully explained** over a timeline that drew a `???` (admin:
+"Why does this say 'fully explained' when there are ??? in the timeline? That
+should also not be possible. Although, when I click on قلی it is obviously a
+borrowing so it should never have shown the question marks in the first place,
+and therefore yes it could be 'fully explained'"). Two different faults, and the
+reader was right about both.
+
+**The band did not see the question mark.** `unrecorded_ancestry` measured the
+*rungs a word's glossary lacks*; it never looked at the shape of the tree the
+page actually draws. The tree ends each piece's climb at PIE, outside the
+family, at a donor — or at a `???` where no record says where the word came
+from, and that last one is a hole in exactly the same sense as a dark-red "no
+entry" row. `_unexplained_branch` now walks the page's own climb
+(`climbOf`'s path: through a built ancestor's first piece, then up the parents)
+and `unrecorded_ancestry` reports the word it stops over with `kind: "origin"`;
+`categories.verdict` refuses every green route while such a row stands, and says
+*no recorded origin for Persian قلی* rather than pretending an entry is missing.
+
+**The question mark should not have been there at all.** The fa entry for قلی is
+Dehkhoda's homonym "peak of a mountain" — marked `(ع اِ)`, Arabic — and it states
+no origin form, so the climb ended in `end`. But the row that *quotes* it says
+where it came from: رضاقلی's own etymology is "a compound of رضا + **Old
+Anatolian Turkish** قلی (the possessed form of قل 'slave')". A construction row
+may now carry that in the third slot of a piece —
+`["قلی", "…", [["trk-oat", "قلی", "borrow"]]]`, read by
+`_stated_piece_ancestry` — and `_origin_node` takes it as the piece's ancestry
+only when the piece's own entry states none (its own article always wins). The
+climb then ends at the donor, and a borrowing never hangs a `???` above itself.
+
+`trk-oat` is now in `data/non_ie_sources.yaml` (Old Anatolian Turkish, Turkic,
+with the loans the corpus records: fa قاشق, fa سرمه, en bey). Without it the
+classifier had no way to know the language is outside the family, and every
+`trk-oat` loan — fa قاشق "spoon" among them — was read as an *Indo-European*
+loan.
+
+The seven other Persian names of the same shape (علیقلی، محمدقلی، حسینقلی،
+ایمانقلی، مهدیقلی، مرشدقلی، امامقلی) are filed the same way from their own
+articles, so the family reads consistently. Corpus-wide the rule is surgical
+where it matters: of the 3,023 fa words with a recorded construction, 2,760 draw
+a `???` somewhere, but only **13** of the published green ones did — seven
+...قلی names (رضاقلی, fixed by its own record, would have been the eighth) and محمدجواد، میرآب، ناتوانی، پرنده، گلشن، گلقند. Every one of the
+قلی names is green again from its own record; the other six stay yellow until
+the piece behind the mark is recorded (میر "ruler", توانی "ability", جواد, and
+the -andag / *(H)wardʰ- forms the two rose-garden words climb to).
+
+**Tests.** `tests/test_build.ConstructionPiece`:
+`test_a_piece_of_another_language_climbs_the_donor_the_row_states` and
+`test_a_piece_with_no_stated_origin_is_still_a_question_mark`;
+`tests/test_categories.MissingRungTest`: `test_a_question_mark_is_a_hole_too`
+and `test_a_rung_the_glossary_lacks_still_says_entry`.
+
+## 2026-11-13 — a piece brings its whole timeline, and the page stops lecturing
+
+Two more readings of the same page (fa ناراضی), and one request about every
+word page.
+
+**A piece climbed only the rows a record states.** "Why is the timeline above نا
+only showing from Proto-Indo-Iranian, even though when I click on it I see a
+longer timeline? … Every form that is brought into a timeline brings its entire
+timeline with it above it, right?" Right — and this was the same fault as fa
+آبجو's skipped Middle Persian one release earlier, one layer down. A word's own
+page runs one rung per stage of its chain (`hierarchy`), deriving each form from
+the one above, so `fa/ناـ` prints PIE *né → Proto-Indo-Iranian *ná →
+Proto-Iranian *ná → Old Persian ná → Middle Persian n → Persian ناـ. The climb a
+construction draws (`_origin_node`) followed the entry's `/anc` rows only, and
+ناـ's entry names one ancestor, Proto-Indo-Iranian *ná. The same word was
+therefore two different heights depending on which page you stood on.
+`_chain_between` wraps the recorded parent in the rungs the laws produce for
+every stage between it and the word — the same call `hierarchy` makes
+(`derive_detailed` over `data.derivation_chain(lang)`), never a new source.
+Those rungs are `derived: true`, `known: false`, with no gloss: the page prints
+them in the ladder's derived colour as "a form the laws produce", and
+`_unexplained_branch` walks past them, so a filled rung is not a hole. ناـ now
+reads six rows and ends at PIE on ناراضی's timeline, exactly as on its own.
+
+**A word outside the family is not a missing word.** "For non-PIE languages like
+Arabic that come in the timeline, don't say 'no entry for this word', just say
+'non-PIE word'." Arabic راضٍ has no entry in this model because this model holds
+no Arabic glossary — that is a boundary, not a gap in the record. `_origin_node`
+now marks every node of such a language `outside` (and `hierarchy` rows
+`non_ie`), and the page prints **non-PIE word** in the muted colour, with the
+tooltip naming the donor rather than a glossary link that would 404.
+
+**And the page is the word, not a lecture.** "Please also remove all instances
+of such text: 'The dictionary does not date this word. Arabic reached Persian
+over the five centuries after the Islamic conquest…' The word page should really
+be minimal, the meaning and timeline of the word along with the sources is
+really enough." The paragraph came from `window_note` in
+`data/loan_periods.yaml` and was printed under every loan ladder, together with
+a fold of dynastic landmarks. Both are gone, from the data and from
+`renderLoanLadder` and the stylesheet: the borrowing is already the ladder's own
+step row ("borrowed from Arabic into Persian") and the window is one badge
+(`633–1100`) whose tooltip says it is the contact and never a date for the word.
+A page now shows the headword, its meaning, its recorded etymology sentence, the
+timeline and the sources.
+
+**Tests.** `tests/test_build.ConstructionPiece`:
+`test_a_piece_brings_the_whole_ladder_of_its_own_page` (ناـ's climb names the
+same stages, in the same order, as `fa/ناـ`'s ladder, and is no hole) and
+`test_a_non_pie_piece_says_non_pie_not_no_entry` (راضی's donor is `ar`, marked
+`outside`); `tests/test_loan_dossier.py` now checks the window is
+`from`/`to` and carries no prose; `tests/test_ui_render.js` asserts the loan
+timeline prints no "does not date this word".

@@ -1595,8 +1595,7 @@ const loanPage = {
   pages: [{ id: "wiktionary", title: "Wiktionary", kind: "wiktionary",
             url: "https://en.wiktionary.org/wiki/%D8%A2%D8%AE%D8%B1%D8%AA" }],
   loan: { code: "ar", name: "Arabic", family: "Semitic", form: "آخِرة", relation: "borrow",
-    period: { from: 633, to: 1100, window_note: "The dictionary does not date this word.",
-              landmarks: [{ from: 633, to: 651, title: "Islamic conquest of Iran", note: "" }] } },
+    period: { from: 633, to: 1100 } },
   ancestry: [{ lang: "ar", lang_name: "Arabic", form: "آخِرة", rel: "borrow",
                kind: "attested", evidence: "attested", ipa: "", reading: "",
                show_reading: false, reading_auto: false, reading_note: "", known: false }],
@@ -1610,6 +1609,8 @@ assert.match(loanHtml, /<a class="recorddot[^"]*"[^>]*href="https:\/\/en\.wiktio
   "the word keeps its record mark, opening its Wiktionary page");
 assert.ok(!loanHtml.includes("loantrack"), "no horizontal contact bar");
 assert.ok(!loanHtml.includes("loanbox"), "no separate loan panel");
+assert.ok(!loanHtml.includes("does not date this word"),
+  "the timeline carries the window badge, never a paragraph about the contact");
 console.log("loan ladder ok");
 
 /* A link that knows which word it means names the sense, the first one

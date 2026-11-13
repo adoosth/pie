@@ -102,6 +102,16 @@ class Ladder(unittest.TestCase):
         self.assertTrue(any(e["form"] for e in pie["endings"]))
 
 
+def _parents(node: dict) -> list[dict]:
+    """Every node of a climb, the node itself included."""
+    out, stack = [], [node]
+    while stack:
+        cur = stack.pop()
+        out.append(cur)
+        stack.extend(cur.get("parents") or [])
+    return out
+
+
 class ConstructionPiece(unittest.TestCase):
     """A piece the stage's glossary holds says what it means (admin, 2026-11-12).
 
@@ -196,6 +206,67 @@ class ConstructionPiece(unittest.TestCase):
             node = node["parents"][0]
             branch.append(node["lang"])
         self.assertEqual(list(reversed(branch)), ladder)
+
+    def test_a_piece_of_another_language_climbs_the_donor_the_row_states(self):
+        """A compound's row can state where one of its pieces came from.
+
+        fa رضاقلی is "a compound of رضا + Old Anatolian Turkish قلی": the second
+        piece is a word of the donor, and its fa entry heads another homonym and
+        records no origin, so the timeline hung a ``???`` over it (admin,
+        2026-11-13 — "قلی is obviously a borrowing, so it should never have
+        shown the question marks").
+        """
+        entry = service._lemma_entry("fa", "رضاقلی")
+        pieces = service._rung_builds(entry, "fa", "رضاقلی")[0]["pieces"]
+        qoli = [p for p in pieces if p["form"] == "قلی"][0]
+        self.assertEqual(qoli["branch"]["terminal"], "")
+        self.assertEqual(qoli["branch"]["parents"][0]["lang"], "trk-oat")
+        self.assertEqual(qoli["branch"]["parents"][0]["terminal"], "borrowed")
+        self.assertIsNone(service._unexplained_branch(qoli["branch"]))
+
+    def test_a_piece_brings_the_whole_ladder_of_its_own_page(self):
+        """A piece climbs every rung its own page draws, not only the recorded ones.
+
+        fa ناراضی is a construction of ناـ + راضی, and ناـ's own page runs from
+        PIE *né through Proto-Iranian, Old Persian and Middle Persian to
+        Persian.  The piece's climb used to follow only the rows a record
+        states, so the same word looked shorter wherever another page quoted it
+        (admin, 2026-11-13: "the timeline above نا only shows from Proto-Indo-
+        Iranian").  The rungs the laws fill in are `derived` — drawn, never
+        claimed as entries — and they are not holes.
+        """
+        node = service._origin_node("fa", "ناـ")
+        branch, cur = [], node
+        while cur:
+            branch.append(cur["lang"])
+            cur = (cur.get("parents") or [None])[0]
+        levels = service.word("fa", "ناـ")["hierarchy"]["levels"]
+        self.assertEqual(list(reversed(branch)), [r["stage"] for r in levels],
+                         "the piece climbs exactly the stages its own page draws")
+        self.assertIn("peo", branch)
+        self.assertIn("pal", branch)
+        self.assertTrue(any(n.get("derived") for n in _parents(node)),
+                        "the stage the record does not name says it is derived")
+        self.assertIsNone(service._unexplained_branch(node))
+
+    def test_a_non_pie_piece_says_non_pie_not_no_entry(self):
+        """Arabic is outside what the model holds; the page must not call it missing."""
+        entry = service._lemma_entry("fa", "ناراضی")
+        pieces = service._rung_builds(entry, "fa", "ناراضی")[0]["pieces"]
+        razi = [p for p in pieces if p["form"] == "راضی"][0]
+        donor = razi["branch"]["parents"][0]
+        self.assertEqual(donor["lang"], "ar")
+        self.assertTrue(donor["outside"], "Arabic is outside the family, not missing")
+        self.assertEqual(donor["terminal"], "borrowed")
+
+    def test_a_piece_with_no_stated_origin_is_still_a_question_mark(self):
+        """Nothing is invented for a piece whose origin no record states."""
+        entry = service._lemma_entry("fa", "میرآب")
+        node = service._origin_node("fa", "میر")
+        self.assertEqual(node["terminal"], "end")
+        self.assertIsNotNone(service._unexplained_branch(node))
+        holes = service.unrecorded_ancestry(entry, service.data.derivation_chain("fa"))
+        self.assertEqual([h["form"] for h in holes if h.get("kind") == "origin"], ["میر"])
 
 class PreStageAncestry(unittest.TestCase):
 

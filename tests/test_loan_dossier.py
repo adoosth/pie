@@ -32,15 +32,19 @@ class DossierTest(unittest.TestCase):
         self.assertEqual(dossier["wording"], "borrowed from Arabic")
 
     def test_the_window_is_the_contact_not_a_date_for_the_word(self):
+        """The window is one badge on the ladder and nothing more.
+
+        A contact window says when the two languages could have met, never when
+        this word was borrowed.  The page prints the years beside the ladder
+        and no prose about them (2026-11-13: the page is the meaning, the
+        timeline and the sources).
+        """
         window = loans.period("ar", "fa")
         self.assertIsNotNone(window)
         self.assertEqual(window["from"], 633)
         self.assertGreater(window["to"], window["from"])
-        self.assertIn("does not date this word", window["window_note"])
-        self.assertTrue(window["landmarks"])
-        for mark in window["landmarks"]:
-            self.assertLessEqual(mark["from"], window["to"])
-            self.assertGreaterEqual(mark["to"], window["from"])
+        self.assertNotIn("window_note", window)
+        self.assertNotIn("landmarks", window)
 
     def test_an_unrecorded_pair_has_no_window(self):
         self.assertIsNone(loans.period("ar", "xx"))

@@ -903,7 +903,8 @@ async function viewWord(lang, w, params) {
         <summary><h2>Cognates <span class="sub" style="text-transform:none;letter-spacing:0">· ${form(cog.pie, "ine-pro", { ev: "literary" })} “${esc(cog.gloss)}” · ${cog.forms.length} forms in ${cog.branches} branches</span></h2></summary>
         ${renderCognateTable(cog, lang, d.word)}
       </details>
-    ` : d.is_root ? "" : `<p class="sub" style="margin-top:18px">No Proto-Indo-European cognate set is recorded for this word.</p>`}
+    ` : (d.is_root || (d.loan && d.loan.name)) ? ""
+        : `<p class="sub" style="margin-top:18px">No Proto-Indo-European cognate set is recorded for this word.</p>`}
   `;
   wireLadder();
   wireMeanings(d);
@@ -1051,7 +1052,7 @@ function donorLine(d) {
   return `<p class="sub donorline" data-tip="The donor word's own etymology, from ${esc(donor)}'s entry — not a stage of this word, which borrowed the finished form.">
     <span class="etym-label">Above the donor</span>${esc(donor)}${l.form
       ? ` <a href="${esc(link)}" class="dlink">${esc(l.form)}</a>` : ""} comes from ${pieces}${
-      l.donor_joined && above.length > 1 ? " (joined from those pieces)" : ""}. This word borrowed the ${esc(donor)} form itself; the stages above it belong to ${esc(donor)}.</p>`;
+      l.donor_joined && above.length > 1 ? " (joined from those pieces)" : ""}.</p>`;
 }
 
 function wireCopy() {
@@ -1599,6 +1600,14 @@ function constructStep(level, i, linkTo, opts) {
      red whatever the literature reconstructs it from (admin, 2026-11-12). */
   const evOf = (n) => {
     if (!n || n.unknown) return "ev-weak";
+    /* A rung the laws reach between two recorded stages is the ladder's own
+       "derived" rung — a form no glossary records, but not a hole either: the
+       model derived it, and the word's own page prints it in this colour
+       (admin, 2026-11-13: a piece brings its whole timeline with it). */
+    if (n.derived) return "ev-weak";
+    /* A word of a language outside the family is not a missing entry: the
+       model simply holds no glossary there (admin, 2026-11-13). */
+    if (n.outside) return "ev-outside";
     if (n.known === false) return "ev-missing";
     if (n.terminal === "pie" || n.kind === "proto"
         || String(n.form || "").startsWith("*")) return "ev-literary";
@@ -1611,7 +1620,10 @@ function constructStep(level, i, linkTo, opts) {
       : n.terminal === "pie"
         ? `${n.lang_name} ${n.form} — the top of the family: nothing above Proto-Indo-European is modelled.${n.gloss ? ` “${n.gloss}”` : ""}${n.known ? "" : " (No glossary entry for this form.)"}`
         : n.terminal === "borrowed"
-          ? `${n.lang_name} ${n.form} — the record says the word was borrowed from here${n.known ? " — open the donor word's page." : "; the donor word has no glossary entry."}`
+          ? `${n.lang_name} ${n.form} — the record says the word was borrowed from here${
+              n.known ? " — open the donor word's page."
+                : n.outside ? "; a non-PIE word, so this model holds no glossary for it."
+                  : "; the donor word has no glossary entry."}`
           : `${n.gloss ? `“${n.gloss}” — ` : ""}${n.known ? "open the word page" : "no glossary entry"}`);
   /* The word itself, at the ladder's size, in its own evidence colour, its
      reading underneath it — the ladder's own stack. */
@@ -1644,8 +1656,11 @@ function constructStep(level, i, linkTo, opts) {
         n.reading ? `<i class="cread">${esc(n.reading)}</i>` : ""}</span></span>${
         meaningOf(n.pos, n.gloss, false)
           ? `<span class="cgloss">${meaningOf(n.pos, n.gloss, false)}</span>`
+          : n.derived
+            ? `<span class="cgloss"><span class="coutside">a form the laws produce</span></span>`
           : n.known === false
-            ? `<span class="cgloss"><span class="norec">no entry for this word</span></span>` : ""}</span>
+            ? `<span class="cgloss"><span class="${n.outside ? "coutside" : "norec"}">${
+                n.outside ? "non-PIE word" : "no entry for this word"}</span></span>` : ""}</span>
     </div>`;
   /* Where the line above a word goes: its recorded parent, or — for a word
      whose entry records no origin, or a form no entry holds — a ??? hanging
@@ -1734,7 +1749,9 @@ function constructStep(level, i, linkTo, opts) {
        because no entry holds it says that instead (admin, 2026-11-12). */
     const meaning = meaningOf(p.pos, p.gloss, p.bound)
       || (p.known === false && !p.bound
-        ? `<span class="norec">no entry for this word</span>` : "");
+        ? (p.branch && p.branch.outside
+          ? `<span class="coutside">non-PIE word</span>`
+          : `<span class="norec">no entry for this word</span>`) : "");
     /* The word and its meaning are one cell: the word sits on the line the
        `+` draws, and the meaning hangs under it without ever moving that line
        (admin, 2026-11-12). */
@@ -2251,7 +2268,12 @@ function renderHierarchy(h, d, opts) {
        it fired exactly where no entry exists — the case the reader should read
        as "no entry for this word" (admin, 2026-11-12). */
     const entryNote = rec && !held
-      ? `<span class="sub norec" data-tip="Nothing in ${esc(level.name)}'s glossary is spelled ${esc(rec.w)}: no headword, no reading of the signs, no entry. The form here is the one the etymology names, and nothing else in this stage records it.">no entry for this word</span>`
+      ? (level.non_ie
+        /* A stage outside the family has no glossary in this model, and that is
+           a fact about the model, not about the word: it says "non-PIE word"
+           rather than "no entry" (admin, 2026-11-13). */
+        ? `<span class="sub coutside" data-tip="${esc(`${level.name} is outside the Indo-European family: the form is quoted from the record, and this model keeps no ${level.name} glossary — nothing is missing.`)}">non-PIE word</span>`
+        : `<span class="sub norec" data-tip="Nothing in ${esc(level.name)}'s glossary is spelled ${esc(rec.w)}: no headword, no reading of the signs, no entry. The form here is the one the etymology names, and nothing else in this stage records it.">no entry for this word</span>`)
       : (unmodelled
         ? `<span class="sub norec" data-tip="This model holds no ${esc(level.name)} glossary, so the form is quoted from the record and is not linked: nothing is missing from the word's own stage, only from a stage the model does not describe.">no ${esc(level.name)} glossary in this model</span>`
         : "");
@@ -3460,23 +3482,15 @@ function renderLoanLadder(d) {
         <div class="rung-rec"><span class="sense">${d.pos ? `${esc(d.pos)} · ` : ""}“${esc((d.gloss || [])[0] || "")}”</span></div>
       </div>
     </li>`;
-  const marks = (p && (p.landmarks || []).length)
-    ? `<details class="loanfold reveal"><summary class="sub">Where the contact window falls${
-        window ? ` · ${esc(window)}` : ""}</summary>
-        <ul class="loanmarks">${p.landmarks.map((m) => `<li><b>${m.from}–${m.to}</b> · ${esc(m.title)}
-          <span class="sub">${esc(m.note || "")}</span></li>`).join("")}</ul>
-      </details>` : "";
-  const note = p
-    ? (p.window_note || `The dictionary does not date this word; the loan belongs to the ${window || "recorded"} contact window.`)
-    : `The dictionary states the borrowing but does not date it.`;
+  /* The page is the meaning, the timeline and the sources (2026-11-13): the
+     borrowing is the ladder's own step rows, and the contact window one badge.
+     No paragraph of background prose under them. */
   return `<div class="ladder-head reveal" style="--i:3">
       <h2>Timeline</h2>
       <div class="ladder-badges"><span class="badge loan">borrowed</span>${
         window ? `<span class="badge" data-tip="The window in which ${esc(l.name || "the donor")} reached ${esc(d.lang_name)} — the contact, never a date for this word.">${esc(window)}</span>` : ""}</div>
     </div>
-    <ol class="ladder reveal" style="--i:4">${items}${word}</ol>
-    <p class="sub ladder-note">${note}</p>
-    ${marks}`;
+    <ol class="ladder reveal" style="--i:4">${items}${word}</ol>`;
 }
 
 async function viewBacklog(params = new URLSearchParams()) {

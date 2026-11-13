@@ -233,6 +233,35 @@ class MissingRungTest(unittest.TestCase):
                                      "full")
         self.assertEqual(row["category"], "partial")
 
+    def test_a_question_mark_is_a_hole_too(self):
+        """A climb the page draws a ``???`` over is not an explanation.
+
+        fa رضاقلی read "fully explained" above a ``???``: its pieces were
+        explained as far as the band measured them, but the second piece's own
+        timeline ended nowhere and the page said so with a question mark.  A
+        hole the reader can see may not be green, whatever its shape (admin,
+        2026-11-13).
+        """
+        origin = {"stage": "fa", "name": "Persian", "form": "قلی",
+                  "written": "قلی", "kind": "origin"}
+        row = categories.verdict(recorded=True, pie_linked=True, from_pie=True,
+                                 matched_by="joined", missing_steps=[origin],
+                                 construction={"note": "رضا + قلی", "exact": True,
+                                               "explained": True, "stated": True})
+        self.assertEqual(row["category"], "partial")
+        self.assertIn("no recorded origin for Persian قلی", row["reason"])
+
+    def test_a_rung_the_glossary_lacks_still_says_entry(self):
+        # The two shapes of hole are told apart in the reason, not merged into
+        # one sentence: one is a missing entry, the other a missing origin.
+        row = categories.verdict(recorded=True, pie_linked=True, from_pie=True,
+                                 matched_by="joined", missing_steps=[self.hole,
+                                     {"stage": "fa", "name": "Persian",
+                                      "form": "قلی", "written": "قلی",
+                                      "kind": "origin"}])
+        self.assertIn("no entry for Proto-Indo-European *h₁wéh₂-ye-ti", row["reason"])
+        self.assertIn("no recorded origin for Persian قلی", row["reason"])
+
     def test_a_pieces_hole_is_the_words_hole(self):
         """A compound's record has no ancestry; its pieces' rungs still do.
 
