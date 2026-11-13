@@ -90,10 +90,12 @@ class PeoAccounting(unittest.TestCase):
         # to match an ancestor through a bracket no longer do, and three
         # reconstructions became words that state their own reading.  The full
         # re-read of the category also brought 𐎺𐏁𐎴𐎠 its three stated links:
-        # 214 / 130 / 84.
-        self.assertEqual(len(eligible), 214)
+        # 214 / 130 / 84.  2026-11-13: the reconstruction rows filed from their
+        # own records (Reconstruction:<language>/<word>, v0.17.27) added one
+        # more reconstruction that states an ancestor: 215 / 130 / 85.
+        self.assertEqual(len(eligible), 215)
         self.assertEqual(len(attested), 130)
-        self.assertEqual(len(reconstruction), 84)
+        self.assertEqual(len(reconstruction), 85)
         self.assertEqual(len(eligible), len(attested) + len(reconstruction))
 
 

@@ -1632,7 +1632,7 @@ function constructStep(level, i, linkTo, opts) {
                 : n.outside ? "; a non-PIE word, so this model holds no glossary for it."
                   : "; the donor word has no glossary entry."}`
           : `${n.gloss ? `“${n.gloss}” — ` : ""}${n.known ? "open the word page"
-              : n.derived ? "no glossary entry at this stage: the cited laws produce this form between two stages the record names"
+              : n.derived ? "no glossary entry at this stage"
                 : "no glossary entry"}`);
   /* The word itself, at the ladder's size, in its own evidence colour, its
      reading underneath it — the ladder's own stack. */
@@ -1650,6 +1650,17 @@ function constructStep(level, i, linkTo, opts) {
      (`--crow`), so the ancestors of two pieces that stand in the same language
      land on the same line — *h₂entó- and *swer-, a PIE word above each piece of
      *andaswarō (admin, 2026-11-12). */
+  /* The laws of one step of a piece's climb.  Every row of the tree is a word
+     the ladder would have carried down by called laws, so the row carries the
+     same chips the ladder prints — with the same switches, because a reader
+     who can turn a law off on one timeline must be able to do it on all of
+     them (admin, 2026-11-13). */
+  const stepLaws = (step, stage) => {
+    const rules = (step && step.rules) || [];
+    if (!rules.length) return "";
+    return `<div class="claws"><ul class="lawlist">${
+      rules.map((r) => lawChip(r, "", stage || "")).join("")}</ul></div>`;
+  };
   const chainRow = (n) => n && n.unknown
     ? `<div class="cnode unknown">
       <span class="cwhen"></span>
@@ -1659,7 +1670,7 @@ function constructStep(level, i, linkTo, opts) {
     : `<div class="cnode" data-tip="${esc(`${n.lang_name || n.lang || ""}${eraOf(n) ? ` · ${eraOf(n)}` : ""} — ${saidOf(n)}`)}">
       <span class="cwhen"><span class="cwhen-name ${langKind(n)}">${esc(n.lang_name || n.lang || "")}</span><span class="cwhen-era">${esc(eraOf(n))}</span></span>
       <span class="crail" aria-hidden="true"><i></i></span>
-      <span class="cstack"><span class="cwordrow"><span class="cform ${scriptClass(n.form)} ${evOf(n)}">${
+      <div class="cstack"><span class="cwordrow"><span class="cform ${scriptClass(n.form)} ${evOf(n)}">${
         n.known ? `<a class="cword" href="${esc(link(n.lang, n.form, true))}">${esc(pf(starred(n.form, n.lang, n.kind, n.script)))}</a>`
           : `<span class="cword">${esc(pf(starred(n.form, n.lang, n.kind, n.script)))}</span>`}${
         n.reading ? `<i class="cread">${esc(n.reading)}</i>` : ""}</span></span>${
@@ -1672,10 +1683,11 @@ function constructStep(level, i, linkTo, opts) {
                two things at once (admin, 2026-11-13: ناراحت's Middle Persian,
                Old Persian and Proto-Iranian rungs).  Say what is missing first,
                then how the row got here. */
-            ? `<span class="cgloss"><span class="norec">no entry for this word</span> <span class="coutside">· the laws produce it from ${esc(n.from || "the stage above")}</span></span>`
+            ? `<span class="cgloss"><span class="norec">no entry for this word</span></span>`
           : n.known === false
             ? `<span class="cgloss"><span class="${n.outside ? "coutside" : "norec"}">${
-                n.outside ? "non-PIE word" : "no entry for this word"}</span></span>` : ""}</span>
+                n.outside ? "non-PIE word" : "no entry for this word"}</span></span>` : ""}${
+        stepLaws(n.step, n.parents && n.parents[0] ? n.parents[0].lang : "")}</div>
     </div>`;
   /* Where the line above a word goes: its recorded parent, or — for a word
      whose entry records no origin, or a form no entry holds — a ??? hanging
@@ -1799,10 +1811,13 @@ function constructStep(level, i, linkTo, opts) {
       : `<span class="cwhen lead"></span>`;
     return `<div class="cterm${opts.rail ? "" : " instrip"}${p.bound ? " bound" : ""}${opts.first ? " first" : ""}" data-tip="${esc(tip)}">
         ${label}${rail}
-        <span class="cstack">
+        <div class="cstack">
           <span class="cwordrow"><span class="cform term ${scriptClass(p.form)} ${ev}">${body}${reading}</span>${grade}</span>
-          ${meaning ? `<span class="cgloss">${meaning}</span>` : ""}
-        </span>
+          ${meaning ? `<span class="cgloss">${meaning}</span>` : ""}${
+          stepLaws(p.branch && p.branch.step,
+            p.branch && p.branch.parents && p.branch.parents[0]
+              ? p.branch.parents[0].lang : "")}
+        </div>
       </div>`;
   };
   /* A word that is itself a construction — *h₂entó- is a combining form from
@@ -1844,15 +1859,26 @@ function constructStep(level, i, linkTo, opts) {
      climb, one step per row, so two pieces that come from the same stage of
      the family share a line instead of drifting apart (admin, 2026-11-12:
      *h₂entó- and *swer- on one horizontal line). */
-  const tree = (b) => `<div class="btree"><div class="bline">${
-    b.pieces.map((p, k) => {
-      const rows = climbOf(p);
-      return `${k ? `<span class="cplus" aria-hidden="true"><i>+</i></span>` : ""}${
-        `<div class="cpiece${rows.length ? " has-chain" : ""}${k === 0 ? " first" : ""}${k < b.pieces.length - 1 ? " continues" : ""}">${
-          k === 0 ? `<div class="clead" aria-hidden="true"><span class="cwhen"></span><span class="crail"></span></div>` : ""}${
-          rows.length ? `<div class="cchain">${[...rows].reverse().map((item) => item.build ? buildRow(item) : chainRow(item)).join("")}</div>` : ""}${
-          termCell(b, p, k, { first: k === 0, rail: true })}</div>`}`;
-    }).join("")}</div></div>`;
+  const tree = (b) => {
+    const climbs = b.pieces.map((p) => climbOf(p));
+    /* A column that carries a step's laws needs one more band of room under
+       every word, in every column, or two pieces' ancestors stop sharing a
+       line — and that line is the timeline's whole argument (admin,
+       2026-11-12).  So the tree, not the row, decides the height. */
+    const hasLaws = climbs.some((rows, k) => rows.some(
+      (item) => item.step && item.step.rules && item.step.rules.length))
+      || b.pieces.some((p) => p.branch && p.branch.step
+        && p.branch.step.rules && p.branch.step.rules.length);
+    return `<div class="btree${hasLaws ? " has-laws" : ""}"><div class="bline">${
+      b.pieces.map((p, k) => {
+        const rows = climbs[k];
+        return `${k ? `<span class="cplus" aria-hidden="true"><i>+</i></span>` : ""}${
+          `<div class="cpiece${rows.length ? " has-chain" : ""}${k === 0 ? " first" : ""}${k < b.pieces.length - 1 ? " continues" : ""}">${
+            k === 0 ? `<div class="clead" aria-hidden="true"><span class="cwhen"></span><span class="crail"></span></div>` : ""}${
+            rows.length ? `<div class="cchain">${[...rows].reverse().map((item) => item.build ? buildRow(item) : chainRow(item)).join("")}</div>` : ""}${
+            termCell(b, p, k, { first: k === 0, rail: true })}</div>`}`;
+      }).join("")}</div></div>`;
+  };
   const trees = `<div class="btrees">${builds.map(tree).join("")}</div>`;
   /* The page's own construction machinery — the base, the suffix the word
      wears, the picker that tries another cited suffix, and the composed form —

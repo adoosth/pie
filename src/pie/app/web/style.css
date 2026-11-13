@@ -831,6 +831,26 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
 .cterm.bound .cgloss { width: max-content; max-width: 200px;
   white-space: normal; }
 .cform > .cgloss { margin-top: 3px; }
+/* The laws of a step of a piece's climb (`claws`): the ladder's own chips, at
+   the size of a column, inside the row they produced — a reader switches a law
+   off here exactly as on the ladder, and the tree is recomputed from the same
+   report (admin, 2026-11-13).  The band is reserved for the whole tree by
+   `.has-laws`, not per row, so two pieces' ancestors keep sharing a line. */
+.cstack > .claws, .cstrip > .claws { display: block; margin-top: 3px;
+  max-width: 420px; }
+.claws .lawlist { display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 0; }
+.claws .law { padding: 0 3px; margin-left: 0; gap: 5px; font-size: 11px;
+  line-height: 16px; flex-wrap: nowrap; }
+.claws .lawform { font-size: 11px; }
+.claws .lawadd { font-size: 11px; }
+.claws .lawswitch { width: 22px; height: 13px; flex: none; }
+.claws .lawswitch .knob { width: 8px; height: 8px; }
+.claws .lawswitch[aria-pressed="true"] .knob { transform: translateX(9px); }
+.claws .badge { display: none; }
+/* One extra band under every row of a tree that carries laws: three lines is
+   what the chips of an ordinary step need, and reserving it in every column
+   costs whitespace but keeps the staircase exact. */
+.btree.has-laws { --crow: calc(var(--clabelh) + var(--termh) + 4 * 14px + 20px + 2px); }
 /* The word itself, at the ladder's size and in its own evidence colour. */
 .cform { font-family: var(--mono); font-style: italic; font-size: 21px; line-height: 1.15;
   white-space: nowrap; }

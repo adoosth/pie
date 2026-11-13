@@ -2469,10 +2469,61 @@ _BRANCH_DEPTH = 8
 _BUILD_DEPTH = 3
 
 
+def _step_laws(above: dict, form: str, lang: str,
+               disabled=(), enabled=()) -> dict | None:
+    """The laws that carry the row above into this word, for the tree's rail.
+
+    A construction's columns are words with records, so the page used to draw
+    them with no laws at all: the reader could switch a law off on a word's own
+    ladder and nowhere on a page whose timeline is a construction (admin,
+    2026-11-13: "why can't I enable/disable laws in all timelines?").  The
+    step between two rows is the same transition the ladder would compute, so
+    it is computed here with the reader's switches and handed to the page in
+    the ladder's own shape (`rules`, `fired`/`disabled`/`would`).
+
+    Only an adjacent pair of stages has a transition: the rungs between two
+    recorded stages are filled by `_chain_between`, so a step that jumps a
+    stage has no laws of its own and gets none.
+    """
+    a_stage = data.stage_of(str(above.get("lang") or "")) or str(above.get("lang") or "")
+    b_stage = data.stage_of(lang) or lang
+    chain = data.derivation_chain(b_stage)
+    if a_stage not in chain or b_stage not in chain:
+        return None
+    if chain.index(b_stage) - chain.index(a_stage) != 1:
+        return None
+    source = str(above.get("form") or "")
+    if not source:
+        return None
+    try:
+        trace, hops = derive_detailed(source, [a_stage, b_stage], data.rulesets(),
+                                      disabled=list(disabled), enabled=list(enabled))
+    except Exception:
+        return None
+    if not hops or len(trace.forms) < 2:
+        return None
+    hop = hops[0]
+    rules = []
+    for rule in hop.rules:
+        if not rule.get("fired") and not rule.get("disabled"):
+            continue
+        rules.append({"key": rule.get("key") or rule["id"], "id": rule["id"],
+                      "name": rule["name"], "tier": rule["tier"],
+                      "before": rule["before"], "after": rule["after"],
+                      "would": rule.get("would"),
+                      "fired": bool(rule.get("fired")),
+                      "disabled": bool(rule.get("disabled"))})
+    return {"from": source, "produced": str(trace.forms[1]),
+            "missing": bool(getattr(hop, "missing", False)),
+            "unreadable": bool(getattr(hop, "unreadable", False)),
+            "rules": rules}
+
+
 def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
                  seen: frozenset = frozenset(), build_depth: int = 0,
                  hint: str = "", quoted: tuple = (),
-                 given: dict | None = None) -> dict:
+                 given: dict | None = None,
+                 disabled=(), enabled=()) -> dict:
     """One word on a construction piece's own timeline (admin, 2026-11-12).
 
     A construction is not a line under the word: its pieces are words with
@@ -2546,7 +2597,8 @@ def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
     # page the word has, not to a row of someone else's branch.
     if entry and build_depth < _BUILD_DEPTH:
         stated = _rung_builds(entry, data.stage_of(lang), form,
-                              record_only=True, build_depth=build_depth + 1)
+                              record_only=True, build_depth=build_depth + 1,
+                              disabled=disabled, enabled=enabled)
         if stated:
             node["builds"] = stated
             node["built_as"] = stated[0]
@@ -2631,7 +2683,8 @@ def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
     p_lang, p_form, p_rel = chosen
     parent = _origin_node(p_lang, p_form, p_rel, depth + 1,
                           seen | {(p_lang, p_form)}, build_depth=build_depth + 1,
-                          hint=_ancestor_gloss(entry, p_form))
+                          hint=_ancestor_gloss(entry, p_form),
+                          disabled=disabled, enabled=enabled)
     # A construction of the ancestor may be stated in *this* entry, not in the
     # ancestor's own: Wiktionary writes *kit-ró-s = *keyt- + *-rós in its
     # article on *čitrás, and that page has no article of its own.  The row is
@@ -2641,7 +2694,8 @@ def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
     # keep going up, all of it, on the word's page).
     if build_depth < _BUILD_DEPTH and not parent.get("builds"):
         carried = _rung_builds(entry, data.stage_of(p_lang), p_form,
-                               record_only=True, build_depth=build_depth + 2)
+                               record_only=True, build_depth=build_depth + 2,
+                               disabled=disabled, enabled=enabled)
         if carried:
             parent["builds"] = carried
             parent["built_as"] = carried[0]
@@ -2658,11 +2712,18 @@ def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
     # piece drawn from that same record must show the same rungs, so the chain
     # between the parent and this word is filled with the forms the laws
     # produce — marked `derived`, never presented as recorded.
-    node["parents"] = _chain_between(lang, parent, data.derivation_chain(lang))
+    node["parents"] = _chain_between(lang, parent, data.derivation_chain(lang),
+                                     disabled=disabled, enabled=enabled)
+    # The laws of this row: what carried the row above it into this word, in
+    # the ladder's own shape, so every timeline shows its switches (admin,
+    # 2026-11-13).
+    node["step"] = _step_laws(node["parents"][0], form, lang,
+                              disabled=disabled, enabled=enabled)
     return node
 
 
-def _chain_between(lang: str, parent: dict, chain: list[str]) -> list[dict]:
+def _chain_between(lang: str, parent: dict, chain: list[str],
+                   disabled=(), enabled=()) -> list[dict]:
     """The recorded parent, wrapped in the rungs the laws reach it through.
 
     A word's ladder runs one rung per stage of its chain, deriving each form
@@ -2686,7 +2747,8 @@ def _chain_between(lang: str, parent: dict, chain: list[str]) -> list[dict]:
     stages = [p_stage] + [s for s in chain[first + 1:last + 1]]
     try:
         forms = list(derive_detailed(str(parent.get("form") or ""), stages,
-                                     data.rulesets())[0].forms)
+                                     data.rulesets(), disabled=list(disabled),
+                                     enabled=list(enabled))[0].forms)
     except Exception:
         return [parent]
     if len(forms) != len(stages):
@@ -2724,6 +2786,14 @@ def _chain_between(lang: str, parent: dict, chain: list[str]) -> list[dict]:
             rungs[-1]["parents"] = [rung]
         rungs.append(rung)
     rungs[-1]["parents"] = [parent]
+    # Every rung carries the laws that produced it, so the column shows the
+    # same switches the ladder shows (admin, 2026-11-13).
+    for rung in rungs:
+        above = (rung.get("parents") or [None])[0]
+        if above:
+            rung["step"] = _step_laws(above, str(rung.get("form") or ""),
+                                      str(rung.get("lang") or ""),
+                                      disabled=disabled, enabled=enabled)
     return [rungs[0]]
 
 
@@ -3233,7 +3303,7 @@ def _built_row_names(row: dict, form: str, stage: str) -> bool:
 
 
 def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
-                 build_depth: int = 0) -> list[dict]:
+                 build_depth: int = 0, disabled=(), enabled=()) -> list[dict]:
     """The constructions the record states for a form, at its own stage.
 
     Every row is one analysis the dictionary itself prints: English ``about``
@@ -3414,11 +3484,10 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
                 # باش (the stem of بودن) keeps the ladder that reaches PIE
                 # *bʰewH- (critic batch 07, 2026-11-13).  Only a morpheme with
                 # no entry of its own has no column.
-                "branch": None if (bound and not piece) else _origin_node(lang, form_piece,
-                                                          build_depth=build_depth,
-                                                          hint=sense or "",
-                                                          quoted=piece_anc,
-                                                          given=piece),
+                "branch": None if (bound and not piece) else _origin_node(
+                    lang, form_piece, build_depth=build_depth,
+                    hint=sense or "", quoted=piece_anc, given=piece,
+                    disabled=disabled, enabled=enabled),
         })
         # A join is two pieces or more — except a word the record states as
         # *formed from* a single word, which is the whole of its history:
@@ -4408,6 +4477,140 @@ def unrecorded_ancestry(entry: dict, chain: list[str]) -> list[dict]:
     return list(unique.values())
 
 
+#: Bands already measured for the ancestor check, keyed by (lang, word), and
+#: the data they were measured from.  A band depends on the glossaries and the
+#: laws, so an edit invalidates the whole dict rather than one key — and the
+#: glossary indexes this reads are process-lifetime caches for the same reason.
+_BAND_MEMO: dict[tuple[str, str], dict | None] = {}
+_BAND_DATA: tuple | None = None
+#: The words whose bands are being measured right now.  A record that names its
+#: own descendant would otherwise recurse for ever.
+_BAND_PATH: set[tuple[str, str]] = set()
+
+#: Bands that say a word is explained, or say why it needs no explanation above
+#: it.  Anything else is a word the page marks as unfinished.
+_GREEN_BANDS = frozenset({"full", "adjusted", "built", "non_pie", "ie_loan"})
+
+
+def _ancestor_band(lang: str, word: str) -> dict | None:
+    """The band this word's own page gives it, measured the same way.
+
+    A word is explained by the words above it, so a page may not be greener
+    than the rungs it draws (admin, 2026-11-13: fa آبجو read "fully explained"
+    while the Old Persian ancestor it links to read "partially explained").  The
+    ancestor's band is the whole answer: its own page already absorbed its own
+    ancestors, its holes and its last mile, so one row per drawn word is the
+    rule rather than a separate walk of the family.
+
+    The measurement is memoised, and the memo is dropped when the glossaries or
+    the laws change, so a page never reports a band measured from other data.
+    """
+    global _BAND_DATA
+    stamp = tuple(sorted(data.measurement_inputs().items()))
+    if stamp != _BAND_DATA:
+        _BAND_MEMO.clear()
+        _BAND_DATA = stamp
+    key = (str(lang), str(word))
+    if key in _BAND_MEMO:
+        return _BAND_MEMO[key]
+    if key in _BAND_PATH:
+        return None
+    _BAND_PATH.add(key)
+    try:
+        page = hierarchy(*key)
+    except Exception:
+        page = None
+    finally:
+        _BAND_PATH.discard(key)
+    band = (page or {}).get("category")
+    _BAND_MEMO[key] = band
+    return band
+
+
+def drawn_words(rows: list[dict]) -> list[tuple[str, str]]:
+    """The words a timeline draws that this model holds an entry for.
+
+    Three shapes reach the page: a rung (the ancestor's form, with its own
+    record), a construction's piece (a word the headword is made of), and a node
+    of a piece's climb (the piece's own ancestor).  A bound morpheme is grammar,
+    not a word, and a rung no glossary heads is a hole the band already counts.
+    """
+    out: list[tuple[str, str]] = []
+    seen: set[tuple[str, str]] = set()
+
+    def add(stage: str, form: str) -> None:
+        found = _lemma_entry(stage, form) if form else None
+        if not found:
+            return
+        lang = str(found.get("lang") or stage)
+        word = str(found.get("word") or "")
+        # The top of the family carries no band (a PIE page has neither a
+        # category nor a coverage count) and a root is a relation, not a step,
+        # so neither can be a weaker ancestor than the word below it.
+        if (data.stage_of(lang) or lang) == ROOT_LANG:
+            return
+        if str(found.get("pos") or "").strip().lower() == "root":
+            return
+        if not word or (lang, word) in seen:
+            return
+        seen.add((lang, word))
+        out.append((lang, word))
+
+    def climb(node) -> None:
+        while isinstance(node, dict):
+            if node.get("known") and not node.get("bound"):
+                add(str(node.get("lang") or ""), str(node.get("form") or ""))
+            parents = node.get("parents") or []
+            node = parents[0] if parents else None
+
+    for row in rows:
+        stage = str(row.get("stage") or "")
+        record = row.get("recorded") or {}
+        if record.get("known"):
+            add(stage, str(record.get("headword") or record.get("w") or ""))
+        builds = [row.get("built_as"), *(row.get("builds") or [])]
+        for build in builds:
+            if not isinstance(build, dict):
+                continue
+            for piece in build.get("pieces") or []:
+                if not isinstance(piece, dict) or piece.get("bound"):
+                    continue
+                add(str(piece.get("lang") or stage), str(piece.get("form") or ""))
+                climb(piece.get("branch"))
+    return out
+
+
+def ancestor_failures(entry: dict, rows: list[dict],
+                      own: tuple[str, str]) -> list[dict]:
+    """The drawn words whose own page is not fully explained.
+
+    ``own`` is the page's own (lang, word), which is not its own ancestor.  A
+    word whose band is missing altogether (a language outside the chain, a
+    morpheme) is not weak: the page cannot say it is unfinished, so it says
+    nothing.
+    """
+    out: list[dict] = []
+    for lang, word in drawn_words(rows):
+        if (lang, word) == own:
+            continue
+        stage = data.stage_of(lang) or lang
+        if (stage, entry.get("word")) == (data.stage_of(own[0]) or own[0], own[1]):
+            continue
+        band = _ancestor_band(lang, word)
+        category = str((band or {}).get("category") or "")
+        if not category or category in _GREEN_BANDS:
+            continue
+        out.append({"stage": stage,
+                    "name": _lang(stage).get("name", stage),
+                    "form": word,
+                    "written": ("*" if kind_of(stage) == "proto" else "")
+                    + word.lstrip("*"),
+                    "band": category,
+                    "via": str(entry.get("word") or ""),
+                    "kind": "ancestor"})
+    return out
+
+
 def ancestor_starts(entry: dict, chain: list[str],
                     keep_formed: bool = False) -> list[tuple[str, str]]:
     """Every usable ancestor form recorded for this word, PIE first.
@@ -4668,10 +4871,26 @@ def _derive_each_start(entry: dict, chain: list[str], disabled: Iterable[str] = 
     return out
 
 
+def _page_ancestors(entry: dict, rows: list[dict]) -> list[dict]:
+    """The drawn words of this page whose own page is not fully explained.
+
+    The page's own word is pushed onto the in-progress set first, so a record
+    that names its own descendant is skipped instead of measured twice.
+    """
+    own = (str(entry.get("lang") or ""), str(entry.get("word") or ""))
+    keys = {own, (data.stage_of(own[0]) or own[0], own[1])}
+    _BAND_PATH.update(keys)
+    try:
+        return ancestor_failures(entry, rows, own)
+    finally:
+        _BAND_PATH.difference_update(keys)
+
+
 def _category_of(entry: dict, chain: list[str], exact: dict | None,
                  own_pathway: dict | None, written_match: bool,
                  cited_stem: dict | None, deepest: dict | None,
-                 mismatched_steps=(), start_stage: str = "") -> dict:
+                 mismatched_steps=(), start_stage: str = "",
+                 weak_ancestors=()) -> dict:
     """The coverage band this word belongs to, from the page's own facts.
 
     The same pure function the counter uses (`pie.categories.verdict`), so a
@@ -4762,6 +4981,10 @@ def _category_of(entry: dict, chain: list[str], exact: dict | None,
         # a timeline with a hole in it is partial however exact the last mile
         # (admin, 2026-11-13).
         missing_steps=unrecorded_ancestry(entry, chain),
+        # A word is explained by the words above it: a green band over a rung
+        # whose own page is yellow or red claims more than the page shows
+        # (admin, 2026-11-13: fa آبجو over a partially explained Old Persian).
+        weak_ancestors=weak_ancestors,
     )
     if verdict["category"] == "unexplained":
         # The page says the same thing the counter says: not only that there is
@@ -5076,8 +5299,14 @@ def _page_category(entry: dict, lang: str, ladder: dict | None,
         # and prints “no entry for this word” over it, so no published band may
         # call the word green beside it (admin, 2026-11-13: fa آبجو read
         # “fully explained” above exactly that line, because the index was
-        # measured before a compound's pieces were walked).
-        if own and own.get("category") == "partial" and own.get("missing_steps"):
+        # measured before a compound's pieces were walked).  A drawn ancestor
+        # whose own page is yellow is the same claim one link away, the
+        # ladder's own last rung disagreeing with its record is one more, and
+        # the ladder is the only thing that measures either — so a yellow page
+        # stays yellow whatever the last published run said (admin,
+        # 2026-11-13: peo 𐎭𐎼𐎢𐎥 printed “fully explained” over a rung whose
+        # laws give draug where the record reads drauga).
+        if own and own.get("category") == "partial":
             return own
         return _published_category(published, own)
     return own
@@ -6264,7 +6493,8 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
             # The ladder's first rung is the record it starts from, not
             # something a law derived: same form, different claim.
             block["starts"] = bool(index == 0 and not edited and block["same"])
-        builds = _rung_builds(entry, stage, version)
+        builds = _rung_builds(entry, stage, version, disabled=disabled,
+                              enabled=enabled)
         if not builds and stage != lang:
             # A rung above the headword is explained by its *own* entry: the
             # Proto-Indo-European ancestor of Proto-Iranian *háxā is
@@ -6275,7 +6505,8 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
             # the page the word has, not to an ancestor's rung.
             above = _lemma_entry(stage, version)
             if above:
-                builds = _rung_builds(above, stage, version, record_only=True)
+                builds = _rung_builds(above, stage, version, record_only=True,
+                                      disabled=disabled, enabled=enabled)
         rows.append({
             "stage": stage,
             "name": row.get("name", stage),
@@ -6534,7 +6765,8 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
         "exact": exact,
         "category": (None if (edited or built) else _category_of(
             entry, chain, exact, own_pathway, written_match, cited_stem, deepest,
-            [step["stage"] for step in steps_differ], start_stage)),
+            [step["stage"] for step in steps_differ], start_stage,
+            _page_ancestors(entry, rows))),
         # Which recorded stages disagree, with both forms: the page prints the
         # list under the band instead of leaving "with adjustments" unexplained.
         "steps_differ": steps_differ,

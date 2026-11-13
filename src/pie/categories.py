@@ -168,12 +168,40 @@ def step_row(stages) -> dict:
             "mismatched_steps": [str(s) for s in stages]}
 
 
+def _weak_sentence(rows: list[dict]) -> str:
+    """Say which drawn ancestor is not fully explained, and how.
+
+    One or two are named and the rest counted: the band is one italic line on a
+    page that means to stay small, and the first named ancestor is the one the
+    reader meets first on the ladder.
+    """
+    def named(row: dict) -> str:
+        name = str(row.get("name") or row.get("stage") or "")
+        form = str(row.get("written") or row.get("form") or "")
+        return f"{name} {form}".strip()
+
+    def label(row: dict) -> str:
+        return CATEGORIES.get(str(row.get("band") or ""), {}).get(
+            "label", "not explained")
+
+    if len(rows) == 1:
+        return f"its ancestor {named(rows[0])} is {label(rows[0])}"
+    same = len({str(row.get("band") or "") for row in rows[:2]}) == 1
+    if same:
+        head = f"its ancestors {named(rows[0])} and {named(rows[1])} are {label(rows[0])}"
+    else:
+        head = (f"its ancestors {named(rows[0])} ({label(rows[0])}) and "
+                f"{named(rows[1])} ({label(rows[1])}) are not fully explained")
+    return head + (f" — {len(rows)} in all" if len(rows) > 2 else "")
+
+
 def verdict(*, recorded: bool, non_ie: bool = False, ie_loan: bool = False,
             matched_by: str | None = None, tiers=(), approved: bool = False,
             pie_linked: bool = False, mismatched_steps=(),
             from_pie: bool = False, start_name: str = "",
             built_from=(), built_note: str = "",
-            construction: dict | None = None, missing_steps=()) -> dict:
+            construction: dict | None = None, missing_steps=(),
+            weak_ancestors=()) -> dict:
     """One word's category from the facts the counter measured.
 
     ``matched_by`` is the strongest thing that worked: ``laws`` (the derived form
@@ -213,6 +241,18 @@ def verdict(*, recorded: bool, non_ie: bool = False, ie_loan: bool = False,
     ("every segment starts from PIE, the laws or a registered construction
     produce the word, and everything matches what is recorded") that was not
     measured before 2026-11-13.
+
+    ``weak_ancestors`` are the words this timeline *draws* — a rung, a
+    construction's piece, a node of a piece's climb — whose own page is not
+    fully explained.  A word is explained by the words above it, so a green
+    band over a yellow or red ancestor claims more than the page shows: fa آبجو
+    read "fully explained" over an Old Persian ancestor whose own page says
+    "partially explained" (admin, 2026-11-13: "A word can't be fully explained
+    if any ancestor of it is partially explained or non-existent").  The
+    ancestor's band already absorbed its own ancestors, so one row per drawn
+    word is the whole rule.  A word outside the family (`non_pie`, `ie_loan`)
+    and a word whose band is a `built` formation are not weak: their own page
+    says what they are, and nothing above them is missing.
     """
     if non_ie:
         return {"category": "non_pie", "reason": "non-ie source"}
@@ -239,6 +279,8 @@ def verdict(*, recorded: bool, non_ie: bool = False, ie_loan: bool = False,
     # the explanation of a stage, not a property of the last mile
     # (admin, 2026-11-13).
     holes = [row for row in (missing_steps or ()) if isinstance(row, dict)]
+    weak = [row for row in (weak_ancestors or ()) if isinstance(row, dict)]
+    reasons: list[str] = []
     if holes:
         # Two kinds of hole reach this point: a recorded rung whose word the
         # glossary does not hold (the page prints "no entry for this word"), and
@@ -258,15 +300,21 @@ def verdict(*, recorded: bool, non_ie: bool = False, ie_loan: bool = False,
                              f"{r.get('written') or r.get('form')}" for r in rows[:3])
             more = "" if len(rows) <= 3 else f" and {len(rows) - 3} more"
             return text + more
-        reasons = []
         if any(str(r.get("kind") or "") != "origin" for r in holes):
             reasons.append(f"no entry for {_named(None)}")
         if any(str(r.get("kind") or "") == "origin" for r in holes):
             reasons.append(f"no recorded origin for {_named('origin')}")
-        return {"category": "partial",
-                "reason": "; ".join(reasons),
-                "missing_steps": [str(row.get("stage") or "") for row in holes],
-                "missing": holes}
+    if weak:
+        reasons.append(_weak_sentence(weak))
+    if reasons:
+        row = {"category": "partial", "reason": "; ".join(reasons)}
+        if holes:
+            row["missing_steps"] = [str(r.get("stage") or "") for r in holes]
+            row["missing"] = holes
+        if weak:
+            row["weak"] = weak
+            row["weak_steps"] = [str(r.get("stage") or "") for r in weak]
+        return row
 
     # A word the record builds out of its own words is derived by that
     # construction, not by a law: *andaswarō is *anda- + *swarō, and neither

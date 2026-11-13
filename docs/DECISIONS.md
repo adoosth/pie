@@ -4558,10 +4558,67 @@ So:
 * A rung the laws produce between two recorded stages is labelled **no entry for
   this word**, with the derivation beneath it («the laws produce it from
   *ná»), and the hover says the same thing. The page never states an entry and
-  its absence side by side.
+  its absence side by side. *(Superseded later the same day: the second half is
+  gone — see "The missing-entry line says one thing" below.)*
 * `service._unheld_chain` reports such rungs as holes of their own kind, and
   `categories.verdict` refuses every green route while one exists:
   «no entry for Middle Persian n, Old Persian nˈa, Proto-Iranian *nˈa».
 * The rung is not deleted: the climb is still drawn (the admin asked in
   v0.17.20 that a form bring its whole timeline), it simply stops pretending the
   model holds what it does not.
+
+## A word is never greener than the words above it (2026-11-13, admin)
+
+fa **آبجو** read «fully explained» while its Old Persian ancestor
+(𐎠𐎱𐎡𐎹𐎠, which the timeline links to) read «partially explained». The
+admin's ruling: *a word can't be fully explained if any ancestor of it is
+partially explained or non-existent.*
+
+So:
+
+* `service.drawn_words` collects every word a timeline **draws** — a rung, a
+  construction's piece, a node of a piece's climb — and `ancestor_failures`
+  asks each of them for **its own band** (`_ancestor_band`, the same
+  `hierarchy()` the page uses, memoised and dropped when the glossaries or the
+  laws change). A word whose ancestor is `partial` or `unexplained` is
+  `partial`, and the reason names one or two of them: «its ancestors Middle
+  Persian ʾp̄ and Old Persian 𐎠𐎱𐎡𐎹𐎠 are partially explained — 5 in all».
+* The ancestor's own band is the whole rule: it already absorbed *its*
+  ancestors, its holes and its last mile, so one row per drawn word is enough
+  and the walk never recurses twice.
+* Three shapes are never weak: a **Proto-Indo-European** page (it carries no
+  band at all), a **root** (a relation, not a step) and a word outside the
+  family (`non_pie`, `ie_loan`) or a `built` formation — their own page says
+  what they are and nothing above them is missing.
+* The published index may not overrule a yellow page: a `partial` ladder keeps
+  its own verdict, so a word cannot print green over a rung whose own page is
+  yellow, a hole, or a last rung whose laws do not reproduce the record.
+
+## Every timeline shows its laws, and every law has its switch (2026-11-13, admin)
+
+*why can't I enable/disable laws in all timelines? … Apparently having a
+"construction" makes the transformation laws not be shown anymore.* A word
+whose record states a construction starts its ladder at the word itself, so the
+only ancestry on the page is the construction's columns — and those columns
+were words **without laws**, hence without switches.
+
+So:
+
+* `service._step_laws` derives each adjacent pair of rows in a column exactly as
+  the ladder derives a rung, and hands the result to the page in the ladder's
+  own shape (`rules` with `fired`/`disabled`/`would`, `produced`). It is computed
+  with the reader's `off` set, so a switch recomputes the column too.
+* The rungs `_chain_between` fills between two recorded stages carry their own
+  step, and so does the piece itself; only a step that jumps a stage has none.
+* The page draws those chips **inside the row they produced** (`claws`), with
+  the ladder's own switch buttons, so `#ladder`'s existing handler and
+  `/api/hierarchy?off=…` work unchanged.
+* A tree that carries any law reserves one more band under **every** row of
+  every column (`.has-laws`), so two pieces' ancestors keep sharing a line.
+
+## The missing-entry line says one thing (2026-11-13, admin)
+
+*«no entry for this word · the laws produce it from *ná» — we don't need the
+second sentence, it is obvious and unnecessary to state again.* The rung now
+says **no entry for this word** and nothing else; the chips between the rows
+say what fired, and the hover says «no glossary entry at this stage».
