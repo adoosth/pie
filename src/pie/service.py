@@ -3094,6 +3094,18 @@ def _suffix_slot(kind: str, index: int, count: int) -> bool:
     return kind == "suffix" and count > 1 and index == count - 1
 
 
+def _suffix_spelling(form: str) -> bool:
+    """Whether a piece writes itself as a suffix, whatever its formation kind.
+
+    A leading hyphen or Persian tatweel (``-tós``, ``ـکش``) says the piece is
+    bound: it is the stage's grammar and has no history of its own, so the hole
+    list must not walk it.  اسپرم‌کش's ـکش was walked into کَش «armpit» and its
+    Proto-Iranian and PIE ancestors were reported as missing entries (critic
+    batch 12, 2026-11-13).
+    """
+    return str(form or "").startswith(("-", "ـ", "*-"))
+
+
 def _bound_piece(kind: str, form: str, index: int) -> bool:
     """Whether a piece is a bound morpheme of the stage, not a word.
 
@@ -4300,7 +4312,8 @@ def unrecorded_ancestry(entry: dict, chain: list[str]) -> list[dict]:
         pieces.append((raw,
                        _stated_piece_ancestry(piece[2])
                        if isinstance(piece, (list, tuple)) and len(piece) > 2 else (),
-                       _bound_piece(str(own_row.get("kind") or ""), raw, index)))
+                       _bound_piece(str(own_row.get("kind") or ""), raw, index)
+                       or _suffix_spelling(raw)))
     for join in _compound_pieces(entry, own_stage):
         # A join's own row says which of its pieces are bound (a suffix written
         # with its hyphen), and a bound piece is grammar, not a word: without
@@ -4311,6 +4324,7 @@ def unrecorded_ancestry(entry: dict, chain: list[str]) -> list[dict]:
             raw = str(p.get("word") or "")
             pieces.append((raw, (),
                            _bound_piece(kind, raw, index)
+                           or _suffix_spelling(raw)
                            or normalise_etymon(raw) in _bound_forms(own_stage)))
     for raw, piece_anc, bound in pieces:
         form = normalise_etymon(raw)
