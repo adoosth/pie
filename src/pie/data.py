@@ -13,6 +13,7 @@ from typing import Iterable
 
 import yaml
 
+from . import notation
 from .rules import RuleSet
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -405,7 +406,7 @@ def structures() -> dict[str, dict[str, dict]]:
 
 
 #: Bumped when the shape of a parsed glossary row changes.
-LEXICON_VERSION = 1
+LEXICON_VERSION = 2  # 2: headwords are folded into the stage's standard notation
 
 
 def lexicon_paths() -> list[Path]:
@@ -452,6 +453,12 @@ def _parse_lexicon(file: Path, opener, lang: str, limit: int | None = None) -> l
                 entry["pos_label"] = label["pos_label"]
                 if label["structure"]:
                     entry["structure"] = dict(label["structure"])
+            # One word, one spelling: a stage that states a standard alphabet
+            # (data/notation/) is read in it, whoever wrote the row (admin,
+            # 2026-11-13: jaw and ǰaw were two entries for "barley").
+            word = notation.canonical(lang, entry.get("word") or "")
+            if word:
+                entry["word"] = word
             rows.append(entry)
             if limit and len(rows) >= limit:
                 break

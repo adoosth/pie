@@ -13,7 +13,7 @@ from functools import lru_cache
 from typing import Iterable
 from urllib.parse import quote
 
-from . import attestation, data, pathways, senses
+from . import attestation, notation, data, pathways, senses
 from . import review as review_queue
 from . import wiktionary as wiktionary_pages
 from .phonology import detokenize, letters, tokenize
@@ -136,6 +136,24 @@ class _WordIndex(Mapping):
 
 
 @lru_cache(maxsize=1)
+@lru_cache(maxsize=None)
+def _quoted_index(lang: str) -> dict[str, list[dict]]:
+    """Spellings a row was quoted under before it took its reading.
+
+    A Middle Persian entry headed ``xwāb`` keeps the Pahlavi spelling the
+    dictionary printed (``hwʾb``); that spelling is still a name for the word,
+    so an old link opens it instead of saying the stage records nothing
+    (2026-11-13).  The alias is kept out of the glossary index, where it would
+    list the word twice.
+    """
+    out: dict[str, list[dict]] = {}
+    for entry in data.lexicon(lang):
+        quoted = entry.get("translit_quoted") or ""
+        if quoted:
+            out.setdefault(str(quoted), []).append(entry)
+    return out
+
+
 def word_index() -> Mapping:
     return _WordIndex()
 
@@ -1898,6 +1916,13 @@ def _lemma_index(lang: str) -> dict[str, dict]:
         # Case is spelling, not a sound, and one more key per word costs a
         # dictionary slot only where the two differ (2026-11-12).
         out.setdefault(normalise_etymon(word).casefold(), rows[0])
+        for entry in rows[:1]:
+            # The spelling a row was quoted under before it took its reading
+            # (Pahlavi hwʾb → xwāb) is still a name for the same entry, so an
+            # old link opens the word and not an empty page (2026-11-13).
+            quoted = entry.get("translit_quoted") or ""
+            if quoted:
+                out.setdefault(normalise_etymon(quoted), entry)
         if "\u200c" in word:
             # The same headword without the seam: a composed Persian compound
             # is written with the ZWNJ and the dictionary may head it without
@@ -2021,6 +2046,16 @@ def _lemma_entry(lang: str, form: str) -> dict | None:
     record = _lemma_index(lang).get(key) or _lemma_index(lang).get(key.casefold())
     if record:
         return record
+    # A word the record quotes in another notation is the entry the stage
+    # spells its own way: Middle Persian *jaw* is the glossary's ǰaw, and a
+    # page or a rung that said "no entry" beside that entry was wrong (admin,
+    # 2026-11-13).
+    spelled = notation.canonical(lang, key)
+    if spelled and spelled != key:
+        record = (_lemma_index(lang).get(spelled)
+                  or _lemma_index(lang).get(spelled.casefold()))
+        if record:
+            return record
     # The engine writes stress as a token before the syllable (Hnˈawa) and a
     # dictionary writes it as an acute on the vowel (Hnáwa, headed hnáwa) or
     # not at all (naht).  The token is notation, so an ancestor spelled with it
@@ -6049,6 +6084,11 @@ def _record_block(stage: str, here: dict | None, match_form: str | None,
     stage_entry = (_own_stage_entry(stage, primary, word_entry)
                    or _sense_entry(stage, primary,
                                    _ancestor_gloss(word_entry or {}, primary)))
+    # The spelling a row was quoted under before it took its reading (hwʾb →
+    # xwāb): the signs are still the signs of that spelling, so the script
+    # match reads them, and the rung prints the quoted writing beside the
+    # reading (admin, 2026-11-13).
+    quoted = (stage_entry or {}).get("translit_quoted") or ""
     if stage_entry is word_entry:
         pron = {**readings_for(word_entry), "documented": True}
     else:
@@ -6079,6 +6119,11 @@ def _record_block(stage: str, here: dict | None, match_form: str | None,
     matches = bool(match_form) and any(_same_form(match_form, f) for f in forms)
     via = None
     readings = [pron["reading"], *(attested_spellings(stage_entry) if stage_entry else [])]
+    if quoted and stage_entry.get("word"):
+        # The entry is headed by the reading now, and that reading is what the
+        # record says: the signs may allow another, and only the reading the
+        # dictionary states can earn a ✓ (2026-11-13).
+        readings.insert(0, stage_entry["word"])
     if not matches and match_form and any(readings):
         # A record written in its own script is matched by its reading:
         # Pahlavi gwlg is the word MacKenzie reads gurg, and the laws
@@ -6096,7 +6141,7 @@ def _record_block(stage: str, here: dict | None, match_form: str | None,
         # signs are two facts, and the page that shows the green must show the
         # letters it was read from (2026-11-09: k-a-r is not a spelling of
         # kāraʰ, and the rung had stopped naming the signs).
-        for recorded_form in forms:
+        for recorded_form in ([quoted] if quoted else []) + list(forms):
             candidate = script.match(stage, match_form, recorded_form)
             if not (candidate and candidate["ok"]):
                 fit = None
@@ -6190,6 +6235,15 @@ def _record_block(stage: str, here: dict | None, match_form: str | None,
         "modelled": _has_glossary(stage),
         "headword": headword or "",
     }, stage, primary)
+    if quoted and stage_entry.get("word") == primary:
+        # A row quoted under a Pahlavi spelling is headed by its reading now
+        # (hwʾb → xwāb), and the rung prints the writing the dictionary quoted
+        # with the reading beside it — a script is unreadable without one
+        # (2026-11-13).
+        payload["w"] = quoted
+        payload["reading"] = primary
+        payload["reading_how"] = "recorded"
+        payload["show_reading"] = True
     if near:
         payload["unverified"] = True
         payload["review"] = near.get("review") or {"form": match_form,
@@ -6274,6 +6328,8 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
     names a word in terms of itself cannot loop.
     """
     entries = word_index().get((lang, form))
+    if not entries:
+        entries = _quoted_index(lang).get(form)
     if not entries and "\u200c" in form:
         twin = _seam_index(lang).get(form.replace("\u200c", ""))
         entries = word_index().get((lang, twin)) if twin else None
@@ -10361,6 +10417,8 @@ def word(lang: str, form: str, disabled: Iterable[str] = (),
     reader's (2026-11-09).
     """
     entries = word_index().get((lang, form))
+    if not entries:
+        entries = _quoted_index(lang).get(form)
     if not entries and "\u200c" in form:
         # The seam is spelling: a link that writes آب‌خانه opens the headword
         # the dictionary spells آبخانه (2026-11-10).

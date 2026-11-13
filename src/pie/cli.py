@@ -368,6 +368,45 @@ def cmd_spell(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_notation(args: argparse.Namespace) -> int:
+    """The stage's standard alphabet, and every headword that leaves it."""
+    from . import data, notation
+    langs = [args.lang] if args.lang else notation.languages()
+    if not langs:
+        print("no notation tables yet — see data/notation/", file=sys.stderr)
+        return 1
+    status = 0
+    for lang in langs:
+        table = notation.table(lang)
+        if not table:
+            print(f"{lang}: no notation table", file=sys.stderr)
+            status = 1
+            continue
+        words = [row.get("word") or "" for row in data.lexicon(lang)]
+        variants = notation.variants(lang, words)
+        bad = notation.offenders(lang, words)
+        quoted = [w for w in words if notation.is_quoted(lang, w)]
+        if args.json:
+            print(json.dumps({"lang": lang, "letters": "".join(sorted(notation.letters(lang))),
+                              "basis": table.get("basis"), "words": len(words),
+                              "variants": variants, "outside": bad,
+                              "quoted": len(quoted)}, ensure_ascii=False, indent=1))
+            continue
+        print(f"{lang}: {table.get('name') or lang} — standard {table.get('basis')}")
+        print(f"  letters  {table.get('letters')}")
+        for variant, folded in (table.get("folds") or {}).items():
+            print(f"  fold     {variant} → {folded}")
+        print(f"  {len(words)} headwords · {len(quoted)} quoted · "
+              f"{len(variants)} variants · {len(bad)} outside the alphabet")
+        for word, maths in variants[:20]:
+            print(f"    variant  {word} ({maths})")
+        for word, maths in bad[:20]:
+            print(f"    outside  {word}  {maths}")
+        if variants:
+            status = 1
+    return status
+
+
 def cmd_worklist(args: argparse.Namespace) -> int:
     from . import worklist
 
@@ -459,6 +498,11 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("--json", action="store_true")
     sp.add_argument("--write", action="store_true", help="write docs/WORKLIST.md and data/worklist.json")
     sp.set_defaults(func=cmd_worklist)
+
+    sp = sub.add_parser("notation", help="a stage's standard alphabet, and headwords outside it")
+    sp.add_argument("lang", nargs="?")
+    sp.add_argument("--json", action="store_true")
+    sp.set_defaults(func=cmd_notation)
 
     sp = sub.add_parser("stats", help="dataset overview")
     sp.set_defaults(func=cmd_stats)

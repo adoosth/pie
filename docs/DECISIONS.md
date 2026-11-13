@@ -1,3 +1,53 @@
+## 2026-11-13 — one romanisation per stage, and no word spelled twice
+
+**What.** The MPCD pull wrote Middle Persian with ǰ and č; the glossary's other
+sources wrote j and c, and Wiktionary heads a word by its Pahlavi
+*transliteration* (hwʾb) beside its reading (xwāb). So `pal/jaw` and `pal/ǰaw`
+were two entries for "barley" (admin, 2026-11-13), and a page could print a
+transliteration where the model promises a romanisation.
+
+**A stage states one alphabet.** `data/notation/<lang>.yaml` names the standard
+letters, the folds that reach them, and the sources whose headword may be a
+transliteration rather than a reading. Middle Persian's standard is MPCD's own
+notation — the stage's corpus, its largest source, and the notation its
+dictionary pages use — with *a ā b č d e ē f g γ h i ī ǰ k l m n o ō p r s š
+t u ū w x y z ž ʾ*. The folds (`j → ǰ`, `c → č`, `ğ → γ`, `ê → ē` …) are
+notation: they rename no word, they write it the way the corpus writes it.
+
+**A transliteration takes its own reading.** A row from a source that prints a
+spelling rather than a reading (MacKenzie's brackets, Wiktionary's
+transliteration) keeps the reading its record states (`phon`, then `translit`
+where the source uses that field for a reading) and stores the spelling it was
+quoted under in `translit_quoted`. The rung then prints both — *lwc · rōz*,
+*hwʾb · xwāb* — because the writing and the reading are two facts. Only a
+candidate that spells the standard alphabet is used, so a damaged spelling
+(MacKenzie's `ypytl | M y ydt N ~`) is never promoted to a headword. A headword
+written in a script (𐫀𐫡𐫘) is a writing, not a transliteration, and stays.
+
+**Every headword is folded, and duplicates become one entry.** `data.lexicon`
+folds a headword at load (`LEXICON_VERSION` 2), so an importer cannot bring a
+variant back, and every lookup — a page, an ancestor, a piece — resolves the
+old spelling through `notation.canonical` and the quoted spelling through a
+small alias index. `tools/unify_notation.py` folds the stored corpus once and
+merges the rows that now name the same word *and the same senses*: Middle
+Persian went 17,153 rows → 16,981, 36 headwords folded, 192 romanised from a
+transliteration, 172 rows merged. Containment alone is not enough to merge:
+MacKenzie files a homograph group under one headword (his az entry carries
+"except", "fertile", "dragon" and the preposition), so a subset rule once
+merged four different words into one (`bundled_sources` in the table).
+
+**The check is a command.** `pie notation pal` prints the alphabet, the folds,
+and every headword that leaves them; a variant spelling is a failure (there are
+none), a quoted Avestan or transliterated form is listed as quoted, and the one
+row outside the alphabet (MPCD's stray `q`) is reported rather than hidden.
+
+**Two defects found on the way.** DejaVu Sans Mono, which `monospace` resolves
+to on Linux, draws ǰ with its caron detached and floated right in a slanted
+face, so a headword read "j ˇ aw"; the mono stack now names Liberation Mono and
+Noto Sans Mono. And the remaining worklist is named, not hidden: MacKenzie's
+1971 text lost its diacritics in the PDF pass (436 headwords keep a spelling
+that is not a reading) and 88 Wiktionary rows state no reading to take.
+
 ## 2026-11-13 — a timeline reads, it does not spell
 
 **What.** The rung for 𐎺𐎼𐎣 printed the cuneiform word alone (with a ✓) and

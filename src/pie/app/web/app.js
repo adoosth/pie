@@ -838,6 +838,19 @@ async function viewWord(lang, w, params) {
   }
   if (d.ghost) { ladderState = null; viewGhost(d); return; }
   if (d.pick) { ladderState = null; viewPick(d); return; }
+  /* One word, one address.  A spelling the stage writes another way (Middle
+     Persian jaw for ǰaw, a Pahlavi transliteration for the reading it was
+     quoted under) opens the entry, and the address follows the entry's own
+     spelling, so the link a reader copies names the word the glossary holds
+     (admin, 2026-11-13). */
+  if (d.word && d.word !== w) {
+    const tail = location.hash.split("?")[1];
+    const url = `#/word/${encodeURIComponent(lang)}/${encodeURIComponent(d.word)}${tail ? `?${tail}` : ""}`;
+    if (location.hash !== url) {
+      history.replaceState(null, "", url);
+      lastHref = location.href;
+    }
+  }
   /* The ladder is stateful: laws and the starting form are edited in place,
      and only the ladder re-renders — never the page. Proto-Indo-European has
      no ancestor, but it has a ladder all the same: one rung for the etymon,

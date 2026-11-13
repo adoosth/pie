@@ -1,0 +1,74 @@
+# Middle Persian romanisation — one alphabet for the whole stage.
+#
+# The corpus is written by three sources in three notations: MPCD (the
+# Zoroastrian Middle Persian Digital Corpus and Dictionary) romanises with
+# ǰ, č, š, ā …, MacKenzie's dictionary was typed in an ASCII fold (j for ǰ,
+# S for š), and Wiktionary prints the Pahlavi *transliteration* (hwʾb) beside
+# its reading (xwāb).  A glossary that keeps all three spells one word several
+# ways, and two spellings become two pages (admin, 2026-11-13: ǰaw and jaw
+# were separate entries for "barley").
+#
+# The standard is MPCD's: it is the stage's own corpus, it is the largest
+# source, and it is the notation its dictionary pages and attestation counts
+# use.  Every headword is folded into it; a row whose headword is not a
+# romanisation at all (a Pahlavi transliteration) takes the reading its own
+# record states, and keeps the spelling it was quoted under.
+#
+# This is notation, not sound: a fold never renames a word, it writes the
+# same word the way the corpus writes it.  Nothing here is applied to a
+# language without a table, and only `folds` is applied at read time.
+stage: pal
+name: Middle Persian
+basis: mpcd
+letters: "a ā b č d e ē f g γ h i ī ǰ k l m n o ō p r s š t u ū w x y z ž ʾ"
+
+#: Letters that write a standard letter another way.  A headword may never
+#: keep one: `pie notation pal` fails on any that does.
+folds:
+  j: ǰ
+  J: ǰ
+  c: č
+  C: č
+  ź: ž
+  ǧ: ǰ
+  ğ: γ
+  ê: ē
+  â: ā
+  î: ī
+  ô: ō
+  û: ū
+  ḫ: x
+  ẖ: x
+  ḵ: x
+
+#: Sources whose headword may be a transliteration rather than a
+#: romanisation.  A row of one of these takes its own recorded reading as its
+#: headword when it states one (`translit`, `phon`, or the reading table), and
+#: keeps the spelling it was quoted under in `translit_quoted`.
+romanise_sources: [mackenzie-1971, wiktionary]
+#: Where each source states the reading of the spelling it heads.  Wiktionary
+#: writes the word in Pahlavi and its reading beside it (``hwʾb`` · ``xwāb``,
+#: in both `phon` and `translit`); MacKenzie's bracket holds the Pahlavi
+#: spelling itself (``ypytl | M y ydt N ~``), so only his `phon` is a reading.
+reading_fields:
+  wiktionary: [phon, translit]
+  mackenzie-1971: [phon]
+
+#: Sources whose one row is not one word: MacKenzie's dictionary files a
+#: homograph group under one headword (his az carries "except", "fertile",
+#: "dragon" and the preposition in a single gloss), so such a row may not
+#: absorb a narrower entry by containment — only an equal sense set merges.
+bundled_sources: [mackenzie-1971]
+
+#: Signs that belong to a quotation from another language or to a
+#: transliteration, not to a Middle Persian romanisation: Avestan
+#: (ą ə β δ θ ϑ ŋ ṇ ṣ ń ᵛ ә v), the Semitic letters of the Pahlavi
+#: transliteration (ʾ ʿ ḥ ẕ ’ '), and the stress/length marks an edition adds.
+#: A headword carrying one is quoted, and `pie notation pal` reports it as
+#: such rather than as a bad romanisation.
+quoted_letters: "ą ə ̄ ́ ̆ ̊ ̌ ̰ β δ θ ϑ ŋ ṇ ṣ ṛ ń ᵛ ә v ’ ʿ ḥ ẕ ʾ '"
+#: MacKenzie's dictionary writes ideograms and proper nouns in capitals (ŠM,
+#: LWTE, Ard); a capital is his typography, never a different sound.
+quoted_capitals: true
+#: Script blocks whose characters are a writing system, not a romanisation.
+quoted_scripts: [Inscriptional Pahlavi, Psalter Pahlavi, Manichaean, Avestan]
