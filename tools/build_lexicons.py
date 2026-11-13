@@ -595,12 +595,21 @@ def merge_supplements() -> None:
         out_path = DATA / "lexicon" / f"{lang}.jsonl.gz"
         rows: list[dict] = []
         first: dict[str, dict] = {}
+        #: word → the parts of speech the glossary already heads it as.  A
+        #: supplement row whose pos is none of them is a **homonym**, not a
+        #: correction: fa مال is the Arabic noun «property», and the present
+        #: stem of مالیدن is another word that happens to be spelled so
+        #: (admin, 2026-11-13).  Without this the stem row was folded into the
+        #: loan and دستمال still read its مال as the Arabic word.
+        seen_pos: dict[str, set[str]] = {}
         if out_path.exists():
             with gzip.open(out_path, "rt", encoding="utf-8") as fh:
                 for line in fh:
                     row = json.loads(line)
                     rows.append(row)
                     first.setdefault(row["word"], row)
+                    seen_pos.setdefault(row["word"], set()).add(
+                        str(row.get("pos") or "").strip().lower())
         before = json.dumps(rows, ensure_ascii=False, sort_keys=True)
         added = 0
         with gzip.open(sp, "rt", encoding="utf-8") as fh:
@@ -610,9 +619,17 @@ def merge_supplements() -> None:
                 if not word:
                     continue
                 cur = first.get(word)
+                pos = str(row.get("pos") or "").strip().lower()
+                if (cur is not None and pos
+                        and pos not in seen_pos.get(word, set())):
+                    rows.append(row)
+                    seen_pos.setdefault(word, set()).add(pos)
+                    added += 1
+                    continue
                 if cur is None:
                     rows.append(row)
                     first[word] = row
+                    seen_pos.setdefault(word, set()).add(pos)
                     added += 1
                     continue
                 gl = cur.setdefault("gloss", [])

@@ -4522,3 +4522,25 @@ no W because the ledger was built over the glossary and never saw the title
 (critic peo-03). Only the page an entry was read from is claimed — nothing is
 synthesised for a word whose page is unknown. The peo supplement's rows also
 name `wiktionary` as their source, so their W opens the page (eight rows).
+
+## A verb stem is a word of the glossary (2026-11-13, admin)
+
+دستمال drew its **مال** as a bound morpheme — no dot, nothing above it — because
+the record writes the piece `مال (mâl-)` and a trailing hyphen had been read as
+"bound like a suffix". The admin's rule: *مال is not part of the morphology of
+the language; it is the stem of مالیدن, so it can be stored as a separate entry
+in the Persian glossary and the construction should combine them just like that.*
+
+So:
+
+* A stem the glossary heads is a **word**: دستمال = دست (noun, “hand”) + مال
+  (`pos: stem`, “present stem of مالیدن”), each with its own dot and its own
+  climb (مال → مالیدن).
+* `data/lexicon/_supplement/fa.jsonl.gz` carries the stems this model draws:
+  مال (مالیدن), کش (کشیدن), باش (بودن) — each `pos: stem`, `anc` to its
+  infinitive, `source: philology`, with a note saying where the record writes it.
+* A supplement row whose `pos` matches none of a word's existing rows is a
+  **homonym**, not a correction: مال “property” and مال “stem of مالیدن” are two
+  rows; the same merge added three real Old Persian homonyms (name/adj).
+* The only pieces that stay bound are the ones a record writes as morphemes
+  (‑دار, *-lom) or a suffix slot's ending. A stem is never one.

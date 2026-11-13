@@ -288,3 +288,13 @@ an entry still prints the laws' form in the word cell (`bˈarati` over an entry
 read *brtiy*, `tˈanū` over tanūš), so the record's own shape has to be read from
 the meaning line. Keep reporting it — one finding per page, and say whether the
 difference is notation (stress, h/ʰ) or a different word.
+
+## A verb stem is a word, never a suffix (admin, 2026-11-13)
+
+A record writes a verb stem with a trailing hyphen — «مال (mâl-)» in دستمال —
+and that hyphen means *the stem of a verb*, not *a bound morpheme of the
+language*. The stem is a word of the glossary (`pos: stem`, its own entry, its
+own climb to the infinitive), and the construction combines two words. When a
+page draws such a piece without a dot, calls it a suffix, or resolves it to a
+homograph (مال «property», کش «armpit»), that is a `wrong_piece` finding — and
+the fix is to file the stem, not to rename the piece.

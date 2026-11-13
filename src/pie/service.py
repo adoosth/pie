@@ -3047,6 +3047,13 @@ def _piece_entry(lang: str, form: str, gloss: str, etym: str = "",
     """
     form = _lookup_form(form) or form
     hint = _piece_hint(etym, form)
+    # A verb stem the glossary heads in its own right is that word: دستمال's
+    # مال is the present stem of مالیدن, filed as `مال` with `pos: stem`, and
+    # the construction combines the two words (admin, 2026-11-13).  The
+    # infinitive is the fallback only for a stem nothing files.
+    for row in _notation_entries(lang, form):
+        if str(row.get("pos") or "").strip().lower() == "stem":
+            return row
     if hint.endswith("-"):
         stem = _verb_stem_index(lang).get(form)
         if stem is not None:
@@ -3354,7 +3361,12 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
                 # گفتار's «ار» found the place-name ار; the row says the slot is
                 # an ending, so the morpheme — not that word — is drawn.
                 piece = None
-            bound = _bound_piece(kind, form_piece, index) or piece_stem or slot
+            # A *stem* is a word, not a morpheme: the glossary carries it (دستمال's
+            # مال is the present stem of مالیدن, filed as an entry) and the
+            # timeline draws it as a word with its own climb — the admin's rule,
+            # 2026-11-13.  Only a morpheme the record writes bound (‑دار, *-lom)
+            # or a suffix slot wears no dot.
+            bound = _bound_piece(kind, form_piece, index) or slot
             # The meaning under the word in the timeline (admin, 2026-11-12):
             # the row's own parenthesis when it has one, otherwise the sense
             # the piece's glossary entry gives it.  That fallback is what lets
