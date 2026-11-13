@@ -4513,3 +4513,12 @@ one that lists adjectives among nouns. Dehkhoda's own construction clause
 *opens* with its grammar note («نعت فاعلی از استزارة . زیارت خواهنده») keeps the
 meaning instead of the note; a name entry drops its respelling bracket and
 (اِخ) tag, and an attributed quotation («… آرد: …») is a citation, not a sense.
+
+**0.17.27 — a reconstruction carries its own page (2026-11-13).** Every entry
+read from Wiktionary's `Reconstruction:` namespace knows the page it came from,
+so `build_lexicons` writes that address on the record: `Reconstruction:<the
+language's Wiktionary name>/<the word>`. The 199 Old Persian reconstructions had
+no W because the ledger was built over the glossary and never saw the title
+(critic peo-03). Only the page an entry was read from is claimed — nothing is
+synthesised for a word whose page is unknown. The peo supplement's rows also
+name `wiktionary` as their source, so their W opens the page (eight rows).

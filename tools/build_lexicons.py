@@ -23,6 +23,7 @@ import re
 import sys
 from collections import Counter
 from pathlib import Path
+from urllib.parse import quote
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
@@ -87,6 +88,20 @@ PROTO = {
 ANCESTRY_TEMPLATES = {"inh", "inh+", "der", "der+", "bor", "bor+", "lbor", "slbor",
                       "cal", "calque", "uder"}
 TAG_RE = re.compile(r"<[^>]+>")
+
+
+def _language_name(lang: str) -> str:
+    """Wiktionary's own name for a language code, as its titles write it."""
+    path = DATA / "sources" / "wiktionary_language_names.json.gz"
+    if not hasattr(_language_name, "table"):
+        table: dict[str, str] = {}
+        try:
+            with gzip.open(path, "rt", encoding="utf-8") as fh:
+                table = (json.load(fh) or {}).get("names") or {}
+        except Exception:
+            table = {}
+        _language_name.table = table
+    return str(getattr(_language_name, "table").get(lang) or "")
 
 
 def is_reconstruction(entry: dict) -> bool:
@@ -772,6 +787,19 @@ def main() -> int:
                 # would otherwise claim a text spells them (2026-11-08).
                 if lang not in PROTO and is_reconstruction(entry):
                     rec["recon"] = True
+                if is_reconstruction(entry):
+                    # The entry was read from Wiktionary's Reconstruction:
+                    # namespace, so that page is the record's own address and
+                    # can be written here: 199 Old Persian reconstructions drew
+                    # no W because the ledger was built over the glossary and
+                    # never saw the title (critic peo-03, 2026-11-13).  Only a
+                    # page this entry came from is claimed — nothing is
+                    # synthesised for a word whose page is unknown.
+                    name = _language_name(lang)
+                    if name and rec.get("word"):
+                        rec["url"] = ("https://en.wiktionary.org/wiki/Reconstruction:"
+                                      + name.replace(" ", "_") + "/"
+                                      + quote(str(rec["word"]).replace(" ", "_")))
                 etym = clean(entry.get("etymology_text"), 300)
                 if etym:
                     # A tree's relation labels (der., bor., lbor. …) arrive
