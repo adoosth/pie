@@ -4622,3 +4622,29 @@ So:
 second sentence, it is obvious and unnecessary to state again.* The rung now
 says **no entry for this word** and nothing else; the chips between the rows
 say what fired, and the hover says «no glossary entry at this stage».
+
+## The published index obeys the ancestor rule too (2026-11-13, admin)
+
+The rule above is measured twice — on the page (`service._page_ancestors`) and
+in `tools/coverage.py`, which writes the band every glossary row wears. The
+counter measured only the last mile, so a row could stay **green** over a page
+that had just turned yellow: the same claim in two places, disagreeing — the
+class of fault the admin has caught five times.
+
+So:
+
+* `measure()` keeps, for every word it calls green, the words its page draws
+  above it (`_drawn_pairs`: the rungs of `ancestor_starts`, the same function
+  the page uses, and the pieces of its construction). A **bound morpheme is
+  grammar, not a word**, so it is not kept: ـدان and ـی are pieces of چایدان and
+  واری and neither may cost the word its band. `_bound_piece` now reads a
+  leading tatweel (`ـواری`) or asterisk as bound at any position — only a plain
+  hyphen still means "a prefix at the front, a suffix after it".
+* `demote_below_ancestors` is a second pass over those words, **oldest stage
+  first** so an ancestor's band is final before the word below it is read, and
+  repeated until nothing changes (a demotion makes the word weak for the words
+  below it). A `full`/`adjusted` word whose ancestor is `partial` or
+  `unexplained` becomes `partial`; the report's counts, the per-language
+  reasons and the index are changed together, never one of them alone.
+* It does not recurse: the ancestor's own band already absorbed its ancestors,
+  its holes and its last mile, exactly as on the page.

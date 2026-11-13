@@ -20,15 +20,15 @@ never a count and never in a denominator.
 
 | band | words | share | definition |
 |---|---:|---:|---|
-| **fully explained** (dark green) | 421 | 0.1% | A recorded origin — a PIE etymon carried by cited laws, or the record's own registered construction of explained pieces — reproduced exactly, every recorded intermediate matching. |
-| **fully explained, with adjustments** (light green) | 54 | 0.0% | The same path, but a recorded intermediate disagrees, or one step is an approved adjustment of ours. |
-| **partially explained** (yellow) | 131,786 | 34.6% | A recorded chain that does not reach the word from the PIE etymon in full: it starts lower, a recorded rung has no entry, or the laws do not reproduce it. |
-| **unexplained** (red) | 72,837 | 19.1% | No recorded etymology. |
+| **fully explained** (dark green) | 334 | 0.1% | A recorded origin — a PIE etymon carried by cited laws, or the record's own registered construction of explained pieces — reproduced exactly, every recorded intermediate matching. |
+| **fully explained, with adjustments** (light green) | 50 | 0.0% | The same path, but a recorded intermediate disagrees, or one step is an approved adjustment of ours. |
+| **partially explained** (yellow) | 131,880 | 34.6% | A recorded chain that does not reach the word from the PIE etymon in full: it starts lower, a recorded rung has no entry, or the laws do not reproduce it. |
+| **unexplained** (red) | 72,840 | 19.1% | No recorded etymology. |
 | **non-PIE** (dark grey) | 95,828 | 25.1% | Recorded as borrowed from outside the family. |
 | **loan from another IE language** (blue grey) | 72,037 | 18.9% | Borrowed from a sister branch; recorded, not derived by this chain. |
 | **built from its own words** (brown) | 8,150 | 2.1% | Made of the language's own words, or of one plus a suffix: a formation, not a derivation. |
 
-**475 of 381,113 attested words are fully explained (0.12%), and 72,037 more are recorded loans from a
+**384 of 381,119 attested words are fully explained (0.10%), and 72,037 more are recorded loans from a
 sister branch. Both greens need a recorded origin carried all the way to the
 word — by cited laws, or by the record's own registered construction (the
 pieces spell it, each piece starts from a PIE etymon or from outside the
@@ -42,24 +42,24 @@ ancestor (Old Persian 𐎣𐎠𐎶 from Proto-Iranian) is yellow.
 
 | language | full | adjusted | partial | unexplained | non-PIE | IE loan | built | in review | explained | stored |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| Sanskrit (`sa`) | 138 | 14 | 3,814 | 14 | 90 | 82 | 0 | 4,081 | 152 | 4,152 |
-| Ancient Greek (`grc`) | 55 | 9 | 3,563 | 29 | 539 | 852 | 0 | 4,122 | 64 | 5,047 |
-| English (`en`) | 52 | 1 | 57,132 | 104 | 15,924 | 41,017 | 3 | 31,181 | 53 | 114,233 |
-| Persian (`fa`) | 45 | 0 | 5,050 | 71,954 | 75,600 | 2,979 | 8,147 | 2,091 | 45 | 163,775 |
-| Gothic (`got`) | 35 | 1 | 1,923 | 0 | 54 | 139 | 0 | 1,030 | 36 | 2,152 |
+| Sanskrit (`sa`) | 129 | 14 | 3,823 | 14 | 90 | 82 | 0 | 4,081 | 143 | 4,152 |
+| Ancient Greek (`grc`) | 50 | 8 | 3,569 | 29 | 539 | 852 | 0 | 4,122 | 58 | 5,047 |
+| Persian (`fa`) | 49 | 0 | 5,049 | 71,954 | 75,600 | 2,979 | 8,147 | 2,091 | 49 | 163,778 |
 | Latin (`la`) | 29 | 2 | 5,477 | 81 | 328 | 1,572 | 0 | 5,138 | 31 | 7,489 |
 | Lithuanian (`lt`) | 10 | 8 | 1,427 | 0 | 83 | 853 | 0 | 1,207 | 18 | 2,381 |
-| Old Norse (`non`) | 16 | 1 | 2,948 | 1 | 4 | 85 | 0 | 2,084 | 17 | 3,055 |
-| Old Church Slavonic (`chu`) | 6 | 7 | 1,842 | 0 | 21 | 102 | 0 | 628 | 13 | 1,978 |
 | Avestan (`ave`) | 12 | 0 | 300 | 40 | 0 | 0 | 0 | 103 | 12 | 352 |
+| Old Church Slavonic (`chu`) | 6 | 6 | 1,843 | 0 | 21 | 102 | 0 | 628 | 12 | 1,978 |
+| Old Norse (`non`) | 10 | 1 | 2,954 | 1 | 4 | 85 | 0 | 2,084 | 11 | 3,055 |
+| English (`en`) | 10 | 0 | 57,175 | 104 | 15,924 | 41,017 | 3 | 31,181 | 10 | 114,233 |
+| Old Irish (`sga`) | 8 | 2 | 1,706 | 1 | 35 | 167 | 0 | 1,537 | 10 | 1,919 |
 | Greek (`el`) | 5 | 4 | 6,577 | 0 | 407 | 3,147 | 0 | 5,240 | 9 | 10,140 |
-| Old Irish (`sga`) | 7 | 2 | 1,707 | 1 | 35 | 167 | 0 | 1,537 | 9 | 1,919 |
+| Gothic (`got`) | 8 | 1 | 1,950 | 0 | 54 | 139 | 0 | 1,030 | 9 | 2,152 |
 | Old English (`ang`) | 4 | 2 | 6,049 | 7 | 63 | 299 | 0 | 3,634 | 6 | 6,424 |
-| Old Persian (`peo`) | 5 | 0 | 200 | 89 | 13 | 18 | 0 | 157 | 5 | 325 |
-| Italian (`it`) | 1 | 2 | 11,479 | 7 | 680 | 7,550 | 0 | 14,529 | 3 | 19,719 |
-| Middle English (`enm`) | 0 | 1 | 4,430 | 11 | 72 | 2,992 | 0 | 3,084 | 1 | 7,506 |
+| Old Persian (`peo`) | 3 | 0 | 202 | 92 | 13 | 18 | 0 | 157 | 3 | 328 |
+| Italian (`it`) | 0 | 2 | 11,480 | 7 | 680 | 7,550 | 0 | 14,529 | 2 | 19,719 |
 | Old High German (`goh`) | 1 | 0 | 1,522 | 0 | 2 | 41 | 0 | 641 | 1 | 1,566 |
 | German (`de`) | 0 | 0 | 9,739 | 3 | 515 | 5,923 | 0 | 6,521 | 0 | 16,180 |
+| Middle English (`enm`) | 0 | 0 | 4,431 | 11 | 72 | 2,992 | 0 | 3,084 | 0 | 7,506 |
 | Middle High German (`gmh`) | 0 | 0 | 542 | 0 | 0 | 32 | 0 | 185 | 0 | 574 |
 | Hittite (`hit`) | 0 | 0 | 286 | 0 | 3 | 0 | 0 | 289 | 0 | 289 |
 | Armenian (`hy`) | 0 | 0 | 2,252 | 0 | 514 | 2,271 | 0 | 231 | 0 | 5,037 |
@@ -126,7 +126,7 @@ with an older release.
   writes the same form with a morpheme hyphen the laws never write (`a-`, `-kas`).
   Both are counted apart: in neither did a rule demonstrate anything.
 
-Corpus: **426,398 glossary entries**, 114,514 with a recorded ancestor,
+Corpus: **426,409 glossary entries**, 114,515 with a recorded ancestor,
 **6,419 reconstructed exactly**, of which **971 start at the
 PIE etymon** (1.5% of the whole glossary,
 12,098 once the orthographic layer is allowed (2.8%),
@@ -137,7 +137,7 @@ registered law that does not apply to that word, with the reason stored beside i
 (`data/pathways.jsonl`). They are counted apart and never added to the figure above:
 a per-word exception must be visible, not silent.
 
-**1,440 more** are reached through a language's own writing system, out of
+**1,406 more** are reached through a language's own writing system, out of
 the words written in a script with a table in `data/script/` (Old Persian: the laws
 produce *wˈarkah* and the monument writes 𐎺𐎼𐎣, *va-ra-ka*). The signs do not spell
 every sound: a syllabary leaves a final /h/ unwritten and closes a final -i with a y-sign
@@ -148,45 +148,45 @@ about the dictionary's own spelling (2026-11-08).
 
 **38 more** reproduce a form the glossary itself
 marks as a **reconstruction** (Wiktionary's `Reconstruction:` namespace), out of
-568 reconstruction entries with a recorded ancestor.
+569 reconstruction entries with a recorded ancestor.
 They are counted apart and never added:
 a reconstruction is not a word a text spells, and a figure of *attested* forms that
 included one could not be checked against the record (2026-11-08).
 
 | language | identified | PIE-linked | borrowed | other source | reconstructed (laws) | + orthography | cited as stem | unchanged | bound form | through its script | built from pieces | explained | glossary | progress (explained / glossary) |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| Italian (`it`) | 54% (12,121) | 1,562 | 4,148 | 3,068 | **1,296** | 378 | — | 123 | 64 | — | 680 | 1,861 | 22,278 | `█░░░░░░░░░░░░░` 8.4% |
-| Old Norse (`non`) | 95% (3,035) | 1,396 | 68 | 75 | **686** | 0 | — | 9 | 15 | — | 219 | 710 | 3,184 | `███░░░░░░░░░░░` 22% |
-| Proto-West Germanic (`gmw-pro`) | 65% (3,653) | 733 | 247 | 14 | **596** | 0 | — | 38 | 29 | — | 629 | 663 | 5,585 | `██░░░░░░░░░░░░` 12% |
-| English (`en`) | 29% (37,619) | 14,887 | 55,903 | 24,638 | **562** | 1,337 | — | 1052 | 76 | — | 5712 | 3,029 | 130,079 | `▏░░░░░░░░░░░░░` 2.3% |
-| Old English (`ang`) | 92% (6,356) | 1,302 | 309 | 175 | **555** | 535 | — | 96 | 41 | — | 347 | 1,227 | 6,931 | `██░░░░░░░░░░░░` 18% |
-| Proto-Slavic (`sla-pro`) | 40% (2,145) | 1,969 | 53 | 43 | **526** | 0 | — | — | 49 | — | 137 | 575 | 5,388 | `█░░░░░░░░░░░░░` 11% |
-| Middle English (`enm`) | 59% (4,722) | 580 | 2,964 | 285 | **386** | 471 | — | 119 | 31 | — | 1026 | 1,007 | 8,053 | `██░░░░░░░░░░░░` 13% |
-| Proto-Indo-Iranian (`iir-pro`) | 90% (720) | 720 | 0 | 0 | **346** | 0 | — | 2 | 40 | — | 8 | 388 | 799 | `███████░░░░░░░` 49% |
-| Lithuanian (`lt`) | 44% (1,107) | 910 | 1,011 | 367 | **257** | 0 | — | 28 | 11 | — | 1 | 296 | 2,501 | `██░░░░░░░░░░░░` 12% |
-| Proto-Iranian (`ira-pro`) | 85% (352) | 236 | 1 | 0 | **224** | 0 | — | 21 | 11 | — | 4 | 256 | 416 | `█████████░░░░░` 62% |
-| German (`de`) | 47% (8,127) | 1,117 | 6,237 | 2,584 | **193** | 167 | — | 603 | 38 | — | 1475 | 1,001 | 17,140 | `█░░░░░░░░░░░░░` 5.8% |
-| Old High German (`goh`) | 97% (1,571) | 230 | 41 | 10 | **162** | 7 | — | 58 | 3 | — | 57 | 230 | 1,625 | `██░░░░░░░░░░░░` 14% |
-| Proto-Celtic (`cel-pro`) | 71% (1,149) | 1,149 | 6 | 0 | **148** | 0 | — | 37 | 27 | — | 38 | 212 | 1,613 | `██░░░░░░░░░░░░` 13% |
-| Latin (`la`) | 43% (3,526) | 3,225 | 1,783 | 1,552 | **135** | 213 | — | 39 | 26 | — | 56 | 413 | 8,160 | `█░░░░░░░░░░░░░` 5.1% |
-| Old Irish (`sga`) | 87% (1,739) | 1,264 | 171 | 86 | **107** | 66 | — | 5 | 9 | — | 192 | 187 | 2,004 | `█░░░░░░░░░░░░░` 9.3% |
-| Middle High German (`gmh`) | 92% (533) | 43 | 29 | 3 | **96** | 29 | — | 33 | 1 | — | 1 | 159 | 580 | `████░░░░░░░░░░` 27% |
-| Proto-Germanic (`gem-pro`) | 56% (3,326) | 3,326 | 30 | 7 | **95** | 0 | — | 2 | 21 | — | 384 | 118 | 5,908 | `▏░░░░░░░░░░░░░` 2.0% |
-| Proto-Balto-Slavic (`ine-bsl-pro`) | 92% (454) | 454 | 1 | 0 | **46** | 0 | — | 3 | 3 | — | 2 | 52 | 491 | `█░░░░░░░░░░░░░` 11% |
-| Middle Persian (`pal`) | 16% (114) | 35 | 16 | 0 | **3** | 0 | — | — | — | 10 | — | 13 | 697 | `▏░░░░░░░░░░░░░` 1.9% |
-| Persian (`fa`) | 1.4% (2,301) | 862 | 5,497 | 669 | **0** | 137 | — | 229 | — | 423 | 139 | 796 | 164,824 | `▏░░░░░░░░░░░░░` 0.48% |
-| Greek (`el`) | 49% (5,090) | 312 | 2,174 | 1,370 | **0** | 647 | — | 317 | — | — | 198 | 964 | 10,471 | `█░░░░░░░░░░░░░` 9.2% |
+| Italian (`it`) | 54% (12,121) | 1,562 | 4,148 | 3,068 | **1,296** | 378 | — | 123 | 64 | — | 994 | 1,861 | 22,278 | `█░░░░░░░░░░░░░` 8.4% |
+| Old Norse (`non`) | 95% (3,035) | 1,396 | 68 | 75 | **686** | 0 | — | 9 | 15 | — | 303 | 710 | 3,184 | `███░░░░░░░░░░░` 22% |
+| Proto-West Germanic (`gmw-pro`) | 65% (3,653) | 733 | 247 | 14 | **596** | 0 | — | 38 | 29 | — | 887 | 663 | 5,585 | `██░░░░░░░░░░░░` 12% |
+| English (`en`) | 29% (37,619) | 14,887 | 55,903 | 24,638 | **562** | 1,337 | — | 1052 | 76 | — | 8166 | 3,029 | 130,079 | `▏░░░░░░░░░░░░░` 2.3% |
+| Old English (`ang`) | 92% (6,356) | 1,302 | 309 | 175 | **555** | 535 | — | 96 | 41 | — | 1107 | 1,227 | 6,931 | `██░░░░░░░░░░░░` 18% |
+| Proto-Slavic (`sla-pro`) | 40% (2,145) | 1,969 | 53 | 43 | **526** | 0 | — | — | 49 | — | 387 | 575 | 5,388 | `█░░░░░░░░░░░░░` 11% |
+| Middle English (`enm`) | 59% (4,722) | 580 | 2,964 | 285 | **386** | 471 | — | 119 | 31 | — | 1206 | 1,007 | 8,053 | `██░░░░░░░░░░░░` 13% |
+| Proto-Indo-Iranian (`iir-pro`) | 90% (720) | 720 | 0 | 0 | **346** | 0 | — | 2 | 40 | — | 32 | 388 | 799 | `███████░░░░░░░` 49% |
+| Lithuanian (`lt`) | 44% (1,107) | 910 | 1,011 | 367 | **257** | 0 | — | 28 | 11 | — | 28 | 296 | 2,501 | `██░░░░░░░░░░░░` 12% |
+| Proto-Iranian (`ira-pro`) | 84% (353) | 236 | 1 | 0 | **224** | 0 | — | 21 | 11 | — | 57 | 256 | 418 | `█████████░░░░░` 61% |
+| German (`de`) | 47% (8,127) | 1,117 | 6,237 | 2,584 | **193** | 167 | — | 603 | 38 | — | 1751 | 1,001 | 17,140 | `█░░░░░░░░░░░░░` 5.8% |
+| Old High German (`goh`) | 97% (1,571) | 230 | 41 | 10 | **162** | 7 | — | 58 | 3 | — | 231 | 230 | 1,625 | `██░░░░░░░░░░░░` 14% |
+| Proto-Celtic (`cel-pro`) | 71% (1,149) | 1,149 | 6 | 0 | **148** | 0 | — | 37 | 27 | — | 80 | 212 | 1,613 | `██░░░░░░░░░░░░` 13% |
+| Latin (`la`) | 43% (3,526) | 3,225 | 1,783 | 1,552 | **135** | 213 | — | 39 | 26 | — | 527 | 413 | 8,160 | `█░░░░░░░░░░░░░` 5.1% |
+| Old Irish (`sga`) | 87% (1,739) | 1,264 | 171 | 86 | **107** | 66 | — | 5 | 9 | — | 294 | 187 | 2,004 | `█░░░░░░░░░░░░░` 9.3% |
+| Middle High German (`gmh`) | 92% (533) | 43 | 29 | 3 | **96** | 29 | — | 33 | 1 | — | 24 | 159 | 580 | `████░░░░░░░░░░` 27% |
+| Proto-Germanic (`gem-pro`) | 56% (3,326) | 3,326 | 30 | 7 | **95** | 0 | — | 2 | 21 | — | 516 | 118 | 5,908 | `▏░░░░░░░░░░░░░` 2.0% |
+| Proto-Balto-Slavic (`ine-bsl-pro`) | 92% (454) | 454 | 1 | 0 | **46** | 0 | — | 3 | 3 | — | 8 | 52 | 491 | `█░░░░░░░░░░░░░` 11% |
+| Middle Persian (`pal`) | 16% (114) | 35 | 16 | 0 | **3** | 0 | — | — | — | 10 | 4 | 13 | 697 | `▏░░░░░░░░░░░░░` 1.9% |
+| Persian (`fa`) | 1.4% (2,301) | 862 | 5,496 | 669 | **0** | 137 | — | 229 | — | 423 | 199 | 796 | 164,827 | `▏░░░░░░░░░░░░░` 0.48% |
+| Greek (`el`) | 49% (5,090) | 312 | 2,174 | 1,370 | **0** | 647 | — | 317 | — | — | 545 | 964 | 10,471 | `█░░░░░░░░░░░░░` 9.2% |
 | Armenian (`hy`) | 1.2% (64) | 64 | 2,859 | 2,400 | **0** | 0 | — | — | — | — | — | 0 | 5,398 | `░░░░░░░░░░░░░░` 0% |
-| Ancient Greek (`grc`) | 64% (3,323) | 3,233 | 1,212 | 198 | **0** | 294 | — | 81 | — | — | 146 | 375 | 5,222 | `█░░░░░░░░░░░░░` 7.2% |
-| Sanskrit (`sa`) | 83% (4,218) | 3,764 | 104 | 63 | **0** | 520 | 541 | 36 | — | — | 319 | 1,097 | 5,059 | `███░░░░░░░░░░░` 22% |
-| Albanian (`sq`) | 29% (1,216) | 1,216 | 2,224 | 801 | **0** | 0 | — | — | — | — | 17 | 0 | 4,256 | `░░░░░░░░░░░░░░` 0% |
-| Gothic (`got`) | 87% (1,976) | 674 | 186 | 82 | **0** | 278 | — | 30 | — | — | 399 | 308 | 2,263 | `██░░░░░░░░░░░░` 14% |
-| Old Church Slavonic (`chu`) | 90% (1,802) | 278 | 116 | 77 | **0** | 0 | — | 399 | — | 946 | 76 | 1,345 | 1,999 | `█████████░░░░░` 67% |
-| Old Armenian (`xcl`) | 59% (920) | 920 | 379 | 245 | **0** | 0 | — | — | — | — | 15 | 0 | 1,564 | `░░░░░░░░░░░░░░` 0% |
-| Tocharian B (`txb`) | 63% (442) | 398 | 241 | 14 | **0** | 0 | — | — | — | — | 1 | 0 | 697 | `░░░░░░░░░░░░░░` 0% |
-| Old Persian (`peo`) | 41% (215) | 101 | 29 | 5 | **0** | 0 | — | 1 | — | 61 | — | 65 | 529 | `██░░░░░░░░░░░░` 12% |
+| Ancient Greek (`grc`) | 64% (3,323) | 3,233 | 1,212 | 198 | **0** | 294 | — | 81 | — | — | 563 | 375 | 5,222 | `█░░░░░░░░░░░░░` 7.2% |
+| Sanskrit (`sa`) | 83% (4,218) | 3,764 | 104 | 63 | **0** | 520 | 541 | 36 | — | — | 654 | 1,097 | 5,059 | `███░░░░░░░░░░░` 22% |
+| Albanian (`sq`) | 29% (1,216) | 1,216 | 2,224 | 801 | **0** | 0 | — | — | — | — | 60 | 0 | 4,256 | `░░░░░░░░░░░░░░` 0% |
+| Gothic (`got`) | 87% (1,976) | 674 | 186 | 82 | **0** | 278 | — | 30 | — | — | 575 | 308 | 2,263 | `██░░░░░░░░░░░░` 14% |
+| Old Church Slavonic (`chu`) | 90% (1,802) | 278 | 116 | 77 | **0** | 0 | — | 402 | — | 921 | 142 | 1,323 | 1,999 | `█████████░░░░░` 66% |
+| Old Armenian (`xcl`) | 59% (920) | 920 | 379 | 245 | **0** | 0 | — | — | — | — | 81 | 0 | 1,564 | `░░░░░░░░░░░░░░` 0% |
+| Tocharian B (`txb`) | 63% (442) | 398 | 241 | 14 | **0** | 0 | — | — | — | — | 23 | 0 | 697 | `░░░░░░░░░░░░░░` 0% |
+| Old Persian (`peo`) | 40% (215) | 101 | 29 | 5 | **0** | 0 | — | 1 | — | 52 | 7 | 56 | 535 | `█░░░░░░░░░░░░░` 10% |
 | Avestan (`ave`) | 89% (312) | 195 | 0 | 0 | **0** | 26 | 33 | 1 | — | — | — | 60 | 352 | `██░░░░░░░░░░░░` 17% |
-| Hittite (`hit`) | 85% (253) | 235 | 1 | 2 | **0** | 0 | — | — | — | — | 6 | 0 | 298 | `░░░░░░░░░░░░░░` 0% |
+| Hittite (`hit`) | 85% (253) | 235 | 1 | 2 | **0** | 0 | — | — | — | — | 11 | 0 | 298 | `░░░░░░░░░░░░░░` 0% |
 | Parthian (`xpr`) | 38% (13) | 1 | 4 | 0 | **0** | 0 | — | — | — | — | — | 0 | 34 | `░░░░░░░░░░░░░░` 0% |
 | Oscan (`osc`) | 0% (0) | 0 | 0 | 0 | **0** | 0 | — | — | — | — | — | 0 | 0 | `░░░░░░░░░░░░░░` 0% |
 | Proto-Indo-Aryan (`inc-pro`) | 0% (0) | 0 | 0 | 0 | **0** | 0 | — | — | — | — | — | 0 | 0 | `░░░░░░░░░░░░░░` 0% |

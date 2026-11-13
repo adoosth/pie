@@ -1,46 +1,44 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="860" height="892" viewBox="0 0 860 892" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">
 <rect width="860" height="892" fill="#0d1117"/>
 <text x="24" y="36" fill="#e8e6e1" font-size="19" font-weight="600">pie — coverage by category</text>
-<text x="24" y="60" fill="#8b98a8" font-size="12">475 of 381,113 attested words fully explained (0.12%) · 2026-11-13</text>
+<text x="24" y="60" fill="#8b98a8" font-size="12">384 of 381,119 attested words fully explained (0.10%) · 2026-11-13</text>
 <rect x="24" y="73" width="12" height="12" fill="#43a35e" rx="2"/>
-<text x="42" y="84" fill="#8b98a8" font-size="11">fully explained 421</text>
+<text x="42" y="84" fill="#8b98a8" font-size="11">fully explained 334</text>
 <rect x="154" y="73" width="12" height="12" fill="#9ccc65" rx="2"/>
-<text x="172" y="84" fill="#8b98a8" font-size="11">with adjustments 54</text>
+<text x="172" y="84" fill="#8b98a8" font-size="11">with adjustments 50</text>
 <rect x="284" y="73" width="12" height="12" fill="#f2c14e" rx="2"/>
-<text x="302" y="84" fill="#8b98a8" font-size="11">partially explained 131,786</text>
+<text x="302" y="84" fill="#8b98a8" font-size="11">partially explained 131,880</text>
 <rect x="462" y="73" width="12" height="12" fill="#ef6b6b" rx="2"/>
-<text x="480" y="84" fill="#8b98a8" font-size="11">unexplained 72,837</text>
+<text x="480" y="84" fill="#8b98a8" font-size="11">unexplained 72,840</text>
 <rect x="586" y="73" width="12" height="12" fill="#7a7a7a" rx="2"/>
 <text x="604" y="84" fill="#8b98a8" font-size="11">non-PIE 95,828</text>
 <rect x="686" y="73" width="12" height="12" fill="#90a4ae" rx="2"/>
 <text x="704" y="84" fill="#8b98a8" font-size="11">IE loan 72,037</text>
 <text x="24" y="143" fill="#e8e6e1" font-size="12">Italian</text>
 <rect x="170" y="132" width="470" height="14" fill="#161f2b" rx="3"/>
-<rect x="170.0" y="132" width="1.2" height="14" fill="#43a35e"/>
 <rect x="170.0" y="132" width="1.2" height="14" fill="#9ccc65"/>
-<rect x="170.1" y="132" width="273.6" height="14" fill="#f2c14e"/>
+<rect x="170.0" y="132" width="273.6" height="14" fill="#f2c14e"/>
 <rect x="443.7" y="132" width="1.2" height="14" fill="#ef6b6b"/>
 <rect x="443.8" y="132" width="16.2" height="14" fill="#7a7a7a"/>
 <rect x="460.0" y="132" width="180.0" height="14" fill="#90a4ae"/>
-<text x="654" y="143" fill="#8b98a8" font-size="11">3 / 19,719 · 0.02%</text>
+<text x="654" y="143" fill="#8b98a8" font-size="11">2 / 19,719 · 0.01%</text>
 <text x="24" y="170" fill="#e8e6e1" font-size="12">Old Norse</text>
 <rect x="170" y="159" width="470" height="14" fill="#161f2b" rx="3"/>
-<rect x="170.0" y="159" width="2.5" height="14" fill="#43a35e"/>
-<rect x="172.5" y="159" width="1.2" height="14" fill="#9ccc65"/>
-<rect x="172.6" y="159" width="453.5" height="14" fill="#f2c14e"/>
+<rect x="170.0" y="159" width="1.5" height="14" fill="#43a35e"/>
+<rect x="171.5" y="159" width="1.2" height="14" fill="#9ccc65"/>
+<rect x="171.7" y="159" width="454.5" height="14" fill="#f2c14e"/>
 <rect x="626.2" y="159" width="1.2" height="14" fill="#ef6b6b"/>
 <rect x="626.3" y="159" width="1.2" height="14" fill="#7a7a7a"/>
 <rect x="626.9" y="159" width="13.1" height="14" fill="#90a4ae"/>
-<text x="654" y="170" fill="#8b98a8" font-size="11">17 / 3,055 · 0.56%</text>
+<text x="654" y="170" fill="#8b98a8" font-size="11">11 / 3,055 · 0.36%</text>
 <text x="24" y="197" fill="#e8e6e1" font-size="12">English</text>
 <rect x="170" y="186" width="470" height="14" fill="#161f2b" rx="3"/>
 <rect x="170.0" y="186" width="1.2" height="14" fill="#43a35e"/>
-<rect x="170.2" y="186" width="1.2" height="14" fill="#9ccc65"/>
-<rect x="170.2" y="186" width="235.1" height="14" fill="#f2c14e"/>
+<rect x="170.0" y="186" width="235.2" height="14" fill="#f2c14e"/>
 <rect x="405.3" y="186" width="1.2" height="14" fill="#ef6b6b"/>
 <rect x="405.7" y="186" width="65.5" height="14" fill="#7a7a7a"/>
 <rect x="471.2" y="186" width="168.8" height="14" fill="#90a4ae"/>
-<text x="654" y="197" fill="#8b98a8" font-size="11">53 / 114,233 · 0.05%</text>
+<text x="654" y="197" fill="#8b98a8" font-size="11">10 / 114,233 · 0.01%</text>
 <text x="24" y="224" fill="#e8e6e1" font-size="12">Old English</text>
 <rect x="170" y="213" width="470" height="14" fill="#161f2b" rx="3"/>
 <rect x="170.0" y="213" width="1.2" height="14" fill="#43a35e"/>
@@ -52,12 +50,11 @@
 <text x="654" y="224" fill="#8b98a8" font-size="11">6 / 6,424 · 0.09%</text>
 <text x="24" y="251" fill="#e8e6e1" font-size="12">Middle English</text>
 <rect x="170" y="240" width="470" height="14" fill="#161f2b" rx="3"/>
-<rect x="170.0" y="240" width="1.2" height="14" fill="#9ccc65"/>
-<rect x="170.1" y="240" width="277.4" height="14" fill="#f2c14e"/>
+<rect x="170.0" y="240" width="277.5" height="14" fill="#f2c14e"/>
 <rect x="447.5" y="240" width="1.2" height="14" fill="#ef6b6b"/>
 <rect x="448.1" y="240" width="4.5" height="14" fill="#7a7a7a"/>
 <rect x="452.7" y="240" width="187.3" height="14" fill="#90a4ae"/>
-<text x="654" y="251" fill="#8b98a8" font-size="11">1 / 7,506 · 0.01%</text>
+<text x="654" y="251" fill="#8b98a8" font-size="11">0 / 7,506 · 0%</text>
 <text x="24" y="278" fill="#e8e6e1" font-size="12">Lithuanian</text>
 <rect x="170" y="267" width="470" height="14" fill="#161f2b" rx="3"/>
 <rect x="170.0" y="267" width="2.0" height="14" fill="#43a35e"/>
@@ -91,13 +88,13 @@
 <text x="654" y="359" fill="#8b98a8" font-size="11">31 / 7,489 · 0.41%</text>
 <text x="24" y="386" fill="#e8e6e1" font-size="12">Old Irish</text>
 <rect x="170" y="375" width="470" height="14" fill="#161f2b" rx="3"/>
-<rect x="170.0" y="375" width="1.7" height="14" fill="#43a35e"/>
-<rect x="171.7" y="375" width="1.2" height="14" fill="#9ccc65"/>
-<rect x="172.2" y="375" width="418.1" height="14" fill="#f2c14e"/>
+<rect x="170.0" y="375" width="2.0" height="14" fill="#43a35e"/>
+<rect x="172.0" y="375" width="1.2" height="14" fill="#9ccc65"/>
+<rect x="172.4" y="375" width="417.8" height="14" fill="#f2c14e"/>
 <rect x="590.3" y="375" width="1.2" height="14" fill="#ef6b6b"/>
 <rect x="590.5" y="375" width="8.6" height="14" fill="#7a7a7a"/>
 <rect x="599.1" y="375" width="40.9" height="14" fill="#90a4ae"/>
-<text x="654" y="386" fill="#8b98a8" font-size="11">9 / 1,919 · 0.47%</text>
+<text x="654" y="386" fill="#8b98a8" font-size="11">10 / 1,919 · 0.52%</text>
 <text x="24" y="413" fill="#e8e6e1" font-size="12">Middle High German</text>
 <rect x="170" y="402" width="470" height="14" fill="#161f2b" rx="3"/>
 <rect x="170.0" y="402" width="443.8" height="14" fill="#f2c14e"/>
@@ -116,7 +113,7 @@
 <rect x="184.6" y="456" width="206.5" height="14" fill="#ef6b6b"/>
 <rect x="391.1" y="456" width="217.0" height="14" fill="#7a7a7a"/>
 <rect x="608.1" y="456" width="8.5" height="14" fill="#90a4ae"/>
-<text x="654" y="467" fill="#8b98a8" font-size="11">45 / 163,775 · 0.03%</text>
+<text x="654" y="467" fill="#8b98a8" font-size="11">49 / 163,778 · 0.03%</text>
 <text x="24" y="494" fill="#e8e6e1" font-size="12">Greek</text>
 <rect x="170" y="483" width="470" height="14" fill="#161f2b" rx="3"/>
 <rect x="170.0" y="483" width="1.2" height="14" fill="#43a35e"/>
@@ -133,22 +130,22 @@
 <text x="654" y="521" fill="#8b98a8" font-size="11">0 / 5,037 · 0%</text>
 <text x="24" y="548" fill="#e8e6e1" font-size="12">Ancient Greek</text>
 <rect x="170" y="537" width="470" height="14" fill="#161f2b" rx="3"/>
-<rect x="170.0" y="537" width="5.1" height="14" fill="#43a35e"/>
-<rect x="175.1" y="537" width="1.2" height="14" fill="#9ccc65"/>
-<rect x="176.0" y="537" width="331.8" height="14" fill="#f2c14e"/>
+<rect x="170.0" y="537" width="4.7" height="14" fill="#43a35e"/>
+<rect x="174.7" y="537" width="1.2" height="14" fill="#9ccc65"/>
+<rect x="175.4" y="537" width="332.4" height="14" fill="#f2c14e"/>
 <rect x="507.8" y="537" width="2.7" height="14" fill="#ef6b6b"/>
 <rect x="510.5" y="537" width="50.2" height="14" fill="#7a7a7a"/>
 <rect x="560.7" y="537" width="79.3" height="14" fill="#90a4ae"/>
-<text x="654" y="548" fill="#8b98a8" font-size="11">64 / 5,047 · 1.3%</text>
+<text x="654" y="548" fill="#8b98a8" font-size="11">58 / 5,047 · 1.1%</text>
 <text x="24" y="575" fill="#e8e6e1" font-size="12">Sanskrit</text>
 <rect x="170" y="564" width="470" height="14" fill="#161f2b" rx="3"/>
-<rect x="170.0" y="564" width="15.6" height="14" fill="#43a35e"/>
-<rect x="185.6" y="564" width="1.6" height="14" fill="#9ccc65"/>
-<rect x="187.2" y="564" width="431.7" height="14" fill="#f2c14e"/>
+<rect x="170.0" y="564" width="14.6" height="14" fill="#43a35e"/>
+<rect x="184.6" y="564" width="1.6" height="14" fill="#9ccc65"/>
+<rect x="186.2" y="564" width="432.8" height="14" fill="#f2c14e"/>
 <rect x="618.9" y="564" width="1.6" height="14" fill="#ef6b6b"/>
 <rect x="620.5" y="564" width="10.2" height="14" fill="#7a7a7a"/>
 <rect x="630.7" y="564" width="9.3" height="14" fill="#90a4ae"/>
-<text x="654" y="575" fill="#8b98a8" font-size="11">152 / 4,152 · 3.7%</text>
+<text x="654" y="575" fill="#8b98a8" font-size="11">143 / 4,152 · 3.4%</text>
 <text x="24" y="602" fill="#e8e6e1" font-size="12">Albanian</text>
 <rect x="170" y="591" width="470" height="14" fill="#161f2b" rx="3"/>
 <rect x="170.0" y="591" width="218.3" height="14" fill="#f2c14e"/>
@@ -157,20 +154,20 @@
 <text x="654" y="602" fill="#8b98a8" font-size="11">0 / 4,007 · 0%</text>
 <text x="24" y="629" fill="#e8e6e1" font-size="12">Gothic</text>
 <rect x="170" y="618" width="470" height="14" fill="#161f2b" rx="3"/>
-<rect x="170.0" y="618" width="7.6" height="14" fill="#43a35e"/>
-<rect x="177.6" y="618" width="1.2" height="14" fill="#9ccc65"/>
-<rect x="177.9" y="618" width="420.0" height="14" fill="#f2c14e"/>
+<rect x="170.0" y="618" width="1.7" height="14" fill="#43a35e"/>
+<rect x="171.7" y="618" width="1.2" height="14" fill="#9ccc65"/>
+<rect x="172.0" y="618" width="425.9" height="14" fill="#f2c14e"/>
 <rect x="597.8" y="618" width="11.8" height="14" fill="#7a7a7a"/>
 <rect x="609.6" y="618" width="30.4" height="14" fill="#90a4ae"/>
-<text x="654" y="629" fill="#8b98a8" font-size="11">36 / 2,152 · 1.7%</text>
+<text x="654" y="629" fill="#8b98a8" font-size="11">9 / 2,152 · 0.42%</text>
 <text x="24" y="656" fill="#e8e6e1" font-size="12">Old Church Slavonic</text>
 <rect x="170" y="645" width="470" height="14" fill="#161f2b" rx="3"/>
 <rect x="170.0" y="645" width="1.4" height="14" fill="#43a35e"/>
-<rect x="171.4" y="645" width="1.7" height="14" fill="#9ccc65"/>
-<rect x="173.1" y="645" width="437.7" height="14" fill="#f2c14e"/>
+<rect x="171.4" y="645" width="1.4" height="14" fill="#9ccc65"/>
+<rect x="172.9" y="645" width="437.9" height="14" fill="#f2c14e"/>
 <rect x="610.8" y="645" width="5.0" height="14" fill="#7a7a7a"/>
 <rect x="615.8" y="645" width="24.2" height="14" fill="#90a4ae"/>
-<text x="654" y="656" fill="#8b98a8" font-size="11">13 / 1,978 · 0.66%</text>
+<text x="654" y="656" fill="#8b98a8" font-size="11">12 / 1,978 · 0.61%</text>
 <text x="24" y="683" fill="#e8e6e1" font-size="12">Old Armenian</text>
 <rect x="170" y="672" width="470" height="14" fill="#161f2b" rx="3"/>
 <rect x="170.0" y="672" width="339.5" height="14" fill="#f2c14e"/>
@@ -185,12 +182,12 @@
 <text x="654" y="710" fill="#8b98a8" font-size="11">0 / 663 · 0%</text>
 <text x="24" y="737" fill="#e8e6e1" font-size="12">Old Persian</text>
 <rect x="170" y="726" width="470" height="14" fill="#161f2b" rx="3"/>
-<rect x="170.0" y="726" width="7.2" height="14" fill="#43a35e"/>
-<rect x="177.2" y="726" width="289.2" height="14" fill="#f2c14e"/>
-<rect x="466.5" y="726" width="128.7" height="14" fill="#ef6b6b"/>
-<rect x="595.2" y="726" width="18.8" height="14" fill="#7a7a7a"/>
-<rect x="614.0" y="726" width="26.0" height="14" fill="#90a4ae"/>
-<text x="654" y="737" fill="#8b98a8" font-size="11">5 / 325 · 1.5%</text>
+<rect x="170.0" y="726" width="4.3" height="14" fill="#43a35e"/>
+<rect x="174.3" y="726" width="289.5" height="14" fill="#f2c14e"/>
+<rect x="463.8" y="726" width="131.8" height="14" fill="#ef6b6b"/>
+<rect x="595.6" y="726" width="18.6" height="14" fill="#7a7a7a"/>
+<rect x="614.2" y="726" width="25.8" height="14" fill="#90a4ae"/>
+<text x="654" y="737" fill="#8b98a8" font-size="11">3 / 328 · 0.91%</text>
 <text x="24" y="764" fill="#e8e6e1" font-size="12">Avestan</text>
 <rect x="170" y="753" width="470" height="14" fill="#161f2b" rx="3"/>
 <rect x="170.0" y="753" width="16.0" height="14" fill="#43a35e"/>

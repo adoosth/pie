@@ -3195,9 +3195,16 @@ def _bound_piece(kind: str, form: str, index: int) -> bool:
     morpheme has no history of its own, so the timeline draws it as itself and
     does not hang a ``???`` above it (admin, 2026-11-12).
     """
-    if kind not in ("suffix", "affix", "infix") or index == 0:
+    if kind not in ("suffix", "affix", "infix"):
         return False
-    return form.startswith(("-", "ـ", "*-"))
+    # Persian writes a bound morpheme with a leading tatweel (ـواری) and a
+    # reconstruction with the asterisk (ـ *-yeti), and neither can be a
+    # prefix: the mark itself says the morpheme is bound, wherever in the
+    # sentence it stands (2026-11-13 — واری is ـواری + ـی, and the counter was
+    # reading ـواری, first in the string, as a word with a page).
+    if form.startswith(("ـ", "*-")):
+        return True
+    return index != 0 and form.startswith("-")
 
 
 @lru_cache(maxsize=8)
@@ -5450,6 +5457,36 @@ def _backlog_of(entry: dict, chain: list[str]) -> list[dict]:
         return []
 
 
+def _starts_from_a_base_word(entry: dict, top: tuple[str, str],
+                            chain: list[str]) -> bool:
+    """Whether the topmost start is a word this one was *derived* from.
+
+    A later recorded ancestor may begin a ladder when the topmost one is not
+    this word's own history: 𐎠𐎼𐏁𐎫𐎡𐎣 "spearman" is recorded *from* the noun
+    *h₁r̥stís "spear", so a PIE start draws the spear's ladder and prints the
+    spear's reading as the spearman's (critic peo-01, 2026-11-13) — there the
+    verified Proto-Indo-Iranian start wins.
+
+    An **inherited** chain is different: English *night* inherits Proto-Germanic
+    *nahts, Old English niht and Middle English nighte, and the record's rows
+    that the laws do not yet reproduce are the model's worklist, not another
+    word.  Those must stay on the ladder (admin: the timeline is where a reader
+    sees which step the laws miss), so the verified-start rule stops at a
+    relation the record itself calls a derivation.  A borrowing is not this
+    word's history either, but a borrowed form never starts a ladder here
+    (`ancestor_starts` keeps `borrow` rows out), so it is not consulted.
+    """
+    stage = top[0] if top else ""
+    if not stage:
+        return False
+    relations = set()
+    for lang, _word, rel in _ancestry_triples(entry):
+        code = data.stage_of(lang) if rel != "borrow" else lang
+        if code == stage:
+            relations.add(rel)
+    return bool(relations) and "inherit" not in relations
+
+
 def _derive_for_entry(entry: dict, chain: list[str],
                       disabled: Iterable[str] = (),
                       enabled: Iterable[str] = ()) -> dict | None:
@@ -6226,7 +6263,8 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
         # page printed another word's form on this word's own row
         # (critic peo-01, 2026-11-13).
         deepest = _derive_for_entry(entry, chain, disabled, enabled)
-        if deepest and deepest.get("match"):
+        if (deepest and deepest.get("match")
+                and _starts_from_a_base_word(entry, candidates[0], chain)):
             start_stage, start_form = deepest["start"], deepest["input"]
     start = chain.index(start_stage) if start_stage in chain else 0
     edited: dict | None = None

@@ -543,6 +543,9 @@ def measure(lang: str, meta: dict, chain: list[str], rulesets, tiers, limit: int
     closest: list[dict] = []
     approved = approved_words()
     verdicts: dict[int, dict] = {}
+    #: word -> the words its page draws above it, for the pass that keeps a
+    #: word no greener than its ancestors (`demote_below_ancestors`).
+    above: dict[str, list[tuple[str, str]]] = {}
     counts = cats.empty_counts()
     bands: dict[str, dict[int, str]] = {}
     sense_of = {id(g["rep"]): g["sense"] for g in sense_rows}
@@ -802,7 +805,7 @@ def measure(lang: str, meta: dict, chain: list[str], rulesets, tiers, limit: int
         # words: the record's own pieces first, then the seam this model reads.
         # A formation stands beside the six and is never green (2026-11-10).
         built, built_note = _formation_of(entry, lang, pieces)
-        verdicts[id(entry)] = cats.verdict(
+        verdict = cats.verdict(
             recorded=bool(entry.get("anc") or entry.get("etym")),
             non_ie=kind_of_loan == "non_pie",
             ie_loan=kind_of_loan == "ie_loan",
@@ -829,6 +832,13 @@ def measure(lang: str, meta: dict, chain: list[str], rulesets, tiers, limit: int
             # (admin, 2026-11-13).
             missing_steps=service.unrecorded_ancestry(entry, chain),
         )
+        verdicts[id(entry)] = verdict
+        # The words this page draws above it, kept for the second pass that
+        # holds a word to its ancestors' bands (admin, 2026-11-13).  Only a
+        # green word can be demoted, so only a green word keeps the list.
+        if verdict["category"] in _MAYBE_WEAK:
+            above.setdefault(target, []).extend(
+                _drawn_pairs(candidates, pieces, lang))
 
     # Every attested word gets a verdict, not only the ones a rule could
     # reach: a borrowing, a word with no etymology and a word outside the
@@ -849,8 +859,9 @@ def measure(lang: str, meta: dict, chain: list[str], rulesets, tiers, limit: int
             untested += 1
             continue
         kind_of_loan = loan_class(entry)
-        built, built_note = _formation_of(entry, lang, _compound_pieces(entry, lang))
-        verdicts[id(entry)] = cats.verdict(
+        pieces = _compound_pieces(entry, lang)
+        built, built_note = _formation_of(entry, lang, pieces)
+        verdict = cats.verdict(
             recorded=bool(entry.get("anc") or entry.get("etym")),
             non_ie=kind_of_loan == "non_pie",
             ie_loan=kind_of_loan == "ie_loan",
@@ -861,6 +872,10 @@ def measure(lang: str, meta: dict, chain: list[str], rulesets, tiers, limit: int
             pie_linked=inherited(entry),
             missing_steps=service.unrecorded_ancestry(entry, chain),
         )
+        verdicts[id(entry)] = verdict
+        if verdict["category"] in _MAYBE_WEAK:
+            above.setdefault(entry["word"].strip(), []).extend(
+                _drawn_pairs(ancestor_starts(entry, chain), pieces, lang))
     for entry in attested if categorical else ():
         verdict = verdicts.get(id(entry))
         if verdict is None:
@@ -909,6 +924,7 @@ def measure(lang: str, meta: dict, chain: list[str], rulesets, tiers, limit: int
         "name": meta.get("name", lang),
         "glossary": glossary,
         "bands": bands,
+        "above": above,
         "attested": len(attested),
         "categorised": len(attested) if categorical else 0,
         # What the language is thought to hold, and where that figure comes
@@ -990,6 +1006,104 @@ def rule_index(rulesets) -> dict[str, dict]:
         for r in rs.rules:
             out[f"{dst}|{r.id}"] = {"id": r.id, "name": r.name, "from": src, "to": dst, "tier": r.tier}
     return out
+
+
+# --- a word is never greener than the words above it -------------------------
+# The admin's rule (2026-11-13): "A word can't be fully explained if any
+# ancestor of it is partially explained or non-existent."  The page applies it
+# live (`service._page_ancestors`), and the published index must apply it too,
+# or a glossary row would stay green over a page that reads "partially
+# explained" — the row and the page are the same claim in two places.
+#
+# The counter cannot ask a page for its ancestor's band: that is a whole
+# ladder per word, and this run measures 591,000 of them.  It does not need to.
+# Every word it has measured is in `bands` already, so the rule is a second
+# pass over the words the page draws: oldest stage first, so an ancestor's band
+# is final before the word below it is read.
+_MAYBE_WEAK = frozenset({"full", "adjusted"})
+_WEAK_BANDS = frozenset({"partial", "unexplained"})
+
+
+def _band_key(form: str) -> str:
+    """A form as the index spells it: no asterisk, hyphen, stress or space.
+
+    A record names its ancestor the way the dictionary writes it (*h₂entó-),
+    the glossary heads it the way the language spells it (h₂entó-).  The
+    comparison is one spelling, so the notation around it is dropped — the same
+    rule the rest of the project follows (notation is not spelling).
+    """
+    return re.sub(r"[\s*\-\u00ad]+", "", str(form or ""))
+
+
+def _drawn_pairs(candidates, pieces, lang: str) -> list[tuple[str, str]]:
+    """The words a page draws above its headword, as (language, word).
+
+    Two shapes reach a timeline and both are ancestors of the word: the rungs
+    of its recorded ancestry (``ancestor_starts``, the page's own function) and
+    the pieces of a construction, each of which is a word with its own page.
+    """
+    out: list[tuple[str, str]] = []
+    for stage, form in candidates or ():
+        out.append((str(stage), str(form)))
+    for join in pieces or ():
+        for index, piece in enumerate(join.get("pieces") or ()):
+            if not piece.get("known"):
+                continue
+            # A bound morpheme is grammar, not a word: it has no page whose
+            # band could be weaker, and the page skips it for the same reason
+            # (`service.drawn_words`).  ـدان and ـی are pieces of چایدان and
+            # واری; neither may cost the word its band.
+            if service._bound_piece(str(piece.get("pos") or ""),
+                                    str(piece.get("form") or ""), index):
+                continue
+            out.append((str(piece.get("lang") or lang),
+                        str(piece.get("word") or piece.get("form") or "")))
+    return out
+
+
+def demote_below_ancestors(bands: dict[str, dict[str, dict[int, str]]],
+                           above: dict[str, dict[str, list]],
+                           order: list[str]) -> dict[str, Counter]:
+    """Turn a green word to `partial` when a word it draws above it is not green.
+
+    `bands` is mutated in place, one entry per sense, and the counts dropped per
+    language are returned so the report can say the same thing the index does.
+    The sweep repeats until nothing changes: a demotion makes the word a weak
+    ancestor for the words below it, and a language order is not a proof when a
+    record names a form in its own stage.
+    """
+    exact: dict[tuple[str, str], str] = {}
+    loose: dict[tuple[str, str], str] = {}
+    for lang, words in bands.items():
+        for word, senses in words.items():
+            for band in senses.values():
+                exact.setdefault((lang, word), band)
+                loose.setdefault((lang, _band_key(word)), band)
+
+    def band_above(lang: str, form: str) -> str:
+        found = exact.get((lang, form))
+        if found is None:
+            found = loose.get((lang, _band_key(form)))
+        return str(found or "")
+
+    dropped: dict[str, Counter] = {}
+    for _ in range(8):
+        changed = False
+        for lang in order:
+            for word, needs in (above.get(lang) or {}).items():
+                senses = (bands.get(lang) or {}).get(word) or {}
+                for sense, band in list(senses.items()):
+                    if band not in _MAYBE_WEAK:
+                        continue
+                    if not any(band_above(stage, form) in _WEAK_BANDS
+                               for stage, form in needs):
+                        continue
+                    senses[sense] = "partial"
+                    dropped.setdefault(lang, Counter())[band] += 1
+                    changed = True
+        if not changed:
+            break
+    return dropped
 
 
 def write_index(bands: dict[str, dict[str, dict[int, str]]], generated: str,
@@ -1423,6 +1537,29 @@ def main() -> int:
     # the numbers and the page does not read them from here.  They are written
     # as their own small index beside coverage.json (write_index).
     bands = {lang: r.pop("bands", {}) for lang, r in langs.items()}
+    above = {lang: r.pop("above", {}) for lang, r in langs.items()}
+    # Oldest stage first: the ancestor's band is final before the word below it
+    # is read (see `demote_below_ancestors`).
+    order = sorted(langs, key=lambda code: len(data.derivation_chain(code) or ()))
+    demoted = demote_below_ancestors(bands, above, order)
+    for lang, drop in demoted.items():
+        row = langs.get(lang) or {}
+        summary = row.get("categories") or {}
+        counts_ = dict(summary.get("counts") or {})
+        for band, n in drop.items():
+            counts_[band] = max(0, counts_.get(band, 0) - n)
+        counts_["partial"] = counts_.get("partial", 0) + sum(drop.values())
+        row["categories"] = cats.summarise(
+            counts_, row.get("categorised") or 0,
+            unidentified=summary.get("counts", {}).get("unidentified"))
+        reasons_ = row.get("category_reasons") or {}
+        key = "partial: its ancestors are not fully explained"
+        reasons_[key] = reasons_.get(key, 0) + sum(drop.values())
+        row["category_reasons"] = dict(sorted(reasons_.items(),
+                                              key=lambda kv: -kv[1])[:24])
+    if any(demoted.values()):
+        print(f"   {sum(sum(d.values()) for d in demoted.values()):,} green "
+              "words demoted to partial: an ancestor they draw is not green")
     report["totals"] = {
         "glossary": sum(r["glossary"] for r in langs.values()),
         "attested": sum(r.get("categorised", 0) for r in langs.values()),
