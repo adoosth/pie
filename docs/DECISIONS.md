@@ -4288,3 +4288,52 @@ same stages, in the same order, as `fa/ناـ`'s ladder, and is no hole) and
 `outside`); `tests/test_loan_dossier.py` now checks the window is
 `from`/`to` and carries no prose; `tests/test_ui_render.js` asserts the loan
 timeline prints no "does not date this word".
+
+## 0.17.21 — the critic's first two rounds
+
+The admin asked for a *critic*: a subagent that reads random Persian pages,
+reports every place the page contradicts its record, and hands the list back for
+this agent to fix (2026-11-13, overnight). The ruleset is `docs/CRITIC.md`, the
+sampler and the mechanical checks are `tools/critic.py`, and four batches ran
+(57 pages). The fixes they forced:
+
+**A piece is the word the record means, not the first one the index heads.**
+دستمال's مال is the present stem of مالیدن, not Arabic "property" (`_piece_entry`
+reads the record's parenthesis, a trailing hyphen or "stem form of X"); باشنده's
+باش is the stem of بودن, not the jade (`_stem_verb`); and a definition that
+names its base decides a suffix cut — مقنعی «منسوب به مقنعه» is مقنعه + ـی with
+the final ـه elided, not مقنع + ـی, even though the entry carries a
+`borrowed_from` label (`_nisba_base`; the loan is the stem's, which the sentence
+now says).
+
+**Notation is not spelling.** `fa-cls:روز`, `نَامَه`, `خَم`, `‑ی` reached the
+page as headwords the glossary does not have: روزنامه drew two pieces over "no
+entry" and two ???, and every Persian suffix except ـمند printed with no gloss.
+`_piece_spelling` drops a stage key and maps the non-breaking hyphen,
+`_lookup_form` drops harakat (the *line* keeps what the record prints), and
+`_morph_gloss` is preferred over a bound piece's glossary entry — the entry for
+ی is the indefinite article while the piece in خورشیدی is the relational
+adjective.
+
+**A suffix row may be licensed.** Persian ـم is the ordinal ending and the 1sg
+possessive; `licensed: ordinal` in `data/morphology/fa.yaml` lets
+`_suffix_seam` read it only when the dictionary's label says «عدد ترتیبی», so
+سیزدهم is سیزده + ـم (Wiktionary: "From سیزده + ـم") and مردم is not مرد + ـم.
+
+**The meaning is a sentence, not Dehkhoda's paragraph.** `_page_gloss` now cuts
+at the first grammar note, cross-reference or example (`_GLOSS_NOTE`), strips
+source attributions and a trailing hedge, follows an entry that is only a
+cross-reference (بوعجرد «رجوع به ابوعجرد شود»), and prints "a writing of
+بیگلربیگی: …" / "plural of نیزک: …" for a definition that names its base.
+`_prose_etym` takes Wiktionary's flattened *etymology tree* off the front of the
+etymology (1,662 Persian entries; گالیم printed its nodes as prose).
+
+**A W needs a section, not a title.** `tools/en_wiktionary_sections.py` asked
+the API for every indexed article's level-2 headings: of 26,382 Persian title
+matches, **12,521 carry a `==Persian==` section and 13,861 do not**. The ledger
+now carries `section: false` for those and `wiktionary.en_pages` draws no W, so
+نقوع and تباشیر stopped claiming a record the site does not hold.
+
+**Tests.** `tests.test_build` + `test_seam` + `test_dehkhoda_structure` +
+`test_web.TestAConstructionIsATree` (125). Full coverage rerun; the published
+band index and `docs/COVERAGE.md` follow the new measurements.

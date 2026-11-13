@@ -489,9 +489,16 @@ class ConstructionCarries(unittest.TestCase):
         self.assertEqual(path["unexplained"], ["non-"])
         page = service.word("en", "nonsense")["category"]
         self.assertEqual(page["category"], "partial")
-        # The worklist names the piece that has nowhere to stand.
+        # The worklist names the rungs the glossary lacks *and* the piece that
+        # has nowhere to stand.  v0.17.18 began walking a compound's pieces, so
+        # non-'s own chain (Middle English non → Old English nān → Proto-West
+        # Germanic *nain) is part of the word's hole now; the origin row is the
+        # one that used to be the whole message (stale assertion fixed 2026-11-13
+        # while a critic batch re-read the class).
         self.assertEqual(page["reason"],
-                         "construction of non- + sense, but non- has no recorded origin")
+                         "no entry for Middle English non, Old English nān, "
+                         "Proto-West Germanic *nain; no recorded origin for "
+                         "Middle English non-")
 
     def test_a_word_whose_history_is_inheritance_is_not_a_construction(self):
         # blackbird is inherited from Middle English blakebird; "equivalent to

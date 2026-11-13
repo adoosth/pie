@@ -162,6 +162,29 @@ suffixes:
     sources: [wiktionary]
     example: "پسر 'boy' + ـک → پسرک 'little boy'"
 
+  - id: om
+    form: "-م"
+    surface: "ـم"
+    ending: ""
+    attach: keep
+    licensed: ordinal
+    gloss: "ordinal — the -th of a number (سیزده → سیزدهم 'thirteenth')"
+    note: >
+      Wiktionary, ـم (en.wiktionary.org/wiki/ـم), Etymology 2, a Persian suffix
+      "‑th; creates ordinal numbers" (پنجم panj-om 'fifth', بیست و یکم 'twenty-
+      first') and, with a partitive, fractions (یک ششم 'a sixth'), inherited
+      from Middle Persian -om; the same page records the rival ـمین (-omin) and
+      says the -om forms lean towards labelling and the -omin forms towards
+      counting by a criterion. The citation is the suffix, not the word: an
+      ordinal the dictionary prints is read as its cardinal plus this ending
+      (critic batch 02, 2026-11-13: سیزدهم, whose article says "From سیزده +
+      ـم"), and this row is offered only to a word the dictionary itself labels
+      an ordinal (عدد ترتیبی), because ـم also spells the 1sg possessive and a
+      final م is not evidence of either.
+    outcomes: "Persian پنجم 'fifth', بیست و یکم 'twenty-first'; Middle Persian -om"
+    sources: [wiktionary]
+    example: "سیزده 'thirteen' + ـم → سیزدهم 'thirteenth'"
+
   - id: var
     form: "-وار"
     surface: "ـوار"

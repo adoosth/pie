@@ -550,6 +550,34 @@ that keeps the `*` opens nothing).
   (`_origin_node`, which passes its own quoted gloss down), the ancestry rows
   (`_ancestry_forms`, including a compound's piece via `_piece_ancestor_gloss`)
   and the review's `sense_mismatch` check.
+- **Notation is not spelling** (2026-11-13, critic batch 04): a record writes
+  what it read, not the headword — `fa-cls:روز` carries a stage key, `نَامَه`
+  its harakat, `‑ی` a non-breaking hyphen. `service._piece_spelling` drops the
+  key and maps the hyphen, `_lookup_form` drops the harakat for the lookup, and
+  the line keeps what the record prints. Without it, روزنامه's pieces were "no
+  entry" under two ??? and every Persian suffix but ـمند reached the page with
+  no gloss of its own (`_morph_gloss`, which is preferred over a bound piece's
+  glossary entry — the entry for ی is the indefinite article).
+- **A definition names its own base, and that decides the cut** (2026-11-13):
+  مقنعی is «منسوب به مقنعه», so the suffix seam stands on مقنعه (with its final
+  ـه elided before ـی) and not on the homonym مقنع; بیلربی «تحریری از
+  بیگلربیگی» and نیازک «ج ِ نیزک» print "a writing of …" / "plural of …" with
+  the base's own sense instead of a pointer. `service._nisba_base` reads the
+  sentence the *entry at hand* carries, and a seam may then stand beside a
+  `borrowed_from` label, because the loan is the stem's.
+- **A suffix row may be licensed** (2026-11-13): `licensed: ordinal` in
+  `data/morphology/fa.yaml` marks ـم, which is the ordinal ending *and* the 1sg
+  possessive. `_suffix_seam` uses such a row only when the dictionary's own
+  label asks for it («عدد ترتیبی»), so سیزدهم is سیزده + ـم and مردم is not
+  مرد + ـم.
+- **The page prints the meaning, not the dictionary's paragraph** (2026-11-13,
+  critic batch 03): `service._page_gloss` cuts at the first grammar note,
+  cross-reference or quotation (`_GLOSS_NOTE`), drops source attributions
+  («(از ناظم الاطباء)») and a trailing hedge, follows an entry that is *only* a
+  cross-reference, and follows «رجوع به مترادفات» to the variant that holds the
+  sense. `_prose_etym` cuts Wiktionary's flattened *etymology tree* off the
+  front of the etymology (1,662 Persian entries), keeping the sentence after
+  the headword node.
 - **A line begins at the oldest mark** (2026-11-12): a step at the top of the
   ladder has no row above it, so `.constructstep:first-child` hides `.clead`'s
   rail (the segment that brings the line *down* from above) and the first row's

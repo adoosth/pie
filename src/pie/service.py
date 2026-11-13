@@ -1032,7 +1032,7 @@ def glossary(lang: str, limit: int = 400, roots_first: bool = True,
                 "word": entry["word"], "pos": " / ".join(group["pos"]),
                 "attestation": status,
                 "written": attestation.written(entry["word"], status),
-                "gloss": [g for g in group["gloss"][:2] if g],
+                "gloss": [g for g in _page_gloss(lang, entry, group["gloss"])[:2] if g],
                 "kind": kind,
                 "root": kind == "root",
                 # The colour of this sense, from the same published measurement
@@ -1262,6 +1262,40 @@ def _stage_by_name() -> dict[str, str]:
             if isinstance(key, str) and key.strip():
                 out.setdefault(key.strip().lower(), code)
     return out
+
+
+#: Where the prose of an etymology begins, after a scraped *tree* of nodes.
+_ETYM_CUE = re.compile(r"\b(Borrowed|Inherited|From|Probably|Possibly|Uncertain|"
+                       r"Doublet|Blend|Clipping|Back-formation|Calque|Contracted|"
+                       r"Alteration|Unknown|Named)\b")
+
+
+def _prose_etym(lang: str, word: str, text: str) -> str:
+    """The record's sentence, with Wiktionary's flattened etymology *tree* cut.
+
+    A scraped article can hand a tree over as one string — «Etymology tree
+    Latin Gallus Proto-Indo-European *-(i)yós … ▲ Latin -ius [nom.] French
+    gallium [bor.] Persian گالیم Borrowed from French gallium.» — and the page
+    printed every node as if it were prose (critic batch 02, 2026-11-13: 1,662
+    Persian entries; گالیم).  The tree is a picture the site draws; only the
+    sentence after it is the record, and it is found by the headword node the
+    tree ends on (`Persian گالیم`), with the opening cue as a fallback.  A tree
+    with no sentence under it says nothing rather than reciting nodes.
+    """
+    text = str(text or "").strip()
+    if "Etymology tree" not in text:
+        return text
+    tail = ""
+    name = (data.language_name(lang) or "").split(" (")[0].strip()
+    if name and word:
+        marker = f"{name} {word}"
+        at = text.rfind(marker)
+        if at >= 0:
+            tail = text[at + len(marker):]
+    if not tail.strip(" ,;·—–-"):
+        found = _ETYM_CUE.search(text, max(0, text.rfind("▲")))
+        tail = text[found.start():] if found else ""
+    return tail.strip(" ,;·—–-")
 
 
 def _prose_ancestry(entry: dict) -> list[tuple[str, str, str]]:
@@ -1933,7 +1967,7 @@ def _piece_name(piece: str) -> str:
     to be a headword of this language (2026-11-09).
     """
     piece = re.split(r"\s+\(|,", piece.strip())[0]
-    return piece.strip(" .,;:()")
+    return _STAGE_KEY.sub("", piece.strip(" .,;:()"))
 
 
 @lru_cache(maxsize=1)
@@ -1993,7 +2027,11 @@ def _compound_pieces(entry: dict, lang: str) -> list[dict]:
             if not bare:
                 found = []
                 break
-            record = index.get(normalise_etymon(bare))
+            # The record's own parenthesis decides between homonyms — «مال
+            # (mâl-)» is a verb stem, «باش (… stem form of بودن)» the present
+            # stem of بودن — so the piece is resolved by `_piece_entry`, and
+            # the plain index is the fallback (critic batches 02-03, 2026-11-13).
+            record = _piece_entry(lang, bare, "", text) or index.get(normalise_etymon(bare))
             if record is None:
                 # The glossary may head the same morpheme without the hyphen
                 # the sentence writes (*-craft* / craft).  Only an affix entry
@@ -2235,6 +2273,12 @@ def _rung_gloss(glosses: Iterable[str], limit: int = 110) -> str:
     # sense (": type, form, lineage").  It is punctuation of the source, not of
     # the meaning, and it is dropped rather than printed under a word.
     text = text.lstrip(": ").strip()
+    # Dehkhoda separates one sense from the next with a spaced full stop, and a
+    # bound piece inherits the whole run ("to touch and rub … . (Nāzem
+    # al-Atebbā)…").  The first sense is the meaning; the rest is a dictionary's
+    # own apparatus (2026-11-13, دستمال's مال).
+    if " . " in text:
+        text = text.split(" . ", 1)[0].strip()
     if len(text) > limit:
         text = text[:limit].rstrip(" ,;:-") + "…"
     return text
@@ -2248,11 +2292,11 @@ def _morph_gloss(form: str, lang: str = "ine-pro") -> str:
     the morpheme alone (-nó-, ending -s).  Both are the same claim, so the
     ending is added before the comparison instead of the suffix being guessed.
     """
-    wanted = str(form or "").lstrip("*")
+    wanted = _piece_spelling(str(form or "")).lstrip("*-\u2011\u0640")
     if not wanted:
         return ""
     for row in _curated_suffixes(lang):
-        bare = str(row.get("form") or "").lstrip("*")
+        bare = _piece_spelling(str(row.get("form") or "")).lstrip("*-\u2011\u0640")
         if not bare:
             continue
         ending = str(row.get("ending") or "").lstrip("*")
@@ -2318,7 +2362,8 @@ _BUILD_DEPTH = 3
 
 def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
                  seen: frozenset = frozenset(), build_depth: int = 0,
-                 hint: str = "", quoted: tuple = ()) -> dict:
+                 hint: str = "", quoted: tuple = (),
+                 given: dict | None = None) -> dict:
     """One word on a construction piece's own timeline (admin, 2026-11-12).
 
     A construction is not a line under the word: its pieces are words with
@@ -2355,7 +2400,7 @@ def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
     row = _lang(lang)
     # ``hint`` is the meaning the child's own sentence quotes for this form:
     # the two PIE roots spelled *swer- are told apart by it (2026-11-12).
-    entry = _sense_entry(lang, form, hint)
+    entry = given if given is not None else _sense_entry(lang, form, hint)
     # A language outside the family — Arabic, Turkish, Old Anatolian Turkish —
     # has no Indo-European trail to trace and no glossary of its own in this
     # model.  The page says "non-PIE word" for it instead of "no entry", which
@@ -2450,12 +2495,26 @@ def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
         def _distance(row: tuple) -> int:
             stage = data.stage_of(row[0]) or row[0]
             return chain.index(stage) if stage in chain else -1
+        # **A loan is the word's origin, not a rung of the family ladder.**  The
+        # record lists its nearest ancestor first, so when that row is a
+        # borrowing from a language outside this word's chain the word came from
+        # there and the climb ends at the donor: peo *farnah is Old Median
+        # *farnah (a loan), and distance-first picked Proto-Iranian *huHarnáh
+        # instead, which is the *donor's* ancestry, not this word's (critic
+        # batch 02, 2026-11-13).  Inside the family the distance rule stands.
+        lead = rows[0]
+        borrow_rels = ("borrow", "borrowed", "lbor", "slbor", "obor", "ubor",
+                       "calque")
+        lead_outside = _distance(lead) < 0 and lead[2] in borrow_rels
+        if lead_outside:
+            chosen = lead
         best = max(_distance(t) for t in rows)
         nearest = [t for t in rows if _distance(t) == best]
-        for rel_kind in ("inherit", "borrow", "derived"):
-            chosen = next((t for t in nearest if t[2] == rel_kind), None)
-            if chosen:
-                break
+        if chosen is None:
+            for rel_kind in ("inherit", "borrow", "derived"):
+                chosen = next((t for t in nearest if t[2] == rel_kind), None)
+                if chosen:
+                    break
         chosen = chosen or nearest[0]
     if chosen is None:
         node["terminal"] = "end"
@@ -2600,12 +2659,49 @@ _REDUPLICATION_TYPES = (
 )
 
 
+#: Harakat a quoted reading carries and a headword does not (نَامَه / نامه).
+_HARAKAT = re.compile(r"[\u064b-\u0652\u0670\u0653-\u0655]")
+#: A stage key in front of a form: `fa-cls:روز` is the word روز.
+_STAGE_KEY = re.compile(r"^[a-z][a-z0-9-]{1,12}:(?=\S)")
+
+
+def _piece_spelling(text: str) -> str:
+    """A piece as the word is spelled, without the record's notation.
+
+    Three kinds of notation reached the page as if they were spelling (critic
+    batch 04, 2026-11-13): a stage key in front of the word (`fa-cls:روز` over
+    a glossary that heads روز), the harakat of a quoted reading (`نَامَه`,
+    `خِدْمَت`, `غَم`, `ـنَاک`), and the non-breaking hyphen of a suffix (`‑ی`
+    for the table's `-ی`, which is why every Persian suffix but ـمند reached
+    its row bare).  The word is the same word, so the lookup and the line both
+    use its spelling.
+    """
+    text = str(text or "").strip()
+    text = _STAGE_KEY.sub("", text)
+    text = _HARAKAT.sub("", text)
+    return text.replace("\u2011", "-").replace("\u2010", "-")
+
+
+def _lookup_form(text: str) -> str:
+    """The form a word is looked up by: the spelling without the harakat.
+
+    A record quotes a reading (نَامَه، خِدْمَت، کَم) and the glossary heads the
+    word as it is written, so the lookup drops the vowel marks.  The *line*
+    keeps what the record prints (critic batch 04, 2026-11-13).
+    """
+    return _HARAKAT.sub("", _piece_spelling(text))
+
+
 def _formed_piece(form) -> str:
-    """A piece's own form, or ``""`` when the stored value is not one."""
+    """A piece's own form, or ``""`` when the stored value is not one.
+
+    A stage key in front of the piece (`fa-cls:روز`) is notation, not spelling,
+    and is dropped; the rest is printed as the record writes it.
+    """
     value = form
     while isinstance(value, (list, tuple)) and value:
         value = value[0]
-    text = str(value or "").strip()
+    text = _STAGE_KEY.sub("", str(value or "").strip()).replace("\u2011", "-").replace("\u2010", "-")
     if not text or _MALFORMED_PIECE.match(text):
         return ""
     return text
@@ -2637,6 +2733,129 @@ def _stated_piece_ancestry(value) -> tuple[tuple[str, str, str], ...]:
             continue
         out.append((lang, form.strip(), rel or "borrow"))
     return tuple(out)
+
+
+@lru_cache(maxsize=None)
+def _verb_stem_index(lang: str) -> dict[str, dict]:
+    """Present stems of the ``-idan`` verbs this stage's glossary heads.
+
+    Persian states a compound's verb piece by its present stem and marks it with
+    a hyphen — دستمال is "From دست (dast) + مال (mâl-)" — while the glossary
+    heads the infinitive مالیدن "to rub".  The piece therefore matched Arabic
+    مال "property", and the timeline said the handkerchief was made of wealth
+    (admin, 2026-11-13: "the مال is from مالیدن not the Arabic word").
+
+    Only the ``-idan`` class is read: it is the productive one, its stem is the
+    infinitive minus ‑یدن, and the other classes (ساختن/ساز, رفتن/رو) are
+    irregular enough that a guess would be worse than the homonym.
+    """
+    out: dict[str, dict] = {}
+    try:
+        entries = data.lexicon(lang)
+    except Exception:
+        return out
+    for entry in entries:
+        if str(entry.get("pos") or "") != "verb":
+            continue
+        word = str(entry.get("word") or "")
+        if word.endswith("یدن") and len(word) > len("یدن") + 1:
+            out.setdefault(word[:-len("یدن")], entry)
+    return out
+
+
+_PIECE_HINT_RE = r"\s*\(([^()]{0,60})\)"
+
+
+#: "present stem form of بودن (budan, “to be”)" — the record naming a verb.
+_STEM_OF = re.compile(r"stem\s+(?:form\s+)?of\s+([\u0600-\u06ff\u200c]+)")
+
+
+def _stem_verb(etym: str, form: str) -> str:
+    """The verb whose stem a piece is said to be, or "".
+
+    باشنده's sentence is "From باش (bâš, present stem form of بودن (budan, “to
+    be”)) + ـنده", and the parenthesis nests, so the piece's own hint is not a
+    single bracket group.  The phrase is read instead: everything the record
+    says about this piece up to the next plus sign (critic batch 03, 2026-11-13:
+    باش was drawn from the jade homonym, under a red ??? of its own).
+    """
+    if not etym or not form:
+        return ""
+    at = etym.find(form + " (")
+    if at < 0:
+        return ""
+    found = _STEM_OF.search(etym[at:at + 200])
+    return found.group(1) if found else ""
+
+
+def _piece_hint(etym: str, form: str) -> str:
+    """The parenthetical the record puts after one piece of a construction.
+
+    دستمال's sentence is "From دست (dast) + مال (mâl-)."; the second piece's
+    hint is a stem, marked by the trailing hyphen, and that mark is the record's
+    own statement that the piece is a verb stem and not a noun homonym.
+    """
+    if not etym or not form:
+        return ""
+    match = re.search(re.escape(form) + _PIECE_HINT_RE, etym)
+    return match.group(1).strip() if match else ""
+
+
+def _ancestor_gloss_words(entry: dict) -> set[str]:
+    """Content words of the meaning an entry's nearest recorded ancestor has."""
+    try:
+        for lang, word, rel in _ancestry_triples(entry):
+            if rel == "root":
+                continue
+            other = _lemma_entry(lang, word)
+            if other is None:
+                continue
+            return senses.content_words(" ".join(str(g) for g in other.get("gloss") or ()))
+    except Exception:
+        pass
+    return set()
+
+
+def _piece_entry(lang: str, form: str, gloss: str, etym: str = "") -> dict | None:
+    """The entry a construction's piece means, not merely the first it heads.
+
+    One spelling heads several words, and a compound's piece is one of them:
+    fa دست heads Dehkhoda's classifier "a set or suite of objects" before the
+    noun "hand", so دستمال was drawn from a classifier (admin, 2026-11-13).
+    Two record facts decide, in this order:
+
+    * the parenthetical the sentence puts after the piece — a trailing hyphen
+      means a verb stem, and the stage's own ‑یدن verb supplies the word
+      (مال (mâl-) is مالیدن, not Arabic مال);
+    * the meaning the piece's own recorded ancestry carries — دست's ancestor
+      is Middle Persian dast "hand", which is the noun, not the classifier.
+
+    With neither fact the first entry stands, exactly as before.
+    """
+    form = _lookup_form(form) or form
+    hint = _piece_hint(etym, form)
+    if hint.endswith("-"):
+        stem = _verb_stem_index(lang).get(form)
+        if stem is not None:
+            return stem
+    named = _stem_verb(etym, form)
+    if named:
+        verb = _lemma_entry(lang, named)
+        if verb is not None:
+            return verb
+    rows = _notation_entries(lang, form)
+    if gloss and len(rows) > 1:
+        return _sense_entry(lang, form, gloss)
+    if len(rows) < 2:
+        return rows[0] if rows else _lemma_entry(lang, form)
+    wanted = _ancestor_gloss_words(rows[0])
+    if wanted:
+        scored = sorted(
+            ((len(wanted & senses.content_words(" ".join(str(g) for g in row.get("gloss") or ()))), row)
+             for row in rows), key=lambda pair: pair[0], reverse=True)
+        if scored[0][0] > 0 and (len(scored) == 1 or scored[0][0] > scored[1][0]):
+            return scored[0][1]
+    return rows[0]
 
 
 def _bound_piece(kind: str, form: str, index: int) -> bool:
@@ -2852,14 +3071,23 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
             piece_anc = (_stated_piece_ancestry(piece_row[2])
                          if isinstance(piece_row, (list, tuple))
                          and len(piece_row) > 2 else ())
-            piece = _lemma_entry(lang, form_piece)
+            piece = _piece_entry(lang, form_piece, str(gloss or ""),
+                                 str(entry.get("etym") or ""))
             # A piece is a word of its own, so the line prints it the way the
             # word page does: the writing, then its reading, when the writing
             # is in a script (2026-11-12: 𐎨𐎡𐏂 čiçaʰ + *farnah).
             reading = ""
             if piece and _in_native_script(lang, form_piece):
                 reading = (readings_for(piece).get("reading") or "").strip()
-            bound = _bound_piece(kind, form_piece, index)
+            # A piece the record writes with a trailing hyphen is a **stem**,
+            # not a free word (مال (mâl-) in دستمال): it wears no dot and starts
+            # no climb of its own, exactly like a bound morpheme, while the
+            # entry it resolves to still gives it its meaning (2026-11-13).
+            # «present stem form of بودن» names a stem exactly as a trailing
+            # hyphen does (باشنده, critic batch 03, 2026-11-13).
+            piece_stem = (_piece_hint(str(entry.get("etym") or ""), form_piece).endswith("-")
+                          or bool(_stem_verb(str(entry.get("etym") or ""), form_piece)))
+            bound = _bound_piece(kind, form_piece, index) or piece_stem
             # The meaning under the word in the timeline (admin, 2026-11-12):
             # the row's own parenthesis when it has one, otherwise the sense
             # the piece's glossary entry gives it.  That fallback is what lets
@@ -2868,14 +3096,26 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
             # parenthesis at all.
             sense = str(gloss or "").strip() or (
                 _rung_gloss(piece.get("gloss") or []) if piece else "")
+            # A parenthesis that states the relation rather than a meaning —
+            # «present stem form of بودن (budan, “to be”)» — is not the word's
+            # sense; the entry the piece resolves to has that (critic batch 03,
+            # 2026-11-13).
+            if piece and sense and _STEM_OF.search(sense):
+                sense = _rung_gloss(piece.get("gloss") or []) or sense
             # A bound morpheme is not a word and has no glossary entry: what it
             # does is written in the morphology table, so the timeline takes it
             # from there (*-nó-s: "verbal adjective or passive participle") —
             # otherwise the piece stands under the word with nothing to say
             # (admin, 2026-11-12: every term, suffixes included, says its
             # meaning).
-            if not sense and bound:
-                sense = _morph_gloss(form_piece, lang)
+            if bound:
+                # A bound morpheme's meaning is the row written for it, not a
+                # glossary entry that happens to share its spelling: the entry
+                # for ی is the indefinite article, while the piece in خورشیدی
+                # is the relational adjective (critic batch 04, 2026-11-13).
+                # The row's own example («(خورشید → خورشیدی 'solar')») is
+                # written for the table, not for a line under a word.
+                sense = _morph_gloss(form_piece, lang).split(" (")[0].strip() or sense
             pieces.append({
                 "form": form_piece,
                 "gloss": sense,
@@ -2890,7 +3130,9 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
                 # or borrowed.
                 "branch": None if bound else _origin_node(lang, form_piece,
                                                           build_depth=build_depth,
-                                                          quoted=piece_anc),
+                                                          hint=sense or "",
+                                                          quoted=piece_anc,
+                                                          given=piece),
         })
         # A join is two pieces or more — except a word the record states as
         # *formed from* a single word, which is the whole of its history:
@@ -2950,8 +3192,13 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
                      for b in found]
         keep = []
         for k, seq in enumerate(sequences):
-            if any(k2 != k and len(other) > len(seq)
-                   and other[:len(seq)] == seq
+            if any(k2 != k and (
+                       (len(other) > len(seq) and other[:len(seq)] == seq)
+                       # The same pieces spelled once with the record's
+                       # notation and once without are one analysis too, and
+                       # the first row keeps the spelling the record stored
+                       # (critic batch 02: *sokʷh₂ṓy drew two identical tabs).
+                       or (len(other) == len(seq) and other == seq and k2 < k))
                    for k2, other in enumerate(sequences)):
                 continue
             keep.append(found[k])
@@ -2968,7 +3215,8 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
         # rung would print no formation while the join view below prints one
         # (review, 2026-11-10).
         seam = seam_of(entry_lang, str(entry.get("word") or ""),
-                       str(entry.get("pos_label") or ""))
+                       str(entry.get("pos_label") or ""),
+                       _definition_stem(entry_lang, str(entry.get("word") or "")))
         if seam and seam.get("verdict") == "unique":
             return [{"kind": "compound", "lang": entry_lang,
                      "lang_name": _lang(entry_lang).get("name", entry_lang),
@@ -3026,8 +3274,42 @@ def _seam_lookup(lang: str):
     return lookup
 
 
+#: A definition that says what the word is relative to: مقنعی «منسوب به مقنعه».
+_NISBA = re.compile(r"^\s*منسوب\s*(?:است\s*)?به\s*([^\s،؛:,.()«»\"]+)")
+
+
+def _nisba_base(lang: str, word: str, glosses: Iterable[str]) -> str:
+    """The entry a definition calls this word «منسوب به», or "".
+
+    The base is read from the senses given — the entry the page is drawing, not
+    a fresh lookup — so a caller cannot inherit a hint from another row.
+    """
+    for sense in glosses or []:
+        found = _NISBA.match(str(sense))
+        if not found:
+            continue
+        base = found.group(1).strip()
+        if base and base != word and _lemma_entry(lang, base):
+            return base
+    return ""
+
+
+@lru_cache(maxsize=8192)
+def _definition_stem(lang: str, word: str) -> str:
+    """The word a definition calls this one «منسوب به», if it is an entry.
+
+    A nisba names its own base in the definition (critic batch 02, 2026-11-13:
+    مقنعی «منسوب به مقنعه»), and that is a record statement about how the word
+    was made — the base is a word of the language and the ending is one of its
+    own suffixes.  The hint chooses which entry a suffix seam stands on; it
+    never makes a cut by itself.
+    """
+    entry = _lemma_entry(lang, word) or {}
+    return _nisba_base(lang, word, entry.get("gloss") or [])
+
+
 @lru_cache(maxsize=16384)
-def _suffix_seam(lang: str, word: str, said: str = "") -> dict | None:
+def _suffix_seam(lang: str, word: str, said: str = "", hint: str = "") -> dict | None:
     """``word`` = a stored, recorded stem + one of the stage's own suffixes.
 
     A closed class is the strongest evidence the model can have about a word
@@ -3047,6 +3329,12 @@ def _suffix_seam(lang: str, word: str, said: str = "") -> dict | None:
     forms = sorted({str(r.get("form") or "").lstrip("-").strip()
                     for r in rows if str(r.get("form") or "").strip("-")},
                    key=len, reverse=True)
+    # A row may say it is only readable when the dictionary's own label names
+    # it (`licensed: ordinal`): ـم is the ordinal ending *and* the 1sg
+    # possessive, so a word ending in م is not evidence of either (critic batch
+    # 02, 2026-11-13: سیزدهم, which Dehkhoda prints as «عدد ترتیبی»).
+    licensed = {str(r.get("form") or "").lstrip("-").strip()
+                for r in rows if r.get("licensed")}
     if not forms:
         return None
     # A label licenses the suffix it names, not every suffix in the registry:
@@ -3054,14 +3342,41 @@ def _suffix_seam(lang: str, word: str, said: str = "") -> dict | None:
     # dictionary calls a relative adjective cannot be cut with -ک (تئوریک),
     # and a diminutive is not a -ی formation (review, 2026-11-10).
     allowed = None
-    if "نسبی" in said:
+    if "ترتیبی" in said:
+        allowed = {form for form in forms if form in ("م",)}
+    elif "نسبی" in said:
         allowed = {form for form in forms if form in ("ی",)}
     elif "مصغر" in said:
         allowed = {form for form in forms if form in ("ک", "چه")}
+    licensed -= allowed or set()
     derived = allowed is not None
+    # The definition may name the base the word is «منسوب به» (مقنعی), and that
+    # base is a stronger witness than the bare cut: مقنع is an entry too, but
+    # it means "a mouth whose teeth turn inward", not the veil.  The hint only
+    # chooses which entry the suffix stands on; it never makes a cut alone.
+    if hint:
+        bare = hint[:-1] if hint.endswith("ه") else hint
+        for form in forms:
+            if allowed is not None and form not in allowed:
+                continue
+            if word != bare + form:
+                continue
+            record = _lemma_entry(lang, hint) or {}
+            if not record:
+                continue
+            elided = bare != hint
+            return {"word": word, "parts": [hint, "-" + form], "stem": hint,
+                    "suffix": form, "verdict": "unique", "elided": elided,
+                    "alternatives": [["-".join([hint, form])]],
+                    "gloss": _rung_gloss(record.get("gloss") or []),
+                    "reason": (f"{hint} + -{form} (a recorded suffix of the stage"
+                               + (", the stem's final ـه elided" if elided else "")
+                               + "); the whole word is a formation, not a derivation")}
     hits = []
     for form in forms:
         if allowed is not None and form not in allowed:
+            continue
+        if form in licensed:
             continue
         if not word.endswith(form) or len(word) - len(form) < 3:
             continue
@@ -3088,7 +3403,7 @@ def _suffix_seam(lang: str, word: str, said: str = "") -> dict | None:
 
 
 @lru_cache(maxsize=16384)
-def seam_of(lang: str, word: str, said: str = "") -> dict | None:
+def seam_of(lang: str, word: str, said: str = "", hint: str = "") -> dict | None:
     """Whether ``word`` can be cut into words of its own language, and how.
 
     This is *our* reading of an unanalysed headword, never a record: the entry
@@ -3106,12 +3421,14 @@ def seam_of(lang: str, word: str, said: str = "") -> dict | None:
         return None
     from . import compounds
 
-    suffix = _suffix_seam(lang, word, said)
+    suffix = _suffix_seam(lang, word, said, hint)
     if suffix:
         suffix["kind"] = "suffix"
         suffix["verified"] = False
         whose = (f" The dictionary prints it as «{said}»." if said else "")
-        suffix["sentence"] = (f"{suffix['stem']} + ‑{suffix['suffix']} → {word}, "
+        elided = (" (its final ـه elided before the suffix)"
+                  if suffix.get("elided") else "")
+        suffix["sentence"] = (f"{suffix['stem']} + ‑{suffix['suffix']} → {word}{elided}, "
                               f"built in {rules.get('label') or lang} with one of its "
                               "own recorded suffixes; a formation, not a derivation."
                               + whose +
@@ -3145,14 +3462,23 @@ def _seam_payload(lang: str, entry: dict) -> dict | None:
     # A word whose record names the language it was borrowed from has one
     # history, and it is the borrowing: drawing a "built in Persian" join
     # beside it would offer a second pathway (2026-11-09; review,
-    # 2026-11-10).
-    if entry.get("borrowed_from"):
+    # 2026-11-10).  The exception is a word whose *definition* names the word
+    # it is relative to (مقنعی «منسوب به مقنعه»): then the loan is the stem's
+    # and the headword is the -ی formation on it (critic batch 02, 2026-11-13).
+    word = str(entry.get("word") or "")
+    hint = (_nisba_base(lang, word, entry.get("gloss") or [])
+            if entry.get("borrowed_from") else "")
+    if entry.get("borrowed_from") and not hint:
         return None
-    seam = seam_of(lang, str(entry.get("word") or ""), str(entry.get("pos_label") or ""))
+    seam = seam_of(lang, word, str(entry.get("pos_label") or ""), hint)
     if not seam:
         return None
     payload = dict(seam)
     payload["pieces"] = _seam_pieces(lang, seam.get("parts") or [])
+    if hint:
+        payload["sentence"] = str(seam.get("sentence") or "").replace(
+            "The dictionary records no etymology for it.",
+            f"The headword itself is formed in Persian; {hint} is the loan.")
     return payload
 
 
@@ -3566,18 +3892,25 @@ def _unexplained_branch(node: dict | None) -> dict | None:
     above a ``???``).  This walks the same path `climbOf` walks in the page.
     """
     seen: set[int] = set()
-    while node is not None and id(node) not in seen:
+    queue = [node]
+    while queue:
+        node = queue.pop(0)
+        if node is None or id(node) in seen:
+            continue
         seen.add(id(node))
         if node.get("terminal") in ("end", "missing"):
             return node
         builds = node.get("builds") or []
         if builds:
-            pieces = builds[0].get("pieces") or []
-            first = pieces[0] if pieces else None
-            node = (first or {}).get("branch")
+            # **Every column of the tree is the reader's**, not only the first
+            # piece's: each piece draws its own ascent, so a ??? over the second
+            # piece is as visible as one on the rail (2026-11-13).
+            for build in builds[:1]:
+                for piece in build.get("pieces") or []:
+                    queue.append((piece or {}).get("branch"))
             continue
-        parents = node.get("parents") or []
-        node = parents[0] if parents else None
+        for parent in node.get("parents") or []:
+            queue.append(parent)
     return None
 
 
@@ -4023,7 +4356,10 @@ def _category_of(entry: dict, chain: list[str], exact: dict | None,
     # only when it says nothing is the seam this repo reads tried, and the note
     # says whose claim it is (2026-11-10).
     built_from, built_note = (), ""
-    if not (entry.get("anc") or entry.get("etym") or entry.get("borrowed_from")):
+    own_hint = _nisba_base(str(entry.get("lang") or ""), str(entry.get("word") or ""),
+                           entry.get("gloss") or [])
+    if not (entry.get("anc") or entry.get("etym")
+            or (entry.get("borrowed_from") and not own_hint)):
         own_build = _own_construction(entry, chain)
         if own_build:
             built_from = tuple(str(p[0]) for p in own_build["pieces"])
@@ -4031,7 +4367,7 @@ def _category_of(entry: dict, chain: list[str], exact: dict | None,
         else:
             from . import compounds
             seam = seam_of(str(entry.get("lang") or ""), str(entry.get("word") or ""),
-                           str(entry.get("pos_label") or ""))
+                           str(entry.get("pos_label") or ""), own_hint)
             if seam and seam.get("verdict") == "unique":
                 built_from = tuple(seam["parts"])
                 built_note = compounds.seam_note(entry)
@@ -4079,6 +4415,137 @@ def _category_of(entry: dict, chain: list[str], exact: dict | None,
     meta = cats.CATEGORIES[verdict["category"]]
     return {**verdict, "label": meta["label"], "colour": meta["colour"],
             "definition": meta["definition"]}
+
+
+_CROSS_REFERENCE = re.compile(r"(?:و\s+)?رجوع به\s+")
+
+
+#: Where a Dehkhoda sense stops stating the meaning and starts stating something
+#: about the word: a grammar note, a cross-reference, or a quotation.
+_GLOSS_NOTE = re.compile(
+    r"(?:^|\.\s|،\s|\u06d4\s*|؛\s*)"
+    r"(?:(?:و\s+)?رجوع\s+به|بمعنی\s|نعت\s|صفت\s|اسم\s|مصدر\s|مثنی\s|"
+    r"تحریر[یی]\s+از|ج\s*ِ\s|در\s+نجوم|و\s+این\s+نسبت|\(از\s)")
+_LEAD_PAREN = re.compile(r"^\s*(?:\([^()]{0,60}\)\s*)+")
+_ATTRIBUTION = re.compile(r"\.\s*\((?:از\s+)?[^()]{0,25}\)\s*\.?")
+
+
+def _pointer_relation(lang: str, text: str, word: str) -> tuple[str, str] | None:
+    """``(relation, base)`` when a sense says the word is a form of another.
+
+    Dehkhoda defines many entries only by their relation to a base — بیلربی is
+    «تحریری از بیگلربیگی» and نیازک is «ج ِ نیزک» (plural of نیزک) — and the
+    page printed the pointer as if it were a meaning (critic batch 03,
+    2026-11-13).  Only a short opening segment counts, and the base must be a
+    headword this glossary holds.
+    """
+    head = re.split(r"\.\s|\u06d4", str(text or ""), 1)[0].strip()
+    if not head or len(head.split()) > 4:
+        return None
+    for pattern, relation in ((r"^تحریر[یی]\s+از\s+(\S+)", "a writing of"),
+                              (r"^ج\s*ِ\s*(\S+)", "plural of"),
+                              (r"^مثنی\s+ی?\s*(\S+)", "dual of"),
+                              (r"^مصغر\s+(\S+)", "diminutive of")):
+        found = re.match(pattern, head)
+        if not found:
+            continue
+        base = found.group(1).strip(" .،")
+        if base and base != word and _lemma_entry(lang, base):
+            return relation, base
+    return None
+
+
+def _short_sense(entry: dict | None) -> str:
+    """One sense of an entry, cut at its first full stop."""
+    if not entry:
+        return ""
+    sense = next((str(g).strip() for g in entry.get("gloss") or [] if str(g).strip()), "")
+    sense = _LEAD_PAREN.sub("", sense)
+    sense = re.sub(r"\s*\([^()]{0,25}\)\s*", " ", sense)
+    note = _GLOSS_NOTE.search(sense)
+    if note and note.start() > 0:
+        sense = sense[:note.start()]
+    sense = re.split(r"\s\.\s|\.\s|\u06d4|\s*؛\s*", sense, 1)[0]
+    return re.sub(r"\s+", " ", sense).strip(" .،؛")
+
+
+def _page_gloss(lang: str, entry: dict, glosses) -> list[str]:
+    """The meaning to print, cut down to what the record actually defines.
+
+    Dehkhoda writes a whole paragraph under a headword: variant spellings, the
+    meaning, a grammatical note («نعت فاعلی است از تدمیح»), the dictionary it
+    was taken from, an Arabic example and its translation.  The page printed
+    all of it as the meaning (critic batch 01: شکربره; batch 03: عشیش، مدمح،
+    حبنبر، نیازک، بیلربی, 2026-11-13).  This reader keeps the meaning:
+
+    * a definition that only names a base is printed with the base's own
+      sense beside it — بیلربی «تحریری از بیگلربیگی» → "a writing of
+      بیگلربیگی: …", نیازک «ج ِ نیزک» → "plural of نیزک: …";
+    * an entry that only says "see the synonyms" (شکربره) quotes the sense
+      filed under the variant it points at;
+    * otherwise the meaning is the run before the first grammatical note,
+      cross-reference, quotation or new sentence, with source attributions
+      («(از ناظم الاطباء)») and a trailing hedge (فیرزانی «ظاهراً …») dropped.
+
+    One hop only, and nothing is invented.
+    """
+    glosses = [str(g).strip() for g in (glosses or []) if str(g).strip()]
+    if not glosses:
+        return glosses
+    first = _LEAD_PAREN.sub("", glosses[0]).strip()
+    rest = glosses[1:]
+    # A definition that only names the base is still a meaning, once the base's
+    # own sense is quoted beside the relation (بیلربی، نیازک).
+    pointer = _pointer_relation(lang, first, str(entry.get("word") or ""))
+    if pointer:
+        relation, base = pointer
+        quoted = _short_sense(_lemma_entry(lang, base))
+        return [f"{relation} {base}" + (f": {quoted}" if quoted else ""), *rest]
+    # A relative definition is a meaning in itself: «منسوب به مقنعه» says what
+    # the word is about, and the clause after it explains the relation rather
+    # than adding a sense.
+    relative = re.match(r"^((?:منسوب|نسبت)\s*(?:است\s*)?به\s+[^\s.،؛]+)", first)
+    if relative:
+        return [relative.group(1), *rest]
+    # An entry that is *only* a cross-reference points at the word it means:
+    # بوعجرد «رجوع به ابوعجرد شود» printed a direction where a meaning should
+    # be (critic batch 03, 2026-11-13).
+    only_ref = re.fullmatch(r"\s*(?:و\s+)?رجوع\s+به\s+([^\s.،؛]+)\s*"
+                            r"(?:شود|کنید|نمایید)?\s*[.،؛]?\s*", first)
+    if only_ref:
+        base = only_ref.group(1)
+        other = _lemma_entry(lang, base)
+        if other and other.get("word") != entry.get("word"):
+            quoted = _short_sense(other)
+            if quoted:
+                return [f"{base}: {quoted}", *rest]
+    # An entry defined only by "see the synonyms of the word" quotes the variant.
+    if _CROSS_REFERENCE.search(first) and "مترادفات" in first:
+        head = first.split("(", 1)[0]
+        for token in re.split(r"[.\u06d4]", head):
+            token = token.strip()
+            if not token or token == entry.get("word") or " " in token:
+                continue
+            other = _lemma_entry(lang, token)
+            if other is None or other.get("word") == entry.get("word"):
+                continue
+            sense = _short_sense(other)
+            if sense:
+                return [f"{token}: {sense}", *rest]
+    # The meaning is the run of sentences before the first grammatical note,
+    # cross-reference or quotation; `_short_sense` holds the same rule.
+    note = _GLOSS_NOTE.search(first)
+    if note and note.start() > 0:
+        first = first[:note.start()]
+    # A dictionary's own hedge is not a meaning (فیرزانی «ظاهراً مخفف …»).
+    hedge = re.search(r"\.\s*(?:ظاهراً|ظاهرا|شاید|گویا|احتمالاً)\b", first)
+    if hedge and hedge.start() > 0:
+        first = first[:hedge.start()]
+    first = _ATTRIBUTION.sub(". ", first)
+    # One sentence: Dehkhoda separates senses with " . " and examples with "؛".
+    first = re.split(r"\s\.\s|\.\s|\u06d4|\s*؛\s*", first, 1)[0]
+    first = re.sub(r"\s+", " ", first).strip(" .،؛ ")
+    return ([first, *rest] if first else rest)
 
 
 def _page_category(entry: dict, lang: str, ladder: dict | None,
@@ -8749,7 +9216,7 @@ def word(lang: str, form: str, disabled: Iterable[str] = (),
         # the part of speech and never instead of it (2026-11-10).
         "pos_label": entry.get("pos_label", ""),
         "says": dict(entry.get("structure") or {}),
-        "gloss": head.get("gloss", []),
+        "gloss": _page_gloss(lang, head, head.get("gloss", [])),
         # Which dictionary the gloss above is quoted from: the tab is named
         # after its source, and 153,215 Persian entries take theirs from
         # Dehkhoda, not from Wiktionary (2026-11-12, critic P1-7).
@@ -8758,7 +9225,8 @@ def word(lang: str, form: str, disabled: Iterable[str] = (),
         "translit": entry.get("translit", ""),
         "translit_alt": entry.get("translit_alt", []),
         "rtl": is_rtl(entry["word"]),
-        "etymology": entry.get("etym", ""),
+        "etymology": _prose_etym(lang, str(head.get("word") or ""),
+                                 entry.get("etym") or ""),
         # What the Persian Wiktionary's own page says, when one was read: the
         # address first, the etymology as a quotation.  Kept apart from
         # `etymology`, which is the record this model derives from.

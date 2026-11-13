@@ -96,6 +96,14 @@ def en_pages(lang: str) -> dict[str, str]:
                 if not line:
                     continue
                 row = json.loads(line)
+                # A title is shared by every language on the site: en.wiktionary's
+                # نقوع is an Arabic entry with no Persian section, and the W it
+                # drew claimed a record of the Persian word (critic batch 01,
+                # 2026-11-13).  Rows this repo has checked say which they are
+                # (`tools/en_wiktionary_sections.py`); an unchecked row keeps
+                # the old behaviour until the pass reaches it.
+                if row.get("section") is False:
+                    continue
                 if row.get("status") == "found" and row.get("url"):
                     out[row["word"]] = row["url"]
         except (EOFError, OSError, zlib.error):

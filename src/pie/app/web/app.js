@@ -3448,7 +3448,9 @@ function renderLoanLadder(d) {
                            : `Open this form — nothing in ${name(r)}'s glossary records it` })}</div>
         <div class="rung-rec">${r.gloss
           ? `<span class="sense">${esc(r.pos ? `${r.pos} · ` : "")}“${esc(r.gloss)}”</span>` : ""}<span class="sub">${i === 0
-          ? (r.lang === l.code ? "the donor form the record names" : "the oldest form the record names")
+          ? (r.lang === l.code
+            ? (r.form ? "the donor form the record names" : "the donor language the record names")
+            : (r.form ? "the oldest form the record names" : "the oldest stage the record names"))
           : "the form the record names at this stage"}</span></div>
       </div>
     </li>`;

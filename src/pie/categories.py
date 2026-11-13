@@ -125,7 +125,7 @@ def unexplained_reason(labels: dict | None) -> str:
     if says.get("huzvarish"):
         return "no recorded etymology (the dictionary labels it a huzvarish)"
     if says.get("compound"):
-        return "no recorded etymology (a compound the model cannot cut)"
+        return "no recorded etymology (a compound: the record states no construction)"
     if says.get("relational"):
         return ("no recorded etymology (a relative adjective whose stem is not stored)")
     if says.get("affix"):
