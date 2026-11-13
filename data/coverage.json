@@ -2,7 +2,7 @@
  "schema": 2,
  "generated": "2026-11-13",
  "inputs": {
-  "lexicon": "328d4239c882609e71c2176458403570d2cdab21",
+  "lexicon": "9d4aa97d7fc1cf407225b851279b00d29a1e17b8",
   "rules": "f24361f84c2a89d83a7d64e581aa8a3a67ebdff3"
  },
  "tiers": "all",
@@ -33,22 +33,22 @@
    "pathway": 0,
    "categories": {
     "counts": {
-     "full": 1,
+     "full": 0,
      "adjusted": 0,
-     "partial": 285,
+     "partial": 286,
      "unexplained": 0,
      "non_pie": 3,
      "ie_loan": 0,
      "built": 0
     },
     "total": 289,
-    "explained": 1,
-    "explained_rate": 0.35,
-    "of_glossary": 0.35,
+    "explained": 0,
+    "explained_rate": 0.0,
+    "of_glossary": 0.0,
     "share": {
-     "full": 0.35,
+     "full": 0.0,
      "adjusted": 0.0,
-     "partial": 98.62,
+     "partial": 98.96,
      "unexplained": 0.0,
      "non_pie": 1.04,
      "ie_loan": 0.0,
@@ -56,39 +56,33 @@
     }
    },
    "category_reasons": {
-    "partial: reproduced only from a later recorded ancestor, not from the PIE etymon": 150,
+    "partial: reproduced only from a later recorded ancestor, not from the PIE etymon": 148,
     "partial: recorded outside the PIE chain": 17,
     "non_pie: non-ie source": 3,
-    "partial: no entry for Proto-Indo-European *h₂erǵis": 3,
-    "partial: no entry for Proto-Indo-European *kés-ti": 3,
-    "partial: no rule applied": 3,
-    "partial: no entry for Proto-Indo-European *h₃erbʰ-to": 3,
+    "partial: no recorded origin for Proto-Anatolian *-nū́di": 3,
     "partial: no entry for Proto-Indo-European *yugos, Proto-Indo-European *yug-o-s": 3,
-    "partial: no entry for Proto-Indo-European *h₁égʷʰti": 2,
-    "partial: no entry for Proto-Indo-European *h₁érsti": 2,
     "partial: no entry for Proto-Indo-European *wélh₃-ti": 2,
-    "partial: no entry for Proto-Indo-European *mr̥s-ós": 2,
+    "partial: no entry for Proto-Indo-European *h₂erǵis": 2,
     "partial: no entry for Proto-Indo-European *h₂imn-ó-s": 2,
-    "partial: no entry for Proto-Indo-European *h₂éms-o-s": 2,
-    "partial: no entry for Proto-Indo-European *h₂téwg-ti": 2,
+    "partial: no entry for Proto-Indo-European *kés-ti": 2,
+    "partial: no recorded origin for Proto-Anatolian *-os": 2,
+    "partial: no rule applied": 2,
     "partial: no entry for Proto-Indo-European *h₂wég⁽ʰ⁾-t, Proto-Indo-European *h₂wég', Proto-Indo-European *'-t and 1 more": 2,
-    "partial: no entry for Proto-Indo-European *tór-mo-s": 2,
     "partial: no entry for Proto-Indo-European *h₁noḱ-ih₂": 1,
     "partial: no entry for Proto-Indo-European *pésō": 1,
     "partial: no entry for Proto-Indo-European *pr̥h₁-yé-ti, Proto-Indo-European *pr̥h₁-óy-ey": 1,
     "partial: no entry for Proto-Indo-European *bʰódʰh₂ey": 1,
     "partial: no entry for Proto-Indo-European *pth₁óyey": 1,
     "partial: no entry for Proto-Indo-European *sh₁ói": 1,
-    "partial: no entry for Proto-Indo-European *nékʷts": 1
+    "partial: no entry for Proto-Indo-European *nékʷts": 1,
+    "partial: no entry for Proto-Indo-European *pédom": 1,
+    "partial: no entry for Proto-Indo-European *h₂iHseh₂": 1,
+    "partial: no entry for Proto-Indo-European *h₃éh₁os": 1,
+    "partial: no entry for Proto-Indo-European *dʰéh₁i-to-m": 1,
+    "partial: no entry for Proto-Indo-European *h₁égʷʰti": 1
    },
    "category_examples": {
-    "full": [
-     {
-      "word": "𒂊𒌍𒄯𒉡𒊻𒍣",
-      "gloss": "to bloody, make bloody",
-      "reason": "construction of 𒂊𒌍𒄯 + -𒉡𒊻𒍣"
-     }
-    ],
+    "full": [],
     "adjusted": [],
     "partial": [
      {
@@ -166,13 +160,8 @@
    "identity": 0,
    "bound_form": 0,
    "joined": 6,
-   "constructed": 1,
-   "construction_examples": [
-    {
-     "word": "𒂊𒌍𒄯𒉡𒊻𒍣",
-     "reason": "construction of 𒂊𒌍𒄯 + -𒉡𒊻𒍣"
-    }
-   ],
+   "constructed": 0,
+   "construction_examples": [],
    "gaps": [
     "ine-ana-pro → hit"
    ],
@@ -238,7 +227,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.13,
+   "seconds": 0.17,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [],
@@ -507,7 +496,7 @@
      5
     ]
    ],
-   "seconds": 4.68,
+   "seconds": 4.91,
    "examples": [
     {
      "stage": "ine-pro",
@@ -924,7 +913,7 @@
      1
     ]
    ],
-   "seconds": 4.47,
+   "seconds": 4.83,
    "examples": [
     {
      "stage": "gem-pro",
@@ -1101,24 +1090,24 @@
     "partial: reproduced only from Proto-West Germanic, not from the PIE etymon": 190,
     "non_pie: non-ie source": 63,
     "partial: unchanged ancestor (no law applied)": 51,
-    "partial: built from pieces, not derived": 35,
+    "partial: built from pieces, not derived": 32,
     "partial: bound form, not a word": 27,
-    "partial: no entry for Proto-Indo-European *h₂yéti": 18,
     "partial: no entry for Proto-Indo-European *h₁pi": 14,
-    "partial: no entry for Proto-Germanic *īną": 11,
+    "partial: no entry for Proto-Indo-European *h₂yéti; no recorded origin for Proto-West Germanic *-ōjan": 14,
+    "partial: no entry for Proto-Germanic *īną": 9,
     "partial: no entry for Proto-Indo-European *pr̥h₂i": 7,
     "unexplained: no recorded etymology": 7,
     "partial: no entry for Proto-Indo-European *ǵn̥h₁-yó-m": 4,
     "full: cited laws, no change": 4,
-    "partial: no entry for Proto-Indo-European *n̥kʷos, Proto-West Germanic *ungu": 4,
     "partial: no entry for Proto-Indo-European *mógʰtis": 4,
-    "partial: no entry for Proto-Germanic *astriją": 4,
-    "partial: no entry for Proto-Indo-European *h₂wéh₁n̥tos": 3,
     "partial: no entry for Proto-Indo-European *penkʷrós, Proto-Indo-European *penkʷ-ró-s": 3,
     "partial: no entry for Proto-Indo-European *om": 3,
-    "partial: no entry for Proto-West Germanic *upp": 3,
     "partial: no entry for Proto-Indo-European *onom": 3,
-    "partial: no entry for Proto-Indo-European *wólH-tu-s": 3
+    "partial: no entry for Proto-Indo-European *meth₂": 3,
+    "partial: no entry for Proto-Indo-European *h₂eltós": 3,
+    "partial: no entry for Proto-Indo-European *bʰérgʰs": 3,
+    "partial: no entry for Proto-Indo-European *wl̥g-nó-s": 3,
+    "partial: no recorded origin for Old English ā": 3
    },
    "category_examples": {
     "full": [
@@ -1638,7 +1627,7 @@
      8
     ]
    ],
-   "seconds": 23.41,
+   "seconds": 23.81,
    "examples": [
     {
      "stage": "gem-pro",
@@ -1811,29 +1800,29 @@
    },
    "category_reasons": {
     "ie_loan: loan from an IE branch": 2992,
-    "partial: no rule applied": 825,
-    "partial: reproduced only from Old English, not from the PIE etymon": 105,
+    "partial: no rule applied": 822,
+    "partial: reproduced only from Old English, not from the PIE etymon": 104,
     "partial: reproduced only from Proto-Germanic, not from the PIE etymon": 75,
     "non_pie: non-ie source": 72,
     "partial: unchanged ancestor (no law applied)": 45,
-    "partial: built from pieces, not derived": 31,
     "partial: reproduced only from Proto-West Germanic, not from the PIE etymon": 26,
+    "partial: built from pieces, not derived": 26,
     "unexplained: no recorded etymology": 11,
-    "partial: no entry for Old English ēare": 11,
-    "partial: no entry for Old English līċ": 10,
     "partial: bound form, not a word": 8,
-    "partial: no entry for Proto-West Germanic *ungu, Proto-Germanic *ingō": 6,
-    "partial: no entry for Old English iġ": 5,
-    "partial: no entry for Old English lēas": 5,
-    "partial: no entry for Old English rīċe": 5,
+    "partial: no entry for Old English līċ; no recorded origin for Old English -līċ": 6,
+    "partial: no entry for Old English iġ; no recorded origin for Old English -iġ": 4,
     "partial: no entry for Old English sōt": 4,
+    "partial: no entry for Old English ēare": 4,
     "partial: no entry for Proto-Germanic *hungraz": 4,
-    "partial: no entry for Old English stān, Proto-Indo-European *stóyh₂nos": 4,
     "partial: no entry for Old English bēoþ, Proto-Germanic *biunþi": 3,
     "partial: no entry for Old English eallswā": 3,
     "partial: no entry for Old English sǣ": 3,
-    "partial: no entry for Old English ǣl, Proto-West Germanic *āl": 3,
-    "partial: no entry for Old English snāw": 3
+    "partial: no entry for Old English snāw": 3,
+    "partial: no entry for Old English strācian": 3,
+    "partial: no entry for Proto-West Germanic *βannu": 3,
+    "partial: no entry for Old English sūr": 3,
+    "partial: no entry for Old English sār": 3,
+    "partial: no entry for Old English swōt": 3
    },
    "category_examples": {
     "full": [],
@@ -1873,7 +1862,7 @@
      {
       "word": "Monday",
       "gloss": "Monday (second day of the week)",
-      "reason": "no entry for Old English mōnandæġ, Old English mān, Proto-West Germanic *mainu and 2 more"
+      "reason": "no entry for Old English mōnandæġ, Proto-West Germanic *mainu, Proto-Indo-European *moy-n-éh₂; no recorded origin for Old English mān, Old English dæġ"
      },
      {
       "word": "Wednesday",
@@ -2334,7 +2323,7 @@
      12
     ]
    ],
-   "seconds": 24.71,
+   "seconds": 26.64,
    "examples": [
     {
      "stage": "ang",
@@ -2493,9 +2482,9 @@
    "pathway": 2,
    "categories": {
     "counts": {
-     "full": 71,
+     "full": 52,
      "adjusted": 1,
-     "partial": 57113,
+     "partial": 57132,
      "unexplained": 104,
      "non_pie": 15924,
      "unidentified": 385767,
@@ -2503,13 +2492,13 @@
      "built": 3
     },
     "total": 114233,
-    "explained": 72,
-    "explained_rate": 0.06,
-    "of_glossary": 0.06,
+    "explained": 53,
+    "explained_rate": 0.05,
+    "of_glossary": 0.05,
     "share": {
-     "full": 0.06,
+     "full": 0.05,
      "adjusted": 0.0,
-     "partial": 50.0,
+     "partial": 50.01,
      "unexplained": 0.09,
      "non_pie": 13.94,
      "ie_loan": 35.91,
@@ -2518,37 +2507,32 @@
    },
    "category_reasons": {
     "ie_loan: loan from an IE branch": 41017,
-    "partial: no rule applied": 35074,
+    "partial: no rule applied": 34559,
     "non_pie: non-ie source": 15924,
-    "partial: built from pieces, not derived": 275,
-    "partial: reproduced only from Middle English, not from the PIE etymon": 174,
+    "partial: reproduced only from Middle English, not from the PIE etymon": 172,
+    "partial: built from pieces, not derived": 135,
     "unexplained: no recorded etymology": 104,
-    "partial: unchanged ancestor (no law applied)": 82,
-    "partial: no entry for Old English ēare, Old English ǣr, Proto-Germanic *astriją": 74,
-    "partial: no entry for Old English līċ": 52,
+    "partial: unchanged ancestor (no law applied)": 80,
     "partial: no entry for Old English tūn": 52,
-    "partial: no entry for Proto-West Germanic *in": 36,
-    "partial: no entry for Old English ǣt, Proto-West Germanic *āt": 36,
-    "partial: no entry for Middle English non, Old English nān, Proto-West Germanic *nain": 35,
-    "partial: no entry for Middle English isen": 32,
-    "partial: no entry for Old English ān": 27,
-    "partial: no entry for Old English iġ, Proto-Germanic *īgaz": 25,
-    "partial: no entry for Middle English ist": 22,
-    "partial: no entry for Middle English legh, Old English lēah, Proto-Indo-European *lówk-o-s and 1 more": 21,
+    "partial: no entry for Old English ēare, Old English ǣr, Proto-Germanic *astriją; no recorded origin for Middle English -ere, -er": 50,
+    "partial: no recorded origin for Hindi आल": 43,
+    "partial: no recorded origin for Latin ō": 39,
+    "partial: no recorded origin for Proto-Hellenic *éimi": 37,
+    "partial: no entry for Old English ǣt, Proto-West Germanic *āt": 24,
+    "partial: no entry for Old English līċ; no recorded origin for Old English -līċ": 24,
+    "partial: no entry for Middle English isen; no recorded origin for Middle English -isen": 22,
+    "partial: no recorded origin for Ancient Greek Ἕλλην": 22,
     "partial: reproduced only from Proto-Germanic, not from the PIE etymon": 20,
-    "partial: no entry for Middle English nes, Old English nis": 19,
     "partial: no entry for Old English hām": 18,
-    "partial: no entry for Old English stān": 18,
-    "partial: no entry for Proto-Indo-European *polh₁ús": 16,
-    "partial: no entry for Old English hōh": 16
+    "partial: no entry for Proto-West Germanic *in; no recorded origin for Proto-Germanic *inn": 17,
+    "partial: no recorded origin for Proto-Italic *en": 16,
+    "partial: no entry for Old English hōh": 16,
+    "partial: no entry for Middle English legh, Old English lēah, Proto-Indo-European *lówk-o-s and 1 more": 16,
+    "partial: no entry for Old English iġ, Proto-Germanic *īgaz; no recorded origin for Old English -iġ": 15,
+    "partial: no entry for Middle English non, Old English nān, Proto-West Germanic *nain; no recorded origin for Middle English non-": 14
    },
    "category_examples": {
     "full": [
-     {
-      "word": "monotheism",
-      "gloss": "Belief in the One True God, defined by More as personal, imm",
-      "reason": "construction of mono- + theism"
-     },
      {
       "word": "similarity",
       "gloss": "Closeness of appearance to something else. · The relation of",
@@ -2583,6 +2567,11 @@
       "word": "morbidity",
       "gloss": "The quality of being unhealthful or diseased, sometimes incl",
       "reason": "construction of morbid + -ity"
+     },
+     {
+      "word": "robotic",
+      "gloss": "Of, relating to, or resembling a robot; mechanical, lacking ",
+      "reason": "construction of robot + -ic"
      }
     ],
     "adjusted": [
@@ -2848,12 +2837,8 @@
    "identity": 1059,
    "bound_form": 76,
    "joined": 5578,
-   "constructed": 71,
+   "constructed": 52,
    "construction_examples": [
-    {
-     "word": "monotheism",
-     "reason": "construction of mono- + theism"
-    },
     {
      "word": "similarity",
      "reason": "construction of similar + -ity"
@@ -2881,6 +2866,10 @@
     {
      "word": "morbidity",
      "reason": "construction of morbid + -ity"
+    },
+    {
+     "word": "robotic",
+     "reason": "construction of robot + -ic"
     }
    ],
    "gaps": [],
@@ -3131,7 +3120,7 @@
      6
     ]
    ],
-   "seconds": 157.69,
+   "seconds": 170.23,
    "examples": [
     {
      "stage": "enm",
@@ -3335,7 +3324,6 @@
     "partial: no entry for Proto-Indo-European *kelh₂tís": 6,
     "partial: built from pieces, not derived": 4,
     "partial: bound form, not a word": 3,
-    "partial: no entry for Proto-Germanic *haubidą": 3,
     "partial: no entry for Proto-Indo-European *tód": 2,
     "partial: no entry for Proto-Indo-European *h₁pi": 2,
     "partial: no entry for Proto-Indo-European *bʰóltos": 2,
@@ -3347,9 +3335,10 @@
     "partial: no entry for Proto-West Germanic *skūru, Proto-Indo-European *skéh₃-ur": 2,
     "non_pie: non-ie source": 2,
     "partial: no entry for Proto-Germanic *airist": 2,
-    "partial: no entry for Proto-Indo-European *n̥kʷos, Proto-West Germanic *ungu": 2,
     "partial: no entry for Proto-Indo-European *lówk-o-s": 2,
-    "partial: no entry for Proto-Indo-European *bʰerHǵ-tó-s": 2
+    "partial: no entry for Proto-Indo-European *bʰerHǵ-tó-s": 2,
+    "partial: no entry for Proto-Germanic *haubidą; no recorded origin for Proto-Germanic *haubidą": 2,
+    "partial: no entry for Proto-West Germanic *iti": 2
    },
    "category_examples": {
     "full": [
@@ -3746,7 +3735,7 @@
      1
     ]
    ],
-   "seconds": 3.2,
+   "seconds": 3.37,
    "examples": [
     {
      "stage": "gem-pro",
@@ -4262,7 +4251,7 @@
      1
     ]
    ],
-   "seconds": 2.01,
+   "seconds": 0.48,
    "examples": [
     {
      "stage": "goh",
@@ -4423,9 +4412,9 @@
     "counts": {
      "full": 0,
      "adjusted": 0,
-     "partial": 9740,
+     "partial": 9739,
      "unexplained": 3,
-     "non_pie": 514,
+     "non_pie": 515,
      "unidentified": 134820,
      "ie_loan": 5923,
      "built": 0
@@ -4437,7 +4426,7 @@
     "share": {
      "full": 0.0,
      "adjusted": 0.0,
-     "partial": 60.2,
+     "partial": 60.19,
      "unexplained": 0.02,
      "non_pie": 3.18,
      "ie_loan": 36.61,
@@ -4446,29 +4435,29 @@
    },
    "category_reasons": {
     "ie_loan: loan from an IE branch": 5923,
-    "partial: no rule applied": 2880,
-    "non_pie: non-ie source": 514,
+    "partial: no rule applied": 2869,
+    "non_pie: non-ie source": 515,
     "partial: bound form, not a word": 12,
     "partial: unchanged ancestor (no law applied)": 10,
-    "partial: no entry for Middle High German ër, Old High German ër": 7,
     "partial: reproduced only from Proto-West Germanic, not from the PIE etymon": 7,
     "partial: reproduced only from Old High German, not from the PIE etymon": 6,
     "partial: reproduced only from Middle High German, not from the PIE etymon": 6,
-    "partial: no entry for Middle High German in, Proto-West Germanic *in": 5,
+    "partial: no entry for Middle High German ër, Old High German ër": 5,
     "partial: no entry for Middle High German Adalbërt, Old High German Adalbërht": 5,
     "partial: no entry for Proto-Indo-European *bʰérgʰs": 5,
-    "partial: no entry for Old High German āno": 4,
-    "partial: no entry for Middle High German es": 4,
     "partial: no entry for Proto-Indo-European *pléwketi": 4,
+    "partial: no entry for Middle High German in, Proto-West Germanic *in": 3,
+    "partial: no entry for Old High German āno": 3,
     "partial: no entry for Middle High German plān": 3,
     "partial: no entry for Middle High German e": 3,
     "partial: no entry for Old High German gund, Proto-West Germanic *Gunþihari": 3,
     "partial: no entry for Old High German Bernhart, Proto-Indo-European *kort-ús": 3,
-    "partial: no entry for Old High German becko": 3,
     "unexplained: no recorded etymology": 3,
     "partial: no entry for Middle High German her": 3,
     "partial: no entry for Middle High German wecke, Old High German wecki": 3,
-    "partial: no entry for Middle High German vach": 3
+    "partial: no entry for Proto-West Germanic *sigʀ": 3,
+    "partial: no entry for Middle High German Briunhilde, Old High German Brunnīhilta, Proto-West Germanic *Brunnjuhildi": 3,
+    "partial: no entry for Middle High German abe, Middle High German ab, Proto-West Germanic *ab": 2
    },
    "category_examples": {
     "full": [],
@@ -4933,7 +4922,7 @@
      1
     ]
    ],
-   "seconds": 31.67,
+   "seconds": 29.58,
    "examples": [
     {
      "stage": "gem-pro",
@@ -5082,22 +5071,22 @@
    "pathway": 0,
    "categories": {
     "counts": {
-     "full": 37,
+     "full": 34,
      "adjusted": 1,
-     "partial": 1921,
+     "partial": 1924,
      "unexplained": 0,
      "non_pie": 54,
      "ie_loan": 139,
      "built": 0
     },
     "total": 2152,
-    "explained": 38,
-    "explained_rate": 1.77,
-    "of_glossary": 1.77,
+    "explained": 35,
+    "explained_rate": 1.63,
+    "of_glossary": 1.63,
     "share": {
-     "full": 1.72,
+     "full": 1.58,
      "adjusted": 0.05,
-     "partial": 89.27,
+     "partial": 89.41,
      "unexplained": 0.0,
      "non_pie": 2.51,
      "ie_loan": 6.46,
@@ -5105,30 +5094,30 @@
     }
    },
    "category_reasons": {
-    "partial: no rule applied": 1014,
-    "partial: reproduced only from Proto-Germanic, not from the PIE etymon": 188,
+    "partial: no rule applied": 1012,
+    "partial: reproduced only from Proto-Germanic, not from the PIE etymon": 185,
     "ie_loan: loan from an IE branch": 139,
-    "partial: built from pieces, not derived": 114,
+    "partial: built from pieces, not derived": 89,
     "non_pie: non-ie source": 54,
     "partial: unchanged ancestor (no law applied)": 22,
     "partial: no entry for Proto-Indo-European *úd-s": 20,
     "partial: no entry for Proto-Indo-European *h₁pi": 16,
-    "partial: no entry for Proto-Indo-European *meth₂": 14,
+    "partial: no entry for Proto-Indo-European *meth₂": 11,
+    "partial: no recorded origin for Proto-Germanic *-þiz": 8,
     "partial: no entry for Proto-Indo-European *pr̥h₂-éy": 7,
-    "partial: no entry for Proto-Indo-European *h₂yéti": 6,
-    "partial: no entry for Proto-Indo-European *séh₂gti": 6,
+    "partial: no recorded origin for Proto-Germanic *ana": 7,
     "partial: no entry for Proto-Indo-European *h₂elnós": 5,
-    "partial: no entry for Proto-Germanic *īgaz": 5,
+    "partial: no entry for Proto-Indo-European *h₂yéti": 5,
     "full: orthographic layer": 4,
-    "partial: no entry for Proto-Indo-European *h₂éwg-e-ti": 4,
     "partial: no entry for Proto-Indo-European *gʰebʰ-e-ti": 4,
     "partial: no entry for Proto-Indo-European *ǵn̥h₁-yó-m": 4,
     "partial: no entry for Proto-Indo-European *dʰewb-ó-s": 4,
+    "partial: no entry for Proto-Germanic *īgaz; no recorded origin for Proto-Germanic *-īgaz": 4,
+    "partial: no recorded origin for Proto-Germanic *-līkaz": 4,
+    "partial: no entry for Proto-Indo-European *séh₂gti": 4,
     "partial: no entry for Proto-Indo-European *h₂érmos": 3,
-    "partial: no entry for Proto-Indo-European *h₂wéh₁n̥tos": 3,
-    "partial: no entry for Proto-Indo-European *pr̥h₂i": 3,
-    "partial: no entry for Proto-Indo-European *doh₁": 3,
-    "partial: no entry for Proto-Indo-European *istos": 3
+    "partial: no recorded origin for Proto-Germanic *-inōną": 3,
+    "partial: no entry for Proto-Indo-European *pr̥h₂i": 3
    },
    "category_examples": {
     "full": [
@@ -5379,7 +5368,7 @@
    "identity": 30,
    "bound_form": 0,
    "joined": 399,
-   "constructed": 33,
+   "constructed": 30,
    "construction_examples": [
     {
      "word": "𐍄𐍅𐌹𐍃𐍃𐍄𐌰𐌽𐌳𐌰𐌽",
@@ -5406,12 +5395,12 @@
      "reason": "construction of 𐌳𐌹𐍃- + 𐍃𐌹𐌲𐌵𐌰𐌽"
     },
     {
-     "word": "𐌳𐌹𐍃𐍃𐌺𐌰𐌹𐌳𐌰𐌽",
-     "reason": "construction of 𐌳𐌹𐍃- + 𐍃𐌺𐌰𐌹𐌳𐌰𐌽"
-    },
-    {
      "word": "𐌳𐌹𐍃𐍄𐌰𐌹𐍂𐌰𐌽",
      "reason": "construction of 𐌳𐌹𐍃- + *𐍄𐌰𐌹𐍂𐌰𐌽"
+    },
+    {
+     "word": "𐌳𐌹𐍃𐍅𐌹𐌻𐍅𐌰𐌽",
+     "reason": "construction of 𐌳𐌹𐍃- + 𐍅𐌹𐌻𐍅𐌰𐌽"
     }
    ],
    "gaps": [],
@@ -5534,7 +5523,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 6.34,
+   "seconds": 7.06,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -5648,27 +5637,27 @@
     "partial: no rule applied": 1473,
     "partial: reproduced only from Proto-Germanic, not from the PIE etymon": 449,
     "ie_loan: loan from an IE branch": 85,
-    "partial: built from pieces, not derived": 23,
-    "partial: no entry for Proto-Indo-European *tóm, Proto-Indo-European *tóna": 13,
-    "partial: no entry for Proto-Indo-European *n̥kʷos": 11,
+    "partial: built from pieces, not derived": 15,
+    "partial: no entry for Proto-Indo-European *tóm, Proto-Indo-European *tóna": 12,
     "partial: bound form, not a word": 11,
+    "partial: no entry for Proto-Indo-European *n̥kʷos": 10,
     "full: cited laws, no change": 9,
     "partial: no entry for Proto-Indo-European *om": 8,
-    "partial: no entry for Proto-Germanic *arbijaz": 8,
+    "partial: no recorded origin for Proto-Germanic *laikaz": 8,
     "partial: unchanged ancestor (no law applied)": 7,
     "partial: no entry for Proto-Indo-European *h₂enh₁-dʰō": 7,
-    "partial: no entry for Proto-Germanic *atą": 6,
-    "partial: no entry for Proto-Germanic *ōnijaz": 6,
+    "partial: no recorded origin for Proto-Germanic *-līkaz": 5,
+    "partial: no recorded origin for Proto-Germanic *tigiwiz": 5,
     "non_pie: non-ie source": 4,
-    "partial: no entry for Proto-Indo-European *h₂wéh₁n̥tos": 4,
+    "partial: no entry for Proto-Germanic *atą; no recorded origin for Proto-Germanic *atą": 4,
     "partial: no entry for Proto-Indo-European *h₂éḱ-ih₂": 3,
     "partial: no entry for Proto-Indo-European *gʷʰon-ō": 3,
     "partial: no entry for Proto-Indo-European *mat-ḗn": 3,
-    "partial: no entry for Proto-Indo-European *kort-ús": 3,
     "partial: no entry for Proto-Indo-European *knékō": 3,
     "partial: no entry for Proto-Indo-European *wénh₁-e-ti": 3,
+    "partial: no entry for Proto-Indo-European *h₂wéh₁n̥tos": 3,
     "partial: no entry for Proto-Indo-European *pélh₁us": 3,
-    "partial: no entry for Proto-Indo-European *weyd-s-ós": 3
+    "partial: no entry for Proto-Indo-European *ǵʰóngʰos, Proto-Indo-European *ǵʰóngʰ-os, Proto-Indo-European *ǵʰengʰ-o-s": 3
    },
    "category_examples": {
     "full": [
@@ -6124,7 +6113,7 @@
      26
     ]
    ],
-   "seconds": 11.09,
+   "seconds": 9.44,
    "examples": [
     {
      "stage": "gem-pro",
@@ -6283,9 +6272,9 @@
    "pathway": 0,
    "categories": {
     "counts": {
-     "full": 30,
+     "full": 29,
      "adjusted": 2,
-     "partial": 5476,
+     "partial": 5477,
      "unexplained": 81,
      "non_pie": 328,
      "unidentified": 32511,
@@ -6293,13 +6282,13 @@
      "built": 0
     },
     "total": 7489,
-    "explained": 32,
-    "explained_rate": 0.43,
-    "of_glossary": 0.43,
+    "explained": 31,
+    "explained_rate": 0.41,
+    "of_glossary": 0.41,
     "share": {
-     "full": 0.4,
+     "full": 0.39,
      "adjusted": 0.03,
-     "partial": 73.12,
+     "partial": 73.13,
      "unexplained": 1.08,
      "non_pie": 4.38,
      "ie_loan": 20.99,
@@ -6307,30 +6296,30 @@
     }
    },
    "category_reasons": {
-    "partial: no rule applied": 4408,
+    "partial: no rule applied": 4381,
     "ie_loan: loan from an IE branch": 1572,
     "non_pie: non-ie source": 328,
-    "partial: reproduced only from Proto-Italic, not from the PIE etymon": 157,
+    "partial: reproduced only from Proto-Italic, not from the PIE etymon": 156,
     "unexplained: no recorded etymology": 81,
     "partial: unchanged ancestor (no law applied)": 27,
     "full: orthographic layer": 20,
     "partial: bound form, not a word": 20,
-    "partial: built from pieces, not derived": 20,
-    "partial: no entry for Proto-Indo-European *elós": 16,
-    "partial: no entry for Proto-Indo-European *eh₂": 10,
-    "partial: no entry for Proto-Indo-European *dʰh₁-os": 10,
     "full: cited laws, no change": 9,
-    "partial: no entry for Proto-Indo-European *skewH-lo-s, Proto-Indo-European *kuH-lo-s": 7,
     "partial: needs approval of our modification": 5,
-    "partial: no entry for Proto-Indo-European *is-tm̥mós": 4,
-    "partial: no entry for Proto-Indo-European *lókus": 3,
+    "partial: no entry for Proto-Indo-European *skewH-lo-s, Proto-Indo-European *kuH-lo-s": 3,
     "partial: no entry for Proto-Indo-European *h₁wi-h₁-ḱm̥t-ih₁": 3,
-    "partial: no entry for Proto-Indo-European *méh₂r̥": 3,
+    "partial: no entry for Proto-Indo-European *elós": 3,
     "partial: no entry for Proto-Indo-European *moy-nós": 3,
     "partial: no entry for Proto-Indo-European *óynos": 3,
-    "partial: no entry for Proto-Indo-European *pro-bʰH-wó-s": 3,
-    "partial: no entry for Proto-Indo-European *putlos": 3,
-    "partial: no entry for Proto-Indo-European *dʰǵʰyési": 2
+    "partial: no entry for Proto-Indo-European *elós; no recorded origin for Proto-Italic *-elos": 3,
+    "partial: no entry for Proto-Indo-European *dʰǵʰyési": 2,
+    "partial: no entry for Proto-Indo-European *lókus": 2,
+    "partial: no entry for Proto-Indo-European *om": 2,
+    "partial: no entry for Proto-Indo-European *éy": 2,
+    "adjusted: recorded step differs: itc-pro": 2,
+    "partial: no entry for Proto-Indo-European *leh₂iwos": 2,
+    "partial: no entry for Proto-Indo-European *dʰh₁-os": 2,
+    "partial: no entry for Proto-Indo-European *pro-bʰH-wó-s": 2
    },
    "category_examples": {
     "full": [
@@ -6627,13 +6616,8 @@
    "identity": 39,
    "bound_form": 26,
    "joined": 55,
-   "constructed": 1,
-   "construction_examples": [
-    {
-     "word": "biscoctus",
-     "reason": "construction of bis + coctus"
-    }
-   ],
+   "constructed": 0,
+   "construction_examples": [],
    "gaps": [],
    "joined_examples": [
     {
@@ -6879,7 +6863,7 @@
      3
     ]
    ],
-   "seconds": 12.6,
+   "seconds": 11.52,
    "examples": [
     {
      "stage": "ine-pro",
@@ -7063,29 +7047,29 @@
    },
    "category_reasons": {
     "ie_loan: loan from an IE branch": 7550,
-    "partial: no rule applied": 3100,
+    "partial: no rule applied": 3076,
     "non_pie: non-ie source": 680,
     "partial: reproduced only from Latin, not from the PIE etymon": 208,
     "partial: unchanged ancestor (no law applied)": 46,
-    "partial: built from pieces, not derived": 27,
-    "partial: no entry for Latin ō": 25,
     "partial: bound form, not a word": 18,
-    "partial: no entry for Latin ismus": 8,
     "partial: no entry for Latin illī": 7,
     "unexplained: no recorded etymology": 7,
-    "partial: no entry for Latin īnus": 6,
-    "partial: no entry for Latin ālis": 5,
+    "partial: built from pieces, not derived": 7,
+    "partial: no entry for Latin ō; no recorded origin for Latin -ō": 7,
+    "partial: no entry for Latin ismus; no recorded origin for Latin -ismus": 5,
     "partial: no entry for Latin bēta": 4,
+    "partial: no entry for Latin ō": 4,
     "partial: no entry for Proto-Indo-European *Hróth₂eh₂, Proto-Indo-European *Hróth₂-eh₂": 4,
-    "partial: no entry for Latin mōns": 4,
     "partial: no entry for Latin lūmen": 4,
     "partial: no entry for Latin ēscō": 4,
     "partial: no entry for Latin Cyriacus": 4,
-    "partial: no entry for Latin nōn": 3,
     "partial: no entry for Latin locus": 3,
-    "partial: no entry for Latin camera": 3,
     "partial: no entry for Latin sēcrētus": 3,
-    "partial: no entry for Latin sōrex": 3
+    "partial: no entry for Latin sōrex": 3,
+    "partial: no entry for Latin īnfāns": 3,
+    "partial: no entry for Latin homō": 3,
+    "partial: no entry for Latin palātium": 3,
+    "partial: no entry for Proto-Indo-European *bʰolǵʰ-n-is, Proto-Indo-European *bʰol-n-is": 3
    },
    "category_examples": {
     "full": [
@@ -7590,7 +7574,7 @@
      3
     ]
    ],
-   "seconds": 19.05,
+   "seconds": 20.76,
    "examples": [
     {
      "stage": "la",
@@ -7842,9 +7826,9 @@
    "pathway": 0,
    "categories": {
     "counts": {
-     "full": 63,
+     "full": 55,
      "adjusted": 9,
-     "partial": 3555,
+     "partial": 3563,
      "unexplained": 29,
      "non_pie": 539,
      "unidentified": 111455,
@@ -7852,13 +7836,13 @@
      "built": 0
     },
     "total": 5047,
-    "explained": 72,
-    "explained_rate": 1.43,
-    "of_glossary": 1.43,
+    "explained": 64,
+    "explained_rate": 1.27,
+    "of_glossary": 1.27,
     "share": {
-     "full": 1.25,
+     "full": 1.09,
      "adjusted": 0.18,
-     "partial": 70.44,
+     "partial": 70.6,
      "unexplained": 0.57,
      "non_pie": 10.68,
      "ie_loan": 16.88,
@@ -7866,30 +7850,30 @@
     }
    },
    "category_reasons": {
-    "partial: no rule applied": 2469,
+    "partial: no rule applied": 2462,
     "ie_loan: loan from an IE branch": 852,
     "non_pie: non-ie source": 539,
-    "partial: reproduced only from Proto-Hellenic, not from the PIE etymon": 109,
-    "full: orthographic layer": 59,
-    "partial: unchanged ancestor (no law applied)": 53,
-    "partial: built from pieces, not derived": 44,
+    "partial: reproduced only from Proto-Hellenic, not from the PIE etymon": 104,
+    "full: orthographic layer": 54,
+    "partial: unchanged ancestor (no law applied)": 52,
     "unexplained: no recorded etymology": 29,
-    "partial: no entry for Proto-Indo-European *eyéti, Proto-Indo-European *esyéti": 13,
     "adjusted: recorded step differs: grk-pro": 9,
-    "partial: no entry for Proto-Indo-European *idyéti": 9,
-    "partial: no entry for Proto-Indo-European *yóm": 7,
-    "partial: no entry for Proto-Indo-European *tm̥-né-h₁-ti, Proto-Indo-European *tm̥-n-h₁-énti": 4,
+    "partial: no entry for Proto-Indo-European *eyéti, Proto-Indo-European *esyéti": 5,
+    "partial: no recorded origin for Proto-Hellenic *-os": 4,
     "partial: no entry for Proto-Indo-European *pr̥h₂-k-yé-ti": 4,
-    "partial: no entry for Proto-Indo-European *spéryeti": 4,
-    "partial: no entry for Proto-Indo-European *tpólHis": 3,
-    "partial: no entry for Proto-Indo-European *krét-os": 3,
-    "partial: no entry for Proto-Indo-European *kʷoywós": 3,
+    "partial: no recorded origin for Proto-Hellenic *-mə": 4,
+    "partial: no recorded origin for Proto-Hellenic *-tós": 4,
+    "partial: no recorded origin for Ancient Greek ἀπο-": 4,
+    "partial: no recorded origin for Ancient Greek ᾰ̓νᾰ́": 4,
     "partial: construction of γέννα + -ᾰ́ω does not spell the word": 3,
-    "partial: no entry for Proto-Indo-European *h₁wérus": 3,
-    "partial: no entry for Proto-Indo-European *dʰr̥h₂gʰ-yé-ti": 3,
-    "partial: no entry for Proto-Indo-European *stug-éyeti": 3,
+    "partial: no recorded origin for Proto-Hellenic *péitʰō": 3,
+    "partial: no entry for Proto-Indo-European *tm̥-né-h₁-ti, Proto-Indo-European *tm̥-n-h₁-énti": 3,
+    "partial: no recorded origin for Proto-Hellenic *-tron": 3,
+    "partial: no recorded origin for Proto-Hellenic *ə-": 3,
+    "partial: no recorded origin for Proto-Hellenic *tʰehós": 3,
     "partial: no entry for Proto-Indo-European *sh₂i-men": 3,
-    "partial: no entry for Proto-Indo-European *dwoΗdeḱm̥": 2
+    "partial: no entry for Proto-Indo-European *dwoΗdeḱm̥": 2,
+    "partial: no entry for Proto-Indo-European *méǵʰsri": 2
    },
    "category_examples": {
     "full": [
@@ -8005,7 +7989,7 @@
      {
       "word": "δημοκρατία",
       "gloss": "democracy, popular government · a democratic government · in",
-      "reason": "no entry for Proto-Indo-European *déh₂mos, Proto-Indo-European *deh₂mos"
+      "reason": "no entry for Proto-Indo-European *déh₂mos, Proto-Indo-European *deh₂mos; no recorded origin for Ancient Greek δαίομαι, Ancient Greek κρᾰ́τος"
      },
      {
       "word": "νίκη",
@@ -8216,23 +8200,11 @@
    "identity": 81,
    "bound_form": 0,
    "joined": 145,
-   "constructed": 4,
+   "constructed": 1,
    "construction_examples": [
-    {
-     "word": "χειρουργός",
-     "reason": "construction of χείρ + -ουργός"
-    },
-    {
-     "word": "θηράω",
-     "reason": "construction of θήρ + -άω"
-    },
     {
      "word": "πελώριος",
      "reason": "construction of πέλωρ + -ιος"
-    },
-    {
-     "word": "αὖτε",
-     "reason": "construction of αὖ + τε"
     }
    ],
    "gaps": [],
@@ -8355,7 +8327,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 9.28,
+   "seconds": 7.86,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -8478,29 +8450,29 @@
    },
    "category_reasons": {
     "ie_loan: loan from an IE branch": 3147,
-    "partial: no rule applied": 2608,
+    "partial: no rule applied": 2555,
     "non_pie: non-ie source": 407,
-    "partial: reproduced only from Ancient Greek, not from the PIE etymon": 178,
+    "partial: reproduced only from Ancient Greek, not from the PIE etymon": 177,
     "partial: unchanged ancestor (no law applied)": 41,
-    "partial: no entry for Ancient Greek ἆ": 8,
-    "partial: no entry for Ancient Greek ἐάν": 8,
     "partial: reproduced only from Proto-Hellenic, not from the PIE etymon": 7,
-    "partial: no entry for Ancient Greek ποιῶ": 7,
-    "partial: no entry for Ancient Greek τητᾰ": 6,
-    "partial: no entry for Proto-Indo-European *ḱm̥-th₂": 6,
-    "partial: no entry for Ancient Greek σῐς": 6,
     "full: orthographic layer": 5,
-    "partial: no entry for Ancient Greek ποίησις": 5,
-    "partial: no entry for Proto-Indo-European *sḱṓr": 4,
-    "partial: no entry for Ancient Greek πάγος": 4,
+    "partial: no entry for Ancient Greek ποίησις": 4,
     "partial: no entry for Ancient Greek γάστρα": 4,
-    "partial: no entry for Ancient Greek παρίστημι": 4,
     "adjusted: recorded step differs: grk-pro": 3,
     "partial: no entry for Ancient Greek ἄγε": 3,
     "partial: no entry for Proto-Indo-European *ml̥h₂ekos": 3,
     "partial: no entry for Proto-Indo-European *sm̥-gʷelbʰ-ós": 3,
     "partial: no entry for Proto-Indo-European *polh₁ús": 3,
-    "partial: no entry for Ancient Greek ὑγίεια": 3
+    "partial: no entry for Ancient Greek ὑγίεια": 3,
+    "partial: no entry for Proto-Indo-European *h₂mr̥-wós": 3,
+    "partial: no entry for Ancient Greek τάς": 3,
+    "partial: no entry for Ancient Greek Εὐρώπη": 3,
+    "partial: no entry for Proto-Indo-European *ḱm̥-th₂": 3,
+    "partial: no entry for Ancient Greek ἄωρος": 3,
+    "partial: no entry for Ancient Greek ὑπάγω": 3,
+    "partial: no entry for Proto-Indo-European *tpólHis": 3,
+    "partial: no entry for Ancient Greek κέδρος": 3,
+    "partial: no entry for Ancient Greek ἔννοια": 3
    },
    "category_examples": {
     "full": [
@@ -8873,7 +8845,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 21.81,
+   "seconds": 21.68,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -9159,7 +9131,7 @@
      3
     ]
    ],
-   "seconds": 1.7,
+   "seconds": 2.37,
    "examples": [
     {
      "stage": "ine-pro",
@@ -9385,9 +9357,9 @@
    "pathway": 0,
    "categories": {
     "counts": {
-     "full": 159,
+     "full": 138,
      "adjusted": 14,
-     "partial": 3793,
+     "partial": 3814,
      "unexplained": 14,
      "non_pie": 90,
      "unidentified": 175848,
@@ -9395,13 +9367,13 @@
      "built": 0
     },
     "total": 4152,
-    "explained": 173,
-    "explained_rate": 4.17,
-    "of_glossary": 4.17,
+    "explained": 152,
+    "explained_rate": 3.66,
+    "of_glossary": 3.66,
     "share": {
-     "full": 3.83,
+     "full": 3.32,
      "adjusted": 0.34,
-     "partial": 91.35,
+     "partial": 91.86,
      "unexplained": 0.34,
      "non_pie": 2.17,
      "ie_loan": 1.97,
@@ -9409,30 +9381,30 @@
     }
    },
    "category_reasons": {
-    "partial: no rule applied": 1662,
+    "partial: no rule applied": 1642,
     "full: orthographic layer": 131,
-    "partial: cited as a stem, not derived": 101,
+    "partial: cited as a stem, not derived": 97,
     "non_pie: non-ie source": 90,
     "ie_loan: loan from an IE branch": 82,
     "partial: reproduced only from Proto-Indo-Iranian, not from the PIE etymon": 40,
-    "partial: no entry for Proto-Indo-Iranian *áyati": 28,
-    "partial: no entry for Proto-Indo-Iranian *HáH": 27,
-    "partial: built from pieces, not derived": 27,
-    "partial: no entry for Proto-Indo-Iranian *tiš": 22,
-    "partial: no entry for Proto-Indo-Iranian *wí": 19,
     "partial: reproduced only from Proto-Indo-Aryan, not from the PIE etymon": 16,
     "unexplained: no recorded etymology": 14,
+    "partial: no entry for Proto-Indo-Iranian *HáH; no recorded origin for Proto-Indo-Iranian *HáH": 14,
     "partial: unchanged ancestor (no law applied)": 12,
-    "partial: no entry for Proto-Indo-Iranian *itás, Proto-Indo-European *itós": 12,
+    "partial: no entry for Proto-Indo-Iranian *tiš; no recorded origin for Proto-Indo-Aryan *-tiṣ": 11,
+    "partial: built from pieces, not derived": 10,
     "adjusted: recorded step differs: inc-pro": 9,
-    "partial: no entry for Proto-Indo-Iranian *tram": 9,
-    "partial: no entry for Proto-Indo-Iranian *Hyáti": 9,
-    "partial: no entry for Proto-Indo-Iranian *yáti": 9,
+    "partial: no recorded origin for Proto-Indo-Aryan *-tás": 9,
+    "partial: no entry for Proto-Indo-Iranian *áyati; no recorded origin for Proto-Indo-Aryan *-áyati": 9,
+    "partial: no entry for Proto-Indo-Iranian *áyati": 9,
+    "partial: no entry for Proto-Indo-Iranian *itás, Proto-Indo-European *itós": 8,
     "partial: needs approval of our modification": 7,
-    "partial: no entry for Proto-Indo-Iranian *tā": 6,
-    "partial: no entry for Proto-Indo-Iranian *práti": 6,
-    "partial: no entry for Proto-Indo-Iranian *wánts": 5,
-    "partial: no entry for Proto-Indo-Iranian *Hádʰi": 4
+    "partial: no recorded origin for Proto-Indo-Aryan *kar-": 7,
+    "partial: no entry for Proto-Indo-Iranian *yáti; no recorded origin for Proto-Indo-Aryan *-yáti": 7,
+    "partial: no recorded origin for Proto-Indo-Aryan *man-": 5,
+    "partial: no entry for Proto-Indo-Iranian *wí; no recorded origin for Proto-Indo-Aryan *wí": 5,
+    "partial: no entry for Proto-Indo-Iranian *dʰwā́r": 4,
+    "partial: no entry for Proto-Indo-Iranian *tiš": 4
    },
    "category_examples": {
     "full": [
@@ -9824,39 +9796,35 @@
    "identity": 36,
    "bound_form": 0,
    "joined": 319,
-   "constructed": 28,
+   "constructed": 7,
    "construction_examples": [
     {
      "word": "अहिंसा",
      "reason": "construction of अ- + हिंसा"
     },
     {
-     "word": "आस्य",
-     "reason": "construction of आस् + -य"
-    },
-    {
-     "word": "अकार",
-     "reason": "construction of अ + कार"
-    },
-    {
-     "word": "घृत",
-     "reason": "construction of घृ + -त"
-    },
-    {
-     "word": "घृत",
-     "reason": "construction of घृ + -त"
-    },
-    {
-     "word": "प्रज्ञा",
-     "reason": "construction of प्र- + ज्ञा"
-    },
-    {
-     "word": "नमस्कार",
-     "reason": "construction of नमस् + कार"
-    },
-    {
      "word": "वृत",
      "reason": "construction of वृ + -त"
+    },
+    {
+     "word": "असिन्व",
+     "reason": "construction of अ- + सिन्व"
+    },
+    {
+     "word": "चित",
+     "reason": "construction of चि + -त"
+    },
+    {
+     "word": "जित",
+     "reason": "construction of जि + -त"
+    },
+    {
+     "word": "अयोध्य",
+     "reason": "construction of अ- + योध्य"
+    },
+    {
+     "word": "गम्य",
+     "reason": "construction of गम् + -य"
     }
    ],
    "gaps": [],
@@ -9979,7 +9947,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 12.07,
+   "seconds": 11.96,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -10288,7 +10256,7 @@
      4
     ]
    ],
-   "seconds": 1.07,
+   "seconds": 1.27,
    "examples": [
     {
      "stage": "ine-pro",
@@ -10784,7 +10752,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.3,
+   "seconds": 1.15,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -10896,29 +10864,29 @@
    },
    "category_reasons": {
     "unexplained: no recorded etymology": 89,
-    "partial: no rule applied": 60,
+    "partial: no rule applied": 59,
     "ie_loan: loan from an IE branch": 18,
     "non_pie: non-ie source": 13,
     "partial: reproduced only from Proto-Indo-Iranian, not from the PIE etymon": 6,
     "partial: reproduced only from Proto-Iranian, not from the PIE etymon": 6,
     "full: script layer": 5,
     "partial: needs approval of our modification": 4,
-    "partial: no entry for Proto-Iranian *hínduš": 2,
-    "partial: no entry for Proto-Iranian *dātam": 2,
-    "partial: no entry for Proto-Iranian *Hr̥štíš, Proto-Indo-Iranian *Hr̥štíš, Proto-Indo-European *h₁r̥s-tí-s": 2,
-    "partial: no entry for Proto-Iranian *HárahwatiH": 2,
+    "partial: no recorded origin for Old Persian Skuδi": 2,
     "partial: no entry for Proto-Iranian *Wŕ̥kānah": 2,
-    "partial: no entry for Proto-Indo-Iranian *Haćanás": 2,
-    "partial: no entry for Proto-Indo-European *ǵʰl̥h₃enyom, Proto-Indo-European *ǵʰl̥h₃-en-yo-m": 2,
     "partial: no entry for Proto-Iranian *wašnah, Proto-Indo-Iranian *wašnas": 2,
-    "partial: no entry for Proto-Indo-European *sem-h₃ér-en-o-m": 2,
-    "partial: no entry for Proto-Iranian *kā́šti, Proto-Indo-Iranian *kā́ćti, Proto-Indo-European *kʷḗḱ-ti": 2,
-    "partial: no entry for Proto-Indo-European *kit-ró-s": 2,
-    "partial: no entry for Proto-Indo-Iranian *kšáyah, Proto-Indo-Iranian *kšáyati": 1,
-    "partial: no entry for Proto-Iranian *Hwáhuš": 1,
+    "partial: no entry for Proto-Indo-Iranian *kšáyah, Proto-Indo-Iranian *kšáyati; no recorded origin for Proto-Indo-Iranian *kšáyah": 1,
+    "partial: no entry for Proto-Iranian *Hwáhuš; no recorded origin for Proto-Iranian *Hwáhuš": 1,
+    "partial: no entry for Proto-Iranian *hínduš": 1,
     "partial: no entry for Proto-Iranian *xšáyati, Proto-Indo-Iranian *kšáyati": 1,
     "partial: no entry for Proto-Iranian *búHmiš": 1,
-    "partial: no entry for Proto-Iranian *tuHám": 1
+    "partial: no entry for Proto-Iranian *tuHám": 1,
+    "partial: no entry for Proto-Iranian *Hásti": 1,
+    "partial: no entry for Proto-Indo-Iranian *Hutá, Proto-Indo-European *utá": 1,
+    "partial: no entry for Proto-Indo-European *putlós": 1,
+    "partial: no entry for Proto-Iranian *dātam": 1,
+    "partial: no entry for Proto-Iranian *Hr̥štíš, Proto-Indo-Iranian *Hr̥štíš, Proto-Indo-European *h₁r̥s-tí-s": 1,
+    "partial: no entry for Proto-Iranian *duHráh": 1,
+    "partial: no entry for Proto-Iranian *nápāth": 1
    },
    "category_examples": {
     "full": [
@@ -10953,12 +10921,12 @@
      {
       "word": "𐎧𐏁𐎹𐎠𐎼𐏁𐎠",
       "gloss": "Xerxes",
-      "reason": "no entry for Proto-Indo-Iranian *kšáyah, Proto-Indo-Iranian *kšáyati"
+      "reason": "no entry for Proto-Indo-Iranian *kšáyah, Proto-Indo-Iranian *kšáyati; no recorded origin for Proto-Indo-Iranian *kšáyah"
      },
      {
       "word": "𐎭𐎠𐎼𐎹𐎺𐎢𐏁",
       "gloss": "a male given name, equivalent to English Darius",
-      "reason": "no entry for Proto-Iranian *Hwáhuš"
+      "reason": "no entry for Proto-Iranian *Hwáhuš; no recorded origin for Proto-Iranian *Hwáhuš"
      },
      {
       "word": "𐎱𐎠𐎼𐎿",
@@ -11203,7 +11171,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.19,
+   "seconds": 0.56,
    "examples": [],
    "pathway_examples": [
     {
@@ -11628,7 +11596,7 @@
      1
     ]
    ],
-   "seconds": 0.8,
+   "seconds": 0.61,
    "examples": [
     {
      "stage": "ine-pro",
@@ -11747,17 +11715,17 @@
    "pathway": 7,
    "categories": {
     "counts": {
-     "full": 51,
+     "full": 45,
      "adjusted": 0,
-     "partial": 5043,
+     "partial": 5049,
      "unexplained": 76750,
-     "non_pie": 71691,
+     "non_pie": 71693,
      "unidentified": 0,
-     "ie_loan": 2918,
+     "ie_loan": 2916,
      "built": 7321
     },
     "total": 163774,
-    "explained": 51,
+    "explained": 45,
     "explained_rate": 0.03,
     "of_glossary": 0.03,
     "share": {
@@ -11765,36 +11733,36 @@
      "adjusted": 0.0,
      "partial": 3.08,
      "unexplained": 46.86,
-     "non_pie": 43.77,
+     "non_pie": 43.78,
      "ie_loan": 1.78,
      "built": 4.47
     }
    },
    "category_reasons": {
-    "non_pie: non-ie source": 71691,
+    "non_pie: non-ie source": 71693,
     "unexplained: no recorded etymology (the dictionary labels it a proper name)": 38253,
     "unexplained: no recorded etymology": 21981,
     "unexplained: no recorded etymology (a compound the model cannot cut)": 15287,
-    "ie_loan: loan from an IE branch": 2918,
+    "ie_loan: loan from an IE branch": 2916,
     "unexplained: no recorded etymology (a relative adjective whose stem is not stored)": 1034,
-    "partial: no rule applied": 722,
-    "partial: no entry for Proto-Iranian *Háywah, Proto-Indo-European *óywos": 402,
+    "partial: no rule applied": 719,
+    "partial: no entry for Proto-Iranian *Háywah, Proto-Indo-European *óywos; no recorded origin for Middle Persian 𐭸": 167,
     "unexplained: no recorded etymology (the dictionary labels it a huzvarish)": 153,
-    "partial: no entry for Middle Persian 𐭱𐭭": 47,
     "unexplained: no recorded etymology (a bound morpheme, not a word)": 42,
-    "partial: no entry for Middle Persian k'": 36,
-    "partial: no entry for Middle Persian stʾn', Old Persian 𐎿𐎫𐎠𐎴, Proto-Iranian *stā́nam and 1 more": 34,
-    "partial: no entry for Middle Persian 𐭪": 30,
-    "partial: no entry for Middle Persian 𐭥𐭡𐭩𐭣𐭥𐭭𐭲𐭭𐭩": 28,
-    "partial: no entry for Middle Persian apě": 25,
-    "partial: no entry for Proto-Iranian *cŕ̥Hah": 23,
-    "partial: no entry for Middle Persian 𐭠𐭭": 22,
-    "partial: no entry for Middle Persian 𐭡𐭩𐭲𐭠": 20,
+    "partial: no recorded origin for Middle Persian 𐭥𐭡𐭩𐭣𐭥𐭭𐭲𐭭𐭩": 22,
     "partial: reproduced only from Middle Persian, not from the PIE etymon": 19,
-    "partial: no entry for Middle Persian kl, Middle Persian īgar, Middle Persian īkar": 17,
-    "partial: no entry for Middle Persian 𐭧𐭥𐭱, Proto-Indo-European *swelḱs, Proto-Indo-Iranian *Hsu-Hákši": 15,
-    "partial: no entry for Middle Persian abāz, Proto-Iranian *Hápa, Proto-Indo-European *h₂épo and 1 more": 14,
-    "partial: unchanged ancestor (no law applied)": 13
+    "partial: no entry for Proto-Iranian *Háywah, Proto-Indo-European *óywos": 18,
+    "partial: no recorded origin for Middle Persian apě": 17,
+    "partial: no entry for Middle Persian 𐭪": 14,
+    "partial: unchanged ancestor (no law applied)": 13,
+    "partial: no entry for Middle Persian stʾn', Old Persian 𐎿𐎫𐎠𐎴, Proto-Iranian *stā́nam and 1 more; no recorded origin for Middle Persian -stʾn'": 13,
+    "partial: no recorded origin for Middle Persian 𐭡𐭩𐭲𐭠": 13,
+    "partial: no entry for Middle Persian k'; no recorded origin for Middle Persian -k'": 12,
+    "partial: no recorded origin for Persian ـشناس": 12,
+    "partial: no entry for Proto-Iranian *cŕ̥Hah; no recorded origin for Proto-Iranian *cŕ̥Hah": 9,
+    "partial: no recorded origin for Persian ی": 8,
+    "partial: no entry for Proto-Iranian *mánts, Proto-Indo-Iranian *mánts, Proto-Indo-European *ménts; no recorded origin for Proto-Iranian *-mánts": 8,
+    "partial: no entry for Middle Persian kl, Middle Persian īgar, Middle Persian īkar; no recorded origin for Middle Persian -kl": 7
    },
    "category_examples": {
     "full": [
@@ -11812,11 +11780,6 @@
       "word": "کار",
       "gloss": "work · deed · occupation, job",
       "reason": "script layer"
-     },
-     {
-      "word": "پرنده",
-      "gloss": "bird · flying object",
-      "reason": "construction of پر + -ـنده"
      },
      {
       "word": "سیاستمدار",
@@ -11837,6 +11800,11 @@
       "word": "بید",
       "gloss": "moth; especially, the clothes moth or other types of moths t",
       "reason": "script layer"
+     },
+     {
+      "word": "کیمیاگر",
+      "gloss": "alchemist",
+      "reason": "construction of کیمیا + گر"
      }
     ],
     "adjusted": [],
@@ -11864,7 +11832,7 @@
      {
       "word": "سامانه",
       "gloss": "system · alternative form of سامان (sāmān /sâmân)",
-      "reason": "no entry for Middle Persian sʾmʾn', Middle Persian k'"
+      "reason": "no entry for Middle Persian k'; no recorded origin for Middle Persian sʾmʾn', Middle Persian -k'"
      },
      {
       "word": "میوه",
@@ -11879,7 +11847,7 @@
      {
       "word": "کرنا",
       "gloss": "kerana, kernei, karnay (a long thin brass horn or trumpet) ·",
-      "reason": "no entry for Middle Persian HMRA, Proto-Iranian *xárah, Middle Persian xar and 2 more"
+      "reason": "no entry for Proto-Iranian *xárah, Middle Persian xar, Old Persian nadah and 1 more; no recorded origin for Middle Persian HMRA, Old Persian nadah"
      }
     ],
     "unexplained": [
@@ -12121,12 +12089,8 @@
    "identity": 229,
    "bound_form": 0,
    "joined": 128,
-   "constructed": 47,
+   "constructed": 41,
    "construction_examples": [
-    {
-     "word": "پرنده",
-     "reason": "construction of پر + -ـنده"
-    },
     {
      "word": "سیاستمدار",
      "reason": "construction of سیاست + مدار"
@@ -12144,16 +12108,20 @@
      "reason": "construction of کیمیا + گر"
     },
     {
-     "word": "محمدجواد",
-     "reason": "construction of محمد + جواد"
-    },
-    {
      "word": "ساعتچی",
      "reason": "construction of ساعت + ـچی"
     },
     {
      "word": "موقعیت",
      "reason": "construction of موقع + ـیت"
+    },
+    {
+     "word": "عراقچی",
+     "reason": "construction of عراق + ـچی"
+    },
+    {
+     "word": "ناموفق",
+     "reason": "construction of ناـ + موفق"
     }
    ],
    "gaps": [],
@@ -12325,7 +12293,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 19.64,
+   "seconds": 22.43,
    "examples": [],
    "pathway_examples": [
     {
@@ -12997,7 +12965,7 @@
      3
     ]
    ],
-   "seconds": 2.17,
+   "seconds": 2.12,
    "examples": [
     {
      "stage": "ine-pro",
@@ -13145,22 +13113,22 @@
    "pathway": 0,
    "categories": {
     "counts": {
-     "full": 8,
+     "full": 7,
      "adjusted": 2,
-     "partial": 1706,
+     "partial": 1707,
      "unexplained": 1,
      "non_pie": 35,
      "ie_loan": 167,
      "built": 0
     },
     "total": 1919,
-    "explained": 10,
-    "explained_rate": 0.52,
-    "of_glossary": 0.52,
+    "explained": 9,
+    "explained_rate": 0.47,
+    "of_glossary": 0.47,
     "share": {
-     "full": 0.42,
+     "full": 0.36,
      "adjusted": 0.1,
-     "partial": 88.9,
+     "partial": 88.95,
      "unexplained": 0.05,
      "non_pie": 1.82,
      "ie_loan": 8.7,
@@ -13168,30 +13136,30 @@
     }
    },
    "category_reasons": {
-    "partial: no rule applied": 827,
+    "partial: no rule applied": 826,
     "ie_loan: loan from an IE branch": 167,
     "partial: reproduced only from Proto-Celtic, not from the PIE etymon": 85,
     "non_pie: non-ie source": 35,
-    "partial: built from pieces, not derived": 23,
-    "partial: no entry for Proto-Indo-European *ups": 14,
+    "partial: no recorded origin for Proto-Celtic *to-": 19,
+    "partial: built from pieces, not derived": 16,
+    "partial: no recorded origin for Proto-Celtic *ad-": 11,
     "partial: no entry for Proto-Indo-European *eh₂kos": 9,
     "partial: bound form, not a word": 8,
-    "partial: no entry for Proto-Indo-European *i-eh₂": 7,
-    "partial: no entry for Proto-Celtic *binati": 6,
-    "partial: no entry for Proto-Celtic *sweseros": 5,
-    "partial: no entry for Proto-Celtic *yatis": 4,
+    "partial: no entry for Proto-Indo-European *ups; no recorded origin for Proto-Celtic *uts-": 8,
+    "partial: no recorded origin for Proto-Celtic *ɸare-": 7,
+    "partial: no entry for Proto-Indo-European *i-eh₂": 5,
     "partial: unchanged ancestor (no law applied)": 3,
     "full: cited laws, no change": 3,
-    "partial: no entry for Proto-Indo-European *nēs": 3,
-    "partial: no entry for Proto-Celtic *assus, Proto-Indo-European *ad-tus": 3,
     "partial: no entry for Proto-Indo-European *līnom": 3,
     "partial: no entry for Proto-Celtic *snisni": 3,
-    "partial: no entry for Proto-Celtic *bertā": 3,
+    "partial: no entry for Proto-Celtic *sweseros; no recorded origin for Proto-Celtic *sweseros": 3,
+    "partial: no entry for Proto-Indo-European *ups; no recorded origin for Proto-Celtic *to-, Proto-Celtic *uts-": 3,
     "partial: no entry for Proto-Indo-European *gʷówdʰ-i": 3,
-    "partial: no entry for Proto-Indo-European *kh₂néti": 3,
-    "partial: no entry for Proto-Indo-European *kl̥h₂dʰ-é-ti": 3,
     "partial: no entry for Proto-Indo-European *tuHts": 3,
-    "partial: no entry for Proto-Celtic *meleti": 3
+    "partial: no recorded origin for Proto-Celtic *to-, Proto-Celtic *ɸare-": 3,
+    "partial: no entry for Proto-Indo-European *slih₃-wó-s": 2,
+    "partial: no entry for Proto-Celtic *letos": 2,
+    "partial: no entry for Proto-Indo-European *h₃reǵ-tus": 2
    },
    "category_examples": {
     "full": [
@@ -13229,11 +13197,6 @@
       "word": "trebaid",
       "gloss": "to cultivate, to till, to plough/plow · to inhabit",
       "reason": "construction of treb + -aid"
-     },
-     {
-      "word": "frithorcun",
-      "gloss": "verbal noun of fris·oirc · offense, insult · injury",
-      "reason": "construction of frith- + orcun"
      }
     ],
     "adjusted": [
@@ -13453,7 +13416,7 @@
    "identity": 5,
    "bound_form": 9,
    "joined": 192,
-   "constructed": 3,
+   "constructed": 2,
    "construction_examples": [
     {
      "word": "delbaid",
@@ -13462,10 +13425,6 @@
     {
      "word": "trebaid",
      "reason": "construction of treb + -aid"
-    },
-    {
-     "word": "frithorcun",
-     "reason": "construction of frith- + orcun"
     }
    ],
    "gaps": [],
@@ -13698,7 +13657,7 @@
      1
     ]
    ],
-   "seconds": 2.68,
+   "seconds": 4.04,
    "examples": [
     {
      "stage": "cel-pro",
@@ -13997,7 +13956,7 @@
      1
     ]
    ],
-   "seconds": 1.64,
+   "seconds": 0.76,
    "examples": [
     {
      "stage": "ine-pro",
@@ -14374,7 +14333,7 @@
      28
     ]
    ],
-   "seconds": 6.26,
+   "seconds": 6.5,
    "examples": [
     {
      "stage": "ine-bsl-pro",
@@ -14545,30 +14504,30 @@
     }
    },
    "category_reasons": {
-    "partial: reproduced only from Proto-Slavic, not from the PIE etymon": 519,
-    "partial: no rule applied": 315,
-    "partial: unchanged ancestor (no law applied)": 273,
+    "partial: reproduced only from Proto-Slavic, not from the PIE etymon": 515,
+    "partial: no rule applied": 313,
+    "partial: unchanged ancestor (no law applied)": 271,
     "ie_loan: loan from an IE branch": 102,
     "partial: reproduced only from Proto-Balto-Slavic, not from the PIE etymon": 28,
     "non_pie: non-ie source": 21,
     "full: script layer": 6,
     "adjusted: recorded step differs: ine-bsl-pro": 6,
-    "partial: no entry for Proto-Balto-Slavic *pa": 5,
-    "partial: no entry for Proto-Balto-Slavic *astis, Proto-Indo-European *Hostis": 5,
-    "partial: no entry for Proto-Indo-European *h₃ebʰi": 4,
-    "partial: no entry for Proto-Indo-European *ǵʰólh₃-tom": 4,
     "partial: no entry for Proto-Indo-European *bʰlondʰ-o-s": 4,
     "partial: no entry for Proto-Balto-Slavic *álˀktei": 4,
     "partial: no entry for Proto-Balto-Slavic *mildnī, Proto-Indo-European *ml̥dʰ-nih₂": 4,
-    "partial: no entry for Proto-Balto-Slavic *ikas, Proto-Indo-European *ikos": 4,
-    "partial: no entry for Proto-Balto-Slavic *ge": 3,
-    "partial: no entry for Proto-Balto-Slavic *san": 3,
-    "partial: no entry for Proto-Balto-Slavic *mūˀslís": 3,
-    "partial: no entry for Proto-Indo-European *h₁m̥-é-ti": 3,
+    "partial: no entry for Proto-Indo-European *h₃ebʰi": 3,
+    "partial: no entry for Proto-Indo-European *ǵʰólh₃-tom": 3,
     "partial: no entry for Proto-Balto-Slavic *pāˀstéi": 3,
-    "partial: no entry for Proto-Balto-Slavic *weiˀdēˀtei": 3,
     "partial: no entry for Proto-Balto-Slavic *lánkīˀtei": 3,
-    "partial: no entry for Proto-Slavic *gretì": 3
+    "partial: no entry for Proto-Slavic *gretì": 3,
+    "partial: no entry for Proto-Balto-Slavic *aldjāˀ, Proto-Indo-European *h₂oldʰeh₂": 3,
+    "partial: no entry for Proto-Balto-Slavic *skeistéi": 3,
+    "partial: no entry for Proto-Balto-Slavic *laukīˀtei": 3,
+    "partial: no entry for Proto-Balto-Slavic *pa": 2,
+    "partial: no entry for Proto-Balto-Slavic *da": 2,
+    "partial: no entry for Proto-Balto-Slavic *pītei, Proto-Indo-European *pih₃-e-ti": 2,
+    "partial: no entry for Proto-Balto-Slavic *mōˀźsla": 2,
+    "partial: no entry for Proto-Balto-Slavic *san": 2
    },
    "category_examples": {
     "full": [
@@ -14953,7 +14912,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 5.86,
+   "seconds": 5.3,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [
@@ -15083,11 +15042,10 @@
     "adjusted: recorded step differs: ine-bsl-pro": 8,
     "partial: unchanged ancestor (no law applied)": 4,
     "partial: bound form, not a word": 4,
-    "partial: no entry for Proto-Balto-Slavic *pa": 3,
     "partial: no entry for Proto-Indo-European *ney": 2,
     "partial: no entry for Proto-Indo-European *wrónk-eh₂": 2,
     "partial: no entry for Proto-Balto-Slavic *weliā": 2,
-    "partial: no entry for Proto-Balto-Slavic *galḗˀtei": 2,
+    "partial: no entry for Proto-Balto-Slavic *pa; no recorded origin for Proto-Balto-Slavic *pa": 2,
     "partial: no entry for Proto-Indo-European *g⁽ʷ⁾u-né-H-ti": 2,
     "partial: no entry for Proto-Balto-Slavic *gulbis": 2,
     "partial: no entry for Proto-Balto-Slavic *blaiˀd-wá-s, Proto-Indo-European *bʰloyd-wó-s": 2,
@@ -15098,7 +15056,8 @@
     "partial: no entry for Proto-Balto-Slavic *ir": 1,
     "partial: no entry for Proto-Balto-Slavic *po": 1,
     "partial: no entry for Proto-Balto-Slavic *tū": 1,
-    "partial: no entry for Proto-Indo-European *wor-néh₂": 1
+    "partial: no entry for Proto-Indo-European *wor-néh₂": 1,
+    "partial: no entry for Proto-Balto-Slavic *per": 1
    },
    "category_examples": {
     "full": [
@@ -15518,7 +15477,7 @@
      3
     ]
    ],
-   "seconds": 2.0,
+   "seconds": 3.19,
    "examples": [
     {
      "stage": "ine-pro",
@@ -15983,15 +15942,29 @@
    },
    "category_reasons": {
     "ie_loan: loan from an IE branch": 2271,
-    "partial: no rule applied": 2197,
+    "partial: no rule applied": 2140,
     "non_pie: non-ie source": 514,
     "partial: reproduced only from a later recorded ancestor, not from the PIE etymon": 49,
+    "partial: no recorded origin for Middle Armenian -ա-": 13,
+    "partial: no recorded origin for Old Armenian մանուկ, Middle Armenian -ա-": 2,
+    "partial: no recorded origin for Middle Armenian -ա-, Proto-Indo-Iranian *(H)wardʰ-": 2,
+    "partial: no recorded origin for Old Armenian մանուկ, Middle Armenian -ա-, Proto-Iranian *pari-": 1,
+    "partial: no recorded origin for Old Armenian կուրծք, Middle Armenian -ա-, Old Armenian նշան": 1,
     "partial: no entry for Proto-Indo-European *wóyh₁nom": 1,
+    "partial: no recorded origin for Old Armenian բադ, Middle Armenian -ա-, Old Armenian կտուց": 1,
     "partial: no entry for Proto-Indo-European *pónteh₁s": 1,
-    "partial: construction of Հովհաննես + -յան does not spell the word": 1,
-    "partial: construction of շուն + -ա- + գայլ does not spell the word": 1,
+    "partial: no recorded origin for Armenian Հովհաննես": 1,
+    "partial: no recorded origin for Middle Armenian -ա-, Old Armenian նուշ": 1,
+    "partial: no recorded origin for Armenian գայլ, Middle Armenian -ա-": 1,
+    "partial: no recorded origin for Old Armenian ժամ": 1,
+    "partial: no recorded origin for Old Armenian ճանապարհ, Old Armenian որդն": 1,
+    "partial: no recorded origin for Middle Armenian բազուկ, Middle Armenian -ա-, Middle Armenian թան": 1,
+    "partial: no recorded origin for Old Armenian թերթ": 1,
     "partial: no entry for Proto-Indo-European *ǵʰi-m-ós": 1,
-    "partial: construction of որբ + -ա- + հավաքել does not spell the word": 1
+    "partial: no recorded origin for Middle Armenian -ա-, Old Armenian նկար": 1,
+    "partial: no recorded origin for Middle Armenian -ա-, Middle Armenian պատ": 1,
+    "partial: no recorded origin for Middle Armenian բոխի, Middle Armenian -ա-": 1,
+    "partial: no recorded origin for Russian бензо-, Old Armenian սղոց": 1
    },
    "category_examples": {
     "full": [],
@@ -16156,7 +16129,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.28,
+   "seconds": 0.31,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [],
@@ -16210,14 +16183,13 @@
     }
    },
    "category_reasons": {
-    "partial: reproduced only from a later recorded ancestor, not from the PIE etymon": 691,
+    "partial: reproduced only from a later recorded ancestor, not from the PIE etymon": 690,
     "ie_loan: loan from an IE branch": 261,
     "partial: no rule applied": 214,
     "non_pie: non-ie source": 133,
     "partial: no entry for Proto-Indo-European *enos": 3,
     "partial: no entry for Proto-Indo-European *déms": 3,
     "partial: no entry for Proto-Indo-European *h₂rewyós": 2,
-    "partial: no entry for Proto-Indo-European *h₁opi": 2,
     "partial: no entry for Proto-Indo-European *wédn̥": 2,
     "partial: no entry for Proto-Indo-European *iyn̥, Proto-Indo-European *iHn̥": 2,
     "partial: no entry for Proto-Indo-European *nti": 2,
@@ -16233,7 +16205,8 @@
     "partial: no entry for Proto-Indo-European *us-t-h₂-ós": 1,
     "partial: no entry for Proto-Indo-European *wekʷsperos": 1,
     "partial: no entry for Proto-Indo-European *wóyh₁nom": 1,
-    "partial: no entry for Proto-Indo-European *h₃néh₃mn": 1
+    "partial: no entry for Proto-Indo-European *h₃néh₃mn": 1,
+    "partial: no entry for Proto-Indo-European *h₁égʷʰ-ōi": 1
    },
    "category_examples": {
     "full": [],
@@ -16465,7 +16438,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.17,
+   "seconds": 0.15,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [],
@@ -16531,8 +16504,8 @@
    },
    "category_reasons": {
     "ie_loan: loan from an IE branch": 1401,
-    "partial: reproduced only from a later recorded ancestor, not from the PIE etymon": 832,
-    "partial: no rule applied": 760,
+    "partial: reproduced only from a later recorded ancestor, not from the PIE etymon": 828,
+    "partial: no rule applied": 757,
     "non_pie: non-ie source": 745,
     "partial: no entry for Proto-Indo-European *h₁us-los, Proto-Indo-European *h₂us-los": 4,
     "partial: no entry for Proto-Indo-European *eh₂nyeti": 3,
@@ -16542,9 +16515,9 @@
     "partial: no entry for Proto-Indo-European *ḱos": 2,
     "partial: no entry for Proto-Indo-European *eǵʰs": 2,
     "partial: no entry for Proto-Indo-European *Horgʰi": 2,
-    "partial: no entry for Proto-Indo-European *bʰórh₁ǵos": 2,
     "partial: no entry for Proto-Indo-European *gʷʰer-mós": 2,
     "partial: no entry for Proto-Indo-European *kʷeiətos": 2,
+    "partial: no recorded origin for Albanian je": 2,
     "partial: no entry for Proto-Indo-European *h₂emm-h₂": 2,
     "partial: no entry for Proto-Indo-European *wr̥dʰo": 2,
     "partial: no entry for Proto-Indo-European *kobuǵos": 2,
@@ -16784,7 +16757,7 @@
    "near_rate": 0.0,
    "from_stage": {},
    "top_rules": [],
-   "seconds": 0.26,
+   "seconds": 0.28,
    "examples": [],
    "pathway_examples": [],
    "closest_misses": [],
@@ -16830,23 +16803,23 @@
  },
  "categories": {
   "counts": {
-   "full": 480,
+   "full": 420,
    "adjusted": 54,
-   "partial": 131725,
+   "partial": 131784,
    "unexplained": 77633,
-   "non_pie": 91918,
+   "non_pie": 91921,
    "unidentified": 1720066,
-   "ie_loan": 71976,
+   "ie_loan": 71974,
    "built": 7324
   },
   "total": 381110,
-  "explained": 534,
-  "explained_rate": 0.14,
-  "of_glossary": 0.14,
+  "explained": 474,
+  "explained_rate": 0.12,
+  "of_glossary": 0.12,
   "share": {
-   "full": 0.13,
+   "full": 0.11,
    "adjusted": 0.01,
-   "partial": 34.56,
+   "partial": 34.58,
    "unexplained": 20.37,
    "non_pie": 24.12,
    "ie_loan": 18.89,
