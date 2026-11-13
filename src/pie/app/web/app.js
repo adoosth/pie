@@ -1752,8 +1752,12 @@ function constructStep(level, i, linkTo, opts) {
       : "";
     /* Every word on the tree says what it means; the one that says nothing
        because no entry holds it says that instead (admin, 2026-11-12). */
+    /* A piece the glossary does not head says so whatever its shape — 134 of
+       Old Persian's 529 entries draw such a piece, and a bare word with a `???`
+       above it reads as an entry with no origin instead of as a hole (critic
+       batch peo-01, 2026-11-13). */
     const meaning = meaningOf(p.pos, p.gloss, p.bound)
-      || (p.known === false && !p.bound
+      || (p.known === false && !(p.gloss || "").trim()
         ? (p.branch && p.branch.outside
           ? `<span class="coutside">non-PIE word</span>`
           : `<span class="norec">no entry for this word</span>`) : "");
