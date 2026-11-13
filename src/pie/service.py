@@ -2890,6 +2890,12 @@ def _stem_verb(etym: str, form: str) -> str:
         return ""
     at = etym.find(form + " (")
     if at < 0:
+        # The record may name the stem with no bracket of its own: «جا ("place")
+        # + نشین present stem of نشستن ("to sit")».  The phrase still follows
+        # the piece, so the piece is the verb's stem and not the noun that
+        # shares its spelling (critic batch 11, 2026-11-13).
+        at = etym.find(form)
+    if at < 0:
         return ""
     tail = etym[at:at + 200]
     # The phrase describes the piece it follows: in «From جا (“place”) + نشین
