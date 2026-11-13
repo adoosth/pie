@@ -890,6 +890,20 @@ const scriptedHtml = context.renderHierarchy(scripted, { lang: "peo", word: "�
 const scriptedWords = plain(scriptedHtml);
 assert.ok(scriptedWords.includes("Arabāya"), "a rung written in its own script is shown by its reading");
 assert.ok(scriptedWords.includes("a-r-b-a-y"), "and the signs stand beside it");
+/* 2026-11-13: the pencil edits the romanisation a rung prints, never the
+   recorded writing.  The Old Persian seed is the display; when no display is
+   supplied it falls back to the reading the form was carried on. */
+const peoEdit = { stage: "peo", name: "Old Persian", form: "𐎺𐎼𐎣𐎠𐎴𐎡𐎹",
+                  display: "Vạrkāniya", spoken: "" };
+assert.equal(context.editSeed(peoEdit), "Vạrkāniya",
+  "the edit input is seeded with the rung's romanisation");
+assert.ok(!/[\u{103A0}-\u{103DF}]/u.test(context.editSeed(peoEdit)),
+  "the edit input never contains the language's own script");
+assert.equal(context.editSeed({ ...peoEdit, display: "", spoken: "vr̥kaʰ" }), "vr̥kaʰ",
+  "without a display, the edit input falls back to the spoken reading");
+assert.ok(!/[\u{103A0}-\u{103DF}]/u.test(
+  context.editSeed({ ...peoEdit, display: "", spoken: "vr̥kaʰ" })),
+  "the fallback seed is romanisation too");
 assert.ok(readHtml.includes('data-edit="pal"'), "a rung the timeline was carried into is editable");
 assert.ok(readHtml.includes('data-cut="pal"'), "and it can be cut off again");
 assert.ok(!readHtml.includes('data-cut="peo"'), "the word's own rung is not a carried one");
@@ -1025,7 +1039,10 @@ assert.ok(/class="cwhen"><span class="cwhen-name cwhen-build">construction<\/spa
   "the diamond's own row names the construction and the kind of formation, in its left column");
 assert.ok(!builtHtml.includes('class="when"'),
   "the step prints no label of its own under the tree any more");
-assert.ok(terms[0].includes("čiçaʰ"), "the piece's reading is printed beside it");
+assert.ok(terms[0].includes('<span class="creadstack"><i class="cread">čiçaʰ</i></span>'),
+  "the piece's reading is stacked under it, not printed beside it");
+assert.ok(!terms[0].split('<span class="creadstack">')[0].includes('<i class="cread"'),
+  "no reading layer stands inside the word row");
 /* The meaning stands under the word, the way the headword's own line carries
    it — `name · “a male given name”` — and the hover still says where it opens
    (admin, 2026-11-12). */
@@ -1196,6 +1213,12 @@ assert.ok(/\.bstep-tabs \{[^}]*grid-column: 3/.test(sheet),
   "and the analyses' tabs stand in the word's column");
 assert.ok(/\.cwhen \{[^}]*align-items: flex-end[^}]*height: var\(--termh\)/.test(sheet),
   "the label is right-aligned against the rail and centred on the word's own band");
+assert.ok(/\.cwordrow \{[^}]*height: var\(--termh\)/.test(sheet),
+  "the word keeps its term band, so the pieces stay centred on the rail");
+assert.ok(/\.creadstack \{[^}]*flex-direction: column/.test(sheet),
+  "the reading and sign layers stack vertically under the word");
+assert.ok(/\.creadstack \.cread \{[^}]*display: block; margin-left: 0/.test(sheet),
+  "each layer takes its own line, flush under the word");
 assert.ok(/\.cwhen-name \{[^}]*font-size: 13px/.test(sheet)
   && /\.cwhen-era \{[^}]*font-size: 11\.5px/.test(sheet),
   "and it is set at the ladder's own sizes, name over years");

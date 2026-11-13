@@ -94,6 +94,14 @@ page also belongs in `AGENTS.md` ("What a word page must keep true").
     artefact (`_glossary_rows`), and a loop over 17,000 words may not stat
     `data/`. Measure with `AGENTS.md` → "Measure it"; the cache's dead files are
     dropped by `pie cache --prune`.
+28. **A timeline continues on its own reconstruction.** The model does not
+    borrow a record's transcription for the next step: a romanised rung is
+    carried as itself, and only a form in the stage's own writing is replaced by
+    its reading (`service._descends_from`). So 𐎺𐎼𐎣𐎠𐎴 goes PIr. *Wŕ̥kānah →
+    OP Wˈarkānah → MP Wˈargān (the record's Vr̥kānaʰ stands beside the OP rung
+    and is not the input), while a cuneiform headword with no ancestor is read
+    and then continued from that reading. The same rule seeds the pencil: what
+    is edited is the printed romanisation, never the script.
 
 ## Interface
 

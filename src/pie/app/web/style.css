@@ -577,8 +577,10 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
      is the one thing this timeline must never do). */
   --sbar: 18px;
   /* One row of the tree's own staircase: a label band, a term row, and the
-     three lines of meaning it reserves under the word (admin, 2026-11-12). */
-  --crow: calc(var(--clabelh) + var(--termh) + 3 * 14px + 2px); }
+     lines it reserves under the word.  The reading and sign layers stack there
+     now, one per line, so four lines are the row's ordinary floor (admin,
+     2026-11-13). */
+  --crow: calc(var(--clabelh) + var(--termh) + 4 * 14px + 2px); }
 /* The step's rail is two segments, because the tree between them is a scroll
    box of its own: the one above brings the line down from the rung above, the
    one under it carries the line across the meaning strip (`--bpad`) to the
@@ -753,6 +755,11 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
 .cterm.instrip { grid-template-columns: auto; grid-template-rows: auto; }
 .cterm.instrip > .cstack { grid-column: 1; grid-row: 1; }
 .cstack { display: flex; flex-direction: column; min-width: 0; }
+/* The reading and the sign transliteration are vertical layers, not neighbours
+   of the word: horizontal room belongs to the timeline, vertical room is cheap
+   (admin, 2026-11-13). */
+.creadstack { display: flex; flex-direction: column; align-items: flex-start;
+  min-width: 0; padding-top: 1px; }
 .cwordrow { display: flex; align-items: center; height: var(--termh); }
 /* A piece's own row runs on to the `+` when another piece follows: the line
    leaves the word's right edge and crosses the column, however wide its
@@ -885,8 +892,11 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
    (admin, 2026-11-12). */
 .cform span.cword { border-bottom: 0; }
 .cform a.cword:hover { border-bottom-color: currentColor; }
-.cform .cread { font-family: var(--mono); font-size: 12px; font-style: normal;
+.cform .cread, .creadstack .cread { font-family: var(--mono); font-size: 12px; font-style: normal;
   color: var(--muted); margin-left: 7px; unicode-bidi: isolate; }
+.creadstack .cread { display: block; margin-left: 0; line-height: 14px;
+  letter-spacing: 0; }
+.creadstack .cread.signs { margin-left: 0; }
 .cform .cunknown { font-family: var(--mono); font-weight: 600; letter-spacing: .02em; }
 /* A built ancestor is a row of the same staircase: the diamond on the column's
    own rail, and the pieces of that formation beside it at the tree's own sizes

@@ -79,6 +79,11 @@ const isRTL = (s) => RTL_CHARS.test(String(s ?? ""));
    one shape.  Upright and slightly apart is how the signs stay signs. */
 const CUNEIFORM_CHARS = /[\u{103A0}-\u{103DF}]/u;
 const scriptClass = (s) => (isRTL(s) ? "rtl" : CUNEIFORM_CHARS.test(String(s ?? "")) ? "cunei" : "");
+/* A form is scripted when it contains a letter outside the Latin script.
+   Romanisations, including IPA and the usual diacritics, stay editable; a
+   word in its own writing (cuneiform, Arabic, Greek, Cyrillic, …) does not. */
+const isScripted = (s) => [...String(s ?? "")].some(
+  (ch) => /\p{L}/u.test(ch) && !/\p{Script=Latin}/u.test(ch));
 /* Evidence is the whole point of the colour scheme (2026-11-07):
      attested  green, glowing — the word is in a text or a dictionary;
      literary  gold  — reconstructed in the literature, normally written *so;
@@ -1921,7 +1926,8 @@ function constructStep(level, i, linkTo, opts) {
     return `<div class="cterm${opts.rail ? "" : " instrip"}${p.bound ? " bound" : ""}${opts.first ? " first" : ""}" data-tip="${esc(tip)}">
         ${label}${rail}
         <div class="cstack">
-          <span class="cwordrow"><span class="cform term ${scriptClass(p.form)} ${ev}">${body}${reading}</span>${grade}</span>
+          <span class="cwordrow"><span class="cform term ${scriptClass(p.form)} ${ev}">${body}</span>${grade}</span>
+          ${reading ? `<span class="creadstack">${reading}</span>` : ""}
           ${meaning ? `<span class="cgloss">${meaning}</span>` : ""}${
           stepLaws(p.branch && p.branch.step,
             p.branch && p.branch.parents && p.branch.parents[0]
@@ -2822,6 +2828,15 @@ async function updateLadder(showStage) {
   }
 }
 
+/* The pencil edits the romanisation the rung prints, never the writing.  A
+   displayed reading wins over the recorded form; when no display exists and
+   the form is still scripted, the reading it was carried on is the seed. */
+function editSeed(level) {
+  const shown = String((level && (level.display || level.form)) || "");
+  if (!isScripted(shown)) return pf(shown);
+  return pf((level && (level.spoken || level.display || level.form)) || "");
+}
+
 function startEdit(stage) {
   const L = ladderState;
   const box = $("#ladder");
@@ -2832,7 +2847,7 @@ function startEdit(stage) {
   const holder = li.querySelector(".rung-forms");
   holder.innerHTML = `<form class="editform" data-stage="${esc(stage)}">
       <label class="sronly" for="ef-${esc(stage)}">Starting form for ${esc(level.name)}</label>
-      <input id="ef-${esc(stage)}" class="editform-input mono" type="text" dir="auto" value="${esc(pf(level.form))}"
+      <input id="ef-${esc(stage)}" class="editform-input mono" type="text" dir="auto" value="${esc(editSeed(level))}"
         autocomplete="off" spellcheck="false">
       <button class="ghost" type="submit">derive ↓</button>
       <button class="ghost" type="button" data-cancel="1">cancel</button>

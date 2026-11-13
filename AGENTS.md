@@ -23,7 +23,10 @@ Two consequences that decide most arguments:
 
 - **A writing is not a sound.** The laws rewrite phonemes, so a form written in
   its own script is refused (`rules.derive_detailed` → `unreadable`); every
-  caller hands over the form's *reading* (`service._phonological_form`).
+  caller hands over the form's *reading* (`service._phonological_form`). A
+  reconstruction, by contrast, is carried as itself: only a writing is replaced
+  by its reading, and the record's separate transcription is printed beside it
+  and never fed to the laws (`service._descends_from`, 2026-11-13).
 - **A green word is never greener than the words above it.** Every rung, piece
   and ancestor a page draws is asked for its own band; a weak one makes the word
   partial (`service.unrecorded_ancestry`, `categories.verdict`).
@@ -176,7 +179,9 @@ it; if you change one, change its test in the same commit.
 2. **A timeline reads, it does not spell.** The leftmost text of a rung is a
    romanisation; a script follows it with the record's reading and the mechanical
    sign layer (`𐎺𐎼𐎣 · vr̥kaʰ · v-r-k`). IPA is optional, on the word's own page
-   only, never on a rung.
+   only, never on a rung. The pencil seeds that romanisation and the stage below
+   continues from it — a form in its own script is never edited and never an
+   input to the next step.
 3. **Every rung is an entry of its stage** — or it says *no entry for this word*
    in dark red, upright, with no ✓. A form the laws produce is not an entry.
 4. **No ✓ without the record's own reading.** The laws' form must *be* the

@@ -6727,11 +6727,13 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
     stated = str((rung or {}).get("via") or (rung or {}).get("reading") or "")
     reading_form = (_phonological_form(lang, str(entry.get("word") or form))
                     if (here and needs_reading(lang)) else "")
-    # The record itself is what says how the spelling is read.  It does not
-    # have to be a *match*: 𐎺𐎼𐎣 is read vr̥kaʰ and the laws reach wˈarkah,
-    # and the rung says both (admin, 2026-11-13).  What the stages below the
-    # word run on is the reading either way, because a script is not an input
-    # to a sound law.
+    # The record says how a writing is read.  It does not have to be a
+    # *match*: 𐎺𐎼𐎣 is read vr̥kaʰ and the laws reach wˈarkah, and the rung
+    # says both (admin, 2026-11-13).  That reading is for display: the
+    # derivation stays inside the model's own forms.  A reconstructed
+    # romanisation is carried as itself, and only a writing is replaced by its
+    # reading, because a script is not an input to a sound law (admin,
+    # 2026-11-13: a record's separate transcription never feeds the tail).
     transcribed = bool(
         here and not edited and not hypothesis and not translit.is_scripted(here)
         and stated and stated != here and rung and rung.get("in_script")
@@ -6743,11 +6745,14 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
     # 2026-11-13: 𐎺𐎼𐎣𐎠𐎴𐎡𐎹 is read Vạrkāniya, and the rung below it said
     # there was nothing to start from).  Its own rung keeps the writing, and the
     # tail is re-run from the reading — never from a form this function invents.
+    # A rung whose own form is already a romanisation needs no substitution:
+    # the ordinary full-chain run carries it, and the record's transcription
+    # stays beside it on its rung as display only.
     spoken = stated if transcribed else reading_form
     carrying = bool(
         extra and not edited and not hypothesis and spoken and spoken != here
         and 0 <= own_at < len(levels_chain) - 1
-        and (translit.is_scripted(here) or transcribed))
+        and translit.is_scripted(here))
     if carrying:
         head, head_hops = run(start_form, levels_chain[:own_at + 1],
                               disabled=disabled, enabled=enabled)
@@ -6756,7 +6761,7 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
         base_head, _ = run(start_form, levels_chain[:own_at + 1], enabled=enabled)
         base_tail, _ = run(spoken, levels_chain[own_at:], enabled=enabled)
         # The word's own rung keeps its own form; only the stages *below* it
-        # start from the reading.
+        # start from the reading, because that form is a writing.
         own_form = here
         trace = Derivation(input=start_form, chain=list(levels_chain),
                            forms=list(head.forms[:own_at]) + [own_form] + list(tail.forms[1:]),
@@ -7031,10 +7036,10 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
             # record (admin, 2026-11-13).  Empty when the form is already a
             # romanisation, so `form` is what prints.
             "display": display,
-            # The form the stages below this rung run on, when it is not the
-            # rung's own Latin form: the reading a scripted record matched on.
-            # The rung prints that reading (one word, one romanisation) and the
-            # next step and the branch descend from it (admin, 2026-11-13).
+            # The reading a scripted rung prints beside its writing.  It is
+            # what the stages below that rung run on, because a script is not
+            # a sound; on a romanised rung the own form is carried instead
+            # (admin, 2026-11-13).
             "spoken": spoken if (index == own_at and (transcribed or carrying)) else "",
             "baseline": before_disabling,
             "changed": version != before_disabling,
@@ -7140,7 +7145,7 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
             if child in levels_chain:
                 continue
             next_rows.append(_branch_node(
-                final["stage"], final.get("spoken") or final["form"], child,
+                final["stage"], _descends_from(final), child,
                 origin_records=recorded,
                 claim=True, depth=len(levels_chain), seen=frozenset(levels_chain),
                 recurse=False))
@@ -8312,6 +8317,20 @@ def _branch_sense_differs(hit: dict, sense: str) -> bool:
     if not theirs or not mine:
         return False
     return not (theirs & mine)
+
+
+def _descends_from(rung: dict) -> str:
+    """The form a step below a rung starts from.
+
+    A writing is not a sound: a rung whose own form is written in its script
+    descends from the reading the record states beside it.  A reconstructed
+    romanisation is carried as itself — the record's separate transcription is
+    printed on the rung, never fed to the laws (admin, 2026-11-13).
+    """
+    form = str(rung.get("form") or "")
+    if translit.is_scripted(form):
+        return str(rung.get("spoken") or "") or form
+    return form
 
 
 def _stage_descendants(lang: str, form: str,
@@ -10698,10 +10717,11 @@ def word(lang: str, form: str, disabled: Iterable[str] = (),
         # its ladder in Persian, and carrying *that* form down from Old Persian
         # produced a word nobody's laws ever made (2026-11-12).
         own = [lv for lv in ladder["levels"] if lv.get("stage") == lang]
-        # The branch descends from the reading the page prints, not from a
-        # mechanical transcription of the signs (admin, 2026-11-13).
+        # The branch stays inside the model's own forms: a romanisation is
+        # carried as itself, and only a writing descends from its reading
+        # (admin, 2026-11-13).
         last_rung = (own or ladder["levels"])[-1]
-        source = last_rung.get("spoken") or last_rung["form"]
+        source = _descends_from(last_rung)
     elif lang == ROOT_LANG:
         source = entry["word"]
     else:

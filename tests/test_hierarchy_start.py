@@ -43,5 +43,42 @@ class TestReachedFromARecordedAncestor(unittest.TestCase):
         self.assertIn("ira-pro", reached)
 
 
+class TestTheTimelineStaysOnTheModelsOwnForm(unittest.TestCase):
+    """A tail runs from the rung's own form, never from its transcription.
+
+    The record may state a separate transcription beside a reconstructed
+    romanisation (peo Wˈarkānah, read Vr̥kānaʰ); that reading is display only.
+    A writing still descends from its reading, because a script is not a sound
+    (admin, 2026-11-13).
+    """
+
+    def test_a_romanisation_carries_itself_and_prints_its_transcription(self):
+        page = service.word("peo", "𐎺𐎼𐎣𐎠𐎴", path=["pal", "fa"])
+        levels = {row["stage"]: row for row in page["hierarchy"]["levels"]}
+        self.assertEqual(levels["peo"]["form"], "Wˈarkānah")
+        self.assertEqual(levels["peo"]["spoken"], "Vr̥kānaʰ")
+        self.assertEqual(levels["peo"]["status"], "differs")
+        self.assertEqual(levels["pal"]["form"], "Wˈargān")
+        self.assertEqual(levels["fa"]["form"], "Wargān")
+        self.assertEqual(page["descendants"]["source"]["form"], "Wˈarkānah")
+
+    def test_the_branch_below_a_romanisation_does_not_start_from_the_reading(self):
+        page = service.word("peo", "𐎺𐎼𐎣𐎠𐎴", path=["pal"])
+        self.assertEqual([(row["l"], row["form"]) for row in page["hierarchy"]["next"]],
+                         [("fa", "Wargān")])
+        rows = {row["l"]: row for row in page["descendants"]["rows"]}
+        self.assertEqual(rows["pal"]["form"], "Wˈargān")
+        self.assertEqual(rows["fa"]["form"], "Wargān")
+
+    def test_a_writing_still_descends_from_its_reading(self):
+        page = service.word("peo", "𐎺𐎼𐎣𐎠𐎴𐎡𐎹", path=["pal", "fa"])
+        levels = {row["stage"]: row for row in page["hierarchy"]["levels"]}
+        self.assertEqual(levels["peo"]["form"], "𐎺𐎼𐎣𐎠𐎴𐎡𐎹")
+        self.assertEqual(levels["peo"]["spoken"], "Vạrkāniya")
+        self.assertEqual(levels["pal"]["form"], "Vạrgāniy")
+        self.assertEqual(levels["fa"]["form"], "Vạrgāney")
+        self.assertEqual(page["descendants"]["source"]["form"], "Vạrkāniya")
+
+
 if __name__ == "__main__":
     unittest.main()
