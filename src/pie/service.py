@@ -2031,7 +2031,9 @@ def _compound_pieces(entry: dict, lang: str) -> list[dict]:
             # (mâl-)» is a verb stem, «باش (… stem form of بودن)» the present
             # stem of بودن — so the piece is resolved by `_piece_entry`, and
             # the plain index is the fallback (critic batches 02-03, 2026-11-13).
-            record = _piece_entry(lang, bare, "", text) or index.get(normalise_etymon(bare))
+            record = (_piece_entry(lang, bare, "", text,
+                                   " ".join(str(g) for g in entry.get("gloss") or ()))
+                      or index.get(normalise_etymon(bare)))
             if record is None:
                 # The glossary may head the same morpheme without the hyphen
                 # the sentence writes (*-craft* / craft).  Only an affix entry
@@ -2816,7 +2818,40 @@ def _ancestor_gloss_words(entry: dict) -> set[str]:
     return set()
 
 
-def _piece_entry(lang: str, form: str, gloss: str, etym: str = "") -> dict | None:
+def _homonym_by_meaning(lang: str, rows: list[dict], child) -> dict | None:
+    """The homonym whose meaning the child's own meaning asks for, if any.
+
+    A compound's piece is often the spelling of several words, and no index
+    order is evidence: آبرو "face, honour, reputation" is آب + روی "face", not
+    روی "bronze", and کمزور "weak" is زور "force, strength", not the slang
+    "cool" (critic batch 04, 2026-11-13).  The child's meaning is the only
+    thing in the record that can choose, and it chooses only when one candidate
+    is strictly closer than the rest.
+    """
+    wanted = senses.content_words(child or "")
+    if len(rows) < 2 or not wanted:
+        return None
+
+    def closeness(row):
+        own = senses.content_words(" ".join(str(g) for g in row.get("gloss") or ()))
+        hits = 0
+        for mine in own:
+            for their in wanted:
+                if mine == their or (len(mine) > 3 and len(their) > 3
+                                     and (mine.startswith(their) or their.startswith(mine))):
+                    hits += 1
+                    break
+        return hits
+
+    scored = sorted(((closeness(row), row) for row in rows), key=lambda pair: pair[0],
+                    reverse=True)
+    if scored[0][0] > 0 and (len(scored) == 1 or scored[0][0] > scored[1][0]):
+        return scored[0][1]
+    return None
+
+
+def _piece_entry(lang: str, form: str, gloss: str, etym: str = "",
+                 child: str = "") -> dict | None:
     """The entry a construction's piece means, not merely the first it heads.
 
     One spelling heads several words, and a compound's piece is one of them:
@@ -2843,9 +2878,18 @@ def _piece_entry(lang: str, form: str, gloss: str, etym: str = "") -> dict | Non
         verb = _lemma_entry(lang, named)
         if verb is not None:
             return verb
+    # A sentence that names the infinitive beside a bare stem — "کش (keš) from
+    # کشیدن (kešidan, to pull)" — has said which verb the piece is, without a
+    # hyphen or a "stem form of" phrase (critic batch 04: دستکش).
+    infinitive = _verb_stem_index(lang).get(form)
+    if infinitive is not None and str(infinitive.get("word") or "") in etym:
+        return infinitive
     rows = _notation_entries(lang, form)
     if gloss and len(rows) > 1:
         return _sense_entry(lang, form, gloss)
+    by_meaning = _homonym_by_meaning(lang, rows, child)
+    if by_meaning is not None:
+        return by_meaning
     if len(rows) < 2:
         return rows[0] if rows else _lemma_entry(lang, form)
     wanted = _ancestor_gloss_words(rows[0])
@@ -3072,7 +3116,8 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
                          if isinstance(piece_row, (list, tuple))
                          and len(piece_row) > 2 else ())
             piece = _piece_entry(lang, form_piece, str(gloss or ""),
-                                 str(entry.get("etym") or ""))
+                                 str(entry.get("etym") or ""),
+                                 " ".join(str(g) for g in entry.get("gloss") or ()))
             # A piece is a word of its own, so the line prints it the way the
             # word page does: the writing, then its reading, when the writing
             # is in a script (2026-11-12: 𐎨𐎡𐏂 čiçaʰ + *farnah).
