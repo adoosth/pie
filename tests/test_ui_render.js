@@ -272,6 +272,31 @@ assert.ok(!plain(aliasRung).includes("no entry for this word"),
   "a word the glossary holds is never called missing");
 assert.ok(aliasRung.includes(encodeURIComponent("𐎼𐎢𐎨𐏃")),
   "the rung opens the glossary's own spelling of the word");
+/* 2026-11-14: a timeline that stops below Proto-Indo-European ends the rail
+   in a `???`.  Middle Persian abāgpāmišn is a PIE descendant whose record
+   names no ancestor, and the page used to say so in a sentence under the
+   ladder ("No Proto-Indo-European cognate set is recorded…").  The question
+   mark on the rail says the same thing where the ladder ends, and the page
+   no longer carries the sentence. */
+const orphan = { ...hierarchy,
+  result: { status: "start", form: "abāgpāmišn", target: "abāgpāmišn", match: false,
+            match_via_translit: false, ipa: "", reading: "" },
+  levels: [level({ stage: "pal", name: "Middle Persian", era_label: "c. 224–650",
+    era_mid: 437, kind: "attested", form: "abāgpāmišn", baseline: "abāgpāmišn",
+    status: "start", evidence: "attested", recorded: null })] };
+const orphanHtml = context.renderHierarchy(orphan, { lang: "pal", lang_name: "Middle Persian" });
+assert.ok(orphanHtml.includes('class="rung unknownrung"'), "the rail above the word ends in a ???");
+assert.ok(orphanHtml.indexOf('class="rung unknownrung"') < orphanHtml.indexOf('data-stage="pal"'),
+  "the ??? stands above the word, not below it");
+assert.ok(plain(orphanHtml).includes("no record above Middle Persian"),
+  "the ??? says in words what it is");
+assert.ok(orphanHtml.includes("No record names an ancestor of Middle Persian abāgpāmišn"),
+  "hovering the ??? says which word the record stops at");
+assert.ok(!orphanHtml.includes("No Proto-Indo-European cognate set is recorded"),
+  "the sentence under the ladder is gone");
+assert.ok(!ladder.includes("unknownrung"),
+  "a ladder that begins at Proto-Indo-European has nothing above it to miss");
+
 /* 2026-11-08: the laws of a step sit on the rail *between* the two
    forms — a row of the timeline above the rung they produced, never a list
    under it. */

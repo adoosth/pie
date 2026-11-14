@@ -431,6 +431,17 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
    the word itself. */
 .rung .when-here { color: var(--accent); font-size: 10px; letter-spacing: .08em;
   text-transform: uppercase; }
+/* A timeline that stops below the top of the family ends the rail in a
+   question mark: nothing recorded names what came before, and the hollow dot
+   says the rung is not a record (2026-11-14). */
+.rung.unknownrung .rail i { border-color: var(--dim); border-style: dashed; }
+/* The rail needs length to read as a line leaving the timeline: the rung
+   above a word is one step, and it is where the record stops. */
+/* No rule is drawn between the question mark and the word it belongs to:
+   they are one statement, and a separator under a ??? reads as a second row. */
+.rung.unknownrung .rung-body { padding-bottom: 26px; border-bottom: 0; }
+.rung-forms .unknownform { font-family: var(--mono); font-size: 21px; font-weight: 600;
+  color: var(--dim); letter-spacing: .04em; cursor: help; }
 .rung .rail { grid-area: rail; position: relative; }
 .rung .rail::before { content: ""; position: absolute; left: 50%; top: calc(-1 * var(--gap, 0px));
   bottom: 0; width: 2px; margin-left: -1px; background: var(--line); }

@@ -135,6 +135,17 @@ page also belongs in `AGENTS.md` ("What a word page must keep true").
     the record as one italic line.
 30. **The interface is stdlib and dependency-free** (no bundler, no framework);
     a new dependency is a decision, not an implementation detail.
+31. **A timeline ends where the record ends** (2026-11-14): when the topmost
+    rung is not Proto-Indo-European, the rail carries on upward to a `???` in
+    the same shape a construction's own climb ends on, and the page says
+    nothing else about it — the sentence under the ladder ("No
+    Proto-Indo-European cognate set is recorded for this word") is gone because
+    the mark says it where the reader looks.
+32. **The timeline is the one place a word's family is drawn** (2026-11-14):
+    the "Establish Pathways" tree under the page repeated the timeline's own
+    descendant box, one step at a time, so it is no longer printed on a word
+    page; a ghost page — a stage with no entry, whose branch is all it has —
+    keeps it.
 
 ## Process
 

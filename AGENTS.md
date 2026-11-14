@@ -197,6 +197,10 @@ it; if you change one, change its test in the same commit.
 8. **Evidence colour is the contract**: green/gold mark recorded forms, a
    rebuilt form is never green, and there is no colour key on the page — every
    form carries its own tooltip.
+9. **A timeline ends where the record ends.** A ladder whose top rung is not
+   Proto-Indo-European carries on upward to a `???` — nothing recorded names
+   what came before — and the family below a word is drawn on the timeline
+   only, never as a second tree under the page (2026-11-14).
 
 ## Bands and attestation
 

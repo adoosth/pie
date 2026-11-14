@@ -992,16 +992,14 @@ async function viewWord(lang, w, params) {
       `<section id="ladder" class="ladderbox">${d.loan && d.loan.name && (d.loan.kind || (d.category || {}).category === "non_pie")
           ? renderLoanLadder(d)
           : renderHierarchy(d.hierarchy, d, { d, morph, fromSuffix })}</section>
-         <p id="ladder-status" class="sronly" role="status" aria-live="polite"></p>
-         ${d.descendants ? renderBranch(d.descendants, { via: `${d.lang}/${d.word}`, claim: true }) : ""}`}
+         <p id="ladder-status" class="sronly" role="status" aria-live="polite"></p>`}
     ${(d.built_from || []).length ? renderBuiltFrom(d) : ""}
     ${cog ? `
       <details class="cogfold reveal">
         <summary><h2>Cognates <span class="sub" style="text-transform:none;letter-spacing:0">· ${form(cog.pie, "ine-pro", { ev: "literary" })} “${esc(cog.gloss)}” · ${cog.forms.length} forms in ${cog.branches} branches</span></h2></summary>
         ${renderCognateTable(cog, lang, d.word)}
       </details>
-    ` : (d.is_root || (d.loan && d.loan.name)) ? ""
-        : `<p class="sub" style="margin-top:18px">No Proto-Indo-European cognate set is recorded for this word.</p>`}
+    ` : ""}
   `;
   wireLadder();
   wireMeanings(d);
@@ -1223,7 +1221,10 @@ function viewGhost(d) {
   wireCopy();
 }
 
-/* The family below a stage: a branch, not a table (2026-11-08).
+/* The family below a stage: a branch, not a table (2026-11-08).  A word page
+   does not draw this tree — its timeline carries the family one step at a time
+   (2026-11-14) — so the reader meets it on a ghost page, where the branch is
+   the page's whole content.
    Only the **direct** children of the stage appear at first; each one carries
    a disclosure triangle that opens its own direct children, and so on to the
    leaves, like a folder tree. Every form on it is a door to its own page, and
@@ -2141,6 +2142,29 @@ const editButton = (stage, name) => `<button class="editbtn icon" type="button" 
      title="Type a different form for ${esc(name)} and re-derive every stage below it"
      aria-label="Edit the form for ${esc(name)}">${editIcon}</button>`;
 
+/* A timeline that stops below the top of the family is a line with no answer
+   above it.  The rung above says so: `???`, on the same rail, with nothing
+   guessed in its place — the same mark a construction's own climb ends on
+   (2026-11-14).  Proto-Indo-European is the top this model covers, so a
+   timeline that begins there has nothing above it to miss.  A rung the reader
+   composed (a typed form, a suffix, a construction) has an origin of its own —
+   the word it was built from — and the bar above the ladder already says so. */
+function unknownOriginRung(h) {
+  const top = (h.levels || [])[0];
+  if (!top || top.status !== "start" || top.stage === "ine-pro") return "";
+  if (top.built || top.edited || h.edited || h.hypothesis || h.build) return "";
+  const here = `${top.name || "this stage"} ${pf(starred(top.form, top.stage))}`;
+  const tip = `No record names an ancestor of ${here}: it may be a borrowing, a formation, or a word whose earlier history is lost. The line ends here, and nothing above it is guessed.`;
+  return `<li class="rung unknownrung" data-unknown="1">
+    <div class="when"></div>
+    <div class="rail" aria-hidden="true"><i></i></div>
+    <div class="rung-body">
+      <div class="rung-forms"><span class="unknownform" data-tip="${esc(tip)}">???</span></div>
+      <div class="rung-rec"><span class="nosrc">no record above ${esc(top.name || "this stage")}</span></div>
+    </div>
+  </li>`;
+}
+
 function renderHierarchy(h, d, opts) {
   if (!h) {
     return `<h2>Where it comes from</h2>
@@ -2661,7 +2685,7 @@ function renderHierarchy(h, d, opts) {
     </div>
     ${buildBar}${hypothesisBar}${editedBar}${storeBar}${pathwayBar}
     ${earlier}${varietyNote}${switched}
-    <ol class="ladder reveal" style="--i:4">${rungs}${renderNext(h)}</ol>
+    <ol class="ladder reveal" style="--i:4">${unknownOriginRung(h)}${rungs}${renderNext(h)}</ol>
     ${notes.length ? `<div class="ladder-notes">${notes.map((n) => `<p class="sub">${n}</p>`).join("")}</div>` : ""}
     ${pathwayBlock}`;
 }
