@@ -1738,6 +1738,22 @@ assert.ok(titleText.includes("fully explained"), titleText);
 assert.ok(titleText.includes("attested"), "how the word is known is beside where it stands");
 assert.ok(titleText.indexOf("fully explained") < titleText.indexOf("attested"),
   "the band comes first, then the record");
+
+/* A corpus count of a handful is the news; the plain word says less
+   (2026-11-14). */
+const twoAttestations = plain(evaluate(
+  'attestNote({status:"attested",label:"attested",definition:"A text writes it.",count:2})')).trim();
+assert.strictEqual(twoAttestations, "2 attestations", twoAttestations);
+assert.strictEqual(plain(evaluate(
+  'attestNote({status:"attested",label:"attested",definition:"A text writes it.",count:1})')).trim(),
+  "1 attestation",
+  "one occurrence is one attestation, not one attestations");
+assert.strictEqual(plain(evaluate(
+  'attestNote({status:"attested",label:"attested",definition:"A text writes it.",count:102})')).trim(),
+  "attested", "a large count stays the plain word");
+assert.strictEqual(plain(evaluate(
+  'attestNote({status:"recorded",label:"recorded",definition:"Reconstructed.",count:2})')).trim(),
+  "recorded", "a count never rewrites a recorded or proposed word");
 assert.ok(!titleLine.includes("badge"), titleLine);
 assert.ok(titleLine.includes('class="standsep"'), "the two claims are set apart without a box");
 
@@ -1785,7 +1801,15 @@ assert.strictEqual(evaluate('catRail({pos:"",lang:"fa"})'), "");
 const spellingsHtml = evaluate(
   'wordMeta({word:"garm", spellings:["glm","g03lm"], script:"Pahlavi (Book Pahlavi), Manichaean"}, [], null, "pal")');
 assert.ok(spellingsHtml.includes('class="translit spellings"'), spellingsHtml);
-assert.ok(plain(spellingsHtml).includes("· glm, g03lm"), "the spellings follow the headword");
+assert.ok(plain(spellingsHtml).includes("glm, g03lm"), "the spellings follow the headword");
+assert.ok(!plain(spellingsHtml).includes("·"), "a spellings-only line opens with no dangling dot (2026-11-14)");
+/* With a reading in front of them the spellings are a second layer of the same
+   word, and the dot is what keeps the two layers apart. */
+const readingThenSpellings = evaluate(
+  'wordMeta({word:"garm", reading:"garm", spellings:["glm","g03lm"]}, [], null, "pal")');
+assert.ok(plain(readingThenSpellings).trim().startsWith("garm"), plain(readingThenSpellings));
+assert.ok(plain(readingThenSpellings).includes("garm · glm, g03lm"),
+  "the reading comes first, then the dot, then the writing");
 assert.ok(spellingsHtml.includes("Pahlavi") && spellingsHtml.includes("not pronunciations"),
   "hovering the spellings says they are written forms, not sounds");
 assert.strictEqual(evaluate('wordMeta({word:"garm"}, [], null, "pal")'), "",

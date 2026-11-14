@@ -3392,6 +3392,9 @@ const BACKLOG_KINDS = {
    how much of the word's ancestry the laws reproduce, not whether a text
    wrote the word at all (2026-11-11). */
 const ATTEST_BADGE = { attested: "attested", recorded: "literary", proposed: "proposed", "non-existent": "warn" };
+/* Up to nine occurrences are worth printing in the title; ten and above say
+   what "attested" already said. */
+const ATTEST_COUNT_MAX = 9;
 function attestBadge(a, extra) {
   if (!a || !a.status) return "";
   const tip = [a.definition, a.reason && a.reason !== a.definition ? a.reason : "", extra || ""]
@@ -3410,8 +3413,17 @@ function attestNote(a, extra) {
   if (!a || !a.status) return "";
   const tip = [a.definition, a.reason && a.reason !== a.definition ? a.reason : "", extra || ""]
     .filter(Boolean).join(" ");
+  /* A corpus dictionary counts what it holds, so a word it writes twice is
+     better said as "2 attestations" than as "attested" — the number is the
+     news.  Past a handful the count stops being information a reader can use
+     ("1,204 attestations" says no more than "attested"), so the plain word
+     returns (2026-11-14). */
+  const n = a.count;
+  const label = a.status === "attested" && Number.isInteger(n) && n > 0 && n <= ATTEST_COUNT_MAX
+    ? `${n} attestation${n === 1 ? "" : "s"}`
+    : (a.label || a.status);
   return `<span class="know ${esc(ATTEST_BADGE[a.status] || "")}"
-    data-tip="${esc(tip)}" title="${esc(a.label || a.status)}">${esc(a.label || a.status)}</span>`;
+    data-tip="${esc(tip)}" title="${esc(a.label || a.status)}">${esc(label)}</span>`;
 }
 
 /* The title line as a sentence: where the word stands in the model, then how
@@ -3435,15 +3447,6 @@ function standing(d) {
    (2026-11-12). */
 function wordMeta(d, readings, matched, lang) {
   const bits = [];
-  /* The recorded spellings are writing, not pronunciation: print them in the
-     same mono line as a recorded reading, with the writing named on hover
-     (2026-11-13). */
-  const spellings = [...new Set((d.spellings || []).filter(Boolean))];
-  if (spellings.length) {
-    const shown = spellings.slice(0, 3).join(", ") + (spellings.length > 3 ? ", …" : "");
-    const tip = `The spellings the record writes${d.script ? ` in ${d.script}` : ""} — transliterations, not pronunciations.`;
-    bits.push(`<span class="translit spellings" data-tip="${esc(tip)}"><i>· </i>${esc(shown)}</span>`);
-  }
   /* One romanisation per reading, printed once (2026-11-13): a record
      that gives the same string twice gave one reading, and the header used to
      print «Vr̥kānaʰ · Vr̥kānaʰ».  The alternatives stay in the payload; this is
@@ -3459,6 +3462,17 @@ function wordMeta(d, readings, matched, lang) {
         : (r === matched ? ' title="matches the sound laws"' : "");
       return `<span${cls ? ` class="${cls}"` : ""}${tip}>${esc(r)}</span>`;
     }).join("<i> · </i>")}</span>`);
+  }
+  /* The recorded spellings are writing, not pronunciation, and they follow
+     the reading: they are the same word in another layer, so a hairline dot
+     separates them — but only when a reading stands before them.  A word whose
+     headword *is* its transcription prints its spellings first, and there the
+     dot marked nothing and led the line (2026-11-14). */
+  const spellings = [...new Set((d.spellings || []).filter(Boolean))];
+  if (spellings.length) {
+    const shown = spellings.slice(0, 3).join(", ") + (spellings.length > 3 ? ", …" : "");
+    const tip = `The spellings the record writes${d.script ? ` in ${d.script}` : ""} — transliterations, not pronunciations.`;
+    bits.push(`<span class="translit spellings" data-tip="${esc(tip)}">${bits.length ? "<i>· </i>" : ""}${esc(shown)}</span>`);
   }
   /* What the signs spell, always shown beside a non-Roman script (
      2026-11-13): g-r-g for گرگ, v-r-k-a-n for 𐎺𐎼𐎣𐎠𐎴.  It is the

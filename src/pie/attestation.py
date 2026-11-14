@@ -120,12 +120,21 @@ def written(word: str, status: str) -> str:
     return form
 
 
-def payload(word: str, status: str, *, reason: str = "") -> dict:
-    """What the page and the glossary need to print one status."""
-    return {
+def payload(word: str, status: str, *, reason: str = "",
+            count: int | None = None) -> dict:
+    """What the page and the glossary need to print one status.
+
+    ``count`` is how often a corpus writes the word.  It is carried beside the
+    status because a word written twice is best said as "2 attestations": the
+    number is the news, and the plain word says less (2026-11-14).
+    """
+    out = {
         "status": status,
         "label": LABELS.get(status, status),
         "definition": DEFINITIONS.get(status, ""),
         "written": written(word, status),
         "reason": reason,
     }
+    if isinstance(count, int) and count > 0:
+        out["count"] = count
+    return out

@@ -760,7 +760,8 @@ def attestation_of(entry: dict, lang: str) -> dict:
         # status rather than staying folded into a tooltip (2026-11-13).
         reason = (f"{reason} The corpus writes it {n:,} "
                   f"{'time' if n == 1 else 'times'}.")
-    return attestation.payload(entry.get("word") or "", status, reason=reason)
+    return attestation.payload(entry.get("word") or "", status, reason=reason,
+                               count=n if isinstance(n, int) else None)
 
 
 def _is_wiktionary_url(url: str) -> bool:

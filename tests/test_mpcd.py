@@ -45,6 +45,15 @@ class TestSources(unittest.TestCase):
         payload = service.attestation_of(entry(word="garmtom", occurrences=1), "pal")
         self.assertIn("The corpus writes it 1 time.", payload["reason"])
 
+    def test_the_count_reaches_the_title(self):
+        """The number rides with the status, so the title can print «2
+        attestations» instead of «attested» (2026-11-14); the client prints it
+        only while it is small."""
+        payload = service.attestation_of(entry(source="mpcd", occurrences=2), "pal")
+        self.assertEqual(payload["count"], 2)
+        self.assertNotIn("count", service.attestation_of(entry(source="mpcd"), "pal"),
+                         "a word nothing counted carries no number")
+
     def test_an_entry_the_dictionary_does_not_count_says_nothing_about_it(self):
         payload = service.attestation_of(entry(source="mpcd"), "pal")
         self.assertNotIn("corpus writes it", payload["reason"])
