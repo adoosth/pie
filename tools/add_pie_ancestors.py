@@ -7,7 +7,7 @@ does not hold: Proto-Indo-Iranian *dʰárati is "From Proto-Indo-European
 suffix)", and no page of Wiktionary's carries *dʰéreti — the word exists only
 inside that sentence.  The timeline then prints the rung and says "no entry for
 this word", and the word it belongs to cannot be fully explained while its
-recorded rung is a hole (admin, 2026-11-13).
+recorded rung is a hole (2026-11-13).
 
 This tool writes such a word into ``data/lexicon/_supplement/ine-pro.jsonl.gz``
 as a reconstruction whose citation is the sentence that names it, and whose

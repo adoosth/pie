@@ -3,7 +3,7 @@
 - **Status:** withdrawn (2026-11-08): the rule is removed from
   `data/rules/ine-pro__itc-pro.yaml`
 - **Stream:** W3 (sound laws from the literature)
-- **Author:** integrator, sceptic review
+- **Author:** reviewer, sceptic review
 - **Evidence:** 335 comparable recorded PIE → Proto-Italic pairs
 
 ## Claim under test

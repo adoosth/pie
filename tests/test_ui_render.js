@@ -86,7 +86,7 @@ assert.ok(!/<details[^>]*data-l="fa"/.test(branchHtml), "Persian has no children
 assert.match(branchHtml, /<a class="formlink" href="#\/word\/peo\/%F0%90%8E%AD[^"]*"/,
   "the matching row's form links to the recorded word's page");
 assert.ok(branchHtml.includes("dráyah"), "the laws' own form is still what is shown, printed with an acute");
-/* A record the laws almost reach is a question, never a ✓ (admin, 2026-11-12):
+/* A record the laws almost reach is a question, never a ✓ (2026-11-12):
    Persian کبود *kabud* where the laws give *kabūde*. The row shows the record,
    a yellow ⚠ and the words, and it must not wear the ✓ or count as a match. */
 const nearRow = context.renderBranch({
@@ -183,7 +183,7 @@ assert.ok(ladder.includes("--gap:"), "the rail is spaced by the dates");
 /* A gap is a length. The rail segment above a rung is drawn with
    `calc(-1 * var(--gap))`, and a bare `0` makes that declaration invalid: the
    segment loses its top, the rung draws no line, and the column vanishes
-   between two stages (admin, 2026-11-12). */
+   between two stages (2026-11-12). */
 const gapValues = [...ladder.matchAll(/--gap:\s*([^;"\s]+)/g)].map((m) => m[1]);
 assert.ok(gapValues.length, "the ladder writes its spacing as a variable");
 assert.ok(gapValues.every((v) => /^(\d*\.?\d+)(px|rem|em)$/.test(v)),
@@ -252,7 +252,7 @@ assert.ok(!/class="form[^"]*matched/.test(unheldRung), "and no halo box either")
 assert.ok(plain(unheldRung).includes("no entry for this word"),
   "it says in words that the glossary has no entry");
 assert.ok(!plain(unheldHtml).includes("transliteration only"),
-  "the machinery note is gone (admin, 2026-11-12)");
+  "the machinery note is gone (2026-11-12)");
 assert.ok(!unheldRung.includes("ev-literary"), "gold would claim a word the stage does not hold");
 /* 2026-11-12: a row may spell the word without a sign the headword carries
    (Old Persian 𐎼𐎢𐎨 for 𐎼𐎢𐎨𐏃).  It is the same word, so the rung shows
@@ -306,7 +306,7 @@ assert.ok(!pgsRung.includes(">recorded</a>"), "the record is a glyph, not the wo
 assert.ok(pgsRung.includes('class="wmark"') && /class="wmark"[^>]*>W</.test(pgsRung),
   "the glyph is Wiktionary's W: a source's initial, not a quotation mark");
 assert.ok(!pgsRung.includes('stroke="currentColor"'),
-  "the W is a serifed glyph now, not a monoline stroke (admin, 2026-11-12)");
+  "the W is a serifed glyph now, not a monoline stroke (2026-11-12)");
 assert.ok(!/class="recorddot[^>]*>“/.test(pgsRung),
   "the old quotation mark glyph is gone from the mark");
 assert.ok(!pgsRung.includes("M12 6.6C10.4"), "the book glyph is gone");
@@ -332,7 +332,7 @@ assert.ok(/class="editbtn icon"[^>]*aria-label="Edit the form for Proto-Germanic
 const pgsStart = ladder.slice(ladder.indexOf('class="recword"', ladder.indexOf('data-stage="ine-pro"')),
   ladder.indexOf('data-stage="gem-pro"'));
 assert.ok(!pgsStart.includes(TAG),
-  "a form with no recorded page carries no mark at all (admin, 2026-11-12)");
+  "a form with no recorded page carries no mark at all (2026-11-12)");
 assert.ok(!/recorddot[^>]*href="#\/word/.test(pgsRung),
   "the mark never opens an internal word page in place of a source");
 assert.ok(!pgsRung.includes("Open where it was recorded"),
@@ -364,7 +364,7 @@ assert.ok(/class="recorddot wikt"[^>]*data-tip="The Proto-Germanic record of thi
 assert.ok(citedHtml.indexOf("Open where it was recorded") < 0,
   "a linked source adds no 'open where it was recorded' sentence to the tooltip");
 
-/* Two recorded pages are two doors on the same corner (admin, 2026-11-12):
+/* Two recorded pages are two doors on the same corner (2026-11-12):
    the W for the Wiktionary article and the book for the dictionary's own entry
    for the word, each opening its own page, and the site's front page is never
    one of them. */
@@ -612,7 +612,7 @@ console.log("etymon rung ok");
 /* Proto-Indo-European has nothing above it, so its page is a ladder with one
    rung — the etymon itself — and the daughter stages stand under it as the
    next step: one click each, the same ladder every other word page draws
-   (admin, 2026-11-12: no *reconstruct into* selector). The rung carries what
+   (2026-11-12: no *reconstruct into* selector). The rung carries what
    the stage may be built with, so a root is a place to construct from. */
 const pieLevel = (over) => Object.assign({
   stage: "ine-pro", name: "Proto-Indo-European", short: "PIE", kind: "proto",
@@ -662,7 +662,7 @@ assert.ok(/class="nextgrid"/.test(pieHtml) && pieHtml.includes('data-next="iir-p
   "each daughter stage is a step of the timeline, one click away");
 assert.ok(pieWords.includes("Proto-Indo-Iranian"), "the stage below is named where it stands");
 /* The construct: the dot beside a word is a door, and the row it opens is the
-   form builder — no button and no pills (admin, 2026-11-12). */
+   form builder — no button and no pills (2026-11-12). */
 assert.ok(/class="rdot"[^>]*data-cstage="ine-pro"/.test(pieHtml)
   || /data-cstage="ine-pro"[^>]*class="rdot"/.test(pieHtml),
   "the rung's dot opens a construction row");
@@ -710,7 +710,7 @@ assert.ok(builtPieHtml.indexOf("ters-") < builtPieHtml.indexOf("tr̥sn"),
 
 /* A formation may be one word, not a join: *h₂entó- is "a combining form or
    allative formation from … *h₂énts", and the step that made it is its whole
-   history (admin, 2026-11-12).  The piece is a word with a construction of its
+   history (2026-11-12).  The piece is a word with a construction of its
    own (*h₂ent- + *-s), which is drawn above it — so the timeline reads
    *h₂entó- → construction from *h₂énts → *h₂ent- + *-s, one rung each. */
 const singlePiece = pieLevel({
@@ -824,7 +824,7 @@ console.log("spelled badge ok");
    different reading of the same signs, so the rung prints the romanisation the
    laws produce on the left and the script with its own reading and sign
    transliteration beside it — and wears no ✓, because the two are not the
-   same reading (admin).  Below the word, the direct descendants of Old
+   same reading.  Below the word, the direct descendants of Old
    Persian are buttons that add a rung each. */
 const read = {
   start: "ine-pro", start_name: "Proto-Indo-European", etymon: "wĺ̥kʷos", root: false,
@@ -963,7 +963,7 @@ console.log("script reading and timeline ok");
 
 
 /* A construction is one tree in the timeline, not a line under the word and
-   not a set of inset pictures (admin, 2026-11-12): a diamond sits on the main
+   not a set of inset pictures (2026-11-12): a diamond sits on the main
    rail, a 2px line leaves it to the right and touches `𐎨𐎡𐏂 čiçaʰ`, then
    `+`, then `*farnah`; above each piece its own timeline rises, drawn exactly
    like the ladder below — same rail, same language-and-years column on the
@@ -1016,8 +1016,8 @@ assert.ok(builtText.includes("construction"),
   "the diamond's row says what it is — the word stands beside the diamond, not under the tree");
 /* One tree: the first word stands immediately right of the diamond — the
    diamond is its mark, so no wire and no second dot sit between them — and the
-   line leaves the word's own right edge for `+` and the next piece (admin,
-   2026-11-12). */
+   line leaves the word's own right edge for `+` and the next piece
+   (2026-11-12). */
 assert.equal((builtHtml.match(/class="btree"/g) || []).length, 1, "one construction is one tree");
 assert.ok(!builtHtml.includes('class="bnode') && !builtHtml.includes('class="bcol'),
   "no inset columns survive: nothing is drawn in a thinner sub-timeline");
@@ -1045,7 +1045,7 @@ assert.ok(!terms[0].includes("Old Persian") && !terms[1].includes("Old Persian")
   "a piece is not labelled with the language of the step: it is a word of it");
 /* The first word's row is the diamond's row, so its left column says what the
    diamond marks — the formation — on the diamond's own line, not under the
-   tree (admin, 2026-11-12: "the word construction ... should be next to the
+   tree (2026-11-12: "the word construction ... should be next to the
    diamond not below it"). */
 assert.ok(/class="cwhen"><span class="cwhen-name cwhen-build">construction<\/span><span class="cwhen-era">affix<\/span>/
   .test(terms[0]),
@@ -1058,7 +1058,7 @@ assert.ok(!terms[0].split('<span class="creadstack">')[0].includes('<i class="cr
   "no reading layer stands inside the word row");
 /* The meaning stands under the word, the way the headword's own line carries
    it — `name · “a male given name”` — and the hover still says where it opens
-   (admin, 2026-11-12). */
+   (2026-11-12). */
 assert.ok(terms[0].includes('<span class="cgloss">“shining; appearance; lineage”</span>'),
   "the piece's meaning is written under it, not left on hover");
 assert.ok(terms[1].includes('<span class="cgloss">“glory”</span>'),
@@ -1074,7 +1074,7 @@ assert.ok(builtHtml.includes('href="#/word/ira-pro/*%C4%8Di%CE%B8r%C3%A1h"'),
   "each piece's ancestors are doors of their own");
 /* Every piece climbs its own column, one step per row, oldest at the top, and
    every row is one step high — so two words of the same stage land on one
-   horizontal line (admin, 2026-11-12).  The first piece's descent is no longer
+   horizontal line (2026-11-12).  The first piece's descent is no longer
    a set of ladder rungs above the step: it is the same kind of row as the
    donor's, because it has to line up with it. */
 const cols = columns(builtHtml);
@@ -1087,7 +1087,7 @@ assert.ok(cols[0].indexOf("Proto-Indo-European") < cols[0].indexOf("Proto-Indo-I
   && cols[0].indexOf("Proto-Indo-Iranian") < cols[0].indexOf("Proto-Iranian"),
   "oldest first: a column is read from the top down to the piece");
 /* The stage stands to the left of the word, with its years under it, exactly
-   as a rung of the timeline writes it (admin, 2026-11-12: "the language names
+   as a rung of the timeline writes it (2026-11-12: "the language names
    should be shown to the left along with the est. dates").  A short code
    beside the word is not a label and does not replace the column. */
 assert.ok(cols[0].includes('<span class="cwhen"><span class="cwhen-name kind-proto">Proto-Indo-European</span><span class="cwhen-era">c. 4500–2500 BCE</span></span>'),
@@ -1107,13 +1107,13 @@ assert.ok(cols[0].includes("the top of the family"), "and says that it is the en
 assert.ok(!builtHtml.includes("cunknown"), "nothing in this tree is unexplained");
 assert.ok(cols[0].includes('<span class="cwhen"><span class="cwhen-name kind-proto">Proto-Indo-European<\/span>'),
   "the language stands in the left column, not beside the word");
-/* Every word of the timeline says what it means, ancestors included (admin,
+/* Every word of the timeline says what it means, ancestors included (
    2026-11-12): the row above a construction carries its dictionary sense the
    way the headword's own line carries its own. */
 assert.ok(cols[0].includes('<span class="cgloss">adj · “visible”</span>'),
   "an ancestor prints the category and the sense under its word");
 
-/* The reader's own example (admin, 2026-11-12): *anda- climbs *h₂entó- →
+/* The reader's own example (2026-11-12): *anda- climbs *h₂entó- →
    "construction from *h₂énts" → "*h₂ent- + *-s", while *swarō climbs to
    *swer-.  *h₂entó- and *swer- are both Proto-Indo-European, so they must
    stand on one horizontal line — each is the row immediately above its own
@@ -1151,7 +1151,7 @@ assert.equal((alignCols[0].match(/class="cbuild"/g) || []).length, 2,
   "two of those rows are constructions of their own");
 /* Every diamond of the climb says what it is, on its own line: the label used
    to be printed once, under the tree, so only the last construction carried it
-   (admin, 2026-11-12: "it should show it for all of the constructions, and it
+   (2026-11-12: "it should show it for all of the constructions, and it
    should be next to the diamond not below it"). */
 const cbuildRows = alignCols[0].split('<div class="cbuild').slice(1);
 assert.equal(cbuildRows.length, 2, "two built rows to label");
@@ -1191,7 +1191,7 @@ assert.ok(/\.cpiece \{[^}]*justify-content: flex-end/.test(sheet),
    mark, and the rail under the tree that carries it over the meaning strip to
    the rung below.  v0.17.10 blanked the mark's track and hid the step rail
    outright on a step with nothing above it, so *andaswarō lost the line from
-   the diamond above *anda- down to its own rung (admin, 2026-11-12: "the line
+   the diamond above *anda- down to its own rung (2026-11-12: "the line
    on the left has disappeared"). */
 assert.ok(!/\.crail\.mark::before[^{]*\{[^}]*display: none/.test(sheet),
   "the mark keeps the line coming down from the row above: the diamond stands on the spine");
@@ -1215,7 +1215,7 @@ assert.ok(/\.clead \{[^}]*flex: 1 1 auto/.test(sheet),
   "and what is left of the column above its rows is that lead");
 /* The left column of the climb is the ladder's own: 156px, a 14px gap, a 20px
    rail track — so the first piece's rail is the step's rail and a word of the
-   climb begins where every rung's word begins (admin, 2026-11-12). */
+   climb begins where every rung's word begins (2026-11-12). */
 assert.ok(/\.cnode, \.cbuild, \.cterm \{[^}]*grid-template-columns: var\(--clabel\) var\(--crail\) auto/.test(sheet),
   "every row of the climb is label | rail | word");
 assert.ok(/\.constructstep \{[^}]*--clabel: 156px; --crail: 20px/.test(sheet),
@@ -1243,10 +1243,10 @@ assert.ok(/\.cterm > \.cwhen\.lead::before \{[^}]*top: calc\(var\(--termh\) \/ 2
 /* The `+` is a row of the staircase like any other cell, but its content is
    the *term* band, the 46px a word stands in — otherwise centring it in a
    90px cell put it (and its two stubs) half a meaning-line under the words
-   either side (admin, 2026-11-12: "the line around the + is shifted"). */
+   either side (2026-11-12: "the line around the + is shifted"). */
 /* The timeline ends in a circle and the line to the picker leaves that circle:
    the rail's centre, the circle's centre and the horizontal line are one
-   point, and the line starts at the circle's own right edge (admin,
+   point, and the line starts at the circle's own right edge (
    2026-11-12: "the line isn't connected to the white circle"). */
 const circle = sheet.match(/\.nextrung \.rail i \{ top: (\d+)px; \}/);
 const junction = sheet.match(/\.nextrung \.rail::after \{[^}]*top: (\d+)px;[^}]*left: calc\(50% \+ (\d+)px\)/);
@@ -1285,7 +1285,7 @@ assert.ok(/class="bstep-radio"[\s\S]*class="btrees"/.test(builtHtml)
   "the tab radios stay the tree's own siblings: the CSS switches the tree without script");
 
 /* Every word of a reconstructed stage carries its stage's star, wherever the
-   page prints it (admin, 2026-11-12).  The reader's example was *anda-
+   page prints it (2026-11-12).  The reader's example was *anda-
    "facing" in the construction of *andaswarō: the piece linked to
    /gem-pro/*anda- while the timeline drew it bare, because each renderer
    tested for the asterisk itself.  One test now answers for all of them. */
@@ -1349,7 +1349,7 @@ assert.ok(!unknownHtml.includes('href="#/x"><span'),
   "and it opens no page when the stage holds no affix entry for it");
 /* A bound morpheme has no word's sense, so its gloss is a description of what
    it does; it is printed as that description rather than quoted as a meaning
-   (admin, 2026-11-12). */
+   (2026-11-12). */
 const suffixPiece = buildOf([
   { form: "*keyt-", gloss: "to shine, glow", pos: "root", reading: "", known: true,
     lang: "ine-pro", bound: false, branch: null },
@@ -1361,7 +1361,7 @@ const suffixHtml = context.constructStep(Object.assign({}, causLevel,
 assert.ok(suffixHtml.includes('<span class="cgloss">Forms adjectives from Caland system roots</span>'),
   "a suffix says what it does under itself, unquoted");
 assert.ok(suffixHtml.includes('href="#/x"'),
-  "a suffix the stage's glossary holds as an affix opens its own page (admin, 2026-11-13)");
+  "a suffix the stage's glossary holds as an affix opens its own page (2026-11-13)");
 assert.ok(suffixHtml.includes('<span class="cgloss">“to shine, glow”</span>'),
   "a root's sense is quoted, and a root names no category it has not got");
 assert.ok(!columns(unknownHtml)[1].includes("has-chain"),
@@ -1369,7 +1369,7 @@ assert.ok(!columns(unknownHtml)[1].includes("has-chain"),
 /* A dot marks a word whose own line continues above it.  A bound morpheme has
    no line above it, so it wears none — the line reaches it from the `+` and
    stops.  Its cell still holds the rail column, or the word would slide into
-   the 18px track and off the shared line (admin, 2026-11-12). */
+   the 18px track and off the shared line (2026-11-12). */
 const dots = (html) => (html.match(/class="crail" aria-hidden="true"><i><\/i><\/span>/g) || []).length;
 assert.equal(dots(suffixHtml), 0, "no dot is drawn before a suffix");
 assert.ok(suffixHtml.includes('<span class="crail blank" aria-hidden="true"></span>'),
@@ -1377,7 +1377,7 @@ assert.ok(suffixHtml.includes('<span class="crail blank" aria-hidden="true"></sp
 assert.equal(dots(chunk(builtHtml, "cterm").join("")), 1,
   "only the piece with a line above it wears the dot, not the one the line ends on");
 /* A suffix's gloss is a sentence, not a word: it is neither cut short nor
-   forced onto one line that runs into the next piece (admin, 2026-11-12). */
+   forced onto one line that runs into the next piece (2026-11-12). */
 const longSuffix = buildOf([
   { form: "*sekʷ-", gloss: "to follow", pos: "root", reading: "", known: true,
     lang: "ine-pro", bound: false, branch: null },
@@ -1392,7 +1392,7 @@ assert.ok(!longHtml.includes("…"), "and none of it is replaced by an ellipsis"
 
 /* A root that stands in another grade in this formation says so beside itself
    and carries the handbook's reason on its hover — *ters- above *tr̥s-tó-s
-   (admin, 2026-11-12, on why the *-e- becomes *r̥). */
+   (2026-11-12, on why the *-e- becomes *r̥). */
 const gradedPiece = buildOf([
   { form: "*ters-", gloss: "dry", pos: "root", reading: "", known: true,
     lang: "ine-pro", bound: false, branch: null, grade: "zero",
@@ -1410,7 +1410,7 @@ assert.equal((gradedHtml.match(/class="cgrade"/g) || []).length, 1,
 
 /* A word in the chain that was itself built keeps its construction above it —
    *kit-ró-s is *keyt- + *-rós — in the same grammar, one size down: the
-   diamond, the first piece beside it, the line, the `+`, the rest (admin,
+   diamond, the first piece beside it, the line, the `+`, the rest (
    2026-11-12: keep going up and up).  The peo page used to stop at the word
    because the row lives in *čitrás's article, not in an article for *kit-ró-s. */
 const kitros = {
@@ -1477,7 +1477,7 @@ assert.ok(columnHtml.includes('class="cdiamond mini"'),
 
 /* A word of a language outside the family is the start of its own trail: no
    ??? claims an Indo-European ancestry it never had, while a family word whose
-   record states no origin does hang under a ??? (admin, 2026-11-12). */
+   record states no origin does hang under a ??? (2026-11-12). */
 const outsideHtml = context.constructStep(Object.assign({}, causLevel, {
   built_as: buildOf([
     { form: "کتاب", gloss: "book", reading: "", known: true, lang: "fa", bound: false,
@@ -1500,7 +1500,7 @@ assert.equal((outsideHtml.match(/class="cunknown"/g) || []).length, 1,
   "only the family word without an origin gets a ???");
 
 /* A word the record states more than one way gets one tab per construction
-   (admin, 2026-11-12), and the reader — not the page — chooses. */
+   (2026-11-12), and the reader — not the page — chooses. */
 const altA = buildOf([{ form: "on", known: true, bound: false, branch: null },
   { form: "būtan", known: true, bound: false, branch: null }],
 { lang: "ang", lang_name: "Old English", of: "abūtan" });
@@ -1540,7 +1540,7 @@ assert.ok(builtLadder.indexOf('class="constructstep"') <
 
 /* One icon per recorded page, under the headword: a W for a Wiktionary
    article, a book for a dictionary's entry for the word, and nothing at all
-   for a word whose page is not recorded (admin, 2026-11-12). */
+   for a word whose page is not recorded (2026-11-12). */
 const sourcesHtml = context.sourceRow({ word: "آب", lang: "fa", evidence: "attested",
   pages: [
     { id: "dehkhoda", kind: "dictionary", title: "Dehkhoda",
@@ -1557,7 +1557,7 @@ assert.equal(context.sourceRow({ word: "x", lang: "en", evidence: "attested", pa
   "a word with no recorded page has no icons");
 
 /* A compound's pieces are drawn in the timeline, never in a section of their
-   own (admin, 2026-11-13: the "WHERE THE PIECES COME FROM" block is gone from
+   own (2026-11-13: the "WHERE THE PIECES COME FROM" block is gone from
    every word page, because the timeline already draws it). */
 assert.equal(typeof context.renderJoin, "undefined", "the piece section is gone");
 assert.ok(!/<h2>Where the pieces come from/i.test(
@@ -1719,7 +1719,7 @@ assert.strictEqual(evaluate('attestedWord({word:"madu",attestation:{written:"*ma
 /* ---------------------------------------------------------------- */
 /* the title is a sentence, not a row of pills (2026-11-11)            */
 /* ---------------------------------------------------------------- */
-/* The admin asked for the pills to go: the record and the band are
+/* The pills go: the record and the band are
    written side by side in the title's own size, the language and its years
    stand in the left margin, the category beside the meaning, and the review
    note trails them all, smaller.  A `badge` class anywhere in the title would
@@ -1748,7 +1748,7 @@ assert.ok(backlogged.includes("#/backlog?lang=peo"), "it opens the backlog for t
 assert.ok(!backlogged.includes("badge"), "the review note is not a pill either");
 assert.strictEqual(evaluate('reviewNote({lang:"peo",backlog:[]})'), "", "nothing in the backlog, no note");
 
-/* A page is what the server recorded, never a guess at a site (admin,
+/* A page is what the server recorded, never a guess at a site (
    2026-11-12). A Persian word records Dehkhoda's entry and, when one was
    found, its Wiktionary article; the corner and the source row open both. */
 const dehkhodaOnly = evaluate(`recordTag({pages:[
@@ -1777,7 +1777,7 @@ assert.ok(evaluate('catRail({pos:"noun",lang:"fa"})').includes("tabsabove"),
 assert.strictEqual(evaluate('catRail({pos:"",lang:"fa"})'), "");
 
 /* ---------------------------------------------------------------- */
-/* transcription and transliteration (admin, 2026-11-13)              */
+/* transcription and transliteration (2026-11-13)              */
 /* ---------------------------------------------------------------- */
 /* A transcribed word keeps its spellings beside it in the same mono line
    as a recorded reading, and says on hover that they are writing, not

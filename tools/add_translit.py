@@ -8,12 +8,13 @@ romanisation. Wiktionary records it in ``forms`` with the tag ``romanization``;
 we copy it into the entry as ``translit`` (plus ``translit_alt`` when a word has
 several accepted readings).
 
-    python3 tools/add_translit.py --src /home/cloud/kaikki --langs fa grc el hy xcl sa peo chu hit got
+    python3 tools/add_translit.py --src $HOME/kaikki --langs fa grc el hy xcl sa peo chu hit got
     python3 tools/add_translit.py --check        # only report what is missing
 """
 from __future__ import annotations
 
 import argparse
+import os
 import gzip
 import json
 import sys
@@ -40,7 +41,8 @@ def romanisations(entry: dict) -> list[str]:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--src", default="/home/cloud/kaikki")
+    dump = os.environ.get("PIE_KAIKKI", str(Path.home() / "kaikki"))
+    ap.add_argument("--src", default=dump)
     ap.add_argument("--langs", nargs="*", default=["fa", "grc", "el", "hy", "xcl", "sa", "peo", "chu", "hit", "got"])
     ap.add_argument("--check", action="store_true")
     args = ap.parse_args()

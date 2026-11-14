@@ -23,8 +23,8 @@ its `Reconstruction:` pages.
 
 Only a page that exists is written (`data/sources/en_wiktionary/<lang>.jsonl.gz`);
 a word absent from the ledger has no *recorded* page, and the interface shows no
-icon for it — which is what the admin asked for on 2026-11-12 ("if the source
-page is not recorded, simply don't show the icon").
+icon for it (2026-11-12: "if the source page is not recorded, simply don't show
+the icon").
 """
 from __future__ import annotations
 

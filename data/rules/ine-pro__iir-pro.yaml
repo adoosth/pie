@@ -10,7 +10,7 @@ stage:
     Grassmann''s law and the loss of final *-r after *ā are not part of this transition: the corpus
     keeps both aspirates (*bʰábʰruš, dʰádʰaHti, dʰráwgʰas) and keeps the *-r that the Persian
     kinship words need, so deaspiration belongs to the transition into Indo-Aryan and the *-r to a
-    word''s own pathway (proposals/night-0911/pii/report.md).'
+    word''s own pathway (proposals/2026-09-11/pii/report.md).'
   references:
   - mayrhofer-1986
   - fortson-2004
@@ -124,14 +124,14 @@ rules:
     environment to the syllabic nasals alone was measured and refused: it gains *yákr̥, *wásr̥ and
     *ćákr̥, but it shortens the *ā of the Old Persian water rung (*wódr̥ > *wādar, pinned by
     tests/test_web.py), so the corpus keeps both readings and the wider environment stays
-    (proposals/night-0911/piir2/report.md).
+    (proposals/2026-09-11/piir2/report.md).
   references:
   - mayrhofer-1986
   - fortson-2004
   notes: 'Mayrhofer 1986, Lautlehre, the IIr. treatment of PIE *o (Brugmann''s law); Fortson 2004,
     the Indo-Iranian chapter. The restriction before *i is measured on this corpus: the wide
     environment gained 0 words and cost 4 (Háwiš, Háǰʰiš, káti, pátiš). The restriction before a
-    syllabic liquid is measured and refused (proposals/night-0911/piir2/measure.py --replace): it
+    syllabic liquid is measured and refused (proposals/2026-09-11/piir2/measure.py --replace): it
     gains yákr̥, wásr̥, ćákr̥ and costs the Old Persian water rung (test_web pins *wˈādar).'
   examples:
   - in: '*ǵónu'
@@ -249,7 +249,7 @@ rules:
 # labiovelar merger (order 45-47) because it names the labiovelar itself: the
 # merged *k of *ker "make" must not be in the environment (Old Persian kāra-),
 # and neither must the *k of the wide *gʷ,*gʷʰ series' plain voiced member,
-# which the corpus keeps in *gʷémtis > *gátiš (proposals/night-0911/piir2).
+# which the corpus keeps in *gʷémtis > *gátiš (proposals/2026-09-11/piir2).
 - id: labiovelar_k_palatal_e
   order: 44
   name: 'First palatalisation: *kʷ > *č before *e + obstruent, nasal or *l'
@@ -276,7 +276,7 @@ rules:
     before *e. Measured with tools/council.py (--drop, layers exact,orthographic,cited,script,
     identity,bound): this rule carries páčati, čatwā́ras, čárHati in iir-pro and चक्र, चम् in
     Sanskrit, and loses nothing in iir-pro, ira-pro, ave, peo, pal, fa or sa. The wider claims are
-    kept in proposals/night-0911/piir2/candidates/: before any *e it costs Middle Persian kyš and
+    kept in proposals/2026-09-11/piir2/candidates/: before any *e it costs Middle Persian kyš and
     Avestan 𐬐𐬀𐬭 (PIE *kʷer- "make"), which is why *r and *y are outside the environment.'
   examples:
   - in: '*kʷetwóres'
@@ -403,7 +403,7 @@ rules:
     𐎣𐎠𐎼 kāra-, Skt. karóti), a lexical exception no sound law can state; and a stressed *i,
     because the one such record, *wl̥kʷíh₂s > *wr̥kíHs, keeps its *k (the same *-íH- that the
     palatalisation of *g has to palatalise in ǰíHwati). Both are reported in
-    proposals/night-0911/pii/report.md; the narrower environment is the one this corpus supports.'
+    proposals/2026-09-11/pii/report.md; the narrower environment is the one this corpus supports.'
   references:
   - mayrhofer-1986
   - fortson-2004

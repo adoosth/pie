@@ -2,8 +2,8 @@
 
 - **Status:** rejected (2026-11-08)
 - **Stream:** W4 (new laws)
-- **Author:** integrator
-- **Reviewer:** methods skeptic (independent agents, 2026-11-08)
+- **Author:** reviewer
+- **Reviewer:** methods skeptic (independent review, 2026-11-08)
 
 ## Claim
 

@@ -72,7 +72,7 @@ to one lexeme.
 
 Seven streams run in parallel. Each has an owner *role*, a directory it may
 write, a definition of done, and a way it is measured. A stream may not write
-outside its scope; the integrator merges.
+outside its scope; the reviewer merges.
 
 | # | Stream | Writes | Measured by |
 |---|--------|--------|-------------|
@@ -89,7 +89,7 @@ measured at all, and a metric nobody can re-run is not evidence.
 
 ## Roles
 
-Subagents act as **linguists**. The roles are deliberately separated so that
+The work is divided into roles. The roles are deliberately separated so that
 the person who wants a rule is not the person who approves it.
 
 - **Descriptive linguist (W1/W3).** Reads the grammars and dictionaries, writes
@@ -101,12 +101,12 @@ the person who wants a rule is not the person who approves it.
 - **Skeptic (W6).** Tries to break the proposal: does the rule over-apply? Is
   the environment stated too broadly? Is the example cherry-picked? Would the
   rule also fire where it must not? The skeptic's default answer is *no*.
-- **Integrator (super agent).** Chooses the next task from the worklist, keeps
+- **Reviewer.** Chooses the next task from the worklist, keeps
   the streams disjoint, runs the gates, publishes the numbers, and keeps the
   documentation true.
 
-Anyone may *read* everything. Only the integrator merges to `main`. An agent may
-not both author and approve the same artefact.
+Anyone may *read* everything. Only the reviewer merges to `main`. No one may
+both author and approve the same artefact.
 
 ## The loop
 
@@ -309,8 +309,8 @@ Two linguists may both be right about different things. The order of decision:
    as `proposed` if it still explains words the first cannot.
 3. **The citation decides the tier.** An uncited intuition can be `custom`; it
    cannot be `established`.
-4. **The integrator decides, in writing.** If the evidence is balanced, the
-   integrator records both positions in `docs/DECISIONS.md` and picks the one
+4. **The reviewer decides, in writing.** If the evidence is balanced, the
+   reviewer records both positions in `docs/DECISIONS.md` and picks the one
    that is reversible without changing published numbers.
 
 ## Non-negotiables

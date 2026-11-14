@@ -1,0 +1,520 @@
+stage:
+  name: Proto-Balto-Slavic → Proto-Slavic
+  date_start: -500
+  date_end: 700
+  description: >
+    Candidate transition used only for measurement (proposals/2026-09-11/sla.md).
+    From the Proto-Balto-Slavic stage of data/rules/ine-pro__ine-bsl-pro.yaml to
+    Proto-Slavic: the vowel system is rebuilt (short *a > *o, *ā/*ō > *a,
+    *ē > *ě, *ī > *i, *ū > *y, short *i/*u > *ь/*ъ, diphthongs monophthongised,
+    nasals before consonant), *w > *v, the PBS sibilants *ś/*ź merge with
+    *s/*z, RUKI *š backs to *x, the first palatalisation turns *k/*g before a
+    front vowel into *č/*ž, *j-clusters yield *ť/*ď/*š/*ž, and the final
+    syllables *-as/*-us/*-is and *-an are reduced to *-ъ/*-ь/*-o.
+  references: [fortson-2004, meillet-1934, vaillant-1950, shevelov-1964]
+
+rules:
+  - id: stress_token_dropped
+    order: 1
+    name: "Stress is notation and is not written in the PSl lemma"
+    match: ˈ
+    replace: ""
+    tier: orthographic
+    description: >
+      The PBS reconstructions mark stress with an acute (*dabrás), which the
+      engine stores as a separate token; the Proto-Slavic lemma is written
+      without it and the coverage counter already treats the two spellings of
+      one accent as the same form.  Dropping the token also stops it from
+      standing between a segment and the environment of a conditioned law
+      (PBS *mangjás > PSl *mǫžь, *žьrny < *gírˀnūˀs).
+    references: [meillet-1934, olander-2015]
+    examples:
+      - {in: "mangjás", out: "mangjas", gloss: "man (stress removed)"}
+  - id: register_mark_dropped
+    order: 5
+    name: "The acute register mark *ˀ is notation, not a PSl segment"
+    match: ˀ
+    replace: ""
+    tier: orthographic
+    description: >
+      Wiktionary writes the Proto-Balto-Slavic acute register with a raised
+      glottal stop (PBS *zīˀmāˀ).  The Proto-Slavic lemma is written without
+      it, so the mark is dropped as transcription, exactly as the PBS stage
+      description already states ("a notation, not a sound law").
+    references: [fortson-2004, olander-2015]
+    examples:
+      - {in: "zīˀmāˀ", out: "zīmā", gloss: "winter"}
+
+  - id: final_as_to_yer
+    order: 10
+    name: "Final *-as > *-ъ"
+    match: a s
+    replace: "ъ"
+    env: {right: "#"}
+    tier: established
+    description: >
+      The PIE o-stem nominative *-os reaches Proto-Slavic as *-ъ (PBS *wilkas
+      > PSl *vьlkъ).  The whole final syllable is reduced, not just the *s.
+    references: [meillet-1934, vaillant-1950, olander-2015]
+    examples:
+      - {in: "dabras", out: "dabrъ", gloss: "good"}
+
+  - id: final_us_to_yer
+    order: 11
+    name: "Final *-us > *-ъ"
+    match: u s
+    replace: "ъ"
+    env: {right: "#"}
+    tier: established
+    description: "The u-stem nominative *-us likewise becomes *-ъ (PBS *damús > PSl *domъ)."
+    references: [meillet-1934, olander-2015]
+    examples:
+      - {in: "damús", out: "damˈъ", gloss: "house"}
+
+  - id: final_is_to_yer
+    order: 12
+    name: "Final *-is > *-ь"
+    match: i s
+    replace: "ь"
+    env: {right: "#"}
+    tier: established
+    description: "The i-stem nominative *-is becomes *-ь (PBS *gastís > PSl *gostь)."
+    references: [meillet-1934, olander-2015]
+    examples:
+      - {in: "gastís", out: "gastˈь", gloss: "guest"}
+
+  - id: final_an_to_o
+    order: 13
+    name: "Final *-an > *-o"
+    match: a n
+    replace: o
+    env: {right: "#"}
+    tier: established
+    description: >
+      A word-final *-an of the neuter o-stem (PIE *-om, PBS *-an) surfaces as
+      *-o (PBS *weslan > PSl *veslo, *bedran > *bedro).
+    references: [meillet-1934, shevelov-1964]
+    examples:
+      - {in: "weslan", out: "weslo", gloss: "oar"}
+
+  - id: final_long_s_dropped
+    order: 15
+    name: "Final *-s is lost after a long vowel"
+    match: s
+    replace: ""
+    env: {left: (ā|ō|ē|ī|ū), right: "#"}
+    tier: established
+    description: >
+      A word-final *-s after a long vowel is simply lost; the vowel is not
+      reduced (PBS *wāˀs > PSl *va, *jūˀs > *vy, *h₁rṓs > *rosa).  The short
+      vowels keep their *-s as *-ъ/*-ь, handled by the three final-syllable
+      laws.
+    references: [meillet-1934, olander-2015]
+    examples:
+      - {in: "wās", out: "wā", gloss: "you two"}
+
+  - id: final_as_soft_to_yer
+    order: 9
+    name: "Final *-as > *-ь after a palatal consonant"
+    match: a s
+    replace: "ь"
+    env: {left: (j|č|š|ž|ť|ď|ľ|ň|c|ś|ź), right: "#"}
+    tier: established
+    description: >
+      After a palatal the reduced final syllable is *-ь, not *-ъ (PBS *majas >
+      PSl *mojь, *nōsjas > *našь, *twajas > *tvojь).
+    references: [meillet-1934, vaillant-1950, olander-2015]
+    examples:
+      - {in: "majas", out: "majь", gloss: "my"}
+
+  - id: short_i_to_yer
+    order: 20
+    name: "Short *i > *ь"
+    match: i
+    replace: "ь"
+    env: {left: "!V"}
+    tier: established
+    description: >
+      Short high front *i becomes the yer *ь.  Long *ī stays and yields *i, so
+      this rule runs before the monophthongisation that creates new *i.
+    references: [meillet-1934, vaillant-1950, shevelov-1964]
+    examples:
+      - {in: "tímāˀ", out: "tˈьmāˀ", gloss: "darkness"}
+
+  - id: short_u_to_yer
+    order: 21
+    name: "Short *u > *ъ"
+    match: u
+    replace: "ъ"
+    env: {left: "!V"}
+    tier: established
+    description: "Short high back *u becomes the yer *ъ (PBS *źulas > PSl *zъlъ)."
+    references: [meillet-1934, vaillant-1950, shevelov-1964]
+    examples:
+      - {in: "munagas", out: "mъnagas", gloss: "much"}
+
+  - id: ai_to_e_caron
+    order: 30
+    name: "*ai > *ě"
+    match: a i
+    replace: "ě"
+    tier: established
+    description: "The diphthong *ai monophthongises to *ě (PBS *raikāˀ > PSl *rěka)."
+    references: [meillet-1934, shevelov-1964]
+    examples:
+      - {in: "raikāˀ", out: "rěkāˀ", gloss: "river"}
+
+  - id: au_to_u
+    order: 31
+    name: "*au > *u"
+    match: a u
+    replace: u
+    tier: established
+    description: "The diphthong *au monophthongises to *u (PBS *kaunāˀ > PSl *kuna)."
+    references: [meillet-1934, shevelov-1964]
+    examples:
+      - {in: "kaunāˀ", out: "kunāˀ", gloss: "marten"}
+
+  - id: ei_to_i
+    order: 32
+    name: "*ei > *i"
+    match: e i
+    replace: i
+    tier: established
+    description: "The diphthong *ei monophthongises to *i (PBS *nei > PSl *ni)."
+    references: [meillet-1934, shevelov-1964]
+    examples:
+      - {in: "nei", out: "ni", gloss: "not"}
+
+  - id: short_a_to_o
+    order: 40
+    name: "Short *a > *o"
+    match: a
+    replace: o
+    tier: established
+    description: >
+      Proto-Slavic has no short *a: the PBS short vowel *a (from PIE *a and
+      *o) becomes *o.  Long *ā stays and is written a.
+    references: [meillet-1934, vaillant-1950, shevelov-1964]
+    examples:
+      - {in: "dabras", out: "dobros", gloss: "good"}
+
+  - id: long_a_to_a
+    order: 41
+    name: "*ā > *a"
+    match: ā
+    replace: a
+    tier: established
+    description: "The long vowel *ā is written a in Proto-Slavic (PBS *skalāˀ > PSl *skala)."
+    references: [meillet-1934, shevelov-1964]
+    examples:
+      - {in: "skalāˀ", out: "skalaˀ", gloss: "rock"}
+
+  - id: long_o_to_a
+    order: 42
+    name: "*ō > *a"
+    match: ō
+    replace: a
+    tier: established
+    description: "The long vowel *ō merges with *ā and is written a (PBS *ō > PSl *a-)."
+    references: [meillet-1934, vaillant-1950]
+    examples:
+      - {in: "ō", out: "a", gloss: "from"}
+
+  - id: long_e_to_e_caron
+    order: 43
+    name: "*ē > *ě"
+    match: ē
+    replace: "ě"
+    tier: established
+    description: "The long vowel *ē becomes *ě, written ě (PBS *dḗˀlan > PSl *dělo)."
+    references: [meillet-1934, vaillant-1950]
+    examples:
+      - {in: "dḗˀlan", out: "dˈěˀlan", gloss: "work"}
+
+  - id: long_i_to_i
+    order: 44
+    name: "*ī > *i"
+    match: ī
+    replace: i
+    tier: established
+    description: "The long vowel *ī is written i in Proto-Slavic."
+    references: [meillet-1934, shevelov-1964]
+    examples:
+      - {in: "wīˀtei", out: "wiˀtei", gloss: "to wind"}
+
+  - id: long_u_to_y
+    order: 45
+    name: "*ū > *y"
+    match: ū
+    replace: y
+    tier: established
+    description: "The long back vowel *ū is written y in Proto-Slavic (PBS *tūˀ > PSl *ty)."
+    references: [meillet-1934, vaillant-1950]
+    examples:
+      - {in: "tūˀ", out: "tyˀ", gloss: "you"}
+
+  - id: nasal_front
+    order: 8
+    name: "*(e|i) + nasal > *ę before a consonant"
+    match: (e|i) (n|m)
+    replace: "ę"
+    env: {right: C}
+    tier: established
+    description: >
+      A front vowel followed by a nasal and then a consonant gives the front
+      nasal *ę (PBS *déśimt > PSl *desętь, *déntsnāˀ > *dęsna).
+    references: [meillet-1934, vaillant-1950, shevelov-1964]
+    examples:
+      - {in: "déśimt", out: "dˈeśęt", gloss: "ten"}
+
+  - id: nasal_back
+    order: 8
+    name: "*(a|u) + nasal > *ǫ before a consonant"
+    match: (a|u) (n|m)
+    replace: "ǫ"
+    env: {right: C}
+    tier: established
+    description: >
+      A non-front vowel followed by a nasal and a consonant gives the back
+      nasal *ǫ (PBS *zámbas > PSl *zǫbъ, *mandras > *mǫdrъ).
+    references: [meillet-1934, vaillant-1950, shevelov-1964]
+    examples:
+      - {in: "zámbas", out: "zˈǫbas", gloss: "tooth"}
+
+  - id: w_to_v
+    order: 60
+    name: "*w > *v"
+    match: w
+    replace: v
+    tier: established
+    description: "The glide *w becomes the labiodental *v in every position (PBS *lāˀwāˀ > PSl *lava)."
+    references: [meillet-1934, vaillant-1950, shevelov-1964]
+    examples:
+      - {in: "lāˀwāˀ", out: "lāˀvāˀ", gloss: "bench"}
+
+  - id: palatal_s_to_s
+    order: 7
+    name: "PBS *ś > *s"
+    match: ś
+    replace: s
+    tier: established
+    description: >
+      The PBS palatal sibilant *ś (from PIE *ḱ) merges with *s (PBS *ślawas >
+      PSl *slovo).  The merger runs before the final-syllable laws so that a
+      final *-iś is reduced like *-is (PBS *dalˀniś > PSl *dolnь).
+    references: [meillet-1934, shevelov-1964]
+    examples:
+      - {in: "ślawas", out: "slawas", gloss: "word"}
+
+  - id: palatal_z_to_z
+    order: 7
+    name: "PBS *ź > *z"
+    match: ź
+    replace: z
+    tier: established
+    description: >
+      The PBS palatal sibilant *ź (from PIE *ǵ, *ǵʰ) merges with *z (PBS
+      *źeimāˀ > PSl *zima).  It runs early, with *ś > *s, so the final-syllable
+      laws see plain *z.
+    references: [meillet-1934, shevelov-1964]
+    examples:
+      - {in: "źeimāˀ", out: "zeimāˀ", gloss: "winter"}
+
+  - id: ruki_s_to_x
+    order: 80
+    name: "RUKI *š > *x"
+    match: š
+    replace: x
+    env: {left: (r|u|ū|k|i|ī)}
+    tier: established
+    description: >
+      The sibilant that the RUKI law retracted to *š in Balto-Slavic continues
+      in Slavic as *x (PBS *auš- > PSl *uxo, *glaušas > *gluxъ), while an
+      initial *š is untouched because it never stood after r, u, k or i.
+    references: [meillet-1934, shevelov-1964, fortson-2004]
+    examples:
+      - {in: "auš", out: "aux", gloss: "ear"}
+
+  - id: k_to_c_before_front
+    order: 90
+    name: "First palatalisation: *k > *č before a front vowel"
+    match: k
+    replace: "č"
+    env: {right: (i|ī|e|ē|ě|ь)}
+    tier: established
+    description: "Velar *k becomes *č before *i, *e, *ě (PBS *takeitei > PSl *točiti); the cluster *kj is handled separately."
+    references: [meillet-1934, vaillant-1950, shevelov-1964]
+    examples:
+      - {in: "takeitei", out: "tačeitei", gloss: "to point"}
+
+  - id: g_to_z_caron_before_front
+    order: 91
+    name: "First palatalisation: *g > *ž before a front vowel"
+    match: g
+    replace: "ž"
+    env: {right: (i|ī|e|ē|ě|ь)}
+    tier: established
+    description: "Velar *g becomes *ž before a front vowel (PBS *gīˀšlāˀ > PSl *žila)."
+    references: [meillet-1934, vaillant-1950, shevelov-1964]
+    examples:
+      - {in: "gīˀšlāˀ", out: "žīˀšlāˀ", gloss: "vein"}
+
+  - id: x_to_s_caron_before_front
+    order: 94
+    name: "Second palatalisation: *x > *š before a front vowel"
+    match: x
+    replace: "š"
+    env: {right: (i|ī|e|ē|ě|ь)}
+    tier: established
+    description: >
+      The back fricative *x becomes *š before *i, *e and *ě (the second
+      palatalisation; PSl *vьsь < *weyḱ- has no *x, but words with *x from RUKI
+      do, e.g. PBS *wьx- > PSl *vьš-).
+    references: [meillet-1934, shevelov-1964]
+    examples:
+      - {in: "vьxi", out: "vьši", gloss: "all (loc.)"}
+
+  - id: kj_to_c
+    order: 92
+    name: "*kj > *č"
+    match: k j
+    replace: "č"
+    tier: established
+    description: >
+      The cluster *kj gives the affricate *č with no trace of the glide (PBS
+      *kjaukāˀ > PSl *čuka, *kjáudas > *čudo).
+    references: [meillet-1934, vaillant-1950]
+    examples:
+      - {in: "kjaukāˀ", out: "čaukāˀ", gloss: "hammer"}
+
+  - id: gj_to_z_caron
+    order: 93
+    name: "*gj > *ž"
+    match: g j
+    replace: "ž"
+    tier: established
+    description: "The cluster *gj gives *ž (PBS *gjaupāˀ > PSl *župa)."
+    references: [meillet-1934, vaillant-1950]
+    examples:
+      - {in: "gjaupāˀ", out: "žaupāˀ", gloss: "district"}
+
+  - id: lj_to_l_palatal
+    order: 95
+    name: "*lj > *ľ"
+    match: l j
+    replace: "ľ"
+    tier: established
+    description: "The cluster *lj gives the palatal *ľ (PBS *ljaubīˀtei > PSl *ľubiti)."
+    references: [meillet-1934, vaillant-1950]
+    examples:
+      - {in: "ljaubīˀtei", out: "ľaubīˀtei", gloss: "to love"}
+
+  - id: rj_to_r_palatal
+    order: 97
+    name: "*rj > *ř"
+    match: r j
+    replace: "ř"
+    tier: established
+    description: "The cluster *rj gives the palatal *ř (PBS *morjāˀ > PSl *mořa)."
+    references: [meillet-1934, vaillant-1950]
+    examples:
+      - {in: "morjāˀ", out: "mořāˀ", gloss: "sea"}
+
+  - id: sk_to_sc
+    order: 85
+    name: "*sk > *šč before a front vowel"
+    match: s k
+    replace: "šč"
+    env: {right: (i|ī|e|ē|ě|ь|j)}
+    tier: established
+    description: >
+      Before a front vowel the cluster *sk is palatalised to *šč (PBS *skeutāˀ
+      > PSl *ščuka, *skeitom > *ščitъ).
+    references: [meillet-1934, shevelov-1964]
+    examples:
+      - {in: "skeitom", out: "ščeitom", gloss: "shield"}
+
+  - id: gt_to_t_palatal
+    order: 88
+    name: "*gt > *ť"
+    match: g t
+    replace: "ť"
+    tier: established
+    description: >
+      A voiced velar before *t gives the palatal *ť (PBS *légtei > PSl *leťi,
+      *degtéi > *žeťi), the same outcome as *tj.
+    references: [meillet-1934, vaillant-1950]
+    examples:
+      - {in: "légtei", out: "lˈeťei", gloss: "to lie"}
+
+  - id: bt_to_t
+    order: 89
+    name: "*bt > *t"
+    match: b t
+    replace: t
+    tier: established
+    description: "The cluster *bt is simplified to *t (PBS *grebtei > PSl *greti)."
+    references: [meillet-1934, shevelov-1964]
+    examples:
+      - {in: "grebtei", out: "gretei", gloss: "to row"}
+
+  - id: initial_i_to_ji
+    order: 18
+    name: "Initial *i- > *jь- before a consonant"
+    match: i
+    replace: "jь"
+    env: {left: "#", right: "!V"}
+    tier: established
+    description: >
+      Word-initial *i- receives a prothetic *j and turns into the yer *ь when a
+      consonant follows (PBS *iskāˀtei > PSl *jьskati, *iź > *jьz, *imḗˀtei >
+      *jьměti).  Initial *i + nasal is caught first by the nasal law (*ink >
+      *ękati), and *i before a vowel is untouched.
+    references: [meillet-1934, vaillant-1950, shevelov-1964]
+    examples:
+      - {in: "iskāˀtei", out: "jьskāˀtei", gloss: "to seek"}
+
+  - id: sj_to_s_caron
+    order: 100
+    name: "*sj > *š"
+    match: s j
+    replace: "š"
+    tier: established
+    description: "*s followed by *j gives *š (PBS *sjūˀtei > PSl *šiti)."
+    references: [meillet-1934, vaillant-1950]
+    examples:
+      - {in: "sjūˀtei", out: "šūˀtei", gloss: "to sew"}
+
+  - id: zj_to_z_caron
+    order: 101
+    name: "*zj > *ž"
+    match: z j
+    replace: "ž"
+    tier: established
+    description: "*z followed by *j gives *ž (PBS *źjáuˀnāˀ > PSl *žuna)."
+    references: [meillet-1934, vaillant-1950]
+    examples:
+      - {in: "zjáuˀnāˀ", out: "žˈauˀnāˀ", gloss: "buzzard (after *ź > *z)"}
+
+  - id: tj_to_t_palatal
+    order: 102
+    name: "*tj > *ť"
+    match: t j
+    replace: "ť"
+    tier: established
+    description: "*t followed by *j gives the palatal *ť, written ť (= OCS št)."
+    references: [meillet-1934, vaillant-1950, shevelov-1964]
+    examples:
+      - {in: "swētjas", out: "swēťas", gloss: "light"}
+
+  - id: dj_to_d_palatal
+    order: 103
+    name: "*dj > *ď"
+    match: d j
+    replace: "ď"
+    tier: established
+    description: "*d followed by *j gives the palatal *ď (PBS *medjas > PSl *meďa)."
+    references: [meillet-1934, vaillant-1950]
+    examples:
+      - {in: "medjas", out: "meďas", gloss: "boundary"}

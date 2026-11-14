@@ -45,7 +45,7 @@ def content_words(texts) -> set[str]:
 
     Two roots may be spelled alike — Proto-Indo-European heads *swer- "to
     ache" and *swer- "to speak loudly" — and a child that names one of them
-    must be given that one (admin, 2026-11-12).  The comparison is lexical and
+    must be given that one (2026-11-12).  The comparison is lexical and
     nothing more: it can pick a sense a sentence already quotes, and it never
     claims two meanings are the same.
     """
@@ -132,7 +132,7 @@ def groups(entries: Iterable[dict], gloss_limit: int = 6) -> list[dict]:
 #: files these under a part of speech of their own — *aiganaz* is a
 #: `===Participle===` saying "past participle of *aiganą" beside an
 #: `===Adjective===` saying "own" — and a list that prints the pointer first
-#: describes the word's grammar where a reader asked what it means (admin,
+#: describes the word's grammar where a reader asked what it means (
 #: 2026-11-12: "multiple entries in Proto-Germanic for aiganaz").
 _POINTER = tuple(prefix + " of " for prefix in (
     "past participle", "present participle", "participle", "gerund",

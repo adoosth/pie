@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """The critic's sampler and its mechanical checks (2026-11-13).
 
-The admin asked for a subagent that reads random word pages, finds every place
-the page contradicts the record, and reports it for the super agent to fix.
+A critic reads random word pages, finds every place the page contradicts the
+record, and reports it for review and fix.
 This tool is the part that can be mechanical: it samples pages without looking
 at their band, and it pre-computes the faults that are decidable from the
 payload, so a critic's attention goes to meaning (docs/CRITIC.md).
@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import random
 import sys
 from functools import lru_cache
@@ -30,7 +31,7 @@ from pie import data, service  # noqa: E402
 
 #: A compound's piece is a word, so a grammatical function word in that slot is
 #: a homonym of the piece, not the piece: dostmāl's دست is the noun "hand", not
-#: Dehkhoda's classifier sense (admin, 2026-11-13).
+#: Dehkhoda's classifier sense (2026-11-13).
 FUNCTION_POS = {"classifier", "particle", "prep", "conj", "pron", "postp",
                 "article", "interj", "abbr"}
 
@@ -52,7 +53,9 @@ NOTE_GLOSS = __import__("re").compile(
 PLACE_HEAD = ("نام محلی", "نام ده", "نام روستا", "نام شهر", "نام کوه",
               "نام رود", "نام آبادی", "نام ناحیه")
 
-REVIEWED = Path("/home/cloud/code/seanet/tiago/files/admin/pie-critic/reviewed.txt")
+#: Reviewed words stay outside the repository; ``PIE_CRITIC_STATE`` moves them.
+STATE_DIR = Path(os.environ.get("PIE_CRITIC_STATE", Path.home() / ".cache" / "pie-critic"))
+REVIEWED = STATE_DIR / "reviewed.txt"
 
 
 def words(lang: str) -> list[str]:

@@ -318,7 +318,7 @@ def exact_kind(output: str, target: str) -> str | None:
     # hyphen in the record marks a bound form or an affix, and a word whose
     # only difference is "un-" against "un" is not a character-for-character
     # reconstruction.  The same holds for a lemma the record writes as two
-    # words.  Mill's audit of this rule (proposals/night-0911/notation-audit.md,
+    # words.  Mill's audit of this rule (proposals/2026-09-11/notation-audit.md,
     # 2026-11-09) measured 238 hyphen pairs, 152 thorn pairs, 5 bracket pairs,
     # 3 breve pairs and 2 space pairs hiding in the "notation" count; the
     # spelling layer can win them back honestly, this counter cannot.
@@ -781,7 +781,7 @@ def measure(lang: str, meta: dict, chain: list[str], rulesets, tiers, limit: int
         # construction rather than by a law: *andaswarō is *anda- + *swarō.
         # Measured with the same helper the word page uses, and only when no
         # derivation reached the word — a construction never overrides a law
-        # (admin, 2026-11-13).
+        # (2026-11-13).
         construction = None
         if matched_by in (None, "joined"):
             try:
@@ -829,12 +829,12 @@ def measure(lang: str, meta: dict, chain: list[str], rulesets, tiers, limit: int
                         or layer_stage or ""),
             # Every rung of the recorded ancestry must be a word this model
             # holds, or the timeline has a hole and the band cannot be green
-            # (admin, 2026-11-13).
+            # (2026-11-13).
             missing_steps=service.unrecorded_ancestry(entry, chain),
         )
         verdicts[id(entry)] = verdict
         # The words this page draws above it, kept for the second pass that
-        # holds a word to its ancestors' bands (admin, 2026-11-13).  Only a
+        # holds a word to its ancestors' bands (2026-11-13).  Only a
         # green word can be demoted, so only a green word keeps the list.
         if verdict["category"] in _MAYBE_WEAK:
             above.setdefault(target, []).extend(
@@ -894,7 +894,7 @@ def measure(lang: str, meta: dict, chain: list[str], rulesets, tiers, limit: int
             # A word carried by its own registered construction instead of a
             # law.  Counted apart so the report says how much of the green
             # rests on a construction — never the partials that name one and
-            # fail to spell the word (admin, 2026-11-13).
+            # fail to spell the word (2026-11-13).
             constructed += 1
             if len(construct_examples) < 8:
                 construct_examples.append({"word": entry["word"].strip(),
@@ -1009,7 +1009,7 @@ def rule_index(rulesets) -> dict[str, dict]:
 
 
 # --- a word is never greener than the words above it -------------------------
-# The admin's rule (2026-11-13): "A word can't be fully explained if any
+# Tadmin's rule (2026-11-13): "A word can't be fully explained if any
 # ancestor of it is partially explained or non-existent."  The page applies it
 # live (`service._page_ancestors`), and the published index must apply it too,
 # or a glossary row would stay green over a page that reads "partially

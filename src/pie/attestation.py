@@ -6,7 +6,7 @@ Three states, and a word is exactly one of them (2026-11-11):
     A text or a dictionary records this word.  The form above is either the
     writing itself (Old Persian 𐎭𐎠𐎼𐎹𐎺𐎢𐏁) or the record's transcription of
     it (Middle Persian ``garm``) — a Latin reading still attests the word, and
-    a record that gives one has recorded it (admin, 2026-11-13).
+    a record that gives one has recorded it (2026-11-13).
 
 ``recorded``
     A reconstruction the literature itself proposes — no text spells it, but
@@ -31,7 +31,7 @@ from __future__ import annotations
 STATUSES = ("attested", "recorded", "proposed")
 NON_EXISTENT = "non-existent"
 
-# The asterisk is *on the word*, not in the label (admin, 2026-11-12): a
+# The asterisk is *on the word*, not in the label (2026-11-12): a
 # recorded form already prints as *madu, so "recorded (*)" said it twice and
 # read as a footnote.  The word's own mark carries the meaning, and hovering it
 # says the one thing it means: no text spells this word.
@@ -81,7 +81,7 @@ def classify(entry: dict, *, proto: bool = False, in_script: bool = True) -> str
 
     ``in_script`` is kept so existing callers need not change, but it no longer
     decides the status: a recorded transcription attests its word as surely as
-    a recorded writing does (admin, 2026-11-13).  What the headword *is* —
+    a recorded writing does (2026-11-13).  What the headword *is* —
     writing or transcription — travels beside the status as ``attested_how``.
     """
     if _is_proposal(entry):

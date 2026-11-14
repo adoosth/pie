@@ -88,7 +88,7 @@ class TestWhereAReadingComesFrom(unittest.TestCase):
         # none.
         meta = service._form_meta("peo", "𐎱𐎢𐎫𐎠𐎹")
         # The automatic reading is the signs' own transliteration, and a
-        # consonant sign's inherent -a is not printed (admin, 2026-11-13).
+        # consonant sign's inherent -a is not printed (2026-11-13).
         self.assertEqual(meta["reading"], "p-u-t-a-y")
         self.assertTrue(meta["reading_auto"])
         self.assertEqual(meta["reading_how"], "signs")
@@ -131,7 +131,7 @@ class TestTheTransliterations(unittest.TestCase):
 
     def test_the_old_persian_syllabary_prints_what_the_signs_say(self):
         # p-a-r-s: the sign 𐎠 is a written vowel and stays; the inherent -a
-        # of 𐎱 and 𐎼 is not evidence and is not printed (admin, 2026-11-13).
+        # of 𐎱 and 𐎼 is not evidence and is not printed (2026-11-13).
         self.assertEqual(script.transliterate("peo", "𐎱𐎠𐎼𐎿"), "p-a-r-s")
 
     def test_an_unknown_character_is_kept_not_invented(self):
@@ -182,12 +182,12 @@ class TestTheFrontEndShowsIt(unittest.TestCase):
         js = (WEB / "app.js").read_text(encoding="utf-8")
         self.assertIn("reading_auto", js)
         # The class is built from the flag now, because the same renderer also
-        # prints the sign layer beside the reading (admin, 2026-11-13).
+        # prints the sign layer beside the reading (2026-11-13).
         self.assertIn('class="reading${o.auto ? " auto" : ""}"', js)
 
     def test_the_reading_renderer_never_prints_ipa_on_a_rung(self):
         # IPA is optional and belongs on the word's own page: a timeline shows
-        # the romanisation, never a phonetic transcription (admin, 2026-11-13).
+        # the romanisation, never a phonetic transcription (2026-11-13).
         js = (WEB / "app.js").read_text(encoding="utf-8")
         self.assertNotIn("ipa: rec.ipa", js)
         self.assertNotIn("ipa: r.ipa", js)

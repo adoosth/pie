@@ -3,7 +3,7 @@
 - **Status:** partially accepted (2026-11-08): `i > e` withdrawn, `-is > -e`
   and final `-m` loss added
 - **Stream:** W3 (sound laws from the literature)
-- **Author:** integrator
+- **Author:** reviewer
 - **Evidence:** the Italian glossary (22,231 words, 18,635 with an ancestor)
 
 ## Claim under test
@@ -59,7 +59,7 @@ make `ĭ > e` a law again. That is a W3 task; `docs/WORKLIST.md` now carries the
 Italian mergers as evidence that stress, not syllable shape, is the missing
 condition.
 
-## The falsifier was tested (2026-11-08, same night)
+## The falsifier was tested (2026-11-08)
 
 A Latin stress step was built and run against the corpus: the mark is written
 before the transition's laws and read away after them (`data/prosody/la.yaml`,

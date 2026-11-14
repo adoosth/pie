@@ -14,7 +14,7 @@ stage:
   # actually wrote keeps its own sign (𐎺𐎼𐎣𐎠𐎴 is v-r-k-a-n).  This is the
   # edition convention Wiktionary's cuneiform transliteration uses, and it is
   # computed from the table below — no transliteration is ever stored
-  # (admin, 2026-11-13).
+  # (2026-11-13).
   transliteration:
     inherent_vowel: a
   description: >

@@ -1,0 +1,33 @@
+# Rejected — the gain is a measurement artefact, not a sound change.
+#   python tools/whatif.py --from pal --to fa --rules <this file> --layers exact,orthographic,script
+#   explained 352 -> 389 (+37: رنگ, سنگ, آسمان, تنها, فرهنگ …), lost 0
+#   python tools/whatif.py --from pal --to fa --rules <this file> --layers exact,script
+#   explained 335 -> 368 (+33), lost 0
+# The claim is false: Persian keeps /a/ before a nasal (رنگ /ˈraŋɡ/, سنگ
+# /ˈsanɡ/, آسمان /ʔaːs.ˈmaːn/), and the rule changes no letter — /a/ and /o/
+# are both unwritten, so رنگ spells the same either way.
+#
+# Why it "gained" anyway: `orthographic_hit` and the script layer both require
+# at least one law to have fired (`steps`), so a word whose derived form was
+# already right but had no step counted as *identity*, not *explained*.  Any
+# no-op law that touches a's and o's manufactures that step and moves the word
+# into the orthographic column.  A rule whose only effect is to make the
+# counter's precondition true is the same category as a lookup: rejected.
+#
+# Finding for the reviewer: the counter can be inflated by a vacuous law over
+# any segment pair that shares a letter (or is unwritten).  A candidate should
+# be measured with `--layers exact` alone before any written layer is allowed
+# to take credit for it.
+id: a_to_o_before_nasal
+order: 12
+name: "MP *a > NP o before a nasal"
+match: a
+replace: o
+env: {right: n}
+tier: proposed
+claim: "Short a rounds before a nasal in New Persian."
+references: [sadeghi-1978]
+gain:
+  fa: {explained_orthographic_layer: 37, explained_script_layer: 33, lost: []}
+verdict: rejected
+reason: "no letter moves; the gain comes from supplying a `steps` value to words whose spelling was already correct (counter artefact)"

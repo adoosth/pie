@@ -3,8 +3,8 @@
 - **Status:** partially accepted (2026-11-08): the final-syllable laws merged;
   `umlaut_ae` withdrawn; `final_ōn_to_ian` demoted to `proposed`
 - **Stream:** W3 (sound laws from the literature)
-- **Author:** integrator
-- **Reviewer:** methods skeptic (independent agent, 2026-11-08)
+- **Author:** reviewer
+- **Reviewer:** methods skeptic (independent review, 2026-11-08)
 - **Evidence:** the Old English glossary (6,895 words, 6,309 with an ancestor)
 
 ## Claim

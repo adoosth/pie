@@ -231,13 +231,13 @@ def verdict(*, recorded: bool, non_ie: bool = False, ie_loan: bool = False,
     in place of a sound law — so it may carry a word to green on the same
     terms as the laws: exact against the record is dark green, a recorded step
     that disagrees is light green, and both need the construction to be the
-    record's own (admin, 2026-11-13).
+    record's own (2026-11-13).
 
     ``missing_steps`` is the recorded ancestry a stage's glossary does not hold
     — ``service.unrecorded_ancestry`` returns one row per such ancestor.  A
     timeline with a hole in it is incomplete however exactly the laws reproduce
     the last mile, so a word with a missing rung is *partially* explained and
-    says which word is missing.  This is the only clause of the admin's test
+    says which word is missing.  This is the only clause of the test
     ("every segment starts from PIE, the laws or a registered construction
     produce the word, and everything matches what is recorded") that was not
     measured before 2026-11-13.
@@ -247,7 +247,7 @@ def verdict(*, recorded: bool, non_ie: bool = False, ie_loan: bool = False,
     fully explained.  A word is explained by the words above it, so a green
     band over a yellow or red ancestor claims more than the page shows: fa آبجو
     read "fully explained" over an Old Persian ancestor whose own page says
-    "partially explained" (admin, 2026-11-13: "A word can't be fully explained
+    "partially explained" (2026-11-13: "A word can't be fully explained
     if any ancestor of it is partially explained or non-existent").  The
     ancestor's band already absorbed its own ancestors, so one row per drawn
     word is the whole rule.  A word outside the family (`non_pie`, `ie_loan`)
@@ -277,7 +277,7 @@ def verdict(*, recorded: bool, non_ie: bool = False, ie_loan: bool = False,
     # cannot be green beside it.  Checked before every green route — the laws,
     # a construction and a writing layer alike — because the missing word is
     # the explanation of a stage, not a property of the last mile
-    # (admin, 2026-11-13).
+    # (2026-11-13).
     holes = [row for row in (missing_steps or ()) if isinstance(row, dict)]
     weak = [row for row in (weak_ancestors or ()) if isinstance(row, dict)]
     reasons: list[str] = []
@@ -287,7 +287,7 @@ def verdict(*, recorded: bool, non_ie: bool = False, ie_loan: bool = False,
         # a climb that ends in the page's own `???` — a word whose origin the
         # record does not state.  The reason must say which, or a reader is told
         # about a missing entry where the page draws a question mark
-        # (admin, 2026-11-13: fa رضاقلی over قلی).
+        # (2026-11-13: fa رضاقلی over قلی).
         def _named(kind: str | None) -> str:
             # `None` means "every hole but an origin", which is what the
             # sentence «no entry for …» names: a recorded rung (no kind) and a
@@ -321,7 +321,7 @@ def verdict(*, recorded: bool, non_ie: bool = False, ie_loan: bool = False,
     # piece becomes the whole word.  The construction is allowed in a green
     # path on the same terms as a law — the pieces spell the headword, each
     # piece has a recorded origin, and the record states the row — so the only
-    # thing that changes here is *how* the word is produced (admin, 2026-11-13).
+    # thing that changes here is *how* the word is produced (2026-11-13).
     # A construction this model composed itself is not the record's, so it is
     # held to the same approval rule as our own laws.
     built_row = construction or {}

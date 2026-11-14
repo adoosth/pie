@@ -147,7 +147,7 @@ const wordHref = (lang, w, known, via, sense) => {
 };
 /* A word of a reconstructed stage is a reconstruction, and the literature
    writes it with a leading asterisk — on the word itself, not only on the label.
-   One test answers for every renderer (admin, 2026-11-12): the stage's own
+   One test answers for every renderer (2026-11-12): the stage's own
    `kind` from the registry, a stage whose script is reconstructed, and only as a
    last resort the code's `-pro` suffix.  When each renderer tested for itself,
    the same word printed with its star in one place and bare in another — a
@@ -225,7 +225,7 @@ const form = (w, lang, opts = {}) => {
 };
 /* A form written in a script prints its **romanisation** — how the word is read,
    which is the layer linguists cite — and, beside it, the **transliteration**
-   of the signs (g-r-g for گرگ, v-r-k-a-n for 𐎺𐎼𐎣𐎠𐎴, admin
+   of the signs (g-r-g for گرگ, v-r-k-a-n for 𐎺𐎼𐎣𐎠𐎴,
    2026-11-13).  IPA used to stand in for the romanisation, which put a phonetic
    transcription of a dead language where the standard reading belongs; it is
    optional, it is stored per word, and a timeline never prints it.  A scripted
@@ -240,7 +240,7 @@ const readingOf = (o) => {
   /* `show === false` suppresses the *reading* (the rung already prints it, or
      the word is a Latin form whose reading would repeat it).  The sign layer
      is a different fact and always prints for a scripted word: a script with
-     no transliteration is unreadable (admin, 2026-11-13). */
+     no transliteration is unreadable (2026-11-13). */
   if (o.reading && o.show !== false) {
     bits.push(`<span class="reading${o.auto ? " auto" : ""}" data-tip="${esc(tip)}">${esc(o.reading)}</span>`);
   }
@@ -261,7 +261,7 @@ const formOpts = (f) => ({
   ev: f.evidence,
   reading: f.reading || (f.r && f.r !== f.w ? f.r : ""),
   /* The second Latin layer travels with the form, and so does the optional
-     IPA; a rung simply never passes one (admin, 2026-11-13). */
+     IPA; a rung simply never passes one (2026-11-13). */
   signs: f.signs || "",
   ipa: f.ipa || "",
   auto: !!f.reading_auto,
@@ -608,7 +608,7 @@ async function viewGlossary(params) {
   const o = await api("/api/overview");
   const langs = o.languages.filter((l) => l.words > 0).sort((a, b) => a.name.localeCompare(b.name));
   const q = (params && params.get("q")) || "";
-  /* A stage of 17,000 words is read in pages (admin, 2026-11-13): the address
+  /* A stage of 17,000 words is read in pages (2026-11-13): the address
      carries which one, so a page can be linked, bookmarked and stepped back
      from with the browser's Back button like any other view. */
   const page = Math.max(1, parseInt((params && params.get("page")) || "1", 10) || 1);
@@ -617,7 +617,7 @@ async function viewGlossary(params) {
   /* Transcription and transliteration are optional columns: a stage that
      writes its words as they sound (Middle Persian) has nothing to add beside
      the form, and a stage whose spelling is the form itself needs no second
-     copy of it (admin, 2026-11-13). */
+     copy of it (2026-11-13). */
   const formCell = (r) => r.written || r.word || "";
   const optValue = (r, field) => {
     const value = r[field] || "";
@@ -873,7 +873,7 @@ async function viewWord(lang, w, params) {
      Persian jaw for ǰaw, a Pahlavi transliteration for the reading it was
      quoted under) opens the entry, and the address follows the entry's own
      spelling, so the link a reader copies names the word the glossary holds
-     (admin, 2026-11-13). */
+     (2026-11-13). */
   if (d.word && d.word !== w) {
     const tail = location.hash.split("?")[1];
     const url = `#/word/${encodeURIComponent(lang)}/${encodeURIComponent(d.word)}${tail ? `?${tail}` : ""}`;
@@ -885,7 +885,7 @@ async function viewWord(lang, w, params) {
   /* The ladder is stateful: laws and the starting form are edited in place,
      and only the ladder re-renders — never the page. Proto-Indo-European has
      no ancestor, but it has a ladder all the same: one rung for the etymon,
-     and below it the daughter stages each click carries it into (admin,
+     and below it the daughter stages each click carries it into (
      2026-11-12). */
   const morph = d.morphology || { suffixes: [] };
   const fromSuffix = (params && params.get("suffix")) || "";
@@ -911,7 +911,7 @@ async function viewWord(lang, w, params) {
        two words joined, or a word with a suffix or ending (2026-11-10). */
     build: (params && params.get("build")) || "",
     /* The construction row lives in the timeline now, so the ladder needs the
-       language's morphology to redraw it after a law is switched (admin,
+       language's morphology to redraw it after a law is switched (
        2026-11-12). */
     morph, fromSuffix,
     data: d.hierarchy, context: d,
@@ -922,12 +922,12 @@ async function viewWord(lang, w, params) {
   const matched = d.derivation && d.derivation.matched_form;
   /* A reading that repeats the headword adds nothing but a second copy of the
      title: Middle Persian garm *is* its reading, so the header printed "garm"
-     beside "garm" (admin, 2026-11-13). */
+     beside "garm" (2026-11-13). */
   const readings = [d.translit, ...(d.translit_alt || [])]
     .filter((r) => r && r !== d.word && r !== d.written);
   const ev = d.evidence || "attested";
   /* The asterisk in front of a reconstructed word means one thing, so hovering
-     it says one thing (admin, 2026-11-12): no text spells this word.  The long
+     it says one thing (2026-11-12): no text spells this word.  The long
      explanation is on the status beside it, which is where a reader asks what
      "recorded" means. */
   const starred = d.attestation && ["recorded", "proposed"].includes(d.attestation.status);
@@ -1011,7 +1011,7 @@ async function viewWord(lang, w, params) {
 /* What the Persian Wiktionary says about the word, kept visibly apart from
    this model's own etymology: the glossary's Persian words come from Dehkhoda,
    and the Persian Wiktionary is the page a reader can open. The quote is the
-   site's sentence, never this model's analysis (admin, 2026-11-11). */
+   site's sentence, never this model's analysis (2026-11-11). */
 function wiktionaryLine(d) {
   const w = d.wiktionary;
   if (!w || !w.found) return "";
@@ -1259,7 +1259,7 @@ function renderBranch(desc, opts = {}) {
       : "The word page you came from records this form at this stage.";
     /* A ✓ is a claim that this is a word of the stage, so it may only sit
        beside a record the stage's glossary holds; a form the etymology names
-       but no entry spells is dark red here as on the ladder (admin,
+       but no entry spells is dark red here as on the ladder (
        2026-11-12). */
     const held = rec.known !== false;
     const word = form(rec.w, r.l, {
@@ -1274,7 +1274,7 @@ function renderBranch(desc, opts = {}) {
       /* The record reproduces every sound of the form but its ending (کبود
          *kabud* for the laws' *kabūde*). No law accounts for the difference,
          so it is neither a ✓ nor a plain miss: a yellow ⚠ says a person has
-         to look, and the row says so in words too (admin, 2026-11-12). */
+         to look, and the row says so in words too (2026-11-12). */
       return `<span class="branchstate unverified" data-tip="${esc(
         (rec.review && rec.review.basis === "letters"
           ? `The letters of this entry agree with the form the laws produce, but the glossary records no reading for the word: an abjad leaves the vowels out, so k-b-d spells کبد, کبود and کبوده at once. Nothing can be verified from the letters alone — the match is kept here for review.`
@@ -1352,7 +1352,7 @@ function lawChip(r, citedAdd, aboveStage) {
   const adds = citedAdd || addedText(r.before, r.after);
   /* The strings a law rewrites are forms of the stage it rewrites them at, so
      a law between two reconstructed rungs prints them with the star too
-     (admin, 2026-11-12).  The stage is the one above the law, never this
+     (2026-11-12).  The stage is the one above the law, never this
      rung's: a law into English rewrites Middle English, not English. */
   const before = pf(starred(r.before, aboveStage));
   const after = pf(starred(r.fired ? r.after : r.would, aboveStage));
@@ -1400,7 +1400,7 @@ function buildStep(level) {
       : `<span class="bpiece mono">${esc(pf(written))}</span>`;
     /* The piece stands in the grade the formation takes it in: *ters- beside
        *-nó- is *tr̥s- (#ters- → #tr̥s-), and that is morphology, not a sound
-       change (admin, 2026-11-12). */
+       change (2026-11-12). */
     const grade = p.grade_label
       ? ` <span class="cgrade" data-tip="${esc(p.grade_note || p.grade_label)}">${esc(p.grade_label)}</span>`
       : "";
@@ -1419,7 +1419,7 @@ function buildStep(level) {
     </div></li>`;
 }
 
-/* The construction row (admin, 2026-11-12): the dot beside a word is a door,
+/* The construction row (2026-11-12): the dot beside a word is a door,
    not a decoration.  Clicking it opens a row above the word — marked with a
    diamond, because it is a formation and not a sound change — holding the word
    itself and a menu: join another word of the same stage, add a cited suffix,
@@ -1547,7 +1547,7 @@ function openDraft(btn) {
         return;
       }
       /* An ending the word already wears is not a step: adding *-os to *tr̥snós
-         used to print *tr̥snós again and call it a second piece (admin,
+         used to print *tr̥snós again and call it a second piece (
          2026-11-12).  The row says why nothing changed instead. */
       if (plainForm(row.form) === plainForm(current)) {
         note.hidden = false;
@@ -1558,7 +1558,7 @@ function openDraft(btn) {
       chain += 1;
       /* The stem's grade belongs beside the word it changed: *ters- is *tr̥s-
          in this formation, and the row says so in the same words the timeline
-         does (admin, 2026-11-12). */
+         does (2026-11-12). */
       const lead = (row.pieces || [])[0] || {};
       if (chain === 1 && lead.grade_label) {
         li.querySelector(".draftterm").insertAdjacentHTML("beforeend",
@@ -1660,7 +1660,7 @@ function formationLine(level, current) {
    It is a step of the timeline, not a line under the word, and it stands
    **above** the form it produces — the timeline runs from old (top) to new
    (bottom), so the pieces and their own histories come first and the word they
-   make is the rung under them (admin, 2026-11-12).  The diamond on the rail
+   make is the rung under them (2026-11-12).  The diamond on the rail
    marks the step, `𐎨𐎡𐏂 čiçaʰ` sits on the base line beside `+ *farnah`, and
    each piece climbs its own branch upward — to a Proto-Indo-European word, to
    the donor it was borrowed from, or to a `???` where nothing explains it.
@@ -1676,7 +1676,7 @@ function constructStep(level, i, linkTo, opts) {
   const kindOf = (b) => ({ suffix: "suffix", prefix: "prefix", compound: "compound",
     affix: "affix", infix: "infix", combining: "combining form",
     derivation: "derivation", reduplication: "reduplication" }[b.kind] || "formation");
-  /* The construction is one tree, not a set of inset pictures (admin,
+  /* The construction is one tree, not a set of inset pictures (
      2026-11-12): the first word stands immediately right of the diamond (no
      line, no second mark — the diamond *is* its mark), the line then leaves
      the right of that word for `+` and the next piece, and above each piece
@@ -1684,7 +1684,7 @@ function constructStep(level, i, linkTo, opts) {
   const eraOf = (n) => (n && n.era_label) || "date unknown";
   /* What a word on the timeline means, in the same wording the headword's own
      line uses — `adj · “visible”` — so a rung is a word with a sense and not
-     only a string of letters (admin, 2026-11-12).  A bound morpheme has no
+     only a string of letters (2026-11-12).  A bound morpheme has no
      part of speech to name and its gloss is already a description of what it
      does (`forms adjectives from Caland-system roots`), so it is printed as
      that description rather than quoted as a meaning. */
@@ -1694,7 +1694,7 @@ function constructStep(level, i, linkTo, opts) {
     /* A bound morpheme's gloss is a description of what it does and can run
        long: the sheet wraps it to two lines and the whole of it is on the
        element's own hover, so the line under the word is never lost to a
-       truncation and never runs into the next piece (admin, 2026-11-12). */
+       truncation and never runs into the next piece (2026-11-12). */
     if (bound) return esc(g);
     const p = String(pos || "").trim();
     return `${p && p !== "suffix" && p !== "root" ? esc(p) + " · " : ""}“${esc(g)}”`;
@@ -1702,16 +1702,16 @@ function constructStep(level, i, linkTo, opts) {
   const langKind = (n) => (n && n.kind === "proto" ? "kind-proto" : "kind-attested");
   /* The colour is the stage's evidence *and* whether the stage holds the
      word: a form no glossary entry spells is non-existent, and it prints dark
-     red whatever the literature reconstructs it from (admin, 2026-11-12). */
+     red whatever the literature reconstructs it from (2026-11-12). */
   const evOf = (n) => {
     if (!n || n.unknown) return "ev-weak";
     /* A rung the laws reach between two recorded stages is the ladder's own
        "derived" rung — a form no glossary records, but not a hole either: the
        model derived it, and the word's own page prints it in this colour
-       (admin, 2026-11-13: a piece brings its whole timeline with it). */
+       (2026-11-13: a piece brings its whole timeline with it). */
     if (n.derived) return "ev-weak";
     /* A word of a language outside the family is not a missing entry: the
-       model simply holds no glossary there (admin, 2026-11-13). */
+       model simply holds no glossary there (2026-11-13). */
     if (n.outside) return "ev-outside";
     if (n.known === false) return "ev-missing";
     if (n.terminal === "pie" || n.kind === "proto"
@@ -1743,17 +1743,17 @@ function constructStep(level, i, linkTo, opts) {
   /* One row of a piece's own timeline, inside its column: the language and its
      years against the rail on the left, the word on the right — the ladder's
      own rung, at the ladder's own sizes, because the climb above a construction
-     has to read as the same timeline that continues below it (admin,
+     has to read as the same timeline that continues below it (
      2026-11-12: "the language names should be shown to the left along with the
      est. dates").  Every row of every column is exactly one step high
      (`--crow`), so the ancestors of two pieces that stand in the same language
      land on the same line — *h₂entó- and *swer-, a PIE word above each piece of
-     *andaswarō (admin, 2026-11-12). */
+     *andaswarō (2026-11-12). */
   /* The laws of one step of a piece's climb.  Every row of the tree is a word
      the ladder would have carried down by called laws, so the row carries the
      same chips the ladder prints — with the same switches, because a reader
      who can turn a law off on one timeline must be able to do it on all of
-     them (admin, 2026-11-13). */
+     them (2026-11-13). */
   const stepLaws = (step, stage) => {
     const rules = (step && step.rules) || [];
     if (!rules.length) return "";
@@ -1780,7 +1780,7 @@ function constructStep(level, i, linkTo, opts) {
             /* A rung the laws produce between two recorded stages is still a
                form no glossary heads: the hover said «no glossary entry» while
                the line said «a form the laws produce», and the reader was told
-               two things at once (admin, 2026-11-13: ناراحت's Middle Persian,
+               two things at once (2026-11-13: ناراحت's Middle Persian,
                Old Persian and Proto-Iranian rungs).  Say what is missing first,
                then how the row got here. */
             ? `<span class="cgloss"><span class="norec">no entry for this word</span></span>`
@@ -1802,7 +1802,7 @@ function constructStep(level, i, linkTo, opts) {
      into one.  A word whose own record states a construction is that
      construction — a row of its own — and the climb goes on through the word
      it was made from, so every row of every column is the same height and two
-     pieces' ancestors at the same distance stand on one line (admin,
+     pieces' ancestors at the same distance stand on one line (
      2026-11-12). */
   const climbOf = (p) => {
     const rows = [];
@@ -1832,7 +1832,7 @@ function constructStep(level, i, linkTo, opts) {
      first word needs no mark of its own — the diamond beside it is its mark —
      so its label is the step's own: *construction*, and the kind of formation
      the record states, printed on the diamond's line instead of under the tree
-     (admin, 2026-11-12).  A later piece is not labelled: it is a word *of* the
+     (2026-11-12).  A later piece is not labelled: it is a word *of* the
      step's own stage, and the line from the `+` runs on to its dot through the
      empty label cell. */
   const labelCell = (name, era, kind) => `<span class="cwhen"><span class="cwhen-name ${kind}">${esc(name)}</span>${
@@ -1840,7 +1840,7 @@ function constructStep(level, i, linkTo, opts) {
   /* The kind says "reduplication"; which formation it is — the perfect/stative
      (o-grade, *-e) or an i-reduplicated present (zero grade) — is what tells
      the reader *why* the root's vowel changed, so it stands beside it
-     (admin, 2026-11-12: the reduplicated stative is a formation, name it). */
+     (2026-11-12: the reduplicated stative is a formation, name it). */
   const formationOf = (b) => {
     const kind = kindOf(b);
     const type = String(b.formation || "").trim();
@@ -1853,14 +1853,14 @@ function constructStep(level, i, linkTo, opts) {
     /* A suffix carries its hyphen after the reconstruction's star: *-tós, not
        -*-tós (2026-11-12).  The star itself comes from the one test above, so a
        piece that carries none in the record still prints as its stage writes
-       it (admin, 2026-11-12). */
+       it (2026-11-12). */
     const hyphened = b.kind === "suffix" && k > 0 && !formText.replace(/^\*/, "").startsWith("-")
       ? formText.replace(/^\*/, "*-") : formText;
     const show = starred(hyphened, b.lang);
     /* A bound morpheme opens no *word* page — the letter that happens to share
        its signs is not its entry.  It opens its own page when the stage's
        glossary holds an affix entry for it, which is the right page for a
-       suffix (admin, 2026-11-13: a suffix must open the suffix's own page, or
+       suffix (2026-11-13: a suffix must open the suffix's own page, or
        none). */
     const href = p.bound && !p.known ? "" : link(b.lang, p.form, p.known);
     const said = p.bound
@@ -1877,17 +1877,17 @@ function constructStep(level, i, linkTo, opts) {
       : `<span class="cword">${esc(pf(show))}</span>`;
     /* The piece says how it is read, and — for a script — what its signs
        spell: a bound morpheme with no entry has only these two, and the
-       adjectival suffix used to stand with neither (admin, 2026-11-13). */
+       adjectival suffix used to stand with neither (2026-11-13). */
     const reading = (p.reading ? `<i class="cread">${esc(p.reading)}</i>` : "")
       + (p.signs && p.signs !== p.reading ? `<i class="cread signs">${esc(p.signs)}</i>` : "");
     /* A root that stands in another grade in this formation says so beside
        itself — *ters- under *tr̥s-tó-s is e-grade beside the word's r̥ — and the
-       hover gives the reason the handbooks give (admin, 2026-11-12). */
+       hover gives the reason the handbooks give (2026-11-12). */
     const grade = p.grade_label
       ? `<span class="cgrade" data-tip="${esc(p.grade_note || p.grade_label)}">${esc(p.grade_label)}</span>`
       : "";
     /* Every word on the tree says what it means; the one that says nothing
-       because no entry holds it says that instead (admin, 2026-11-12). */
+       because no entry holds it says that instead (2026-11-12). */
     /* A piece the glossary does not head says so whatever its shape — 134 of
        Old Persian's 529 entries draw such a piece, and a bare word with a `???`
        above it reads as an entry with no origin instead of as a hole (critic
@@ -1899,7 +1899,7 @@ function constructStep(level, i, linkTo, opts) {
           : `<span class="norec">no entry for this word</span>`) : "");
     /* The word and its meaning are one cell: the word sits on the line the
        `+` draws, and the meaning hangs under it without ever moving that line
-       (admin, 2026-11-12). */
+       (2026-11-12). */
     /* A piece of the tree keeps the rail track, because that is where its
        column's line runs and where the mark that stands for it sits: the
        first piece wears the diamond — the step's own mark, in the row of the
@@ -1933,7 +1933,7 @@ function constructStep(level, i, linkTo, opts) {
   /* A word that is itself a construction — *h₂entó- is a combining form from
      *h₂énts, and *h₂énts is *h₂ent- + *-s — keeps that step in its column, one
      row high like every other step, so the climb never stops at a piece the
-     record explains (admin, 2026-11-12).  It is a row of the one staircase,
+     record explains (2026-11-12).  It is a row of the one staircase,
      not a smaller staircase of its own: the diamond sits on the column's own
      rail, at the size every other row has. */
   const buildRow = (item) => {
@@ -1954,7 +1954,7 @@ function constructStep(level, i, linkTo, opts) {
     : `The record states this ${formationOf(b)}: ${joinedOf(b)} → ${b.of || level.form}. A formation is not a sound law.`);
   /* A tab only exists when the record states two different formations.  Its
      label is the formation itself — `on + būtan` against `be + ūtan` — because
-     `affix 1` / `affix 2` says nothing a reader can choose by (admin,
+     `affix 1` / `affix 2` says nothing a reader can choose by (
      2026-11-12: the tabs were meaningless). */
   const tabs = builds.length > 1
     ? `<div class="bstep-tabs" role="tablist">${builds.map((b, k) => `<label for="${uid}-${k}"
@@ -1967,13 +1967,13 @@ function constructStep(level, i, linkTo, opts) {
      rail's right — the diamond is its mark — and the line runs from its own
      right edge through `+` to the next piece; above each piece stands its own
      climb, one step per row, so two pieces that come from the same stage of
-     the family share a line instead of drifting apart (admin, 2026-11-12:
+     the family share a line instead of drifting apart (2026-11-12:
      *h₂entó- and *swer- on one horizontal line). */
   const tree = (b) => {
     const climbs = b.pieces.map((p) => climbOf(p));
     /* A column that carries a step's laws needs one more band of room under
        every word, in every column, or two pieces' ancestors stop sharing a
-       line — and that line is the timeline's whole argument (admin,
+       line — and that line is the timeline's whole argument (
        2026-11-12).  So the tree, not the row, decides the height. */
     const hasLaws = climbs.some((rows, k) => rows.some(
       (item) => item.step && item.step.rules && item.step.rules.length))
@@ -1993,11 +1993,11 @@ function constructStep(level, i, linkTo, opts) {
   /* The page's own construction machinery — the base, the suffix the word
      wears, the picker that tries another cited suffix, and the composed form —
      belongs to the step that draws the pieces, not to the space under the
-     title (admin, 2026-11-12).  It is printed once, on the rung of the word's
+     title (2026-11-12).  It is printed once, on the rung of the word's
      own stage, because that is the formation whose pieces these are. */
   /* The card that used to stand here — "suffix it wears", its chips and its
      picker — repeated what the tree below already draws, piece by piece
-     (admin, 2026-11-12: "that is denoted as part of the timeline").  The
+     (2026-11-12: "that is denoted as part of the timeline").  The
      composition tools live on the rung's own `build…` control. */
   return `<li class="constructstep${ours ? " ours" : ""}${builds.length > 1 ? " multi" : ""}"
       data-tip="${esc(builds.length > 1 ? `${builds.length} constructions are recorded for this form; each tab is one of them, and none is preferred over another.` : tipOf(builds[0]))}">
@@ -2007,7 +2007,7 @@ function constructStep(level, i, linkTo, opts) {
   </li>`;
 }
 
-/* A compound's pieces are drawn once, in the timeline (admin, 2026-11-13:
+/* A compound's pieces are drawn once, in the timeline (2026-11-13:
    "I thought we completely got rid of the WHERE THE PIECES COME FROM section.
    Please remove this section from all word pages entirely; what it wants to
    show is already shown in the timeline").  The section between the header and
@@ -2044,7 +2044,7 @@ function renderBuiltFrom(d) {
    door to the citation, never a claim about the form (2026-11-08). */
 const recordSources = (rec) => ((rec && rec.sources) || []).filter((s) => s && (s.title || s.url));
 const isWiktionary = (s) => /wiktionary/i.test(`${(s && s.id) || ""} ${(s && s.title) || ""} ${(s && s.url) || ""}`);
-/* A link is a page, not a site (admin, 2026-11-12): the server hands over one
+/* A link is a page, not a site (2026-11-12): the server hands over one
    row per page that is *recorded* — a Wiktionary article, Dehkhoda's own entry
    for the word — and a word with no recorded page has none, so no icon is
    drawn.  An icon that opens nothing said nothing. */
@@ -2057,7 +2057,7 @@ const recordSourceText = (rec) => {
   /* Name the page the word was read on, not the site: "Wiktionary" alone is a
      link to a front page and says nothing about this word (2026-11-08).  A
      dictionary's own entry is named the same way — Dehkhoda's page for کبود,
-     not "vajehyab.com" (admin, 2026-11-12). */
+     not "vajehyab.com" (2026-11-12). */
   const named = (s) => {
     try {
       const parts = decodeURIComponent(new URL(s.url).pathname).split("/").filter(Boolean);
@@ -2086,7 +2086,7 @@ const recordSourceTip = (rec, langName) => {
    word's top-right corner — where the ✓ of a match sits — and it opens where
    the word was read. The mark is Wiktionary's own initial W, set in a serif
    face like Wikipedia's globe-W: the monoline W read as a generic letter, and
-   a serifed W says "Wiktionary" without saying "Wikipedia" (admin,
+   a serifed W says "Wiktionary" without saying "Wikipedia" (
    2026-11-12). A real glyph, not a drawing, so the serifs survive at 11 px,
    where a stroked path would blur into a zigzag. */
 const wiktionaryIcon = `<span class="wmark" aria-hidden="true">W</span>`;
@@ -2098,7 +2098,7 @@ const pageGlyph = `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"
   stroke-linejoin="round"><path d="M6 3h8l5 5v13H6V3Z"/><path d="M14 3v5h5"/></svg>`;
 const pageMark = (p) => (p.kind === "wiktionary" ? wiktionaryIcon
   : p.kind === "dictionary" ? bookGlyph : pageGlyph);
-/* The corner mark is the door, and it is one per recorded page (admin,
+/* The corner mark is the door, and it is one per recorded page (
    2026-11-12): the W of the word's Wiktionary article and the book of its
    Dehkhoda entry stand side by side on the recorded word's corner, each opening
    its own page.  No page recorded, no mark. */
@@ -2176,7 +2176,7 @@ function renderHierarchy(h, d, opts) {
           ? `<span class="badge" data-tip="The record names no ancestor for this word: the ladder starts here. A seam below, when there is one, says what the word is made of, and a formation is not a derivation.">no origin recorded</span>`
         /* A stage the reader carried the etymon into is a reading of the
            laws, not a verdict on the etymon: the word's own standing is above
-           it, on its own rung (admin, 2026-11-12). */
+           it, on its own rung (2026-11-12). */
         : (d && d.is_root && (h.path || []).length)
           ? `<span class="badge" data-tip="This stage is where the registered laws carry the etymon; it is a reconstruction, and the etymon's own record stands above it.">descended by the laws</span>`
           : `<span class="badge warn" data-tip="The laws do not reach the attested form yet. The missing step is the worklist in docs/COVERAGE.md.">differs — the worklist</span>`;
@@ -2254,7 +2254,7 @@ function renderHierarchy(h, d, opts) {
             : `The stages above that word are its own history, not this join's.`}</p>`
       /* The stages above a word are no longer announced under the heading:
          the timeline itself is the statement, and when a branch ends in a ???
-         a paragraph saying "earlier stages exist" only repeats it (admin,
+         a paragraph saying "earlier stages exist" only repeats it (
          2026-11-12). */
       : "") : "";
   /* A record may name a register of the stage the form is read at ("inherited
@@ -2272,7 +2272,7 @@ function renderHierarchy(h, d, opts) {
      its word page when a glossary holds it and the "not recorded here" page
      when it does not.  The exclusion used to cover the whole language, which
      left the pieces of a construction — another word, the same language — with
-     no door at all (admin, 2026-11-12). */
+     no door at all (2026-11-12). */
   const via = d && d.word ? `${d.lang}/${d.word}` : "";
   const linkTo = (stage, w, known) => (!d || !w
     || (stage === d.lang && w === d.word) ? "" : wordHref(stage, w, known, via));
@@ -2298,7 +2298,7 @@ function renderHierarchy(h, d, opts) {
     /* A record is a word only when the stage's glossary holds it.  A form the
        etymology row names but no entry spells is not a word of that stage: the
        page prints it dark red, gives it no ✓ and no halo, and says plainly that
-       there is no entry for it (admin, 2026-11-12). */
+       there is no entry for it (2026-11-12). */
     /* A stage this model holds no glossary for (Proto-Italic, Proto-Hellenic)
        is not a hole in a word's record: the rung quotes the form and the page
        says the model describes no glossary there (2026-11-13). */
@@ -2353,14 +2353,14 @@ function renderHierarchy(h, d, opts) {
     const added = cited ? cited.replace(/^-/, "") : "";
     /* What the left column of the rung prints.  A word written in its own
        script is shown by its reading — the layer a reconstruction is made
-       from — and the script stands beside it in the record (admin,
+       from — and the script stands beside it in the record (
        2026-11-13).  `level.form` stays the recorded form: it is what the page
        links to and what an edit changes. */
     const shownForm = level.display || level.form;
     const recOpts = rec ? {
       /* A form with no entry is non-existent, whatever the literature says
          about it: dark red, like every other form the glossary does not hold
-         (admin, 2026-11-12). */
+         (2026-11-12). */
       ev: held ? rec.evidence : "missing",
       reading: rec.reading, signs: rec.signs || "", show: rec.show_reading,
       auto: !!rec.reading_auto, note: rec.reading_note,
@@ -2411,19 +2411,19 @@ function renderHierarchy(h, d, opts) {
        means (the sense line above), or that the glossary has no entry for it.
        "Transliteration only" explained the machinery instead of the word, and
        it fired exactly where no entry exists — the case the reader should read
-       as "no entry for this word" (admin, 2026-11-12). */
+       as "no entry for this word" (2026-11-12). */
     const entryNote = rec && !held
       ? (level.non_ie
         /* A stage outside the family has no glossary in this model, and that is
            a fact about the model, not about the word: it says "non-PIE word"
-           rather than "no entry" (admin, 2026-11-13). */
+           rather than "no entry" (2026-11-13). */
         ? `<span class="sub coutside" data-tip="${esc(`${level.name} is outside the Indo-European family: the form is quoted from the record, and this model keeps no ${level.name} glossary — nothing is missing.`)}">non-PIE word</span>`
         : `<span class="sub norec" data-tip="Nothing in ${esc(level.name)}'s glossary is spelled ${esc(rec.w)}: no headword, no reading of the signs, no entry. The form here is the one the etymology names, and nothing else in this stage records it.">no entry for this word</span>`)
       : (unmodelled
         ? `<span class="sub norec" data-tip="This model holds no ${esc(level.name)} glossary, so the form is quoted from the record and is not linked: nothing is missing from the word's own stage, only from a stage the model does not describe.">no ${esc(level.name)} glossary in this model</span>`
         : "");
     /* A near miss is a question, not a verdict: the record is shown, and the
-       rung says in words that nobody has verified the match yet (admin,
+       rung says in words that nobody has verified the match yet (
        2026-11-12). */
     const unverifiedNote = rec && rec.unverified
       ? `<span class="sub unverifiednote" data-tip="${esc(
@@ -2492,7 +2492,7 @@ function renderHierarchy(h, d, opts) {
   /* «The laws do reach the word exactly» is said only when the word's own
      rung reproduces its record.  A form the signs allow but the record reads
      otherwise (𐎺𐎼𐎣 read vr̥kaʰ, the laws' wˈarkah) is not exact, and the
-     rung already prints both readings (admin, 2026-11-13). */
+     rung already prints both readings (2026-11-13). */
   if (h.exact && !r.match && !h.edited && h.exact.reproduces !== false) {
     notes.push(`The full path from ${esc(h.start_name)} differs, but the laws do reach the word exactly from
       <b>${esc(h.exact.name)} ${esc(pf(starred(h.exact.form, h.exact.stage)))}</b> (${h.exact.steps} ${h.exact.steps === 1 ? "law" : "laws"} below it);
@@ -2546,7 +2546,7 @@ function renderHierarchy(h, d, opts) {
       : "";
     /* The stages above that ancestor are drawn now, when its own article has
        them: the note says where *this* record starts, not where the column
-       does (admin, 2026-11-12). */
+       does (2026-11-12). */
     const climbs = (h.levels || []).some((l) => l.climbed);
     notes.push(`This word's own ancestry stops at <b>${stop}</b>.${via} The cognate set relates it to the
       PIE <b>${root}</b>, but a root carries no word's morphology: it is a relation, not an ancestor row.
@@ -2559,7 +2559,7 @@ function renderHierarchy(h, d, opts) {
      that is why the ladder can only start from the root. */
   /* …unless the timeline already carries that PIE form as a rung of its own:
      the climb went through it, and a note saying it is not a rung would
-     contradict the column above (admin, 2026-11-12). */
+     contradict the column above (2026-11-12). */
   const bare = (w) => String(w || "").replace(/^\*/, "").replace(/-/g, "");
   const setShown = (h.levels || []).some((l) => l.climbed
     && l.form && h.set_source && bare(l.form) === bare(h.set_source));
@@ -2799,12 +2799,12 @@ async function updateLadder(showStage) {
    writing and therefore prints its reading; the client must not guess that
    from the characters — `ˈ` is a modifier letter, and that guess called the
    reconstructed Wˈarkānah "scripted" and offered the record's reading instead
-   (admin, 2026-11-13). */
+   (2026-11-13). */
 function editSeed(level) {
   /* And it seeds the form as *printed*, not as the engine carries it: the
      page turns the stress token ˈ into the dictionary's acute (pf), so
      `Wˈarkānah` is read as Wárkānah — a pencil that opened `Wˈarkānah` would
-     hand the reader a second spelling of the same word (admin, 2026-11-14).
+     hand the reader a second spelling of the same word (2026-11-14).
      Feeding the acute back is safe: the server canonicalises `Wárkānah` to
      `Wˈarkānah` before the laws run. */
   const seed = level && (level.edit || level.display || level.form);
@@ -3437,14 +3437,14 @@ function wordMeta(d, readings, matched, lang) {
   const bits = [];
   /* The recorded spellings are writing, not pronunciation: print them in the
      same mono line as a recorded reading, with the writing named on hover
-     (admin, 2026-11-13). */
+     (2026-11-13). */
   const spellings = [...new Set((d.spellings || []).filter(Boolean))];
   if (spellings.length) {
     const shown = spellings.slice(0, 3).join(", ") + (spellings.length > 3 ? ", …" : "");
     const tip = `The spellings the record writes${d.script ? ` in ${d.script}` : ""} — transliterations, not pronunciations.`;
     bits.push(`<span class="translit spellings" data-tip="${esc(tip)}"><i>· </i>${esc(shown)}</span>`);
   }
-  /* One romanisation per reading, printed once (admin, 2026-11-13): a record
+  /* One romanisation per reading, printed once (2026-11-13): a record
      that gives the same string twice gave one reading, and the header used to
      print «Vr̥kānaʰ · Vr̥kānaʰ».  The alternatives stay in the payload; this is
      the set the reader sees. */
@@ -3460,18 +3460,18 @@ function wordMeta(d, readings, matched, lang) {
       return `<span${cls ? ` class="${cls}"` : ""}${tip}>${esc(r)}</span>`;
     }).join("<i> · </i>")}</span>`);
   }
-  /* What the signs spell, always shown beside a non-Roman script (admin,
+  /* What the signs spell, always shown beside a non-Roman script (
      2026-11-13): g-r-g for گرگ, v-r-k-a-n for 𐎺𐎼𐎣𐎠𐎴.  It is the
      transliteration, not a second pronunciation. */
   if (d.signs && !uniq.includes(d.signs)) {
     bits.push(`<span class="translit signs" data-tip="Transliteration — what the signs spell, sign by sign. It is not a pronunciation.">${esc(d.signs)}</span>`);
   }
   /* IPA is optional and belongs here, beside the word, where a reader can see
-     it is a phonetic note and not the word's citation form (admin, 2026-11-13). */
+     it is a phonetic note and not the word's citation form (2026-11-13). */
   if (d.ipa) bits.push(`<span class="ipa">/${esc(d.ipa.replace(/^\/|\/$/g, ""))}/</span>`);
   /* The status already says how a transcribed word is known; a second note
      under the title saying "transliteration only" said the same thing again
-     in a worse way (admin, 2026-11-12). */
+     in a worse way (2026-11-12). */
   if (d.pos_label) {
     bits.push(`<span class="metaplain" data-tip="${esc(`The dictionary's own label for this word, printed verbatim beside the headword: «${d.pos_label}». It states the part of speech and, where it says so, that the word is a compound (مرکب) or a relative adjective (نسبی). It is a grammar label, not an etymology.`)}">«${esc(d.pos_label)}»</span>${saidExtra(d) ? `<span class="sub said-gloss">${esc(saidExtra(d))}</span>` : ""}`);
   }
@@ -3481,7 +3481,7 @@ function wordMeta(d, readings, matched, lang) {
   return bits.length ? `<div class="wordmeta">${bits.join("")}</div>` : "";
 }
 
-/* Where the record was read, as icons under the headword (admin, 2026-11-12):
+/* Where the record was read, as icons under the headword (2026-11-12):
    the quotation mark used to sit on the word's corner, where it read as a mark
    *on the word* rather than a door to its source, and a second source had no
    place at all.  One icon per source now stands on the rule under the title:

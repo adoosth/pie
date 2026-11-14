@@ -3,7 +3,7 @@
 - **Status:** open; implemented only for the one case the literature states
   explicitly (the wolf), as a `proposed` rule `lkw_to_lp` (2026-11-08)
 - **Stream:** W4 (new laws)
-- **Author:** integrator
+- **Author:** reviewer
 - **Reviewer:** EDPG and Wiktionary's own *wulfaz / *fimf / *fedwōr entries
 
 ## Claim

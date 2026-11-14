@@ -62,7 +62,7 @@
   /* Liberation Mono before the generic family: DejaVu Sans Mono, which the
      generic name resolves to on Linux, draws ǰ / ǰ with its caron detached
      and floated right when the face is slanted, so a Middle Persian headword
-     read "j ˇ aw" (admin, 2026-11-13).  Liberation and Noto carry the letter. */
+     read "j ˇ aw" (2026-11-13).  Liberation and Noto carry the letter. */
   --mono: "SFMono-Regular", "JetBrains Mono", "Cascadia Mono", Menlo, Consolas,
     "Liberation Mono", "Noto Sans Mono", monospace;
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
@@ -323,7 +323,7 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
   font-weight: 700; line-height: 1; color: var(--halo-ink); background: var(--halo);
   vertical-align: 1px; }
 /* An unverified match: a yellow ⚠ disc and the words, because colour alone
-   must never carry the verdict (admin, 2026-11-12). */
+   must never carry the verdict (2026-11-12). */
 .branchstate .unmatchdot { display: inline-flex; width: 13px; height: 13px; border-radius: 50%;
   align-items: center; justify-content: center; font-size: 9px; font-style: normal;
   font-weight: 700; line-height: 1; color: var(--bg); background: var(--unverified);
@@ -340,7 +340,7 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
 /* Beside the W that opens the record, like the ✓, so neither covers the other. */
 .rung-forms .formblock:has(.recorddot) .form .unmatchdot { right: 10px; }
 /* A record with two pages carries two marks (a W and a book), so the warning
-   and the ✓ step aside by the second mark's width (admin, 2026-11-12). */
+   and the ✓ step aside by the second mark's width (2026-11-12). */
 .rung-forms .formblock:has(.recorddot + .recorddot) .form .unmatchdot,
 .rung-forms .formblock:has(.recorddot + .recorddot) .form.matched .matchdot { right: 28px; }
 .branchlaws { justify-self: end; white-space: nowrap; font-size: 12px; }
@@ -361,7 +361,7 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
 .ev-missing { color: var(--missing); font-style: normal; }
 /* A word of a language outside the family: nothing is missing — this model
    keeps no glossary for Arabic or Turkish — so it is muted, not alarming
-   (admin, 2026-11-13: "don't say 'no entry for this word', say 'non-PIE
+   (2026-11-13: "don't say 'no entry for this word', say 'non-PIE
    word'"). */
 .ev-outside { color: var(--muted); font-style: normal; }
 /* A starting form the reader typed: not evidence of anything until it lands
@@ -383,7 +383,7 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
 /* The transliteration layer: what the signs spell (g-r-g for گرگ), printed
    beside the romanisation and never in its place.  Smaller and dimmer, because
    the romanisation is the reading a linguist cites and this is the writing
-   made legible (admin, 2026-11-13). */
+   made legible (2026-11-13). */
 .reading.signs, .translit.signs { color: var(--dim); font-size: 11.5px; }
 .translit.signs { font-size: 13px; letter-spacing: .01em; }
 .cread.signs { color: var(--dim); font-size: 10.5px; margin-left: 4px; }
@@ -466,7 +466,7 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
 .recorddot svg { width: 10px; height: 10px; }
 /* The W is drawn, not set in a font, so it keeps the same weight at both
    sizes the page uses: 15 px in a source row and 13 px on a word's corner. */
-/* Wiktionary's initial, in a serif face like Wikipedia's W (admin,
+/* Wiktionary's initial, in a serif face like Wikipedia's W (
    2026-11-12): a glyph rather than a path, so the serifs stay crisp at both
    sizes it is printed — the 15 px corner mark and the 24 px source icon. */
 .wmark { font-family: "Times New Roman", Times, "Liberation Serif", "Nimbus Roman",
@@ -526,7 +526,7 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
    top-right corner, side by side: the W that opens the record, and the ✓ just
    to its left, so neither covers the other.  The ✓ used to hang *under* the
    word, where it landed on the sense line and hid a letter of the reading
-   (admin, 2026-11-12). */
+   (2026-11-12). */
 .rung-forms .formblock:has(.recorddot) .form.matched .matchdot { top: -7px; right: 10px; }
 .rung-forms .form.matched .matchdot { position: absolute; top: -7px; right: -5px;
   width: 14px; height: 14px; border-radius: 50%; display: flex;
@@ -539,12 +539,12 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
 /* How a rung's form was built: the pieces the record names, at the stage that
    named them. It sits under the form and above the sense, because it explains
    the form itself and is not a gloss of it (2026-11-09). */
-/* A construction is a step of the timeline (admin, 2026-11-12): the diamond on
+/* A construction is a step of the timeline (2026-11-12): the diamond on
    the rail marks it, the word it was made from stands immediately to its right
    — the diamond *is* that word's mark, so no line and no second dot sit
    between them — and the line then leaves the word's own right edge for `+`
    and the next piece.  The first word used to stand a wire's length away,
-   which bought nothing and left a strip of empty sky above the line (admin,
+   which bought nothing and left a strip of empty sky above the line (
    2026-11-12). */
 .constructstep { display: grid; grid-template-columns: 156px 20px minmax(0, 1fr);
   grid-template-rows: auto auto; gap: 0 14px; padding-top: 12px;
@@ -553,12 +553,12 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
   --termh: 46px; --foot: 17px;
   /* A suffix's gloss is a sentence about what it does and can run to three or
      four lines.  Those lines hang *below* the terms into this strip, so every
-     word of the tree stays on one line and no gloss is ever cut (admin,
+     word of the tree stays on one line and no gloss is ever cut (
      2026-11-12: expand vertically, never horizontally). */
   --bpad: 56px;
   /* The tree's own measure — the ladder's, to the pixel: a 156px label column
      right-aligned against the 14px gap, then the 20px rail track, then the
-     word, which therefore begins where every rung's word begins (admin,
+     word, which therefore begins where every rung's word begins (
      2026-11-12).  The tree starts at the page's own left edge, so its first
      piece's rail *is* the step's rail and no column of the climb can drift
      sideways from the spine it hangs on. */
@@ -573,12 +573,12 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
   /* A wide tree draws a horizontal scrollbar along the bottom of its padding
      box, between the last row and the meaning strip.  The rail under the tree
      is that much taller, so the spine crosses that band too instead of
-     stopping above it (admin, 2026-11-12: a line that stops short of the word
+     stopping above it (2026-11-12: a line that stops short of the word
      is the one thing this timeline must never do). */
   --sbar: 18px;
   /* One row of the tree's own staircase: a label band, a term row, and the
      lines it reserves under the word.  The reading and sign layers stack there
-     now, one per line, so four lines are the row's ordinary floor (admin,
+     now, one per line, so four lines are the row's ordinary floor (
      2026-11-13). */
   --crow: calc(var(--clabelh) + var(--termh) + 4 * 14px + 2px); }
 /* The step's rail is two segments, because the tree between them is a scroll
@@ -586,7 +586,7 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
    one under it carries the line across the meaning strip (`--bpad`) to the
    rung it builds.  The line *through* the tree belongs to the tree's first
    column (`.clead` and the column's own rails), so it scrolls with the column
-   it belongs to instead of hanging in the middle of another one (admin,
+   it belongs to instead of hanging in the middle of another one (
    2026-11-12). */
 .constructstep .rail { position: relative; }
 .constructstep .rail.top { grid-column: 2; grid-row: 1; }
@@ -598,7 +598,7 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
   top: calc(-1 * var(--gap, 0px) - 12px);
   bottom: calc(-1 * var(--treegap) - 1px); }
 /* A step with nothing above it has no line to bring *down*: its tree draws the
-   whole spine from its own oldest row to its last (admin, 2026-11-12). */
+   whole spine from its own oldest row to its last (2026-11-12). */
 .constructstep:first-child .rail.top::before { display: none; }
 .constructstep .rail.foot { grid-column: 2; grid-row: 2; align-self: end;
   height: calc(var(--bpad) + var(--sbar)); }
@@ -618,7 +618,7 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
 .bstep-radio { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
 /* The analyses' tabs stand where a rung's word stands; the tree below them
    spans the step, because its first column is the label column the ladder
-   itself uses (admin, 2026-11-12). */
+   itself uses (2026-11-12). */
 .bstep-tabs { grid-column: 3; grid-row: 1; display: flex; flex-wrap: wrap;
   gap: 4px; margin: 0 0 12px; }
 .btab { font-size: 11px; letter-spacing: .04em; padding: 2px 9px; cursor: pointer;
@@ -648,7 +648,7 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
    from its bottom: the pieces stand on the line the diamond marks, and a
    column's k-th ancestor is exactly k rows above that line.  Two pieces whose
    ancestors stand in the same language therefore land on one horizontal line —
-   *h₂entó- over *anda- beside *swer- over *swarō (admin, 2026-11-12).  The
+   *h₂entó- over *anda- beside *swer- over *swarō (2026-11-12).  The
    rail is the first track of every row, so the line from the most distant form
    down to the piece is unbroken. */
 /* The tree can be wider than the page (three pieces make three full
@@ -656,7 +656,7 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
    is the page's, so its first column stands in the ladder's label column and
    the label that belongs to a word scrolls with that word — while the two
    pieces of the step's rail stay outside the box, where a scrollbar cannot
-   reach them (admin, 2026-11-12). */
+   reach them (2026-11-12). */
 .btrees { grid-column: 1 / -1; grid-row: 2;
   overflow-x: auto; overflow-y: hidden;
   padding: var(--treegap, 6px) 2px var(--bpad) 0; }
@@ -668,7 +668,7 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
    a whole row so it hangs with the columns, but its content is the *term* row
    — the 46px band a word stands in — so the sign and its two stubs sit on the
    same horizontal as the words either side of it, never half a meaning-line
-   below them (admin, 2026-11-12: the line around the + was shifted down). */
+   below them (2026-11-12: the line around the + was shifted down). */
 .cplus { flex: 0 0 54px; height: var(--crow); align-self: flex-end;
   padding-top: var(--clabelh);
   padding-bottom: calc(var(--crow) - var(--clabelh) - var(--termh));
@@ -686,7 +686,7 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
    the left, the rail, then the word.  One template for an ancestor, a built
    ancestor and the piece, so the vertical never steps sideways — and it is the
    ladder's own template, so a column of the climb is read exactly like the
-   timeline it stands on (admin, 2026-11-12). */
+   timeline it stands on (2026-11-12). */
 .cnode, .cbuild, .cterm { display: grid;
   grid-template-columns: var(--clabel) var(--crail) auto;
   align-items: start; column-gap: var(--cgap); height: var(--crow); }
@@ -696,13 +696,13 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
 /* The left column of a row, written as a rung writes it: the language, then
    the years it was in use, right-aligned against the rail.  It is centred on
    the term band, because that is the height of the word, the dot and the
-   diamond it belongs to (admin, 2026-11-12). */
+   diamond it belongs to (2026-11-12). */
 .cwhen { display: flex; flex-direction: column; justify-content: flex-start;
   align-items: flex-end; gap: 1px; text-align: right;
   /* The name's own 17px line is centred in the term band, so the language
      stands on the line of the word (or the dot, or the diamond) it belongs to
      and the years hang just under it — the ladder's reading, to the pixel
-     (admin, 2026-11-12). */
+     (2026-11-12). */
   padding-top: calc((var(--termh) - 17px) / 2);
   height: var(--termh); min-width: 0; white-space: nowrap;
   font-variant-numeric: tabular-nums; }
@@ -713,18 +713,18 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
 .cwhen-era { color: var(--dim); font-size: 11.5px; line-height: 15px; }
 /* "construction" is not a language: it is the step the diamond marks.  It is
    written in the same column, on the diamond's own line, and every construction
-   of the climb carries one — not only the last (admin, 2026-11-12). */
+   of the climb carries one — not only the last (2026-11-12). */
 .cwhen-name.cwhen-build { color: var(--muted); letter-spacing: .04em; }
 /* A later piece's row is met by the `+` and carries no label of its own — it
    is a word *of* the stage the step belongs to — so its empty cell keeps the
-   line that runs from the `+` to its dot unbroken (admin, 2026-11-12). */
+   line that runs from the `+` to its dot unbroken (2026-11-12). */
 .cterm > .cwhen.lead { position: relative; }
 .cterm > .cwhen.lead::before { content: ""; position: absolute;
   left: 0; right: calc(-1 * var(--cgap)); top: calc(var(--termh) / 2 - 1px);
   height: 2px; background: var(--line); }
 /* The first column's line above its oldest row: when the piece beside it
    climbs higher, the spine still comes down from the tree's top to the first
-   row's mark instead of starting halfway down the tree (admin, 2026-11-12). */
+   row's mark instead of starting halfway down the tree (2026-11-12). */
 .clead { flex: 1 1 auto; min-height: 0; display: grid;
   grid-template-columns: var(--clabel) var(--crail) auto; column-gap: var(--cgap); }
 .clead > .crail { grid-column: 2; position: relative; }
@@ -737,7 +737,7 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
   display: none; }
 /* A step at the top of the ladder has no row above it, so there is nothing for
    its first column to bring *down*: the line begins at the oldest mark in the
-   tree (admin, 2026-11-12: *h₂ent- wore a stub of line that met nothing).  The
+   tree (2026-11-12: *h₂ent- wore a stub of line that met nothing).  The
    `.clead` track is that line from above, and the first row's one-pixel
    extension is what joined it — both go. */
 .constructstep:first-child .clead > .crail::before { display: none; }
@@ -750,20 +750,20 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
   top: calc(var(--clabelh) + var(--termh) / 2); }
 /* A piece of a nested formation is met by the `+` beside it, so it keeps no
    label cell and no rail track: the row is the word and its meaning, and the
-   label of that row is the `construction` beside the diamond (admin,
+   label of that row is the `construction` beside the diamond (
    2026-11-12). */
 .cterm.instrip { grid-template-columns: auto; grid-template-rows: auto; }
 .cterm.instrip > .cstack { grid-column: 1; grid-row: 1; }
 .cstack { display: flex; flex-direction: column; min-width: 0; }
 /* The reading and the sign transliteration are vertical layers, not neighbours
    of the word: horizontal room belongs to the timeline, vertical room is cheap
-   (admin, 2026-11-13). */
+   (2026-11-13). */
 .creadstack { display: flex; flex-direction: column; align-items: flex-start;
   min-width: 0; padding-top: 1px; }
 .cwordrow { display: flex; align-items: center; height: var(--termh); }
 /* A piece's own row runs on to the `+` when another piece follows: the line
    leaves the word's right edge and crosses the column, however wide its
-   ancestors made it, so the pieces are joined on the one line (admin,
+   ancestors made it, so the pieces are joined on the one line (
    2026-11-12).  A one-word formation has nothing to join and keeps no line. */
 .cpiece.continues > .cterm { grid-template-columns: var(--clabel) var(--crail) auto minmax(0, 1fr); }
 .cpiece.continues > .cterm::after { content: ""; grid-column: 4; grid-row: 1;
@@ -773,7 +773,7 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
 .cpiece:not(.continues) > .cterm.instrip { grid-template-columns: auto; }
 /* A meaning under an ancestor stays inside the column: a long description of
    what a suffix does wraps to two lines, and the row is already as tall as
-   that, so no meaning can push a row out of line (admin, 2026-11-12). */
+   that, so no meaning can push a row out of line (2026-11-12). */
 .cchain .cgloss { white-space: normal; max-width: 240px; line-height: 1.2; }
 .cchain .cterm.bound .cgloss { max-width: 240px; }
 /* A word no record explains ends in a ???; nothing says which stage it is of,
@@ -803,16 +803,16 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
 .crail.blank::before, .cterm > .crail.blank::after { display: none; }
 /* The first piece's track carries the step's mark: the diamond stands on the
    same 2px line the ancestors climb, in the piece's own row, so it is on the
-   pieces' line whatever the tree's height (admin, 2026-11-12).  The mark
+   pieces' line whatever the tree's height (2026-11-12).  The mark
    hides only the *sideways* stub into the word — the word stands immediately
    at the diamond, so a stub there would run under it — and keeps the line
    coming down from the row above, because the diamond stands *on* the spine
-   rather than cutting it (admin, 2026-11-12: the line above *anda- vanished). */
+   rather than cutting it (2026-11-12: the line above *anda- vanished). */
 .cterm > .crail.mark::after { display: none; }
 /* …and the step's own mark hands the line to the rung it builds: the piece's
    row is the tree's last row, so its mark draws down to the bottom of that row
    and the step's rail takes over from there — the one place where a dot is not
-   the end of the line (admin, 2026-11-12: the line above *andaswarō). */
+   the end of the line (2026-11-12: the line above *andaswarō). */
 .cpiece.first > .cterm > .crail::before { bottom: 0; height: auto; }
 .crail.mark > i { width: 10px; height: 10px; margin: -5px 0 0 -5px;
   border-radius: 1px; transform: rotate(45deg); background: var(--accent-fill);
@@ -823,7 +823,7 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
   background: var(--bg); border: 2px solid var(--dim); }
 .cterm .crail i { background: var(--accent); border-color: var(--accent); }
 /* A built ancestor's mark is a diamond, not a dot: that row is a construction
-   (admin, 2026-11-12). */
+   (2026-11-12). */
 .cbuild > .crail > i { width: 10px; height: 10px; margin: -5px 0 0 -5px;
   border-radius: 1px; transform: rotate(45deg); background: var(--accent-fill);
   border: 1px solid var(--accent); box-shadow: 0 0 0 3px var(--bg); }
@@ -845,7 +845,7 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
 /* A suffix's gloss says what the suffix does, and a sentence does not fit in a
    word's width: it wraps under the piece and runs down into the strip the tree
    keeps for it, while the term row itself keeps its height — so a long gloss
-   never lifts a word off the line and never cuts itself off (admin,
+   never lifts a word off the line and never cuts itself off (
    2026-11-12).  The whole of it is on the cell's hover as well. */
 .cterm.bound .cgloss { width: max-content; max-width: 200px;
   white-space: normal; }
@@ -853,7 +853,7 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
 /* The laws of a step of a piece's climb (`claws`): the ladder's own chips, at
    the size of a column, inside the row they produced — a reader switches a law
    off here exactly as on the ladder, and the tree is recomputed from the same
-   report (admin, 2026-11-13).  The band is reserved for the whole tree by
+   report (2026-11-13).  The band is reserved for the whole tree by
    `.has-laws`, not per row, so two pieces' ancestors keep sharing a line. */
 .cstack > .claws, .cstrip > .claws { display: block; margin-top: 3px;
   max-width: 420px; }
@@ -889,7 +889,7 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
   border-bottom: 1px dotted color-mix(in srgb, currentColor 35%, transparent); }
 /* Only a word that opens something wears the dotted rule: a bound morpheme and
    a form with no entry are not doors, and an underline claims they are
-   (admin, 2026-11-12). */
+   (2026-11-12). */
 .cform span.cword { border-bottom: 0; }
 .cform a.cword:hover { border-bottom-color: currentColor; }
 .cform .cread, .creadstack .cread { font-family: var(--mono); font-size: 12px; font-style: normal;
@@ -901,7 +901,7 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
 /* A built ancestor is a row of the same staircase: the diamond on the column's
    own rail, and the pieces of that formation beside it at the tree's own sizes
    — never a smaller staircase inside a column, because a step nobody can read
-   is not a step (admin, 2026-11-12: the climb above *h₂énts). */
+   is not a step (2026-11-12: the climb above *h₂énts). */
 .cbuild .cstrip { display: flex; align-items: flex-start; height: var(--crow); }
 .cbuild .cplus { flex: 0 0 44px; height: var(--termh); padding-top: 0;
   padding-bottom: 0; align-self: flex-start; }
@@ -916,7 +916,7 @@ summary.branchrow::before { content: "▸"; color: var(--muted); font-size: 11px
    of it: dark red like the form, so the two are read as one statement. */
 .norec { color: var(--missing); font-style: normal; }
 /* A word outside the family is not missing: this model keeps no glossary for
-   Arabic or Turkish, and the note says so (admin, 2026-11-13). */
+   Arabic or Turkish, and the note says so (2026-11-13). */
 .coutside { color: var(--muted); font-style: italic; }
 
 /* the laws of one step, each switchable ---------------------------------- */
@@ -1234,7 +1234,7 @@ table tbody tr { transition: background .15s ease; }
   /* A phone has no room for a label column beside a word, so the language and
      its years stand in a band above the word, exactly as a rung writes them
      here — and every row reserves that band, labelled or not, so two rows of
-     one depth still stand on one line (admin, 2026-11-12). */
+     one depth still stand on one line (2026-11-12). */
   .cnode, .cbuild, .cterm { grid-template-columns: var(--crail) minmax(0, 1fr);
     grid-template-rows: var(--clabelh) auto; }
   .cnode > .crail, .cbuild > .crail, .cterm > .crail {
@@ -1266,7 +1266,7 @@ table tbody tr { transition: background .15s ease; }
      there — and it is drawn on top of the page, across the rail column, at
      exactly the height where the spine leaves the tree for the rung below.
      The strip stays scrollable by touch; only its bar goes, the way the nav's
-     does (admin, 2026-11-12: the line has to reach the word). */
+     does (2026-11-12: the line has to reach the word). */
   .btrees { scrollbar-width: none; }
   .btrees::-webkit-scrollbar { display: none; }
   .cform { font-size: 16px; }
@@ -1360,7 +1360,7 @@ a.lawname:hover, a.lawname:focus-visible { color: var(--accent); }
    circle*: the rail comes down to its centre, the circle is drawn on that
    centre, and the horizontal line starts at the circle's own right edge and
    runs to the box.  v0.17.11 drew the circle at the top of the step and the
-   line 11px below it, so the two read as two unconnected marks (admin,
+   line 11px below it, so the two read as two unconnected marks (
    2026-11-12: "the line isn't connected to the white circle"). */
 /* `.rung.nextrung`, not `.nextrung`: the closing circle is also the ladder's
    last rung, and `.rung:last-child .rail::before { height: 14px }` outranked a
@@ -1551,7 +1551,7 @@ a.lawname:hover, a.lawname:focus-visible { color: var(--accent); }
 .standing { display: inline-flex; align-items: baseline; gap: 9px; flex-wrap: wrap;
   font-size: clamp(17px, 1.9vw, 26px); line-height: 1.15; }
 /* Where the record was read: one icon per source, on the rule under the title
-   (admin, 2026-11-12).  A W for a Wiktionary entry, a book for a dictionary, a
+   (2026-11-12).  A W for a Wiktionary entry, a book for a dictionary, a
    page for anything else; no text, so the row costs a line. */
 .sourcerow { display: flex; align-items: center; gap: 9px; margin: 6px 0 8px; }
 .srcicon { width: 24px; height: 24px; border-radius: 50%; display: inline-flex;
@@ -1597,7 +1597,7 @@ a.lawname:hover, a.lawname:focus-visible { color: var(--accent); }
 .glossword { font-weight: 500; cursor: help;
   color: color-mix(in srgb, var(--band, currentColor) 80%, var(--fg)); }
 .glossword:hover { color: var(--band, currentColor); }
-/* The two facts that were pills beside the word are columns now (admin,
+/* The two facts that were pills beside the word are columns now (
    2026-11-13): how the word is known (attested / recorded / proposed) and what
    it is (a root or a bound affix).  A pill repeated on every row read as
    decoration; a column can be scanned down, and the empty cell says "an
@@ -1610,7 +1610,7 @@ a.lawname:hover, a.lawname:focus-visible { color: var(--accent); }
 .glstatus.proposed { color: var(--proposed); }
 /* The transcription and transliteration columns are optional: the page adds
    them only when a row has a value that differs from its form.  A phone hides
-   them and prints the same facts under the form instead (admin, 2026-11-13). */
+   them and prints the same facts under the form instead (2026-11-13). */
 .glosslist .glossopt { font-family: var(--mono); font-size: 12.5px; }
 .glossmore { display: none; }
 .glossmore i { font-style: normal; color: var(--dim); }
@@ -1788,7 +1788,7 @@ a.bpiece:hover { text-decoration: underline; }
 
 /* The dot beside a word is a door, not decoration: the whole circle is a
    button, so a construction is one click from the word it starts from
-   (admin, 2026-11-12). */
+   (2026-11-12). */
 .rung .rail .rdot { position: absolute; left: 50%; top: -4px; width: 24px; height: 24px;
   margin-left: -12px; padding: 0; border: 0; background: transparent; cursor: pointer;
   z-index: 2; border-radius: 50%; }

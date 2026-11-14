@@ -3,7 +3,7 @@
 ``pyproject.toml`` says ``>=3.10``, but a f-string with a replacement field that
 runs on to the next line is Python 3.12 only (PEP 701): CPython 3.14 here read
 it happily and the Windows reader's 3.11 answered "unterminated string
-literal" on `server.py` (admin, 2026-11-13).  One rule, checked here: a
+literal" on `server.py` (2026-11-13).  One rule, checked here: a
 single-quoted f-string stays on one line.
 """
 import io

@@ -11,7 +11,7 @@ revision and the etymology the page prints — or *missing*, and the ledger says
 so, so a later pass never asks the site the same question twice.  Nothing here
 is a claim about the word: the etymology is stored as a quotation with the page
 it came from, and it is shown beside this model's own reading rather than mixed
-into it (admin, 2026-11-11: "if the wiktionary provides etymology, store that
+into it (2026-11-11: "if the wiktionary provides etymology, store that
 appropriately").
 """
 from __future__ import annotations
@@ -28,7 +28,7 @@ LEDGER = data.DATA / "sources" / "fa_wiktionary.jsonl.gz"
 #: The English Wiktionary's pages for glossary headwords, one file per language,
 #: written by ``tools/en_wiktionary_index.py``.  Only pages that answered are
 #: stored: a word absent from the file has no *recorded* page, and the word page
-#: shows no icon for it (admin, 2026-11-12).
+#: shows no icon for it (2026-11-12).
 EN_DIR = data.DATA / "sources" / "en_wiktionary"
 
 #: The headings a Persian Wiktionary page uses for the history of the word.

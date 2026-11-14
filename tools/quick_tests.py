@@ -2,8 +2,8 @@
 """The everyday test run: the fast modules, under a hard wall-clock budget.
 
 The repo is in development, so a change answers to the tests it touches, not to
-all of them (admin, 2026-11-13: "never do testing for more than a minute until
-I explicitly ask").  This runner is the everyday gate: a curated list of modules
+all of them (2026-11-13: never test for more than a minute unless a longer run
+is asked for by name).  This runner is the everyday gate: a curated list of modules
 that pin the engine, the read models, the web contract and the data rules, run
 in one process, with a budget it will not cross.
 
@@ -13,8 +13,8 @@ in one process, with a budget it will not cross.
     python3 tools/quick_tests.py tests.test_web tests.test_lexicon   # by name
 
 The full suite (``python3 -m unittest discover -s tests``) is for a release or
-when the admin asks for it; it takes many minutes and proves nothing more about
-an ordinary change.  Adding a module here costs that budget: measure it, and
+for a run asked for by name; it takes many minutes and proves nothing more
+about an ordinary change.  Adding a module here costs that budget: measure it, and
 only add what pins a rule (see docs/DECISIONS.md, "Process").
 """
 from __future__ import annotations

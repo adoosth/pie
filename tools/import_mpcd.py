@@ -5,7 +5,7 @@ The MPCD (mpcorpus.org) is a corpus *and* a dictionary: every lemma it lists is
 tied to the tokens a text writes, so it can say how often a word occurs and
 which Pahlavi spellings it has.  That is what this repository's Middle Persian
 stage was missing — 697 hand-filed words against a corpus of 827,000 tokens
-(admin, 2026-11-13).
+(2026-11-13).
 
 What is taken, and what is left behind:
 
@@ -19,10 +19,10 @@ What is taken, and what is left behind:
 * the **spellings** the corpus writes for it: the commonest goes in ``translit``
   and up to eight more in ``translit_variants`` (garm is written glm 48×,
   g03lm 43×, …).  They are the same word written differently, never rows of
-  their own (admin, 2026-11-13);
+  their own (2026-11-13);
 * the address of its **MPCD entry**, so the word page carries a book icon that
   opens the entry the word was read in (nothing more: the occurrence list and
-  the texts it quotes are out of scope, admin 2026-11-13).
+  the texts it quotes are out of scope, 2026-11-13).
 
 A lemma no token of the corpus writes is not filed: the dictionary lists it,
 but no text spells it, and this model would then call it attested.  Multiword

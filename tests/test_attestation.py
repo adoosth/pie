@@ -34,7 +34,7 @@ class Classification(unittest.TestCase):
         A reader saw `recorded (*)` beside a headword that already carried the
         asterisk and read it as a footnote; the mark on the word means one
         thing — no text spells it — and the label is just the word
-        (admin, 2026-11-12).
+        (2026-11-12).
         """
         for status in ("recorded", "proposed"):
             self.assertNotIn("(*)", attestation.LABELS[status], status)
@@ -127,7 +127,7 @@ class Pages(unittest.TestCase):
 
 
 class Transcribed(unittest.TestCase):
-    """A record's transcription attests its word (admin, 2026-11-13).
+    """A record's transcription attests its word (2026-11-13).
 
     Middle Persian ``garm`` is MPCD's reading of the spellings ``glm``,
     ``g03lm`` …; the page says "attested" and says what the form above is

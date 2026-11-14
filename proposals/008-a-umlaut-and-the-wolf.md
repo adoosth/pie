@@ -2,7 +2,7 @@
 
 - **Status:** open; not implemented (2026-11-08)
 - **Stream:** W3/W4 (sound laws, deliberation)
-- **Author:** integrator
+- **Author:** reviewer
 - **Reviewers sought:** Ringe & Taylor (2014), EDPG s.v. *wulfa-
 
 ## The observation

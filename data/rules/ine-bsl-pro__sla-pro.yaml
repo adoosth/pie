@@ -3,7 +3,7 @@ stage:
   date_start: -500
   date_end: 700
   description: >
-    Candidate transition used only for measurement (proposals/night-0911/sla.md).
+    Candidate transition used only for measurement (proposals/2026-09-11/sla.md).
     From the Proto-Balto-Slavic stage of data/rules/ine-pro__ine-bsl-pro.yaml to
     Proto-Slavic: the vowel system is rebuilt (short *a > *o, *ā/*ō > *a,
     *ē > *ě, *ī > *i, *ū > *y, short *i/*u > *ь/*ъ, diphthongs monophthongised,

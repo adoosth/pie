@@ -88,7 +88,7 @@ class MissingPIELinkTest(unittest.TestCase):
         self.assertNotIn("ine-pro", {a["lang"] for a in page["ancestry"]})
         self.assertEqual(page["ancestry"][-1]["lang"], "gem-pro")
 
-    def test_night_is_partial_because_the_engine_starts_at_middle_english(self):
+    def test_batch_is_partial_because_the_engine_starts_at_middle_english(self):
         """Green needs the whole chain, not a last mile.
 
         English *night* is reproduced exactly from Middle English *nighte*, and

@@ -12,11 +12,12 @@ descendant tree that has a branch; otherwise a keyword table below (a code's
 own name is the last resort). Everything unmatched stays "Other".
 
 Usage:
-    python3 tools/build_language_names.py --src /home/cloud/kaikki
+    python3 tools/build_language_names.py --src $HOME/kaikki
 """
 from __future__ import annotations
 
 import argparse
+import os
 import json
 from datetime import date
 from pathlib import Path
@@ -108,7 +109,8 @@ def harvest(rows: list, names: dict[str, str], branches: dict[str, str],
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--src", default="/home/cloud/kaikki")
+    dump = os.environ.get("PIE_KAIKKI", str(Path.home() / "kaikki"))
+    ap.add_argument("--src", default=dump)
     ap.add_argument("--out", default=str(DATA / "language_names.json"))
     args = ap.parse_args()
 

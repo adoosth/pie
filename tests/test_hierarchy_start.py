@@ -49,7 +49,7 @@ class TestTheTimelineStaysOnTheModelsOwnForm(unittest.TestCase):
     The record may state a separate transcription beside a reconstructed
     romanisation (peo Wˈarkānah, read Vr̥kānaʰ); that reading is display only.
     A writing still descends from its reading, because a script is not a sound
-    (admin, 2026-11-13).
+    (2026-11-13).
     """
 
     def test_a_romanisation_carries_itself_and_prints_its_transcription(self):

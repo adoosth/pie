@@ -29,7 +29,7 @@ class MismatchTest(unittest.TestCase):
         return steps.mismatches(entry(lang, word), lang,
                                 data.derivation_chain(lang), self.rulesets)
 
-    def test_night_disagrees_at_every_stage_above_the_word(self):
+    def test_batch_disagrees_at_every_stage_above_the_word(self):
         stages = [row["stage"] for row in self.mismatches("en", "night")]
         self.assertEqual(stages, ["gem-pro", "gmw-pro", "ang", "enm"])
 

@@ -72,7 +72,7 @@ def _load_yaml(path: Path):
 
     Composing a rule or morphology file costs milliseconds each, and a page
     reads a handful of them for every rung of the ladder.  The mtime is the
-    cache key, so a file the admin edits is read again on the next call
+    cache key, so a file edited is read again on the next call
     without a restart (2026-11-12).
     """
     try:
@@ -131,7 +131,7 @@ def cached(name: str, version: int, sources: Iterable[Path | str], build):
     The first request after a restart used to re-parse 591k glossary rows and
     rebuild every index; a word page took ten seconds.  The parsed rows and the
     indexes built from them are the same on every run, so they are written to
-    the user's cache directory and read back — a restart costs a decompression,
+    a cache directory and read back — a restart costs a decompression,
     not a re-derivation.  A cache that cannot be written is not an error: the
     value is built and returned exactly as before.
     """
@@ -473,14 +473,14 @@ def _canonical_entry(lang: str, labels: dict, entry: dict) -> dict:
         if label["structure"]:
             entry["structure"] = dict(label["structure"])
     # One word, one spelling: a stage that states a standard alphabet
-    # (data/notation/) is read in it, whoever wrote the row (admin,
+    # (data/notation/) is read in it, whoever wrote the row (
     # 2026-11-13: jaw and ǰaw were two entries for "barley").
     word = notation.canonical(lang, entry.get("word") or "")
     if word:
         entry["word"] = word
     # An ancestor is named in *its own* stage's notation: a Persian row that
     # names Middle Persian *jaw* must draw the glossary's ǰaw, or one page
-    # would print two spellings of one word (admin, 2026-11-13: "consistent for
+    # would print two spellings of one word (2026-11-13: "consistent for
     # the entire language's romanizations").
     for pair in entry.get("anc") or []:
         if (isinstance(pair, list) and len(pair) >= 2

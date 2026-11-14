@@ -124,7 +124,7 @@ class GlossaryBandTest(unittest.TestCase):
         """The "root" pill asked whether the *etymology* mentioned a root.
 
         In a reconstructed stage nearly every word does, so 796 of the 799
-        Proto-Indo-Iranian rows wore it and the pill said nothing (admin,
+        Proto-Indo-Iranian rows wore it and the pill said nothing (
         2026-11-13).  A row is a root when the dictionary heads it as one, an
         affix when it is bound, and the rest are words; the part of speech
         column is what says so — there is no second column repeating it.

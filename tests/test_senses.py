@@ -119,7 +119,7 @@ class MeaningBeforeGrammarTest(unittest.TestCase):
     *aiganaz is a `===Participle===` ("past participle of *aiganą") and an
     `===Adjective===` ("own") on one Wiktionary page, with one etymology — one
     word, which the reader met as two entries in the search box and as a page
-    that never said "own" (admin, 2026-11-12).
+    that never said "own" (2026-11-12).
     """
 
     def test_a_form_of_note_is_not_a_meaning(self):

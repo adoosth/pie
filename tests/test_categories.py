@@ -175,7 +175,7 @@ class RecordedStepTest(unittest.TestCase):
 class MissingRungTest(unittest.TestCase):
     """A timeline with a hole in it is not "fully explained".
 
-    The admin's test (2026-11-13): every segment starts from PIE or a non-PIE
+    The test (2026-11-13): every segment starts from PIE or a non-PIE
     language, the exact word is produced by cited laws *or* by the record's own
     registered construction, and everything matches what is recorded.  The
     third clause had a gap — a rung whose word the stage's glossary does not
@@ -224,7 +224,7 @@ class MissingRungTest(unittest.TestCase):
         fa آبجو read "fully explained" above exactly that line, because the
         published band was measured before a compound's pieces were walked.  A
         measured hole is a fact of the page, so it wins over the index
-        (admin, 2026-11-13).
+        (2026-11-13).
         """
         from pie import service
         own = {"category": "partial", "reason": "no entry for Old Persian *yáwaʰ",
@@ -239,7 +239,7 @@ class MissingRungTest(unittest.TestCase):
         fa رضاقلی read "fully explained" above a ``???``: its pieces were
         explained as far as the band measured them, but the second piece's own
         timeline ended nowhere and the page said so with a question mark.  A
-        hole the reader can see may not be green, whatever its shape (admin,
+        hole the reader can see may not be green, whatever its shape (
         2026-11-13).
         """
         origin = {"stage": "fa", "name": "Persian", "form": "قلی",
@@ -267,7 +267,7 @@ class MissingRungTest(unittest.TestCase):
 
         چامه‌سرایی is built from three pieces and its own record names no
         ancestor, so the walk used to return nothing while the page drew a
-        dark-red rung above a piece (admin, 2026-11-13, fa آبجو).
+        dark-red rung above a piece (2026-11-13, fa آبجو).
         """
         from pie import data, service
         entry = service._lemma_index("fa")["چامه‌سرایی"]

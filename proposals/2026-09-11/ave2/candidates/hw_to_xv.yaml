@@ -1,0 +1,21 @@
+# Candidate for ira-pro -> ave, batch 0911 (Avestan).  HELD, not shipped.
+# Claim: PIr *hw- becomes Av. xᵛ- (the labiovelar fricative) word-initially.
+# Measured 2026-11-09 with `tools/whatif.py --to ave --layers exact,orthographic`:
+#   8 forms changed, 0 words gained, 0 lost.  Same wall: xᵛafna-, xᵛasura-, xᵛa-
+#   are stem-cited and bare of IPA.  See ../report.md, walls 1 and 2.
+stage:
+  name: Proto-Iranian → Avestan (candidate, *hw to xᵛ)
+rules:
+  - id: hw_to_xv
+    order: 15
+    tier: proposed
+    name: "PIr *hw > Av. xᵛ"
+    match: "h w"
+    replace: xᵛ
+    description: >
+      Avestan fuses the laryngeal + glide of PIr *hw into the one letter 𐬓 xᵛ:
+      Av. xᵛafna- 'sleep', xᵛasura-, xᵛa- 'own' beside OP *hwa-.
+    references: [hoffmann-forssman-2004, skjaervo-2009]
+    examples:
+      - {in: "*hwafnah", out: "*xᵛafnah", gloss: "sleep (Av. xᵛafna-)"}
+      - {in: "*hwasurah", out: "*xᵛasurah", gloss: "good (Av. xᵛasura-)"}

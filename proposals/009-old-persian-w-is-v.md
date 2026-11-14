@@ -2,7 +2,7 @@
 
 - **Status:** open — not implemented
 - **Stream:** W4 (new laws) / W6 (notation)
-- **Author:** integrator
+- **Author:** reviewer
 - **Reviewer:** Kent (1953), Skjærvø (2009), the Old Persian glossary
 
 ## Claim

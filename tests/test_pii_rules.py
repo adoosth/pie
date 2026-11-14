@@ -106,7 +106,7 @@ class TestOrdering(unittest.TestCase):
 
 
 class TestRejectedCandidates(unittest.TestCase):
-    """The laws measured and refused on 2026-11-09 (proposals/night-0911/pii)."""
+    """The laws measured and refused on 2026-11-09 (proposals/2026-09-11/pii)."""
 
     def setUp(self):
         self.rules = {r.id: r for r in data.rulesets()[(PI, PII)].rules}
@@ -128,7 +128,7 @@ class TestRejectedCandidates(unittest.TestCase):
     def test_the_final_r_is_left_for_the_word_s_own_pathway(self):
         # A final *-r loss after *ā was measured (+7 PII words) and refused: it
         # removed the *r of Persian pedār, mādar and dādār, which the peo->pal
-        # pathway law owns (proposals/night-0911/pii/report.md).
+        # pathway law owns (proposals/2026-09-11/pii/report.md).
         self.assertNotIn("final_r_loss", self.rules)
         out = derive("*ph₂tḗr", ["ine-pro", "iir-pro", "ira-pro", "peo", "pal", "fa"],
                      data.rulesets()).output

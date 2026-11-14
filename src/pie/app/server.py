@@ -178,7 +178,7 @@ class Handler(BaseHTTPRequestHandler):
             # dropped it, so the interface could not ask (2026-11-12).
             # ``page`` steps through the list: Middle Persian holds 17,000
             # words and the first 400 used to be all a reader could reach
-            # (admin, 2026-11-13).
+            # (2026-11-13).
             return self._json(service.glossary(qs.get("lang", "ine-pro"),
                                                int(qs.get("limit", 400)),
                                                band=qs.get("band") or None,

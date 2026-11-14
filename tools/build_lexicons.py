@@ -599,7 +599,7 @@ def merge_supplements() -> None:
         #: supplement row whose pos is none of them is a **homonym**, not a
         #: correction: fa مال is the Arabic noun «property», and the present
         #: stem of مالیدن is another word that happens to be spelled so
-        #: (admin, 2026-11-13).  Without this the stem row was folded into the
+        #: (2026-11-13).  Without this the stem row was folded into the
         #: loan and دستمال still read its مال as the Arabic word.
         seen_pos: dict[str, set[str]] = {}
         #: word → its MPCD rows, so matching a supplement row is a dictionary

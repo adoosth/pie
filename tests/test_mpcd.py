@@ -4,7 +4,7 @@ MPCD is a corpus with a dictionary on top of it, so an entry it gives can say
 how often the texts write the word.  These tests hold the three things that
 makes possible: the source shows up as the word's own page (the book icon), the
 count reaches the reader, and a variant MPCD analyses (garmtar) is a
-construction of a registered ending rather than a word of its own (admin,
+construction of a registered ending rather than a word of its own (
 2026-11-13).
 """
 

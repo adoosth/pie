@@ -252,7 +252,7 @@ def _group_of(groups: list[dict], entry: dict) -> dict | None:
     objects.  The search and the rung looked their row up with ``is``, so after
     a re-read the row matched no group: *aiganaz lost "own" and read "past
     participle of *aiganą", and two homographs collapsed into one row
-    (admin, 2026-11-12).  A row is identified the way the grouper identifies
+    (2026-11-12).  A row is identified the way the grouper identifies
     it: part of speech, meanings and etymology.  Two rows that agree on all
     three are the same word to `senses.groups` too, so this is as
     discriminating as the grouping itself.
@@ -460,7 +460,7 @@ def _spellings_of(lang: str, entry: dict) -> list[str]:
     commonest in ``translit`` and the rest in ``translit_variants``), and a
     headword that is itself a transcription with a ``translit`` beside it
     (MacKenzie's Aban / yfiynl | M ybynt N ~).  A script headword keeps its
-    ``translit`` as a reading, and is not touched here (admin, 2026-11-13).
+    ``translit`` as a reading, and is not touched here (2026-11-13).
     """
     recorded = _recorded_spellings(entry)
     if recorded:
@@ -505,7 +505,7 @@ def readings_for(entry: dict) -> dict:
     # MacKenzie's yfiynl).  A script headword is the opposite case — the
     # writing is above and the reading has to be stated (``phon``, or the
     # romanisation the record superscribes) — and a proto stage heads its forms
-    # with the reading itself (admin, 2026-11-13).
+    # with the reading itself (2026-11-13).
     head = str(entry.get("word") or "").strip()
     lang = str(entry.get("lang") or "")
     transcribed = bool(head) and kind_of(lang) != "proto" and not _in_native_script(lang, head)
@@ -517,7 +517,7 @@ def readings_for(entry: dict) -> dict:
         candidates += [entry.get("translit")] + list(entry.get("translit_alt") or [])
     # One word, one reading: an alternate that repeats the chosen one is the
     # same string again, and the page printed it twice («Vr̥kānaʰ · Vr̥kānaʰ»,
-    # admin, 2026-11-13).  The alternatives stay stored; the *reader* sees each
+    # 2026-11-13).  The alternatives stay stored; the *reader* sees each
     # one once.
     seen: list[str] = []
     for candidate in candidates:
@@ -536,13 +536,13 @@ def alternate_readings(entry: dict) -> list[str]:
     A spelling may be read more than one way in the literature (𐎺𐎼𐎣𐎠𐎴 is
     Vr̥kānaʰ, and a style that writes *w* for the sign's *v* writes it
     Warkānah).  All of them are kept, one is used, and none is printed twice
-    (admin, 2026-11-13).
+    (2026-11-13).
     """
     chosen = readings_for(entry)["reading"]
     out: list[str] = []
     # A transliteration is not a reading: when the headword is the
     # transcription, the spellings beside it are the writing, not another
-    # pronunciation (admin, 2026-11-13).
+    # pronunciation (2026-11-13).
     head = str(entry.get("word") or "").strip()
     lang = str(entry.get("lang") or "")
     transcribed = bool(head) and kind_of(lang) != "proto" and not _in_native_script(lang, head)
@@ -563,7 +563,7 @@ def _notation_entries(lang: str, word: str) -> list[dict]:
     (``*tr̥s-nó-s``) while the glossary heads the word solid (``*tr̥snós``).  A
     hyphen there is the record's notation, not a sound, and a lookup that
     compares spellings literally reported "no entry for this word" beside a link
-    that opened the entry it had (admin, 2026-11-12, Persian تشنه).  Every
+    that opened the entry it had (2026-11-12, Persian تشنه).  Every
     reader of a form — its meaning, its evidence, its ✓ — goes through here.
     """
     entries = word_index().get((lang, word)) or []
@@ -696,7 +696,7 @@ def _with_reading(payload: dict, lang: str, word: str) -> dict:
         "reading": line["reading"],
         # The second Latin layer: what the signs spell (va-ra-ka-a-na, g-r-g).
         # It is not a pronunciation and never replaces the romanisation, but a
-        # script is unreadable without it (admin, 2026-11-13).
+        # script is unreadable without it (2026-11-13).
         "signs": line.get("signs", ""),
         "reading_auto": line["auto"],
         "reading_how": line["how"],
@@ -757,7 +757,7 @@ def attestation_of(entry: dict, lang: str) -> dict:
     n = entry.get("occurrences")
     if isinstance(n, int) and n > 0:
         # A count is the strongest witness there is, so it stands beside the
-        # status rather than staying folded into a tooltip (admin, 2026-11-13).
+        # status rather than staying folded into a tooltip (2026-11-13).
         reason = (f"{reason} The corpus writes it {n:,} "
                   f"{'time' if n == 1 else 'times'}.")
     return attestation.payload(entry.get("word") or "", status, reason=reason)
@@ -800,7 +800,7 @@ def _wiktionary_page(entry: dict) -> dict | None:
     words do have one (`data/sources/fa_wiktionary.jsonl.gz`), so the word page
     can point at the place the word was actually read — and, where the page
     prints an etymology, quote it beside this model's own reading instead of
-    mixing the two (admin, 2026-11-11).
+    mixing the two (2026-11-11).
     """
     if (entry.get("lang") or "") != "fa":
         return None
@@ -851,14 +851,14 @@ def _entry_sources(entry: dict) -> list[dict]:
             # address is only a Wiktionary page when it really is one: a
             # Persian entry's `url` is its Dehkhoda page, and labelling that as
             # the Wiktionary link put a vajehyab address behind the quotation
-            # mark (admin, 2026-11-11).
+            # mark (2026-11-11).
             if _is_wiktionary_url(stored):
                 source["entry"] = stored
             else:
                 # No address was recorded when the entry was read, so the page
                 # is only claimed when this repo's own pass found one
                 # (`tools/en_wiktionary_index.py`); otherwise the icon stays
-                # away instead of opening a title that may not exist (admin,
+                # away instead of opening a title that may not exist (
                 # 2026-11-12).
                 found = _en_page(entry.get("lang") or "",
                                  entry.get("word") or "")
@@ -868,11 +868,11 @@ def _entry_sources(entry: dict) -> list[dict]:
             # An entry imported from a dictionary records the page it was read
             # on — Dehkhoda's own entry for کبود, not the dictionary's front
             # page.  Only an address on the source's own site counts as that
-            # source's page (admin, 2026-11-12: the book must open the word).
+            # source's page (2026-11-12: the book must open the word).
             source["entry"] = stored
         # A corpus dictionary counts what it holds, and the count is the
         # attestation: Middle Persian garm is written 102 times in the MPCD
-        # texts (admin, 2026-11-13).  It rides with the source the entry was
+        # texts (2026-11-13).  It rides with the source the entry was
         # read from so the icon can say it, and it is a number of *occurrences*,
         # never a claim about which texts they are in.
         n = entry.get("occurrences")
@@ -930,7 +930,7 @@ def _entry_pages(entry: dict) -> list[dict]:
     on (a Wiktionary article, Dehkhoda's entry on vajehyab), or a Wiktionary page
     this pass found for the headword (`tools/en_wiktionary_index.py`).  A word
     with no recorded page yields nothing, and the page then shows no icon at all
-    (admin, 2026-11-12) — an icon that opens nothing is worse than no icon.
+    (2026-11-12) — an icon that opens nothing is worse than no icon.
     """
     pages: list[dict] = []
     seen: set[str] = set()
@@ -947,7 +947,7 @@ def _entry_pages(entry: dict) -> list[dict]:
             "kind": "wiktionary" if _is_wiktionary_url(url) else (src.get("kind") or ""),
             # What the page holds of this word, when the source counts
             # occurrences: a dictionary can say "the corpus writes it 102
-            # times" without shipping one line of the texts (admin, 2026-11-13).
+            # times" without shipping one line of the texts (2026-11-13).
             "note": f"{n:,} occurrences in the corpus" if isinstance(n, int) and n > 0 else "",
         })
     if not any(p["kind"] == "wiktionary" for p in pages):
@@ -1092,7 +1092,7 @@ def search(q: str, lang: str | None = None, limit: int = 40, gloss: bool = True)
     # One row per *word*, not per part of speech: Wiktionary files the same
     # lexeme under several headings (the participle and the adjective of
     # *aiganaz), and a list that printed one row for each made one word look
-    # like two entries (admin, 2026-11-12).  The grouping is the one the
+    # like two entries (2026-11-12).  The grouping is the one the
     # glossary already uses, so the two lists cannot disagree.
     seen: set[tuple[str, str, int]] = set()
     langs = [lang] if lang else [l for l, _ in data.available_lexicons()]
@@ -1166,7 +1166,7 @@ def _glossary_row_shown(row: tuple, lang: str, proto: bool) -> dict:
     # what a text actually wrote (MPCD's glm, g03lm …), or the script's own
     # sign-by-sign form when the headword is a writing.  Only the first three
     # spellings are printed: the list is a glossary, not a concordance
-    # (admin, 2026-11-13).
+    # (2026-11-13).
     transcription = (word if not _in_native_script(lang, word)
                      else readings_for(entry)["reading"])
     spellings = _spellings_of(lang, entry)
@@ -1174,7 +1174,7 @@ def _glossary_row_shown(row: tuple, lang: str, proto: bool) -> dict:
     # computed one only where the script's own table states how (:peo's
     # syllabary, whose ka may be *ka* or *k*); for an alphabet the mechanical
     # rendering would repeat the letters of the form in another font
-    # (admin, 2026-11-13).
+    # (2026-11-13).
     computed = (bool((script.stage(lang).get("transliteration") or {}))
                 and _in_native_script(lang, word))
     transliteration = (" · ".join(spellings[:3]) if spellings
@@ -1185,7 +1185,7 @@ def _glossary_row_shown(row: tuple, lang: str, proto: bool) -> dict:
         "attestation": status,
         "written": attestation.written(word, status),
         # The two Latin columns a Middle Persian row needs: how it sounds and
-        # how it is written (admin, 2026-11-13).
+        # how it is written (2026-11-13).
         "transcription": transcription,
         "transliteration": transliteration,
         "gloss": [g for g in _page_gloss(lang, entry, group["gloss"])[:2] if g],
@@ -1231,7 +1231,7 @@ def _build_glossary_rows(lang: str) -> list[tuple]:
         groups = _senses_for((lang, word)) or senses.groups(entries)
         for group in groups:
             entry = group["rep"]
-            # What the headword *is*, as a column of its own (admin,
+            # What the headword *is*, as a column of its own (
             # 2026-11-13).  The old "root" pill asked whether the word's
             # etymology mentioned a root, which is true of almost every word
             # in a reconstructed stage and told the reader nothing: 796 of the
@@ -1258,7 +1258,7 @@ def _glossary_rows(lang: str, _stamp: int, roots_first: bool) -> tuple:
 
     A glossary request used to group the senses of all 17,000 Middle Persian
     headwords again for every page, so stepping to page 2 cost as much as
-    opening the list (admin, 2026-11-13: "the glossary takes a while to
+    opening the list (2026-11-13: "the glossary takes a while to
     load").  What a request varies is the page, the search and the band
     filter; the rows are one answer per stage, held in `~/.cache/pie` across
     restarts and in memory until the published measurement changes
@@ -1295,7 +1295,7 @@ def glossary(lang: str, limit: int = 400, roots_first: bool = True,
     disagree with the numbers, and the page never re-measures 400 words per
     request.  A proto stage has no band — the six are for attested languages.
 
-    **The list is paged** (admin, 2026-11-13): Middle Persian holds 17,000 words
+    **The list is paged** (2026-11-13): Middle Persian holds 17,000 words
     and the page showed the first 400 with no way on.  `page` is 1-based and
     clamped to the list, and the answer carries `page`/`pages` so the reader can
     step through it.  Only the rows of the page asked for are dressed (meaning,
@@ -1356,7 +1356,7 @@ def glossary(lang: str, limit: int = 400, roots_first: bool = True,
             "total": total, "roots": sum(1 for r in rows if r[kind_at] == "root"),
             "rows": shown, "limit": limit,
             # Which slice of the list this is, so the page can offer the rest
-            # of it rather than stop at the 400th word (admin, 2026-11-13).
+            # of it rather than stop at the 400th word (2026-11-13).
             "page": page, "pages": pages,
             "first": start + 1 if shown else 0, "last": start + len(shown),
             "band": band or "",
@@ -1560,7 +1560,7 @@ _PROSE_ANCESTRY_RE = re.compile(
 #: names the stage a form belongs to in words, not a stage this model has: the
 #: form it marks is read at the nearest registered stage the sentence names for
 #: it.  It is a label on *that* form — never a licence to read on to the next
-#: starred form, which is the form this one is made from (admin, 2026-11-12).
+#: starred form, which is the form this one is made from (2026-11-12).
 _PROSE_PRE_STAGE_RE = re.compile(
     r"\b(?P<label>(?:[Pp]re)[- ][A-Z][A-Za-z-]*)\s+\*"
     r"(?P<form>[^\s,;.:()\[\]“”\"'’]+)")
@@ -1647,7 +1647,7 @@ def _prose_etym(lang: str, word: str, text: str) -> str:
 def _prose_ancestry(entry: dict) -> list[tuple[str, str, str]]:
     """The ancestor an entry's own sentence names, when no template states one.
 
-    *anda- is the case (admin, 2026-11-12): Wiktionary writes "From
+    *anda- is the case (2026-11-12): Wiktionary writes "From
     pre-Germanic *h₂entó- … from the Proto-Indo-European root noun *h₂énts" as
     prose, with no ``{{inh}}`` row, so the ladder stopped at a ``???`` over a
     piece whose page did record where it came from.  The sentence is the
@@ -1661,7 +1661,7 @@ def _prose_ancestry(entry: dict) -> list[tuple[str, str, str]]:
     made from (*h₂énts, which belongs to *h₂entó-'s own construction).  Skipping
     the label because it is unregistered and taking the next registered stage
     climbed one level too far; the marked form stands at the stage the sentence
-    names for it — here Proto-Indo-European (admin, 2026-11-12).
+    names for it — here Proto-Indo-European (2026-11-12).
 
     Nothing else is read: only the first sentence, only when it opens with an
     ancestry cue, never a hedged or comparative one, never a sentence with a
@@ -1738,7 +1738,7 @@ def _ancestry_forms(entry: dict) -> list[dict]:
     for lang, word, rel in _ancestry_triples(entry):
         row = _lang(lang)
         # What the word meant at that stage, so a rung of the loan ladder is a
-        # word with a sense like every rung of a word's own ladder (admin,
+        # word with a sense like every rung of a word's own ladder (
         # 2026-11-12).
         # The sense the entry's own sentence gives this ancestor, when it names
         # one: two roots spelled *swer- must not trade glosses (2026-11-12).  A
@@ -1934,8 +1934,8 @@ def stress_only(a: str, b: str) -> bool:
 
     Nothing else is forgiven here: the letters (þ against θ), a hyphen, a
     bracket, a space, the breve and every length must agree character for
-    character once the accent is set aside.  Mill's audit of the coverage
-    counter (proposals/night-0911/notation-audit.md, 2026-11-09) found 397 of
+    character once the accent is set aside.  An audit of the coverage
+    counter (2026-11-09) found 397 of
     the 922 "notation" pairs differing by something other than stress, and the
     counter that calls them notation inflates a figure that claims to be
     character for character.  The comparison is made on the raw letters, not
@@ -2069,7 +2069,7 @@ def _ancestor_gloss(entry: dict, form: str) -> str:
 
     Wiktionary quotes it beside the form — "From Proto-Indo-European *swer-
     (“to say, speak, talk, swear, curse”)" — and it is what tells two
-    homonyms apart (admin, 2026-11-12).
+    homonyms apart (2026-11-12).
     """
     key = normalise_etymon(form)
     if not key:
@@ -2088,7 +2088,7 @@ def _sense_entry(lang: str, form: str, hint: str = "") -> dict | None:
     keeps the first.  A child whose sentence quotes a meaning — Proto-Germanic
     *swarō "oath" is "from Proto-Indo-European *swer- (“to say, speak, talk,
     swear, curse”)" — must be given that one; otherwise the timeline reads
-    "oath" over the root of aching (admin, 2026-11-12).
+    "oath" over the root of aching (2026-11-12).
 
     Nothing is guessed: with no hint, or no shared word in either sense, the
     first entry stands exactly as before.
@@ -2164,7 +2164,7 @@ def _lemma_entry(lang: str, form: str) -> dict | None:
     # A record that names the two stems of one ablauting noun writes them
     # together: "*h₂ṓp-s ~ *h₂ép-s" is *one* word, and looking up the joined
     # string found nothing — so the page said "no entry" for a word the record
-    # names, and the band inherited the hole (admin, 2026-11-13, Persian آبجو).
+    # names, and the band inherited the hole (2026-11-13, Persian آبجو).
     if "~" in form:
         for variant in form.split("~"):
             found = _lemma_entry(lang, variant.strip())
@@ -2175,7 +2175,7 @@ def _lemma_entry(lang: str, form: str) -> dict | None:
         return record
     # A word the record quotes in another notation is the entry the stage
     # spells its own way: Middle Persian *jaw* is the glossary's ǰaw, and a
-    # page or a rung that said "no entry" beside that entry was wrong (admin,
+    # page or a rung that said "no entry" beside that entry was wrong (
     # 2026-11-13).
     spelled = notation.canonical(lang, key)
     if spelled and spelled != key:
@@ -2187,7 +2187,7 @@ def _lemma_entry(lang: str, form: str) -> dict | None:
     # dictionary writes it as an acute on the vowel (Hnáwa, headed hnáwa) or
     # not at all (naht).  The token is notation, so an ancestor spelled with it
     # is the same headword — and a rung that missed this said "no entry for
-    # this word" under a form whose page showed a meaning (admin, 2026-11-12).
+    # this word" under a form whose page showed a meaning (2026-11-12).
     for spelled in (printable_form(form), form.replace("ˈ", "").replace("ˌ", "")):
         if not spelled or spelled == form:
             continue
@@ -2198,7 +2198,7 @@ def _lemma_entry(lang: str, form: str) -> dict | None:
     # (*tr̥s-nó-s), while the glossary heads the word solid (*tr̥snós).  A
     # hyphen there is the record's notation, not a sound, and a page that says
     # "no entry for this word" beside a link that opens the entry is simply
-    # wrong (admin, 2026-11-12, Persian تشنه).  Only a reconstructed spelling
+    # wrong (2026-11-12, Persian تشنه).  Only a reconstructed spelling
     # is joined this way: in an attested language a hyphen can belong to the
     # headword itself (English well-being is not wellbeing).
     bare = form.strip("*").strip()
@@ -2630,7 +2630,7 @@ def _rung_gloss(glosses: Iterable[str], limit: int = 110) -> str:
 #: A record's own word for "this piece is grammar": the parenthesis after the
 #: form in an etymology («𐎴 (*-naʰ, nominal suffix)»).  A piece glossed this way
 #: is a bound morpheme whatever its spelling: Old Persian writes 𐎴 with no
-#: hyphen, and the lookup found the *letter* entry of the same sign (admin,
+#: hyphen, and the lookup found the *letter* entry of the same sign (
 #: 2026-11-13).
 _GRAMMAR_GLOSS = re.compile(
     r"\b(suffix|prefix|ending|infix|interfix|clitic|enclitic|proclitic|"
@@ -2670,7 +2670,7 @@ def _morph_reading(form: str, lang: str = "ine-pro") -> str:
 
     A suffix has no glossary entry to take a reading from, and the table is the
     record that states one: the piece prints it beside the signs instead of
-    standing there unreadable (admin, 2026-11-13).
+    standing there unreadable (2026-11-13).
     """
     wanted = _piece_spelling(str(form or "")).lstrip("*-\u2011\u0640")
     if not wanted:
@@ -2779,7 +2779,7 @@ def _step_laws(above: dict, form: str, lang: str,
 
     A construction's columns are words with records, so the page used to draw
     them with no laws at all: the reader could switch a law off on a word's own
-    ladder and nowhere on a page whose timeline is a construction (admin,
+    ladder and nowhere on a page whose timeline is a construction (
     2026-11-13: "why can't I enable/disable laws in all timelines?").  The
     step between two rows is the same transition the ladder would compute, so
     it is computed here with the reader's switches and handed to the page in
@@ -2828,7 +2828,7 @@ def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
                  hint: str = "", quoted: tuple = (),
                  given: dict | None = None,
                  disabled=(), enabled=()) -> dict:
-    """One word on a construction piece's own timeline (admin, 2026-11-12).
+    """One word on a construction piece's own timeline (2026-11-12).
 
     A construction is not a line under the word: its pieces are words with
     histories of their own, and the page draws each one climbing upward until
@@ -2850,7 +2850,7 @@ def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
 
     A node also carries the construction the record states for *it* (``builds``,
     ``built_as``) when it has one: *kit-ró-s is *keyt- + *-rós, and a page that
-    showed only the word would be hiding the step that made it (admin,
+    showed only the word would be hiding the step that made it (
     2026-11-12: keep going up).  A built form has no single ancestor walk, so
     its construction replaces the parents it would otherwise climb to.
 
@@ -2858,7 +2858,7 @@ def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
     the piece's own entry states none: Persian رضاقلی says it is a compound of
     رضا + Old Anatolian Turkish قلی, so that piece is a borrowing even though
     the fa entry for قلی records no origin at all — and a borrowing ends its
-    trail at the donor rather than at a ``???`` (admin, 2026-11-13: قلی is
+    trail at the donor rather than at a ``???`` (2026-11-13: قلی is
     obviously a borrowing, so the question marks should never have been there).
     """
     row = _lang(lang)
@@ -2869,7 +2869,7 @@ def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
     # has no Indo-European trail to trace and no glossary of its own in this
     # model.  The page says "non-PIE word" for it instead of "no entry", which
     # would claim the word is missing when it is only outside what is modelled
-    # (admin, 2026-11-13).
+    # (2026-11-13).
     outside = lang in data.non_ie_sources()
     node = {
         "lang": lang,
@@ -2888,7 +2888,7 @@ def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
         "gloss": _rung_gloss(entry.get("gloss") or []) if entry else "",
         # The category travels with the meaning: a rung says `adj “visible”`
         # the way the word's own page says `name · “a male given name”`
-        # (admin, 2026-11-12).
+        # (2026-11-12).
         "pos": str(entry.get("pos") or "") if entry else "",
         "reading": "",
         "terminal": "",
@@ -2913,7 +2913,7 @@ def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
         # A word of a language outside the family — Arabic, Turkish, a Semitic
         # proto-form — starts its own trail: the family tree above it is not
         # unknown, it does not exist.  A ??? there would claim a missing
-        # ancestry the model never had a place for (admin, 2026-11-12: the ???
+        # ancestry the model never had a place for (2026-11-12: the ???
         # is for a descendant of Proto-Indo-European whose origin is not
         # recorded).
         node["terminal"] = "outside"
@@ -2946,7 +2946,7 @@ def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
         rows = [tuple(t) for t in quoted if tuple(t)[:2] not in seen]
     chosen = None
     if rows:
-        # **The nearest recorded stage is the parent** (admin, 2026-11-13:
+        # **The nearest recorded stage is the parent** (2026-11-13:
         # "The timeline for a word should appear more-or-less exactly the same
         # if another page refers to it" — fa جو showed Middle Persian jaw on its
         # own page and lost it as a piece of آبجو).  The relation preference
@@ -2994,7 +2994,7 @@ def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
     # article on *čitrás, and that page has no article of its own.  The row is
     # about the ancestor's stage and form, which is what `_rung_builds` reads,
     # so the parent node keeps the step that made it — otherwise the page
-    # hides a construction its own branch climbs through (admin, 2026-11-12:
+    # hides a construction its own branch climbs through (2026-11-12:
     # keep going up, all of it, on the word's page).
     if build_depth < _BUILD_DEPTH and not parent.get("builds"):
         carried = _rung_builds(entry, data.stage_of(p_lang), p_form,
@@ -3008,7 +3008,7 @@ def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
             parent["parents"] = []
             if parent.get("terminal") == "missing":
                 parent["terminal"] = ""
-    # **A form brings its whole timeline with it** (admin, 2026-11-13, fa
+    # **A form brings its whole timeline with it** (2026-11-13, fa
     # ناراضی: "Every form that is brought into a timeline brings its entire
     # timeline with it above it, right?").  The record may name only a
     # Proto-Indo-Iranian ancestor while the word's own page draws every stage
@@ -3019,7 +3019,7 @@ def _origin_node(lang: str, form: str, rel: str = "", depth: int = 0,
     node["parents"] = _chain_between(lang, parent, data.derivation_chain(lang),
                                      disabled=disabled, enabled=enabled)
     # The laws of this row: what carried the row above it into this word, in
-    # the ladder's own shape, so every timeline shows its switches (admin,
+    # the ladder's own shape, so every timeline shows its switches (
     # 2026-11-13).
     node["step"] = _step_laws(node["parents"][0], form, lang,
                               disabled=disabled, enabled=enabled)
@@ -3035,7 +3035,7 @@ def _chain_between(lang: str, parent: dict, chain: list[str],
     European *né → Proto-Indo-Iranian *ná → Proto-Iranian → Old Persian →
     Middle Persian.  A construction piece climbed only the *recorded* rows and
     therefore started at Proto-Indo-Iranian, which made the same word look
-    shorter wherever another page quoted it (admin, 2026-11-13).
+    shorter wherever another page quoted it (2026-11-13).
 
     The rungs added here carry `derived: True` and no entry: they are the
     model's own derivation, drawn in the ladder's "derived" colour, and they
@@ -3091,7 +3091,7 @@ def _chain_between(lang: str, parent: dict, chain: list[str],
         rungs.append(rung)
     rungs[-1]["parents"] = [parent]
     # Every rung carries the laws that produced it, so the column shows the
-    # same switches the ladder shows (admin, 2026-11-13).
+    # same switches the ladder shows (2026-11-13).
     for rung in rungs:
         above = (rung.get("parents") or [None])[0]
         if above:
@@ -3111,7 +3111,7 @@ _MALFORMED_PIECE = re.compile(r"^\s*[\[({]")
 #: was made from one other word and nothing else.  *h₂entó- is the case — "a
 #: combining form or allative formation from … *h₂énts" — and the step that
 #: made it *is* its history.  Every other kind is a join, and a one-piece row of
-#: another kind is an analysis cut short, not a construction (admin, 2026-11-12).
+#: another kind is an analysis cut short, not a construction (2026-11-12).
 _SINGLE_PIECE_KINDS = frozenset({"combining", "derivation", "reduplication"})
 
 #: The words the timeline uses for each ablaut grade, in one place: a
@@ -3235,7 +3235,7 @@ def _verb_stem_index(lang: str) -> dict[str, dict]:
     a hyphen — دستمال is "From دست (dast) + مال (mâl-)" — while the glossary
     heads the infinitive مالیدن "to rub".  The piece therefore matched Arabic
     مال "property", and the timeline said the handkerchief was made of wealth
-    (admin, 2026-11-13: "the مال is from مالیدن not the Arabic word").
+    (2026-11-13: "the مال is from مالیدن not the Arabic word").
 
     Only the ``-idan`` class is read: it is the productive one, its stem is the
     infinitive minus ‑یدن, and the other classes (ساختن/ساز, رفتن/رو) are
@@ -3411,7 +3411,7 @@ def _piece_entry(lang: str, form: str, gloss: str, etym: str = "",
 
     One spelling heads several words, and a compound's piece is one of them:
     fa دست heads Dehkhoda's classifier "a set or suite of objects" before the
-    noun "hand", so دستمال was drawn from a classifier (admin, 2026-11-13).
+    noun "hand", so دستمال was drawn from a classifier (2026-11-13).
     Two record facts decide, in this order:
 
     * the parenthetical the sentence puts after the piece — a trailing hyphen
@@ -3426,7 +3426,7 @@ def _piece_entry(lang: str, form: str, gloss: str, etym: str = "",
     hint = _piece_hint(etym, form)
     # A verb stem the glossary heads in its own right is that word: دستمال's
     # مال is the present stem of مالیدن, filed as `مال` with `pos: stem`, and
-    # the construction combines the two words (admin, 2026-11-13).  The
+    # the construction combines the two words (2026-11-13).  The
     # infinitive is the fallback only for a stem nothing files.
     for row in _notation_entries(lang, form):
         if str(row.get("pos") or "").strip().lower() == "stem":
@@ -3497,7 +3497,7 @@ def _bound_piece(kind: str, form: str, index: int) -> bool:
     a leading tatweel (``ـدار``); a prefix's hyphen trails it and does not make
     it bound on its own (``astro-`` is the Greek word ἄστρον).  A bound
     morpheme has no history of its own, so the timeline draws it as itself and
-    does not hang a ``???`` above it (admin, 2026-11-12).
+    does not hang a ``???`` above it (2026-11-12).
     """
     if kind not in ("suffix", "affix", "infix"):
         return False
@@ -3556,7 +3556,7 @@ def _reduplication_read(entry: dict) -> dict | None:
     # crossed a stage boundary before the clause, the same test
     # `_CHAIN_BOUNDARY_RE` makes for an arithmetic.  Proto-Indo-Iranian
     # *pipáyHa descends from PIE *pepóyh₂e; it is not itself a reduplication
-    # of *peyh₂- (admin, 2026-11-12).  It climbs to the reduplicated word,
+    # of *peyh₂- (2026-11-12).  It climbs to the reduplicated word,
     # whose own page states the construction.
     if _PROSE_ANCESTRY_CUE.match(sentence) and "*" in sentence[:seen.start()]:
         return None
@@ -3645,7 +3645,7 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
     # A record may state a formation in words instead of as an arithmetic
     # ("Reduplicated stative of the root *h₂eyḱ-"): the reducer below turns
     # such a sentence into the same row shape, and it is read here because the
-    # step belongs to the timeline (admin, 2026-11-12: is the reduplicated
+    # step belongs to the timeline (2026-11-12: is the reduplicated
     # stative part of the morphology?).  Only when no structured row of the
     # entry already states this form, so one analysis is never drawn twice.
     rows = list(entry.get("built_as") or [])
@@ -3657,7 +3657,7 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
     # is the fuller statement of the same analysis, so a row the sentence
     # states that *starts with* the stored row and adds a piece is read here;
     # the prefix-merge below then keeps the longer one and drops the shorter
-    # (admin, 2026-11-13: the suffix was missing from the timeline).
+    # (2026-11-13: the suffix was missing from the timeline).
     if rows and str(entry.get("etym") or ""):
         stored = [tuple(normalise_etymon(str(p[0] if isinstance(p, (list, tuple)) else p))
                         for p in (row.get("pieces") or []))
@@ -3723,7 +3723,7 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
             # its reading is the stage's morphology table (-𐎡𐎹 → -yaʰ) or the
             # reading its own sentence quotes for the spelling (𐎴 → *-naʰ in
             # data/readings.json).  Without this the adjectival suffix stood
-            # under the word with no reading at all (admin, 2026-11-13).
+            # under the word with no reading at all (2026-11-13).
             if not reading and _in_native_script(lang, form_piece):
                 reading = (_morph_reading(form_piece, lang)
                            or (readings_index.for_form(lang, form_piece.lstrip("‑ـ*"))
@@ -3747,7 +3747,7 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
             # suffix)» — is a morpheme even when it is written with no hyphen:
             # the lookup then found the *letter* entry of the same sign and
             # linked a suffix to «the twenty-first letter of the Old Persian
-            # cuneiform script» (admin, 2026-11-13).  Only an affix entry of the
+            # cuneiform script» (2026-11-13).  Only an affix entry of the
             # stage may answer grammar; nothing else is that morpheme's page.
             if ((str(form_piece).startswith(("-", "ـ", "*-")) or _grammar_gloss(gloss))
                     and piece
@@ -3766,17 +3766,17 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
                 piece = None
             # A *stem* is a word, not a morpheme: the glossary carries it (دستمال's
             # مال is the present stem of مالیدن, filed as an entry) and the
-            # timeline draws it as a word with its own climb — the admin's rule,
+            # timeline draws it as a word with its own climb — the rule,
             # 2026-11-13.  Only a morpheme the record writes bound (‑دار, *-lom)
             # or a suffix slot wears no dot.
             # Grammar is bound even without a hyphen: the record's own
             # parenthesis («nominal suffix») says so, and a morpheme is never
-            # walked as a word with a history (admin, 2026-11-13).
+            # walked as a word with a history (2026-11-13).
             # Only an affix is *bound*: a particle or a clitic is a word with a
             # page (PIE *ḱe, the enclitic *te), and keeps its dot and its link.
             bound = (_bound_piece(kind, form_piece, index) or slot
                      or _affix_gloss(gloss))
-            # The meaning under the word in the timeline (admin, 2026-11-12):
+            # The meaning under the word in the timeline (2026-11-12):
             # the row's own parenthesis when it has one, otherwise the sense
             # the piece's glossary entry gives it.  That fallback is what lets
             # a bound suffix say what it does (*-rós: "forms adjectives from
@@ -3794,7 +3794,7 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
             # does is written in the morphology table, so the timeline takes it
             # from there (*-nó-s: "verbal adjective or passive participle") —
             # otherwise the piece stands under the word with nothing to say
-            # (admin, 2026-11-12: every term, suffixes included, says its
+            # (2026-11-12: every term, suffixes included, says its
             # meaning).
             if bound:
                 # A bound morpheme's meaning is the row written for it, not a
@@ -3831,7 +3831,7 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
         # *formed from* a single word, which is the whole of its history:
         # *h₂entó- is "a combining form or allative formation from … *h₂énts",
         # and its timeline is that one step, not a bare rung with the step
-        # hidden (admin, 2026-11-12).  Only a row whose own kind says so is
+        # hidden (2026-11-12).  Only a row whose own kind says so is
         # read this way; a one-piece row of any other kind is a truncated
         # analysis, not a construction.
         if len(pieces) < (1 if kind in _SINGLE_PIECE_KINDS else 2):
@@ -3877,7 +3877,7 @@ def _rung_builds(entry: dict, stage: str, form: str, record_only: bool = False,
         # construction and not a rival analysis: *sokʷh₂ṓy is stored as
         # *sekʷ- + *-éh₂ and again as *sekʷ- + *-éh₂ + *-ṓy.  The shorter row
         # is a prefix of the longer one, so it is the same analysis, not a tab
-        # (admin, 2026-11-12).
+        # (2026-11-12).
         # Compared without notation: the same analysis may spell a piece
         # with the star its row carried (*h₂eḱ-) in one statement and without
         # it in the other (h₂eḱ-).
@@ -4293,7 +4293,7 @@ def _own_construction(entry: dict, chain: list[str]) -> dict | None:
     # A record may state the formation in words rather than as a `built_as`
     # row: "Reduplicated stative of the root *h₂eyḱ-" is the whole of how
     # *h₂eh₂óyḱe was made, so the ladder starts at that word and not at the
-    # root it repeats (admin, 2026-11-12).
+    # root it repeats (2026-11-12).
     rows = list(entry.get("built_as") or [])
     if not any(_built_row_names(row, entry.get("word") or "", own_stage)
                for row in rows):
@@ -4306,7 +4306,7 @@ def _own_construction(entry: dict, chain: list[str]) -> dict | None:
         # A join needs two pieces; a word the record states as *formed from*
         # one word is the whole of its history — *aiganaz is an adjectival
         # formation on *aiganą — and its timeline is that one step rather
-        # than a climb to the piece's own PIE root (admin, 2026-11-12).
+        # than a climb to the piece's own PIE root (2026-11-12).
         if len(pieces) < (1 if kind in _SINGLE_PIECE_KINDS else 2):
             continue
         of = normalise_etymon(str(row.get("of") or ""))
@@ -4387,7 +4387,7 @@ def _bound_forms(stage: str) -> frozenset[str]:
     ``-s`` is the athematic nominative singular in `data/morphology/ine-pro.yaml`
     and ``-naut`` is only an English dictionary headword: the first is the
     stage's grammar and the second is a word with a history of its own, so only
-    the first is a piece that needs no ancestry (admin, 2026-11-13).
+    the first is a piece that needs no ancestry (2026-11-13).
     """
     table = morphology(stage) or {}
     out = set()
@@ -4436,7 +4436,7 @@ def _piece_origin(stage: str, form: str, chain: list[str]) -> dict:
     """Where one piece of a construction stands: a PIE etymon, a non-PIE
     source, a registered morpheme — or nowhere this model can name.
 
-    The admin's test is that every segment *start from PIE or a non-PIE
+    The test is that every segment *start from PIE or a non-PIE
     language* (2026-11-13), so a piece is explained when:
 
     * its own record names a Proto-Indo-European etymon — the form it descends
@@ -4527,7 +4527,7 @@ def construction_path(entry: dict, lang: str, chain: list[str] | None = None) ->
     ``*swarō``, and neither piece has to become the whole word by a sound law.
     The construction is the record's own arithmetic, so it can stand in for the
     laws in a green path — but only when it really produces the word and every
-    piece has somewhere to stand (admin, 2026-11-13):
+    piece has somewhere to stand (2026-11-13):
 
     * the pieces, written in order, spell the recorded headword exactly
       (``exact``), and
@@ -4610,7 +4610,7 @@ def _unexplained_branch(node: dict | None) -> dict | None:
     at a language outside the family, at a donor, or at the record's stop.  A
     climb that ends in ``end`` or ``missing`` is drawn as a ``???``, and the
     reader sees a question mark where an explanation should be; so a band may
-    never be green over it (admin, 2026-11-13: رضاقلی read "fully explained"
+    never be green over it (2026-11-13: رضاقلی read "fully explained"
     above a ``???``).  This walks the same path `climbOf` walks in the page.
     """
     seen: set[int] = set()
@@ -4644,7 +4644,7 @@ def unrecorded_ancestry(entry: dict, chain: list[str]) -> list[dict]:
     laws carry the oldest one down, and the record's own construction, if any,
     is registered.  The first two clauses were measured; the third was not, so
     a timeline could print "no entry for this word" above a dark-green band
-    (admin, 2026-11-13: Proto-Indo-Iranian *HwáHyati, whose PIE rung
+    (2026-11-13: Proto-Indo-Iranian *HwáHyati, whose PIE rung
     *h₁wéh₂-ye-ti* the PIE glossary did not hold).
 
     The check is the reader's own: the forms come from ``_ancestry_triples``,
@@ -4678,7 +4678,7 @@ def unrecorded_ancestry(entry: dict, chain: list[str]) -> list[dict]:
     a word whose origin no record states (*``end``*) is exactly what the
     question mark says.  Those rows are reported with ``kind: "origin"`` so the
     verdict can say "no recorded origin for X" instead of claiming a missing
-    *entry* (admin, 2026-11-13: fa رضاقلی read "fully explained" above a ???).
+    *entry* (2026-11-13: fa رضاقلی read "fully explained" above a ???).
     """
     out: list[dict] = []
 
@@ -4722,7 +4722,7 @@ def unrecorded_ancestry(entry: dict, chain: list[str]) -> list[dict]:
     # timeline, exactly like a hole in the word's own chain — which is why fa
     # آبجو could read “fully explained” beside a dark-red “no entry for this
     # word” over Old Persian *yáwaʰ: the walk started at the compound's record,
-    # and a compound's record has no ancestry of its own (admin, 2026-11-13).
+    # and a compound's record has no ancestry of its own (2026-11-13).
     # Only a piece this stage really heads is followed; an unheaded piece is a
     # morpheme, and `construction_path` already refuses one.
     own_stage = data.stage_of(entry.get("lang") or "") or entry.get("lang") or ""
@@ -4763,13 +4763,13 @@ def unrecorded_ancestry(entry: dict, chain: list[str]) -> list[dict]:
         # The page draws this piece's climb, so a climb that ends in a `???` is
         # a hole in *this* timeline however complete the entry behind it looks:
         # a word whose origin the record does not state is exactly what the
-        # question mark says, and green may not stand over it (admin,
+        # question mark says, and green may not stand over it (
         # 2026-11-13: fa رضاقلی over قلی).  The climb is the page's own, so the
         # origin the compounding row states for the piece is the one read.
         climb = None if bound else _origin_node(own_stage, raw, quoted=piece_anc)
         # Every rung of that climb must be a word too: a stage the laws reach
         # through a form no glossary heads is drawn on the page, and the band
-        # may not call the word fully explained above it (admin, 2026-11-13:
+        # may not call the word fully explained above it (2026-11-13:
         # ناراحت read «fully explained» while ناـ's column printed «no entry»
         # for Middle Persian, Old Persian and Proto-Iranian).
         for stage, form_ in _unheld_chain(climb or {}):
@@ -4834,7 +4834,7 @@ def _ancestor_band(lang: str, word: str) -> dict | None:
     """The band this word's own page gives it, measured the same way.
 
     A word is explained by the words above it, so a page may not be greener
-    than the rungs it draws (admin, 2026-11-13: fa آبجو read "fully explained"
+    than the rungs it draws (2026-11-13: fa آبجو read "fully explained"
     while the Old Persian ancestor it links to read "partially explained").  The
     ancestor's band is the whole answer: its own page already absorbed its own
     ancestors, its holes and its last mile, so one row per drawn word is the
@@ -5163,7 +5163,7 @@ def _script_fit(entry: dict, form: str, strict: bool = False) -> dict | None:
         # `strict` asks the question a ✓ and a coverage figure ask: is the
         # form the reading the record states, not just one the signs allow?
         # 𐎺𐎼𐎣 is read vr̥kaʰ and the laws reach wˈarkah, which the signs
-        # allow and the record does not say (admin, 2026-11-13).
+        # allow and the record does not say (2026-11-13).
         return None
     return found
 
@@ -5293,7 +5293,7 @@ def _category_of(entry: dict, chain: list[str], exact: dict | None,
                 built_note = compounds.seam_note(entry)
     # A word the record builds out of its own words is not a last mile from an
     # ancestor: the construction is how it was made.  Measured here so the page
-    # and the counter read one set of facts (admin, 2026-11-13).
+    # and the counter read one set of facts (2026-11-13).
     construction = None
     if exact is None and not written_match and not cited_stem:
         try:
@@ -5324,11 +5324,11 @@ def _category_of(entry: dict, chain: list[str], exact: dict | None,
         start_name=(_lang(match_stage).get("name", match_stage) if match_stage else ""),
         # Every rung of the recorded ancestry must be a word this model holds:
         # a timeline with a hole in it is partial however exact the last mile
-        # (admin, 2026-11-13).
+        # (2026-11-13).
         missing_steps=unrecorded_ancestry(entry, chain),
         # A word is explained by the words above it: a green band over a rung
         # whose own page is yellow or red claims more than the page shows
-        # (admin, 2026-11-13: fa آبجو over a partially explained Old Persian).
+        # (2026-11-13: fa آبجو over a partially explained Old Persian).
         weak_ancestors=weak_ancestors,
     )
     if verdict["category"] == "unexplained":
@@ -5651,13 +5651,13 @@ def _page_category(entry: dict, lang: str, ladder: dict | None,
     if published and (not own or own.get("category") != published):
         # A hole is not a difference of measurement.  The page draws the rung
         # and prints “no entry for this word” over it, so no published band may
-        # call the word green beside it (admin, 2026-11-13: fa آبجو read
+        # call the word green beside it (2026-11-13: fa آبجو read
         # “fully explained” above exactly that line, because the index was
         # measured before a compound's pieces were walked).  A drawn ancestor
         # whose own page is yellow is the same claim one link away, the
         # ladder's own last rung disagreeing with its record is one more, and
         # the ladder is the only thing that measures either — so a yellow page
-        # stays yellow whatever the last published run said (admin,
+        # stays yellow whatever the last published run said (
         # 2026-11-13: peo 𐎭𐎼𐎢𐎥 printed “fully explained” over a rung whose
         # laws give draug where the record reads drauga).
         if own and own.get("category") == "partial":
@@ -5817,7 +5817,7 @@ def _starts_from_a_base_word(entry: dict, top: tuple[str, str],
     An **inherited** chain is different: English *night* inherits Proto-Germanic
     *nahts, Old English niht and Middle English nighte, and the record's rows
     that the laws do not yet reproduce are the model's worklist, not another
-    word.  Those must stay on the ladder (admin: the timeline is where a reader
+    word.  Those must stay on the ladder (the timeline is where a reader
     sees which step the laws miss), so the verified-start rule stops at a
     relation the record itself calls a derivation.  A borrowing is not this
     word's history either, but a borrowed form never starts a ladder here
@@ -5892,7 +5892,7 @@ def _derive_for_entry(entry: dict, chain: list[str],
     # The laws may reach the word's *signs* without reproducing the reading the
     # record states (𐎺𐎼𐎣, laws *wˈarkah*, record *vr̥kaʰ*).  That is a reach,
     # not a match: a ✓ and a published band are claims about the record
-    # (admin, 2026-11-13).
+    # (2026-11-13).
     reproduced = _script_fit(entry, d.output, strict=True) if scripted else None
     start = chain.index(stage)
     return {
@@ -5961,7 +5961,7 @@ def _recorded_at(entry: dict, lang: str,
     # construction is that construction's base, not another record of the
     # stage: *h₂eh₂óyḱe lists its root *h₂eyḱ- among the ancestry rows, and
     # the rung must not print the root's grammar and meaning beside the word
-    # (admin, 2026-11-12).
+    # (2026-11-12).
     own = _own_construction(entry, [lang])
     own_bases = {normalise_etymon(str((piece or [""])[0] or ""))
                  for piece in (own or {}).get("pieces") or []}
@@ -6214,7 +6214,7 @@ def _record_block(stage: str, here: dict | None, match_form: str | None,
     # The spelling a row was quoted under before it took its reading (hwʾb →
     # xwāb): the signs are still the signs of that spelling, so the script
     # match reads them, and the rung prints the quoted writing beside the
-    # reading (admin, 2026-11-13).
+    # reading (2026-11-13).
     quoted = (stage_entry or {}).get("translit_quoted") or ""
     if stage_entry is word_entry:
         pron = {**readings_for(word_entry), "documented": True}
@@ -6231,7 +6231,7 @@ def _record_block(stage: str, here: dict | None, match_form: str | None,
     # One reading then belongs to one word, and the stage does hold it: the
     # record is the spelling the row quoted, and `headword` is the entry the
     # page opens and takes the meaning from.  Without this the rung called a
-    # word the glossary has "no entry for this word" (admin, 2026-11-12).
+    # word the glossary has "no entry for this word" (2026-11-12).
     headword = None
     if stage_entry is None:
         for spelled in (pron["reading"], written):
@@ -6285,7 +6285,7 @@ def _record_block(stage: str, here: dict | None, match_form: str | None,
             # The signs allow the form — but a ✓ also needs the record's own
             # reading to *be* that form.  A spelling the dictionary reads one
             # way and the laws another is shown as two readings, never as a
-            # match (admin, 2026-11-13: 𐎺𐎼𐎣, laws *wˈarkah*, record *vr̥kaʰ*).
+            # match (2026-11-13: 𐎺𐎼𐎣, laws *wˈarkah*, record *vr̥kaʰ*).
             if not any(readings) or (
                     _same_reading(candidate, match_form, readings)
                     and _reproduces_reading(candidate, match_form, readings)):
@@ -6299,7 +6299,7 @@ def _record_block(stage: str, here: dict | None, match_form: str | None,
     # the parts of speech and meanings the glossary merges for it.  *aiganaz
     # is a participle and an adjective of one Wiktionary page with one
     # etymology, and a rung that quoted only the first heading said "past
-    # participle of *aiganą" where the word means "own" (admin, 2026-11-12).
+    # participle of *aiganą" where the word means "own" (2026-11-12).
     pos_text = (stage_entry or {}).get("pos")
     gloss_list = list((stage_entry or {}).get("gloss") or [])
     if stage_entry and len(word_index().get((stage, primary)) or ()) > 1:
@@ -6333,7 +6333,7 @@ def _record_block(stage: str, here: dict | None, match_form: str | None,
                     else _entry_sources(word_entry or {})),
         # Only a page of *this* form is a door: a record quoted from the word's
         # own article has no entry of its own, and its corner shows no icon even
-        # though the article it was read in has one (admin, 2026-11-12).
+        # though the article it was read in has one (2026-11-12).
         "pages": (_entry_pages(stage_entry) if stage_entry else []),
         # Where the record comes from: the word's own ancestry rows, its
         # glossary entry, or the cognate set that supplied the etymon.
@@ -6450,7 +6450,7 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
     climbs to Proto-Indo-European and shows what built it.  The ladder then
     continues through the ancestor's own ladder, so the reader sees one
     timeline instead of a silence that only looks like a gap in the family
-    (admin, 2026-11-12: there is no limit simply because a source is silent).
+    (2026-11-12: there is no limit simply because a source is silent).
     ``_above`` carries the words already climbed through, so a record that
     names a word in terms of itself cannot loop.
     """
@@ -6601,7 +6601,7 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
         # build one starts at the stage they named.
         # Proto-Indo-European has nothing above it, but it has a timeline all
         # the same: one rung for the word itself, and below it the daughter
-        # stages the laws reach, one click each (admin, 2026-11-12).  The
+        # stages the laws reach, one click each (2026-11-12).  The
         # page is a ladder like every other page's, not a second kind of view.
         spec = _parse_build(build) if build else None
         if spec and spec["stage"] in chain:
@@ -6680,7 +6680,7 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
     if lang == ROOT_LANG and not edited and not hypothesis and trace.forms:
         # The etymon's rung prints the form the dictionary heads, hyphen and
         # all: *ters- is a root, and *ters is only how the sound laws read it
-        # (admin, 2026-11-12 — the PIE page's own rung read ters).
+        # (2026-11-12 — the PIE page's own rung read ters).
         own = str(entry.get("word") or "")
         if own:
             trace.forms[0] = own
@@ -6710,7 +6710,7 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
 
     recorded = _recorded_at(entry, lang, None if edited else (start_stage, start_form))
 
-    # One word, one romanisation on a page (admin, 2026-11-13).  A rung of a
+    # One word, one romanisation on a page (2026-11-13).  A rung of a
     # scripted word can carry a Latin form that is not its reading: the laws'
     # transcription of the signs merely *allows* the writing (Wˈarkānah), while
     # the record says how the word is read (Vr̥kānaʰ).  The rung then prints the
@@ -6729,10 +6729,10 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
                     if (here and needs_reading(lang)) else "")
     # The record says how a writing is read.  It does not have to be a
     # *match*: 𐎺𐎼𐎣 is read vr̥kaʰ and the laws reach wˈarkah, and the rung
-    # says both (admin, 2026-11-13).  That reading is for display: the
+    # says both (2026-11-13).  That reading is for display: the
     # derivation stays inside the model's own forms.  A reconstructed
     # romanisation is carried as itself, and only a writing is replaced by its
-    # reading, because a script is not an input to a sound law (admin,
+    # reading, because a script is not an input to a sound law (
     # 2026-11-13: a record's separate transcription never feeds the tail).
     transcribed = bool(
         here and not edited and not hypothesis and not translit.is_scripted(here)
@@ -6741,7 +6741,7 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
     # A word written in its own script also enters the stages below it through
     # its **reading**, not its signs: the laws rewrite sounds, so carrying the
     # cuneiform into Middle Persian could only say «no reading is recorded for
-    # it» — beside the reading the word page prints in its own title (admin,
+    # it» — beside the reading the word page prints in its own title (
     # 2026-11-13: 𐎺𐎼𐎣𐎠𐎴𐎡𐎹 is read Vạrkāniya, and the rung below it said
     # there was nothing to start from).  Its own rung keeps the writing, and the
     # tail is re-run from the reading — never from a form this function invents.
@@ -6888,7 +6888,7 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
         # sounds, and the one rung whose form is the spelling itself is the
         # one the ladder starts from when the record states no ancestor: its
         # script is printed beside it in the record, and the left column says
-        # how it is read (admin, 2026-11-13: the timeline reconstructs from
+        # how it is read (2026-11-13: the timeline reconstructs from
         # romanisations, not from glyphs).  The rung keeps its recorded form —
         # that is what its record, its construction and its page are keyed by —
         # and carries the reading it prints as `display`.
@@ -6923,7 +6923,7 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
                 # has to be the word's own entry.  A reduplicated stative lists
                 # the root it repeats among its ancestry rows (a relation, not a
                 # step), and preferring the ladder's start quoted the *root's*
-                # grammar and meaning beside the word (admin, 2026-11-12).
+                # grammar and meaning beside the word (2026-11-12).
                 prefer_here = str(entry.get("word") or "")
             block_here = recorded_block(stage, match_form, prefer=prefer_here)
         if index == 0:
@@ -6993,13 +6993,13 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
                     and _same_form(block["reading"], display):
                 # The rung already prints this reading on the left, so the
                 # record does not repeat it: the script and the signs are the
-                # rest of the word (admin, 2026-11-13).
+                # rest of the word (2026-11-13).
                 block["show_reading"] = False
             # The ladder's first rung is the record it starts from, not
             # something a law derived: same form, different claim.  A record
             # written in its own script is never "the same string", but the
             # rung still starts from it — its reading is what the page prints
-            # on the left (admin, 2026-11-13).
+            # on the left (2026-11-13).
             block["starts"] = bool(index == 0 and not edited
                                    and (block["same"] or translit.is_scripted(block["w"])))
         builds = _rung_builds(entry, stage, version, disabled=disabled,
@@ -7009,7 +7009,7 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
             # Proto-Indo-European ancestor of Proto-Iranian *háxā is
             # *sekʷ- + *-éh₂ + *-ṓy, stated in PIE's article and nowhere in the
             # Proto-Iranian one.  The page keeps going up, so the step that
-            # made that ancestor belongs on its rung (admin, 2026-11-12).  Only
+            # made that ancestor belongs on its rung (2026-11-12).  Only
             # the record's rows are read: the seam reader's guess belongs to
             # the page the word has, not to an ancestor's rung.
             above = _lemma_entry(stage, version)
@@ -7023,7 +7023,7 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
             "kind": kind_of(stage),
             # A rung of a language outside the family (Arabic above a Persian
             # word) is not a missing entry: the model keeps no glossary there,
-            # and the page says "non-PIE word" (admin, 2026-11-13).
+            # and the page says "non-PIE word" (2026-11-13).
             "non_ie": stage in data.non_ie_sources(),
             "branch": row.get("branch", ""),
             "script": row.get("script", ""),
@@ -7033,19 +7033,19 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
             "form": version,
             # What the left column prints: a rung written in its own script is
             # shown by its reading, and the script stands beside it in the
-            # record (admin, 2026-11-13).  Empty when the form is already a
+            # record (2026-11-13).  Empty when the form is already a
             # romanisation, so `form` is what prints.
             "display": display,
             # What the pencil seeds: the form the rung prints.  A rung whose
             # own form is a writing prints its reading, so the pencil never
-            # offers a script for editing (admin, 2026-11-13).  The client does
+            # offers a script for editing (2026-11-13).  The client does
             # not guess this from the characters: the character test called
             # Wˈarkānah scripted, because *ˈ* is a modifier letter.
             "edit": display or version,
             # The reading a scripted rung prints beside its writing.  It is
             # what the stages below that rung run on, because a script is not
             # a sound; on a romanised rung the own form is carried instead
-            # (admin, 2026-11-13).
+            # (2026-11-13).
             "spoken": spoken if (index == own_at and (transcribed or carrying)) else "",
             "baseline": before_disabling,
             "changed": version != before_disabling,
@@ -7170,7 +7170,7 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
             # allow); only a rung the record's own reading agrees with may be
             # called exact, because the page must never say «the laws do reach
             # the word exactly» over a rung that prints two readings
-            # (admin, 2026-11-13: 𐎺𐎼𐎣 read vr̥kaʰ, the laws' wˈarkah).
+            # (2026-11-13: 𐎺𐎼𐎣 read vr̥kaʰ, the laws' wˈarkah).
             "reproduces": any(row["stage"] == lang
                               and row["status"] in ("match", "cited")
                               for row in rows),
@@ -7183,7 +7183,7 @@ def hierarchy(lang: str, form: str, disabled: Iterable[str] = (),
     # The stages above a recorded start are not a silence.  When the record
     # quotes an ancestor form and stops, that ancestor is a word of its own
     # with a page and a ladder, and the rest of the line is its history — the
-    # construction that built it and the stages above that (admin, 2026-11-12:
+    # construction that built it and the stages above that (2026-11-12:
     # keep going up and up, and do not stop just because a source states no
     # more).  The rungs are the ancestor ladder's own, with its own laws, so
     # nothing is invented here: the page shows one timeline where it used to
@@ -7962,7 +7962,7 @@ def _reproduces_reading(fit: dict, form: str, readings: list[str]) -> bool:
     """Whether the laws' form *is* the reading the record states.
 
     A ✓ says the registered laws reproduced the record, and a possible reading
-    of the same signs is not that (admin, 2026-11-13): 𐎺𐎼𐎣 is read
+    of the same signs is not that (2026-11-13): 𐎺𐎼𐎣 is read
     *vr̥kaʰ*, the laws reach *wˈarkah*, and the vowels are the scribe's
     evidence — the two are different readings of one spelling, so the rung says
     both and wears no ✓.  Only notation is set aside: stress, the way a
@@ -8059,7 +8059,7 @@ def _with_signs(stage: str, record: dict | None) -> dict | None:
 
     The branch prints the record's word and its reading; a scripted record also
     says what its signs spell (g-r-g, va-ra-ka-a-na), so the row is read the
-    same way a word page is (admin, 2026-11-13).
+    same way a word page is (2026-11-13).
     """
     if not record or not record.get("w"):
         return record
@@ -8233,7 +8233,7 @@ def _journal_unverified(lang: str, form: str, rows: list[dict],
 
     The row itself already says *match not verified*; the queue is what makes
     the pile reviewable later — with both readings, both meanings and a link
-    back to the page that showed it (admin, 2026-11-12).
+    back to the page that showed it (2026-11-12).
     """
     out = []
     for row in rows:
@@ -8275,7 +8275,7 @@ def _unheld_chain(node: dict) -> list[tuple[str, str]]:
     `_chain_between` fills the stages between a recorded ancestor and the word
     with the forms the cited laws produce, so a piece's column can show
     Proto-Iranian, Old Persian and Middle Persian rows that are nobody's entry.
-    A word cannot be *fully* explained above them (admin, 2026-11-13: fa ناراحت
+    A word cannot be *fully* explained above them (2026-11-13: fa ناراحت
     read «fully explained» while ناـ's climb printed three «no entry» rungs).
     They are reported as holes of their own kind so the band's sentence says
     what they are.
@@ -8331,7 +8331,7 @@ def _descends_from(rung: dict) -> str:
     A writing is not a sound: a rung whose own form is written in its script
     descends from the reading the record states beside it.  A reconstructed
     romanisation is carried as itself — the record's separate transcription is
-    printed on the rung, never fed to the laws (admin, 2026-11-13).
+    printed on the rung, never fed to the laws (2026-11-13).
     """
     form = str(rung.get("form") or "")
     if translit.is_scripted(form):
@@ -9043,7 +9043,7 @@ _ARITHMETIC_RE = re.compile(
     # A record may join its pieces with a conjunction before the plus — "From
     # *h₂eḱ- (“sharp”) + *h₂ṓws (“ear”) and + *-yéti (denominative verbal
     # suffix)" — and the chain used to stop at the word before the conjunction,
-    # so the suffix the sentence names was missing from the timeline (admin,
+    # so the suffix the sentence names was missing from the timeline (
     # 2026-11-13).
     r"(?:(?:\s*,?\s*(?:and|or|plus))?\s*\+\s*(?:[a-z]+\s+){0,3}"
     r"\*[^\s+,;\[\]]+\s*(?:\((?:[^()]|\([^()]*\)){0,90}\)\s*)?)+")
@@ -9251,7 +9251,7 @@ def _base_row(lang: str, base: str, gloss: str = "") -> dict:
     — and says nothing for most (*anda- + *swarō).  The row used to print only
     the quotation, so a piece the stage's glossary *does* hold came back
     ``known: true`` with no meaning: the page could open its entry and still
-    read as if the word had not been recognised (admin, 2026-11-12).  The
+    read as if the word had not been recognised (2026-11-12).  The
     piece is now answered by the same reader as the rung and the ✓
     (`_lemma_entry`), so a word known in one place is known in all three.
     """
@@ -9302,7 +9302,7 @@ def _raw_constructions(entry: dict, lang: str = ROOT_LANG) -> list[dict]:
         # A formation stated in words rather than as an arithmetic: the
         # reduplicated stative/perfect ("Reduplicated stative of the root
         # *h₂eyḱ-") is one root repeated with a vowel of its own, and the
-        # record names it as plainly as a suffix (admin, 2026-11-12).
+        # record names it as plainly as a suffix (2026-11-12).
         read = _reduplication_read(entry)
         if read:
             rows.append({
@@ -9871,7 +9871,7 @@ def build_options(lang: str) -> dict:
         {"id": row["id"], "form": row.get("form", ""),
          "gloss": row.get("gloss", ""), "law": bool(row.get("rule")),
          # A grammatical ending in the same drawer is not a derivational
-         # suffix: the endings have their own row (admin, 2026-11-12).
+         # suffix: the endings have their own row (2026-11-12).
          "kind": row.get("kind", "suffix")}
         for row in _affix_rows(lang)
     ]
@@ -10625,7 +10625,7 @@ def word(lang: str, form: str, disabled: Iterable[str] = (),
     # etymology.  The glossary already prints them as one row — "verb / adj",
     # "own; past participle of *aiganą" — so the page prints the same, and the
     # reader is never shown the grammar where they asked for the meaning
-    # (admin, 2026-11-12: "multiple entries … for aiganaz").
+    # (2026-11-12: "multiple entries … for aiganaz").
     group = groups[sense_no - 1] if 0 < sense_no <= len(groups) else None
     head = entry
     if group and len(group["entries"]) > 1:
@@ -10672,7 +10672,7 @@ def word(lang: str, form: str, disabled: Iterable[str] = (),
         # climb, so its page descends by its ladder's own next steps.  The
         # 40-row table of predictions the removed *reconstruct into* selector
         # used to read is no longer sent with the page: `rebuilds_for_etymon`
-        # still answers it for tools and tests (admin, 2026-11-12).
+        # still answers it for tools and tests (2026-11-12).
         rebuilt = None
     elif pie:
         recorded = _recorded_forms((cog or {}).get("forms", []))
@@ -10725,7 +10725,7 @@ def word(lang: str, form: str, disabled: Iterable[str] = (),
         own = [lv for lv in ladder["levels"] if lv.get("stage") == lang]
         # The branch stays inside the model's own forms: a romanisation is
         # carried as itself, and only a writing descends from its reading
-        # (admin, 2026-11-13).
+        # (2026-11-13).
         last_rung = (own or ladder["levels"])[-1]
         source = _descends_from(last_rung)
     elif lang == ROOT_LANG:
@@ -10751,7 +10751,7 @@ def word(lang: str, form: str, disabled: Iterable[str] = (),
     # What the form above *is*, beside how the word is known: the writing
     # itself, or the record's transcription of it.  A transliteration that is
     # neither (Book Pahlavi lwc) is reported as a transcription because it is
-    # a Latin rendering, not the script (admin, 2026-11-13).
+    # a Latin rendering, not the script (2026-11-13).
     attested_how = (("writing" if _in_native_script(lang, entry["word"])
                      else "transcription")
                     if attest.get("status") == "attested" else "")
@@ -10785,12 +10785,12 @@ def word(lang: str, form: str, disabled: Iterable[str] = (),
         "gloss_source": entry.get("source") or "",
         "ipa": readings["ipa"],
         # One romanisation is used and the alternatives are kept beside it; a
-        # repeated string is the same reading, not a second one (admin,
+        # repeated string is the same reading, not a second one (
         # 2026-11-13: the header read «Vr̥kānaʰ · Vr̥kānaʰ»).
         "translit": readings["reading"] or entry.get("translit", ""),
         # The written forms beside the transcription: MPCD's corpus spellings,
         # or the Pahlavi spelling a dictionary prints next to its headword
-        # (admin, 2026-11-13).
+        # (2026-11-13).
         "spellings": _spellings_of(lang, entry),
         "translit_alt": alternate_readings(entry),
         # What the signs spell, beside how the word is read.
@@ -10804,7 +10804,7 @@ def word(lang: str, form: str, disabled: Iterable[str] = (),
         "wiktionary": _wiktionary_page(entry),
         "sources": _entry_sources(entry),
         # Where this word itself can be opened: its Wiktionary article and its
-        # dictionary entry, each only when the page is recorded (admin,
+        # dictionary entry, each only when the page is recorded (
         # 2026-11-12).  The header draws one icon per page and nothing else.
         "pages": _entry_pages(entry),
         "ancestry": _ancestry_forms(entry),

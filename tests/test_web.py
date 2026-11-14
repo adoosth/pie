@@ -263,7 +263,7 @@ class TestFrontendAssets(unittest.TestCase):
         self.assertIn("recordPages(", js, "only a recorded page is drawn as a mark")
         self.assertIn(".recorddot .wmark", css, "the mark is Wiktionary's W, not a quotation mark")
         self.assertIn("Times New Roman", css,
-                      "the W is serifed like Wikipedia's (admin, 2026-11-12)")
+                      "the W is serifed like Wikipedia's (2026-11-12)")
         self.assertNotIn("Open where it was recorded", js,
                          "the tooltip names the source without telling the reader to click")
         self.assertNotIn(">recorded</a>", js, "the word 'recorded' is gone from the line")
@@ -778,7 +778,7 @@ class TestHierarchy(unittest.TestCase):
         # Wiktionary's German entry quotes Middle High German and stops.  That
         # ancestor is a word with a page whose ladder runs back to Proto-Indo-
         # European, so the timeline continues through it instead of ending at a
-        # dictionary's silence (admin, 2026-11-12).
+        # dictionary's silence (2026-11-12).
         self.assertEqual(self.nacht["start"], "gmh")
         self.assertEqual([level["stage"] for level in self.nacht["levels"]],
                          ["ine-pro", "gem-pro", "gmw-pro", "goh", "gmh", "de"])
@@ -1090,7 +1090,7 @@ class TestRootWord(unittest.TestCase):
 
     def test_a_pie_word_is_one_rung_of_its_own_timeline(self):
         """Nothing above it, and everything below it one click away
-        (admin, 2026-11-12: the *reconstruct into* selector is gone)."""
+        (2026-11-12: the *reconstruct into* selector is gone)."""
         self.assertTrue(self.page["is_root"])
         ladder = self.page["hierarchy"]
         self.assertEqual(len(ladder["levels"]), 1, "one row: the etymon itself")
@@ -2350,7 +2350,7 @@ class TestAConstructionIsATree(unittest.TestCase):
         # A suffix row usually carries no parenthesis of its own, so its gloss
         # comes from its entry in the stage's glossary: *-rós forms adjectives
         # from Caland-system roots.  Without it the piece would sit on the line
-        # saying nothing (admin, 2026-11-12).
+        # saying nothing (2026-11-12).
         pie_node = self._pieces()[0]["branch"]["parents"][0]["parents"][0]["parents"][0]
         suffix = pie_node["builds"][0]["pieces"][1]
         self.assertEqual(suffix["form"], "*-rós")
@@ -2364,7 +2364,7 @@ class TestAConstructionIsATree(unittest.TestCase):
         # to *r̥ in *tr̥s-nó-s and *tr̥s-tó-s.  It is ablaut, and the grade is a
         # property of the formation: *-tó- and *-nó- are oxytone, so the root is
         # unaccented and stands in zero grade; *-éye- is the o-grade causative
-        # (admin, 2026-11-12).  A law cannot say this — a law changes sounds
+        # (2026-11-12).  A law cannot say this — a law changes sounds
         # between two stages, a grade is morphology — so the step states it.
         levels = service.hierarchy("ine-pro", "tr̥stós")["levels"]
         lead = levels[0]["builds"][0]["pieces"][0]
@@ -2423,7 +2423,7 @@ class TestAConstructionIsATree(unittest.TestCase):
         self.assertEqual(node, None)
         # The last node is Proto-Indo-European: the top of the family.  It is
         # not a ??? — nothing above it is missing, the model simply stops there
-        # (admin, 2026-11-12).  The box says which ending it is, and whether the
+        # (2026-11-12).  The box says which ending it is, and whether the
         # glossary happens to hold the form.
         last = branch["parents"][0]["parents"][0]["parents"][0]
         self.assertEqual(last["terminal"], "pie")
@@ -2434,8 +2434,7 @@ class TestAConstructionIsATree(unittest.TestCase):
         # Proto-Indo-Iranian *čitrás; there is no article (and no glossary
         # entry) for *kit-ró-s itself.  The step belongs to the ancestor's form
         # all the same, so the word page must show it — the reader asked why the
-        # *čitrás page had it and the Ciçafarnāh page did not (admin,
-        # 2026-11-12).
+        # *čitrás page had it and the Ciçafarnāh page did not (2026-11-12).
         branch = self._pieces()[0]["branch"]
         pie_node = branch["parents"][0]["parents"][0]["parents"][0]
         self.assertEqual((pie_node["lang"], pie_node["form"]),
@@ -2456,7 +2455,7 @@ class TestAConstructionIsATree(unittest.TestCase):
         # again *sekʷ- + *-éh₂ + *-ṓy — because the second row carries on past
         # the first.  A shorter row that is a prefix of a longer one is the same
         # finding read twice, not a rival analysis: the page drew two tabs of
-        # one construction (admin, 2026-11-12).
+        # one construction (2026-11-12).
         level = service.hierarchy("ine-pro", "sokʷh₂ṓy")["levels"][0]
         self.assertEqual(len(level["builds"]), 1)
         self.assertEqual([p["form"] for p in level["builds"][0]["pieces"]],
@@ -2467,7 +2466,7 @@ class TestAConstructionIsATree(unittest.TestCase):
         # *sokʷh₂ṓy, and it was *sekʷ- + *-éh₂ + *-ṓy — a fact stated in PIE's
         # article and nowhere in the Proto-Iranian one.  A rung that only looks
         # at the page's own entry loses the step, which is what the reader saw
-        # (admin, 2026-11-12).
+        # (2026-11-12).
         levels = service.hierarchy("ira-pro", "háxā")["levels"]
         pie = next(l for l in levels if l["stage"] == "ine-pro")
         self.assertEqual(pie["form"], "sokʷh₂ṓy")
@@ -2482,7 +2481,7 @@ class TestAConstructionIsATree(unittest.TestCase):
         # Proto-Iranian *čiθráh's record stops at Proto-Indo-Iranian *čitrás,
         # but *čitrás is a word with a page whose ladder reaches PIE and the
         # construction that built it.  The timeline continues through it rather
-        # than ending where one dictionary happened to stop (admin, 2026-11-12).
+        # than ending where one dictionary happened to stop (2026-11-12).
         levels = service.hierarchy("ira-pro", "čiθráh")["levels"]
         self.assertEqual([l["stage"] for l in levels], ["ine-pro", "iir-pro", "ira-pro"])
         self.assertEqual([l["form"] for l in levels],
@@ -2530,7 +2529,7 @@ class TestAConstructionIsATree(unittest.TestCase):
 
     def test_a_word_from_outside_the_family_begins_its_own_trail(self):
         # Arabic is not a Proto-Indo-European descendant: there is no missing
-        # ancestry above it, so no ??? is drawn (admin, 2026-11-12).
+        # ancestry above it, so no ??? is drawn (2026-11-12).
         node = service._origin_node("ar", "كِتَاب")
         self.assertEqual(node["terminal"], "outside")
         self.assertEqual(node["parents"], [])
@@ -2774,7 +2773,7 @@ class TestTheSectionsOfThePicker(unittest.TestCase):
             self.assertEqual(row["section"], "ending")
 
     def test_the_construction_row_opens_from_the_dot(self):
-        """The dots and the pills are gone (admin, 2026-11-12): the dot beside a
+        """The dots and the pills are gone (2026-11-12): the dot beside a
         word opens a row above it, and the row builds with menus — a word to
         join, a cited suffix, an ending — never by typing."""
         js = text("app.js")
@@ -2791,7 +2790,7 @@ class TestTheSectionsOfThePicker(unittest.TestCase):
         """Wiktionary writes the pieces with hyphens (*tr̥s-nó-s) and the
         glossary heads the word solid (*tr̥snós).  A rung that quotes the first
         while linking to the second must not say "no entry for this word"
-        (admin, 2026-11-12, Persian تشنه)."""
+        (2026-11-12, Persian تشنه)."""
         self.assertEqual(service._lemma_entry("ine-pro", "tr̥s-nó-s")["word"], "tr̥snós")
         # The rung's three readers — the sense, the evidence and the ✓ — must
         # agree with that lookup, or the page says "no entry" under a link that
@@ -2812,8 +2811,8 @@ class TestTheSectionsOfThePicker(unittest.TestCase):
         """An ancestor comes from an etymology row, written in the engine's
         notation: Proto-Iranian *Hnˈawa where the glossary heads *Hnáwa (and
         keys it hnáwa). Neither the stress token nor a capital is a sound, so
-        the rung must not call a word with a meaning "no entry" (admin,
-        2026-11-12: "fix all such cases")."""
+        the rung must not call a word with a meaning "no entry" (2026-11-12:
+        "fix all such cases")."""
         for lang, form, want in (("iir-pro", "Hnˈawa", "nine"),
                                  ("iir-pro", "tˈuH", "you, thou"),
                                  ("ira-pro", "Hā́fš", "water")):
@@ -2861,7 +2860,7 @@ class TestTheOldPersianScript(unittest.TestCase):
 
         # One letter per sign, and a consonant sign's inherent -a is not
         # evidence: 𐎺𐎼𐎣 is v-r-k, as an edition transliterates it.  The
-        # vowels a word actually spells keep their sign (admin, 2026-11-13).
+        # vowels a word actually spells keep their sign (2026-11-13).
         self.assertEqual(script.transliterate("peo", "𐎺𐎼𐎣"), "v-r-k")
         self.assertEqual(script.transliterate("peo", "𐎺𐎼𐎣𐎠𐎴"), "v-r-k-a-n")
         self.assertEqual(script.transliterate("peo", "𐎺𐎼𐎣𐎠𐎴𐎡𐎹"), "v-r-k-a-n-i-y")
@@ -3074,7 +3073,7 @@ class TestCitedStem(unittest.TestCase):
 class TestTheLawsStartFromAReading(unittest.TestCase):
     """A form written in a script is never handed to the sound laws.
 
-    The admin's report (2026-11-11): the page for Middle Persian ``lwc`` said the
+    A report (2026-11-11): the page for Middle Persian ``lwc`` said the
     reconstruction was not working, "it seems like it's trying to reconstruct
     from the script, not the romanization".  It was: the rung's input was the Old
     Persian cuneiform 𐎼𐎢𐎨, no law could rewrite a sign, and the ladder copied
@@ -3150,7 +3149,7 @@ class TestTheLawsStartFromAReading(unittest.TestCase):
 
 
 class TestUnverifiedMatch(unittest.TestCase):
-    """A record the laws almost reach is a question, never a ✓ (admin, 2026-11-12).
+    """A record the laws almost reach is a question, never a ✓ (2026-11-12).
 
     Old Persian 𐎣𐎱𐎢𐎫𐎣 "blue" is carried to Persian *kabūde*; the glossary heads
     the word کبود *kabud*. The final -e is a change no registered law accounts
@@ -3203,7 +3202,7 @@ class TestUnverifiedMatch(unittest.TestCase):
         self.assertEqual(branch["source"]["lang"], "peo")
         # The branch descends from the form the rung carries, and that form is a
         # romanisation: the model carries its own reconstruction down and never
-        # the record's transcription (admin, 2026-11-13).  A form in the stage's
+        # the record's transcription (2026-11-13).  A form in the stage's
         # own writing is the one case that descends from its reading.
         peo = [lv for lv in self.page["hierarchy"]["levels"]
                if lv["stage"] == "peo"][-1]

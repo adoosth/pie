@@ -82,7 +82,7 @@ class TestThePageAWaCWordOpens(unittest.TestCase):
 class TestTheQuotationMark(unittest.TestCase):
     """Every mark opens the page it is drawn for, and none opens a front page.
 
-    A record has one icon per *recorded* page (admin, 2026-11-12): the W is the
+    A record has one icon per *recorded* page (2026-11-12): the W is the
     word's Wiktionary article, the book is its dictionary entry.  A word whose
     page was never recorded has no icon at all, never a mark that goes nowhere.
     """
@@ -99,7 +99,7 @@ class TestTheQuotationMark(unittest.TestCase):
 
     def test_a_dehkhoda_entry_is_its_own_page_and_not_a_wiktionary_one(self):
         # The entry's own `url` is its vajehyab page, so the book opens the word
-        # itself; only a Wiktionary address is painted with the W (admin,
+        # itself; only a Wiktionary address is painted with the W (
         # 2026-11-12).
         page = service.word("fa", "کتاب")
         row = [r for r in page["sources"] if r["id"] == "dehkhoda"][0]

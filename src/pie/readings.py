@@ -128,7 +128,7 @@ def signs_for(lang: str, word: str) -> str:
     **romanisation** is how the language is read (*Vr̥kānaʰ*, *gorg*), and its
     **transliteration** is what the signs spell (``va-ra-ka-a-na``, ``g-r-g``).
     The second is not a pronunciation and may not stand in for the first
-    (admin, 2026-11-13), but a script is unreadable without it, so the page
+    (2026-11-13), but a script is unreadable without it, so the page
     prints both.  A Latin-script or reconstructed word has no such layer and
     gets an empty string.
     """
@@ -154,7 +154,7 @@ def display(lang: str, word: str, ipa: str = "", reading: str = "") -> dict:
     ``signs`` is the second Latin layer and is filled whenever the word is
     written in a script, whether or not a romanisation was recorded: the
     romanisation says how the word is read, the signs say what the scribe
-    wrote, and a page shows both (admin, 2026-11-13).
+    wrote, and a page shows both (2026-11-13).
 
     A headword already written in Latin letters *is* a kind of reading — Book
     Pahlavi ``lwc`` — and the sign-by-sign layer has nothing to add to it:

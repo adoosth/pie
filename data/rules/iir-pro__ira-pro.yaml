@@ -244,7 +244,7 @@ rules:
       this transition rather than of the stage above.
     references: [hoffmann-forssman-2004]
     notes: >
-      Measured (proposals/night-0911/piir2/measure.py --stage iir-pro --to
+      Measured (proposals/2026-09-11/piir2/measure.py --stage iir-pro --to
       ira-pro --add): +3 exact words in ira-pro, nothing lost in ira-pro,
       ave, peo, pal or fa.  Three etyma, one suffix: the evidence is for the
       suffix's laryngeal, and the environment is stated as segments because
@@ -399,7 +399,7 @@ rules:
     references: [hoffmann-forssman-2004, beekes-2011, mayrhofer-1986]
     notes: >
       Ablation (2026-11-09, tools/whatif.py --to ira-pro): carries 1 exact
-      word (*Hragúš), loses none.  Note for the integrator: the *earlier*
+      word (*Hragúš), loses none.  Note: the *earlier*
       file ine-pro__iir-pro.yaml registers its own l_to_r at the
       Proto-Indo-Iranian stage, so a word that enters at Proto-Indo-Iranian
       has usually lost its *l before it reaches this transition; this rule

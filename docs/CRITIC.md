@@ -5,8 +5,8 @@ person) that takes a random sample of word pages, compares each one against the
 record it claims to summarise (Wiktionary's etymology, Dehkhoda, the cited
 laws), and reports every place where the page says something the record does
 not support. It **reports**; it does not edit `data/` or `src/` (2026-11-13:
-the admin asked for a ruleset a subagent can run repeatedly, and a super agent
-who fixes what it finds).
+a ruleset a reviewer can run repeatedly, and the confirmed findings are
+fixed).
 
 Start from `tools/critic.py sample --lang fa --n 20` and finish with
 `tools/critic.py check --lang fa --n 20`, which pre-computes the mechanical
@@ -47,7 +47,7 @@ report the piece and the entry that should have been found.
 
 ### 1. A piece points at the wrong word (`wrong_piece`)
 The timeline says a construction's piece means something the record does not.
-Worked example (admin, 2026-11-13): **fa دستمال** is "From دست (dast) + مال
+Worked example (2026-11-13): **fa دستمال** is "From دست (dast) + مال
 (mâl-)" — the second piece is the present stem of **مالیدن** "to rub", not
 Arabic **مال** "property", and the first is **دست** "hand", not Dehkhoda's
 classifier homonym. Check every piece:
@@ -116,7 +116,7 @@ names the wrong donor. Say what is wrong and quote it.
 ## The output
 
 Write one JSON object per finding, one per line, to
-`tiago/files/admin/pie-critic/findings-<batch>.jsonl`:
+`findings-<batch>.jsonl`:
 
 ```json
 {"lang":"fa","word":"دستمال","kind":"wrong_piece","severity":"high",
@@ -137,9 +137,9 @@ whether the model is improving.
 
 ## After the batch
 
-The super agent fixes what it can, adds the reusable class to
-`tools/critic.py` so the next batch finds it mechanically, records the rule in
-`AGENTS.md` and `docs/DECISIONS.md`, and spawns the next critic on a fresh
+The confirmed findings are fixed where possible, the reusable class is added to
+`tools/critic.py` so the next batch finds it mechanically, the rule is recorded in
+`AGENTS.md` and `docs/DECISIONS.md`, and the next critic is started on a fresh
 random sample (a word may not be reviewed twice unless a fix changed it).
 
 ---

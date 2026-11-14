@@ -113,7 +113,7 @@ def _parents(node: dict) -> list[dict]:
 
 
 class ConstructionPiece(unittest.TestCase):
-    """A piece the stage's glossary holds says what it means (admin, 2026-11-12).
+    """A piece the stage's glossary holds says what it means (2026-11-12).
 
     *andaswarō's etymology is ``From *anda- + *swarō.`` — an arithmetic with no
     gloss in brackets — so the construction row used to come back with both
@@ -149,7 +149,7 @@ class ConstructionPiece(unittest.TestCase):
         + *-yéti (denominative verbal suffix)"; the arithmetic reader used to
         stop at the word before the conjunction, and its stored row names only
         the two words.  The suffix is a piece of the construction, bound, with
-        the morphology table's gloss (admin, 2026-11-13).
+        the morphology table's gloss (2026-11-13).
         """
         entry = service._lemma_index("ine-pro")["h₂ḱh₂owsyéti"]
         builds = service._rung_builds(entry, "ine-pro", "h₂ḱh₂owsyéti")
@@ -163,7 +163,7 @@ class ConstructionPiece(unittest.TestCase):
     def test_the_lom_suffix_is_registered_and_builds_a_word(self):
         """`-lom` is a cited PIE suffix, and *ailą's PIE rung is a real entry.
 
-        The admin asked whether the morphology could add *-lom to a PIE word for
+        A requirement: the morphology could add *-lom to a PIE word for
         gem-pro/ailą: the record names *h₂éydʰ-lom, the suffix is registered
         beside *-tro-, and the PIE word is an entry whose own construction is
         *h₂eydʰ- + *-lom (2026-11-13).
@@ -191,7 +191,7 @@ class ConstructionPiece(unittest.TestCase):
         fa جو?sense=1 shows Middle Persian jaw; آبجو's timeline lost it, because
         the node walk preferred *any* inheritance over a nearer derivation and
         Wiktionary writes the Persian ← Middle Persian link with `{{der}}`
-        (admin, 2026-11-13: "The timeline for a word should appear more-or-less
+        (2026-11-13: "The timeline for a word should appear more-or-less
         exactly the same if another page refers to it").
         """
         node = service._origin_node("fa", "جو")
@@ -212,7 +212,7 @@ class ConstructionPiece(unittest.TestCase):
 
         fa رضاقلی is "a compound of رضا + Old Anatolian Turkish قلی": the second
         piece is a word of the donor, and its fa entry heads another homonym and
-        records no origin, so the timeline hung a ``???`` over it (admin,
+        records no origin, so the timeline hung a ``???`` over it (
         2026-11-13 — "قلی is obviously a borrowing, so it should never have
         shown the question marks").
         """
@@ -231,7 +231,7 @@ class ConstructionPiece(unittest.TestCase):
         PIE *né through Proto-Iranian, Old Persian and Middle Persian to
         Persian.  The piece's climb used to follow only the rows a record
         states, so the same word looked shorter wherever another page quoted it
-        (admin, 2026-11-13: "the timeline above نا only shows from Proto-Indo-
+        (2026-11-13: "the timeline above نا only shows from Proto-Indo-
         Iranian").  The rungs the laws fill in are `derived` — drawn, never
         claimed as entries — and they are not holes.
         """
@@ -278,7 +278,7 @@ class PreStageAncestry(unittest.TestCase):
     registered stage and took the next registered stage it found — *h₂énts —
     which is the word *h₂entó- was made from, one level above the ancestor.
     The marked form belongs to the stage the sentence names for it, and the
-    rest of the sentence is that form's own history (admin, 2026-11-12).
+    rest of the sentence is that form's own history (2026-11-12).
     """
 
     def test_a_pre_stage_label_marks_the_form_it_precedes(self):
@@ -321,7 +321,7 @@ class OneWordBuildsAnother(unittest.TestCase):
     possess')" — one base, no suffix — and lists it under Participle as "past
     participle of *aiganą".  The supplement stores that as one `derivation`
     piece, so the timeline above *aiganaz is the word it was made from, and
-    that word's own climb (PIE *h₂eh₂óyḱe) continues above it (admin,
+    that word's own climb (PIE *h₂eh₂óyḱe) continues above it (
     2026-11-12: *aiganą is an entry, and it is the construction of *aiganaz).
     """
 
@@ -353,7 +353,7 @@ class OneWordBuildsAnother(unittest.TestCase):
 
 
 class ReduplicationTest(unittest.TestCase):
-    """Reduplication is a formation, not a sound law (admin, 2026-11-12).
+    """Reduplication is a formation, not a sound law (2026-11-12).
 
     *h₂eh₂óyḱe's page said "Reduplicated stative of the root *h₂eyḱ-" and the
     timeline showed nothing above the word, because only `built_as` rows were
@@ -426,7 +426,7 @@ class AncestorHomonym(unittest.TestCase):
     to speak loudly".  Proto-Germanic *swarō "oath" is "from Proto-Indo-
     European *swer- (“to say, speak, talk, swear, curse”)", but the ladder
     quoted whichever entry the index listed first and printed "oath" over the
-    root of aching (admin, 2026-11-12).
+    root of aching (2026-11-12).
     """
 
     def test_the_quoted_meaning_chooses_the_sense(self):
@@ -454,7 +454,7 @@ if __name__ == "__main__":
 class ConstructionCarries(unittest.TestCase):
     """A registered construction may carry a word to "fully explained".
 
-    The rule the admin set on 2026-11-13: a word is fully explained when every
+    The rule (2026-11-13): a word is fully explained when every
     segment starts from a PIE etymon (or from outside the family), the exact
     form is produced — by cited laws *or* by the record's own registered
     construction — and the result agrees with what the literature records.
@@ -583,7 +583,7 @@ class IncompleteTimeline(unittest.TestCase):
     PIE form its record names (*h₁wéh₂-ye-ti), and the page printed "fully
     explained" while the PIE rung under it said "no entry for this word": the
     chain was complete by the laws and incomplete in the record
-    (admin, 2026-11-13).  The band now asks the same question the rung asks,
+    (2026-11-13).  The band now asks the same question the rung asks,
     through one helper (``service.unrecorded_ancestry``), so a green band and a
     missing rung cannot appear on one page.
     """

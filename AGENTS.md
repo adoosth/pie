@@ -229,10 +229,20 @@ node tests/test_ui_render.js            # only when app.js / style.css changed
 ```
 
 The full suite (`python3 -m unittest discover -s tests`, ~1,000 tests) is for a
-**release** or when the admin explicitly asks for it — never for an ordinary
-edit. Add a test when a rule can silently regress; do not add tests for a
+**release** or for a run that is asked for by name — never for an ordinary
+edit (2026-11-13). Add a test when a rule can silently regress; do not add tests for a
 sentence on a page. Keep `tests/test_syntax.py` green: the repo must parse on
 Python 3.10 (the Windows machine runs 3.11, this box 3.14).
+
+## Voice of the repo
+
+The repository speaks for itself. Nothing in it — code, comments, docstrings,
+docs, tests, proposals, commit messages — names a person, an operator, a shift,
+or an internal organisation: no "admin", no "night shift"/"night", no
+"super agent"/"sub agent", no "integrator", and no private workspace paths.
+Provenance is a **bare date** — `(2026-11-13)` — never a date plus a person.
+Who asked for what, and when, is recorded outside the repository; the repository
+keeps the decision, the date and the reason.
 
 ## Commits and reports
 
@@ -244,7 +254,7 @@ Python 3.10 (the Windows machine runs 3.11, this box 3.14).
 - Say what changed and **why**, with the numbers that moved (coverage, timings).
   A rule **applies**, it never "fires"; nothing published names who commissioned
   the work or how many hours it took.
-- Fix what you find (admin, 2026-11-11) — inside the change you are already
+- Fix what you find — inside the change you are already
   making, with a `docs/DECISIONS.md` line if a reader could notice it.
 
 ## Working with delegated agents
@@ -261,7 +271,7 @@ The repo is small enough to split by area; each agent gets a **write set** and a
 - A critic agent (`docs/CRITIC.md`) reads pages and reports — it never edits
   `data/` or `src/`. A worklist agent proposes the next task from
   `pie worklist` and says what "done" would mean.
-- The integrator (the super agent) reviews the diff, re-runs the numbers, and
+- The reviewer of the batch reviews the diff, re-runs the numbers, and
   decides what lands. Nothing lands on an agent's word alone.
 
 ## Open fronts

@@ -1,0 +1,24 @@
+# Candidate for ira-pro -> ave, batch 0911 (Avestan).  HELD, not shipped.
+# Claim: PIr *an before a consonant is the Avestan nasal vowel ą (𐬄).
+# Measured 2026-11-09 with `tools/whatif.py --to ave --layers exact,orthographic`:
+#   0 forms changed, 0 gained, 0 lost: the environment as written below matched
+#   no form of the corpus.  The change itself is the standard one (mąθra-,
+#   dąhišta-) and should be restated with a narrower, segment-level environment
+#   in the session that can also count it (see ../report.md, wall 2).
+stage:
+  name: Proto-Iranian → Avestan (candidate, *an to ą before a consonant)
+rules:
+  - id: an_to_nasal
+    order: 62
+    tier: proposed
+    name: "PIr *an > Av. ą before a consonant"
+    match: "a n"
+    replace: ą
+    env: {right: "[ptkbdgθδfsšzxγŋmnr]" }
+    description: >
+      Before another consonant Avestan writes the nasal vowel ą: Av. mąθra-
+      'formula' (PIr *manθrah), dąhišta- 'skilfullest' (PIr *danhištah).
+    references: [hoffmann-forssman-2004, skjaervo-2009]
+    examples:
+      - {in: "*manθrah", out: "*mąθrah", gloss: "formula (Av. mąθra-)"}
+      - {in: "*danhištah", out: "*dąhištah", gloss: "most skilful (Av. dąhišta-)"}

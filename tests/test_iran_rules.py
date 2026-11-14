@@ -12,8 +12,7 @@ Three things are pinned here:
   new law may not cost a word that already matched.
 
 The regression test compares the transition against itself with the new law
-switched off, so it measures the law and not the rest of the tree (other
-workers own the files on either side of this transition).
+switched off, so it measures the law and not the rest of the tree.
 """
 from __future__ import annotations
 

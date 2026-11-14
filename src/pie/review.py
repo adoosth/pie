@@ -5,7 +5,7 @@ its ending — Persian کبود *kabud* where the registered laws give *kabūde*
 page refuses to call that a match (no ✓, a yellow ⚠, "match not verified") and
 the row lands here, so the pile is a real list someone can work through with
 the two readings and both meanings in front of them, instead of a hundred
-pages nobody will ever look at again (admin, 2026-11-12).
+pages nobody will ever look at again (2026-11-12).
 
 The journal is working state, not data: it lives beside the runtime meaning
 cache under ``data/review/``, is skipped by git, and losing it costs nothing

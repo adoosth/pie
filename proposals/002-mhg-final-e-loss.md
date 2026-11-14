@@ -3,7 +3,7 @@
 - **Status:** rejected as a sound law (2026-11-08); the question moves to W5
   (morphology) as an open task
 - **Stream:** W4 (new laws)
-- **Author:** integrator
+- **Author:** reviewer
 - **Reviewer:** the corpus itself (the recorded `gmh→de` pairs) plus the
   phonological-ambiguity test below
 

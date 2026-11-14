@@ -106,13 +106,13 @@ page also belongs in `AGENTS.md` ("What a word page must keep true").
     sense (`noun · "Gorgan; Vahrkana"`) stays; "read v-r-k-a-n", "the script
     leaves h unwritten", "the writing allows it — the record reads …" are gone
     from the page, because the transcription and the signs are already printed
-    on the rung (admin, 2026-11-13). "No entry for this word" and "match not
+    on the rung (2026-11-13). "No entry for this word" and "match not
     verified" stay: they are facts about the word. The pencil reads its seed
     from the payload (`level.edit`, the printed form), never from a character
     test — `Wˈarkānah` is a romanisation even though `ˈ` is a letter — and it
     seeds that form **as printed**: the page turns the stress token `ˈ` into the
     dictionary's acute (`pf`), so the box opens `Wárkānah`, not the engine's
-    `Wˈarkānah` (admin, 2026-11-14). Handing the acute back is safe: the engine
+    `Wˈarkānah` (2026-11-14). Handing the acute back is safe: the engine
     canonicalises it before the laws run (`GET /api/derive?form=Wárkānah`
     returns `Wˈarkānah`).
 
@@ -145,3 +145,8 @@ page also belongs in `AGENTS.md` ("What a word page must keep true").
     finding, not a win.
 33. **A change is written down where it is seen**: a page rule in `AGENTS.md`, a
     model rule here, the reasoning in the archive.
+34. **The repository speaks for itself** (2026-11-14): no name of a person, an
+    operator, a shift or an internal organisation appears in code, comments,
+    docs, tests or commit messages; provenance is a bare date, and private
+    paths stay outside the tree. The rule is stated in `AGENTS.md`, "Voice of
+    the repo".
