@@ -2801,7 +2801,14 @@ async function updateLadder(showStage) {
    reconstructed Wˈarkānah "scripted" and offered the record's reading instead
    (admin, 2026-11-13). */
 function editSeed(level) {
-  return String((level && (level.edit || level.display || level.form)) || "");
+  /* And it seeds the form as *printed*, not as the engine carries it: the
+     page turns the stress token ˈ into the dictionary's acute (pf), so
+     `Wˈarkānah` is read as Wárkānah — a pencil that opened `Wˈarkānah` would
+     hand the reader a second spelling of the same word (admin, 2026-11-14).
+     Feeding the acute back is safe: the server canonicalises `Wárkānah` to
+     `Wˈarkānah` before the laws run. */
+  const seed = level && (level.edit || level.display || level.form);
+  return pf(String(seed || ""));
 }
 
 function startEdit(stage) {

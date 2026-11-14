@@ -109,7 +109,12 @@ page also belongs in `AGENTS.md` ("What a word page must keep true").
     on the rung (admin, 2026-11-13). "No entry for this word" and "match not
     verified" stay: they are facts about the word. The pencil reads its seed
     from the payload (`level.edit`, the printed form), never from a character
-    test — `Wˈarkānah` is a romanisation even though `ˈ` is a letter.
+    test — `Wˈarkānah` is a romanisation even though `ˈ` is a letter — and it
+    seeds that form **as printed**: the page turns the stress token `ˈ` into the
+    dictionary's acute (`pf`), so the box opens `Wárkānah`, not the engine's
+    `Wˈarkānah` (admin, 2026-11-14). Handing the acute back is safe: the engine
+    canonicalises it before the laws run (`GET /api/derive?form=Wárkānah`
+    returns `Wˈarkānah`).
 
 ## Interface
 

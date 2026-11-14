@@ -909,12 +909,14 @@ assert.equal(context.editSeed(peoEdit), "Vạrkāniya",
 assert.ok(!/[\u{103A0}-\u{103DF}]/u.test(context.editSeed(peoEdit)),
   "the edit input never contains the language's own script");
 assert.equal(context.editSeed({ ...peoEdit, form: "Wˈarkānah", display: "Vr̥kānaʰ",
-                                edit: "Wˈarkānah" }), "Wˈarkānah",
-  "a reconstructed form with a modifier letter is not mistaken for a script");
+                                edit: "Wˈarkānah" }), "Wárkānah",
+  "the seed is the form as printed: the stress token ˈ becomes the acute (2026-11-14)");
 assert.equal(context.editSeed({ ...peoEdit, edit: "", spoken: "vr̥kaʰ" }), "Vạrkāniya",
   "a server without level.edit falls back to the display");
 assert.equal(context.editSeed({ ...peoEdit, edit: "", display: "", form: "Wˈarkānah" }),
-  "Wˈarkānah", "and then to the form the rung prints");
+  "Wárkānah", "and then to the form the rung prints");
+assert.equal(context.editSeed({ ...peoEdit, edit: "drˈayah", display: "", form: "drˈayah" }),
+  "dráyah", "a syllabic rung seeds the acute the page prints, not the engine token");
 assert.ok(readHtml.includes('data-edit="pal"'), "a rung the timeline was carried into is editable");
 assert.ok(readHtml.includes('data-cut="pal"'), "and it can be cut off again");
 assert.ok(!readHtml.includes('data-cut="peo"'), "the word's own rung is not a carried one");
