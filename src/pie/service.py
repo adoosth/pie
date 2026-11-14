@@ -811,6 +811,31 @@ def _wiktionary_page(entry: dict) -> dict | None:
     return note
 
 
+def _gloss_notes(entry: dict, glosses: list[str]) -> list[str]:
+    """The record's own subtext under each gloss, in the order of the glosses.
+
+    MPCD explains some meanings below the sense line — «loan debt» is "the
+    obligation to repay a loan, cf. Ger. 'Kreditschuld'" — and a reader who is
+    given the meaning without its gloss has been given half the entry
+    (2026-11-14).  Keyed by the gloss, so a reordered list still matches.
+    """
+    notes = entry.get("gloss_note") or {}
+    if not isinstance(notes, dict):
+        return []
+    return [str(notes[g]).strip() for g in glosses if notes.get(g)]
+
+
+def _source_name(sid: str) -> str:
+    """The short name of a source, as it is printed under a meaning.
+
+    A citation needs a name a reader can repeat — "MPCD", "Dehkhoda",
+    "MacKenzie" — while the long title stays in the source's own tooltip and on
+    the sources page (2026-11-14).
+    """
+    row = data.sources().get(sid) or {}
+    return row.get("short") or row.get("title") or sid
+
+
 def _entry_sources(entry: dict) -> list[dict]:
     """Where the glossary entry itself came from, resolved to titles and links.
 
@@ -10784,6 +10809,19 @@ def word(lang: str, form: str, disabled: Iterable[str] = (),
         # after its source, and 153,215 Persian entries take theirs from
         # Dehkhoda, not from Wiktionary (2026-11-12, critic P1-7).
         "gloss_source": entry.get("source") or "",
+        # The same source as a name a reader can weigh: MPCD, Dehkhoda,
+        # MacKenzie, Wiktionary.  It is printed under the meaning, so no gloss
+        # arrives without the book it was read in (2026-11-14).  An entry that
+        # names no source is the machine-readable Wiktionary by construction
+        # (`_entry_sources`), and says so.
+        "gloss_source_name": _source_name(
+            entry.get("source") or (entry.get("sources") or ["wiktionary"])[0]
+            or "wiktionary"),
+        # The dictionary's own subtext under a sense — MPCD prints one under
+        # some meanings ("the obligation to repay a loan, cf. Ger.
+        # 'Kreditschuld'") and it belongs with the meaning, not in a tooltip
+        # (2026-11-14).  It is keyed by the gloss it explains.
+        "gloss_notes": _gloss_notes(entry, _page_gloss(lang, head, head.get("gloss", []))),
         "ipa": readings["ipa"],
         # One romanisation is used and the alternatives are kept beside it; a
         # repeated string is the same reading, not a second one (

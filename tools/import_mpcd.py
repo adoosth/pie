@@ -22,7 +22,11 @@ What is taken, and what is left behind:
   their own (2026-11-13);
 * the address of its **MPCD entry**, so the word page carries a book icon that
   opens the entry the word was read in (nothing more: the occurrence list and
-  the texts it quotes are out of scope, 2026-11-13).
+  the texts it quotes are out of scope, 2026-11-13);
+* the **gloss under a sense**, when the entry prints one — MPCD explains «loan
+  debt» as "the obligation to repay a loan, cf. Ger. 'Kreditschuld'".  It is
+  not in the lemma JSON, only in the rendered entry page, so it is read from
+  the cache `scripts/pull_notes.py` writes (`--notes`, 2026-11-14).
 
 A lemma no token of the corpus writes is not filed: the dictionary lists it,
 but no text spells it, and this model would then call it attested.  Multiword
@@ -114,8 +118,21 @@ def senses(lemma: dict) -> list[str]:
     return out
 
 
-def rows(lemmas: Path, tokens: Path | None, pos: Path | None, *, minimum: int = 1
-         ) -> tuple[list[dict], dict]:
+def notes(path: Path | None) -> dict[str, dict[str, str]]:
+    """The dictionary's own line under a sense, keyed by lemma and gloss."""
+    out: dict[str, dict[str, str]] = {}
+    if not path:
+        return out
+    for row in read_jsonl(path):
+        found = {s["gloss"]: s["note"] for s in row.get("senses") or []
+                 if s.get("note") and s.get("gloss")}
+        if found:
+            out[row["uuid"]] = found
+    return out
+
+
+def rows(lemmas: Path, tokens: Path | None, pos: Path | None, *, minimum: int = 1,
+         notes_: dict[str, dict[str, str]] | None = None) -> tuple[list[dict], dict]:
     n, tags, spellings = ({}, collections.defaultdict(collections.Counter), {}) \
         if not tokens else counts(tokens, pos)
     out: list[dict] = []
@@ -147,6 +164,11 @@ def rows(lemmas: Path, tokens: Path | None, pos: Path | None, *, minimum: int = 
             "gloss": gloss, "source": "mpcd", "sources": ["mpcd"],
             "url": ENTRY.format(id=lemma["id"]),
         }
+        # The entry's own line under a sense travels with the gloss it explains
+        # (2026-11-14); a lemma with no cached note is filed without one.
+        said = {g: n for g, n in (notes_ or {}).get(lemma["id"], {}).items() if g in gloss}
+        if said:
+            row["gloss_note"] = said
         if count:
             row["occurrences"] = count
         # Two MPCD lemmas that differ only by their homonym number are one
@@ -157,6 +179,8 @@ def rows(lemmas: Path, tokens: Path | None, pos: Path | None, *, minimum: int = 
             for g in gloss:
                 if g not in seen[key]["gloss"]:
                     seen[key]["gloss"].append(g)
+            if said:
+                seen[key].setdefault("gloss_note", {}).update(said)
             if count:
                 seen[key]["occurrences"] = seen[key].get("occurrences", 0) + count
             spelled[key].update(spellings.get(lemma["id"]) or {})
@@ -193,9 +217,12 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--tokens", type=Path)
     ap.add_argument("--pos", type=Path)
     ap.add_argument("--out", type=Path, default=OUT)
+    ap.add_argument("--notes", type=Path,
+                    help="the pull_notes.py cache: the dictionary's line under a sense")
     ap.add_argument("--min-occurrences", type=int, default=1)
     a = ap.parse_args(argv)
-    rows_, skipped = rows(a.lemmas, a.tokens, a.pos, minimum=a.min_occurrences)
+    rows_, skipped = rows(a.lemmas, a.tokens, a.pos, minimum=a.min_occurrences,
+                          notes_=notes(a.notes))
     write(rows_, a.out)
     print(f"filed {len(rows_)} Middle Persian words in {a.out}")
     for why, how in sorted(skipped.items(), key=lambda kv: -kv[1]):

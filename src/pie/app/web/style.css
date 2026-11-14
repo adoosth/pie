@@ -212,6 +212,12 @@ button:hover { border-color: var(--accent); }
    until a suffix is chosen (2026-11-08). */
 .composed-line.quiet { display: none; }
 .wordmeta { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+/* The dictionary a meaning was read in, under the meaning it belongs to: small
+   and quiet, because it qualifies the gloss rather than competing with it. */
+.glosssrc { margin: 6px 0 0; font-size: 12px; letter-spacing: .02em; color: var(--dim); }
+/* A record's own gloss on its meaning: a sentence, not a footnote, so it keeps
+   the text colour and only steps down a size. */
+.glossnote { margin: 4px 0 0; max-width: 68ch; }
 /* An empty line of readings is not a line: it used to leave the source icons
    floating a hand's width below the word (2026-11-12). */
 .wordmeta:empty { display: none; }

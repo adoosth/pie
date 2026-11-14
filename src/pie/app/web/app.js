@@ -1039,6 +1039,17 @@ function wiktionaryLine(d) {
 function meaningsBlock(d) {
   const gloss = esc((d.gloss || []).join("; "));
   const fa = d.lang === "fa";
+  /* A meaning belongs to the book it was read in, and a reader weighs
+     "MacKenzie" differently from "Wiktionary": the source is named under the
+     gloss, in small type, with the full citation on hover (2026-11-14). */
+  const glossSrc = d.gloss_source_name
+    ? `<p class="glosssrc" data-tip="The dictionary this meaning was read in — the gloss above is quoted from it, not inferred by the model.">${esc(d.gloss_source_name)}</p>`
+    : "";
+  /* The record's own line under the sense, when it prints one: MPCD explains
+     «loan debt» as "the obligation to repay a loan, cf. Ger. 'Kreditschuld'",
+     and that sentence is part of the meaning (2026-11-14). */
+  const glossNotes = (d.gloss_notes || []).filter(Boolean)
+    .map((n) => `<p class="sub glossnote">${esc(n)}</p>`).join("");
   /* The first tab is the source the gloss was actually read from: nearly every
      Persian word takes its definition from Dehkhoda, and calling that tab
      "Wiktionary" misattributed the text and its licence (2026-11-12). */
@@ -1060,7 +1071,7 @@ function meaningsBlock(d) {
       data-lang="${esc(d.lang)}" data-sense="${esc(String(d.sense || ""))}">
       ${tabs}
       <div class="mpanel" id="mpanel-gloss" data-src="gloss"
-        ${fa ? 'role="tabpanel" aria-labelledby="mtab-gloss" tabindex="0"' : ""}><p class="gloss">${gloss}</p></div>
+        ${fa ? 'role="tabpanel" aria-labelledby="mtab-gloss" tabindex="0"' : ""}><p class="gloss">${gloss}</p>${glossNotes}${glossSrc}</div>
       ${fa ? `<div class="mpanel" id="mpanel-dehkhoda" data-src="dehkhoda" role="tabpanel"
         aria-labelledby="mtab-dehkhoda" tabindex="0" hidden dir="rtl" lang="fa"><p class="sub">Loading Dehkhoda …</p></div>` : ""}
     </div>`;

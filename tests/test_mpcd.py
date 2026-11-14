@@ -54,6 +54,27 @@ class TestSources(unittest.TestCase):
         self.assertNotIn("count", service.attestation_of(entry(source="mpcd"), "pal"),
                          "a word nothing counted carries no number")
 
+    def test_a_meaning_names_the_book_it_was_read_in(self):
+        """A gloss is quoted from a dictionary, and the page says which one —
+        MPCD, Dehkhoda, Wiktionary (2026-11-14)."""
+        self.assertEqual(service.word("pal", "abāmtōzišn")["gloss_source_name"], "MPCD")
+        self.assertEqual(service.word("fa", "پدر")["gloss_source_name"], "Dehkhoda")
+        self.assertEqual(service.word("en", "night")["gloss_source_name"], "Wiktionary")
+        self.assertEqual(service._source_name("mackenzie-1971"), "MacKenzie",
+                         "a published dictionary prints its own name")
+
+    def test_the_record_s_own_gloss_rides_with_the_meaning(self):
+        """MPCD prints a sentence under some senses («the obligation to repay a
+        loan, cf. Ger. 'Kreditschuld'»); it belongs with the meaning, keyed by
+        the gloss so a reordered list still finds it (2026-11-14)."""
+        row = entry(gloss=["loan debt", "debt"],
+                    gloss_note={"loan debt": "the obligation to repay a loan"})
+        self.assertEqual(service._gloss_notes(row, ["loan debt", "debt"]),
+                         ["the obligation to repay a loan"])
+        self.assertEqual(service._gloss_notes(row, ["debt", "loan debt"]),
+                         ["the obligation to repay a loan"], "the key, not the position")
+        self.assertEqual(service._gloss_notes(entry(gloss=["debt"]), ["debt"]), [])
+
     def test_an_entry_the_dictionary_does_not_count_says_nothing_about_it(self):
         payload = service.attestation_of(entry(source="mpcd"), "pal")
         self.assertNotIn("corpus writes it", payload["reason"])

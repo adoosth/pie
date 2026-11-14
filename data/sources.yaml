@@ -1,47 +1,61 @@
 - id: ringe-2006
+  short: Ringe
   title: Ringe, From Proto-Indo-European to Proto-Germanic (A History of English, vol. 1, 2006)
   url: https://doi.org/10.1093/acprof:oso/9780199284139.001.0001
   kind: monograph
 - id: ringe-2017
+  short: Ringe & Taylor
   title: Ringe & Taylor, The Development of Old English (2014); The Linguistic History of English (2017)
   kind: monograph
 - id: kroonen-2013
+  short: Kroonen
   title: Kroonen, Etymological Dictionary of Proto-Germanic (Leiden Indo-European Etymological
     Dictionary Series 11, 2013)
   kind: dictionary
 - id: kloekhorst-2007
+  short: Kloekhorst
   title: Kloekhorst, Etymological Dictionary of the Hittite Inherited Lexicon (2007)
   kind: dictionary
 - id: fortson-2004
+  short: Fortson
   title: Fortson, Indo-European Language and Culture (2nd ed. 2010)
   kind: handbook
 - id: beekes-2011
+  short: Beekes
   title: 'Beekes, Comparative Indo-European Linguistics: An Introduction (2nd ed. 2011)'
   kind: handbook
 - id: szemerenyi-1996
+  short: Szemerényi
   title: Szemerényi, Introduction to Indo-European Linguistics (1996)
   kind: handbook
 - id: mayrhofer-1986
+  short: Mayrhofer
   title: 'Mayrhofer, Indogermanische Grammatik I/2: Lautlehre (1986)'
   kind: grammar
 - id: hoffmann-forssman-2004
+  short: Hoffmann & Forssman
   title: Hoffmann & Forssman, Avestische Laut- und Flexionslehre (2nd ed. 2004)
   kind: grammar
 - id: skjaervo-2009
+  short: Skjærvø
   title: Skjærvø, The Avestan Language (Iranian Studies 37, 2009)
   kind: article
 - id: kent-1953
+  short: Kent
   title: 'Kent, Old Persian: Grammar, Texts, Lexicon (2nd ed. 1953)'
   url: https://archive.org/details/old-persian-grammar-texts-lexicon
   kind: grammar
 - id: mackenzie-1971
+  short: MacKenzie
   title: MacKenzie, A Concise Pahlavi Dictionary (1971/2014)
   kind: dictionary
 - id: mpcd
+  short: MPCD
   title: Zoroastrian Middle Persian Digital Corpus and Dictionary (MPCD), mpcorpus.org
   url: https://www.mpcorpus.org
   kind: dictionary
 - id: durkin-meisterernst-2014
+  short: Durkin-Meisterernst
   title: Durkin-Meisterernst, Grammatik des Westmitteliranischen (2014)
   kind: grammar
 - id: skjaervo-2009b
@@ -93,14 +107,17 @@
   title: Neri, Il sistema di vocali del germanico; Germanische Lautgesetze
   kind: article
 - id: wiktionary
+  short: Wiktionary
   title: Wiktionary, etymology sections (CC BY-SA 4.0)
   url: https://en.wiktionary.org
   kind: corpus
 - id: fa-wiktionary
+  short: ویکی‌واژه
   title: ویکی‌واژه فارسی (Persian Wiktionary), per-word pages (CC BY-SA 4.0)
   url: https://fa.wiktionary.org
   kind: lexicon
 - id: kaikki
+  short: Wiktionary (kaikki.org)
   title: Wiktextract / kaikki.org machine-readable Wiktionary (CC BY-SA 4.0)
   url: https://kaikki.org/dictionary/
   kind: corpus
@@ -132,12 +149,14 @@
   title: Paul, Mittelhochdeutsche Grammatik (25th ed. 2007)
   kind: grammar
 - id: kluge-2011
+  short: Kluge
   title: Kluge, Etymologisches Wörterbuch der deutschen Sprache (25th ed. 2011)
   kind: dictionary
 - id: wells-1985
   title: 'Wells, German: A Linguistic History to 1945 (1985)'
   kind: handbook
 - id: devaan-2008
+  short: de Vaan
   title: de Vaan, Etymological Dictionary of Latin and the Other Italic Languages (2008)
   kind: dictionary
 - id: weiss-2009
@@ -150,6 +169,7 @@
   title: Sihler, New Comparative Grammar of Greek and Latin (1995)
   kind: grammar
 - id: liv
+  short: LIV
   title: Rix et al., Lexikon der indogermanischen Verben (2nd ed. 2001)
   kind: lexicon
 - id: horrocks-2010
@@ -168,6 +188,7 @@
   title: Duden — Die deutsche Rechtschreibung (27th ed. 2017)
   kind: reference
 - id: matasovic-2009
+  short: Matasović
   title: Matasović, Etymological Dictionary of Proto-Celtic (2009)
   url: https://brill.com/display/title/16280
   kind: dictionary
@@ -187,6 +208,7 @@
   title: 'Schrijver, The British word for *fox and its Indo-European origin, JIES 26 (1998) 421–434'
   kind: article
 - id: whitney-1889
+  short: Whitney
   title: Whitney, A Sanskrit Grammar, including both the classical language and the older dialects of Veda and Brāhmaṇa (2nd ed., Leipzig 1889; 1896 printing at archive.org)
   url: https://archive.org/details/whitney-a-sanskrit-grammar
   kind: grammar
@@ -215,6 +237,7 @@
   title: Shevelov, A Prehistory of Slavic (1964)
   kind: monograph
 - id: derksen-2008
+  short: Derksen
   title: Derksen, Etymological Dictionary of the Slavic Inherited Lexicon (2008)
   kind: dictionary
 - id: olander-2015
@@ -242,6 +265,7 @@
   title: "Haugen, Scandinavian Language Structures: A Comparative Historical Survey (1982)"
   kind: handbook
 - id: ringe-taylor-2014
+  short: Ringe & Taylor
   title: Ringe & Taylor, The Development of Old English (2014)
   kind: monograph
 - id: thurneysen-1946
@@ -272,6 +296,7 @@
   title: "Browning, Medieval and Modern Greek (2nd ed., Cambridge University Press, 1983)"
   kind: monograph
 - id: dehkhoda
+  short: Dehkhoda
   title: Dehkhoda, لغت‌نامه (Loghatnāmeh), as printed on vajehyab.com
   url: https://vajehyab.com/dehkhoda/
   kind: dictionary

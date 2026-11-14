@@ -1889,3 +1889,20 @@ assert.match(transcribedStanding,
     context.fetch = oldFetch;
   }
 })();
+
+/* ---------------------------------------------------------------- */
+/* a meaning names the book it was read in (2026-11-14)             */
+/* ---------------------------------------------------------------- */
+/* A gloss is quoted from a dictionary, and the page says which one under the
+   meaning; the record's own subtext under a sense is printed with it. */
+const meaningSrc = evaluate(
+  'meaningsBlock({word:"abāmtōzišn", lang:"pal", gloss:["loan debt"], gloss_source:"mpcd", gloss_source_name:"MPCD", gloss_notes:["the obligation to repay a loan, cf. Ger. \'Kreditschuld\'"]})');
+assert.ok(meaningSrc.includes('class="glosssrc"'), meaningSrc);
+assert.ok(plain(meaningSrc).includes("MPCD"), "the source is named under the meaning");
+assert.ok(plain(meaningSrc).includes("the obligation to repay a loan"),
+  "the record's own gloss on the sense is printed with the meaning");
+assert.ok(meaningSrc.indexOf("loan debt") < meaningSrc.indexOf("obligation"),
+  "the meaning comes first, then its gloss, then the source");
+const meanNoSrc = evaluate('meaningsBlock({word:"x", lang:"en", gloss:["a word"]})');
+assert.ok(!meanNoSrc.includes('class="glosssrc"'),
+  "a page with no recorded source prints no empty citation");
